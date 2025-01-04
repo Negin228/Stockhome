@@ -24,6 +24,11 @@
 
 <h2 style="text-align: center;">Stock Performance</h2>
 
+<!-- Buttons for entering data -->
+<button onclick="enterSoldPrice()">Enter Sold Prices</button>
+<button onclick="enterTodayPrice()">Enter Today's Prices</button>
+<button onclick="enterQuantities()">Enter Quantities</button>
+
 <!-- Individual Stocks Table -->
 <table id="stockTable">
     <thead>
@@ -32,7 +37,7 @@
             <th>Sold Price</th>
             <th>Price Today</th>
             <th>Quantity</th>
-            <th>Delta</th>
+            <th>Delta (%)</th>
         </tr>
     </thead>
     <tbody>
@@ -55,50 +60,88 @@
         <tr>
             <td id="soldValue">Loading...</td>
             <td id="notSoldValue">Loading...</td>
-            <td id="delta">Loading...</td>
+            <td id="portfolioDelta">Loading...</td>
         </tr>
     </tbody>
 </table>
 
 <script>
-    // Define stock data (Replace this with actual data or user inputs)
+    // Default stock data
     const stocks = [
-        { company: 'Goog', soldPrice: 1500, priceToday: 1550, quantity: 10 },
-        { company: 'MSFT', soldPrice: 280, priceToday: 300, quantity: 15 },
-        { company: 'NFLX', soldPrice: 500, priceToday: 520, quantity: 8 },
-        { company: 'AMZN', soldPrice: 3300, priceToday: 3400, quantity: 5 },
-        { company: 'NVDA', soldPrice: 200, priceToday: 220, quantity: 12 },
-        { company: 'META', soldPrice: 350, priceToday: 370, quantity: 7 }
+        { company: 'Goog', soldPrice: null, priceToday: null, quantity: null },
+        { company: 'MSFT', soldPrice: null, priceToday: null, quantity: null },
+        { company: 'NFLX', soldPrice: null, priceToday: null, quantity: null },
+        { company: 'AMZN', soldPrice: null, priceToday: null, quantity: null },
+        { company: 'NVDA', soldPrice: null, priceToday: null, quantity: null },
+        { company: 'META', soldPrice: null, priceToday: null, quantity: null }
     ];
 
-    // Populate the stocks table
-    const stockTable = document.getElementById('stockTable').getElementsByTagName('tbody')[0];
-    let portfolioValueWhenSold = 0;
-    let portfolioValueIfNotSold = 0;
+    // Populate the individual stock table
+    function updateStockTable() {
+        const stockTable = document.getElementById('stockTable').getElementsByTagName('tbody')[0];
+        stockTable.innerHTML = '';  // Clear the table body
 
-    stocks.forEach(stock => {
-        const delta = ((stock.priceToday - stock.soldPrice) / stock.soldPrice) * 100;
-        
-        // Add a new row to the stock table
-        const row = stockTable.insertRow();
-        row.insertCell(0).innerText = stock.company;
-        row.insertCell(1).innerText = `$${stock.soldPrice.toFixed(2)}`;
-        row.insertCell(2).innerText = `$${stock.priceToday.toFixed(2)}`;
-        row.insertCell(3).innerText = stock.quantity;
-        row.insertCell(4).innerText = `${delta.toFixed(2)}%`;
+        stocks.forEach(stock => {
+            const delta = stock.soldPrice && stock.priceToday ? ((stock.priceToday - stock.soldPrice) / stock.soldPrice) * 100 : 0;
+            const row = stockTable.insertRow();
+            row.insertCell(0).innerText = stock.company;
+            row.insertCell(1).innerText = stock.soldPrice ? `$${stock.soldPrice.toFixed(2)}` : 'Not Entered';
+            row.insertCell(2).innerText = stock.priceToday ? `$${stock.priceToday.toFixed(2)}` : 'Not Entered';
+            row.insertCell(3).innerText = stock.quantity !== null ? stock.quantity : 'Not Entered';
+            row.insertCell(4).innerText = delta !== null ? `${delta.toFixed(2)}%` : 'Not Calculated';
+        });
 
-        // Add to the portfolio calculation
-        portfolioValueWhenSold += stock.soldPrice * stock.quantity;
-        portfolioValueIfNotSold += stock.priceToday * stock.quantity;
-    });
+        calculatePortfolio();
+    }
 
-    // Calculate portfolio delta
-    const portfolioDelta = ((portfolioValueWhenSold - portfolioValueIfNotSold) / portfolioValueIfNotSold) * 100;
+    // Calculate Portfolio Values and Delta
+    function calculatePortfolio() {
+        let portfolioValueWhenSold = 0;
+        let portfolioValueIfNotSold = 0;
 
-    // Update the portfolio table
-    document.getElementById('soldValue').innerText = `$${portfolioValueWhenSold.toFixed(2)}`;
-    document.getElementById('notSoldValue').innerText = `$${portfolioValueIfNotSold.toFixed(2)}`;
-    document.getElementById('delta').innerText = `${portfolioDelta.toFixed(2)}%`;
+        stocks.forEach(stock => {
+            if (stock.soldPrice && stock.priceToday && stock.quantity !== null) {
+                portfolioValueWhenSold += stock.soldPrice * stock.quantity;
+                portfolioValueIfNotSold += stock.priceToday * stock.quantity;
+            }
+        });
+
+        const portfolioDelta = portfolioValueIfNotSold ? ((portfolioValueWhenSold - portfolioValueIfNotSold) / portfolioValueIfNotSold) * 100 : 0;
+
+        document.getElementById('soldValue').innerText = `$${portfolioValueWhenSold.toFixed(2)}`;
+        document.getElementById('notSoldValue').innerText = `$${portfolioValueIfNotSold.toFixed(2)}`;
+        document.getElementById('portfolioDelta').innerText = `${portfolioDelta.toFixed(2)}%`;
+    }
+
+    // Function to enter sold price for each stock
+    function enterSoldPrice() {
+        stocks.forEach(stock => {
+            const soldPrice = prompt(`Enter the sold price for ${stock.company}`);
+            stock.soldPrice = parseFloat(soldPrice);
+        });
+        updateStockTable();
+    }
+
+    // Function to enter today's price for each stock
+    function enterTodayPrice() {
+        stocks.forEach(stock => {
+            const priceToday = prompt(`Enter the today's price for ${stock.company}`);
+            stock.priceToday = parseFloat(priceToday);
+        });
+        updateStockTable();
+    }
+
+    // Function to enter quantity for each stock
+    function enterQuantities() {
+        stocks.forEach(stock => {
+            const quantity = prompt(`Enter the quantity for ${stock.company}`);
+            stock.quantity = parseInt(quantity);
+        });
+        updateStockTable();
+    }
+
+    // Initial table update
+    updateStockTable();
 </script>
 
 </body>
