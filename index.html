@@ -3,141 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Portfolio Tracker</title>
+    <title>Portfolio Performance</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <h2>Stock Portfolio Tracker</h2>
 
-    <button onclick="askSoldPrices()">What I Sold</button>
-    <br><br>
+<h2 style="text-align: center;">Portfolio Performance</h2>
 
-    <!-- Stocks Table -->
-    <h3>Stocks</h3>
-    <table id="stocksTable" border="1">
-        <thead>
-            <tr>
-                <th>Company</th>
-                <th>Sold Price</th>
-                <th>Quantity</th>
-                <th>Delta ($)</th>
-                <th>Delta (%)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Goog</td>
-                <td id="googSoldPrice"></td>
-                <td id="googQuantity"></td>
-                <td id="googDelta"></td>
-                <td id="googDeltaPercentage"></td>
-            </tr>
-            <tr>
-                <td>MSFT</td>
-                <td id="msftSoldPrice"></td>
-                <td id="msftQuantity"></td>
-                <td id="msftDelta"></td>
-                <td id="msftDeltaPercentage"></td>
-            </tr>
-            <tr>
-                <td>NFLX</td>
-                <td id="nflxSoldPrice"></td>
-                <td id="nflxQuantity"></td>
-                <td id="nflxDelta"></td>
-                <td id="nflxDeltaPercentage"></td>
-            </tr>
-            <tr>
-                <td>AMZN</td>
-                <td id="amznSoldPrice"></td>
-                <td id="amznQuantity"></td>
-                <td id="amznDelta"></td>
-                <td id="amznDeltaPercentage"></td>
-            </tr>
-            <tr>
-                <td>NVDA</td>
-                <td id="nvdaSoldPrice"></td>
-                <td id="nvdaQuantity"></td>
-                <td id="nvdaDelta"></td>
-                <td id="nvdaDeltaPercentage"></td>
-            </tr>
-            <tr>
-                <td>META</td>
-                <td id="metaSoldPrice"></td>
-                <td id="metaQuantity"></td>
-                <td id="metaDelta"></td>
-                <td id="metaDeltaPercentage"></td>
-            </tr>
-        </tbody>
-    </table>
+<table>
+    <thead>
+        <tr>
+            <th>Portfolio Value When Sold</th>
+            <th>Portfolio Value If Not Sold</th>
+            <th>Delta (%)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="soldValue">Loading...</td>
+            <td id="notSoldValue">Loading...</td>
+            <td id="delta">Loading...</td>
+        </tr>
+    </tbody>
+</table>
 
-    <br><br>
+<script>
+    // Example portfolio data (replace this with actual data from your backend or calculations)
+    const portfolioData = [
+        { company: 'Company A', boughtPrice: 100, soldPrice: 150, shares: 10 },
+        { company: 'Company B', boughtPrice: 50, soldPrice: 70, shares: 20 },
+        { company: 'Company C', boughtPrice: 200, soldPrice: 250, shares: 5 }
+    ];
 
-    <button onclick="askPricesToday()">What is the Sold Price Today?</button>
+    // Calculate total values
+    const portfolioValueWhenSold = portfolioData.reduce((acc, stock) => acc + stock.soldPrice * stock.shares, 0);
+    const portfolioValueIfNotSold = portfolioData.reduce((acc, stock) => acc + stock.boughtPrice * stock.shares, 0);
+    const delta = ((portfolioValueWhenSold - portfolioValueIfNotSold) / portfolioValueIfNotSold) * 100;
 
-    <!-- Portfolio Table -->
-    <h3>Portfolio</h3>
-    <table id="portfolioTable" border="1">
-        <thead>
-            <tr>
-                <th>Company</th>
-                <th>Quantity</th>
-                <th>Sold Price</th>
-                <th>Sold Portfolio</th>
-                <th>Prices Today</th>
-                <th>Portfolio Today</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Goog</td>
-                <td id="googPortfolioQuantity"></td>
-                <td id="googSoldPortfolio"></td>
-                <td id="googPortfolioSoldValue"></td>
-                <td id="googPortfolioTodayPrice"></td>
-                <td id="googPortfolioTodayValue"></td>
-            </tr>
-            <tr>
-                <td>MSFT</td>
-                <td id="msftPortfolioQuantity"></td>
-                <td id="msftSoldPortfolio"></td>
-                <td id="msftPortfolioSoldValue"></td>
-                <td id="msftPortfolioTodayPrice"></td>
-                <td id="msftPortfolioTodayValue"></td>
-            </tr>
-            <tr>
-                <td>NFLX</td>
-                <td id="nflxPortfolioQuantity"></td>
-                <td id="nflxSoldPortfolio"></td>
-                <td id="nflxPortfolioSoldValue"></td>
-                <td id="nflxPortfolioTodayPrice"></td>
-                <td id="nflxPortfolioTodayValue"></td>
-            </tr>
-            <tr>
-                <td>AMZN</td>
-                <td id="amznPortfolioQuantity"></td>
-                <td id="amznSoldPortfolio"></td>
-                <td id="amznPortfolioSoldValue"></td>
-                <td id="amznPortfolioTodayPrice"></td>
-                <td id="amznPortfolioTodayValue"></td>
-            </tr>
-            <tr>
-                <td>NVDA</td>
-                <td id="nvdaPortfolioQuantity"></td>
-                <td id="nvdaSoldPortfolio"></td>
-                <td id="nvdaPortfolioSoldValue"></td>
-                <td id="nvdaPortfolioTodayPrice"></td>
-                <td id="nvdaPortfolioTodayValue"></td>
-            </tr>
-            <tr>
-                <td>META</td>
-                <td id="metaPortfolioQuantity"></td>
-                <td id="metaSoldPortfolio"></td>
-                <td id="metaPortfolioSoldValue"></td>
-                <td id="metaPortfolioTodayPrice"></td>
-                <td id="metaPortfolioTodayValue"></td>
-            </tr>
-        </tbody>
-    </table>
+    // Display the results in the table
+    document.getElementById('soldValue').innerText = `$${portfolioValueWhenSold.toFixed(2)}`;
+    document.getElementById('notSoldValue').innerText = `$${portfolioValueIfNotSold.toFixed(2)}`;
+    document.getElementById('delta').innerText = `${delta.toFixed(2)}%`;
+</script>
 
-    <script src="app.js"></script>
 </body>
 </html>
