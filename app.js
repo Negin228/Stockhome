@@ -1,105 +1,190 @@
-let googSoldPrice, msftSoldPrice, nflxSoldPrice, amznSoldPrice, nvdaSoldPrice, metaSoldPrice;
-let googQuantity, msftQuantity, nflxQuantity, amznQuantity, nvdaQuantity, metaQuantity;
-let googToday, msftToday, nflxToday, amznToday, nvdaToday, metaToday;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Portfolio</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
 
-function askSoldPrices() {
-    // Ask for sold prices
-    googSoldPrice = parseFloat(prompt("Enter Sold Price for Goog:"));
-    msftSoldPrice = parseFloat(prompt("Enter Sold Price for MSFT:"));
-    nflxSoldPrice = parseFloat(prompt("Enter Sold Price for NFLX:"));
-    amznSoldPrice = parseFloat(prompt("Enter Sold Price for AMZN:"));
-    nvdaSoldPrice = parseFloat(prompt("Enter Sold Price for NVDA:"));
-    metaSoldPrice = parseFloat(prompt("Enter Sold Price for META:"));
+        table, th, td {
+            border: 1px solid black;
+        }
 
-    // Ask for quantities
-    googQuantity = parseInt(prompt("Enter Quantity for Goog:"));
-    msftQuantity = parseInt(prompt("Enter Quantity for MSFT:"));
-    nflxQuantity = parseInt(prompt("Enter Quantity for NFLX:"));
-    amznQuantity = parseInt(prompt("Enter Quantity for AMZN:"));
-    nvdaQuantity = parseInt(prompt("Enter Quantity for NVDA:"));
-    metaQuantity = parseInt(prompt("Enter Quantity for META:"));
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
 
-    // Update stocks table
-    updateStocksTable();
+        .form-group {
+            margin: 10px 0;
+        }
 
-    // Update portfolio table
-    updatePortfolio("goog", googQuantity, googSoldPrice, googSoldPrice);
-    updatePortfolio("msft", msftQuantity, msftSoldPrice, msftSoldPrice);
-    updatePortfolio("nflx", nflxQuantity, nflxSoldPrice, nflxSoldPrice);
-    updatePortfolio("amzn", amznQuantity, amznSoldPrice, amznSoldPrice);
-    updatePortfolio("nvda", nvdaQuantity, nvdaSoldPrice, nvdaSoldPrice);
-    updatePortfolio("meta", metaQuantity, metaSoldPrice, metaSoldPrice);
-}
+        #login-form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
 
-function updateStocksTable() {
-    // Calculate and update the delta
-    let googDelta = (googToday - googSoldPrice) * googQuantity;
-    let msftDelta = (msftToday - msftSoldPrice) * msftQuantity;
-    let nflxDelta = (nflxToday - nflxSoldPrice) * nflxQuantity;
-    let amznDelta = (amznToday - amznSoldPrice) * amznQuantity;
-    let nvdaDelta = (nvdaToday - nvdaSoldPrice) * nvdaQuantity;
-    let metaDelta = (metaToday - metaSoldPrice) * metaQuantity;
+    <!-- Login Form -->
+    <div id="login-form">
+        <h3>Login to Edit Data</h3>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+    </div>
 
-    // Display sold prices, quantity, and deltas
-    document.getElementById("googSoldPrice").textContent = googSoldPrice;
-    document.getElementById("msftSoldPrice").textContent = msftSoldPrice;
-    document.getElementById("nflxSoldPrice").textContent = nflxSoldPrice;
-    document.getElementById("amznSoldPrice").textContent = amznSoldPrice;
-    document.getElementById("nvdaSoldPrice").textContent = nvdaSoldPrice;
-    document.getElementById("metaSoldPrice").textContent = metaSoldPrice;
+    <!-- Editable Table for Stocks -->
+    <div id="stock-table" style="display: none;">
+        <h2>Enter Your Stock Data</h2>
+        <table id="stocksTable">
+            <thead>
+                <tr>
+                    <th>Stock</th>
+                    <th>Sold Price</th>
+                    <th>Price Today</th>
+                    <th>Quantity</th>
+                    <th>Delta (%)</th>
+                </tr>
+            </thead>
+            <tbody id="stocksData">
+                <!-- Stock Data Rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
 
-    document.getElementById("googQuantity").textContent = googQuantity;
-    document.getElementById("msftQuantity").textContent = msftQuantity;
-    document.getElementById("nflxQuantity").textContent = nflxQuantity;
-    document.getElementById("amznQuantity").textContent = amznQuantity;
-    document.getElementById("nvdaQuantity").textContent = nvdaQuantity;
-    document.getElementById("metaQuantity").textContent = metaQuantity;
+    <!-- Portfolio Table -->
+    <div id="portfolio-table" style="display: none;">
+        <h2>Portfolio Summary</h2>
+        <table id="portfolioTable">
+            <thead>
+                <tr>
+                    <th>Portfolio Value (Sold)</th>
+                    <th>Portfolio Value (Today)</th>
+                    <th>Delta (%)</th>
+                </tr>
+            </thead>
+            <tbody id="portfolioData">
+                <tr>
+                    <td id="soldPortfolioValue">0</td>
+                    <td id="portfolioValueToday">0</td>
+                    <td id="portfolioDelta">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    // Calculate and update delta
-    document.getElementById("googDelta").textContent = googDelta.toFixed(2);
-    document.getElementById("msftDelta").textContent = msftDelta.toFixed(2);
-    document.getElementById("nflxDelta").textContent = nflxDelta.toFixed(2);
-    document.getElementById("amznDelta").textContent = amznDelta.toFixed(2);
-    document.getElementById("nvdaDelta").textContent = nvdaDelta.toFixed(2);
-    document.getElementById("metaDelta").textContent = metaDelta.toFixed(2);
+    <script>
+        // Username and password for login
+        const correctUsername = 'admin';
+        const correctPassword = 'password123';
 
-    // Calculate and update delta percentage
-    document.getElementById("googDeltaPercentage").textContent = ((googDelta / (googSoldPrice * googQuantity)) * 100).toFixed(2) + "%";
-    document.getElementById("msftDeltaPercentage").textContent = ((msftDelta / (msftSoldPrice * msftQuantity)) * 100).toFixed(2) + "%";
-    document.getElementById("nflxDeltaPercentage").textContent = ((nflxDelta / (nflxSoldPrice * nflxQuantity)) * 100).toFixed(2) + "%";
-    document.getElementById("amznDeltaPercentage").textContent = ((amznDelta / (amznSoldPrice * amznQuantity)) * 100).toFixed(2) + "%";
-    document.getElementById("nvdaDeltaPercentage").textContent = ((nvdaDelta / (nvdaSoldPrice * nvdaQuantity)) * 100).toFixed(2) + "%";
-    document.getElementById("metaDeltaPercentage").textContent = ((metaDelta / (metaSoldPrice * metaQuantity)) * 100).toFixed(2) + "%";
-}
+        // Load saved stock data from localStorage
+        function loadSavedData() {
+            const savedData = localStorage.getItem('stockData');
+            if (savedData) {
+                return JSON.parse(savedData);
+            }
+            return [
+                { company: 'GOOG', soldPrice: null, priceToday: null, quantity: null },
+                { company: 'MSFT', soldPrice: null, priceToday: null, quantity: null },
+                { company: 'NFLX', soldPrice: null, priceToday: null, quantity: null },
+                { company: 'AMZN', soldPrice: null, priceToday: null, quantity: null },
+                { company: 'NVDA', soldPrice: null, priceToday: null, quantity: null },
+                { company: 'META', soldPrice: null, priceToday: null, quantity: null }
+            ];
+        }
 
-function askPricesToday() {
-    googToday = parseFloat(prompt("Enter Today's Price for Goog:"));
-    msftToday = parseFloat(prompt("Enter Today's Price for MSFT:"));
-    nflxToday = parseFloat(prompt("Enter Today's Price for NFLX:"));
-    amznToday = parseFloat(prompt("Enter Today's Price for AMZN:"));
-    nvdaToday = parseFloat(prompt("Enter Today's Price for NVDA:"));
-    metaToday = parseFloat(prompt("Enter Today's Price for META:"));
+        // Save data to localStorage
+        function saveDataToLocalStorage() {
+            localStorage.setItem('stockData', JSON.stringify(stocks));
+        }
 
-    // Update portfolio with today's prices
-    updatePortfolio("goog", googQuantity, googSoldPrice, googToday);
-    updatePortfolio("msft", msftQuantity, msftSoldPrice, msftToday);
-    updatePortfolio("nflx", nflxQuantity, nflxSoldPrice, nflxToday);
-    updatePortfolio("amzn", amznQuantity, amznSoldPrice, amznToday);
-    updatePortfolio("nvda", nvdaQuantity, nvdaSoldPrice, nvdaToday);
-    updatePortfolio("meta", metaQuantity, metaSoldPrice, metaToday);
-}
+        // Update stock data when inputs change
+        function updateStockData(company, field, value) {
+            const stock = stocks.find(stock => stock.company === company);
+            stock[field] = field === 'quantity' ? parseInt(value) : parseFloat(value);
+            saveDataToLocalStorage();  // Save data to localStorage
+            updateStockTable();
+            calculatePortfolio();
+        }
 
-function updatePortfolio(company, quantity, soldPrice, todayPrice) {
-    // Display Quantity
-    document.getElementById(`${company}PortfolioQuantity`).textContent = quantity;
+        // Update stock table view
+        function updateStockTable() {
+            const stockTableBody = document.getElementById("stocksData");
+            stockTableBody.innerHTML = '';
+            stocks.forEach(stock => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${stock.company}</td>
+                    <td><input type="number" value="${stock.soldPrice || ''}" onchange="updateStockData('${stock.company}', 'soldPrice', this.value)"></td>
+                    <td><input type="number" value="${stock.priceToday || ''}" onchange="updateStockData('${stock.company}', 'priceToday', this.value)"></td>
+                    <td><input type="number" value="${stock.quantity || ''}" onchange="updateStockData('${stock.company}', 'quantity', this.value)"></td>
+                    <td>${calculateDelta(stock)}</td>
+                `;
+                stockTableBody.appendChild(row);
+            });
+        }
 
-    // Calculate Sold Portfolio (Quantity * Sold Price)
-    const soldPortfolio = quantity * soldPrice;
-    document.getElementById(`${company}SoldPortfolio`).textContent = soldPrice;
-    document.getElementById(`${company}PortfolioSoldValue`).textContent = soldPortfolio.toFixed(2);
+        // Calculate the delta in percentage for each stock
+        function calculateDelta(stock) {
+            if (stock.soldPrice && stock.priceToday) {
+                return ((stock.priceToday - stock.soldPrice) / stock.soldPrice * 100).toFixed(2) + '%';
+            }
+            return '-';
+        }
 
-    // Calculate Portfolio Today (Quantity * Today's Price)
-    const portfolioToday = quantity * todayPrice;
-    document.getElementById(`${company}PortfolioTodayPrice`).textContent = todayPrice;
-    document.getElementById(`${company}PortfolioTodayValue`).textContent = portfolioToday.toFixed(2);
-}
+        // Calculate portfolio values and delta
+        function calculatePortfolio() {
+            let soldPortfolioValue = 0;
+            let portfolioValueToday = 0;
+
+            stocks.forEach(stock => {
+                if (stock.soldPrice && stock.quantity) {
+                    soldPortfolioValue += stock.soldPrice * stock.quantity;
+                }
+                if (stock.priceToday && stock.quantity) {
+                    portfolioValueToday += stock.priceToday * stock.quantity;
+                }
+            });
+
+            const portfolioDelta = ((portfolioValueToday - soldPortfolioValue) / soldPortfolioValue * 100).toFixed(2) || 0;
+
+            document.getElementById('soldPortfolioValue').textContent = soldPortfolioValue.toFixed(2);
+            document.getElementById('portfolioValueToday').textContent = portfolioValueToday.toFixed(2);
+            document.getElementById('portfolioDelta').textContent = portfolioDelta + '%';
+        }
+
+        // Login function to check username and password
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === correctUsername && password === correctPassword) {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('stock-table').style.display = 'block';
+                document.getElementById('portfolio-table').style.display = 'block';
+                populateInputTable();
+            } else {
+                alert('Incorrect username or password');
+            }
+        }
+
+        // Populate the table with saved stock data
+        function populateInputTable() {
+            updateStockTable();
+            calculatePortfolio();
+        }
+
+        // Initial setup on page load
+        let stocks = loadSavedData();  // Load data from localStorage or default
+        populateInputTable();
+    </script>
+
+</body>
+</html>
