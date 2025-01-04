@@ -39,10 +39,6 @@ def update_stock_prices():
 
 @app.route('/')
 def home():
-    return render_template('index.html')  # Ensure that index.html is in the 'templates' folder
-
-@app.route('/refresh')
-def refresh():
     try:
         update_stock_prices()
         # Fetch the updated stock data from the database
@@ -57,10 +53,10 @@ def refresh():
         portfolio = cursor.fetchall()
         cursor.close()
         conn.close()
-        return jsonify(portfolio)
+        return render_template('index.html', portfolio=portfolio)
     except Exception as e:
         print(f"Error refreshing data: {e}")
-        return jsonify({"error": "Failed to refresh data"}), 500
+        return render_template('index.html', error="Failed to refresh data")
 
 if __name__ == "__main__":
     from os import environ
