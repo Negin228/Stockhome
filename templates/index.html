@@ -36,10 +36,10 @@
                 // Create a new DOMParser
                 var parser = new DOMParser();
                 var doc = parser.parseFromString(html, 'text/html');
-                
+
                 // Extract the new table rows from the fetched HTML
                 var newRows = doc.querySelectorAll('table tr');
-                
+
                 // Replace the existing table rows with the new rows
                 var table = document.querySelector('table');
                 while (table.rows.length > 1) {
