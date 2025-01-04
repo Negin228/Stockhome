@@ -18,18 +18,34 @@
         th {
             background-color: #f2f2f2;
         }
+        .input-table {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
 <h2 style="text-align: center;">Stock Performance</h2>
 
-<!-- Buttons for entering data -->
-<button onclick="enterSoldPrice()">Enter Sold Prices</button>
-<button onclick="enterTodayPrice()">Enter Today's Prices</button>
-<button onclick="enterQuantities()">Enter Quantities</button>
+<!-- Table to input sold price, today's price, and quantity -->
+<table class="input-table" id="inputTable">
+    <thead>
+        <tr>
+            <th>Company</th>
+            <th>Sold Price</th>
+            <th>Price Today</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Data rows will be populated here -->
+    </tbody>
+</table>
+
+<button onclick="saveData()">Save Data</button>
 
 <!-- Individual Stocks Table -->
+<h2 style="text-align: center;">Stock Performance Table</h2>
 <table id="stockTable">
     <thead>
         <tr>
@@ -76,6 +92,33 @@
         { company: 'META', soldPrice: null, priceToday: null, quantity: null }
     ];
 
+    // Populate the input table where user can enter data
+    function populateInputTable() {
+        const inputTable = document.getElementById('inputTable').getElementsByTagName('tbody')[0];
+        inputTable.innerHTML = '';  // Clear the table body
+
+        stocks.forEach(stock => {
+            const row = inputTable.insertRow();
+            row.insertCell(0).innerText = stock.company;
+            const soldPriceCell = row.insertCell(1);
+            const priceTodayCell = row.insertCell(2);
+            const quantityCell = row.insertCell(3);
+
+            // Create input fields for each column
+            soldPriceCell.innerHTML = `<input type="number" value="${stock.soldPrice || ''}" step="0.01" onchange="updateStockData('${stock.company}', 'soldPrice', this.value)">`;
+            priceTodayCell.innerHTML = `<input type="number" value="${stock.priceToday || ''}" step="0.01" onchange="updateStockData('${stock.company}', 'priceToday', this.value)">`;
+            quantityCell.innerHTML = `<input type="number" value="${stock.quantity || ''}" step="1" onchange="updateStockData('${stock.company}', 'quantity', this.value)">`;
+        });
+    }
+
+    // Update stock data when inputs change
+    function updateStockData(company, field, value) {
+        const stock = stocks.find(stock => stock.company === company);
+        stock[field] = field === 'quantity' ? parseInt(value) : parseFloat(value);
+        updateStockTable();
+        calculatePortfolio();
+    }
+
     // Populate the individual stock table
     function updateStockTable() {
         const stockTable = document.getElementById('stockTable').getElementsByTagName('tbody')[0];
@@ -113,35 +156,13 @@
         document.getElementById('portfolioDelta').innerText = `${portfolioDelta.toFixed(2)}%`;
     }
 
-    // Function to enter sold price for each stock
-    function enterSoldPrice() {
-        stocks.forEach(stock => {
-            const soldPrice = prompt(`Enter the sold price for ${stock.company}`);
-            stock.soldPrice = parseFloat(soldPrice);
-        });
-        updateStockTable();
+    // Save data from the input table
+    function saveData() {
+        alert('Data saved!');
     }
 
-    // Function to enter today's price for each stock
-    function enterTodayPrice() {
-        stocks.forEach(stock => {
-            const priceToday = prompt(`Enter the today's price for ${stock.company}`);
-            stock.priceToday = parseFloat(priceToday);
-        });
-        updateStockTable();
-    }
-
-    // Function to enter quantity for each stock
-    function enterQuantities() {
-        stocks.forEach(stock => {
-            const quantity = prompt(`Enter the quantity for ${stock.company}`);
-            stock.quantity = parseInt(quantity);
-        });
-        updateStockTable();
-    }
-
-    // Initial table update
-    updateStockTable();
+    // Initial table population
+    populateInputTable();
 </script>
 
 </body>
