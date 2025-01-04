@@ -23,7 +23,8 @@
         {% endfor %}
     </table>
     <script>
-    document.getElementById('refresh-button').addEventListener('click', function() {
+    document.getElementById('refresh-button').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default behavior
         fetch('/refresh')
             .then(response => {
                 if (!response.ok) {
