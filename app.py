@@ -1,7 +1,6 @@
 import os
-import numpy as np
 import psycopg2
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 import yfinance as yf
 
 # Check if DB_HOST is set
@@ -13,7 +12,15 @@ app = Flask(__name__)
 
 # Function to update stock prices in the database
 def update_stock_prices():
-    symbols = ['GOOGL', 'META', 'NFLX', 'NVDA', 'MSFT', 'TSLA', 'AMZN']  # Updated stock symbols
+    symbols = {
+        'GOOGL': 'Google',
+        'META': 'Meta',
+        'NFLX': 'Netflix',
+        'NVDA': 'Nvidia',
+        'MSFT': 'Microsoft',
+        'TSLA': 'Tesla',
+        'AMZN': 'Amazon'
+    }  # Updated stock symbols and names
     
     # Connect to your PostgreSQL database using environment variables
     try:
@@ -25,7 +32,7 @@ def update_stock_prices():
         )
         cursor = conn.cursor()
         
-        for symbol in symbols:
+        for symbol, name in symbols.items():
             stock = yf.Ticker(symbol)
             price = stock.history(period='1d')['Close'][0]  # Get the latest closing price
             price = float(price)  # Ensure the price is a regular float type
