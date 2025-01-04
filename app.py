@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # Function to update stock prices in the database
 def update_stock_prices():
-    symbols = ['AAPL', 'GOOGL', 'AMZN']  # Example stock symbols
+    symbols = ['GOOGL', 'META', 'NFLX', 'NVDA', 'MSFT', 'TSLA', 'AMZN']  # Updated stock symbols
     
     # Connect to your PostgreSQL database using environment variables
     try:
