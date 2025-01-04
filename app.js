@@ -1,23 +1,53 @@
-function askSoldPrices() {
-    const googQuantity = prompt("Enter the quantity of Goog sold:");
-    const msftQuantity = prompt("Enter the quantity of MSFT sold:");
-    const nflxQuantity = prompt("Enter the quantity of NFLX sold:");
-    const amznQuantity = prompt("Enter the quantity of AMZN sold:");
-    const nvdaQuantity = prompt("Enter the quantity of NVDA sold:");
-    const metaQuantity = prompt("Enter the quantity of META sold:");
-    
-    const googPrice = prompt("Enter the sold price of Goog:");
-    const msftPrice = prompt("Enter the sold price of MSFT:");
-    const nflxPrice = prompt("Enter the sold price of NFLX:");
-    const amznPrice = prompt("Enter the sold price of AMZN:");
-    const nvdaPrice = prompt("Enter the sold price of NVDA:");
-    const metaPrice = prompt("Enter the sold price of META:");
-    
-    // Capture and display the sold date
-    const soldDate = prompt("Enter the date you sold these:");
-    document.getElementById("dateDisplay").textContent = `Sold on: ${soldDate}`;
+let googSoldPrice, msftSoldPrice, nflxSoldPrice, amznSoldPrice, nvdaSoldPrice, metaSoldPrice;
+let googQuantity, msftQuantity, nflxQuantity, amznQuantity, nvdaQuantity, metaQuantity;
+let googToday, msftToday, nflxToday, amznToday, nvdaToday, metaToday;
 
-    // Set the quantity and sold prices in the table
+function askSoldPrices() {
+    // Ask for sold prices
+    googSoldPrice = parseFloat(prompt("Enter Sold Price for Goog:"));
+    msftSoldPrice = parseFloat(prompt("Enter Sold Price for MSFT:"));
+    nflxSoldPrice = parseFloat(prompt("Enter Sold Price for NFLX:"));
+    amznSoldPrice = parseFloat(prompt("Enter Sold Price for AMZN:"));
+    nvdaSoldPrice = parseFloat(prompt("Enter Sold Price for NVDA:"));
+    metaSoldPrice = parseFloat(prompt("Enter Sold Price for META:"));
+
+    // Ask for quantities
+    googQuantity = parseInt(prompt("Enter Quantity for Goog:"));
+    msftQuantity = parseInt(prompt("Enter Quantity for MSFT:"));
+    nflxQuantity = parseInt(prompt("Enter Quantity for NFLX:"));
+    amznQuantity = parseInt(prompt("Enter Quantity for AMZN:"));
+    nvdaQuantity = parseInt(prompt("Enter Quantity for NVDA:"));
+    metaQuantity = parseInt(prompt("Enter Quantity for META:"));
+
+    // Update stocks table
+    updateStocksTable();
+
+    // Update portfolio table
+    updatePortfolio("goog", googQuantity, googSoldPrice, googSoldPrice);
+    updatePortfolio("msft", msftQuantity, msftSoldPrice, msftSoldPrice);
+    updatePortfolio("nflx", nflxQuantity, nflxSoldPrice, nflxSoldPrice);
+    updatePortfolio("amzn", amznQuantity, amznSoldPrice, amznSoldPrice);
+    updatePortfolio("nvda", nvdaQuantity, nvdaSoldPrice, nvdaSoldPrice);
+    updatePortfolio("meta", metaQuantity, metaSoldPrice, metaSoldPrice);
+}
+
+function updateStocksTable() {
+    // Calculate and update the delta
+    let googDelta = (googToday - googSoldPrice) * googQuantity;
+    let msftDelta = (msftToday - msftSoldPrice) * msftQuantity;
+    let nflxDelta = (nflxToday - nflxSoldPrice) * nflxQuantity;
+    let amznDelta = (amznToday - amznSoldPrice) * amznQuantity;
+    let nvdaDelta = (nvdaToday - nvdaSoldPrice) * nvdaQuantity;
+    let metaDelta = (metaToday - metaSoldPrice) * metaQuantity;
+
+    // Display sold prices, quantity, and deltas
+    document.getElementById("googSoldPrice").textContent = googSoldPrice;
+    document.getElementById("msftSoldPrice").textContent = msftSoldPrice;
+    document.getElementById("nflxSoldPrice").textContent = nflxSoldPrice;
+    document.getElementById("amznSoldPrice").textContent = amznSoldPrice;
+    document.getElementById("nvdaSoldPrice").textContent = nvdaSoldPrice;
+    document.getElementById("metaSoldPrice").textContent = metaSoldPrice;
+
     document.getElementById("googQuantity").textContent = googQuantity;
     document.getElementById("msftQuantity").textContent = msftQuantity;
     document.getElementById("nflxQuantity").textContent = nflxQuantity;
@@ -25,64 +55,51 @@ function askSoldPrices() {
     document.getElementById("nvdaQuantity").textContent = nvdaQuantity;
     document.getElementById("metaQuantity").textContent = metaQuantity;
 
-    document.getElementById("googSoldPrice").textContent = googPrice;
-    document.getElementById("msftSoldPrice").textContent = msftPrice;
-    document.getElementById("nflxSoldPrice").textContent = nflxPrice;
-    document.getElementById("amznSoldPrice").textContent = amznPrice;
-    document.getElementById("nvdaSoldPrice").textContent = nvdaPrice;
-    document.getElementById("metaSoldPrice").textContent = metaPrice;
+    // Calculate and update delta
+    document.getElementById("googDelta").textContent = googDelta.toFixed(2);
+    document.getElementById("msftDelta").textContent = msftDelta.toFixed(2);
+    document.getElementById("nflxDelta").textContent = nflxDelta.toFixed(2);
+    document.getElementById("amznDelta").textContent = amznDelta.toFixed(2);
+    document.getElementById("nvdaDelta").textContent = nvdaDelta.toFixed(2);
+    document.getElementById("metaDelta").textContent = metaDelta.toFixed(2);
+
+    // Calculate and update delta percentage
+    document.getElementById("googDeltaPercentage").textContent = ((googDelta / (googSoldPrice * googQuantity)) * 100).toFixed(2) + "%";
+    document.getElementById("msftDeltaPercentage").textContent = ((msftDelta / (msftSoldPrice * msftQuantity)) * 100).toFixed(2) + "%";
+    document.getElementById("nflxDeltaPercentage").textContent = ((nflxDelta / (nflxSoldPrice * nflxQuantity)) * 100).toFixed(2) + "%";
+    document.getElementById("amznDeltaPercentage").textContent = ((amznDelta / (amznSoldPrice * amznQuantity)) * 100).toFixed(2) + "%";
+    document.getElementById("nvdaDeltaPercentage").textContent = ((nvdaDelta / (nvdaSoldPrice * nvdaQuantity)) * 100).toFixed(2) + "%";
+    document.getElementById("metaDeltaPercentage").textContent = ((metaDelta / (metaSoldPrice * metaQuantity)) * 100).toFixed(2) + "%";
 }
 
 function askPricesToday() {
-    const googToday = prompt("Enter the current price of Goog:");
-    const msftToday = prompt("Enter the current price of MSFT:");
-    const nflxToday = prompt("Enter the current price of NFLX:");
-    const amznToday = prompt("Enter the current price of AMZN:");
-    const nvdaToday = prompt("Enter the current price of NVDA:");
-    const metaToday = prompt("Enter the current price of META:");
+    googToday = parseFloat(prompt("Enter Today's Price for Goog:"));
+    msftToday = parseFloat(prompt("Enter Today's Price for MSFT:"));
+    nflxToday = parseFloat(prompt("Enter Today's Price for NFLX:"));
+    amznToday = parseFloat(prompt("Enter Today's Price for AMZN:"));
+    nvdaToday = parseFloat(prompt("Enter Today's Price for NVDA:"));
+    metaToday = parseFloat(prompt("Enter Today's Price for META:"));
 
-    // Update the Prices Today columns
-    document.getElementById("googTodayPrice").textContent = googToday;
-    document.getElementById("msftTodayPrice").textContent = msftToday;
-    document.getElementById("nflxTodayPrice").textContent = nflxToday;
-    document.getElementById("amznTodayPrice").textContent = amznToday;
-    document.getElementById("nvdaTodayPrice").textContent = nvdaToday;
-    document.getElementById("metaTodayPrice").textContent = metaToday;
-
-    // Calculate the delta for each company
-    updateDelta("goog");
-    updateDelta("msft");
-    updateDelta("nflx");
-    updateDelta("amzn");
-    updateDelta("nvda");
-    updateDelta("meta");
-
-    // Calculate the percentage delta for each company
-    updateDeltaPercentage("goog");
-    updateDeltaPercentage("msft");
-    updateDeltaPercentage("nflx");
-    updateDeltaPercentage("amzn");
-    updateDeltaPercentage("nvda");
-    updateDeltaPercentage("meta");
+    // Update portfolio with today's prices
+    updatePortfolio("goog", googQuantity, googSoldPrice, googToday);
+    updatePortfolio("msft", msftQuantity, msftSoldPrice, msftToday);
+    updatePortfolio("nflx", nflxQuantity, nflxSoldPrice, nflxToday);
+    updatePortfolio("amzn", amznQuantity, amznSoldPrice, amznToday);
+    updatePortfolio("nvda", nvdaQuantity, nvdaSoldPrice, nvdaToday);
+    updatePortfolio("meta", metaQuantity, metaSoldPrice, metaToday);
 }
 
-function updateDelta(company) {
-    const soldPrice = parseFloat(document.getElementById(`${company}SoldPrice`).textContent);
-    const todayPrice = parseFloat(document.getElementById(`${company}TodayPrice`).textContent);
-    
-    if (!isNaN(soldPrice) && !isNaN(todayPrice)) {
-        const delta = todayPrice - soldPrice;
-        document.getElementById(`${company}Delta`).textContent = delta.toFixed(2);
-    }
-}
+function updatePortfolio(company, quantity, soldPrice, todayPrice) {
+    // Display Quantity
+    document.getElementById(`${company}PortfolioQuantity`).textContent = quantity;
 
-function updateDeltaPercentage(company) {
-    const soldPrice = parseFloat(document.getElementById(`${company}SoldPrice`).textContent);
-    const todayPrice = parseFloat(document.getElementById(`${company}TodayPrice`).textContent);
+    // Calculate Sold Portfolio (Quantity * Sold Price)
+    const soldPortfolio = quantity * soldPrice;
+    document.getElementById(`${company}SoldPortfolio`).textContent = soldPrice;
+    document.getElementById(`${company}PortfolioSoldValue`).textContent = soldPortfolio.toFixed(2);
 
-    if (!isNaN(soldPrice) && !isNaN(todayPrice)) {
-        const delta = todayPrice - soldPrice;
-        const deltaPercentage = (delta / soldPrice) * 100;
-        document.getElementById(`${company}DeltaPercentage`).textContent = deltaPercentage.toFixed(2) + "%";
-    }
+    // Calculate Portfolio Today (Quantity * Today's Price)
+    const portfolioToday = quantity * todayPrice;
+    document.getElementById(`${company}PortfolioTodayPrice`).textContent = todayPrice;
+    document.getElementById(`${company}PortfolioTodayValue`).textContent = portfolioToday.toFixed(2);
 }
