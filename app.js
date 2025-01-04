@@ -12,7 +12,10 @@ function askSoldPrices() {
     const amznPrice = prompt("Enter the sold price of AMZN:");
     const nvdaPrice = prompt("Enter the sold price of NVDA:");
     const metaPrice = prompt("Enter the sold price of META:");
+    
+    // Capture and display the sold date
     const soldDate = prompt("Enter the date you sold these:");
+    document.getElementById("dateDisplay").textContent = `Sold on: ${soldDate}`;
 
     // Set the quantity and sold prices in the table
     document.getElementById("googQuantity").textContent = googQuantity;
