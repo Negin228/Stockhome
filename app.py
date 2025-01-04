@@ -41,9 +41,10 @@ def update_stock_prices():
         
         for symbol, name in symbols.items():
             stock = yf.Ticker(symbol)
-            price = stock.history(period='1d')['Close'][0]  # Get the latest closing price
+            price = stock.history(period='1d')['Close'].iloc[0]  # Get the latest closing price using iloc
             price = float(price)  # Ensure the price is a regular float type
             cursor.execute('UPDATE portfolio SET price = %s WHERE symbol = %s', (price, symbol))
+            print(f"Updated {symbol}: {price}")  # Logging the update
         
         conn.commit()
         cursor.close()
