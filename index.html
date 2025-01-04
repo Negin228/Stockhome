@@ -21,28 +21,48 @@
         .input-table {
             margin-top: 20px;
         }
+        .login-form {
+            text-align: center;
+            margin: 20px;
+        }
+        .login-form input {
+            margin: 5px;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-<h2 style="text-align: center;">Stock Performance</h2>
+<!-- Login Form -->
+<div class="login-form" id="loginForm">
+    <h3>Please log in to edit the data:</h3>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+</div>
 
-<!-- Table to input sold price, today's price, and quantity -->
-<table class="input-table" id="inputTable">
-    <thead>
-        <tr>
-            <th>Company</th>
-            <th>Sold Price</th>
-            <th>Price Today</th>
-            <th>Quantity</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Data rows will be populated here -->
-    </tbody>
-</table>
+<!-- Table to input sold price, today's price, and quantity (hidden by default) -->
+<div id="dataSection" class="hidden">
+    <h2 style="text-align: center;">Stock Performance</h2>
 
-<button onclick="saveData()">Save Data</button>
+    <table class="input-table" id="inputTable">
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Sold Price</th>
+                <th>Price Today</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows will be populated here -->
+        </tbody>
+    </table>
+
+    <button onclick="saveData()">Save Data</button>
+</div>
 
 <!-- Individual Stocks Table -->
 <h2 style="text-align: center;">Stock Performance Table</h2>
@@ -82,6 +102,10 @@
 </table>
 
 <script>
+    // Sample username and password
+    const correctUsername = 'admin';
+    const correctPassword = 'password123';
+
     // Default stock data
     const stocks = [
         { company: 'GOOG', soldPrice: null, priceToday: null, quantity: null },
@@ -91,6 +115,25 @@
         { company: 'NVDA', soldPrice: null, priceToday: null, quantity: null },
         { company: 'META', soldPrice: null, priceToday: null, quantity: null }
     ];
+
+    // Check login status
+    let loggedIn = false;
+
+    // Login function to validate user credentials
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === correctUsername && password === correctPassword) {
+            loggedIn = true;
+            alert('Login successful!');
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('dataSection').classList.remove('hidden');
+            populateInputTable(); // Populate input table after login
+        } else {
+            alert('Incorrect username or password.');
+        }
+    }
 
     // Populate the input table where user can enter data
     function populateInputTable() {
@@ -104,10 +147,10 @@
             const priceTodayCell = row.insertCell(2);
             const quantityCell = row.insertCell(3);
 
-            // Create input fields for each column
-            soldPriceCell.innerHTML = `<input type="number" value="${stock.soldPrice || ''}" step="0.01" onchange="updateStockData('${stock.company}', 'soldPrice', this.value)">`;
-            priceTodayCell.innerHTML = `<input type="number" value="${stock.priceToday || ''}" step="0.01" onchange="updateStockData('${stock.company}', 'priceToday', this.value)">`;
-            quantityCell.innerHTML = `<input type="number" value="${stock.quantity || ''}" step="1" onchange="updateStockData('${stock.company}', 'quantity', this.value)">`;
+            // Create input fields for each column, disabled by default
+            soldPriceCell.innerHTML = `<input type="number" value="${stock.soldPrice || ''}" step="0.01" onchange="updateStockData('${stock.company}', 'soldPrice', this.value)" ${!loggedIn ? 'disabled' : ''}>`;
+            priceTodayCell.innerHTML = `<input type="number" value="${stock.priceToday || ''}" step="0.01" onchange="updateStockData('${stock.company}', 'priceToday', this.value)" ${!loggedIn ? 'disabled' : ''}>`;
+            quantityCell.innerHTML = `<input type="number" value="${stock.quantity || ''}" step="1" onchange="updateStockData('${stock.company}', 'quantity', this.value)" ${!loggedIn ? 'disabled' : ''}>`;
         });
     }
 
@@ -158,6 +201,10 @@
 
     // Save data from the input table
     function saveData() {
+        if (!loggedIn) {
+            alert('You must log in to save the data.');
+            return;
+        }
         alert('Data saved!');
     }
 
