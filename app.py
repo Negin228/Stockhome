@@ -58,13 +58,13 @@ def home():
         cursor = conn.cursor()
         cursor.execute('SELECT symbol, name, price FROM portfolio')
         portfolio = cursor.fetchall()
+        print(portfolio)  # Debugging line
         cursor.close()
         conn.close()
         return render_template('index.html', portfolio=portfolio)
     except Exception as e:
         print(f"Error refreshing data: {e}")
         return render_template('index.html', error="Failed to refresh data")
-
 if __name__ == "__main__":
     from os import environ
     app.run(host='0.0.0.0', port=int(environ.get('PORT', 5000)))
