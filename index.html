@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Tracker</title>
+</head>
+<body>
+    <button onclick="askSoldPrices()">What I Sold</button>
+    <button onclick="askPricesToday()">What is the sold price today?</button>
+    
+    <table id="priceTable" border="1">
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Sold Price</th>
+                <th>Prices Today</th>
+                <th>Delta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Google</td>
+                <td id="googleSoldPrice"></td>
+                <td id="googleTodayPrice"></td>
+                <td id="googleDelta"></td>
+            </tr>
+            <tr>
+                <td>Facebook</td>
+                <td id="facebookSoldPrice"></td>
+                <td id="facebookTodayPrice"></td>
+                <td id="facebookDelta"></td>
+            </tr>
+            <tr>
+                <td>Meta</td>
+                <td id="metaSoldPrice"></td>
+                <td id="metaTodayPrice"></td>
+                <td id="metaDelta"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script src="app.js"></script>
+</html>
