@@ -11,6 +11,10 @@ Chart.register(...registerables);
 import annotationPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.esm.js';
 Chart.register(annotationPlugin);
 
+// Import and register the zoom plugin for Chart.js
+import zoomPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.esm.js';
+Chart.register(zoomPlugin);
+
 console.log('main.js loaded');
 
 /**
@@ -58,7 +62,7 @@ async function fetchStockData(symbol) {
  * and create a chart displaying all datasets.
  */
 async function updateChart() {
-  // List of stock symbols to fetch (SPY added)
+  // List of stock symbols to fetch (SPY is added)
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
   
   // Colors for each individual stock dataset (6 colors now)
@@ -125,7 +129,7 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
-  // Create the Chart.js chart with all datasets and the annotation for the sell date
+  // Create the Chart.js chart with all datasets, annotation, and zoom/pan enabled
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -137,7 +141,7 @@ async function updateChart() {
         x: {
           type: 'time',
           time: {
-            unit: 'year',  // For 10-year data, showing years might be most appropriate
+            unit: 'year',  // For 10-year data, showing years is appropriate by default
             tooltipFormat: 'MMM dd, yyyy'
           },
           title: {
@@ -153,6 +157,7 @@ async function updateChart() {
         }
       },
       plugins: {
+        // Annotation plugin configuration for the sell date
         annotation: {
           annotations: {
             sellLine: {
@@ -167,6 +172,22 @@ async function updateChart() {
                 position: 'start'
               }
             }
+          }
+        },
+        // Zoom plugin configuration: enables zooming and panning
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: 'xy'
+          },
+          zoom: {
+            wheel: {
+              enabled: true
+            },
+            pinch: {
+              enabled: true
+            },
+            mode: 'xy'
           }
         }
       }
