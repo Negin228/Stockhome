@@ -10,7 +10,6 @@ async function fetchStockData(symbol) {
         const response = await fetch(url);
         const data = await response.json();
 
-        // Log the response to check its structure
         console.log('Yahoo Finance API Response:', data);
 
         if (data.chart && data.chart.result) {
@@ -18,9 +17,8 @@ async function fetchStockData(symbol) {
             const timestamps = stockData.timestamp;
             const closePrices = stockData.indicators.quote[0].close;
 
-            // Format the data into a format usable for the chart
             const chartData = timestamps.map((timestamp, index) => ({
-                x: new Date(timestamp * 1000),  // Convert timestamp to JavaScript Date
+                x: new Date(timestamp * 1000),
                 y: closePrices[index]
             }));
 
@@ -36,13 +34,13 @@ async function fetchStockData(symbol) {
 
 // Function to update the chart with the fetched stock data
 async function updateChart() {
-    const symbol = 'TSLA';  // Example stock symbol
+    const symbol = 'TSLA';
 
     try {
         const stockData = await fetchStockData(symbol);
+        const ctx = document.getElementById('stockChart').getContext('2d');
 
-        // Assuming you are using Chart.js, update your chart with the new data
-        const chart = new Chart(document.getElementById('stockChart').getContext('2d'), {
+        const chart = new Chart(ctx, {
             type: 'line',
             data: {
                 datasets: [{
@@ -75,15 +73,15 @@ async function updateChart() {
                 }
             }
         });
-
     } catch (error) {
         console.error('Error updating chart:', error);
     }
 }
 
-// Ensure the chart is updated when the page is loaded
+// Expose updateChart globally if needed by other scripts or inline code
+window.updateChart = updateChart;
+
+// Alternatively, simply call updateChart on page load:
 window.onload = function() {
     updateChart();
 };
-// At the end of main.js
-window.updateChart = updateChart;
