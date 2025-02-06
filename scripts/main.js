@@ -7,9 +7,13 @@ import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-// Import and register the annotation plugin (for the vertical sell-line)
+// Import and register the annotation plugin
 import annotationPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.esm.js';
 Chart.register(annotationPlugin);
+
+// Import and register the zoom plugin for Chart.js
+import zoomPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.esm.js';
+Chart.register(zoomPlugin);
 
 console.log('Chart has been imported:', Chart);
 
@@ -54,46 +58,34 @@ function fetchStockData(symbol) {
 }
 
 /**
- * Custom zoom function that zooms in 10% on both x and y scales.
+ * Custom zoom function that zooms in 10% on the x-axis.
  */
 function zoomIn(chart) {
   const xScale = chart.scales.x;
-  const yScale = chart.scales.y;
   const xRange = xScale.max - xScale.min;
-  const yRange = yScale.max - yScale.min;
   const newXRange = xRange * 0.9; // reduce range by 10%
-  const newYRange = yRange * 0.9;
   const xMid = (xScale.max + xScale.min) / 2;
-  const yMid = (yScale.max + yScale.min) / 2;
   chart.options.scales.x.min = xMid - newXRange / 2;
   chart.options.scales.x.max = xMid + newXRange / 2;
-  chart.options.scales.y.min = yMid - newYRange / 2;
-  chart.options.scales.y.max = yMid + newYRange / 2;
   chart.update();
 }
 
 /**
- * Custom zoom function that zooms out 10% on both x and y scales.
+ * Custom zoom function that zooms out 10% on the x-axis.
  */
 function zoomOut(chart) {
   const xScale = chart.scales.x;
-  const yScale = chart.scales.y;
   const xRange = xScale.max - xScale.min;
-  const yRange = yScale.max - yScale.min;
-  const newXRange = xRange / 0.9; // increase range by ~11% (reverse of 10% reduction)
-  const newYRange = yRange / 0.9;
+  const newXRange = xRange / 0.9; // increase range by ~11%
   const xMid = (xScale.max + xScale.min) / 2;
-  const yMid = (yScale.max + yScale.min) / 2;
   chart.options.scales.x.min = xMid - newXRange / 2;
   chart.options.scales.x.max = xMid + newXRange / 2;
-  chart.options.scales.y.min = yMid - newYRange / 2;
-  chart.options.scales.y.max = yMid + newYRange / 2;
   chart.update();
 }
 
 /**
  * Fetch data for multiple symbols, compute a combined portfolio value,
- * and create a chart displaying all datasets.
+ * and create a chart displaying all datasets with interactive x-axis zooming.
  */
 async function updateChart() {
   // List of stock symbols to fetch (including SPY)
@@ -107,7 +99,6 @@ async function updateChart() {
     "rgb(255, 159, 64)"   // orange
   ];
 
-  // Fetch stock data concurrently for each symbol and build datasets
   const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
     const stockData = await fetchStockData(symbol);
     return {
@@ -154,7 +145,7 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
-  // Create the Chart.js chart without any interactive zoom or pan events.
+  // Create the Chart.js chart with interactive zoom on the x-axis
   const chart = new Chart(ctx, {
     type: 'line',
     data: { datasets: allDatasets },
@@ -168,16 +159,11 @@ async function updateChart() {
             unit: 'year',
             tooltipFormat: 'MMM dd, yyyy'
           },
-          title: {
-            display: true,
-            text: 'Date'
-          }
+          title: { display: true, text: 'Date' }
         },
         y: {
-          title: {
-            display: true,
-            text: 'Price (USD)'
-          }
+          title: { display: true, text: 'Price (USD)' }
+          // Note: The y-axis is left unmodified for zooming.
         }
       },
       plugins: {
@@ -189,41 +175,48 @@ async function updateChart() {
               value: '2024-12-05', // Vertical line marking December 5, 2024
               borderColor: 'red',
               borderWidth: 2,
-              label: {
-                enabled: true,
-                content: 'Sold Stock',
-                position: 'start'
-              }
+              label: { enabled: true, content: 'Sold Stock', position: 'start' }
+            }
+          }
+        },
+        zoom: {
+          // Enable zooming via wheel and pinch, but restrict zooming to x-axis only.
+          pan: {
+            enabled: true,
+            mode: 'xy' // Allow panning in both directions if needed.
+          },
+          zoom: {
+            wheel: { enabled: true },
+            pinch: { enabled: true },
+            mode: 'x', // Only zoom along the x-axis.
+            onZoomComplete({ chart }) {
+              console.log('Zoom complete', chart);
             }
           }
         }
-        // Note: We are not configuring the zoom plugin here to avoid any interactive zooming.
       }
     }
   });
 
-  // Create custom zoom control buttons.
+  // Add custom buttons for additional control (optional)
   const container = document.querySelector('.container');
-
+  
   const resetButton = document.createElement('button');
   resetButton.textContent = 'Reset Zoom';
   resetButton.style.marginTop = '10px';
   resetButton.onclick = () => {
-    // Reset the chart scales to default (remove manual min/max settings)
     chart.options.scales.x.min = undefined;
     chart.options.scales.x.max = undefined;
-    chart.options.scales.y.min = undefined;
-    chart.options.scales.y.max = undefined;
     chart.update();
   };
   container.appendChild(resetButton);
-
+  
   const zoomInButton = document.createElement('button');
   zoomInButton.textContent = 'Zoom In';
   zoomInButton.style.marginTop = '10px';
   zoomInButton.onclick = () => zoomIn(chart);
   container.appendChild(zoomInButton);
-
+  
   const zoomOutButton = document.createElement('button');
   zoomOutButton.textContent = 'Zoom Out';
   zoomOutButton.style.marginTop = '10px';
