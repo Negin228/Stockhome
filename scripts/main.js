@@ -1,8 +1,10 @@
 // scripts/main.js
 
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("✅ DOM Loaded. Initializing Chart.js...");
+
   if (typeof Chart === "undefined") {
-    console.error("Chart.js failed to load.");
+    console.error("❌ Chart.js failed to load.");
     return;
   }
 
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Chart.Legend
   );
 
-  // ✅ Attach updateChart to window so it can be called from the console
+  // ✅ Expose updateChart globally
   window.updateChart = updateChart;
 
   // ✅ Manually create a test chart to verify rendering
