@@ -11,23 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("✅ Chart.js is available.");
 
   try {
-    // ✅ Manually register the Date Adapter Plugin with Chart.js
-    Chart.register(window['chartjs-adapter-date-fns']);
-    console.log("✅ Chart.js Date Adapter registered successfully.");
+    // ✅ Register Chart.js TimeScale and Date Adapter correctly
+    Chart.register(Chart.TimeScale);
+
+    // ✅ Ensure the adapter is loaded properly
+    if (typeof window['chartjs-adapter-date-fns'] !== 'undefined') {
+      console.log("✅ Chart.js Date Adapter is available.");
+    } else {
+      console.error("❌ Chart.js Date Adapter failed to load.");
+      return;
+    }
   } catch (err) {
     console.error("❌ Failed to register Chart.js Date Adapter:", err);
     return;
   }
 
-  // ✅ Verify the Adapter is Now Registered
-  if (!Chart._adapters || !Chart._adapters.date) {
-    console.error("❌ Chart.js Date Adapter is still missing!");
-    return;
-  }
-
-  console.log("✅ Chart.js Date Adapter is now ready.");
-
-  startChart(); // Start the chart after adapter is ready
+  startChart(); // Start the chart after the adapter is ready
 });
 
 /**
@@ -45,7 +44,6 @@ function startChart() {
 
   // ✅ Register necessary Chart.js components
   Chart.register(
-    Chart.TimeScale,
     Chart.LineController,
     Chart.LineElement,
     Chart.PointElement,
