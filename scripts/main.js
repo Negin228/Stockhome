@@ -1,15 +1,12 @@
 // scripts/main.js
 
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
   if (typeof Chart === "undefined") {
     console.error("Chart.js failed to load.");
     return;
   }
 
   console.log("Chart.js loaded successfully.");
-
-  // ✅ Dynamically load chartjs-adapter-date-fns AFTER Chart.js is confirmed to be loaded
-  await loadDateAdapter();
 
   // ✅ Register necessary Chart.js components
   Chart.register(
@@ -23,20 +20,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     Chart.Legend
   );
 
+  // ✅ Ensure Chart.js adapters are properly loaded
+  if (!Chart._adapters || !Chart._adapters.date) {
+    console.error("Chart.js date adapter failed to load.");
+    return;
+  }
+
   updateChart(); // Initialize chart after ensuring Chart.js is loaded
 });
-
-/**
- * Loads Chart.js Date Adapter only when Chart.js is fully initialized.
- */
-async function loadDateAdapter() {
-  try {
-    await import("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0");
-    console.log("Chart.js Date Adapter loaded successfully.");
-  } catch (error) {
-    console.error("Failed to load Chart.js Date Adapter:", error);
-  }
-}
 
 /**
  * Fetch stock data from Yahoo Finance using AllOrigins proxy to bypass CORS restrictions.
