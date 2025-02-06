@@ -4,8 +4,6 @@ console.log('Chart.js loaded:', Chart);
 
 /**
  * Fetch stock data from Yahoo Finance using AllOrigins proxy to bypass CORS restrictions.
- * @param {string} symbol - The stock ticker symbol (e.g., "GOOG").
- * @returns {Promise<Array>} - Returns a list of { x: Date, y: Price } points.
  */
 async function fetchStockData(symbol) {
   const proxyUrl = 'https://api.allorigins.win/raw?url=';
