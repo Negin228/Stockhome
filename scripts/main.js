@@ -10,23 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   console.log("✅ Chart.js is available.");
 
-  try {
-    // ✅ Manually register the adapter as a plugin
-    Chart.register(Chart.adapters._date);
-    console.log("✅ Chart.js Date Adapter registered successfully.");
-  } catch (err) {
-    console.error("❌ Failed to register Chart.js Date Adapter:", err);
-    return;
-  }
-
-  // ✅ Verify the Adapter is Now Registered
+  // ✅ Verify that Chart.js Date Adapter is available
   if (!Chart._adapters || !Chart._adapters.date) {
-    console.error("❌ Chart.js Date Adapter is still missing!");
+    console.error("❌ Chart.js Date Adapter failed to load.");
     return;
   }
 
   console.log("✅ Chart.js Date Adapter is now ready.");
-  startChart(); // Start the chart after adapter is ready
+  startChart(); // Start the chart after the adapter is ready
 });
 
 /**
@@ -54,10 +45,35 @@ function startChart() {
     Chart.Legend
   );
 
-  // ✅ Attach updateChart to window so it can be called from the console
-  window.updateChart = updateChart;
+  // ✅ Create a simple test dataset
+  const testData = [
+    { x: new Date(2024, 0, 1), y: 100 },
+    { x: new Date(2024, 1, 1), y: 120 },
+    { x: new Date(2024, 2, 1), y: 140 }
+  ];
 
-  // ✅ Fetch stock data and create the real chart
-  console.log("🔄 Fetching stock data on page load...");
-  updateChart();
+  // ✅ Render a simple test chart
+  const ctx = document.getElementById('myChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: "Test Data",
+        data: testData,
+        borderColor: "rgb(75,192,192)",
+        fill: false,
+        tension: 0.1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { type: 'time', title: { display: true, text: 'Date' } },
+        y: { title: { display: true, text: 'Value' } }
+      }
+    }
+  });
+
+  console.log("✅ Chart rendered successfully.");
 }
