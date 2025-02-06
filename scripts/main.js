@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("✅ Chart.js is available.");
 
   try {
-    // ✅ Register the Date Adapter (Chart.js v3 handles this differently)
-    Chart.register(Chart.adapters.dateFns);
+    // ✅ Manually register the adapter as a plugin
+    Chart.register(Chart.adapters._date);
     console.log("✅ Chart.js Date Adapter registered successfully.");
   } catch (err) {
     console.error("❌ Failed to register Chart.js Date Adapter:", err);
