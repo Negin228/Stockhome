@@ -1,7 +1,7 @@
 // scripts/main.js
 
 document.addEventListener("DOMContentLoaded", async function () {
-  console.log("✅ DOM Loaded. Initializing Chart.js...");
+  console.log("✅ main.js is running...");
 
   if (typeof Chart === "undefined") {
     console.error("❌ Chart.js failed to load.");
@@ -10,13 +10,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   console.log("✅ Chart.js is available.");
 
-  // ✅ Ensure Date Adapter is properly loaded
-  if (!Chart._adapters || !Chart._adapters.date) {
-    console.error("❌ Chart.js Date Adapter failed to load.");
-    return;
-  }
+  // ✅ Wait for Date Adapter to Load
+  let checkDateAdapter = setInterval(() => {
+    if (Chart._adapters && Chart._adapters.date) {
+      console.log("✅ Chart.js Date Adapter is ready.");
+      clearInterval(checkDateAdapter);
+      startChart();  // Start the chart only after everything is ready
+    } else {
+      console.warn("⏳ Waiting for Chart.js Date Adapter...");
+    }
+  }, 500);
+});
 
-  console.log("✅ Chart.js Date Adapter is ready.");
+/**
+ * Function to initialize the chart after everything has loaded.
+ */
+function startChart() {
+  console.log("🚀 Initializing Chart...");
 
   // ✅ Ensure canvas exists
   const canvas = document.getElementById("myChart");
@@ -42,49 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // ✅ Fetch stock data and create the real chart
   console.log("🔄 Fetching stock data on page load...");
-  await updateChart();
-});
-
-/**
- * Fetch stock data from Yahoo Finance using AllOrigins proxy to bypass CORS restrictions.
- */
-async function fetchStockData(symbol) {
-  console.log(`🔄 Fetching stock data for: ${symbol}...`);
-
-  const proxyUrl = 'https://api.allorigins.win/raw?url=';
-  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
-  const url = proxyUrl + encodeURIComponent(targetUrl);
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`❌ Failed to fetch data for ${symbol} (HTTP ${response.status})`);
-
-    const data = await response.json();
-    console.log(`📊 Raw API Response for ${symbol}:`, data);
-
-    if (!data.chart || !data.chart.result || !data.chart.result[0]) {
-      console.error(`❌ Invalid data format received for ${symbol}:`, data);
-      return null;
-    }
-
-    const result = data.chart.result[0];
-    const timestamps = result.timestamp;
-    const closePrices = result.indicators?.quote?.[0]?.close;
-
-    if (!timestamps || !closePrices) {
-      console.error(`❌ Missing timestamps or price data for ${symbol}`);
-      return null;
-    }
-
-    return timestamps.map((timestamp, index) => ({
-      x: new Date(timestamp * 1000),
-      y: closePrices[index] ?? null
-    })).filter(point => point.y !== null);
-
-  } catch (error) {
-    console.error(`❌ API request error for ${symbol}:`, error);
-    return null;
-  }
+  updateChart();
 }
 
 /**
