@@ -1,22 +1,24 @@
-/* styles.css */
+/* styles/style.css */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-    margin-top: 20px;
+  width: 75vw;    /* 75% of the viewport width */
+  height: 75vh;   /* 75% of the viewport height */
+  margin: 0 auto;
 }
 
 canvas {
-    max-width: 100%;
-    margin-top: 20px;
+  width: 100%;
+  height: 100%;
 }
 
 footer {
-    margin-top: 40px;
-    font-size: 14px;
-    color: #777;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #777;
 }
