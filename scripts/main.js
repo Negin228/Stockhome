@@ -81,7 +81,7 @@ async function updateChart() {
 // Expose updateChart globally if needed by other scripts or inline code
 window.updateChart = updateChart;
 
-// Alternatively, simply call updateChart on page load:
+// Ensure the chart is updated when the page is loaded
 window.onload = function() {
     updateChart();
 };
