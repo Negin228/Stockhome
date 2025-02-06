@@ -2,6 +2,18 @@
 
 console.log('Chart.js loaded:', Chart);
 
+// Register the necessary components manually
+Chart.register(
+  Chart.TimeSeriesScale,
+  Chart.LineController,
+  Chart.LineElement,
+  Chart.PointElement,
+  Chart.LinearScale,
+  Chart.Title,
+  Chart.Tooltip,
+  Chart.Legend
+);
+
 /**
  * Fetch stock data from Yahoo Finance using AllOrigins proxy to bypass CORS restrictions.
  */
