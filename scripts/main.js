@@ -1,6 +1,6 @@
-// Importing dependencies
-import axios from 'axios'; // For making HTTP requests
-import { Chart } from 'chart.js'; // For chart rendering
+// Import dependencies from CDN
+import axios from 'https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js';
+import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js';
 
 // Function to fetch stock data from Alpha Vantage API
 async function fetchStockData(symbol) {
