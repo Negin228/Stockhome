@@ -136,6 +136,7 @@ async function updateChart() {
       datasets: allDatasets
     },
     options: {
+      maintainAspectRatio: false, // Allow the chart to fill its container
       responsive: true,
       scales: {
         x: {
@@ -187,7 +188,14 @@ async function updateChart() {
             pinch: {
               enabled: true
             },
-            mode: 'xy'
+            mode: 'xy',
+            // Add callbacks to help debug zoom events
+            onZoom: ({chart}) => {
+              console.log('Zoom event', chart);
+            },
+            onZoomComplete: ({chart}) => {
+              console.log('Zoom complete', chart);
+            }
           }
         }
       }
