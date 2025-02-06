@@ -59,11 +59,12 @@ function fetchStockData(symbol) {
 
 /**
  * Fetch data for multiple symbols, compute a combined portfolio value,
- * and create a chart displaying all datasets with zoom/pan/annotation.
+ * and create a chart displaying all datasets with zoom, pan, and annotation.
  */
 async function updateChart() {
   // List of stock symbols to fetch (including SPY)
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
+  // Colors for each individual stock dataset
   const colors = [
     "rgb(75, 192, 192)",  // teal
     "rgb(255, 99, 132)",  // red
@@ -120,6 +121,7 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
+  // Create the Chart.js chart with zoom/pan and annotation enabled
   const chart = new Chart(ctx, {
     type: 'line',
     data: { datasets: allDatasets },
@@ -163,21 +165,17 @@ async function updateChart() {
           }
         },
         zoom: {
+          // Enable panning in both directions
           pan: {
             enabled: true,
             mode: 'xy'
           },
+          // Enable pinch-to-zoom (touchpad pinch gestures) only;
+          // disable drag and wheel zoom to prevent accidental zooming.
           zoom: {
-            // Disable wheel and pinch zooming so zoom only happens on deliberate drag
+            drag: { enabled: false },
             wheel: { enabled: false },
-            pinch: { enabled: false },
-            drag: {
-              enabled: true,
-              threshold: 300, // Increase threshold to 300 pixels for a deliberate drag
-              borderColor: 'rgba(225,225,225,0.3)',
-              borderWidth: 1,
-              backgroundColor: 'rgba(225,225,225,0.3)'
-            },
+            pinch: { enabled: true },
             mode: 'xy',
             onZoomComplete({ chart }) {
               console.log('Zoom complete', chart);
