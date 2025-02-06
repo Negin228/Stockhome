@@ -58,25 +58,65 @@ function getRandomColor() {
 }
 
 // Function to render the chart
-function renderChart(data) {
+async function renderChart(symbol) {
+    // Fetch stock data
+    const stockData = await fetchStockData(symbol);
+    
+    // Check if we have valid data
+    if (stockData.length === 0) {
+        console.error('No valid stock data to render.');
+        return;
+    }
+
+    // Chart rendering logic
     const ctx = document.getElementById('myChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data,
+    
+    const chart = new Chart(ctx, {
+        type: 'line', // Using line chart
+        data: {
+            datasets: [{
+                label: `${symbol} Stock Price`,
+                data: stockData, // Use the correctly formatted stock data
+                borderColor: 'rgba(75, 192, 192, 1)',
+                fill: false,
+                tension: 0.1 // Optional, for smoothing the line
+            }]
+        },
         options: {
-            responsive: true,
             scales: {
                 x: {
-                    type: 'time',
-                    time: { unit: 'day' },
+                    type: 'time', // Ensure x-axis is a time axis
+                    time: {
+                        unit: 'day', // Format to daily data
+                        tooltipFormat: 'll', // Display the date in the tooltip (optional)
+                    },
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
                 },
                 y: {
-                    beginAtZero: true,
-                },
+                    title: {
+                        display: true,
+                        text: 'Stock Price (USD)'
+                    }
+                }
             },
-        },
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const date = tooltipItems[0].raw.date;
+                            return date.toLocaleDateString(); // Format the date for the tooltip
+                        }
+                    }
+                }
+            }
+        }
     });
 }
+
 
 // Function to update the chart with new stock data and portfolio value
 async function updateChart() {
