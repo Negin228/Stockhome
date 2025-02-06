@@ -9,27 +9,31 @@ async function fetchStockData(symbol) {
 
     try {
         const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`API call failed with status: ${response.status}`);
+        }
+
         const data = await response.json();
 
-        // Log the entire response to the console for inspection
-        console.log('Raw API Response:', data);
+        console.log('Raw API Response:', data); // Log raw data to inspect
 
-        if (data['Time Series (Daily)']) {
-            const timeSeries = data['Time Series (Daily)'];
-            const stockData = Object.keys(timeSeries).map(date => {
-                return {
-                    date: new Date(date), // Convert date string to a Date object
-                    close: parseFloat(timeSeries[date]['4. close']) // Extract closing price
-                };
-            });
-
-            return stockData.reverse(); // Reverse data for most recent date first
-        } else {
-            throw new Error('Invalid data format received from Alpha Vantage');
+        // Check for missing or unexpected data in the response
+        if (!data || !data['Time Series (Daily)']) {
+            throw new Error('Invalid or unexpected data format received from Alpha Vantage.');
         }
+
+        // If the data is valid, process it
+        const timeSeries = data['Time Series (Daily)'];
+        const stockData = Object.keys(timeSeries).map(date => ({
+            date: new Date(date), // Convert date string to a Date object
+            close: parseFloat(timeSeries[date]['4. close']) // Extract closing price
+        }));
+
+        return stockData.reverse(); // Reverse data for most recent date first
     } catch (error) {
-        console.error('Error fetching stock data:', error);
-        throw error;
+        console.error('Error fetching stock data:', error.message);
+        throw error; // Rethrow the error to propagate it to the caller
     }
 }
 
