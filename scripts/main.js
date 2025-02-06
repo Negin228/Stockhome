@@ -1,17 +1,22 @@
 // scripts/main.js
 
-console.log('Chart.js loaded:', Chart);
+// Ensure Chart.js is globally available
+if (typeof window.Chart === "undefined") {
+  console.error("Chart.js is not loaded properly.");
+} else {
+  console.log("Chart.js loaded successfully.");
+}
 
-// Register the necessary components manually
-Chart.register(
-  Chart.TimeSeriesScale,
-  Chart.LineController,
-  Chart.LineElement,
-  Chart.PointElement,
-  Chart.LinearScale,
-  Chart.Title,
-  Chart.Tooltip,
-  Chart.Legend
+// Register necessary components
+window.Chart.register(
+  window.Chart.TimeScale,
+  window.Chart.LineController,
+  window.Chart.LineElement,
+  window.Chart.PointElement,
+  window.Chart.LinearScale,
+  window.Chart.Title,
+  window.Chart.Tooltip,
+  window.Chart.Legend
 );
 
 /**
@@ -76,7 +81,7 @@ async function updateChart() {
 
   // Create the chart
   const ctx = document.getElementById('myChart').getContext('2d');
-  new Chart(ctx, {
+  new window.Chart(ctx, {
     type: 'line',
     data: { datasets: validDatasets },
     options: {
