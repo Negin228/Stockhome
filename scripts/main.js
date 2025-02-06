@@ -8,29 +8,28 @@ async function fetchStockData(symbol) {
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
 
     try {
-        const response = await axios.get(url);
-        console.log('Full API Response:', response); // ✅ Check the raw response
+        const response = await fetch(url);
+        const data = await response.json(); // Directly convert response to JSON
 
-        if (!response.data || typeof response.data !== 'object') {
-            throw new Error('Response is not a JSON object');
-        }
-
-        const timeSeries = response.data['Time Series (Daily)'];
-        if (!timeSeries) {
+        // Check if data exists and contains 'Time Series (Daily)'
+        if (!data['Time Series (Daily)']) {
             throw new Error('Invalid data format: Missing "Time Series (Daily)"');
         }
 
+        // Process the data into a format you can use
+        const timeSeries = data['Time Series (Daily)'];
         const formattedData = Object.entries(timeSeries).map(([date, values]) => ({
             date,
             close: parseFloat(values['4. close']),
         }));
 
-        return formattedData.reverse(); // Ensure chronological order
+        return formattedData.reverse(); // Reverse the order to have the latest date last
     } catch (error) {
         console.error('Error fetching stock data:', error.message, error);
         return [];
     }
 }
+
 
 
 
