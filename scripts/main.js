@@ -121,4 +121,6 @@ function scheduleDailyUpdate() {
 // Call the function to schedule the first data update
 scheduleDailyUpdate();
 export { updateChart };
+window.updateChart = updateChart;
+
 
