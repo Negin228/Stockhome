@@ -89,7 +89,7 @@ function zoomOut(chart) {
  */
 async function updateChart() {
   // List of stock symbols to fetch (including SPY)
-  const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
+  const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT"];
   const colors = [
     "rgb(75, 192, 192)",  // teal
     "rgb(255, 99, 132)",  // red
