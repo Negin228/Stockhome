@@ -12,17 +12,6 @@
   <!-- ✅ Load Date Adapter AFTER Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
 
-  <!-- ✅ Ensure Chart.js is properly loaded -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (typeof Chart === "undefined") {
-        console.error("Chart.js failed to load.");
-      } else {
-        window.Chart = Chart;
-      }
-    });
-  </script>
-
 </head>
 <body>
   <div class="container">
@@ -35,7 +24,7 @@
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
 
-  <!-- ✅ Load main.js AFTER Chart.js -->
+  <!-- ✅ Load main.js only after Chart.js is available -->
   <script src="scripts/main.js"></script>
 </body>
 </html>
