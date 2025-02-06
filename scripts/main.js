@@ -1,66 +1,3 @@
-// scripts/main.js
-
-// Import the date adapter for Chart.js
-import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.esm.js';
-
-// Import Chart.js and register its components (resolved via the import map)
-import { Chart, registerables } from 'chart.js';
-Chart.register(...registerables);
-
-// Import and register the annotation plugin
-import annotationPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.esm.js';
-Chart.register(annotationPlugin);
-
-// Import and register the zoom plugin for Chart.js
-import zoomPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.esm.js';
-Chart.register(zoomPlugin);
-
-console.log('main.js loaded');
-
-/**
- * Fetch stock data from Yahoo Finance for the given symbol.
- * Returns an array of { x: Date, y: Price } objects.
- */
-async function fetchStockData(symbol) {
-  const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
-  // Request data for the last 10 years with daily data
-  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
-  const url = proxyUrl + targetUrl;
-  
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.error(`Network response for ${symbol} was not ok:`, response.statusText);
-      return [];
-    }
-    const data = await response.json();
-    console.log(`Yahoo Finance API Response for ${symbol}:`, data);
-
-    if (data.chart && data.chart.result && data.chart.result[0]) {
-      const result = data.chart.result[0];
-      const timestamps = result.timestamp;
-      const closePrices = result.indicators.quote[0].close;
-
-      // Map the timestamps and prices into a format usable by Chart.js
-      const chartData = timestamps.map((timestamp, index) => ({
-        x: new Date(timestamp * 1000),
-        y: closePrices[index]
-      }));
-
-      return chartData;
-    } else {
-      throw new Error('Invalid data format received from Yahoo Finance');
-    }
-  } catch (error) {
-    console.error(`Error fetching stock data for ${symbol}:`, error);
-    return [];
-  }
-}
-
-/**
- * Fetch data for multiple symbols, compute a combined portfolio value,
- * and create a chart displaying all datasets.
- */
 async function updateChart() {
   // List of stock symbols to fetch (SPY is added)
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
@@ -88,7 +25,6 @@ async function updateChart() {
   }));
   
   // Compute the portfolio value dataset assuming one share of each stock.
-  // This assumes that each stock dataset has the same dates and ordering.
   let portfolioData = [];
   if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
     const n = stockDatasets[0].data.length;
@@ -129,7 +65,7 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
-  // Create the Chart.js chart with all datasets, annotation, and zoom/pan enabled
+  // Create the Chart.js chart with zoom/pan and annotation enabled
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -142,7 +78,7 @@ async function updateChart() {
         x: {
           type: 'time',
           time: {
-            unit: 'year',  // For 10-year data, showing years is appropriate by default
+            unit: 'year',  // For 10-year data
             tooltipFormat: 'MMM dd, yyyy'
           },
           title: {
@@ -158,13 +94,12 @@ async function updateChart() {
         }
       },
       plugins: {
-        // Annotation plugin configuration for the sell date
         annotation: {
           annotations: {
             sellLine: {
               type: 'line',
               scaleID: 'x',
-              value: '2024-12-05', // Updated sell date: December 5, 2024
+              value: '2024-12-05', // Sell date: December 5, 2024
               borderColor: 'red',
               borderWidth: 2,
               label: {
@@ -175,15 +110,17 @@ async function updateChart() {
             }
           }
         },
-        // Zoom plugin configuration: enables zooming and panning with drag-to-zoom
         zoom: {
+          // Enable panning on the x-axis only.
           pan: {
             enabled: true,
-            mode: 'xy'
+            mode: 'x'
           },
+          // Enable zooming by dragging and with the mouse wheel.
           zoom: {
             drag: {
               enabled: true,
+              threshold: 10, // Minimum pixels the user must drag to activate zoom
               borderColor: 'rgba(225,225,225,0.3)',
               borderWidth: 1,
               backgroundColor: 'rgba(225,225,225,0.3)'
@@ -194,7 +131,7 @@ async function updateChart() {
             pinch: {
               enabled: true
             },
-            mode: 'xy',
+            mode: 'x', // Zoom along the x-axis only
             onZoomComplete({chart}) {
               console.log('Zoom complete', chart);
             }
@@ -204,7 +141,7 @@ async function updateChart() {
     }
   });
 
-  // Optional: Add a reset zoom button
+  // Add a reset zoom button below the chart
   const resetButton = document.createElement('button');
   resetButton.textContent = 'Reset Zoom';
   resetButton.style.marginTop = '10px';
