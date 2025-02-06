@@ -6,27 +6,31 @@ import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.mi
 async function fetchStockData(symbol) {
     const apiKey = 'H2QP12QUP1EQF6FD'; // Your API Key
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
+    
     console.log(`Fetching data for ${symbol}`);
 
     try {
         const response = await axios.get(url);
         console.log('API Response:', response.data); // ✅ Log full response
 
-        if (response.data && response.data['Time Series (Daily)']) {
-            const dailyData = response.data['Time Series (Daily)'];
-            const formattedData = Object.entries(dailyData).map(([date, values]) => ({
-                date,
-                close: parseFloat(values['4. close']),
-            }));
-            return formattedData.reverse();
-        } else {
-            throw new Error(`Invalid data format: ${JSON.stringify(response.data)}`);
+        const timeSeries = response.data['Time Series (Daily)'];
+        if (!timeSeries) {
+            throw new Error('Invalid data format: Missing "Time Series (Daily)"');
         }
+
+        // Convert the time series object into an array of { date, close } objects
+        const formattedData = Object.entries(timeSeries).map(([date, values]) => ({
+            date,
+            close: parseFloat(values['4. close']),
+        }));
+
+        return formattedData.reverse(); // Ensuring chronological order
     } catch (error) {
-        console.error('Error fetching stock data:', error);
+        console.error('Error fetching stock data:', error.message);
         return [];
     }
 }
+
 
 // Function to fetch portfolio value (sum of 1 share of each stock)
 async function fetchPortfolioValue(symbols) {
