@@ -1,24 +1,34 @@
-/* styles/style.css */
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
+/* Ensure the html and body fill the viewport */
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
 
+/* Make the body a flex container in a column layout */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The container grows to fill the available space */
 .container {
-  width: 75vw;    /* 75% of the viewport width */
-  height: 75vh;   /* 75% of the viewport height */
-  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Ensure the canvas takes a non-zero height (using the height attribute or CSS) */
 canvas {
-  width: 100%;
-  height: 100%;
+  width: 100%;   /* Ensure it uses full available width */
+  /* You can use the HTML attribute height="400", or specify it here */
+  /* For example: */
+  /* height: 400px; */
 }
 
+/* Footer styling (stays at the bottom) */
 footer {
-  margin-top: 40px;
-  font-size: 14px;
-  color: #777;
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 1em;
 }
