@@ -5,7 +5,7 @@ import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.mi
 // Function to fetch stock data from Alpha Vantage API
 async function fetchStockData(symbol) {
     const apiKey = 'H2QP12QUP1EQF6FD'; // Replace with your Alpha Vantage API key
-    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`;
+    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
     console.log(`Fetching data for ${symbol}`);
 
     try {
