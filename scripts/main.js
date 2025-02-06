@@ -12,7 +12,8 @@ console.log('main.js loaded');
 // Function to fetch stock data from Yahoo Finance using a proxy to avoid CORS issues
 async function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
-  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=1d&interval=1d`;
+  // Adjust the range to 5 days and use daily data
+  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=5d&interval=1d`;
   const url = proxyUrl + targetUrl;
   
   try {
