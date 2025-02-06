@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   console.log("Chart.js is available.");
 
-  // ✅ Ensure the Date Adapter is properly loaded
+  // ✅ Ensure Date Adapter is properly loaded
   if (!Chart._adapters || !Chart._adapters.date) {
     console.error("Chart.js Date Adapter failed to load.");
     return;
