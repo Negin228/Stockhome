@@ -9,23 +9,6 @@
   <!-- ✅ Load Chart.js FIRST -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.umd.min.js"></script>
 
-  <!-- ✅ Wait for Chart.js to load before loading Date Adapter -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (typeof Chart !== "undefined") {
-        console.log("Chart.js loaded successfully.");
-        let script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0";
-        document.head.appendChild(script);
-        script.onload = function () {
-          console.log("Chart.js Date Adapter loaded successfully.");
-        };
-      } else {
-        console.error("Chart.js failed to load.");
-      }
-    });
-  </script>
-
 </head>
 <body>
   <div class="container">
@@ -38,7 +21,31 @@
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
 
-  <!-- ✅ Load main.js AFTER everything is fully loaded -->
-  <script src="scripts/main.js"></script>
+  <!-- ✅ Load the Date Adapter AFTER ensuring Chart.js is available -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (typeof Chart !== "undefined") {
+        console.log("Chart.js loaded successfully.");
+        
+        let script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0";
+        document.head.appendChild(script);
+        
+        script.onload = function () {
+          console.log("Chart.js Date Adapter loaded successfully.");
+          loadMainJS(); // Load main.js only after the date adapter is ready
+        };
+      } else {
+        console.error("Chart.js failed to load.");
+      }
+    });
+
+    function loadMainJS() {
+      let script = document.createElement("script");
+      script.src = "scripts/main.js";
+      document.body.appendChild(script);
+    }
+  </script>
+
 </body>
 </html>
