@@ -54,37 +54,37 @@ function fetchStockData(symbol) {
 }
 
 /**
- * Custom zoom function that zooms in the x-axis by reducing its range by 10%,
- * centered on the click point.
+ * Dynamic zoom on click: Zooms in 100% (halves the x-axis range) around the clicked x-coordinate.
+ * @param {Chart} chart - The Chart.js instance.
+ * @param {number} clickXPixel - The x coordinate (in pixels) of the click relative to the canvas.
  */
 function zoomOnClick(chart, clickXPixel) {
-  // Convert pixel to x-axis value.
+  // Convert pixel location to x-axis value.
   const xValue = chart.scales.x.getValueForPixel(clickXPixel);
   
-  // Get the current x-axis range.
+  // Get current x-axis range.
   const currentMin = chart.scales.x.min;
   const currentMax = chart.scales.x.max;
   const currentRange = currentMax - currentMin;
   
-  // Compute the new range (reduce by 10%).
-  const newRange = currentRange * 0.9;
+  // New range is half of the current range (100% zoom in).
+  const newRange = currentRange / 2;
   
-  // Set new minimum and maximum so that xValue is at the center.
+  // Set new minimum and maximum so that the clicked point is centered.
   const newMin = xValue - newRange / 2;
   const newMax = xValue + newRange / 2;
   
-  // Update the x-axis only.
   chart.options.scales.x.min = newMin;
   chart.options.scales.x.max = newMax;
   chart.update();
 }
 
 /**
- * Fetch data for multiple symbols, compute a combined portfolio value (excluding SPY
- * from the portfolio calculation), and create a chart displaying all datasets.
+ * Fetch data for multiple symbols, compute a combined portfolio value (excluding SPY),
+ * and create a chart displaying all datasets with custom click-to-zoom on the x-axis.
  */
 async function updateChart() {
-  // List of stock symbols (SPY will be shown but excluded from portfolio calculation)
+  // List of stock symbols to fetch (SPY is fetched and shown, but excluded from portfolio calculation)
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
   const colors = [
     "rgb(75, 192, 192)",  // teal
@@ -115,7 +115,8 @@ async function updateChart() {
       const date = stockDatasets[0].data[i].x;
       let sum = 0;
       for (const ds of stockDatasets) {
-        if (ds.label === "SPY Stock Price") continue;  // Skip SPY.
+        // Skip SPY for portfolio sum.
+        if (ds.label === "SPY Stock Price") continue;
         if (ds.data[i] && ds.data[i].y !== null) {
           sum += ds.data[i].y;
         }
@@ -169,7 +170,7 @@ async function updateChart() {
             sellLine: {
               type: 'line',
               scaleID: 'x',
-              value: '2024-12-05', // Vertical line marking December 5, 2024.
+              value: '2024-12-05', // Vertical line marking December 5, 2024
               borderColor: 'red',
               borderWidth: 2,
               label: { enabled: true, content: 'Sold Stock', position: 'start' }
@@ -181,14 +182,14 @@ async function updateChart() {
     }
   });
   
-  // Attach a click event listener to the canvas for x-axis zooming.
+  // Attach a click event listener to the canvas to perform x-axis zoom.
   canvas.addEventListener('click', (evt) => {
     const rect = canvas.getBoundingClientRect();
     const xPixel = evt.clientX - rect.left;
     zoomOnClick(chart, xPixel);
   });
   
-  // Create custom zoom control buttons.
+  // Create custom zoom control buttons (optional).
   const container = document.querySelector('.container');
   
   const resetButton = document.createElement('button');
