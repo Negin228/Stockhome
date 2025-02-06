@@ -1,13 +1,13 @@
 // scripts/main.js
 
-// Ensure Chart.js is globally available
+// Ensure Chart.js is available globally
 if (typeof window.Chart === "undefined") {
   console.error("Chart.js is not loaded properly.");
 } else {
   console.log("Chart.js loaded successfully.");
 }
 
-// Register necessary components
+// Register necessary components manually
 window.Chart.register(
   window.Chart.TimeScale,
   window.Chart.LineController,
