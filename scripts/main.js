@@ -157,7 +157,7 @@ async function updateChart() {
             sellLine: {
               type: 'line',
               scaleID: 'x',
-              value: '2025-01-06', // The date when you sold the stock (YYYY-MM-DD)
+              value: '2024-12-05', // Updated date: December 5, 2024
               borderColor: 'red',
               borderWidth: 2,
               label: {
