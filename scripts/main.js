@@ -10,6 +10,7 @@ async function fetchStockData(symbol) {
         const response = await fetch(url);
         const data = await response.json();
 
+        // Log the API response to inspect its structure
         console.log('Yahoo Finance API Response:', data);
 
         if (data.chart && data.chart.result) {
@@ -17,8 +18,9 @@ async function fetchStockData(symbol) {
             const timestamps = stockData.timestamp;
             const closePrices = stockData.indicators.quote[0].close;
 
+            // Format the data into an array of objects usable by Chart.js
             const chartData = timestamps.map((timestamp, index) => ({
-                x: new Date(timestamp * 1000),
+                x: new Date(timestamp * 1000), // Convert timestamp to JavaScript Date
                 y: closePrices[index]
             }));
 
@@ -34,12 +36,21 @@ async function fetchStockData(symbol) {
 
 // Function to update the chart with the fetched stock data
 async function updateChart() {
-    const symbol = 'TSLA';
+    const symbol = 'TSLA';  // Example stock symbol
 
     try {
         const stockData = await fetchStockData(symbol);
-        const ctx = document.getElementById('stockChart').getContext('2d');
+        console.log('Creating chart with data:', stockData);
 
+        // Get the canvas context using the correct canvas id "myChart"
+        const canvas = document.getElementById('myChart');
+        if (!canvas) {
+            console.error('Canvas with id "myChart" not found.');
+            return;
+        }
+        const ctx = canvas.getContext('2d');
+
+        // Create the chart using Chart.js
         const chart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -78,10 +89,10 @@ async function updateChart() {
     }
 }
 
-// Expose updateChart globally if needed by other scripts or inline code
+// Expose updateChart globally if needed (optional)
 window.updateChart = updateChart;
 
-// Ensure the chart is updated when the page is loaded
+// Call updateChart on page load
 window.onload = function() {
     updateChart();
 };
