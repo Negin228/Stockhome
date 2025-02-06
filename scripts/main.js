@@ -6,27 +6,31 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  console.log("Chart.js loaded successfully.");
+  console.log("Chart.js is available.");
 
-  // ✅ Register necessary Chart.js components
-  Chart.register(
-    Chart.TimeScale,
-    Chart.LineController,
-    Chart.LineElement,
-    Chart.PointElement,
-    Chart.LinearScale,
-    Chart.Title,
-    Chart.Tooltip,
-    Chart.Legend
-  );
+  // ✅ Wait for Date Adapter to load before proceeding
+  let checkDateAdapter = setInterval(() => {
+    if (Chart._adapters && Chart._adapters.date) {
+      console.log("Chart.js Date Adapter is ready.");
+      clearInterval(checkDateAdapter);
 
-  // ✅ Ensure Chart.js adapters are properly loaded
-  if (!Chart._adapters || !Chart._adapters.date) {
-    console.error("Chart.js date adapter failed to load.");
-    return;
-  }
+      // ✅ Register necessary Chart.js components
+      Chart.register(
+        Chart.TimeScale,
+        Chart.LineController,
+        Chart.LineElement,
+        Chart.PointElement,
+        Chart.LinearScale,
+        Chart.Title,
+        Chart.Tooltip,
+        Chart.Legend
+      );
 
-  updateChart(); // Initialize chart after ensuring Chart.js is loaded
+      updateChart(); // Initialize chart after ensuring everything is ready
+    } else {
+      console.warn("Waiting for Chart.js Date Adapter to load...");
+    }
+  }, 500);
 });
 
 /**
