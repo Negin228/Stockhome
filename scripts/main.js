@@ -1,23 +1,27 @@
 // scripts/main.js
 
-// Ensure Chart.js is available globally
-if (typeof window.Chart === "undefined") {
-  console.error("Chart.js is not loaded properly.");
-} else {
-  console.log("Chart.js loaded successfully.");
-}
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof window.Chart === "undefined") {
+    console.error("Chart.js is not loaded properly.");
+    return;
+  }
 
-// Register necessary components manually
-window.Chart.register(
-  window.Chart.TimeScale,
-  window.Chart.LineController,
-  window.Chart.LineElement,
-  window.Chart.PointElement,
-  window.Chart.LinearScale,
-  window.Chart.Title,
-  window.Chart.Tooltip,
-  window.Chart.Legend
-);
+  console.log("Chart.js loaded successfully.");
+
+  // Register necessary Chart.js components
+  window.Chart.register(
+    Chart.TimeScale,
+    Chart.LineController,
+    Chart.LineElement,
+    Chart.PointElement,
+    Chart.LinearScale,
+    Chart.Title,
+    Chart.Tooltip,
+    Chart.Legend
+  );
+
+  updateChart(); // Initialize chart after ensuring Chart.js is loaded
+});
 
 /**
  * Fetch stock data from Yahoo Finance using AllOrigins proxy to bypass CORS restrictions.
@@ -30,15 +34,15 @@ async function fetchStockData(symbol) {
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Failed to fetch ${symbol}`);
-    
+
     const data = await response.json();
     console.log(`Data for ${symbol}:`, data);
-    
+
     if (data.chart && data.chart.result && data.chart.result[0]) {
       const result = data.chart.result[0];
       const timestamps = result.timestamp;
       const closePrices = result.indicators.quote[0].close;
-      
+
       return timestamps.map((timestamp, index) => ({
         x: new Date(timestamp * 1000),
         y: closePrices[index]
@@ -48,7 +52,7 @@ async function fetchStockData(symbol) {
     }
   } catch (error) {
     console.error(`Error fetching ${symbol}:`, error);
-    return null; // Return null if fetching fails
+    return null;
   }
 }
 
@@ -58,8 +62,7 @@ async function fetchStockData(symbol) {
 async function updateChart() {
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
   const colors = ["rgb(75,192,192)", "rgb(255,99,132)", "rgb(54,162,235)", "rgb(255,206,86)", "rgb(153,102,255)", "rgb(255,159,64)"];
-  
-  // Fetch data for all stocks
+
   const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
     const data = await fetchStockData(symbol);
     return data ? {
@@ -71,7 +74,6 @@ async function updateChart() {
     } : null;
   }));
 
-  // Remove any failed datasets
   const validDatasets = stockDatasets.filter(ds => ds !== null);
 
   if (validDatasets.length === 0) {
@@ -94,6 +96,3 @@ async function updateChart() {
     }
   });
 }
-
-// Run the chart update when the page loads
-window.onload = updateChart;
