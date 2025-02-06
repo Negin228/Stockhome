@@ -99,6 +99,33 @@ window.updateChart = async function() {
 
     // Render the chart with the data
     renderChart(chartData);
+}window.updateChart = async function() {
+    const symbols = ['NFLX', 'AMZN', 'TSLA', 'META', 'GOOGL', 'MSFT', 'NVDA'];
+    const stockData = await Promise.all(symbols.map(fetchStockData));
+    const portfolioData = await fetchPortfolioValue(symbols);
+
+    // Prepare the chart data
+    const chartData = {
+        labels: stockData[0].map((data) => data.date), // x-axis labels (dates)
+        datasets: [
+            ...symbols.map((symbol, index) => ({
+                label: symbol,
+                data: stockData[index].map((data) => data.close),
+                borderColor: getRandomColor(),
+                fill: false,
+            })),
+            {
+                label: 'Portfolio Value',
+                data: portfolioData.map((data) => data.value),
+                borderColor: '#FF0000',
+                fill: false,
+                borderDash: [5, 5],
+            },
+        ],
+    };
+
+    // Render the chart with the data
+    renderChart(chartData);
 }
 
 // Function to schedule the chart update every day at 12:00 PM
