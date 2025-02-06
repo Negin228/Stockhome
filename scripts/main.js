@@ -15,8 +15,7 @@ console.log('main.js loaded');
 
 /**
  * Fetch stock data from Yahoo Finance for the given symbol.
- * Uses a proxy to bypass CORS issues.
- * Returns data formatted for Chart.js as an array of {x: Date, y: Price} objects.
+ * Returns an array of { x: Date, y: Price } objects.
  */
 async function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
@@ -27,7 +26,7 @@ async function fetchStockData(symbol) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      console.error('Network response was not ok', response.statusText);
+      console.error(`Network response for ${symbol} was not ok:`, response.statusText);
       return [];
     }
     const data = await response.json();
@@ -55,35 +54,67 @@ async function fetchStockData(symbol) {
 }
 
 /**
- * Fetches data for multiple symbols and creates a combined line chart.
+ * Fetch data for multiple symbols, compute a combined portfolio value,
+ * and create a chart displaying all datasets.
  */
 async function updateChart() {
-  // List of stock symbols to fetch
-  const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "NVDA"];
+  // List of stock symbols to fetch (NVIDIA is excluded)
+  const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT"];
   
-  // Colors for each dataset (one color per symbol)
+  // Colors for each individual stock dataset
   const colors = [
     "rgb(75, 192, 192)",  // teal
     "rgb(255, 99, 132)",  // red
     "rgb(54, 162, 235)",  // blue
     "rgb(255, 206, 86)",  // yellow
-    "rgb(153, 102, 255)", // purple
-    "rgb(255, 159, 64)"   // orange
+    "rgb(153, 102, 255)"  // purple
   ];
   
-  // Fetch stock data for each symbol concurrently
-  const datasets = await Promise.all(symbols.map(async (symbol, index) => {
+  // Fetch stock data concurrently for each symbol and build datasets
+  const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
     const stockData = await fetchStockData(symbol);
     return {
       label: `${symbol} Stock Price`,
       data: stockData,
       borderColor: colors[index % colors.length],
       fill: false,
-      tension: 0.1  // optional: smooths the line a bit
+      tension: 0.1 // Optional: smooths the line slightly
     };
   }));
   
-  console.log('Creating chart with datasets:', datasets);
+  // Compute the portfolio value dataset assuming one share of each stock.
+  // This assumes that each stock dataset has the same dates and ordering.
+  let portfolioData = [];
+  if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
+    const n = stockDatasets[0].data.length;
+    for (let i = 0; i < n; i++) {
+      // Use the date from the first dataset (assumes alignment)
+      const date = stockDatasets[0].data[i].x;
+      // Sum the prices for each stock at index i
+      let sum = 0;
+      for (const ds of stockDatasets) {
+        if (ds.data[i] && ds.data[i].y !== null) {
+          sum += ds.data[i].y;
+        }
+      }
+      portfolioData.push({ x: date, y: sum });
+    }
+  }
+  
+  // Create the portfolio dataset
+  const portfolioDataset = {
+    label: "Portfolio Value (1 share each)",
+    data: portfolioData,
+    borderColor: "black",
+    borderWidth: 3,
+    fill: false,
+    tension: 0.1
+  };
+
+  // Combine all datasets (individual stocks plus the portfolio)
+  const allDatasets = [...stockDatasets, portfolioDataset];
+  
+  console.log('Creating chart with datasets:', allDatasets);
 
   // Get the canvas element
   const canvas = document.getElementById('myChart');
@@ -93,11 +124,11 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
-  // Create the Chart.js chart with all datasets and the annotation for the sale date
+  // Create the Chart.js chart with all datasets and the annotation for the sell date
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
-      datasets: datasets
+      datasets: allDatasets
     },
     options: {
       responsive: true,
@@ -105,7 +136,7 @@ async function updateChart() {
         x: {
           type: 'time',
           time: {
-            unit: 'month',  // For 5 years of data, month is a reasonable unit
+            unit: 'month',  // Suitable for 5-year data
             tooltipFormat: 'MMM dd, yyyy'
           },
           title: {
