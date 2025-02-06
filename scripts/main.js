@@ -87,4 +87,3 @@ window.onload = function() {
 };
 // At the end of main.js
 window.updateChart = updateChart;
-
