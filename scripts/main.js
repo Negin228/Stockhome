@@ -1,19 +1,18 @@
 // scripts/main.js
 
-// Import the date adapter for Chart.js
+// Import the date adapter for Chart.js (and resolve bare specifiers via our import map)
 import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.esm.js';
 
-// Import the named exports from Chart.js ESM build and register components
+// Import the named exports from Chart.js (resolved via import map) and register components
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 console.log('main.js loaded');
 
-// Function to fetch stock data from Yahoo Finance using a proxy to avoid CORS issues
 async function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
-  // Adjust the range to 5 days and use daily data
-  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=5d&interval=1d`;
+  // Request data for the last 5 years with a daily interval
+  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=5y&interval=1d`;
   const url = proxyUrl + targetUrl;
   
   try {
@@ -45,7 +44,6 @@ async function fetchStockData(symbol) {
   }
 }
 
-// Function to update the chart with the fetched stock data
 async function updateChart() {
   const symbol = 'TSLA';
   const stockData = await fetchStockData(symbol);
@@ -74,12 +72,12 @@ async function updateChart() {
         x: {
           type: 'time',
           time: {
-            unit: 'minute',
-            tooltipFormat: 'll HH:mm'
+            unit: 'month',  // You can adjust the unit to 'month' for a 5-year period.
+            tooltipFormat: 'MMM dd, yyyy'
           },
           title: {
             display: true,
-            text: 'Time'
+            text: 'Date'
           }
         },
         y: {
