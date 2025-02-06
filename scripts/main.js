@@ -85,3 +85,6 @@ async function updateChart() {
 window.onload = function() {
     updateChart();
 };
+// At the end of main.js
+window.updateChart = updateChart;
+
