@@ -9,8 +9,7 @@
   <!-- ✅ Load Chart.js FIRST -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.umd.min.js"></script>
 
-  <!-- ✅ Load Date Adapter AFTER Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
+  <!-- ✅ Do NOT load chartjs-adapter-date-fns here, load it inside main.js -->
 
 </head>
 <body>
@@ -24,7 +23,7 @@
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
 
-  <!-- ✅ Load main.js only after Chart.js is available -->
+  <!-- ✅ Load main.js AFTER everything is loaded -->
   <script src="scripts/main.js"></script>
 </body>
 </html>
