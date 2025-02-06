@@ -1,15 +1,21 @@
 // scripts/main.js
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (typeof window.Chart === "undefined") {
-    console.error("Chart.js is not loaded properly.");
+  if (typeof Chart === "undefined") {
+    console.error("Chart.js failed to load.");
     return;
   }
 
   console.log("Chart.js loaded successfully.");
 
+  // Ensure Date Adapter is properly initialized
+  if (!Chart._adapters || !Chart._adapters.date) {
+    console.error("Chart.js date adapter failed to load.");
+    return;
+  }
+
   // Register necessary Chart.js components
-  window.Chart.register(
+  Chart.register(
     Chart.TimeScale,
     Chart.LineController,
     Chart.LineElement,
@@ -83,7 +89,7 @@ async function updateChart() {
 
   // Create the chart
   const ctx = document.getElementById('myChart').getContext('2d');
-  new window.Chart(ctx, {
+  new Chart(ctx, {
     type: 'line',
     data: { datasets: validDatasets },
     options: {
