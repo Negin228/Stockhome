@@ -4,22 +4,23 @@ import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.mi
 
 // Function to fetch stock data from Alpha Vantage API
 async function fetchStockData(symbol) {
-    const apiKey = 'H2QP12QUP1EQF6FD'; // Replace with your Alpha Vantage API key
+    const apiKey = 'H2QP12QUP1EQF6FD'; // Your API Key
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
     console.log(`Fetching data for ${symbol}`);
 
     try {
         const response = await axios.get(url);
+        console.log('API Response:', response.data); // ✅ Log full response
+
         if (response.data && response.data['Time Series (Daily)']) {
             const dailyData = response.data['Time Series (Daily)'];
-            // Format the data into an array of date/price pairs
             const formattedData = Object.entries(dailyData).map(([date, values]) => ({
                 date,
-                close: parseFloat(values['4. close']), // Closing price
+                close: parseFloat(values['4. close']),
             }));
-            return formattedData.reverse(); // Reverse for chronological order
+            return formattedData.reverse();
         } else {
-            throw new Error('Invalid data format received from Alpha Vantage');
+            throw new Error(`Invalid data format: ${JSON.stringify(response.data)}`);
         }
     } catch (error) {
         console.error('Error fetching stock data:', error);
