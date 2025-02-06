@@ -6,11 +6,16 @@
   <title>Stockhome</title>
   <link rel="stylesheet" href="styles/style.css" />
 
-  <!-- Load Chart.js (UMD version) -->
+  <!-- ✅ Load Chart.js FIRST -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.umd.min.js"></script>
-  
-  <!-- Load Date Adapter AFTER Chart.js -->
+
+  <!-- ✅ Load Date Adapter AFTER Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
+
+  <!-- ✅ Register Chart.js globally before using it -->
+  <script>
+    window.Chart = Chart;  // Make Chart.js globally accessible
+  </script>
 
 </head>
 <body>
@@ -24,7 +29,7 @@
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
 
-  <!-- Load JavaScript AFTER Chart.js and Date Adapter -->
+  <!-- ✅ Load JavaScript AFTER Chart.js and Date Adapter -->
   <script src="scripts/main.js"></script>
 </body>
 </html>
