@@ -2,48 +2,34 @@
 import axios from 'https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js';
 import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js';
 
-// Function to fetch stock data from Alpha Vantage API
+// Function to fetch stock data from Yahoo Finance
 async function fetchStockData(symbol) {
-    const apiKey = 'H2QP12QUP1EQF6FD'; // Replace with your actual API key
-    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
-
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=1d&interval=1d`;
+    
     try {
         const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`API call failed with status: ${response.status}`);
-        }
-
         const data = await response.json();
+        
+        if (data.chart && data.chart.result) {
+            const stockData = data.chart.result[0];
+            const timestamps = stockData.timestamp;
+            const closePrices = stockData.indicators.quote[0].close;
 
-        console.log('Raw API Response:', data); // Log raw data to inspect
+            // Format the data into a format usable for the chart
+            const chartData = timestamps.map((timestamp, index) => ({
+                x: new Date(timestamp * 1000),  // Convert timestamp to JavaScript Date
+                y: closePrices[index]
+            }));
 
-        // Check if the data contains the expected "Time Series (Daily)" key
-        if (!data || !data['Time Series (Daily)']) {
-            throw new Error(`Invalid or unexpected data format received. Response: ${JSON.stringify(data)}`);
+            return chartData;
+        } else {
+            throw new Error('Invalid data format received from Yahoo Finance');
         }
-
-        const timeSeries = data['Time Series (Daily)'];
-        const stockData = Object.keys(timeSeries).map(date => ({
-            date: new Date(date), // Convert date string to a Date object
-            close: parseFloat(timeSeries[date]['4. close']) // Extract closing price
-        }));
-
-        return stockData.reverse(); // Reverse data for most recent date first
     } catch (error) {
-        console.error('Error fetching stock data:', error.message);
-        console.error('Response Body:', error.response ? error.response : 'No response body');
-        throw error; // Rethrow the error to propagate it to the caller
+        console.error('Error fetching stock data:', error);
+        throw new Error('Error fetching stock data: ' + error.message);
     }
 }
-
-
-
-
-
-
-
-
 
 // Function to fetch portfolio value (sum of 1 share of each stock)
 async function fetchPortfolioValue(symbols) {
@@ -52,9 +38,9 @@ async function fetchPortfolioValue(symbols) {
 
     // Ensure all data arrays are aligned by date and sum stock values
     const portfolioData = allStockData[0].map((_, index) => {
-        const date = allStockData[0][index].date;
+        const date = allStockData[0][index].x; // Using 'x' for the date
         const totalValue = allStockData.reduce((sum, stockData) => {
-            const stockPrice = stockData[index]?.close || 0; // Handle missing data
+            const stockPrice = stockData[index]?.y || 0; // Handle missing data
             return sum + stockPrice;
         }, 0);
         return { date, value: totalValue };
@@ -63,85 +49,18 @@ async function fetchPortfolioValue(symbols) {
     return portfolioData;
 }
 
-// Function to generate a random color for each stock line
-function getRandomColor() {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
-// Function to render the chart
-async function renderChart(symbol) {
-    // Fetch stock data
-    const stockData = await fetchStockData(symbol);
-    
-    // Check if we have valid data
-    if (stockData.length === 0) {
-        console.error('No valid stock data to render.');
-        return;
-    }
-
-    // Chart rendering logic
-    const ctx = document.getElementById('myChart').getContext('2d');
-    
-    const chart = new Chart(ctx, {
-        type: 'line', // Using line chart
-        data: {
-            datasets: [{
-                label: `${symbol} Stock Price`,
-                data: stockData, // Use the correctly formatted stock data
-                borderColor: 'rgba(75, 192, 192, 1)',
-                fill: false,
-                tension: 0.1 // Optional, for smoothing the line
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    type: 'time', // Ensure x-axis is a time axis
-                    time: {
-                        unit: 'day', // Format to daily data
-                        tooltipFormat: 'll', // Display the date in the tooltip (optional)
-                    },
-                    title: {
-                        display: true,
-                        text: 'Date'
-                    }
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Stock Price (USD)'
-                    }
-                }
-            },
-            responsive: true,
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) {
-                            const date = tooltipItems[0].raw.date;
-                            return date.toLocaleDateString(); // Format the date for the tooltip
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
-
-
-// Function to update the chart with new stock data and portfolio value
-async function updateChart() {
-    const symbols = ['NFLX', 'AMZN', 'TSLA', 'META', 'GOOGL', 'MSFT', 'NVDA'];
+// Function to render the chart with multiple stocks and portfolio value
+async function renderChart(symbols) {
     const stockData = await Promise.all(symbols.map(fetchStockData));
     const portfolioData = await fetchPortfolioValue(symbols);
 
     // Prepare the chart data
     const chartData = {
-        labels: stockData[0].map((data) => data.date), // x-axis labels (dates)
+        labels: stockData[0].map((data) => data.x), // x-axis labels (dates)
         datasets: [
             ...symbols.map((symbol, index) => ({
-                label: symbol,
-                data: stockData[index].map((data) => data.close),
+                label: `${symbol} Stock Price`,
+                data: stockData[index].map((data) => data.y),
                 borderColor: getRandomColor(),
                 fill: false,
             })),
@@ -155,8 +74,34 @@ async function updateChart() {
         ],
     };
 
-    // Render the chart with the data
-    renderChart(chartData);
+    // Assuming you are using Chart.js, update your chart with the new data
+    const ctx = document.getElementById('stockChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'minute',
+                        tooltipFormat: 'll HH:mm'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Price (USD)'
+                    }
+                }
+            }
+        }
+    });
 }
 
 // Function to schedule the chart update every day at 12:00 PM
@@ -171,14 +116,15 @@ function scheduleDailyUpdate() {
 
     // Set the initial update and then repeat every 24 hours
     setTimeout(() => {
-        updateChart();
-        setInterval(updateChart, 24 * 60 * 60 * 1000); // Repeat every 24 hours
+        renderChart(['NFLX', 'AMZN', 'TSLA', 'META', 'GOOGL', 'MSFT', 'NVDA']);
+        setInterval(() => renderChart(['NFLX', 'AMZN', 'TSLA', 'META', 'GOOGL', 'MSFT', 'NVDA']), 24 * 60 * 60 * 1000); // Repeat every 24 hours
     }, timeToUpdate);
 }
 
 // Call the function to schedule the first data update
 scheduleDailyUpdate();
-export { updateChart };
-window.updateChart = updateChart;
 
-
+// Function to generate a random color for each stock line
+function getRandomColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
