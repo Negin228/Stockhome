@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   console.log("Chart.js is available.");
 
-  // ✅ Wait for Date Adapter to load before proceeding
+  // ✅ Ensure Date Adapter is ready before proceeding
   let checkDateAdapter = setInterval(() => {
     if (Chart._adapters && Chart._adapters.date) {
       console.log("Chart.js Date Adapter is ready.");
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         Chart.Legend
       );
 
-      updateChart(); // Initialize chart after ensuring everything is ready
+      updateChart(); // Initialize chart after everything is ready
     } else {
       console.warn("Waiting for Chart.js Date Adapter to load...");
     }
