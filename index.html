@@ -6,10 +6,13 @@
   <title>Stock Chart</title>
   <link rel="stylesheet" href="styles/style.css" />
 
-  <!-- ✅ Load Chart.js v3.7.1 -->
+  <!-- ✅ Load Chart.js v3.7.1 (Stable and Compatible) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
 
-  <!-- ✅ Load Date Adapter -->
+  <!-- ✅ Load date-fns before the Chart.js Date Adapter -->
+  <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3"></script>
+
+  <!-- ✅ Load Chart.js Date Adapter -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
 
 </head>
@@ -24,7 +27,7 @@
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
 
-  <!-- ✅ Load main.js LAST -->
+  <!-- ✅ Load main.js LAST (ensures everything is ready before executing) -->
   <script defer src="scripts/main.js"></script>
 
 </body>
