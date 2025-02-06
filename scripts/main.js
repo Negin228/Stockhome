@@ -72,7 +72,7 @@ function renderChart(data) {
 }
 
 // Function to update the chart with new stock data and portfolio value
-window.updateChart = async function() {
+export async function updateChart() {
     const symbols = ['NFLX', 'AMZN', 'TSLA', 'META', 'GOOGL', 'MSFT', 'NVDA'];
     const stockData = await Promise.all(symbols.map(fetchStockData));
     const portfolioData = await fetchPortfolioValue(symbols);
@@ -99,7 +99,7 @@ window.updateChart = async function() {
 
     // Render the chart with the data
     renderChart(chartData);
-};
+}
 
 // Function to schedule the chart update every day at 12:00 PM
 function scheduleDailyUpdate() {
