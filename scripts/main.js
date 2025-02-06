@@ -1,19 +1,29 @@
 // scripts/main.js
 
-// 1. Import dependencies
+// Import the date adapter for Chart.js
 import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.esm.js';
+
+// Import Chart.js and register its components (resolved via your import map)
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
+
+// Import and register the annotation plugin
 import annotationPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.esm.js';
 Chart.register(annotationPlugin);
+
+// Import and register the zoom plugin for Chart.js
 import zoomPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.esm.js';
 Chart.register(zoomPlugin);
 
 console.log('Chart has been imported:', Chart);
 
-// 2. Define fetchStockData function
+/**
+ * Fetch stock data from Yahoo Finance for the given symbol.
+ * Returns an array of { x: Date, y: Price } objects.
+ */
 function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
+  // Request data for the last 10 years with daily data
   const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
   const url = proxyUrl + targetUrl;
   
@@ -46,16 +56,20 @@ function fetchStockData(symbol) {
     });
 }
 
-// 3. Define updateChart function
+/**
+ * Fetch data for multiple symbols, compute a combined portfolio value,
+ * and create a chart displaying all datasets.
+ */
 async function updateChart() {
+  // List of stock symbols to fetch (including SPY)
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
   const colors = [
-    "rgb(75, 192, 192)",
-    "rgb(255, 99, 132)",
-    "rgb(54, 162, 235)",
-    "rgb(255, 206, 86)",
-    "rgb(153, 102, 255)",
-    "rgb(255, 159, 64)"
+    "rgb(75, 192, 192)",  // teal
+    "rgb(255, 99, 132)",  // red
+    "rgb(54, 162, 235)",  // blue
+    "rgb(255, 206, 86)",  // yellow
+    "rgb(153, 102, 255)", // purple
+    "rgb(255, 159, 64)"   // orange
   ];
   
   const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
@@ -69,6 +83,7 @@ async function updateChart() {
     };
   }));
   
+  // Compute portfolio value (1 share of each)
   let portfolioData = [];
   if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
     const n = stockDatasets[0].data.length;
@@ -105,9 +120,7 @@ async function updateChart() {
 
   const chart = new Chart(ctx, {
     type: 'line',
-    data: {
-      datasets: allDatasets
-    },
+    data: { datasets: allDatasets },
     options: {
       maintainAspectRatio: false,
       responsive: true,
@@ -136,7 +149,7 @@ async function updateChart() {
             sellLine: {
               type: 'line',
               scaleID: 'x',
-              value: '2024-12-05',
+              value: '2024-12-05', // Sell date: December 5, 2024
               borderColor: 'red',
               borderWidth: 2,
               label: {
@@ -148,34 +161,33 @@ async function updateChart() {
           }
         },
         zoom: {
-          pan: {
-            enabled: true,
-            mode: 'x'
-          },
+          // Disable wheel and pinch zoom to force drag-only zoom
+          wheel: { enabled: false },
+          pinch: { enabled: false },
+          // Enable drag-to-zoom on the x-axis only
           zoom: {
             drag: {
               enabled: true,
-              threshold: 50,
+              threshold: 100, // Increase threshold to require a deliberate drag (in pixels)
               borderColor: 'rgba(225,225,225,0.3)',
               borderWidth: 1,
               backgroundColor: 'rgba(225,225,225,0.3)'
-            },
-            wheel: {
-              enabled: true
-            },
-            pinch: {
-              enabled: true
             },
             mode: 'x',
             onZoomComplete({ chart }) {
               console.log('Zoom complete', chart);
             }
+          },
+          pan: {
+            enabled: true,
+            mode: 'x'
           }
         }
       }
     }
   });
 
+  // Create a Reset Zoom button
   const resetButton = document.createElement('button');
   resetButton.textContent = 'Reset Zoom';
   resetButton.style.marginTop = '10px';
@@ -183,7 +195,6 @@ async function updateChart() {
   document.querySelector('.container').appendChild(resetButton);
 }
 
-// 4. Call updateChart on window load
 window.onload = function() {
   updateChart();
 };
