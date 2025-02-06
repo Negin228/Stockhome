@@ -19,14 +19,14 @@ console.log('Chart has been imported:', Chart);
 
 /**
  * Fetch stock data from Yahoo Finance for the given symbol.
- * Returns an array of { x: Date, y: Price } objects.
+ * Returns a Promise that resolves to an array of { x: Date, y: Price } objects.
  */
 function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
   // Request data for the last 10 years with daily data
   const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
   const url = proxyUrl + targetUrl;
-  
+
   return fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -72,7 +72,7 @@ async function updateChart() {
     "rgb(153, 102, 255)", // purple
     "rgb(255, 159, 64)"   // orange
   ];
-  
+
   const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
     const stockData = await fetchStockData(symbol);
     return {
@@ -83,7 +83,7 @@ async function updateChart() {
       tension: 0.1
     };
   }));
-  
+
   // Compute the portfolio value dataset assuming one share of each stock.
   let portfolioData = [];
   if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
@@ -99,7 +99,7 @@ async function updateChart() {
       portfolioData.push({ x: date, y: sum });
     }
   }
-  
+
   const portfolioDataset = {
     label: "Portfolio Value (1 share each)",
     data: portfolioData,
@@ -108,7 +108,7 @@ async function updateChart() {
     fill: false,
     tension: 0.1
   };
-  
+
   const allDatasets = [...stockDatasets, portfolioDataset];
   console.log('Creating chart with datasets:', allDatasets);
 
@@ -119,6 +119,7 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
+  // Create the Chart.js chart with zoom/pan and annotation enabled
   const chart = new Chart(ctx, {
     type: 'line',
     data: { datasets: allDatasets },
@@ -162,18 +163,43 @@ async function updateChart() {
           }
         },
         zoom: {
-          // Enable both wheel and pinch zoom for touchpad/mouse wheel zooming
-          wheel: { enabled: true },
-          pinch: { enabled: true },
-          // Enable drag-to-zoom functionality and allow panning in both x and y directions
+          pan: {
+            enabled: true,
+            mode: 'xy'
+          },
           zoom: {
             drag: {
               enabled: true,
-              // You can adjust the threshold if needed (e.g., 50 pixels)
-              threshold: 50,
+              threshold: 50, // Require a deliberate drag (50 pixels)
               borderColor: 'rgba(225,225,225,0.3)',
               borderWidth: 1,
               backgroundColor: 'rgba(225,225,225,0.3)'
             },
+            wheel: {
+              enabled: true
+            },
+            pinch: {
+              enabled: true
+            },
             mode: 'xy',
-            onZoomComplete(
+            onZoomComplete({ chart }) {
+              console.log('Zoom complete', chart);
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Add a Reset Zoom button below the chart
+  const resetButton = document.createElement('button');
+  resetButton.textContent = 'Reset Zoom';
+  resetButton.style.marginTop = '10px';
+  resetButton.onclick = () => chart.resetZoom();
+  document.querySelector('.container').appendChild(resetButton);
+}
+
+// Call updateChart when the window loads
+window.onload = function() {
+  updateChart();
+};
