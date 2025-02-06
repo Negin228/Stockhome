@@ -72,7 +72,7 @@ function renderChart(data) {
 }
 
 // Function to update the chart with new stock data and portfolio value
-async function updateChart() {
+window.updateChart = async function() {
     const symbols = ['NFLX', 'AMZN', 'TSLA', 'META', 'GOOGL', 'MSFT', 'NVDA'];
     const stockData = await Promise.all(symbols.map(fetchStockData));
     const portfolioData = await fetchPortfolioValue(symbols);
