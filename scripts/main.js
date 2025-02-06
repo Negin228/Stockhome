@@ -1,19 +1,17 @@
-// main.js
-
-console.log('main.js loaded');
+// scripts/main.js
 
 import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js';
 
-// Wait for the DOM to be fully loaded (this is extra safety—even though your script is placed after the canvas)
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('myChart');
-  if (!canvas) {
-    console.error('Canvas with id "myChart" not found.');
-    return;
-  }
+console.log('main.js loaded');
+
+// Get the canvas element immediately (since the script is after the canvas in the HTML)
+const canvas = document.getElementById('myChart');
+if (!canvas) {
+  console.error('Canvas with id "myChart" not found.');
+} else {
   const ctx = canvas.getContext('2d');
 
-  // Create a minimal chart with static data
+  // Create a simple test chart with static data
   const testChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -45,4 +43,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   console.log('Test chart created');
-});
+}
