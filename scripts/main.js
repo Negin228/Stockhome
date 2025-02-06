@@ -4,29 +4,32 @@ import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.mi
 
 // Function to fetch stock data from Alpha Vantage API
 async function fetchStockData(symbol) {
-    const apiKey = 'H2QP12QUP1EQF6FD'; // Your API Key
+    const apiKey = 'H2QP12QUP1EQF6FD'; // Replace with your actual API key
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
 
     try {
+        // Fetch the data from Alpha Vantage
         const response = await fetch(url);
-        const data = await response.json(); // Directly convert response to JSON
+        const data = await response.json();
 
-        // Check if data exists and contains 'Time Series (Daily)'
-        if (!data['Time Series (Daily)']) {
-            throw new Error('Invalid data format: Missing "Time Series (Daily)"');
+        // Check if the response has the required structure
+        if (data['Time Series (Daily)']) {
+            const timeSeries = data['Time Series (Daily)'];
+            const stockData = Object.keys(timeSeries).map(date => {
+                return {
+                    date: new Date(date), // Convert the date string to a Date object
+                    close: parseFloat(timeSeries[date]['4. close']) // Get the closing price and convert to float
+                };
+            });
+
+            // Return the stock data in the correct format
+            return stockData.reverse(); // Optional: reverse to have the latest date first
+        } else {
+            throw new Error('Invalid data format received from Alpha Vantage');
         }
-
-        // Process the data into a format you can use
-        const timeSeries = data['Time Series (Daily)'];
-        const formattedData = Object.entries(timeSeries).map(([date, values]) => ({
-            date: new Date(date), // Convert date to a Date object for better handling by Chart.js
-            close: parseFloat(values['4. close']),
-        }));
-
-        return formattedData.reverse(); // Reverse the order to have the latest date last
     } catch (error) {
-        console.error('Error fetching stock data:', error.message, error);
-        return [];
+        console.error('Error fetching stock data:', error);
+        throw error;
     }
 }
 
