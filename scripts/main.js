@@ -136,7 +136,7 @@ async function updateChart() {
       datasets: allDatasets
     },
     options: {
-      maintainAspectRatio: false, // Allow the chart to fill its container
+      maintainAspectRatio: false,
       responsive: true,
       scales: {
         x: {
@@ -175,13 +175,19 @@ async function updateChart() {
             }
           }
         },
-        // Zoom plugin configuration: enables zooming and panning
+        // Zoom plugin configuration: enables zooming and panning with drag-to-zoom
         zoom: {
           pan: {
             enabled: true,
             mode: 'xy'
           },
           zoom: {
+            drag: {
+              enabled: true,
+              borderColor: 'rgba(225,225,225,0.3)',
+              borderWidth: 1,
+              backgroundColor: 'rgba(225,225,225,0.3)'
+            },
             wheel: {
               enabled: true
             },
@@ -189,11 +195,7 @@ async function updateChart() {
               enabled: true
             },
             mode: 'xy',
-            // Add callbacks to help debug zoom events
-            onZoom: ({chart}) => {
-              console.log('Zoom event', chart);
-            },
-            onZoomComplete: ({chart}) => {
+            onZoomComplete({chart}) {
               console.log('Zoom complete', chart);
             }
           }
@@ -201,6 +203,13 @@ async function updateChart() {
       }
     }
   });
+
+  // Optional: Add a reset zoom button
+  const resetButton = document.createElement('button');
+  resetButton.textContent = 'Reset Zoom';
+  resetButton.style.marginTop = '10px';
+  resetButton.onclick = () => chart.resetZoom();
+  document.querySelector('.container').appendChild(resetButton);
 }
 
 window.onload = function() {
