@@ -1,28 +1,39 @@
 // scripts/main.js
 
-// Import Chart.js named exports and register the components
+// Import the date adapter for Chart.js (ES module version)
+import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.esm.js';
+
+// Import the named exports from Chart.js ESM build and register components
 import { Chart, registerables } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.esm.js';
 Chart.register(...registerables);
 
 console.log('main.js loaded');
 
-// Function to fetch stock data from Yahoo Finance
+// Function to fetch stock data from Yahoo Finance using a proxy to avoid CORS issues
 async function fetchStockData(symbol) {
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=1d&interval=1d`;
+  // Proxy URL – using thingproxy.freeboard.io for development purposes
+  const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
+  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=1d&interval=1d`;
+  const url = proxyUrl + targetUrl;
+  
   try {
     const response = await fetch(url);
+    if (!response.ok) {
+      console.error('Network response was not ok', response.statusText);
+      return [];
+    }
     const data = await response.json();
     console.log('Yahoo Finance API Response:', data);
 
-    // Verify that data is in the expected format
+    // Ensure the response has the expected structure
     if (data.chart && data.chart.result && data.chart.result[0]) {
       const result = data.chart.result[0];
       const timestamps = result.timestamp;
       const closePrices = result.indicators.quote[0].close;
 
-      // Format the data: each point is an object with an x (date) and y (price) property
+      // Map the timestamps and prices into a format usable by Chart.js
       const chartData = timestamps.map((timestamp, index) => ({
-        x: new Date(timestamp * 1000), // Convert timestamp to JavaScript Date
+        x: new Date(timestamp * 1000), // Convert UNIX timestamp to JavaScript Date
         y: closePrices[index]
       }));
 
@@ -37,13 +48,13 @@ async function fetchStockData(symbol) {
   }
 }
 
-// Function to update (or create) the chart with the fetched stock data
+// Function to update the chart with the fetched stock data
 async function updateChart() {
-  const symbol = 'TSLA';  // Change this to another symbol if needed
+  const symbol = 'TSLA';  // Change symbol if needed
   const stockData = await fetchStockData(symbol);
   console.log('Creating chart with data:', stockData);
 
-  // Get the canvas element by its ID (ensure it matches your HTML)
+  // Get the canvas element from the DOM
   const canvas = document.getElementById('myChart');
   if (!canvas) {
     console.error('Canvas with id "myChart" not found.');
@@ -51,7 +62,7 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
-  // Create the Chart.js chart with the fetched stock data
+  // Create the Chart.js chart
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -68,7 +79,7 @@ async function updateChart() {
         x: {
           type: 'time',
           time: {
-            unit: 'minute',      // Adjust the unit as needed (e.g., 'minute', 'hour')
+            unit: 'minute', // Adjust as needed (minute, hour, etc.)
             tooltipFormat: 'll HH:mm'
           },
           title: {
