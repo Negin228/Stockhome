@@ -1,10 +1,13 @@
 // scripts/main.js
 
+// Test that the script is executing
+alert("main.js loaded!");
+console.log("main.js loaded!");
+
+// Import Chart.js from the CDN
 import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js';
 
-console.log('main.js loaded');
-
-// Get the canvas element immediately (since the script is after the canvas in the HTML)
+// Get the canvas element (ensure the ID matches your HTML)
 const canvas = document.getElementById('myChart');
 if (!canvas) {
   console.error('Canvas with id "myChart" not found.');
@@ -41,6 +44,5 @@ if (!canvas) {
       }
     }
   });
-
-  console.log('Test chart created');
+  console.log("Test chart created");
 }
