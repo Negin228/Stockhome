@@ -6,25 +6,23 @@
   <title>Stockhome</title>
   <link rel="stylesheet" href="styles/style.css" />
 
-  <!-- Import Map to resolve bare module specifiers -->
-  <script type="importmap">
-  {
-    "imports": {
-      "chart.js": "https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.esm.js",
-      "chart.js/helpers": "https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/helpers.esm.js",
-      "date-fns": "https://cdn.jsdelivr.net/npm/date-fns@2.29.3/esm/index.js"
-    }
-  }
-  </script>
+  <!-- Use UMD version of Chart.js and Date Adapter -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
+
 </head>
 <body>
   <div class="container">
     <h1>Stockhome</h1>
-    <canvas id="myChart" width="600" height="400"></canvas>
-    <script type="module" src="./scripts/main.js"></script>
+    <canvas id="myChart"></canvas>
+    <p id="errorMessage" style="color: red; display: none;">Failed to load stock data.</p>
   </div>
+
   <footer>
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
+
+  <!-- Load JavaScript -->
+  <script src="scripts/main.js"></script>
 </body>
 </html>
