@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stockhome</title>
-    <link rel="stylesheet" href="styles/style.css"> <!-- Optional, if you want to style your page -->
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Axios CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@1.0.0"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stockhome</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@1.0.0"></script>
 </head>
 <body>
-    <!-- Container for the chart -->
-    <div class="container">
-        <h1>Stockhome</h1>
-        <canvas id="myChart" width="600" height="400"></canvas>
-        <!-- Ensure the script is included correctly -->
-        <script type="module" src="scripts/main.js"></script>
-        <script>
-            window.onload = function() {
-                updateChart();
-            };
-        </script>
-    </div>
-    <!-- Optional, if you want to include a footer or other content -->
-    <footer>
-        <p>&copy; 2025 Stockhome. All rights reserved.</p>
-    </footer>
+  <div class="container">
+    <h1>Stockhome</h1>
+    <canvas id="myChart" width="600" height="400"></canvas>
+    <!-- Include the module script -->
+    <script type="module" src="scripts/main.js"></script>
+  </div>
+  <footer>
+    <p>&copy; 2025 Stockhome. All rights reserved.</p>
+  </footer>
 </body>
 </html>
