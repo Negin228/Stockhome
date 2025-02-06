@@ -19,10 +19,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     } else {
       console.warn("⏳ Waiting for Chart.js Date Adapter...");
 
-      // 🚀 Try manually loading the adapter if it's missing
-      let adapterScript = document.createElement("script");
-      adapterScript.src = "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0";
-      document.head.appendChild(adapterScript);
+      // 🚀 Manually register the adapter
+      try {
+        import('https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0')
+          .then(() => {
+            console.log("✅ Manually loaded Chart.js Date Adapter.");
+          })
+          .catch(err => console.error("❌ Failed to manually load adapter:", err));
+      } catch (err) {
+        console.error("❌ Error loading date adapter dynamically:", err);
+      }
     }
   }, 500);
 });
