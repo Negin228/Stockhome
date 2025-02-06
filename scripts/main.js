@@ -19,7 +19,7 @@ async function fetchStockData(symbol) {
         // Process the data into a format you can use
         const timeSeries = data['Time Series (Daily)'];
         const formattedData = Object.entries(timeSeries).map(([date, values]) => ({
-            date,
+            date: new Date(date), // Convert date to a Date object for better handling by Chart.js
             close: parseFloat(values['4. close']),
         }));
 
@@ -29,6 +29,7 @@ async function fetchStockData(symbol) {
         return [];
     }
 }
+
 
 
 
