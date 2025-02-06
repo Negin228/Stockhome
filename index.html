@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
 
   <!-- ✅ Load Date Adapter AFTER Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
 
 </head>
 <body>
@@ -24,8 +24,8 @@
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
 
-  <!-- ✅ Load main.js LAST -->
-  <script src="scripts/main.js"></script>  <!-- 🚨 DO NOT use type="module" -->
+  <!-- ✅ Load main.js LAST to ensure dependencies are loaded -->
+  <script src="scripts/main.js"></script>
 
 </body>
 </html>
