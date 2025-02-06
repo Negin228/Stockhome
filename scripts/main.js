@@ -1,13 +1,13 @@
 // scripts/main.js
 
-// Import the date adapter for Chart.js
+// Import the date adapter for Chart.js.
 import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.esm.js';
 
-// Import Chart.js and register its components (resolved via your import map)
+// Import Chart.js and register its components (resolved via the import map).
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-// Import and register the annotation plugin (for the vertical sell-line)
+// Import and register the annotation plugin (for the vertical sell-line).
 import annotationPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.esm.js';
 Chart.register(annotationPlugin);
 
@@ -15,14 +15,14 @@ console.log('Chart has been imported:', Chart);
 
 /**
  * Fetch stock data from Yahoo Finance for a given symbol.
- * Returns a Promise that resolves to an array of { x: Date, y: Price } objects.
+ * Returns a Promise that resolves to an array of objects in the form { x: Date, y: Price }.
  */
 function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
-  // Request data for the last 10 years with daily data.
+  // Request 10 years of daily data.
   const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
   const url = proxyUrl + targetUrl;
-
+  
   return fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -37,7 +37,7 @@ function fetchStockData(symbol) {
         const result = data.chart.result[0];
         const timestamps = result.timestamp;
         const closePrices = result.indicators.quote[0].close;
-        // Map the timestamps and prices into a format usable by Chart.js.
+        // Format the data for Chart.js.
         const chartData = timestamps.map((timestamp, index) => ({
           x: new Date(timestamp * 1000),
           y: closePrices[index]
@@ -54,47 +54,41 @@ function fetchStockData(symbol) {
 }
 
 /**
- * Zooms in the x‑axis by reducing its range by 10%,
- * centering on the x‑axis value corresponding to the given pixel.
+ * Update the chart's x-axis range to show the last [quantity] [unit]s.
+ * The new x-axis range will be [currentMax - (quantity in milliseconds), currentMax],
+ * leaving the y-axis unchanged.
+ * @param {Chart} chart - The Chart.js instance.
+ * @param {string} unit - One of "day", "month", or "year".
+ * @param {number} quantity - The number of units to subtract from the x-axis maximum.
  */
-function zoomInOnClick(chart, clickXPixel) {
-  // Convert pixel to x-axis value.
-  const xValue = chart.scales.x.getValueForPixel(clickXPixel);
-  const currentMin = chart.scales.x.min;
-  const currentMax = chart.scales.x.max;
-  const currentRange = currentMax - currentMin;
-  const newRange = currentRange * 0.9; // reduce range by 10%
-  const newMin = xValue - newRange / 2;
-  const newMax = xValue + newRange / 2;
+function updateXAxisRange(chart, unit, quantity) {
+  // Use the current x-axis maximum; if not set, use the current date.
+  const currentMaxValue = chart.options.scales.x.max
+    ? new Date(chart.options.scales.x.max)
+    : new Date();
+  
+  let newMin;
+  if (unit === 'day') {
+    newMin = new Date(currentMaxValue.getTime() - quantity * 24 * 60 * 60 * 1000);
+  } else if (unit === 'month') {
+    newMin = new Date(currentMaxValue);
+    newMin.setMonth(newMin.getMonth() - quantity);
+  } else if (unit === 'year') {
+    newMin = new Date(currentMaxValue);
+    newMin.setFullYear(newMin.getFullYear() - quantity);
+  }
+  
   chart.options.scales.x.min = newMin;
-  chart.options.scales.x.max = newMax;
+  chart.options.scales.x.max = currentMaxValue;
   chart.update();
 }
 
 /**
- * Zooms out the x‑axis by increasing its range by about 11%
- * (the reverse of a 10% zoom in),
- * centering on the x‑axis value corresponding to the given pixel.
- */
-function zoomOutOnClick(chart, clickXPixel) {
-  const xValue = chart.scales.x.getValueForPixel(clickXPixel);
-  const currentMin = chart.scales.x.min;
-  const currentMax = chart.scales.x.max;
-  const currentRange = currentMax - currentMin;
-  const newRange = currentRange / 0.9; // increase range (reverse of 10% reduction)
-  const newMin = xValue - newRange / 2;
-  const newMax = xValue + newRange / 2;
-  chart.options.scales.x.min = newMin;
-  chart.options.scales.x.max = newMax;
-  chart.update();
-}
-
-/**
- * Fetches data for multiple symbols, computes a combined portfolio value
- * (excluding SPY from the calculation), and creates a chart.
+ * Fetch data for multiple symbols, compute a combined portfolio value (excluding SPY),
+ * and create a chart with UI controls for selecting the x-axis range.
  */
 async function updateChart() {
-  // List of stock symbols (SPY will be shown but excluded from portfolio calculation)
+  // Define the stock symbols. SPY will be displayed but excluded from the portfolio calculation.
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
   const colors = [
     "rgb(75, 192, 192)",  // teal
@@ -104,8 +98,8 @@ async function updateChart() {
     "rgb(153, 102, 255)", // purple
     "rgb(255, 159, 64)"   // orange
   ];
-
-  // Fetch stock data concurrently for each symbol.
+  
+  // Fetch data concurrently for each symbol.
   const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
     const stockData = await fetchStockData(symbol);
     return {
@@ -116,8 +110,8 @@ async function updateChart() {
       tension: 0.1
     };
   }));
-
-  // Compute portfolio value (summing 1 share each) but exclude SPY.
+  
+  // Calculate the portfolio value (sum the prices of each stock, excluding SPY).
   let portfolioData = [];
   if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
     const n = stockDatasets[0].data.length;
@@ -125,7 +119,7 @@ async function updateChart() {
       const date = stockDatasets[0].data[i].x;
       let sum = 0;
       for (const ds of stockDatasets) {
-        if (ds.label === "SPY Stock Price") continue; // Skip SPY.
+        if (ds.label === "SPY Stock Price") continue;
         if (ds.data[i] && ds.data[i].y !== null) {
           sum += ds.data[i].y;
         }
@@ -133,7 +127,7 @@ async function updateChart() {
       portfolioData.push({ x: date, y: sum });
     }
   }
-
+  
   const portfolioDataset = {
     label: "Portfolio Value (1 share each, excluding SPY)",
     data: portfolioData,
@@ -142,19 +136,19 @@ async function updateChart() {
     fill: false,
     tension: 0.1
   };
-
+  
   const allDatasets = [...stockDatasets, portfolioDataset];
   console.log('Creating chart with datasets:', allDatasets);
-
+  
+  // Get the canvas and create the chart.
   const canvas = document.getElementById('myChart');
   if (!canvas) {
     console.error('Canvas with id "myChart" not found.');
     return;
   }
   const ctx = canvas.getContext('2d');
-
-  // Create the Chart.js chart without any interactive zoom/pan gestures.
-  // (Zoom will be controlled solely via mouse clicks.)
+  
+  // Create the Chart.js chart (no interactive zooming is enabled).
   const chart = new Chart(ctx, {
     type: 'line',
     data: { datasets: allDatasets },
@@ -180,33 +174,49 @@ async function updateChart() {
             sellLine: {
               type: 'line',
               scaleID: 'x',
-              value: '2024-12-05', // Vertical line marking December 5, 2024.
+              value: '2024-12-05',
               borderColor: 'red',
               borderWidth: 2,
               label: { enabled: true, content: 'Sold Stock', position: 'start' }
             }
           }
         }
-        // No interactive zoom/pan configuration is enabled.
       }
     }
   });
-
-  // Attach a left-click event listener to zoom in.
-  canvas.addEventListener('click', (evt) => {
-    // evt.button === 0 is the left button (by default, 'click' events are left clicks).
-    const rect = canvas.getBoundingClientRect();
-    const xPixel = evt.clientX - rect.left;
-    zoomInOnClick(chart, xPixel);
+  
+  // Create UI controls for selecting the date range.
+  const container = document.querySelector('.container');
+  const controlDiv = document.createElement('div');
+  controlDiv.innerHTML = `
+    <label for="unitSelect">Show last: </label>
+    <select id="unitSelect">
+      <option value="day">Day(s)</option>
+      <option value="month" selected>Month(s)</option>
+      <option value="year">Year(s)</option>
+    </select>
+    <label for="quantityInput"> Quantity: </label>
+    <input type="number" id="quantityInput" value="1" min="1" style="width: 50px;" />
+    <button id="updateRangeButton">Update Range</button>
+  `;
+  container.appendChild(controlDiv);
+  
+  document.getElementById('updateRangeButton').addEventListener('click', () => {
+    const unit = document.getElementById('unitSelect').value;
+    const quantity = parseInt(document.getElementById('quantityInput').value, 10);
+    updateXAxisRange(chart, unit, quantity);
   });
-
-  // Attach a right-click (contextmenu) event listener to zoom out.
-  canvas.addEventListener('contextmenu', (evt) => {
-    evt.preventDefault(); // Prevent the context menu from appearing.
-    const rect = canvas.getBoundingClientRect();
-    const xPixel = evt.clientX - rect.left;
-    zoomOutOnClick(chart, xPixel);
-  });
+  
+  // Optional: Add a Reset Range button.
+  const resetButton = document.createElement('button');
+  resetButton.textContent = 'Reset Range';
+  resetButton.style.marginTop = '10px';
+  resetButton.onclick = () => {
+    chart.options.scales.x.min = undefined;
+    chart.options.scales.x.max = undefined;
+    chart.update();
+  };
+  container.appendChild(resetButton);
 }
 
 window.onload = function() {
