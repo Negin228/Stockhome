@@ -10,8 +10,9 @@ async function fetchStockData(symbol) {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        
-        console.log('API Response:', data); // Log the entire response
+
+        // Log the entire response to the console for inspection
+        console.log('Raw API Response:', data);
 
         if (data['Time Series (Daily)']) {
             const timeSeries = data['Time Series (Daily)'];
@@ -31,6 +32,7 @@ async function fetchStockData(symbol) {
         throw error;
     }
 }
+
 
 
 
