@@ -19,8 +19,8 @@ console.log('main.js loaded');
  */
 async function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
-  // Request data for the last 5 years with daily data
-  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=5y&interval=1d`;
+  // Request data for the last 10 years with daily data
+  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
   const url = proxyUrl + targetUrl;
   
   try {
@@ -58,16 +58,17 @@ async function fetchStockData(symbol) {
  * and create a chart displaying all datasets.
  */
 async function updateChart() {
-  // List of stock symbols to fetch (NVIDIA is excluded)
-  const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT"];
+  // List of stock symbols to fetch (SPY added)
+  const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
   
-  // Colors for each individual stock dataset
+  // Colors for each individual stock dataset (6 colors now)
   const colors = [
     "rgb(75, 192, 192)",  // teal
     "rgb(255, 99, 132)",  // red
     "rgb(54, 162, 235)",  // blue
     "rgb(255, 206, 86)",  // yellow
-    "rgb(153, 102, 255)"  // purple
+    "rgb(153, 102, 255)", // purple
+    "rgb(255, 159, 64)"   // orange
   ];
   
   // Fetch stock data concurrently for each symbol and build datasets
@@ -136,7 +137,7 @@ async function updateChart() {
         x: {
           type: 'time',
           time: {
-            unit: 'month',  // Suitable for 5-year data
+            unit: 'year',  // For 10-year data, showing years might be most appropriate
             tooltipFormat: 'MMM dd, yyyy'
           },
           title: {
@@ -157,7 +158,7 @@ async function updateChart() {
             sellLine: {
               type: 'line',
               scaleID: 'x',
-              value: '2024-12-05', // Updated date: December 5, 2024
+              value: '2024-12-05', // Updated sell date: December 5, 2024
               borderColor: 'red',
               borderWidth: 2,
               label: {
