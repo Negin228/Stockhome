@@ -9,12 +9,18 @@
   <!-- ✅ Load Chart.js FIRST -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.umd.min.js"></script>
 
-  <!-- ✅ Load Date Adapter AFTER Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
-
+  <!-- ✅ Wait for Chart.js to load before loading Date Adapter -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      if (typeof Chart === "undefined") {
+      if (typeof Chart !== "undefined") {
+        console.log("Chart.js loaded successfully.");
+        let script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0";
+        document.head.appendChild(script);
+        script.onload = function () {
+          console.log("Chart.js Date Adapter loaded successfully.");
+        };
+      } else {
         console.error("Chart.js failed to load.");
       }
     });
@@ -32,7 +38,7 @@
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
 
-  <!-- ✅ Load main.js LAST to ensure all dependencies are available -->
+  <!-- ✅ Load main.js AFTER everything is fully loaded -->
   <script src="scripts/main.js"></script>
 </body>
 </html>
