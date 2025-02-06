@@ -19,10 +19,10 @@ console.log('Chart has been imported:', Chart);
  */
 function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
-  // Request data for the last 10 years with daily data
+  // Request data for the last 10 years with daily data.
   const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
   const url = proxyUrl + targetUrl;
-  
+
   return fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -37,7 +37,7 @@ function fetchStockData(symbol) {
         const result = data.chart.result[0];
         const timestamps = result.timestamp;
         const closePrices = result.indicators.quote[0].close;
-        // Map the timestamps and prices into a format usable by Chart.js
+        // Map the timestamps and prices into a format usable by Chart.js.
         const chartData = timestamps.map((timestamp, index) => ({
           x: new Date(timestamp * 1000),
           y: closePrices[index]
@@ -54,167 +54,40 @@ function fetchStockData(symbol) {
 }
 
 /**
- * Dynamic zoom on click: Zooms in 100% (halves the x-axis range) around the clicked x-coordinate.
- * @param {Chart} chart - The Chart.js instance.
- * @param {number} clickXPixel - The x coordinate (in pixels) of the click relative to the canvas.
+ * Zooms in the x‑axis by reducing its range by 10%,
+ * centering on the x‑axis value corresponding to the given pixel.
  */
-function zoomOnClick(chart, clickXPixel) {
-  // Convert pixel location to x-axis value.
+function zoomInOnClick(chart, clickXPixel) {
+  // Convert pixel to x-axis value.
   const xValue = chart.scales.x.getValueForPixel(clickXPixel);
-  
-  // Get current x-axis range.
   const currentMin = chart.scales.x.min;
   const currentMax = chart.scales.x.max;
   const currentRange = currentMax - currentMin;
-  
-  // New range is half of the current range (100% zoom in).
-  const newRange = currentRange / 2;
-  
-  // Set new minimum and maximum so that the clicked point is centered.
+  const newRange = currentRange * 0.9; // reduce range by 10%
   const newMin = xValue - newRange / 2;
   const newMax = xValue + newRange / 2;
-  
   chart.options.scales.x.min = newMin;
   chart.options.scales.x.max = newMax;
   chart.update();
 }
 
 /**
- * Fetch data for multiple symbols, compute a combined portfolio value (excluding SPY),
- * and create a chart displaying all datasets with custom click-to-zoom on the x-axis.
+ * Zooms out the x‑axis by increasing its range by about 11%
+ * (the reverse of a 10% zoom in),
+ * centering on the x‑axis value corresponding to the given pixel.
  */
-async function updateChart() {
-  // List of stock symbols to fetch (SPY is fetched and shown, but excluded from portfolio calculation)
-  const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
-  const colors = [
-    "rgb(75, 192, 192)",  // teal
-    "rgb(255, 99, 132)",  // red
-    "rgb(54, 162, 235)",  // blue
-    "rgb(255, 206, 86)",  // yellow
-    "rgb(153, 102, 255)", // purple
-    "rgb(255, 159, 64)"   // orange
-  ];
-  
-  // Fetch stock data concurrently for each symbol and build datasets.
-  const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
-    const stockData = await fetchStockData(symbol);
-    return {
-      label: `${symbol} Stock Price`,
-      data: stockData,
-      borderColor: colors[index % colors.length],
-      fill: false,
-      tension: 0.1
-    };
-  }));
-  
-  // Compute the portfolio value dataset (exclude SPY from calculation).
-  let portfolioData = [];
-  if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
-    const n = stockDatasets[0].data.length;
-    for (let i = 0; i < n; i++) {
-      const date = stockDatasets[0].data[i].x;
-      let sum = 0;
-      for (const ds of stockDatasets) {
-        // Skip SPY for portfolio sum.
-        if (ds.label === "SPY Stock Price") continue;
-        if (ds.data[i] && ds.data[i].y !== null) {
-          sum += ds.data[i].y;
-        }
-      }
-      portfolioData.push({ x: date, y: sum });
-    }
-  }
-  
-  const portfolioDataset = {
-    label: "Portfolio Value (1 share each, excluding SPY)",
-    data: portfolioData,
-    borderColor: "black",
-    borderWidth: 3,
-    fill: false,
-    tension: 0.1
-  };
-  
-  const allDatasets = [...stockDatasets, portfolioDataset];
-  console.log('Creating chart with datasets:', allDatasets);
-  
-  const canvas = document.getElementById('myChart');
-  if (!canvas) {
-    console.error('Canvas with id "myChart" not found.');
-    return;
-  }
-  const ctx = canvas.getContext('2d');
-  
-  // Create the Chart.js chart without any interactive zoom/pan gestures.
-  const chart = new Chart(ctx, {
-    type: 'line',
-    data: { datasets: allDatasets },
-    options: {
-      maintainAspectRatio: false,
-      responsive: true,
-      scales: {
-        x: {
-          type: 'time',
-          time: {
-            unit: 'year',
-            tooltipFormat: 'MMM dd, yyyy'
-          },
-          title: { display: true, text: 'Date' }
-        },
-        y: {
-          title: { display: true, text: 'Price (USD)' }
-        }
-      },
-      plugins: {
-        annotation: {
-          annotations: {
-            sellLine: {
-              type: 'line',
-              scaleID: 'x',
-              value: '2024-12-05', // Vertical line marking December 5, 2024
-              borderColor: 'red',
-              borderWidth: 2,
-              label: { enabled: true, content: 'Sold Stock', position: 'start' }
-            }
-          }
-        }
-        // No interactive zoom/pan configuration is enabled.
-      }
-    }
-  });
-  
-  // Attach a click event listener to the canvas to perform x-axis zoom.
-  canvas.addEventListener('click', (evt) => {
-    const rect = canvas.getBoundingClientRect();
-    const xPixel = evt.clientX - rect.left;
-    zoomOnClick(chart, xPixel);
-  });
-  
-  // Create custom zoom control buttons (optional).
-  const container = document.querySelector('.container');
-  
-  const resetButton = document.createElement('button');
-  resetButton.textContent = 'Reset Zoom';
-  resetButton.style.marginTop = '10px';
-  resetButton.onclick = () => {
-    chart.options.scales.x.min = undefined;
-    chart.options.scales.x.max = undefined;
-    chart.update();
-  };
-  container.appendChild(resetButton);
-  
-  const zoomInButton = document.createElement('button');
-  zoomInButton.textContent = 'Zoom In';
-  zoomInButton.style.marginTop = '10px';
-  zoomInButton.onclick = () => zoomIn(chart);
-  container.appendChild(zoomInButton);
-  
-  const zoomOutButton = document.createElement('button');
-  zoomOutButton.textContent = 'Zoom Out';
-  zoomOutButton.style.marginTop = '10px';
-  zoomOutButton.onclick = () => zoomOut(chart);
-  container.appendChild(zoomOutButton);
+function zoomOutOnClick(chart, clickXPixel) {
+  const xValue = chart.scales.x.getValueForPixel(clickXPixel);
+  const currentMin = chart.scales.x.min;
+  const currentMax = chart.scales.x.max;
+  const currentRange = currentMax - currentMin;
+  const newRange = currentRange / 0.9; // increase range (reverse of 10% reduction)
+  const newMin = xValue - newRange / 2;
+  const newMax = xValue + newRange / 2;
+  chart.options.scales.x.min = newMin;
+  chart.options.scales.x.max = newMax;
+  chart.update();
 }
 
-window.onload = function() {
-  updateChart();
-};
+/**
+ * Fetches data for multiple symbols
