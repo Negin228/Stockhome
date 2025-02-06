@@ -8,22 +8,20 @@ async function fetchStockData(symbol) {
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
 
     try {
-        // Fetch the data from Alpha Vantage
         const response = await fetch(url);
         const data = await response.json();
+        console.log('API Response:', data); // Log the entire response to the console
 
-        // Check if the response has the required structure
         if (data['Time Series (Daily)']) {
             const timeSeries = data['Time Series (Daily)'];
             const stockData = Object.keys(timeSeries).map(date => {
                 return {
-                    date: new Date(date), // Convert the date string to a Date object
-                    close: parseFloat(timeSeries[date]['4. close']) // Get the closing price and convert to float
+                    date: new Date(date), // Convert date string to a Date object
+                    close: parseFloat(timeSeries[date]['4. close']) // Extract closing price
                 };
             });
 
-            // Return the stock data in the correct format
-            return stockData.reverse(); // Optional: reverse to have the latest date first
+            return stockData.reverse(); // Reverse data for most recent date first
         } else {
             throw new Error('Invalid data format received from Alpha Vantage');
         }
@@ -32,6 +30,7 @@ async function fetchStockData(symbol) {
         throw error;
     }
 }
+
 
 
 
