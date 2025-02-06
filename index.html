@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stockhome</title>
   <link rel="stylesheet" href="styles/style.css" />
+
+  <!-- Import Map to resolve bare module specifiers -->
+  <script type="importmap">
+  {
+    "imports": {
+      "chart.js": "https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.esm.js"
+    }
+  }
+  </script>
 </head>
 <body>
   <div class="container">
