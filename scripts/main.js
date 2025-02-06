@@ -1,3 +1,66 @@
+// scripts/main.js
+
+// Import the date adapter for Chart.js
+import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.esm.js';
+
+// Import Chart.js and register its components (resolved via the import map)
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+
+// Import and register the annotation plugin
+import annotationPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.esm.js';
+Chart.register(annotationPlugin);
+
+// Import and register the zoom plugin for Chart.js
+import zoomPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.esm.js';
+Chart.register(zoomPlugin);
+
+console.log('main.js loaded');
+
+/**
+ * Fetch stock data from Yahoo Finance for the given symbol.
+ * Returns an array of { x: Date, y: Price } objects.
+ */
+function fetchStockData(symbol) {
+  const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
+  // Request data for the last 10 years with daily data
+  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
+  const url = proxyUrl + targetUrl;
+  
+  return fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        console.error(`Network response for ${symbol} was not ok:`, response.statusText);
+        return [];
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(`Yahoo Finance API Response for ${symbol}:`, data);
+      if (data.chart && data.chart.result && data.chart.result[0]) {
+        const result = data.chart.result[0];
+        const timestamps = result.timestamp;
+        const closePrices = result.indicators.quote[0].close;
+        // Map the timestamps and prices into a format usable by Chart.js
+        const chartData = timestamps.map((timestamp, index) => ({
+          x: new Date(timestamp * 1000),
+          y: closePrices[index]
+        }));
+        return chartData;
+      } else {
+        throw new Error('Invalid data format received from Yahoo Finance');
+      }
+    })
+    .catch(error => {
+      console.error(`Error fetching stock data for ${symbol}:`, error);
+      return [];
+    });
+}
+
+/**
+ * Fetch data for multiple symbols, compute a combined portfolio value,
+ * and create a chart displaying all datasets.
+ */
 async function updateChart() {
   // List of stock symbols to fetch (SPY is added)
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
@@ -78,7 +141,7 @@ async function updateChart() {
         x: {
           type: 'time',
           time: {
-            unit: 'year',  // For 10-year data
+            unit: 'year',
             tooltipFormat: 'MMM dd, yyyy'
           },
           title: {
@@ -111,16 +174,14 @@ async function updateChart() {
           }
         },
         zoom: {
-          // Enable panning on the x-axis only.
           pan: {
             enabled: true,
             mode: 'x'
           },
-          // Enable zooming by dragging and with the mouse wheel.
           zoom: {
             drag: {
               enabled: true,
-              threshold: 10, // Minimum pixels the user must drag to activate zoom
+              threshold: 10,
               borderColor: 'rgba(225,225,225,0.3)',
               borderWidth: 1,
               backgroundColor: 'rgba(225,225,225,0.3)'
@@ -131,8 +192,8 @@ async function updateChart() {
             pinch: {
               enabled: true
             },
-            mode: 'x', // Zoom along the x-axis only
-            onZoomComplete({chart}) {
+            mode: 'x',
+            onZoomComplete({ chart }) {
               console.log('Zoom complete', chart);
             }
           }
