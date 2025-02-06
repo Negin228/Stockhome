@@ -1,17 +1,22 @@
 // scripts/main.js
 
-// Import the date adapter for Chart.js (and resolve bare specifiers via our import map)
+// Import the date adapter for Chart.js
 import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.esm.js';
 
-// Import the named exports from Chart.js (resolved via import map) and register components
+// Import Chart.js and register its components
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
+// Import and register the annotation plugin
+import annotationPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.esm.js';
+Chart.register(annotationPlugin);
+
 console.log('main.js loaded');
 
+// Function to fetch stock data from Yahoo Finance using a proxy to avoid CORS issues
 async function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
-  // Request data for the last 5 years with a daily interval
+  // Request data for the last 5 years with daily data
   const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=5y&interval=1d`;
   const url = proxyUrl + targetUrl;
   
@@ -44,6 +49,7 @@ async function fetchStockData(symbol) {
   }
 }
 
+// Function to update the chart with the fetched stock data and annotation
 async function updateChart() {
   const symbol = 'TSLA';
   const stockData = await fetchStockData(symbol);
@@ -56,6 +62,7 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
+  // Create the Chart.js chart with the annotation plugin configured
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -72,7 +79,7 @@ async function updateChart() {
         x: {
           type: 'time',
           time: {
-            unit: 'month',  // You can adjust the unit to 'month' for a 5-year period.
+            unit: 'month',
             tooltipFormat: 'MMM dd, yyyy'
           },
           title: {
@@ -84,6 +91,24 @@ async function updateChart() {
           title: {
             display: true,
             text: 'Price (USD)'
+          }
+        }
+      },
+      plugins: {
+        annotation: {
+          annotations: {
+            sellLine: {
+              type: 'line',
+              scaleID: 'x',
+              value: '2025-01-06', // The date when you sold the stock
+              borderColor: 'red',
+              borderWidth: 2,
+              label: {
+                enabled: true,
+                content: 'Sold Stock',
+                position: 'start'
+              }
+            }
           }
         }
       }
