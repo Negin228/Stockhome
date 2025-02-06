@@ -6,15 +6,22 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  console.log("Chart.js is available.");
+  console.log("✅ Chart.js is available.");
 
   // ✅ Ensure Date Adapter is properly loaded
   if (!Chart._adapters || !Chart._adapters.date) {
-    console.error("Chart.js Date Adapter failed to load.");
+    console.error("❌ Chart.js Date Adapter failed to load.");
     return;
   }
 
-  console.log("Chart.js Date Adapter is ready.");
+  console.log("✅ Chart.js Date Adapter is ready.");
+
+  // ✅ Ensure canvas exists
+  const canvas = document.getElementById("myChart");
+  if (!canvas) {
+    console.error("❌ Canvas element 'myChart' is missing.");
+    return;
+  }
 
   // ✅ Register necessary Chart.js components
   Chart.register(
@@ -28,8 +35,36 @@ document.addEventListener("DOMContentLoaded", function () {
     Chart.Legend
   );
 
-  updateChart(); // Initialize the chart
+  // ✅ Attach updateChart to window so it can be called from the console
+  window.updateChart = updateChart;
+
+  // ✅ Manually create a test chart to verify rendering
+  createTestChart();
+
+  // ✅ Fetch stock data and create the real chart
+  updateChart();
 });
+
+/**
+ * Manually create a test chart to ensure Chart.js is rendering.
+ */
+function createTestChart() {
+  const testCtx = document.getElementById("myChart").getContext("2d");
+  new Chart(testCtx, {
+    type: "bar",
+    data: {
+      labels: ["Test A", "Test B", "Test C"],
+      datasets: [
+        {
+          label: "Test Data",
+          data: [10, 20, 30],
+          backgroundColor: ["blue", "green", "red"]
+        }
+      ]
+    }
+  });
+  console.log("✅ Test Chart rendered successfully.");
+}
 
 /**
  * Fetch stock data from Yahoo Finance using AllOrigins proxy to bypass CORS restrictions.
@@ -44,7 +79,7 @@ async function fetchStockData(symbol) {
     if (!response.ok) throw new Error(`Failed to fetch ${symbol}`);
 
     const data = await response.json();
-    console.log(`Data for ${symbol}:`, data);
+    console.log(`📊 Data for ${symbol}:`, data);
 
     if (data.chart && data.chart.result && data.chart.result[0]) {
       const result = data.chart.result[0];
@@ -59,7 +94,7 @@ async function fetchStockData(symbol) {
       throw new Error(`Invalid data for ${symbol}`);
     }
   } catch (error) {
-    console.error(`Error fetching ${symbol}:`, error);
+    console.error(`❌ Error fetching ${symbol}:`, error);
     return null;
   }
 }
@@ -68,6 +103,7 @@ async function fetchStockData(symbol) {
  * Creates the stock chart after fetching data.
  */
 async function updateChart() {
+  console.log("🔄 Running updateChart()...");
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
   const colors = ["rgb(75,192,192)", "rgb(255,99,132)", "rgb(54,162,235)", "rgb(255,206,86)", "rgb(153,102,255)", "rgb(255,159,64)"];
 
@@ -86,6 +122,7 @@ async function updateChart() {
 
   if (validDatasets.length === 0) {
     document.getElementById("errorMessage").style.display = "block";
+    console.error("❌ No valid stock data available.");
     return;
   }
 
@@ -103,4 +140,6 @@ async function updateChart() {
       }
     }
   });
+
+  console.log("✅ Stock Chart rendered successfully.");
 }
