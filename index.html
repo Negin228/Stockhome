@@ -6,16 +6,22 @@
   <title>Stockhome</title>
   <link rel="stylesheet" href="styles/style.css" />
 
-  <!-- ✅ Load Chart.js (UMD version) FIRST -->
+  <!-- ✅ Load Chart.js FIRST -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.umd.min.js"></script>
-
-  <!-- ✅ Ensure Chart.js is properly defined before loading Date Adapter -->
-  <script>
-    window.Chart = Chart; // Define Chart.js globally
-  </script>
 
   <!-- ✅ Load Date Adapter AFTER Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
+
+  <!-- ✅ Ensure Chart.js is properly loaded -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (typeof Chart === "undefined") {
+        console.error("Chart.js failed to load.");
+      } else {
+        window.Chart = Chart;
+      }
+    });
+  </script>
 
 </head>
 <body>
@@ -29,7 +35,7 @@
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
 
-  <!-- ✅ Load main.js AFTER Chart.js and Date Adapter -->
+  <!-- ✅ Load main.js AFTER Chart.js -->
   <script src="scripts/main.js"></script>
 </body>
 </html>
