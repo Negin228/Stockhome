@@ -10,27 +10,28 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   console.log("✅ Chart.js is available.");
 
-  // ✅ Ensure Date Adapter is properly loaded
-  let checkDateAdapter = setInterval(() => {
-    if (Chart._adapters && Chart._adapters.date) {
-      console.log("✅ Chart.js Date Adapter is ready.");
-      clearInterval(checkDateAdapter);
-      startChart();  // Start the chart only after everything is ready
-    } else {
-      console.warn("⏳ Waiting for Chart.js Date Adapter...");
+  try {
+    // ✅ Manually register the Date Adapter with Chart.js
+    await import("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0")
+      .then((module) => {
+        console.log("✅ Successfully loaded Chart.js Date Adapter.");
+        Chart.register(module.default); // Manually register the adapter
+      })
+      .catch((err) => console.error("❌ Failed to load adapter:", err));
+  } catch (err) {
+    console.error("❌ Error importing adapter dynamically:", err);
+  }
 
-      // 🚀 Manually register the adapter
-      try {
-        import('https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0')
-          .then(() => {
-            console.log("✅ Manually loaded Chart.js Date Adapter.");
-          })
-          .catch(err => console.error("❌ Failed to manually load adapter:", err));
-      } catch (err) {
-        console.error("❌ Error loading date adapter dynamically:", err);
-      }
+  // ✅ Verify adapter is loaded
+  setTimeout(() => {
+    if (!Chart._adapters || !Chart._adapters.date) {
+      console.error("❌ Chart.js Date Adapter is still missing!");
+      return;
     }
-  }, 500);
+    console.log("✅ Chart.js Date Adapter is now ready.");
+
+    startChart(); // Start the chart after adapter is ready
+  }, 1000);
 });
 
 /**
