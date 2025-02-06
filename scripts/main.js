@@ -1,6 +1,6 @@
 // scripts/main.js
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   console.log("✅ main.js is running...");
 
   if (typeof Chart === "undefined") {
@@ -8,20 +8,24 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  console.log("✅ Chart.js is available.");
+  console.log("✅ Chart.js is available. Version:", Chart.version);
 
-  // ✅ Manually force the adapter registration
+  // ✅ Manually Import the Date Adapter
   try {
-    Chart._adapters._date = window['chartjs-adapter-date-fns'];
-    console.log("✅ Chart.js Date Adapter manually registered.");
+    const adapter = await import("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0");
+    Chart.register(adapter.default);
+    console.log("✅ Chart.js Date Adapter manually imported and registered.");
   } catch (err) {
-    console.error("❌ Chart.js Date Adapter failed to register:", err);
+    console.error("❌ Chart.js Date Adapter failed to import:", err);
     return;
   }
 
   // ✅ Verify the Adapter is Now Registered
+  console.log("Chart._adapters:", Chart._adapters);
+  console.log("Chart._adapters.date:", Chart._adapters?.date);
+
   if (!Chart._adapters || !Chart._adapters.date) {
-    console.error("❌ Chart.js Date Adapter is still missing!");
+    console.error("❌ Chart.js Date Adapter is STILL missing!");
     return;
   }
 
