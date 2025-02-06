@@ -11,7 +11,7 @@ Chart.register(...registerables);
 import annotationPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.esm.js';
 Chart.register(annotationPlugin);
 
-// Import and register the zoom plugin for Chart.js
+// Import and register the zoom plugin for Chart.js (we will disable its interactive gestures)
 import zoomPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.esm.js';
 Chart.register(zoomPlugin);
 
@@ -26,7 +26,6 @@ function fetchStockData(symbol) {
   // Request data for the last 10 years with daily data
   const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
   const url = proxyUrl + targetUrl;
-
   return fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -58,13 +57,50 @@ function fetchStockData(symbol) {
 }
 
 /**
+ * Custom zoom function that zooms in 10% on both x and y scales.
+ */
+function zoomIn(chart) {
+  const xScale = chart.scales.x;
+  const yScale = chart.scales.y;
+  const xRange = xScale.max - xScale.min;
+  const yRange = yScale.max - yScale.min;
+  const newXRange = xRange * 0.9; // reduce range by 10%
+  const newYRange = yRange * 0.9;
+  const xMid = (xScale.max + xScale.min) / 2;
+  const yMid = (yScale.max + yScale.min) / 2;
+  chart.options.scales.x.min = xMid - newXRange / 2;
+  chart.options.scales.x.max = xMid + newXRange / 2;
+  chart.options.scales.y.min = yMid - newYRange / 2;
+  chart.options.scales.y.max = yMid + newYRange / 2;
+  chart.update();
+}
+
+/**
+ * Custom zoom function that zooms out 10% on both x and y scales.
+ */
+function zoomOut(chart) {
+  const xScale = chart.scales.x;
+  const yScale = chart.scales.y;
+  const xRange = xScale.max - xScale.min;
+  const yRange = yScale.max - yScale.min;
+  const newXRange = xRange / 0.9; // increase range by 10%
+  const newYRange = yRange / 0.9;
+  const xMid = (xScale.max + xScale.min) / 2;
+  const yMid = (yScale.max + yScale.min) / 2;
+  chart.options.scales.x.min = xMid - newXRange / 2;
+  chart.options.scales.x.max = xMid + newXRange / 2;
+  chart.options.scales.y.min = yMid - newYRange / 2;
+  chart.options.scales.y.max = yMid + newYRange / 2;
+  chart.update();
+}
+
+/**
  * Fetch data for multiple symbols, compute a combined portfolio value,
- * and create a chart displaying all datasets with zoom, pan, and annotation.
+ * and create a chart displaying all datasets with pan enabled.
  */
 async function updateChart() {
   // List of stock symbols to fetch (including SPY)
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
-  // Colors for each individual stock dataset
   const colors = [
     "rgb(75, 192, 192)",  // teal
     "rgb(255, 99, 132)",  // red
@@ -74,7 +110,6 @@ async function updateChart() {
     "rgb(255, 159, 64)"   // orange
   ];
 
-  // Fetch stock data concurrently for each symbol and build datasets
   const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
     const stockData = await fetchStockData(symbol);
     return {
@@ -121,7 +156,9 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
 
-  // Create the Chart.js chart with zoom/pan and annotation enabled
+  // Create the Chart.js chart.
+  // Notice that all interactive zoom gestures are disabled.
+  // We'll only use the custom buttons for zooming.
   const chart = new Chart(ctx, {
     type: 'line',
     data: { datasets: allDatasets },
@@ -135,16 +172,10 @@ async function updateChart() {
             unit: 'year',
             tooltipFormat: 'MMM dd, yyyy'
           },
-          title: {
-            display: true,
-            text: 'Date'
-          }
+          title: { display: true, text: 'Date' }
         },
         y: {
-          title: {
-            display: true,
-            text: 'Price (USD)'
-          }
+          title: { display: true, text: 'Price (USD)' }
         }
       },
       plugins: {
@@ -156,42 +187,49 @@ async function updateChart() {
               value: '2024-12-05', // Vertical line marking December 5, 2024
               borderColor: 'red',
               borderWidth: 2,
-              label: {
-                enabled: true,
-                content: 'Sold Stock',
-                position: 'start'
-              }
+              label: { enabled: true, content: 'Sold Stock', position: 'start' }
             }
           }
         },
+        // Disable all interactive zoom/pan gestures.
         zoom: {
-          // Enable panning in both directions
-          pan: {
-            enabled: true,
-            mode: 'xy'
-          },
-          // Enable pinch-to-zoom (touchpad pinch gestures) only;
-          // disable drag and wheel zoom to prevent accidental zooming.
+          pan: { enabled: false },
           zoom: {
-            drag: { enabled: false },
             wheel: { enabled: false },
-            pinch: { enabled: true },
-            mode: 'xy',
-            onZoomComplete({ chart }) {
-              console.log('Zoom complete', chart);
-            }
+            pinch: { enabled: false },
+            drag: { enabled: false }
           }
         }
       }
     }
   });
 
-  // Add a Reset Zoom button below the chart
+  // Create and append the Reset Zoom, Zoom In, and Zoom Out buttons.
+  const container = document.querySelector('.container');
+  
   const resetButton = document.createElement('button');
   resetButton.textContent = 'Reset Zoom';
   resetButton.style.marginTop = '10px';
-  resetButton.onclick = () => chart.resetZoom();
-  document.querySelector('.container').appendChild(resetButton);
+  resetButton.onclick = () => {
+    chart.options.scales.x.min = undefined;
+    chart.options.scales.x.max = undefined;
+    chart.options.scales.y.min = undefined;
+    chart.options.scales.y.max = undefined;
+    chart.update();
+  };
+  container.appendChild(resetButton);
+  
+  const zoomInButton = document.createElement('button');
+  zoomInButton.textContent = 'Zoom In';
+  zoomInButton.style.marginTop = '10px';
+  zoomInButton.onclick = () => zoomIn(chart);
+  container.appendChild(zoomInButton);
+  
+  const zoomOutButton = document.createElement('button');
+  zoomOutButton.textContent = 'Zoom Out';
+  zoomOutButton.style.marginTop = '10px';
+  zoomOutButton.onclick = () => zoomOut(chart);
+  container.appendChild(zoomOutButton);
 }
 
 window.onload = function() {
