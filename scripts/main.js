@@ -1,6 +1,6 @@
 // scripts/main.js
 
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
   console.log("✅ main.js is running...");
 
   if (typeof Chart === "undefined") {
@@ -11,9 +11,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("✅ Chart.js is available.");
 
   try {
-    // ✅ Manually import and register the Date Adapter
-    const dateAdapter = await import('https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0');
-    Chart.register(dateAdapter.default);
+    // ✅ Register the Date Adapter (Chart.js v3 handles this differently)
+    Chart.register(Chart.adapters.dateFns);
     console.log("✅ Chart.js Date Adapter registered successfully.");
   } catch (err) {
     console.error("❌ Failed to register Chart.js Date Adapter:", err);
