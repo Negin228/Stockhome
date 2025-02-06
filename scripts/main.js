@@ -3,7 +3,7 @@
 // Import the date adapter for Chart.js.
 import 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.esm.js';
 
-// Import Chart.js and register its components (resolved via the import map).
+// Import Chart.js and register its components (resolved via your import map).
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
@@ -15,7 +15,7 @@ console.log('Chart has been imported:', Chart);
 
 /**
  * Fetch stock data from Yahoo Finance for a given symbol.
- * Returns a Promise that resolves to an array of objects in the form { x: Date, y: Price }.
+ * Returns a Promise that resolves to an array of { x: Date, y: Price } objects.
  */
 function fetchStockData(symbol) {
   const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
@@ -37,7 +37,7 @@ function fetchStockData(symbol) {
         const result = data.chart.result[0];
         const timestamps = result.timestamp;
         const closePrices = result.indicators.quote[0].close;
-        // Format the data for Chart.js.
+        // Map timestamps and prices into the format { x: Date, y: Price }.
         const chartData = timestamps.map((timestamp, index) => ({
           x: new Date(timestamp * 1000),
           y: closePrices[index]
@@ -55,14 +55,14 @@ function fetchStockData(symbol) {
 
 /**
  * Update the chart's x-axis range to show the last [quantity] [unit]s.
- * The new x-axis range will be [currentMax - (quantity in milliseconds), currentMax],
+ * The new x-axis range will be set to [currentMax - (quantity in ms), currentMax],
  * leaving the y-axis unchanged.
  * @param {Chart} chart - The Chart.js instance.
  * @param {string} unit - One of "day", "month", or "year".
- * @param {number} quantity - The number of units to subtract from the x-axis maximum.
+ * @param {number} quantity - The number of units to subtract from the current max.
  */
 function updateXAxisRange(chart, unit, quantity) {
-  // Use the current x-axis maximum; if not set, use the current date.
+  // Determine the current x-axis maximum. If not set, use the current date.
   const currentMaxValue = chart.options.scales.x.max
     ? new Date(chart.options.scales.x.max)
     : new Date();
@@ -85,10 +85,10 @@ function updateXAxisRange(chart, unit, quantity) {
 
 /**
  * Fetch data for multiple symbols, compute a combined portfolio value (excluding SPY),
- * and create a chart with UI controls for selecting the x-axis range.
+ * and create a chart with UI controls for updating the x-axis range.
  */
 async function updateChart() {
-  // Define the stock symbols. SPY will be displayed but excluded from the portfolio calculation.
+  // Define the stock symbols (SPY is shown but excluded from the portfolio calculation).
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
   const colors = [
     "rgb(75, 192, 192)",  // teal
@@ -99,7 +99,7 @@ async function updateChart() {
     "rgb(255, 159, 64)"   // orange
   ];
   
-  // Fetch data concurrently for each symbol.
+  // Fetch stock data concurrently for each symbol.
   const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
     const stockData = await fetchStockData(symbol);
     return {
@@ -111,7 +111,7 @@ async function updateChart() {
     };
   }));
   
-  // Calculate the portfolio value (sum the prices of each stock, excluding SPY).
+  // Compute the portfolio value dataset by summing the prices of each stock, excluding SPY.
   let portfolioData = [];
   if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
     const n = stockDatasets[0].data.length;
@@ -119,7 +119,7 @@ async function updateChart() {
       const date = stockDatasets[0].data[i].x;
       let sum = 0;
       for (const ds of stockDatasets) {
-        if (ds.label === "SPY Stock Price") continue;
+        if (ds.label === "SPY Stock Price") continue; // Skip SPY.
         if (ds.data[i] && ds.data[i].y !== null) {
           sum += ds.data[i].y;
         }
@@ -137,10 +137,11 @@ async function updateChart() {
     tension: 0.1
   };
   
+  // Combine all datasets.
   const allDatasets = [...stockDatasets, portfolioDataset];
   console.log('Creating chart with datasets:', allDatasets);
   
-  // Get the canvas and create the chart.
+  // Get the canvas element and create the chart.
   const canvas = document.getElementById('myChart');
   if (!canvas) {
     console.error('Canvas with id "myChart" not found.');
@@ -148,7 +149,7 @@ async function updateChart() {
   }
   const ctx = canvas.getContext('2d');
   
-  // Create the Chart.js chart (no interactive zooming is enabled).
+  // Create the Chart.js chart without interactive zoom/pan.
   const chart = new Chart(ctx, {
     type: 'line',
     data: { datasets: allDatasets },
@@ -185,7 +186,7 @@ async function updateChart() {
     }
   });
   
-  // Create UI controls for selecting the date range.
+  // Create UI controls for adjusting the x-axis range.
   const container = document.querySelector('.container');
   const controlDiv = document.createElement('div');
   controlDiv.innerHTML = `
@@ -207,7 +208,7 @@ async function updateChart() {
     updateXAxisRange(chart, unit, quantity);
   });
   
-  // Optional: Add a Reset Range button.
+  // Create a Reset Range button.
   const resetButton = document.createElement('button');
   resetButton.textContent = 'Reset Range';
   resetButton.style.marginTop = '10px';
