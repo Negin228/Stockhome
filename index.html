@@ -12,6 +12,9 @@
   <!-- ✅ Load Date Adapter AFTER Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
 
+  <!-- ✅ Load main.js LAST to ensure dependencies are ready -->
+  <script defer src="scripts/main.js"></script>
+
 </head>
 <body>
   <div class="container">
@@ -23,9 +26,6 @@
   <footer>
     <p>&copy; 2025 Stockhome. All rights reserved.</p>
   </footer>
-
-  <!-- ✅ Load main.js LAST to ensure dependencies are ready -->
-  <script src="scripts/main.js"></script>
 
 </body>
 </html>
