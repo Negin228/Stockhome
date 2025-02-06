@@ -59,12 +59,11 @@ function fetchStockData(symbol) {
 
 /**
  * Fetch data for multiple symbols, compute a combined portfolio value,
- * and create a chart displaying all datasets with zoom and pan functionality.
+ * and create a chart displaying all datasets with zoom/pan/annotation.
  */
 async function updateChart() {
   // List of stock symbols to fetch (including SPY)
   const symbols = ["GOOG", "META", "NFLX", "AMZN", "MSFT", "SPY"];
-  // Colors for each individual stock dataset
   const colors = [
     "rgb(75, 192, 192)",  // teal
     "rgb(255, 99, 132)",  // red
@@ -73,7 +72,7 @@ async function updateChart() {
     "rgb(153, 102, 255)", // purple
     "rgb(255, 159, 64)"   // orange
   ];
-  
+
   // Fetch stock data concurrently for each symbol and build datasets
   const stockDatasets = await Promise.all(symbols.map(async (symbol, index) => {
     const stockData = await fetchStockData(symbol);
@@ -85,13 +84,12 @@ async function updateChart() {
       tension: 0.1
     };
   }));
-  
+
   // Compute the portfolio value dataset assuming one share of each stock.
   let portfolioData = [];
   if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
     const n = stockDatasets[0].data.length;
     for (let i = 0; i < n; i++) {
-      // Use the date from the first dataset (assuming alignment)
       const date = stockDatasets[0].data[i].x;
       let sum = 0;
       for (const ds of stockDatasets) {
@@ -102,7 +100,7 @@ async function updateChart() {
       portfolioData.push({ x: date, y: sum });
     }
   }
-  
+
   const portfolioDataset = {
     label: "Portfolio Value (1 share each)",
     data: portfolioData,
@@ -111,18 +109,17 @@ async function updateChart() {
     fill: false,
     tension: 0.1
   };
-  
+
   const allDatasets = [...stockDatasets, portfolioDataset];
   console.log('Creating chart with datasets:', allDatasets);
-  
+
   const canvas = document.getElementById('myChart');
   if (!canvas) {
     console.error('Canvas with id "myChart" not found.');
     return;
   }
   const ctx = canvas.getContext('2d');
-  
-  // Create the Chart.js chart with zoom/pan and annotation enabled
+
   const chart = new Chart(ctx, {
     type: 'line',
     data: { datasets: allDatasets },
@@ -171,12 +168,12 @@ async function updateChart() {
             mode: 'xy'
           },
           zoom: {
-            // Disable wheel and pinch zoom so that zoom only happens on deliberate drag
+            // Disable wheel and pinch zooming so zoom only happens on deliberate drag
             wheel: { enabled: false },
             pinch: { enabled: false },
             drag: {
               enabled: true,
-              threshold: 100, // Require a deliberate drag (at least 100 pixels)
+              threshold: 300, // Increase threshold to 300 pixels for a deliberate drag
               borderColor: 'rgba(225,225,225,0.3)',
               borderWidth: 1,
               backgroundColor: 'rgba(225,225,225,0.3)'
@@ -190,7 +187,7 @@ async function updateChart() {
       }
     }
   });
-  
+
   // Add a Reset Zoom button below the chart
   const resetButton = document.createElement('button');
   resetButton.textContent = 'Reset Zoom';
