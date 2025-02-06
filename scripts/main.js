@@ -10,14 +10,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   console.log("✅ Chart.js is available.");
 
-  // ✅ Verify that Chart.js Date Adapter is available
+  // ✅ Manually force the adapter registration
+  try {
+    Chart._adapters._date = window['chartjs-adapter-date-fns'];
+    console.log("✅ Chart.js Date Adapter manually registered.");
+  } catch (err) {
+    console.error("❌ Chart.js Date Adapter failed to register:", err);
+    return;
+  }
+
+  // ✅ Verify the Adapter is Now Registered
   if (!Chart._adapters || !Chart._adapters.date) {
-    console.error("❌ Chart.js Date Adapter failed to load.");
+    console.error("❌ Chart.js Date Adapter is still missing!");
     return;
   }
 
   console.log("✅ Chart.js Date Adapter is now ready.");
-  startChart(); // Start the chart after the adapter is ready
+  startChart(); // Start the chart after adapter is ready
 });
 
 /**
