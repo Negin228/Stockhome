@@ -18,12 +18,11 @@ async function fetchStockData(symbol) {
 
         console.log('Raw API Response:', data); // Log raw data to inspect
 
-        // Check for missing or unexpected data in the response
+        // Check if the data contains the expected "Time Series (Daily)" key
         if (!data || !data['Time Series (Daily)']) {
-            throw new Error('Invalid or unexpected data format received from Alpha Vantage.');
+            throw new Error(`Invalid or unexpected data format received. Response: ${JSON.stringify(data)}`);
         }
 
-        // If the data is valid, process it
         const timeSeries = data['Time Series (Daily)'];
         const stockData = Object.keys(timeSeries).map(date => ({
             date: new Date(date), // Convert date string to a Date object
@@ -33,9 +32,11 @@ async function fetchStockData(symbol) {
         return stockData.reverse(); // Reverse data for most recent date first
     } catch (error) {
         console.error('Error fetching stock data:', error.message);
+        console.error('Response Body:', error.response ? error.response : 'No response body');
         throw error; // Rethrow the error to propagate it to the caller
     }
 }
+
 
 
 
