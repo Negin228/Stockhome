@@ -1,6 +1,4 @@
-// scripts/main.js
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   console.log("✅ DOM Loaded. Initializing Chart.js...");
 
   if (typeof Chart === "undefined") {
@@ -43,63 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ Manually create a test chart to verify rendering
   createTestChart();
 
-  // ✅ Fetch stock data and create the real chart
-  updateChart();
+  // ✅ Wait for stock data to be fetched before drawing the chart
+  console.log("🔄 Fetching stock data on page load...");
+  await updateChart();
 });
-
-/**
- * Manually create a test chart to ensure Chart.js is rendering.
- */
-function createTestChart() {
-  const testCtx = document.getElementById("myChart").getContext("2d");
-  new Chart(testCtx, {
-    type: "bar",
-    data: {
-      labels: ["Test A", "Test B", "Test C"],
-      datasets: [
-        {
-          label: "Test Data",
-          data: [10, 20, 30],
-          backgroundColor: ["blue", "green", "red"]
-        }
-      ]
-    }
-  });
-  console.log("✅ Test Chart rendered successfully.");
-}
-
-/**
- * Fetch stock data from Yahoo Finance using AllOrigins proxy to bypass CORS restrictions.
- */
-async function fetchStockData(symbol) {
-  const proxyUrl = 'https://api.allorigins.win/raw?url=';
-  const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=10y&interval=1d`;
-  const url = proxyUrl + encodeURIComponent(targetUrl);
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Failed to fetch ${symbol}`);
-
-    const data = await response.json();
-    console.log(`📊 Data for ${symbol}:`, data);
-
-    if (data.chart && data.chart.result && data.chart.result[0]) {
-      const result = data.chart.result[0];
-      const timestamps = result.timestamp;
-      const closePrices = result.indicators.quote[0].close;
-
-      return timestamps.map((timestamp, index) => ({
-        x: new Date(timestamp * 1000),
-        y: closePrices[index]
-      }));
-    } else {
-      throw new Error(`Invalid data for ${symbol}`);
-    }
-  } catch (error) {
-    console.error(`❌ Error fetching ${symbol}:`, error);
-    return null;
-  }
-}
 
 /**
  * Creates the stock chart after fetching data.
