@@ -41,6 +41,7 @@ function fetchStockData(symbol) {
         const result = data.chart.result[0];
         const timestamps = result.timestamp;
         const closePrices = result.indicators.quote[0].close;
+        // Map the timestamps and prices into a format usable by Chart.js
         const chartData = timestamps.map((timestamp, index) => ({
           x: new Date(timestamp * 1000),
           y: closePrices[index]
@@ -83,7 +84,7 @@ async function updateChart() {
     };
   }));
   
-  // Compute portfolio value (1 share of each)
+  // Compute the portfolio value dataset assuming one share of each stock.
   let portfolioData = [];
   if (stockDatasets.length > 0 && stockDatasets[0].data.length > 0) {
     const n = stockDatasets[0].data.length;
@@ -161,40 +162,18 @@ async function updateChart() {
           }
         },
         zoom: {
-          // Disable wheel and pinch zoom to force drag-only zoom
-          wheel: { enabled: false },
-          pinch: { enabled: false },
-          // Enable drag-to-zoom on the x-axis only
+          // Enable both wheel and pinch zoom for touchpad/mouse wheel zooming
+          wheel: { enabled: true },
+          pinch: { enabled: true },
+          // Enable drag-to-zoom functionality and allow panning in both x and y directions
           zoom: {
             drag: {
               enabled: true,
-              threshold: 100, // Increase threshold to require a deliberate drag (in pixels)
+              // You can adjust the threshold if needed (e.g., 50 pixels)
+              threshold: 50,
               borderColor: 'rgba(225,225,225,0.3)',
               borderWidth: 1,
               backgroundColor: 'rgba(225,225,225,0.3)'
             },
-            mode: 'x',
-            onZoomComplete({ chart }) {
-              console.log('Zoom complete', chart);
-            }
-          },
-          pan: {
-            enabled: true,
-            mode: 'x'
-          }
-        }
-      }
-    }
-  });
-
-  // Create a Reset Zoom button
-  const resetButton = document.createElement('button');
-  resetButton.textContent = 'Reset Zoom';
-  resetButton.style.marginTop = '10px';
-  resetButton.onclick = () => chart.resetZoom();
-  document.querySelector('.container').appendChild(resetButton);
-}
-
-window.onload = function() {
-  updateChart();
-};
+            mode: 'xy',
+            onZoomComplete(
