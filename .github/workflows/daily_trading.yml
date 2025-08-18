@@ -29,3 +29,10 @@ jobs:
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Copy index.html to root
+          run: cp templates/index.html ./index.html
