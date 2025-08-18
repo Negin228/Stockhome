@@ -2,33 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stock Chart</title>
-  <link rel="stylesheet" href="styles/style.css" />
-
-  <!-- ✅ Load Chart.js (Latest v3 stable) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
-
-  <!-- ✅ Load date-fns (REQUIRED for the Date Adapter) -->
-  <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3"></script>
-
-  <!-- ✅ Load Chart.js Date Adapter -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0"></script>
-
+  <title>Trading Alerts</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: 8px 12px; border: 1px solid #ddd; }
+    th { background-color: #f2f2f2; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Stock Chart</h1>
-    <canvas id="myChart"></canvas>
-    <p id="errorMessage" style="color: red; display: none;">Failed to load stock data.</p>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Stock Chart. All rights reserved.</p>
-  </footer>
-
-  <!-- ✅ Load main.js LAST -->
-  <script defer src="scripts/main.js"></script>
-
+  <h1>Latest Trading Alerts</h1>
+  {% if alerts %}
+    <table>
+      <tr>
+        <th>Ticker</th><th>Signal</th><th>Price</th><th>Reason</th>
+        <th>P/E</th><th>Market Cap</th><th>IV Rank</th><th>IV %ile</th>
+      </tr>
+      {% for alert in alerts %}
+      <tr>
+        <td>{{ alert.symbol }}</td>
+        <td>{{ alert.signal }}</td>
+        <td>${{ "%.2f"|format(alert.price) }}</td>
+        <td>{{ alert.reason }}</td>
+        <td>{{ alert.pe }}</td>
+        <td>{{ alert.mcap }}</td>
+        <td>{{ alert.iv_rank if alert.iv_rank is not none else 'N/A' }}</td>
+        <td>{{ alert.iv_pct if alert.iv_pct is not none else 'N/A' }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No alerts currently.</p>
+  {% endif %}
 </body>
 </html>
