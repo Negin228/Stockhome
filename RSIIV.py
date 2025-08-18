@@ -4,7 +4,7 @@ import finnhub
 import pandas as pd
 import ta
 import smtplib
-import config.py
+import config
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -15,15 +15,6 @@ EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 
 finnhub_client = finnhub.Client(api_key=API_KEY)
-
-# Put your tickers list here or import from a config file
-tickers = [
-    # Example: 'AAPL', 'TSLA', 'GOOGL', ...
-]
-
-# RSI thresholds - tweak as needed or import from config.py
-RSI_OVERSOLD = 30
-RSI_OVERBOUGHT = 70
 
 def fetch_historical_data_yfinance(symbol):
     ticker = yf.Ticker(symbol)
@@ -183,3 +174,4 @@ def job():
 
 if __name__ == "__main__":
     job()
+
