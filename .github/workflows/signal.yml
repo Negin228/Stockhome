@@ -1,7 +1,14 @@
 name: Scheduled Trading Bot Run
 on:
   schedule:
-    - cron: '30 20-27 * * 1-5'  # Runs hourly from 6:30AM to 1:30PM PDT (Mon-Fri) in UTC time
+    - cron: '30 13 * * 1-5'
+    - cron: '30 14 * * 1-5'
+    - cron: '30 15 * * 1-5'
+    - cron: '30 16 * * 1-5'
+    - cron: '30 17 * * 1-5'
+    - cron: '30 18 * * 1-5'
+    - cron: '30 19 * * 1-5'
+    - cron: '30 20 * * 1-5'
   workflow_dispatch:            # Allows you to run it manually
 jobs:
   run-bot:
