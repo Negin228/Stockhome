@@ -7,9 +7,11 @@ import smtplib
 import config
 import schedule
 import time
+import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from ta.volatility import AverageTrueRange
+from zoneinfo import ZoneInfo  # Requires Python 3.9+
 
 # =================== CONFIG / SECRETS ===================
 tickers = config.tickers
@@ -23,12 +25,10 @@ EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
-
 # =================== DATA FETCHING ===================
 def fetch_historical_data_yfinance(symbol):
     ticker = yf.Ticker(symbol)
     return ticker.history(period="2y", interval="1d")
-
 
 def fetch_fundamentals(symbol):
     try:
@@ -37,7 +37,6 @@ def fetch_fundamentals(symbol):
     except Exception as e:
         print(f"Error retrieving fundamentals for {symbol}: {e}")
         return None, None
-
 
 def fetch_option_iv_history(symbol, lookback_days=52):
     ticker = yf.Ticker(symbol)
@@ -60,13 +59,11 @@ def fetch_option_iv_history(symbol, lookback_days=52):
         print(f"Error fetching IV data for {symbol}: {e}")
     return pd.DataFrame(iv_data)
 
-
 def fetch_real_time_quote(symbol):
     try:
         return finnhub_client.quote(symbol)
     except Exception:
         return None
-
 
 # =================== INDICATORS ===================
 def calculate_indicators(df):
@@ -75,7 +72,6 @@ def calculate_indicators(df):
     df['dma50'] = df['Close'].rolling(window=50).mean()
     df['atr'] = AverageTrueRange(df['High'], df['Low'], df['Close'], window=14).average_true_range()
     return df
-
 
 def calc_iv_rank_percentile(iv_series):
     iv_series = pd.Series(iv_series).dropna()
@@ -87,7 +83,6 @@ def calc_iv_rank_percentile(iv_series):
     iv_percentile = 100 * (iv_series < current_iv).mean()
     return (round(iv_rank, 2) if iv_rank is not None else None,
             round(iv_percentile, 2) if iv_percentile is not None else None)
-
 
 def generate_trade_signal(df):
     last = df.iloc[-1]
@@ -112,7 +107,6 @@ def generate_trade_signal(df):
 
     return signal, reason, rsi, price
 
-
 # =================== HELPERS ===================
 def format_market_cap(market_cap):
     if market_cap is None:
@@ -124,21 +118,19 @@ def format_market_cap(market_cap):
         return f"{market_cap / million:.2f}M"
     return str(market_cap)
 
-
 def log_alert(symbol, signal, price, reason, pe, market_cap, iv_rank, iv_pct):
     log_file = "alerts_log.csv"
     data = {
         "symbol": symbol, "signal": signal, "price": price,
         "reason": reason, "pe": pe, "market_cap": market_cap,
         "iv_rank": iv_rank, "iv_percentile": iv_pct,
-        "timestamp": pd.Timestamp.now()
+        "timestamp": pd.Timestamp.now(tz=ZoneInfo("America/Los_Angeles"))
     }
     df = pd.DataFrame([data])
     if not os.path.exists(log_file):
         df.to_csv(log_file, index=False)
     else:
         df.to_csv(log_file, mode='a', header=False, index=False)
-
 
 # =================== EMAIL ===================
 def send_email(subject, body, html=True):
@@ -151,8 +143,13 @@ def send_email(subject, body, html=True):
         server.login(EMAIL_SENDER, EMAIL_PASSWORD)
         server.send_message(msg)
 
+# =================== TIME & SCHEDULER ===================
+def is_market_open():
+    now = datetime.datetime.now(ZoneInfo("America/Los_Angeles"))
+    start = now.replace(hour=6, minute=30, second=0, microsecond=0)
+    end = now.replace(hour=13, minute=0, second=0, microsecond=0)
+    return start <= now <= end
 
-# =================== MAIN JOB ===================
 def job():
     rsi_alerts = []
 
@@ -216,14 +213,12 @@ def job():
     print("Sending email with alerts...")
     send_email("StockHome Trading Alerts", email_body, html=True)
 
-
-# =================== SCHEDULER ===================
 if __name__ == "__main__":
     # Run once immediately
     job()
 
-    # Schedule daily run at 1:00PM PT
-    schedule.every().day.at("13:00").do(job)
+    # Schedule to run every hour at 30 minutes past the hour between 6:30am and 1:00pm Pacific Time
+    schedule.every().hour.at(":30").do(lambda: job() if is_market_open() else None)
 
     while True:
         schedule.run_pending()
