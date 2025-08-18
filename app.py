@@ -4,18 +4,20 @@ import finnhub
 import pandas as pd
 import ta
 from flask import Flask, render_template
+from flask_caching import Cache
 from ta.volatility import AverageTrueRange
+import concurrent.futures
 import config
 
 app = Flask(__name__)
+
+# Configure cache
+cache = Cache(app, config={'CACHE_TYPE': 'SimpleCache', 'CACHE_DEFAULT_TIMEOUT': 3600})
 
 tickers = config.tickers
 RSI_OVERSOLD = config.RSI_OVERSOLD
 RSI_OVERBOUGHT = config.RSI_OVERBOUGHT
 API_KEY = os.getenv("API_KEY")
-EMAIL_SENDER = os.getenv("EMAIL_SENDER")
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
 def fetch_historical_data_yfinance(symbol):
@@ -85,50 +87,52 @@ def generate_trade_signal(df):
     reason += f", ATR%={atr_pct:.2f}"
     return signal, reason, rsi, price
 
+def process_ticker(symbol):
+    hist_data = fetch_historical_data_yfinance(symbol)
+    if hist_data.empty:
+        return None
+    
+    hist_data['rsi'] = ta.momentum.RSIIndicator(hist_data['Close'], window=14).rsi()
+    last_rsi = hist_data['rsi'].iloc[-1]
+    
+    if pd.isna(last_rsi) or not (last_rsi < 30 or last_rsi > 70):
+        return None
+    
+    hist_data['dma200'] = hist_data['Close'].rolling(window=200).mean()
+    hist_data['dma50'] = hist_data['Close'].rolling(window=50).mean()
+    hist_data['atr'] = AverageTrueRange(hist_data['High'], hist_data['Low'], hist_data['Close'], window=14).average_true_range()
+    
+    signal, reason, rsi, price = generate_trade_signal(hist_data)
+    if signal is None:
+        return None
+    
+    quote = fetch_real_time_quote(symbol)
+    rt_price = quote.get("c", price) if quote else price
+    
+    pe, market_cap = fetch_fundamentals(symbol)
+    iv_hist = fetch_option_iv_history(symbol, lookback_days=52)
+    iv_rank, iv_pct = (None, None)
+    if not iv_hist.empty:
+        iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist['IV'])
+    
+    return {
+        "symbol": symbol,
+        "signal": signal,
+        "price": rt_price,
+        "reason": reason,
+        "pe": pe if pe is not None else "N/A",
+        "mcap": f"{market_cap/1_000_000_000:.2f}B" if market_cap else "N/A",
+        "iv_rank": iv_rank,
+        "iv_pct": iv_pct,
+    }
+
+@cache.cached(timeout=3600, key_prefix='all_tickers_data')
 @app.route("/")
 def index():
     alerts = []
-    for symbol in tickers:
-        hist_data = fetch_historical_data_yfinance(symbol)
-        if hist_data.empty:
-            continue
-        
-        # Calculate RSI first only
-        hist_data['rsi'] = ta.momentum.RSIIndicator(hist_data['Close'], window=14).rsi()
-        last_rsi = hist_data['rsi'].iloc[-1]
-        
-        # Only proceed if RSI < 30 or RSI > 70
-        if pd.isna(last_rsi) or not (last_rsi < 30 or last_rsi > 70):
-            continue
-        
-        # Calculate other indicators conditionally
-        hist_data['dma200'] = hist_data['Close'].rolling(window=200).mean()
-        hist_data['dma50'] = hist_data['Close'].rolling(window=50).mean()
-        hist_data['atr'] = AverageTrueRange(hist_data['High'], hist_data['Low'], hist_data['Close'], window=14).average_true_range()
-        
-        signal, reason, rsi, price = generate_trade_signal(hist_data)
-        
-        quote = fetch_real_time_quote(symbol)
-        rt_price = quote.get("c", price) if quote else price
-        
-        pe, market_cap = fetch_fundamentals(symbol)
-        
-        iv_hist = fetch_option_iv_history(symbol, lookback_days=52)
-        iv_rank, iv_pct = (None, None)
-        if not iv_hist.empty:
-            iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist['IV'])
-        
-        if signal is not None:
-            alerts.append({
-                "symbol": symbol,
-                "signal": signal,
-                "price": rt_price,
-                "reason": reason,
-                "pe": pe if pe is not None else "N/A",
-                "mcap": f"{market_cap/1_000_000_000:.2f}B" if market_cap else "N/A",
-                "iv_rank": iv_rank,
-                "iv_pct": iv_pct,
-            })
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        results = list(executor.map(process_ticker, tickers))
+    alerts = [result for result in results if result is not None]
     return render_template("index.html", alerts=alerts)
 
 if __name__ == "__main__":
