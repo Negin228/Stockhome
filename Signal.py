@@ -16,6 +16,30 @@ EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 finnhub_client = finnhub.Client(api_key=API_KEY)
+
+def get_sp500_tickers():
+    url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    df = pd.read_html(url)[0]
+    return sorted(df['Symbol'].tolist())
+
+def get_nasdaq100_tickers():
+    url = "https://en.wikipedia.org/wiki/NASDAQ-100"
+    tables = pd.read_html(url)
+    for tbl in tables:
+        if 'Ticker' in tbl.columns:
+            return sorted(tbl['Ticker'].tolist())
+    return []
+
+sp500 = get_sp500_tickers()
+nasdaq100 = get_nasdaq100_tickers()
+
+with open("tickers.py", "w") as f:
+    f.write("# Auto-generated ticker lists\n\n")
+    f.write("sp500_tickers = " + repr(sp500) + "\n\n")
+    f.write("nasdaq100_tickers = " + repr(nasdaq100) + "\n")
+
+
+
 def fetch_historical_data_yfinance(symbol):
     ticker = yf.Ticker(symbol)
     hist = ticker.history(period="2y", interval="1d")
