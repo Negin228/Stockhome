@@ -5,6 +5,8 @@ import pandas as pd
 import ta
 import smtplib
 import config
+tickers = config.tickers
+
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -174,4 +176,5 @@ def job():
 
 if __name__ == "__main__":
     job()
+
 
