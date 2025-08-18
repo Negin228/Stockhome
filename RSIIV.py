@@ -6,6 +6,9 @@ import ta
 import smtplib
 import config
 tickers = config.tickers
+RSI_OVERSOLD = config.RSI_OVERSOLD
+RSI_OVERBOUGHT = config.RSI_OVERBOUGHT
+
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -176,5 +179,6 @@ def job():
 
 if __name__ == "__main__":
     job()
+
 
 
