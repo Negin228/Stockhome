@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run Trading Bot
-        run: python ../signal.py
+        run: python signal.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
