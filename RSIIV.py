@@ -5,13 +5,13 @@ import pandas as pd
 import ta
 import smtplib
 import config
-tickers = config.tickers
-RSI_OVERSOLD = config.RSI_OVERSOLD
-RSI_OVERBOUGHT = config.RSI_OVERBOUGHT
-
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+
+tickers = config.tickers
+RSI_OVERSOLD = config.RSI_OVERSOLD
+RSI_OVERBOUGHT = config.RSI_OVERBOUGHT
 
 # Load secrets from environment variables (set in GitHub Actions secrets)
 API_KEY = os.getenv("API_KEY")
@@ -159,26 +159,21 @@ def job():
                        f"real-time price ${rt_price:.2f}")
             iv_alert_lines.append(iv_line)
 
-    # Output and email RSI alerts
+    if not rsi_alert_lines and not iv_alert_lines:
+        print("No alerts found.")
+        return  # Nothing to send
+
+    # Combine both alert outputs into one email body with updated headers
+    email_body = ""
+
     if rsi_alert_lines:
-        output1 = "RSI Alerts with IV, P/E, Market Cap:\n" + "\n".join(rsi_alert_lines)
-        print(output1)
-        send_email("RSI Alerts with IV and Fundamentals", output1)
-    else:
-        print("No RSI alerts found.")
+        email_body += "RSI Alerts (RSI < 30 or > 70):\n" + "\n".join(rsi_alert_lines) + "\n\n"
 
-    print("\n----------------------------\n")
-
-    # Output and email IV Alerts
     if iv_alert_lines:
-        output2 = "IV Alerts (Rank ≥ 60 or Percentile ≥ 70) with RSI, P/E, Market Cap:\n" + "\n".join(iv_alert_lines)
-        print(output2)
-        send_email("IV Alerts with RSI and Fundamentals", output2)
-    else:
-        print("No IV alerts found.")
+        email_body += "IV Alerts (Rank ≥ 60 or Percentile ≥ 70):\n" + "\n".join(iv_alert_lines)
+
+    print(email_body)
+    send_email("StockHome Trading Alerts", email_body)
 
 if __name__ == "__main__":
     job()
-
-
-
