@@ -153,11 +153,11 @@ def job():
             rsi_alert_lines.append(line)
 
         # IV Alerts (threshold met) with RSI, P/E, Market Cap
-        if (iv_rank is not None and iv_rank >= 60) or (iv_pct is not None and iv_pct >= 70):
-            iv_line = (f"{symbol}: IV Rank={iv_rank}, IV Percentile={iv_pct}, RSI={rsi:.1f}, "
-                       f"PE={pe if pe is not None else 'N/A'}, MarketCap={format_market_cap(market_cap)}, "
-                       f"real-time price ${rt_price:.2f}")
-            iv_alert_lines.append(iv_line)
+        #if (iv_rank is not None and iv_rank >= 60) or (iv_pct is not None and iv_pct >= 70):
+         #   iv_line = (f"{symbol}: IV Rank={iv_rank}, IV Percentile={iv_pct}, RSI={rsi:.1f}, "
+          #             f"PE={pe if pe is not None else 'N/A'}, MarketCap={format_market_cap(market_cap)}, "
+           #            f"real-time price ${rt_price:.2f}")
+            #iv_alert_lines.append(iv_line)
 
     if not rsi_alert_lines and not iv_alert_lines:
         print("No alerts found.")
@@ -177,3 +177,4 @@ def job():
 
 if __name__ == "__main__":
     job()
+
