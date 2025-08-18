@@ -1,10 +1,29 @@
+import os
 import yfinance as yf
 import finnhub
 import pandas as pd
 import ta
-import config
+import smtplib
+import config.py
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-finnhub_client = finnhub.Client(api_key=config.API_KEY)
+# Load secrets from environment variables (set in GitHub Actions secrets)
+API_KEY = os.getenv("API_KEY")
+EMAIL_SENDER = os.getenv("EMAIL_SENDER")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
+
+finnhub_client = finnhub.Client(api_key=API_KEY)
+
+# Put your tickers list here or import from a config file
+tickers = [
+    # Example: 'AAPL', 'TSLA', 'GOOGL', ...
+]
+
+# RSI thresholds - tweak as needed or import from config.py
+RSI_OVERSOLD = 30
+RSI_OVERBOUGHT = 70
 
 def fetch_historical_data_yfinance(symbol):
     ticker = yf.Ticker(symbol)
@@ -68,12 +87,12 @@ def generate_rsi_only_signals(df):
     signal = None
     reason = ""
     if pd.notna(rsi):
-        if rsi < config.RSI_OVERSOLD:
+        if rsi < RSI_OVERSOLD:
             signal = "BUY"
-            reason = f"RSI={rsi:.1f} < {config.RSI_OVERSOLD}"
-        elif rsi > config.RSI_OVERBOUGHT:
+            reason = f"RSI={rsi:.1f} < {RSI_OVERSOLD}"
+        elif rsi > RSI_OVERBOUGHT:
             signal = "SELL"
-            reason = f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
+            reason = f"RSI={rsi:.1f} > {RSI_OVERBOUGHT}"
     return signal, reason, rsi, price
 
 def fetch_real_time_quote(symbol):
@@ -95,11 +114,24 @@ def format_market_cap(market_cap):
     else:
         return str(market_cap)
 
+def send_email(subject, body):
+    msg = MIMEMultipart()
+    msg['From'] = EMAIL_SENDER
+    msg['To'] = EMAIL_RECEIVER
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)  # change SMTP server if needed
+    server.starttls()
+    server.login(EMAIL_SENDER, EMAIL_PASSWORD)
+    server.send_message(msg)
+    server.quit()
+
 def job():
     rsi_alert_lines = []
     iv_alert_lines = []
 
-    for symbol in config.tickers:
+    for symbol in tickers:
         hist_data = fetch_historical_data_yfinance(symbol)
         if hist_data.empty:
             continue
@@ -116,35 +148,36 @@ def job():
         if not iv_hist.empty:
             iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist['IV'])
 
-        # RSI Alerts with PE, Market Cap, IV if available
+        # RSI Alerts with IV, P/E, Market Cap
         if signal is not None:
             line = (f"{symbol}: {signal} at real-time price ${rt_price:.2f}, {reason}, "
-                    f"PE={pe if pe is not None else 'N/A'}, "
-                    f"MarketCap={format_market_cap(market_cap)}")
+                    f"PE={pe if pe is not None else 'N/A'}, MarketCap={format_market_cap(market_cap)}")
             if iv_rank is not None and iv_pct is not None:
                 line += f", IV Rank={iv_rank}, IV Percentile={iv_pct}"
             rsi_alert_lines.append(line)
 
-        # IV Alerts with RSI, PE, Market Cap (threshold met)
+        # IV Alerts (threshold met) with RSI, P/E, Market Cap
         if (iv_rank is not None and iv_rank >= 60) or (iv_pct is not None and iv_pct >= 70):
             iv_line = (f"{symbol}: IV Rank={iv_rank}, IV Percentile={iv_pct}, RSI={rsi:.1f}, "
                        f"PE={pe if pe is not None else 'N/A'}, MarketCap={format_market_cap(market_cap)}, "
                        f"real-time price ${rt_price:.2f}")
             iv_alert_lines.append(iv_line)
 
+    # Output and email RSI alerts
     if rsi_alert_lines:
-        print("RSI Alerts with IV, P/E, Market Cap:")
-        for line in rsi_alert_lines:
-            print(line)
+        output1 = "RSI Alerts with IV, P/E, Market Cap:\n" + "\n".join(rsi_alert_lines)
+        print(output1)
+        send_email("RSI Alerts with IV and Fundamentals", output1)
     else:
         print("No RSI alerts found.")
 
     print("\n----------------------------\n")
 
+    # Output and email IV Alerts
     if iv_alert_lines:
-        print("IV Alerts (Rank ≥ 60 or Percentile ≥ 70) with RSI, P/E, Market Cap:")
-        for line in iv_alert_lines:
-            print(line)
+        output2 = "IV Alerts (Rank ≥ 60 or Percentile ≥ 70) with RSI, P/E, Market Cap:\n" + "\n".join(iv_alert_lines)
+        print(output2)
+        send_email("IV Alerts with RSI and Fundamentals", output2)
     else:
         print("No IV alerts found.")
 
