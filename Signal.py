@@ -148,5 +148,5 @@ def job():
         email_body += "IV Alerts (Rank ≥ 60 or Percentile ≥ 70):\n" + "\n".join(iv_alert_lines)
     print(email_body)
     send_email("StockHome Trading Alerts", email_body)
-if name == "main":
+if __name__ == "__main__":
     job()
