@@ -2,4 +2,4 @@
 
 sp500_tickers = ["AAPL", "MSFT", "AMZN", ...]
 nasdaq100_tickers = ["AAPL", "MSFT", "NVDA", ...]
-all_tickers = ["AAPL", "MSFT", "AMZN", "NVDA", ...]  # Deduped union
+all_tickers = ["AAPL", "MSFT", "AMZN", "NVDA", ...]  # merged + dedup
