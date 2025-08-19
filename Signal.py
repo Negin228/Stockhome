@@ -51,7 +51,8 @@ def get_nasdaq100_tickers():
         if "Ticker" in tbl.columns:
             return sorted(tbl["Ticker"].dropna().tolist())
     return []
-
+    
+today = datetime.datetime.today()
 if today.weekday() == 6 or not os.path.exists("tickers.py"):
     logger.info("Refreshing tickers from Wikipedia (Sunday or first run)")
     try:
