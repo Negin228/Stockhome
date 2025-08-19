@@ -52,7 +52,7 @@ def get_nasdaq100_tickers():
             return sorted(tbl["Ticker"].dropna().tolist())
     return []
 
-if datetime.datetime.today().weekday() == 7:  # regenerate Sundays
+if datetime.datetime.today().weekday() == 6:  # regenerate Sundays
     logger.info("Refreshing tickers from Wikipedia (Sunday)")
     try:
         sp500 = get_sp500_tickers()
@@ -67,7 +67,14 @@ if datetime.datetime.today().weekday() == 7:  # regenerate Sundays
     except Exception as e:
         logger.error("Ticker refresh failed: %s", e)
 
-from tickers import all_tickers as tickers
+from tickers import sp500_tickers, nasdaq100_tickers, all_tickers
+
+if config.TICKER_SOURCE == "sp500":
+    tickers = sp500_tickers
+elif config.TICKER_SOURCE == "nasdaq100":
+    tickers = nasdaq100_tickers
+else:
+    tickers = all_tickers
 
 # === HISTORICAL DATA with cache ===
 def fetch_cached_history(symbol, period="2y", interval="1d"):
