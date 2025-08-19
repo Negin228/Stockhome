@@ -8,17 +8,14 @@ import smtplib
 import logging
 from logging.handlers import RotatingFileHandler
 import config
-import time
-import random
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from curl_cffi import requests  # To create impersonated session
 
-# Setup directories
+# === Setup Directories ===
 os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
 
-# Logging setup
+# === Logging setup: file + console with rotation ===
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
@@ -34,82 +31,82 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-# Secrets from environment variables
+# === Secrets from environment vars ===
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 
-# Finnhub client
 finnhub_client = finnhub.Client(api_key=API_KEY)
-
-# yfinance session with Chrome impersonation to reduce throttling
-yf_session = requests.Session(impersonate="chrome")
-
 tickers = config.tickers
 
-# Retry wrapper with max exponential backoff and jitter
-def fetch_with_retry(func, *args, retries=5, delay=60, max_delay=130, **kwargs):
-    for attempt in range(retries):
-        try:
-            return func(*args, **kwargs)
-        except Exception as e:
-            err_str = str(e)
-            if 'Too Many Requests' in err_str or 'Rate limited' in err_str or '429' in err_str:
-                wait = min(delay * (2 ** attempt), max_delay) + random.uniform(0, 5)
-                logger.warning(f"Rate limit hit, sleeping {wait:.1f}s before retry [{attempt+1}/{retries}]...")
-                time.sleep(wait)
-            else:
-                raise
-    logger.error("Max retries exceeded during fetch_with_retry.")
-    return None
+# === Fetch tickers (weekly cache) ===
+def get_sp500_tickers():
+    df = pd.read_html("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")[0]
+    return sorted(df["Symbol"].dropna().tolist())
 
-# Safe download using retry and session
-def safe_download(symbol, *args, **kwargs):
-    def _download():
-        return yf.download(symbol, *args, session=yf_session, **kwargs)
-    return fetch_with_retry(_download)
+def get_nasdaq100_tickers():
+    tables = pd.read_html("https://en.wikipedia.org/wiki/NASDAQ-100")
+    for tbl in tables:
+        if "Ticker" in tbl.columns:
+            return sorted(tbl["Ticker"].dropna().tolist())
+    return []
 
+# Example (commented out) ticker refresh logic, you can enable if needed:
+# today = datetime.datetime.today()
+# if today.weekday() == 6 or not os.path.exists("tickers.py"):
+#     logger.info("Refreshing tickers from Wikipedia (Sunday or first run)")
+#     try:
+#         sp500 = get_sp500_tickers()
+#         nasdaq100 = get_nasdaq100_tickers()
+#         all_tickers = sorted(set(sp500 + nasdaq100))
+#         with open("tickers.py", "w") as f:
+#             f.write("# Auto-generated ticker lists\n\n")
+#             f.write("sp500_tickers = " + repr(sp500) + "\n\n")
+#             f.write("nasdaq100_tickers = " + repr(nasdaq100) + "\n\n")
+#             f.write("all_tickers = " + repr(all_tickers) + "\n")
+#         logger.info("Ticker refresh successful. Total = %d", len(all_tickers))
+#     except Exception as e:
+#         logger.error("Ticker refresh failed: %s", e)
+
+# === HISTORICAL DATA with cache ===
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df, force_full = None, False
-
     if os.path.exists(file_path):
-        age_days = (datetime.datetime.now() -
-                    datetime.datetime.fromtimestamp(os.path.getmtime(file_path))).days
+        age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(file_path))).days
         if age_days > config.MAX_CACHE_AGE_DAYS:
-            logger.info(f"{symbol} cache too old ({age_days} days) → full refresh")
+            logger.info("%s cache too old (%d days) → full refresh", symbol, age_days)
             force_full = True
         else:
             try:
                 df = pd.read_csv(file_path, index_col=0, parse_dates=True)
             except Exception:
                 df = None
-
     if df is None or df.empty or force_full:
         try:
-            logger.info(f"⬇️ Downloading full history: {symbol}")
-            df = safe_download(symbol, period=period, interval=interval, auto_adjust=False)
+            logger.info("⬇️ Downloading full history: %s", symbol)
+            df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
         except Exception as e:
-            logger.error(f"Download error {symbol}: {e}")
+            logger.error("Download error %s: %s", symbol, e)
             return pd.DataFrame()
     else:
         last_date = df.index[-1]
         start = (last_date - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-        logger.info(f"🔄 Updating {symbol} from {start}")
+        logger.info("🔄 Updating %s from %s", symbol, start)
         try:
-            new_df = safe_download(symbol, start=start, interval=interval, auto_adjust=False)
-            if new_df is not None and not new_df.empty:
+            new_df = yf.download(symbol, start=start, interval=interval, auto_adjust=False)
+            if not new_df.empty:
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
         except Exception as e:
-            logger.warning(f"Update error {symbol}: {e}")
-
-    try:
-        df.to_csv(file_path)
-    except Exception as e:
-        logger.warning(f"Cache save failed for {symbol}: {e}")
+            logger.warning("Update error %s: %s", symbol, e)
+        try:
+            df.to_csv(file_path)
+        except Exception as e:
+            logger.warning("Cache save failed for %s: %s", symbol, e)
     return df
 
+# === INDICATORS ===
 def calculate_indicators(df):
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
@@ -121,6 +118,7 @@ def calculate_indicators(df):
 def generate_rsi_signal(df):
     last = df.iloc[-1]
     rsi, price = last["rsi"], last["Close"]
+    # ensure scalars
     if isinstance(rsi, (pd.Series, pd.DataFrame)):
         rsi = float(rsi.squeeze())
     if isinstance(price, (pd.Series, pd.DataFrame)):
@@ -133,21 +131,19 @@ def generate_rsi_signal(df):
             signal, reason = "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
     return signal, reason, rsi, price
 
+# === FUNDAMENTALS & IV ===
 def fetch_fundamentals(symbol):
-    def _fetch():
-        ticker = yf.Ticker(symbol, session=yf_session)
-        info = ticker.info
-        return info.get("trailingPE", None), info.get("marketCap", None)
     try:
-        return fetch_with_retry(_fetch)
+        info = yf.Ticker(symbol).info
+        return info.get("trailingPE", None), info.get("marketCap", None)
     except Exception as e:
-        logger.warning(f"Fundamentals error {symbol}: {e}")
+        logger.warning("Fundamentals error %s: %s", symbol, e)
         return None, None
 
 def fetch_option_iv_history(symbol, lookback_days=52):
-    def _fetch():
-        iv_data = []
-        ticker = yf.Ticker(symbol, session=yf_session)
+    iv_data = []
+    try:
+        ticker = yf.Ticker(symbol)
         for date in ticker.options[-lookback_days:]:
             chain = ticker.option_chain(date)
             if chain.calls.empty:
@@ -156,17 +152,9 @@ def fetch_option_iv_history(symbol, lookback_days=52):
             chain.calls["distance"] = abs(chain.calls["strike"] - under)
             atm = chain.calls.loc[chain.calls["distance"].idxmin()]
             iv_data.append({"date": date, "IV": atm["impliedVolatility"]})
-        return pd.DataFrame(iv_data)
-    try:
-        return fetch_with_retry(_fetch)
     except Exception as e:
-        logger.warning(f"IV history error {symbol}: {e}")
-        return pd.DataFrame()
-
-def safe_finnhub_quote(symbol):
-    def _quote():
-        return finnhub_client.quote(symbol)
-    return fetch_with_retry(_quote)
+        logger.warning("IV history error %s: %s", symbol, e)
+    return pd.DataFrame(iv_data)
 
 def calc_iv_rank_percentile(iv_series):
     s = pd.Series(iv_series).dropna()
@@ -175,8 +163,9 @@ def calc_iv_rank_percentile(iv_series):
     cur, hi, lo = s.iloc[-1], s.max(), s.min()
     iv_rank = 100 * (cur - lo) / (hi - lo) if hi > lo else None
     iv_pct = 100 * (s < cur).mean()
-    return round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None
+    return (round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None)
 
+# === EMAIL SEND ===
 def send_email(subject, body):
     try:
         msg = MIMEMultipart()
@@ -189,55 +178,19 @@ def send_email(subject, body):
         s.quit()
         logger.info("✉️ Email sent.")
     except Exception as e:
-        logger.error(f"Email failed: {e}")
+        logger.error("Email failed: %s", e)
 
+# === ALERT CSV ===
 def log_alert(alert):
     csv_path = config.ALERTS_CSV
     df = pd.DataFrame([alert])
     header = not os.path.exists(csv_path)
     df.to_csv(csv_path, mode="a", header=header, index=False)
 
-def format_market_cap(value):
-    if value is None:
-        return "N/A"
-    for unit in ["", "K", "M", "B", "T"]:
-        if abs(value) < 1000.0:
-            return f"{value:.2f}{unit}"
-        value /= 1000.0
-    return f"{value:.2f}P"  # For extremely large values
-
-def format_alerts_table(alerts):
-    if not alerts:
-        return "No RSI alerts were generated for the monitored tickers."
-
-    headers = ["Ticker", "Signal", "Price", "Reason", "PE Ratio", "Market Cap", "IV Rank", "IV Percentile"]
-    rows = [headers]
-
-    for alert in alerts:
-        ticker = alert.get("ticker", "N/A")
-        signal = alert.get("signal", "N/A")
-        price = f"${alert.get('price', 0):.2f}"
-        reason = alert.get("reason", "")
-        pe_ratio = f"{alert.get('pe_ratio'):.2f}" if alert.get('pe_ratio') is not None else "N/A"
-        market_cap = format_market_cap(alert.get("market_cap"))
-        iv_rank = f"{alert.get('iv_rank'):.2f}" if alert.get("iv_rank") is not None else "-"
-        iv_pct = f"{alert.get('iv_percentile'):.2f}" if alert.get("iv_percentile") is not None else "-"
-        rows.append([ticker, signal, price, reason, pe_ratio, market_cap, iv_rank, iv_pct])
-
-    col_widths = [max(len(str(row[i])) for row in rows) for i in range(len(headers))]
-
-    def format_row(row):
-        return " | ".join(str(cell).ljust(col_widths[i]) for i, cell in enumerate(row))
-
-    table_lines = [format_row(rows[0])]
-    table_lines.append("-|-".join('-' * w for w in col_widths))
-    for row in rows[1:]:
-        table_lines.append(format_row(row))
-
-    return "\n".join(table_lines)
-
+# === MAIN JOB ===
 def job():
-    rsi_alerts = []
+    buy_alerts = []
+    sell_alerts = []
     total, skipped = 0, 0
 
     for symbol in tickers:
@@ -248,27 +201,31 @@ def job():
             continue
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
+
         try:
-            quote = safe_finnhub_quote(symbol)
-            rt_price = quote.get("c", price) if quote else price
+            rt_price = finnhub_client.quote(symbol).get("c", price)
         except Exception:
             rt_price = price
+
         pe, mcap = fetch_fundamentals(symbol)
         iv_hist = fetch_option_iv_history(symbol)
-        iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"]) if not iv_hist.empty else (None, None)
+        iv_rank, iv_pct = (None, None)
+        if not iv_hist.empty:
+            iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"])
 
         if sig:
-            rsi_alerts.append({
-                "ticker": symbol,
-                "signal": sig,
-                "price": rt_price,
-                "reason": reason,
-                "pe_ratio": pe,
-                "market_cap": mcap,
-                "iv_rank": iv_rank,
-                "iv_percentile": iv_pct
-            })
-            log_alert({
+            line_parts = [
+                f"{symbol}: {sig} at ${rt_price:.2f}",
+                reason,
+                f"PE={pe if pe else 'N/A'}",
+                f"MarketCap={mcap if mcap else 'N/A'}"
+            ]
+            if iv_rank is not None:
+                line_parts.append(f"IV Rank={iv_rank}")
+                line_parts.append(f"IV Percentile={iv_pct}")
+            line = ", ".join(line_parts)
+
+            alert_entry = {
                 "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "ticker": symbol,
                 "signal": sig,
@@ -277,20 +234,31 @@ def job():
                 "pe_ratio": pe,
                 "market_cap": mcap,
                 "iv_rank": iv_rank,
-                "iv_percentile": iv_pct
-            })
+                "iv_percentile": iv_pct,
+            }
+            log_alert(alert_entry)
 
-        time.sleep(2)  # Sleep 2 seconds between tickers to avoid rate limits
+            if sig == "BUY":
+                buy_alerts.append(line)
+            else:  # SELL
+                sell_alerts.append(line)
 
-    if not rsi_alerts:
-        logger.info(f"No alerts. Processed={total}, Skipped={skipped}, Alerts=0")
-        print("No RSI alerts were generated for the monitored tickers.")
+    if not buy_alerts and not sell_alerts:
+        logger.info("No alerts. Processed=%d, Skipped=%d, Alerts=0", total, skipped)
+        print("No alerts found.")
         return
 
-    formatted_alerts = format_alerts_table(rsi_alerts)
-    logger.info(f"SUMMARY: Processed={total}, Skipped={skipped}, Alerts={len(rsi_alerts)}")
-    print(formatted_alerts)
-    send_email("StockHome Trading Alerts", formatted_alerts)
+    email_body = "RSI Alerts Summary:\n\n"
+    if buy_alerts:
+        email_body += f"🔹 Buy Signals (RSI < {config.RSI_OVERSOLD}):\n"
+        email_body += "\n".join(f"  - {alert}" for alert in buy_alerts) + "\n\n"
+    if sell_alerts:
+        email_body += f"🔸 Sell Signals (RSI > {config.RSI_OVERBOUGHT}):\n"
+        email_body += "\n".join(f"  - {alert}" for alert in sell_alerts) + "\n"
+
+    logger.info("SUMMARY: Processed=%d, Skipped=%d, Alerts=%d", total, skipped, len(buy_alerts) + len(sell_alerts))
+    print(email_body)
+    send_email("StockHome Trading Alerts", email_body)
 
 if __name__ == "__main__":
     job()
