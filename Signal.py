@@ -1,4 +1,5 @@
 import os
+import time
 import datetime
 import yfinance as yf
 import finnhub
@@ -51,23 +52,6 @@ def get_nasdaq100_tickers():
         if "Ticker" in tbl.columns:
             return sorted(tbl["Ticker"].dropna().tolist())
     return []
-
-# Example (commented out) ticker refresh logic, you can enable if needed:
-# today = datetime.datetime.today()
-# if today.weekday() == 6 or not os.path.exists("tickers.py"):
-#     logger.info("Refreshing tickers from Wikipedia (Sunday or first run)")
-#     try:
-#         sp500 = get_sp500_tickers()
-#         nasdaq100 = get_nasdaq100_tickers()
-#         all_tickers = sorted(set(sp500 + nasdaq100))
-#         with open("tickers.py", "w") as f:
-#             f.write("# Auto-generated ticker lists\n\n")
-#             f.write("sp500_tickers = " + repr(sp500) + "\n\n")
-#             f.write("nasdaq100_tickers = " + repr(nasdaq100) + "\n\n")
-#             f.write("all_tickers = " + repr(all_tickers) + "\n")
-#         logger.info("Ticker refresh successful. Total = %d", len(all_tickers))
-#     except Exception as e:
-#         logger.error("Ticker refresh failed: %s", e)
 
 # === HISTORICAL DATA with cache ===
 def fetch_cached_history(symbol, period="2y", interval="1d"):
@@ -131,31 +115,51 @@ def generate_rsi_signal(df):
             signal, reason = "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
     return signal, reason, rsi, price
 
-# === FUNDAMENTALS & IV ===
-def fetch_fundamentals(symbol):
-    try:
-        info = yf.Ticker(symbol).info
-        return info.get("trailingPE", None), info.get("marketCap", None)
-    except Exception as e:
-        logger.warning("Fundamentals error %s: %s", symbol, e)
-        return None, None
+# === FUNDAMENTALS & IV with retries ===
+def fetch_fundamentals(symbol, max_retries=3, backoff=2):
+    retries = 0
+    while retries < max_retries:
+        try:
+            info = yf.Ticker(symbol).info
+            return info.get("trailingPE", None), info.get("marketCap", None)
+        except Exception as e:
+            if "Too Many Requests" in str(e):
+                wait_time = backoff ** retries
+                logger.warning(f"Rate limited fetching fundamentals for {symbol}, retrying after {wait_time}s...")
+                time.sleep(wait_time)
+                retries += 1
+            else:
+                logger.warning("Fundamentals error %s: %s", symbol, e)
+                break
+    return None, None
 
-def fetch_option_iv_history(symbol, lookback_days=52):
+def fetch_option_iv_history(symbol, lookback_days=52, max_retries=3, backoff=2):
     iv_data = []
-    try:
-        ticker = yf.Ticker(symbol)
-        for date in ticker.options[-lookback_days:]:
-            chain = ticker.option_chain(date)
-            if chain.calls.empty:
-                continue
-            under = ticker.history(period="1d")["Close"].iloc[-1]
-            chain.calls["distance"] = abs(chain.calls["strike"] - under)
-            atm = chain.calls.loc[chain.calls["distance"].idxmin()]
-            iv_data.append({"date": date, "IV": atm["impliedVolatility"]})
-    except Exception as e:
-        logger.warning("IV history error %s: %s", symbol, e)
+    retries = 0
+    while retries < max_retries:
+        try:
+            ticker = yf.Ticker(symbol)
+            for date in ticker.options[-lookback_days:]:
+                chain = ticker.option_chain(date)
+                if chain.calls.empty:
+                    continue
+                under = ticker.history(period="1d")["Close"].iloc[-1]
+                chain.calls["distance"] = abs(chain.calls["strike"] - under)
+                atm = chain.calls.loc[chain.calls["distance"].idxmin()]
+                iv_data.append({"date": date, "IV": atm["impliedVolatility"]})
+            return pd.DataFrame(iv_data)
+        except Exception as e:
+            if "Too Many Requests" in str(e):
+                wait_time = backoff ** retries
+                logger.warning(f"Rate limited fetching IV history for {symbol}, retrying after {wait_time}s...")
+                time.sleep(wait_time)
+                retries += 1
+            else:
+                logger.warning("IV history error %s: %s", symbol, e)
+                break
     return pd.DataFrame(iv_data)
 
+# === CALCULATE IV RANK & PERCENTILE ===
 def calc_iv_rank_percentile(iv_series):
     s = pd.Series(iv_series).dropna()
     if len(s) < 5:
@@ -200,7 +204,6 @@ def job():
         if hist.empty:
             skipped += 1
             continue
-
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
 
@@ -243,10 +246,13 @@ def job():
             if sig == "BUY":
                 buy_alerts.append(line)
                 buy_tickers.append(symbol)
-            else:  # SELL
+            else:
                 sell_alerts.append(line)
 
-    # Save buy tickers to file
+        # Optional: small delay to reduce API rate limit risk
+        time.sleep(0.1)
+
+    # Save buy tickers to a separate file
     if buy_tickers:
         buy_file_path = os.path.join(config.DATA_DIR, "buy_signals.txt")
         try:
@@ -257,7 +263,6 @@ def job():
         except Exception as e:
             logger.error(f"Failed to save buy tickers: {e}")
 
-    # The rest of your email composition and sending continues here...
     if not buy_alerts and not sell_alerts:
         logger.info("No alerts. Processed=%d, Skipped=%d, Alerts=0", total, skipped)
         print("No alerts found.")
@@ -274,7 +279,6 @@ def job():
     logger.info("SUMMARY: Processed=%d, Skipped=%d, Alerts=%d", total, skipped, len(buy_alerts) + len(sell_alerts))
     print(email_body)
     send_email("StockHome Trading Alerts", email_body)
-
 
 if __name__ == "__main__":
     job()
