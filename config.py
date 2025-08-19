@@ -1,4 +1,4 @@
-# config.py
+import os   # <-- ADD this line!
 
 # Email / SMTP settings
 SMTP_SERVER = 'smtp.gmail.com'
