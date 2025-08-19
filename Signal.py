@@ -191,6 +191,7 @@ def log_alert(alert):
 def job():
     buy_alerts = []
     sell_alerts = []
+    buy_tickers = []
     total, skipped = 0, 0
 
     for symbol in tickers:
@@ -199,6 +200,7 @@ def job():
         if hist.empty:
             skipped += 1
             continue
+
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
 
@@ -240,9 +242,22 @@ def job():
 
             if sig == "BUY":
                 buy_alerts.append(line)
+                buy_tickers.append(symbol)
             else:  # SELL
                 sell_alerts.append(line)
 
+    # Save buy tickers to file
+    if buy_tickers:
+        buy_file_path = os.path.join(config.DATA_DIR, "buy_signals.txt")
+        try:
+            with open(buy_file_path, "w") as f:
+                for ticker in buy_tickers:
+                    f.write(ticker + "\n")
+            logger.info(f"Saved {len(buy_tickers)} buy tickers to {buy_file_path}")
+        except Exception as e:
+            logger.error(f"Failed to save buy tickers: {e}")
+
+    # The rest of your email composition and sending continues here...
     if not buy_alerts and not sell_alerts:
         logger.info("No alerts. Processed=%d, Skipped=%d, Alerts=0", total, skipped)
         print("No alerts found.")
@@ -259,6 +274,7 @@ def job():
     logger.info("SUMMARY: Processed=%d, Skipped=%d, Alerts=%d", total, skipped, len(buy_alerts) + len(sell_alerts))
     print(email_body)
     send_email("StockHome Trading Alerts", email_body)
+
 
 if __name__ == "__main__":
     job()
