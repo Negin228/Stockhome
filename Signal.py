@@ -159,27 +159,63 @@ def fetch_with_retry(func, *args, retries=5, delay=60, **kwargs):
     return None
     
 def fetch_fundamentals(symbol):
-    try:
+    def _fetch():
         info = yf.Ticker(symbol).info
         return info.get("trailingPE", None), info.get("marketCap", None)
-    except Exception as e: 
+    try:
+        return fetch_with_retry(_fetch)
+    except Exception as e:
         logger.warning("Fundamentals error %s: %s", symbol, e)
         return None, None
 
+
 def fetch_option_iv_history(symbol, lookback_days=52):
-    iv_data = []
-    try:
+    def _fetch():
+        iv_data = []
         ticker = yf.Ticker(symbol)
         for date in ticker.options[-lookback_days:]:
             chain = ticker.option_chain(date)
-            if chain.calls.empty: continue
+            if chain.calls.empty:
+                continue
             under = ticker.history(period="1d")["Close"].iloc[-1]
             chain.calls["distance"] = abs(chain.calls["strike"] - under)
             atm = chain.calls.loc[chain.calls["distance"].idxmin()]
             iv_data.append({"date": date, "IV": atm["impliedVolatility"]})
+        return pd.DataFrame(iv_data)
+    try:
+        return fetch_with_retry(_fetch)
     except Exception as e:
-        logger.warning("IV history error %s: %s", symbol, e)
-    return pd.DataFrame(iv_data)
+        logger.warning(f"IV history error {symbol}: {e}")
+        return pd.DataFrame()
+
+def safe_download(symbol, *args, **kwargs):
+    def _download():
+        return yf.download(symbol, *args, **kwargs)
+    return fetch_with_retry(_download)
+
+# Replace
+# df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
+
+df = safe_download(symbol, period=period, interval=interval, auto_adjust=False)
+
+# And replace update call
+# new_df = yf.download(symbol, start=start, interval=interval, auto_adjust=False)
+
+new_df = safe_download(symbol, start=start, interval=interval, auto_adjust=False)
+
+def safe_finnhub_quote(symbol):
+    def _quote():
+        return finnhub_client.quote(symbol)
+    return fetch_with_retry(_quote)
+
+# In job() replace:
+# rt_price = finnhub_client.quote(symbol).get("c", price)
+try:
+    quote = safe_finnhub_quote(symbol)
+    rt_price = quote.get("c", price) if quote else price
+except Exception:
+    rt_price = price
+
 
 def calc_iv_rank_percentile(iv_series):
     s = pd.Series(iv_series).dropna()
