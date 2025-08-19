@@ -8,6 +8,7 @@ import smtplib
 import logging
 from logging.handlers import RotatingFileHandler
 import config
+import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -142,6 +143,21 @@ def generate_rsi_signal(df):
     return signal, reason, rsi, price
 
 # === FUNDAMENTALS & IV ===
+
+def fetch_with_retry(func, *args, retries=5, delay=60, **kwargs):
+    for attempt in range(retries):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            if 'Too Many Requests' in str(e):
+                wait = delay * (2 ** attempt)
+                logger.warning(f"Rate limit hit, sleeping {wait}s before retry...")
+                time.sleep(wait)
+            else:
+                raise
+    logger.error("Max retries exceeded.")
+    return None
+    
 def fetch_fundamentals(symbol):
     try:
         info = yf.Ticker(symbol).info
