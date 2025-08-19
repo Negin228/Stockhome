@@ -40,6 +40,9 @@ EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
+tickers = config.tickers
+
+
 # === Fetch tickers (weekly cache) ===
 def get_sp500_tickers():
     df = pd.read_html("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")[0]
@@ -52,29 +55,29 @@ def get_nasdaq100_tickers():
             return sorted(tbl["Ticker"].dropna().tolist())
     return []
     
-today = datetime.datetime.today()
-if today.weekday() == 6 or not os.path.exists("tickers.py"):
-    logger.info("Refreshing tickers from Wikipedia (Sunday or first run)")
-    try:
-        sp500 = get_sp500_tickers()
-        nasdaq100 = get_nasdaq100_tickers()
-        all_tickers = sorted(set(sp500 + nasdaq100))
-        with open("tickers.py", "w") as f:
-            f.write("# Auto-generated ticker lists\n\n")
-            f.write("sp500_tickers = " + repr(sp500) + "\n\n")
-            f.write("nasdaq100_tickers = " + repr(nasdaq100) + "\n\n")
-            f.write("all_tickers = " + repr(all_tickers) + "\n")
-        logger.info("Ticker refresh successful. Total = %d", len(all_tickers))
-    except Exception as e:
-        logger.error("Ticker refresh failed: %s", e)
+#today = datetime.datetime.today()
+#if today.weekday() == 6 or not os.path.exists("tickers.py"):
+ #   logger.info("Refreshing tickers from Wikipedia (Sunday or first run)")
+  #  try:
+   #     sp500 = get_sp500_tickers()
+    #    nasdaq100 = get_nasdaq100_tickers()
+     #   all_tickers = sorted(set(sp500 + nasdaq100))
+      #  with open("tickers.py", "w") as f:
+       #     f.write("# Auto-generated ticker lists\n\n")
+        #    f.write("sp500_tickers = " + repr(sp500) + "\n\n")
+         #   f.write("nasdaq100_tickers = " + repr(nasdaq100) + "\n\n")
+          #  f.write("all_tickers = " + repr(all_tickers) + "\n")
+        #logger.info("Ticker refresh successful. Total = %d", len(all_tickers))
+    #except Exception as e:
+     #   logger.error("Ticker refresh failed: %s", e)
 
-from tickers import sp500_tickers, nasdaq100_tickers, all_tickers
+#from tickers import sp500_tickers, nasdaq100_tickers, all_tickers
 
-if config.TICKER_SOURCE == "sp500":
-    tickers = sp500_tickers
-elif config.TICKER_SOURCE == "nasdaq100":
-    tickers = nasdaq100_tickers
-else:
+#if config.TICKER_SOURCE == "sp500":
+ #   tickers = sp500_tickers
+#elif config.TICKER_SOURCE == "nasdaq100":
+ #   tickers = nasdaq100_tickers
+#else:
     tickers = all_tickers
 
 # === HISTORICAL DATA with cache ===
