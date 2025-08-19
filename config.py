@@ -4,6 +4,10 @@ import os   # <-- ADD this line!
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
 
+# Choose ticker source: "sp500", "nasdaq100", or "all"
+TICKER_SOURCE = "all"
+
+
 # Technical indicator thresholds
 RSI_OVERSOLD = 30
 RSI_OVERBOUGHT = 70
@@ -22,3 +26,4 @@ LOG_BACKUP_COUNT = 5        # keep up to 5 rotated log files
 
 # CSV alerts log
 ALERTS_CSV = os.path.join(LOG_DIR, "alerts_history.csv")
+
