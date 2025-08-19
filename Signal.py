@@ -52,8 +52,8 @@ def get_nasdaq100_tickers():
             return sorted(tbl["Ticker"].dropna().tolist())
     return []
 
-if datetime.datetime.today().weekday() == 6:  # regenerate Sundays
-    logger.info("Refreshing tickers from Wikipedia (Sunday)")
+if today.weekday() == 6 or not os.path.exists("tickers.py"):
+    logger.info("Refreshing tickers from Wikipedia (Sunday or first run)")
     try:
         sp500 = get_sp500_tickers()
         nasdaq100 = get_nasdaq100_tickers()
