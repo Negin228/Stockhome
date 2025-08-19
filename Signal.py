@@ -9,21 +9,21 @@ import logging
 from logging.handlers import RotatingFileHandler
 import config
 import time
+import random
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from curl_cffi import requests  # To create impersonated session
 
-# = Setup Directories =
+# Setup directories
 os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
 
-# = Logging setup: file + console with rotation =
+# Logging setup
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
-file_handler = RotatingFileHandler(
-    log_path, maxBytes=config.LOG_MAX_BYTES,
-    backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8"
-)
+file_handler = RotatingFileHandler(log_path, maxBytes=config.LOG_MAX_BYTES,
+                                   backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8")
 console_handler = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 file_handler.setFormatter(formatter)
@@ -32,46 +32,40 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-# = Secrets from environment vars =
+# Secrets
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
+
+# Finnhub client
 finnhub_client = finnhub.Client(api_key=API_KEY)
+
+# yfinance session with Chrome impersonation to reduce throttling
+yf_session = requests.Session(impersonate="chrome")
 
 tickers = config.tickers
 
-# = Fetch tickers (weekly cache) =
-def get_sp500_tickers():
-    df = pd.read_html("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")[0]
-    return sorted(df["Symbol"].dropna().tolist())
-
-def get_nasdaq100_tickers():
-    tables = pd.read_html("https://en.wikipedia.org/wiki/NASDAQ-100")
-    for tbl in tables:
-        if "Ticker" in tbl.columns:
-            return sorted(tbl["Ticker"].dropna().tolist())
-    return []
-
-# = RETRY WRAPPER =
-def fetch_with_retry(func, *args, retries=5, delay=60, **kwargs):
+# Retry wrapper with max exponential backoff and jitter
+def fetch_with_retry(func, *args, retries=5, delay=60, max_delay=130, **kwargs):
     for attempt in range(retries):
         try:
             return func(*args, **kwargs)
         except Exception as e:
-            if 'Too Many Requests' in str(e) or 'Rate limited' in str(e) or '429' in str(e):
-                wait = delay * (2 ** attempt)
-                logger.warning(f"Rate limit hit, sleeping {wait}s before retry...")
+            err_str = str(e)
+            if 'Too Many Requests' in err_str or 'Rate limited' in err_str or '429' in err_str:
+                wait = min(delay * (2 ** attempt), max_delay) + random.uniform(0, 5)
+                logger.warning(f"Rate limit hit, sleeping {wait:.1f}s before retry [{attempt+1}/{retries}]...")
                 time.sleep(wait)
             else:
                 raise
-    logger.error("Max retries exceeded.")
+    logger.error("Max retries exceeded during fetch_with_retry.")
     return None
 
-# = HISTORICAL DATA with cache =
+# Safe download using retry and session
 def safe_download(symbol, *args, **kwargs):
     def _download():
-        return yf.download(symbol, *args, **kwargs)
+        return yf.download(symbol, *args, session=yf_session, **kwargs)
     return fetch_with_retry(_download)
 
 def fetch_cached_history(symbol, period="2y", interval="1d"):
@@ -81,7 +75,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
         age_days = (datetime.datetime.now() -
                     datetime.datetime.fromtimestamp(os.path.getmtime(file_path))).days
         if age_days > config.MAX_CACHE_AGE_DAYS:
-            logger.info("%s cache too old (%d days) → full refresh", symbol, age_days)
+            logger.info(f"{symbol} cache too old ({age_days} days) → full refresh")
             force_full = True
         else:
             try:
@@ -90,28 +84,27 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
                 df = None
     if df is None or df.empty or force_full:
         try:
-            logger.info("⬇️ Downloading full history: %s", symbol)
+            logger.info(f"⬇️ Downloading full history: {symbol}")
             df = safe_download(symbol, period=period, interval=interval, auto_adjust=False)
         except Exception as e:
-            logger.error("Download error %s: %s", symbol, e)
+            logger.error(f"Download error {symbol}: {e}")
             return pd.DataFrame()
     else:
         last_date = df.index[-1]
         start = (last_date - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-        logger.info("🔄 Updating %s from %s", symbol, start)
+        logger.info(f"🔄 Updating {symbol} from {start}")
         try:
             new_df = safe_download(symbol, start=start, interval=interval, auto_adjust=False)
             if new_df is not None and not new_df.empty:
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
         except Exception as e:
-            logger.warning("Update error %s: %s", symbol, e)
+            logger.warning(f"Update error {symbol}: {e}")
     try:
         df.to_csv(file_path)
     except Exception as e:
-        logger.warning("Cache save failed for %s: %s", symbol, e)
+        logger.warning(f"Cache save failed for {symbol}: {e}")
     return df
 
-# = INDICATORS =
 def calculate_indicators(df):
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
@@ -135,21 +128,21 @@ def generate_rsi_signal(df):
             signal, reason = "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
     return signal, reason, rsi, price
 
-# = FUNDAMENTALS & IV =
 def fetch_fundamentals(symbol):
     def _fetch():
-        info = yf.Ticker(symbol).info
+        ticker = yf.Ticker(symbol, session=yf_session)
+        info = ticker.info
         return info.get("trailingPE", None), info.get("marketCap", None)
     try:
         return fetch_with_retry(_fetch)
     except Exception as e:
-        logger.warning("Fundamentals error %s: %s", symbol, e)
+        logger.warning(f"Fundamentals error {symbol}: {e}")
         return None, None
 
 def fetch_option_iv_history(symbol, lookback_days=52):
     def _fetch():
         iv_data = []
-        ticker = yf.Ticker(symbol)
+        ticker = yf.Ticker(symbol, session=yf_session)
         for date in ticker.options[-lookback_days:]:
             chain = ticker.option_chain(date)
             if chain.calls.empty:
@@ -170,7 +163,6 @@ def safe_finnhub_quote(symbol):
         return finnhub_client.quote(symbol)
     return fetch_with_retry(_quote)
 
-# = IV Rank Calculation =
 def calc_iv_rank_percentile(iv_series):
     s = pd.Series(iv_series).dropna()
     if len(s) < 5:
@@ -180,7 +172,6 @@ def calc_iv_rank_percentile(iv_series):
     iv_pct = 100 * (s < cur).mean()
     return round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None
 
-# = EMAIL SEND =
 def send_email(subject, body):
     try:
         msg = MIMEMultipart()
@@ -193,16 +184,14 @@ def send_email(subject, body):
         s.quit()
         logger.info("✉️ Email sent.")
     except Exception as e:
-        logger.error("Email failed: %s", e)
+        logger.error(f"Email failed: {e}")
 
-# = ALERT CSV =
 def log_alert(alert):
     csv_path = config.ALERTS_CSV
     df = pd.DataFrame([alert])
     header = not os.path.exists(csv_path)
     df.to_csv(csv_path, mode="a", header=header, index=False)
 
-# = MAIN JOB =
 def job():
     rsi_alerts = []
     total, skipped = 0, 0
@@ -234,6 +223,8 @@ def job():
                 "pe_ratio": pe, "market_cap": mcap,
                 "iv_rank": iv_rank, "iv_percentile": iv_pct
             })
+        # Sleep a fixed 2 seconds between tickers to avoid hitting rate limits
+        time.sleep(2)
 
     if not rsi_alerts:
         logger.info(f"No alerts. Processed={total}, Skipped={skipped}, Alerts=0")
