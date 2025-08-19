@@ -9,7 +9,7 @@ import config
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-# --- Load secrets from environment ---
+# --- Load credentials ---
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -20,7 +20,7 @@ finnhub_client = finnhub.Client(api_key=API_KEY)
 # Ensure data directory exists
 os.makedirs(config.DATA_DIR, exist_ok=True)
 
-# ===== Fetch Ticker Lists =====
+# ===== Ticker Fetching =====
 def get_sp500_tickers():
     url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     df = pd.read_html(url)[0]
@@ -34,9 +34,10 @@ def get_nasdaq100_tickers():
             return sorted(tbl['Ticker'].dropna().tolist())
     return []
 
+# Refresh tickers on Sunday
 today = datetime.datetime.today()
-if today.weekday() == 6:  # Sunday refresh
-    print("📈 Refreshing tickers on Sunday...")
+if today.weekday() == 6:  # Sunday
+    print("📈 Refreshing ticker list...")
     try:
         sp500 = get_sp500_tickers()
         nasdaq100 = get_nasdaq100_tickers()
@@ -52,27 +53,34 @@ if today.weekday() == 6:  # Sunday refresh
 
 from tickers import all_tickers as tickers
 
-# ===== Data Fetching with Cache =====
+# ===== Data Caching with Expiry =====
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     """
-    Use locally cached CSV files to reduce Yahoo requests.
-    Updates with the last 5 days of fresh data each run.
+    Uses local CSV cache if available.
+    Updates last 5 days daily, but if cache older than MAX_CACHE_AGE_DAYS, full refresh.
     """
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df = None
+    force_full = False
 
     if os.path.exists(file_path):
-        try:
-            df = pd.read_csv(file_path, index_col=0, parse_dates=True)
-        except Exception:
-            df = None
+        # Check file age
+        mtime = datetime.datetime.fromtimestamp(os.path.getmtime(file_path))
+        age_days = (datetime.datetime.now() - mtime).days
+        if age_days > config.MAX_CACHE_AGE_DAYS:
+            print(f"⏳ Cache too old for {symbol} ({age_days} days). Forcing full refresh.")
+            force_full = True
+        else:
+            try:
+                df = pd.read_csv(file_path, index_col=0, parse_dates=True)
+            except Exception:
+                df = None
 
-    # If no cache or empty, full download
-    if df is None or df.empty:
+    if df is None or df.empty or force_full:
         print(f"⬇️ Downloading full history for {symbol}")
         df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
     else:
-        # Update only the last few days
+        # Incremental update
         last_date = df.index[-1]
         start = (last_date - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
         print(f"🔄 Updating {symbol} from {start}")
@@ -80,7 +88,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
         if not new_df.empty:
             df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
 
-    # Save back to cache
+    # Save back
     try:
         df.to_csv(file_path)
     except Exception as e:
@@ -88,17 +96,18 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
 
     return df
 
+# ===== Indicators =====
 def calculate_indicators(df):
     df['rsi'] = ta.momentum.RSIIndicator(df['Close'], window=14).rsi()
     df['dma200'] = df['Close'].rolling(window=200).mean()
     return df
 
+# ===== Fundamentals & IV =====
 def fetch_fundamentals(symbol):
     try:
         info = yf.Ticker(symbol).info
         return info.get('trailingPE', None), info.get('marketCap', None)
-    except Exception as e:
-        print(f"Error fundamentals {symbol}: {e}")
+    except Exception:
         return None, None
 
 def fetch_option_iv_history(symbol, lookback_days=52):
@@ -126,8 +135,8 @@ def calc_iv_rank_percentile(iv_series):
     hi, lo = iv_series.max(), iv_series.min()
     iv_rank = 100 * (current - lo) / (hi - lo) if hi > lo else None
     iv_pct = 100 * (iv_series < current).mean()
-    return (round(iv_rank, 2) if iv_rank is not None else None,
-            round(iv_pct, 2) if iv_pct is not None else None)
+    return (round(iv_rank, 2) if iv_rank else None,
+            round(iv_pct, 2) if iv_pct else None)
 
 # ===== Signals =====
 def generate_rsi_signal(df):
@@ -149,10 +158,8 @@ def fetch_real_time_quote(symbol):
 
 def format_market_cap(mcap):
     if mcap is None: return "N/A"
-    if mcap >= 1_000_000_000:
-        return f"{mcap/1_000_000_000:.2f}B"
-    elif mcap >= 1_000_000:
-        return f"{mcap/1_000_000:.2f}M"
+    if mcap >= 1_000_000_000: return f"{mcap/1_000_000_000:.2f}B"
+    if mcap >= 1_000_000: return f"{mcap/1_000_000:.2f}M"
     return str(mcap)
 
 # ===== Email =====
@@ -171,16 +178,15 @@ def job():
     rsi_alerts = []
 
     for symbol in tickers:
-        hist_data = fetch_cached_history(symbol)
-        if hist_data.empty:
+        hist = fetch_cached_history(symbol)
+        if hist.empty:
             continue
 
-        hist_data = calculate_indicators(hist_data)
-        signal, reason, rsi, price = generate_rsi_signal(hist_data)
+        hist = calculate_indicators(hist)
+        signal, reason, rsi, price = generate_rsi_signal(hist)
 
         quote = fetch_real_time_quote(symbol)
         rt_price = quote.get('c', price) if quote else price
-
         pe, mcap = fetch_fundamentals(symbol)
 
         iv_hist = fetch_option_iv_history(symbol)
@@ -195,7 +201,6 @@ def job():
                 line += f", IV Rank={iv_rank}, IV Percentile={iv_pct}"
             rsi_alerts.append(line)
 
-    # If alerts exist, send email
     if not rsi_alerts:
         print("No alerts found.")
         return
