@@ -22,8 +22,10 @@ os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
-file_handler = RotatingFileHandler(log_path, maxBytes=config.LOG_MAX_BYTES,
-                                   backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8")
+file_handler = RotatingFileHandler(
+    log_path, maxBytes=config.LOG_MAX_BYTES,
+    backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8"
+)
 console_handler = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 file_handler.setFormatter(formatter)
@@ -32,7 +34,7 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-# Secrets
+# Secrets from environment variables
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -71,6 +73,7 @@ def safe_download(symbol, *args, **kwargs):
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df, force_full = None, False
+
     if os.path.exists(file_path):
         age_days = (datetime.datetime.now() -
                     datetime.datetime.fromtimestamp(os.path.getmtime(file_path))).days
@@ -82,6 +85,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
                 df = pd.read_csv(file_path, index_col=0, parse_dates=True)
             except Exception:
                 df = None
+
     if df is None or df.empty or force_full:
         try:
             logger.info(f"⬇️ Downloading full history: {symbol}")
@@ -99,6 +103,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
         except Exception as e:
             logger.warning(f"Update error {symbol}: {e}")
+
     try:
         df.to_csv(file_path)
     except Exception as e:
@@ -192,9 +197,49 @@ def log_alert(alert):
     header = not os.path.exists(csv_path)
     df.to_csv(csv_path, mode="a", header=header, index=False)
 
+def format_market_cap(value):
+    if value is None:
+        return "N/A"
+    for unit in ["", "K", "M", "B", "T"]:
+        if abs(value) < 1000.0:
+            return f"{value:.2f}{unit}"
+        value /= 1000.0
+    return f"{value:.2f}P"  # For extremely large values
+
+def format_alerts_table(alerts):
+    if not alerts:
+        return "No RSI alerts were generated for the monitored tickers."
+
+    headers = ["Ticker", "Signal", "Price", "Reason", "PE Ratio", "Market Cap", "IV Rank", "IV Percentile"]
+    rows = [headers]
+
+    for alert in alerts:
+        ticker = alert.get("ticker", "N/A")
+        signal = alert.get("signal", "N/A")
+        price = f"${alert.get('price', 0):.2f}"
+        reason = alert.get("reason", "")
+        pe_ratio = f"{alert.get('pe_ratio'):.2f}" if alert.get('pe_ratio') is not None else "N/A"
+        market_cap = format_market_cap(alert.get("market_cap"))
+        iv_rank = f"{alert.get('iv_rank'):.2f}" if alert.get("iv_rank") is not None else "-"
+        iv_pct = f"{alert.get('iv_percentile'):.2f}" if alert.get("iv_percentile") is not None else "-"
+        rows.append([ticker, signal, price, reason, pe_ratio, market_cap, iv_rank, iv_pct])
+
+    col_widths = [max(len(str(row[i])) for row in rows) for i in range(len(headers))]
+
+    def format_row(row):
+        return " | ".join(str(cell).ljust(col_widths[i]) for i, cell in enumerate(row))
+
+    table_lines = [format_row(rows[0])]
+    table_lines.append("-|-".join('-' * w for w in col_widths))
+    for row in rows[1:]:
+        table_lines.append(format_row(row))
+
+    return "\n".join(table_lines)
+
 def job():
     rsi_alerts = []
     total, skipped = 0, 0
+
     for symbol in tickers:
         total += 1
         hist = fetch_cached_history(symbol)
@@ -211,30 +256,41 @@ def job():
         pe, mcap = fetch_fundamentals(symbol)
         iv_hist = fetch_option_iv_history(symbol)
         iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"]) if not iv_hist.empty else (None, None)
+
         if sig:
-            line = f"{symbol}: {sig} at ${rt_price:.2f}, {reason}, PE={pe or 'N/A'}, MarketCap={mcap or 'N/A'}"
-            if iv_rank:
-                line += f", IV Rank={iv_rank}, IV Percentile={iv_pct}"
-            rsi_alerts.append(line)
+            rsi_alerts.append({
+                "ticker": symbol,
+                "signal": sig,
+                "price": rt_price,
+                "reason": reason,
+                "pe_ratio": pe,
+                "market_cap": mcap,
+                "iv_rank": iv_rank,
+                "iv_percentile": iv_pct
+            })
             log_alert({
                 "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "ticker": symbol, "signal": sig, "price": rt_price,
+                "ticker": symbol,
+                "signal": sig,
+                "price": rt_price,
                 "rsi": round(rsi, 2) if rsi else None,
-                "pe_ratio": pe, "market_cap": mcap,
-                "iv_rank": iv_rank, "iv_percentile": iv_pct
+                "pe_ratio": pe,
+                "market_cap": mcap,
+                "iv_rank": iv_rank,
+                "iv_percentile": iv_pct
             })
-        # Sleep a fixed 2 seconds between tickers to avoid hitting rate limits
-        time.sleep(2)
+
+        time.sleep(2)  # Sleep 2 seconds between tickers to avoid rate limits
 
     if not rsi_alerts:
         logger.info(f"No alerts. Processed={total}, Skipped={skipped}, Alerts=0")
-        print("No alerts found.")
+        print("No RSI alerts were generated for the monitored tickers.")
         return
 
-    email_body = "RSI Alerts (RSI <30 or >70):\n" + "\n".join(rsi_alerts)
+    formatted_alerts = format_alerts_table(rsi_alerts)
     logger.info(f"SUMMARY: Processed={total}, Skipped={skipped}, Alerts={len(rsi_alerts)}")
-    print(email_body)
-    send_email("StockHome Trading Alerts", email_body)
+    print(formatted_alerts)
+    send_email("StockHome Trading Alerts", formatted_alerts)
 
 if __name__ == "__main__":
     job()
