@@ -10,4 +10,5 @@ RSI_OVERBOUGHT = 70
 MA_SHORT = 50
 MA_LONG = 200
 
-
+# Data storage
+DATA_DIR = "data"
