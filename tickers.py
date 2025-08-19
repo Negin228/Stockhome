@@ -1,11 +1,7 @@
-# tickers.py
+# Auto-generated ticker lists
 
-sp500_tickers = [
-    "AAPL", "MSFT", "AMZN", "GOOGL", "TSLA",  # Sample tickers; replace with full list
-    # add all S&P 500 tickers here
-]
+sp500_tickers = ["AAPL", "MSFT", "AMZN", ...]  # Full list from Wikipedia
 
-nasdaq100_tickers = [
-    "AAPL", "MSFT", "AMZN", "TSLA", "NVDA",  # Sample tickers; replace with full list
-    # add all Nasdaq 100 tickers here
-]
+nasdaq100_tickers = ["AAPL", "MSFT", "NVDA", ...]  # Full list from Wikipedia
+
+all_tickers = ["AAPL", "MSFT", "AMZN", "NVDA", ...]  # Deduplicated merged list
