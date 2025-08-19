@@ -1,7 +1,5 @@
 # Auto-generated ticker lists
 
-sp500_tickers = ["AAPL", "MSFT", "AMZN", ...]  # Full list from Wikipedia
-
-nasdaq100_tickers = ["AAPL", "MSFT", "NVDA", ...]  # Full list from Wikipedia
-
-all_tickers = ["AAPL", "MSFT", "AMZN", "NVDA", ...]  # Deduplicated merged list
+sp500_tickers = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", ...]
+nasdaq100_tickers = ["AAPL", "MSFT", "NVDA", "AMZN", "TSLA", ...]
+all_tickers = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", ...]  # deduplicated
