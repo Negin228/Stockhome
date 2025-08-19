@@ -102,7 +102,6 @@ def calculate_indicators(df):
 def generate_rsi_signal(df):
     last = df.iloc[-1]
     rsi, price = last["rsi"], last["Close"]
-    # ensure scalars
     if isinstance(rsi, (pd.Series, pd.DataFrame)):
         rsi = float(rsi.squeeze())
     if isinstance(price, (pd.Series, pd.DataFrame)):
@@ -249,10 +248,10 @@ def job():
             else:
                 sell_alerts.append(line)
 
-        # Optional: small delay to reduce API rate limit risk
+        # Optional delay to reduce rate-limit risk
         time.sleep(0.1)
 
-    # Save buy tickers to a separate file
+    # Save buy tickers to file
     if buy_tickers:
         buy_file_path = os.path.join(config.DATA_DIR, "buy_signals.txt")
         try:
