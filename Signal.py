@@ -114,51 +114,31 @@ def generate_rsi_signal(df):
             signal, reason = "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
     return signal, reason, rsi, price
 
-# === FUNDAMENTALS & IV with retries ===
-def fetch_fundamentals(symbol, max_retries=3, backoff=2):
-    retries = 0
-    while retries < max_retries:
-        try:
-            info = yf.Ticker(symbol).info
-            return info.get("trailingPE", None), info.get("marketCap", None)
-        except Exception as e:
-            if "Too Many Requests" in str(e):
-                wait_time = backoff ** retries
-                logger.warning(f"Rate limited fetching fundamentals for {symbol}, retrying after {wait_time}s...")
-                time.sleep(wait_time)
-                retries += 1
-            else:
-                logger.warning("Fundamentals error %s: %s", symbol, e)
-                break
-    return None, None
+# === FUNDAMENTALS & IV ===
+def fetch_fundamentals(symbol):
+    try:
+        info = yf.Ticker(symbol).info
+        return info.get("trailingPE", None), info.get("marketCap", None)
+    except Exception as e:
+        logger.warning("Fundamentals error %s: %s", symbol, e)
+        return None, None
 
-def fetch_option_iv_history(symbol, lookback_days=52, max_retries=3, backoff=2):
+def fetch_option_iv_history(symbol, lookback_days=52):
     iv_data = []
-    retries = 0
-    while retries < max_retries:
-        try:
-            ticker = yf.Ticker(symbol)
-            for date in ticker.options[-lookback_days:]:
-                chain = ticker.option_chain(date)
-                if chain.calls.empty:
-                    continue
-                under = ticker.history(period="1d")["Close"].iloc[-1]
-                chain.calls["distance"] = abs(chain.calls["strike"] - under)
-                atm = chain.calls.loc[chain.calls["distance"].idxmin()]
-                iv_data.append({"date": date, "IV": atm["impliedVolatility"]})
-            return pd.DataFrame(iv_data)
-        except Exception as e:
-            if "Too Many Requests" in str(e):
-                wait_time = backoff ** retries
-                logger.warning(f"Rate limited fetching IV history for {symbol}, retrying after {wait_time}s...")
-                time.sleep(wait_time)
-                retries += 1
-            else:
-                logger.warning("IV history error %s: %s", symbol, e)
-                break
+    try:
+        ticker = yf.Ticker(symbol)
+        for date in ticker.options[-lookback_days:]:
+            chain = ticker.option_chain(date)
+            if chain.calls.empty:
+                continue
+            under = ticker.history(period="1d")["Close"].iloc[-1]
+            chain.calls["distance"] = abs(chain.calls["strike"] - under)
+            atm = chain.calls.loc[chain.calls["distance"].idxmin()]
+            iv_data.append({"date": date, "IV": atm["impliedVolatility"]})
+    except Exception as e:
+        logger.warning("IV history error %s: %s", symbol, e)
     return pd.DataFrame(iv_data)
 
-# === CALCULATE IV RANK & PERCENTILE ===
 def calc_iv_rank_percentile(iv_series):
     s = pd.Series(iv_series).dropna()
     if len(s) < 5:
@@ -227,6 +207,7 @@ def job():
             if iv_rank is not None:
                 line_parts.append(f"IV Rank={iv_rank}")
                 line_parts.append(f"IV Percentile={iv_pct}")
+
             line = ", ".join(line_parts)
 
             alert_entry = {
@@ -245,22 +226,26 @@ def job():
             if sig == "BUY":
                 buy_alerts.append(line)
                 buy_tickers.append(symbol)
+                logger.info(f"Added to buy_tickers: {symbol}")
             else:
                 sell_alerts.append(line)
 
-        # Optional delay to reduce rate-limit risk
+        # Optional: slight delay to reduce API rate-limiting issues
         time.sleep(0.1)
 
-    # Save buy tickers to file
+    # Log buy tickers and write them to a file
+    logger.info(f"Total buy tickers: {len(buy_tickers)}")
     if buy_tickers:
         buy_file_path = os.path.join(config.DATA_DIR, "buy_signals.txt")
         try:
-            with open(buy_file_path, "w") as f:
+            with open(buy_file_path, "w") as file:
                 for ticker in buy_tickers:
-                    f.write(ticker + "\n")
-            logger.info(f"Saved {len(buy_tickers)} buy tickers to {buy_file_path}")
+                    file.write(ticker + "\n")
+            logger.info(f"Saved buy tickers to {buy_file_path}")
         except Exception as e:
-            logger.error(f"Failed to save buy tickers: {e}")
+            logger.error(f"Failed to save buy tickers file: {e}")
+    else:
+        logger.info("No buy tickers found to save.")
 
     if not buy_alerts and not sell_alerts:
         logger.info("No alerts. Processed=%d, Skipped=%d, Alerts=0", total, skipped)
@@ -276,6 +261,7 @@ def job():
         email_body += "\n".join(f"  - {alert}" for alert in sell_alerts) + "\n"
 
     logger.info("SUMMARY: Processed=%d, Skipped=%d, Alerts=%d", total, skipped, len(buy_alerts) + len(sell_alerts))
+
     print(email_body)
     send_email("StockHome Trading Alerts", email_body)
 
