@@ -10,5 +10,6 @@ RSI_OVERBOUGHT = 70
 MA_SHORT = 50
 MA_LONG = 200
 
-# Data storage
+# Data storage + cache settings
 DATA_DIR = "data"
+MAX_CACHE_AGE_DAYS = 30   # after this, do a full refresh
