@@ -21,3 +21,12 @@ S&P 500 list is a long one. Every Sunday night, do the following:
 This list will be the input for Monday.
 
 If the output of 1 shows any ticker with P/E <=30, it sends out an email. Then runs 2-5, and if there are more tickers, it will list them in a separate email. Aggregates all in a file, and runs the code every hour. This time, runs 1-5, and sends emails if there are any new tickers.
+
+
+What to fix:
+1) works if the file is not there, but then gives this error:
+2025-08-20 00:36:38,872 [WARNING] Date parsing failed in cached data for CHTR, forcing full refresh
+2) CSV files were not created when running on Github Actions
+3) 6 or 7 weeks
+4) PE --> p/E
+5) highlight the strike prices where =~0.1
