@@ -312,8 +312,14 @@ def job():
         calls_7weeks = fetch_calls_for_7_weeks(buy_symbol)
         try:
             stock_price = finnhub_client.quote(buy_symbol).get("c", None)
-        except Exception:
+            if hasattr(stock_price, "item"):  # If it's a NumPy scalar or pd.Series with one value
+                stock_price = stock_price.item()
+            if isinstance(stock_price, pd.Series):
+                stock_price = stock_price.iloc[-1]
+            logger.info(f"Spot price for {buy_symbol}: {stock_price}")
+        except Exception as e:
             stock_price = None
+            logger.warning(f"Failed to fetch spot price for {buy_symbol}: {e}")
 
         if stock_price is None or stock_price == 0:
             hist = fetch_cached_history(buy_symbol)
