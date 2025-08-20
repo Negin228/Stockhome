@@ -10,3 +10,14 @@ It checks the spot and strike prices as well as premiums for the identified tick
 
   Then suggests the Strike prices. 
   
+S&P 500 list is a long one. Every Sunday night, do the following:
+  Calculate P/E for the whole list.
+  1) Prioritize as following: P/E <= 30 and RSI <= 30
+  2) P/E > 30 and RSI <= 30
+  3) P/E <= 30 and RSI > 30
+  4) P/E > 30 and RSI > 30
+  5) Failed list due to limits
+
+This list will be the input for Monday.
+
+If the output of 1 shows any ticker with P/E <=30, it sends out an email. Then runs 2-5, and if there are more tickers, it will list them in a separate email. Aggregates all in a file, and runs the code every hour. This time, runs 1-5, and sends emails if there are any new tickers.
