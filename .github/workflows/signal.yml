@@ -30,3 +30,13 @@ jobs:
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+          - name: Run your script
+          
+  run: python Signal.py
+    - name: Upload buy_signals.txt as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: buy-signals
+        path: buy_signals.txt
+
+
