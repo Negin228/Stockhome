@@ -333,7 +333,7 @@ def job():
                 try:
                     stock_price = float(hist["Close"].iloc[-1])
                 except Exception:
-                    stock_price = hist["Close"].iloc[-1]
+                    stock_price = float(hist["Close"].iloc[-1])
                 logger.info(f"Using fallback historical close price for {buy_symbol}: {stock_price}")
             else:
                 logger.warning(f"No spot or fallback price for {buy_symbol}")
