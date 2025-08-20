@@ -30,3 +30,4 @@ What to fix:
 3) 6 or 7 weeks
 4) PE --> p/E
 5) highlight the strike prices where =~0.1
+6) Can't rewrite the json files if they already exist
