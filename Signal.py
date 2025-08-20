@@ -233,16 +233,27 @@ def job():
 
     logger.info(f"Total buy tickers collected: {len(buy_tickers)}")
     if buy_tickers:
-        buy_file_path = os.path.join(config.DATA_DIR, "buy_signals.txt")
-        try:
-            with open(buy_file_path, "w") as file:
+    print(f"DEBUG buy_tickers before write: {buy_tickers}")
+    buy_file_path = os.path.join(config.DATA_DIR, "buy_signals.txt")
+    try:
+            with open(buy_file_path, "w", encoding="utf-8") as file:
                 for ticker in buy_tickers:
                     file.write(ticker + "\n")
+                file.flush()
+                os.fsync(file.fileno())
             logger.info(f"Saved buy tickers to {buy_file_path}")
         except Exception as e:
             logger.error(f"Failed to save buy_signals.txt: {e}")
     else:
         logger.info("No buy tickers found to save.")
+
+    try:
+    with open(buy_file_path, "r", encoding="utf-8") as check_file:
+        print("=== BUY SIGNALS FILE CONTENTS ===")
+        print(check_file.read())
+        except Exception as e:
+        print("Failed to read written file: ", e)
+
 
     if not buy_alerts and not sell_alerts:
         logger.info("No alerts. Processed=%d, Skipped=%d, Alerts=0", total, skipped)
