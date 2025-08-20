@@ -1,5 +1,7 @@
 import os
 import datetime
+import json
+
 import yfinance as yf
 import finnhub
 import pandas as pd
@@ -7,23 +9,29 @@ import ta
 import smtplib
 import logging
 from logging.handlers import RotatingFileHandler
+
 import config
+
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # === Logging setup: file + console with rotation ===
 os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
+
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
+
 file_handler = RotatingFileHandler(
     log_path, maxBytes=config.LOG_MAX_BYTES,
     backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8"
 )
 console_handler = logging.StreamHandler()
+
 formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
+
 if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
@@ -33,6 +41,7 @@ API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
+
 finnhub_client = finnhub.Client(api_key=API_KEY)
 tickers = config.tickers
 
@@ -40,6 +49,7 @@ tickers = config.tickers
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df, force_full = None, False
+
     if os.path.exists(file_path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(file_path))).days
         if age_days > config.MAX_CACHE_AGE_DAYS:
@@ -47,9 +57,14 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
             force_full = True
         else:
             try:
-                df = pd.read_csv(file_path, index_col=0, parse_dates=True)
+                df = pd.read_csv(file_path, index_col=0, parse_dates=False)
+                df.index = pd.to_datetime(df.index, format="%m/%d/%Y", errors='coerce')
+                if df.index.isnull().any():
+                    logger.warning("Date parsing failed in cached data for %s, forcing full refresh", symbol)
+                    force_full = True
             except Exception:
                 df = None
+
     if df is None or df.empty or force_full:
         try:
             logger.info("⬇️ Downloading full history: %s", symbol)
@@ -59,6 +74,8 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
             return pd.DataFrame()
     else:
         last_date = df.index[-1]
+        if not isinstance(last_date, pd.Timestamp):
+            last_date = pd.to_datetime(last_date)
         start = (last_date - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
         logger.info("🔄 Updating %s from %s", symbol, start)
         try:
@@ -67,10 +84,12 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
         except Exception as e:
             logger.warning("Update error %s: %s", symbol, e)
-        try:
-            df.to_csv(file_path)
-        except Exception as e:
-            logger.warning("Cache save failed for %s: %s", symbol, e)
+
+    try:
+        df.to_csv(file_path)
+    except Exception as e:
+        logger.warning("Cache save failed for %s: %s", symbol, e)
+
     return df
 
 # === INDICATORS ===
@@ -85,9 +104,10 @@ def calculate_indicators(df):
 def generate_rsi_signal(df):
     last = df.iloc[-1]
     rsi, price = last["rsi"], last["Close"]
-    # ensure scalars
-    if isinstance(rsi, (pd.Series, pd.DataFrame)): rsi = float(rsi.squeeze())
-    if isinstance(price, (pd.Series, pd.DataFrame)): price = float(price.squeeze())
+    if isinstance(rsi, (pd.Series, pd.DataFrame)):
+        rsi = float(rsi.squeeze())
+    if isinstance(price, (pd.Series, pd.DataFrame)):
+        price = float(price.squeeze())
     signal, reason = None, ""
     if pd.notna(rsi):
         if rsi < config.RSI_OVERSOLD:
@@ -128,10 +148,67 @@ def calc_iv_rank_percentile(iv_series):
     cur, hi, lo = s.iloc[-1], s.max(), s.min()
     iv_rank = 100 * (cur - lo) / (hi - lo) if hi > lo else None
     iv_pct = 100 * (s < cur).mean()
-    return (round(iv_rank,2) if iv_rank else None, round(iv_pct,2) if iv_pct else None)
+    return (round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None)
+
+# === Fetch calls for next 7 weeks ===
+def fetch_calls_for_7_weeks(symbol):
+    from dateutil.parser import parse
+    calls_data = []
+    try:
+        ticker = yf.Ticker(symbol)
+        today = datetime.datetime.now()
+        valid_dates = [d for d in ticker.options if (parse(d) - today).days <= 49]
+        for exp_date in valid_dates:
+            chain = ticker.option_chain(exp_date)
+            if chain.calls.empty:
+                continue
+            for _, call in chain.calls.iterrows():
+                strike = call["strike"]
+                last_price = call.get("lastPrice", None)
+                bid = call.get("bid", None)
+                ask = call.get("ask", None)
+                if last_price is not None and last_price > 0:
+                    premium = last_price
+                elif bid is not None and ask is not None:
+                    premium = (bid + ask) / 2
+                else:
+                    premium = None
+                calls_data.append({
+                    "expiration": exp_date,
+                    "strike": strike,
+                    "premium": premium
+                })
+    except Exception as e:
+        logger.warning(f"Failed to fetch 7 weeks calls for {symbol}: {e}")
+    return calls_data
+
+# === Calculate custom metric ===
+def calculate_custom_metric(calls_data, stock_price):
+    if stock_price is None or stock_price == 0:
+        return calls_data
+    for call in calls_data:
+        strike = call.get("strike", None)
+        premium = call.get("premium", None)
+        try:
+            prem_val = float(premium) if premium is not None else 0.0
+        except Exception:
+            prem_val = 0.0
+        if strike is not None:
+            try:
+                metric = ((stock_price - strike) + prem_val) / stock_price
+                call["custom_metric"] = metric
+            except Exception as e:
+                logger.warning(f"Error computing custom metric for call: {call}, error: {e}")
+                call["custom_metric"] = None
+        else:
+            call["custom_metric"] = None
+    return calls_data
 
 # === EMAIL SEND ===
 def send_email(subject, body):
+    if not EMAIL_SENDER or not EMAIL_RECEIVER or not EMAIL_PASSWORD:
+        logger.error("Email environment variables are not properly set.")
+        return
     try:
         msg = MIMEMultipart()
         msg["From"], msg["To"], msg["Subject"] = EMAIL_SENDER, EMAIL_RECEIVER, subject
@@ -165,6 +242,7 @@ def job():
         if hist.empty:
             skipped += 1
             continue
+
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
 
@@ -214,6 +292,7 @@ def job():
 
     logger.info(f"Total buy tickers collected: {len(buy_tickers)}")
     print("DEBUG buy_tickers:", buy_tickers)
+
     if buy_tickers:
         buy_file_path = "buy_signals.txt"
         try:
@@ -224,18 +303,49 @@ def job():
         except Exception as e:
             logger.error(f"Failed to save buy_signals.txt: {e}")
 
-        # Confirm contents with direct readback and print
         try:
             with open(buy_file_path, "r", encoding="utf-8") as check:
                 content = check.read()
-                logger.info("buy_signals.txt contents after write:\n" + content)
-                print("=== BUY SIGNALS FILE CONTENTS ===")
-                print(content)
+            logger.info("buy_signals.txt contents after write:\n" + content)
+            print("=== BUY SIGNALS FILE CONTENTS ===")
+            print(content)
         except Exception as e:
             logger.error(f"Failed to read back buy_signals.txt: {e}")
     else:
         logger.info("No buy tickers found to save.")
         print("No buy tickers found to save.")
+
+    calls_dir = "calls_data"
+    os.makedirs(calls_dir, exist_ok=True)
+
+    for buy_symbol in buy_tickers:
+        calls_7weeks = fetch_calls_for_7_weeks(buy_symbol)
+        try:
+            stock_price = finnhub_client.quote(buy_symbol).get("c", None)
+        except Exception:
+            stock_price = None
+
+        if stock_price is None or stock_price == 0:
+            hist = fetch_cached_history(buy_symbol)
+            if not hist.empty:
+                stock_price = hist["Close"].iloc[-1]
+                logger.info(f"Using fallback historical close price for {buy_symbol}: {stock_price}")
+            else:
+                logger.warning(f"No spot or fallback price for {buy_symbol}")
+
+        calls_7weeks = calculate_custom_metric(calls_7weeks, stock_price)
+
+        for call in calls_7weeks:
+            logger.info(f"{buy_symbol} strike={call['strike']}, premium={call['premium']}, custom_metric={call.get('custom_metric')}")
+
+        if calls_7weeks:
+            calls_file = os.path.join(calls_dir, f"{buy_symbol}_calls_7weeks.json")
+            try:
+                with open(calls_file, "w", encoding="utf-8") as f:
+                    json.dump(calls_7weeks, f, indent=2)
+                logger.info(f"Saved 7-week call option data with metrics to {calls_file}")
+            except Exception as e:
+                logger.error(f"Failed to save call data for {buy_symbol}: {e}")
 
     if not buy_alerts and not sell_alerts:
         logger.info("No alerts. Processed=%d, Skipped=%d, Alerts=0", total, skipped)
@@ -245,13 +355,15 @@ def job():
     email_body = "RSI Alerts Summary:\n\n"
     if buy_alerts:
         email_body += f"🔹 Buy Signals (RSI < {config.RSI_OVERSOLD}):\n"
-        email_body += "\n".join(f"  - {alert}" for alert in buy_alerts) + "\n\n"
+        email_body += "\n".join(f" - {alert}" for alert in buy_alerts) + "\n\n"
     if sell_alerts:
         email_body += f"🔸 Sell Signals (RSI > {config.RSI_OVERBOUGHT}):\n"
-        email_body += "\n".join(f"  - {alert}" for alert in sell_alerts) + "\n"
+        email_body += "\n".join(f" - {alert}" for alert in sell_alerts) + "\n"
 
-    logger.info("SUMMARY: Processed=%d, Skipped=%d, Alerts=%d",
-                total, skipped, len(buy_alerts) + len(sell_alerts))
+    logger.info(
+        "SUMMARY: Processed=%d, Skipped=%d, Alerts=%d",
+        total, skipped, len(buy_alerts) + len(sell_alerts),
+    )
     print(email_body)
     send_email("StockHome Trading Alerts", email_body)
 
