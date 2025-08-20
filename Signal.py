@@ -183,7 +183,6 @@ def job():
         if hist.empty:
             skipped += 1
             continue
-
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
 
@@ -227,33 +226,32 @@ def job():
             if sig == "BUY":
                 buy_alerts.append(line)
                 buy_tickers.append(symbol)
-                logger.info(f"Added buy ticker: {symbol}")  # Debug log
+                logger.info(f"Added buy ticker: {symbol}")
             else:
                 sell_alerts.append(line)
 
     logger.info(f"Total buy tickers collected: {len(buy_tickers)}")
     if buy_tickers:
-    print(f"DEBUG buy_tickers before write: {buy_tickers}")
-    buy_file_path = os.path.join(config.DATA_DIR, "buy_signals.txt")
-    try:
+        buy_file_path = "buy_signals.txt"  # <-- Now always in script root/working directory
+        try:
             with open(buy_file_path, "w", encoding="utf-8") as file:
                 for ticker in buy_tickers:
                     file.write(ticker + "\n")
-                file.flush()
-                os.fsync(file.fileno())
             logger.info(f"Saved buy tickers to {buy_file_path}")
         except Exception as e:
             logger.error(f"Failed to save buy_signals.txt: {e}")
+
+        # Confirm contents with direct readback and print
+        try:
+            with open(buy_file_path, "r", encoding="utf-8") as check:
+                content = check.read()
+                logger.info("buy_signals.txt contents after write:\n" + content)
+                print("=== BUY SIGNALS FILE CONTENTS ===")
+                print(content)
+        except Exception as e:
+            logger.error(f"Failed to read back buy_signals.txt: {e}")
     else:
         logger.info("No buy tickers found to save.")
-
-    try:
-    with open(buy_file_path, "r", encoding="utf-8") as check_file:
-        print("=== BUY SIGNALS FILE CONTENTS ===")
-        print(check_file.read())
-        except Exception as e:
-        print("Failed to read written file: ", e)
-
 
     if not buy_alerts and not sell_alerts:
         logger.info("No alerts. Processed=%d, Skipped=%d, Alerts=0", total, skipped)
@@ -268,10 +266,11 @@ def job():
         email_body += f"🔸 Sell Signals (RSI > {config.RSI_OVERBOUGHT}):\n"
         email_body += "\n".join(f"  - {alert}" for alert in sell_alerts) + "\n"
 
-    logger.info("SUMMARY: Processed=%d, Skipped=%d, Alerts=%d", total, skipped, len(buy_alerts) + len(sell_alerts))
-
+    logger.info("SUMMARY: Processed=%d, Skipped=%d, Alerts=%d",
+                total, skipped, len(buy_alerts) + len(sell_alerts))
     print(email_body)
     send_email("StockHome Trading Alerts", email_body)
+
 
 if __name__ == "__main__":
     job()
