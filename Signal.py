@@ -34,7 +34,7 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-# === Secrets from environment vars ===
+# === Secrets from environment variables ===
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -233,7 +233,7 @@ def job():
         if hist.empty:
             skipped += 1
             continue
-        
+
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
 
@@ -251,7 +251,7 @@ def job():
         iv_rank, iv_pct = (None, None)
         if not iv_hist.empty:
             iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"])
-        
+
         if sig:
             line_parts = [
                 f"{symbol}: {sig} at ${rt_price:.2f}",
@@ -262,7 +262,7 @@ def job():
             if iv_rank is not None:
                 line_parts.append(f"IV Rank={iv_rank}")
                 line_parts.append(f"IV Percentile={iv_pct}")
-            
+
             line = ", ".join(line_parts)
 
             alert_entry = {
@@ -297,11 +297,11 @@ def job():
             logger.info(f"Saved buy tickers to {buy_file_path}")
         except Exception as e:
             logger.error(f"Failed to save buy_signals.txt: {e}")
-        
+
         try:
             with open(buy_file_path, "r", encoding="utf-8") as check:
                 content = check.read()
-            logger.info("buy_signals.txt contents after write:\n" + content)
+            logger.info(f"buy_signals.txt contents after write:\n{content}")
             print("=== BUY SIGNALS FILE CONTENTS ===")
             print(content)
         except Exception as e:
@@ -333,7 +333,7 @@ def job():
                 try:
                     stock_price = float(hist["Close"].iloc[-1])
                 except Exception:
-                    stock_price = float(hist["Close"].iloc[-1])
+                    stock_price = hist["Close"].iloc[-1]
                 logger.info(f"Using fallback historical close price for {buy_symbol}: {stock_price}")
             else:
                 logger.warning(f"No spot or fallback price for {buy_symbol}")
