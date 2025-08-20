@@ -15,17 +15,18 @@ import config
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-# Logging setup: file + console with rotation
+# === Logging setup: file + console with rotation ===
 os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
 
-file_handler = RotatingFileHandler(log_path, maxBytes=config.LOG_MAX_BYTES, backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8")
+file_handler = RotatingFileHandler(log_path, maxBytes=config.LOG_MAX_BYTES,
+                                   backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8")
 console_handler = logging.StreamHandler()
-formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 
+formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
 
@@ -33,7 +34,7 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-# Secrets from environment vars
+# === Secrets from environment vars ===
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -42,7 +43,6 @@ EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 finnhub_client = finnhub.Client(api_key=API_KEY)
 tickers = config.tickers
 
-# Fetch historical data with cache
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df, force_full = None, False
@@ -64,32 +64,31 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
 
     if df is None or df.empty or force_full:
         try:
-            logger.info("⬇️ Downloading full history: %s", symbol)
+            logger.info(f"⬇️ Downloading full history: {symbol}")
             df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
         except Exception as e:
-            logger.error("Download error %s: %s", symbol, e)
+            logger.error(f"Download error {symbol}: {e}")
             return pd.DataFrame()
     else:
         last_date = df.index[-1]
         if not isinstance(last_date, pd.Timestamp):
             last_date = pd.to_datetime(last_date)
         start = (last_date - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-        logger.info("🔄 Updating %s from %s", symbol, start)
+        logger.info(f"🔄 Updating {symbol} from {start}")
         try:
             new_df = yf.download(symbol, start=start, interval=interval, auto_adjust=False)
             if not new_df.empty:
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
         except Exception as e:
-            logger.warning("Update error %s: %s", symbol, e)
+            logger.warning(f"Update error {symbol}: {e}")
 
     try:
         df.to_csv(file_path)
     except Exception as e:
-        logger.warning("Cache save failed for %s: %s", symbol, e)
+        logger.warning(f"Cache save failed for {symbol}: {e}")
 
     return df
 
-# Calculate indicators
 def calculate_indicators(df):
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
@@ -113,13 +112,12 @@ def generate_rsi_signal(df):
             signal, reason = "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
     return signal, reason, rsi, price
 
-# Fetch fundamentals
 def fetch_fundamentals(symbol):
     try:
         info = yf.Ticker(symbol).info
         return info.get("trailingPE", None), info.get("marketCap", None)
     except Exception as e:
-        logger.warning("Fundamentals error %s: %s", symbol, e)
+        logger.warning(f"Fundamentals error {symbol}: {e}")
         return None, None
 
 def fetch_option_iv_history(symbol, lookback_days=52):
@@ -135,7 +133,7 @@ def fetch_option_iv_history(symbol, lookback_days=52):
             atm = chain.calls.loc[chain.calls["distance"].idxmin()]
             iv_data.append({"date": date, "IV": atm["impliedVolatility"]})
     except Exception as e:
-        logger.warning("IV history error %s: %s", symbol, e)
+        logger.warning(f"IV history error {symbol}: {e}")
     return pd.DataFrame(iv_data)
 
 def calc_iv_rank_percentile(iv_series):
@@ -147,7 +145,6 @@ def calc_iv_rank_percentile(iv_series):
     iv_pct = 100 * (s < cur).mean()
     return (round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None)
 
-# Fetch calls for next 7 weeks
 def fetch_calls_for_7_weeks(symbol):
     from dateutil.parser import parse
     calls_data = []
@@ -179,22 +176,28 @@ def fetch_calls_for_7_weeks(symbol):
         logger.warning(f"Failed to fetch 7 weeks calls for {symbol}: {e}")
     return calls_data
 
-# Calculate custom metric for option calls
 def calculate_custom_metric(calls_data, stock_price):
-    if stock_price is None or stock_price == 0:
+    # Defensive: avoid ambiguous pandas Series or None
+    if stock_price is None or isinstance(stock_price, (pd.Series, list, tuple)) or stock_price == 0:
         return calls_data
     for call in calls_data:
         strike = call.get("strike", None)
         premium = call.get("premium", 0.0)
         try:
-            metric = ((stock_price - strike) + premium) / stock_price
-            call["custom_metric"] = metric
-        except Exception as e:
-            logger.warning(f"Error computing custom metric for call: {call}, error: {e}")
+            prem_val = float(premium) if premium is not None else 0.0
+        except Exception:
+            prem_val = 0.0
+        if strike is not None:
+            try:
+                metric = ((stock_price - strike) + prem_val) / stock_price
+                call["custom_metric"] = metric
+            except Exception as e:
+                logger.warning(f"Error computing custom metric for call: {call}, error: {e}")
+                call["custom_metric"] = None
+        else:
             call["custom_metric"] = None
     return calls_data
 
-# Send email
 def send_email(subject, body):
     if not EMAIL_SENDER or not EMAIL_RECEIVER or not EMAIL_PASSWORD:
         logger.error("Email environment variables are not properly set.")
@@ -210,16 +213,14 @@ def send_email(subject, body):
         s.quit()
         logger.info("✉️ Email sent.")
     except Exception as e:
-        logger.error("Email failed: %s", e)
+        logger.error(f"Email failed: {e}")
 
-# Log alerts to CSV
 def log_alert(alert):
     csv_path = config.ALERTS_CSV
     df = pd.DataFrame([alert])
     header = not os.path.exists(csv_path)
     df.to_csv(csv_path, mode="a", header=header, index=False)
 
-# Main job execution
 def job():
     buy_alerts = []
     sell_alerts = []
@@ -232,12 +233,16 @@ def job():
         if hist.empty:
             skipped += 1
             continue
-
+        
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
 
         try:
             rt_price = finnhub_client.quote(symbol).get("c", price)
+            if hasattr(rt_price, "item"):
+                rt_price = rt_price.item()
+            if isinstance(rt_price, pd.Series):
+                rt_price = rt_price.iloc[-1]
         except Exception:
             rt_price = price
 
@@ -246,7 +251,7 @@ def job():
         iv_rank, iv_pct = (None, None)
         if not iv_hist.empty:
             iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"])
-
+        
         if sig:
             line_parts = [
                 f"{symbol}: {sig} at ${rt_price:.2f}",
@@ -257,7 +262,7 @@ def job():
             if iv_rank is not None:
                 line_parts.append(f"IV Rank={iv_rank}")
                 line_parts.append(f"IV Percentile={iv_pct}")
-
+            
             line = ", ".join(line_parts)
 
             alert_entry = {
@@ -292,7 +297,7 @@ def job():
             logger.info(f"Saved buy tickers to {buy_file_path}")
         except Exception as e:
             logger.error(f"Failed to save buy_signals.txt: {e}")
-
+        
         try:
             with open(buy_file_path, "r", encoding="utf-8") as check:
                 content = check.read()
@@ -310,9 +315,10 @@ def job():
 
     for buy_symbol in buy_tickers:
         calls_7weeks = fetch_calls_for_7_weeks(buy_symbol)
+
         try:
             stock_price = finnhub_client.quote(buy_symbol).get("c", None)
-            if hasattr(stock_price, "item"):  # If it's a NumPy scalar or pd.Series with one value
+            if hasattr(stock_price, "item"):
                 stock_price = stock_price.item()
             if isinstance(stock_price, pd.Series):
                 stock_price = stock_price.iloc[-1]
@@ -344,7 +350,7 @@ def job():
                 logger.error(f"Failed to save call data for {buy_symbol}: {e}")
 
     if not buy_alerts and not sell_alerts:
-        logger.info("No alerts. Processed=%d, Skipped=%d, Alerts=0", total, skipped)
+        logger.info(f"No alerts. Processed={total}, Skipped={skipped}, Alerts=0")
         print("No alerts found.")
         return
 
@@ -356,10 +362,7 @@ def job():
         email_body += f"🔸 Sell Signals (RSI > {config.RSI_OVERBOUGHT}):\n"
         email_body += "\n".join(f" - {alert}" for alert in sell_alerts) + "\n"
 
-    logger.info(
-        "SUMMARY: Processed=%d, Skipped=%d, Alerts=%d",
-        total, skipped, len(buy_alerts) + len(sell_alerts),
-    )
+    logger.info(f"SUMMARY: Processed={total}, Skipped={skipped}, Alerts={len(buy_alerts) + len(sell_alerts)}")
     print(email_body)
     send_email("StockHome Trading Alerts", email_body)
 
