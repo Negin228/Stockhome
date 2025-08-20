@@ -50,14 +50,14 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
     if os.path.exists(file_path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(file_path))).days
         if age_days > config.MAX_CACHE_AGE_DAYS:
-            logger.info("%s cache too old (%d days) → full refresh", symbol, age_days)
+            logger.info(f"{symbol} cache too old ({age_days} days) → full refresh")
             force_full = True
         else:
             try:
                 df = pd.read_csv(file_path, index_col=0, parse_dates=False)
                 df.index = pd.to_datetime(df.index, format="%m/%d/%Y", errors='coerce')
                 if df.index.isnull().any():
-                    logger.warning("Date parsing failed in cached data for %s, forcing full refresh", symbol)
+                    logger.warning(f"Date parsing failed in cached data for {symbol}, forcing full refresh")
                     force_full = True
             except Exception:
                 df = None
@@ -177,8 +177,8 @@ def fetch_calls_for_7_weeks(symbol):
     return calls_data
 
 def calculate_custom_metric(calls_data, stock_price):
-    # Defensive: avoid ambiguous pandas Series or None
-    if stock_price is None or isinstance(stock_price, (pd.Series, list, tuple)) or stock_price == 0:
+    import numpy as np
+    if stock_price is None or isinstance(stock_price, (pd.Series, np.ndarray)) or stock_price == 0:
         return calls_data
     for call in calls_data:
         strike = call.get("strike", None)
@@ -330,7 +330,10 @@ def job():
         if stock_price is None or stock_price == 0:
             hist = fetch_cached_history(buy_symbol)
             if not hist.empty:
-                stock_price = hist["Close"].iloc[-1]
+                try:
+                    stock_price = float(hist["Close"].iloc[-1])
+                except Exception:
+                    stock_price = hist["Close"].iloc[-1]
                 logger.info(f"Using fallback historical close price for {buy_symbol}: {stock_price}")
             else:
                 logger.warning(f"No spot or fallback price for {buy_symbol}")
