@@ -15,20 +15,17 @@ import config
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-# === Logging setup: file + console with rotation ===
+# Logging setup: file + console with rotation
 os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
 
-file_handler = RotatingFileHandler(
-    log_path, maxBytes=config.LOG_MAX_BYTES,
-    backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8"
-)
+file_handler = RotatingFileHandler(log_path, maxBytes=config.LOG_MAX_BYTES, backupCount=config.LOG_BACKUP_COUNT, encoding="utf-8")
 console_handler = logging.StreamHandler()
-
 formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
+
 file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
 
@@ -36,7 +33,7 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-# === Secrets from environment vars ===
+# Secrets from environment vars
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -45,7 +42,7 @@ EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 finnhub_client = finnhub.Client(api_key=API_KEY)
 tickers = config.tickers
 
-# === HISTORICAL DATA with cache ===
+# Fetch historical data with cache
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df, force_full = None, False
@@ -92,7 +89,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
 
     return df
 
-# === INDICATORS ===
+# Calculate indicators
 def calculate_indicators(df):
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
@@ -116,7 +113,7 @@ def generate_rsi_signal(df):
             signal, reason = "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
     return signal, reason, rsi, price
 
-# === FUNDAMENTALS & IV ===
+# Fetch fundamentals
 def fetch_fundamentals(symbol):
     try:
         info = yf.Ticker(symbol).info
@@ -150,7 +147,7 @@ def calc_iv_rank_percentile(iv_series):
     iv_pct = 100 * (s < cur).mean()
     return (round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None)
 
-# === Fetch calls for next 7 weeks ===
+# Fetch calls for next 7 weeks
 def fetch_calls_for_7_weeks(symbol):
     from dateutil.parser import parse
     calls_data = []
@@ -172,7 +169,7 @@ def fetch_calls_for_7_weeks(symbol):
                 elif bid is not None and ask is not None:
                     premium = (bid + ask) / 2
                 else:
-                    premium = None
+                    premium = 0.0
                 calls_data.append({
                     "expiration": exp_date,
                     "strike": strike,
@@ -182,29 +179,22 @@ def fetch_calls_for_7_weeks(symbol):
         logger.warning(f"Failed to fetch 7 weeks calls for {symbol}: {e}")
     return calls_data
 
-# === Calculate custom metric ===
+# Calculate custom metric for option calls
 def calculate_custom_metric(calls_data, stock_price):
     if stock_price is None or stock_price == 0:
         return calls_data
     for call in calls_data:
         strike = call.get("strike", None)
-        premium = call.get("premium", None)
+        premium = call.get("premium", 0.0)
         try:
-            prem_val = float(premium) if premium is not None else 0.0
-        except Exception:
-            prem_val = 0.0
-        if strike is not None:
-            try:
-                metric = ((stock_price - strike) + prem_val) / stock_price
-                call["custom_metric"] = metric
-            except Exception as e:
-                logger.warning(f"Error computing custom metric for call: {call}, error: {e}")
-                call["custom_metric"] = None
-        else:
+            metric = ((stock_price - strike) + premium) / stock_price
+            call["custom_metric"] = metric
+        except Exception as e:
+            logger.warning(f"Error computing custom metric for call: {call}, error: {e}")
             call["custom_metric"] = None
     return calls_data
 
-# === EMAIL SEND ===
+# Send email
 def send_email(subject, body):
     if not EMAIL_SENDER or not EMAIL_RECEIVER or not EMAIL_PASSWORD:
         logger.error("Email environment variables are not properly set.")
@@ -222,14 +212,14 @@ def send_email(subject, body):
     except Exception as e:
         logger.error("Email failed: %s", e)
 
-# === ALERT CSV ===
+# Log alerts to CSV
 def log_alert(alert):
     csv_path = config.ALERTS_CSV
     df = pd.DataFrame([alert])
     header = not os.path.exists(csv_path)
     df.to_csv(csv_path, mode="a", header=header, index=False)
 
-# === MAIN JOB ===
+# Main job execution
 def job():
     buy_alerts = []
     sell_alerts = []
