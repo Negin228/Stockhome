@@ -10,13 +10,11 @@ It checks the spot and strike prices as well as premiums for the identified tick
 
   Then suggests the Strike prices. 
   
-S&P 500 list is a long one. Every Sunday night, do the following:
-  Calculate P/E for the whole list.
+S&P 500 list is a long one. Every night, do the following:
+  Calculate RSI and P/E for the whole list.
   1) Prioritize as following: P/E <= 30 and RSI <= 30
-  2) P/E > 30 and RSI <= 30
-  3) P/E <= 30 and RSI > 30
-  4) P/E > 30 and RSI > 30
-  5) Failed list due to limits
+  2) P/E > 30 and RSI <= 30 or  P/E <= 30 and RSI > 30 or P/E > 30 and RSI > 30
+  3) Failed list due to limits
 
 This list will be the input for Monday.
 
