@@ -58,13 +58,15 @@ jobs:
           restore-keys: |
             signal-state-${{ runner.os }}-
             signal-state-
-
+            
+      - name: Run Trading Bot
+        run: python Signal3.py
+        
       - name: Ensure folders exist
         run: |
           mkdir -p data logs state
 
-      - name: Run Trading Bot
-        run: python Signal3.py
+
 
       # (Nice to have) See outputs for this run
       - name: Upload artifacts
