@@ -357,7 +357,7 @@ def job(tickers_to_run):
             puts_details.append(
                 f"\n\nexpiration={put['expiration']}, strike={strike_str}, premium={premium_str}, stock_price={rt_price:.2f}, custom_metric={custom_metric_str}"
             )
-        puts_concat = " ".join(puts_details)
+        puts_concat = "\n" + "\n----------------------\n".join(puts_details)
 
         # Append puts info to buy alert lines
         for i, alert_line in enumerate(buy_alerts):
