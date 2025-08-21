@@ -18,7 +18,7 @@ on:
 
 jobs:
   pe_rsi_filter:
-    if: github.event.schedule == '30 12 * * 1-5'
+    if: github.event.schedule == '30 12 * * 1-5' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     outputs:
       filtered-tickers: ${{ steps.filter.outputs.filtered }}
@@ -38,7 +38,7 @@ jobs:
           echo "filtered=$(cat filtered_tickers.txt | tr '\n' ',')" >> $GITHUB_OUTPUT
 
   signal_filtered_run:
-    if: github.event.schedule == '30 13 * * 1-5'
+    if: github.event.schedule == '30 13 * * 1-5' || github.event_name == 'workflow_dispatch'
     needs: pe_rsi_filter
     runs-on: ubuntu-latest
     steps:
@@ -55,7 +55,7 @@ jobs:
           python Signal.py --tickers "${{ needs.pe_rsi_filter.outputs.filtered-tickers }}" --email-type first
 
   signal_remaining_run:
-    if: github.event.schedule == '31 13 * * 1-5'
+    if: github.event.schedule == '31 13 * * 1-5' || github.event_name == 'workflow_dispatch'
     needs: pe_rsi_filter
     runs-on: ubuntu-latest
     steps:
