@@ -16,10 +16,21 @@ on:
 
 
 
+name: Scheduled Signal Processing
+
+on:
+  schedule:
+    # 5:30 AM PT (12:30 PM UTC)
+    - cron: '30 12 * * *'
+    # 6:30 AM PT (1:30 PM UTC)
+    - cron: '30 13 * * *'
+    # Hourly from 7:30 AM to 12:30 PM PT (2:30 PM to 7:30 PM UTC)
+    - cron: '30 14-19 * * *'
+
 jobs:
 
   pe_rsi_filter:
-    if: contains(github.event.schedule, '0 12 * * *')
+    if: contains(github.event.schedule, '30 12 * * *')
     runs-on: ubuntu-latest
     outputs:
       filtered-tickers: ${{ steps.filter.outputs.filtered }}
@@ -39,9 +50,7 @@ jobs:
       - name: Run PE and RSI filter script
         id: filter
         run: |
-          # Run your filtering script that outputs filtered tickers into an output file
           python scripts/filter_pe_rsi.py --output filtered_tickers.txt
-          # Pass filtered list back to job output
           echo "::set-output name=filtered::$(cat filtered_tickers.txt | tr '\n' ',')"
 
   signal_first_run:
@@ -65,9 +74,8 @@ jobs:
         run: |
           python Signal.py --tickers "${{ needs.pe_rsi_filter.outputs.filtered }}" --email-type first
 
-  signal_second_run:
-    if: contains(github.event.schedule, '31 13 * * *')
-    needs: pe_rsi_filter
+  hourly_signal_checks:
+    if: startsWith(github.event.schedule, '30 ') && (contains(github.event.schedule, '14') || contains(github.event.schedule, '15') || contains(github.event.schedule, '16') || contains(github.event.schedule, '17') || contains(github.event.schedule, '18') || contains(github.event.schedule, '19'))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -82,27 +90,6 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run Signal.py on remaining tickers and send second email if new buys
-        run: |
-          # Compute rest of tickers by excluding filtered tickers
-          python scripts/run_signal_for_rest.py --excluded "${{ needs.pe_rsi_filter.outputs.filtered }}" --email-type second
-
-  hourly_signal_check:
-    if: startsWith(github.event.schedule, '0 ') && !contains(github.event.schedule, '12') && !contains(github.event.schedule, '13')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: Run Signal.py on all tickers and send email if new buys
+      - name: Run Signal.py on all tickers for hourly check and send email if new buys
         run: |
           python Signal.py --email-type hourly
