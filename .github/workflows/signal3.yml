@@ -63,10 +63,8 @@ jobs:
         run: |
           mkdir -p data logs state
 
-      - name: Run the script
-        run: |
-          python Signal3.py --email-type hourly
-        # or whatever args you use
+      - name: Run Trading Bot
+        run: python Signal3.py
 
       # (Nice to have) See outputs for this run
       - name: Upload artifacts
