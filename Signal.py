@@ -238,90 +238,71 @@ def log_alert(alert):
     header = not os.path.exists(csv_path)
     df.to_csv(csv_path, mode="a", header=header, index=False)
 
-def job(tickers_to_run, max_retries=3):
+def job(tickers_to_run):
     buy_alerts = []
     sell_alerts = []
     buy_tickers = []
     buy_prices = {}
     total, skipped = 0, 0
 
-    failed_stocks = set(tickers_to_run)  # Start with all tickers for first attempt
-    retries = 0
-
-    while failed_stocks and retries < max_retries:
-        current_retry_failed = set()
-        for symbol in list(failed_stocks):
-            try:
-                hist = fetch_cached_history(symbol)
-                if hist.empty:
-                    skipped += 1
-                    logger.warning(f"{symbol} skipped due to empty history")
-                    continue
-                hist = calculate_indicators(hist)
-                sig, reason, rsi, price = generate_rsi_signal(hist)
-                try:
-                    rt_price = finnhub_client.quote(symbol).get("c", price)
-                    if isinstance(rt_price, (pd.Series, pd.DataFrame)):
-                        rt_price = float(rt_price.squeeze())
-                except Exception:
-                    rt_price = price
-                pe, mcap = fetch_fundamentals(symbol)
-                iv_hist = fetch_option_iv_history(symbol)
-                iv_rank, iv_pct = (None, None)
-                if not iv_hist.empty:
-                    iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"])
-                if sig:
-                    line_parts = [
-                        f"{symbol}: {sig} at ${rt_price:.2f}",
-                        reason,
-                        f"PE={pe if pe else 'N/A'}",
-                        f"MarketCap={mcap if mcap else 'N/A'}"
-                    ]
-                    if iv_rank is not None:
-                        line_parts.append(f"IV Rank={iv_rank}")
-                    line_parts.append(f"IV Percentile={iv_pct}")
-                    line = ", ".join(line_parts)
-                    alert_entry = {
-                        "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        "ticker": symbol,
-                        "signal": sig,
-                        "price": rt_price,
-                        "rsi": round(rsi, 2) if rsi else None,
-                        "pe_ratio": pe,
-                        "market_cap": mcap,
-                        "iv_rank": iv_rank,
-                        "iv_percentile": iv_pct,
-                    }
-                    log_alert(alert_entry)
-                    if sig == "BUY":
-                        buy_alerts.append(line)
-                        buy_tickers.append(symbol)
-                        buy_prices[symbol] = rt_price
-                        logger.info(f"Added buy ticker: {symbol}")
-                    else:
-                        sell_alerts.append(line)
-
-                # Successful processing: remove from failed set
-                failed_stocks.discard(symbol)
-
-            except Exception as e:
-                logger.error(f"Error processing {symbol}: {e}")
-                current_retry_failed.add(symbol)
-
-        failed_stocks = current_retry_failed
-        retries += 1
-        if failed_stocks:
-            logger.info(f"Retrying failed stocks {failed_stocks}, attempt {retries}/{max_retries}")
+    for symbol in tickers_to_run:
+        total += 1
+        hist = fetch_cached_history(symbol)
+        if hist.empty:
+            skipped += 1
+            continue
+        hist = calculate_indicators(hist)
+        sig, reason, rsi, price = generate_rsi_signal(hist)
+        try:
+            rt_price = finnhub_client.quote(symbol).get("c", price)
+            if isinstance(rt_price, (pd.Series, pd.DataFrame)):
+                rt_price = float(rt_price.squeeze())
+        except Exception:
+            rt_price = price
+        pe, mcap = fetch_fundamentals(symbol)
+        iv_hist = fetch_option_iv_history(symbol)
+        iv_rank, iv_pct = (None, None)
+        if not iv_hist.empty:
+            iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"])
+        if sig:
+            line_parts = [
+                f"{symbol}: {sig} at ${rt_price:.2f}",
+                reason,
+                f"PE={pe if pe else 'N/A'}",
+                f"MarketCap={mcap if mcap else 'N/A'}"
+            ]
+            if iv_rank is not None:
+                line_parts.append(f"IV Rank={iv_rank}")
+            line_parts.append(f"IV Percentile={iv_pct}")
+            line = ", ".join(line_parts)
+            alert_entry = {
+                "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "ticker": symbol,
+                "signal": sig,
+                "price": rt_price,
+                "rsi": round(rsi, 2) if rsi else None,
+                "pe_ratio": pe,
+                "market_cap": mcap,
+                "iv_rank": iv_rank,
+                "iv_percentile": iv_pct,
+            }
+            log_alert(alert_entry)
+            if sig == "BUY":
+                buy_alerts.append(line)
+                buy_tickers.append(symbol)
+                buy_prices[symbol] = rt_price
+                logger.info(f"Added buy ticker: {symbol}")
+            else:
+                sell_alerts.append(line)
 
     logger.info(f"Total buy tickers collected: {len(buy_tickers)}")
 
-    # Save buy tickers to file
     if buy_tickers:
         buy_file_path = "buy_signals.txt"
         try:
-            with open(buy_file_path, "w", encoding="utf-8") as f:
+            with open(buy_file_path, "w", encoding="utf-8") as file:
                 for ticker in buy_tickers:
-                    f.write(ticker + "\n")
+                    file.write(ticker + "\n")
             logger.info(f"Saved buy tickers to {buy_file_path}")
         except Exception as e:
             logger.error(f"Failed to save buy_signals.txt: {e}")
