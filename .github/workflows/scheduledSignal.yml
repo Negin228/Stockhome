@@ -1,23 +1,12 @@
 name: Scheduled Signal Processing
-
 on:
   schedule:
     # 5:30 AM PT (12:30 UTC)
     - cron: '30 12 * * 1-5'
-    # 6:30 AM PT (13:30 UTC)
+    # 6:30 AM PT (13:30 UTC) - for filtered tickers
     - cron: '30 13 * * 1-5'
-    # Hourly from 7:30 AM to 12:30 PM PT (14:30 to 19:30 UTC)
-    - cron: '30 14 * * 1-5'
-    - cron: '30 15 * * 1-5'
-    - cron: '30 16 * * 1-5'
-    - cron: '30 17 * * 1-5'name: Scheduled Signal Processing
-
-on:
-  schedule:
-    # 5:30 AM PT (12:30 UTC)
-    - cron: '30 12 * * 1-5'
-    # 6:30 AM PT (13:30 UTC)
-    - cron: '30 13 * * 1-5'
+    # 6:31 AM PT (13:31 UTC) - for remaining tickers
+    - cron: '31 13 * * 1-5'
     # Hourly from 7:30 AM to 12:30 PM PT (14:30 to 19:30 UTC)
     - cron: '30 14 * * 1-5'
     - cron: '30 15 * * 1-5'
@@ -28,7 +17,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   pe_rsi_filter:
     if: github.event.schedule == '30 12 * * 1-5'
     runs-on: ubuntu-latest
@@ -37,40 +25,52 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Run PE and RSI filter script
         id: filter
         run: |
           python scripts/filter_pe_rsi.py --output filtered_tickers.txt
           echo "filtered=$(cat filtered_tickers.txt | tr '\n' ',')" >> $GITHUB_OUTPUT
 
-  signal_first_run:
+  signal_filtered_run:
     if: github.event.schedule == '30 13 * * 1-5'
     needs: pe_rsi_filter
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Run Signal.py on filtered tickers and send first email
         run: |
           python Signal.py --tickers "${{ needs.pe_rsi_filter.outputs.filtered-tickers }}" --email-type first
+
+  signal_remaining_run:
+    if: github.event.schedule == '31 13 * * 1-5'
+    needs: pe_rsi_filter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run Signal.py on remaining tickers and send second email if new buys
+        run: |
+          # Create a script to run Signal.py on remaining tickers (exclude filtered ones)
+          python scripts/run_signal_for_remaining.py --excluded "${{ needs.pe_rsi_filter.outputs.filtered-tickers }}" --email-type second
 
   hourly_signal_checks:
     if: contains(fromJson('["30 14 * * 1-5","30 15 * * 1-5","30 16 * * 1-5","30 17 * * 1-5","30 18 * * 1-5","30 19 * * 1-5"]'), github.event.schedule)
@@ -78,82 +78,12 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
-      - name: Run Signal.py on all tickers for hourly check and send email if new buys
-        run: |
-          python Signal.py --email-type hourly
-    - cron: '30 18 * * 1-5'
-    - cron: '30 19 * * 1-5'
-  workflow_dispatch:
-
-jobs:
-
-  pe_rsi_filter:
-    if: github.event.schedule == '30 12 * * 1-5'
-    runs-on: ubuntu-latest
-    outputs:
-      filtered-tickers: ${{ steps.filter.outputs.filtered }}
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run PE and RSI filter script
-        id: filter
-        run: |
-          python scripts/filter_pe_rsi.py --output filtered_tickers.txt
-          echo "filtered=$(cat filtered_tickers.txt | tr '\n' ',')" >> $GITHUB_OUTPUT
-
-  signal_first_run:
-    if: github.event.schedule == '30 13 * * 1-5'
-    needs: pe_rsi_filter
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run Signal.py on filtered tickers and send first email
-        run: |
-          python Signal.py --tickers "${{ needs.pe_rsi_filter.outputs.filtered-tickers }}" --email-type first
-
-  hourly_signal_checks:
-    if: contains(fromJson('["30 14 * * 1-5","30 15 * * 1-5","30 16 * * 1-5","30 17 * * 1-5","30 18 * * 1-5","30 19 * * 1-5"]'), github.event.schedule)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
       - name: Run Signal.py on all tickers for hourly check and send email if new buys
         run: |
           python Signal.py --email-type hourly
