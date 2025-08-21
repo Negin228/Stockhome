@@ -355,7 +355,7 @@ def job(tickers_to_run):
             premium_str = f"{premium:.2f}" if premium is not None else "N/A"
             custom_metric_str = f"%{custom_metric:.1f}" if custom_metric is not None else "N/A"
             puts_details.append(
-                f"\nexpiration={put['expiration']}, strike={strike_str}, premium={premium_str}, stock_price={rt_price:.2f}, custom_metric={custom_metric_str}"
+                f"expiration={put['expiration']}, strike={strike_str}, premium={premium_str}, stock_price={rt_price:.2f}, custom_metric={custom_metric_str}"
             )
         puts_concat = " ".join(puts_details)
 
@@ -404,7 +404,7 @@ def main():
             email_body += "\n\n".join(f" - {alert}" for alert in buy_alerts) + "\n\n"
         if sell_alerts:
             email_body += f"🔸 Sell Signals:\n"
-            email_body += "\n\n".join(f" - {alert}" for alert in sell_alerts) + "\n"
+            email_body += "\n\n".join(f" - {alert}" for alert in sell_alerts) + "\n\n"
 
         logger.info(f"Sending {args.email_type} email with {len(new_buys)} new buys")
 
