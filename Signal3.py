@@ -345,7 +345,7 @@ def job(tickers_to_run):
 
         puts_7weeks = selected_puts
 
-        # Build concatenated puts details string with % sign on custom_metric
+        # Build concatenated puts details string with double newlines and separator for clarity
         puts_details = []
         for put in puts_7weeks:
             strike = put.get("strike")
@@ -355,16 +355,17 @@ def job(tickers_to_run):
             premium_str = f"{premium:.2f}" if premium is not None else "N/A"
             custom_metric_str = f"%{custom_metric:.1f}" if custom_metric is not None else "N/A"
             puts_details.append(
-                f"\n\nexpiration={put['expiration']}, strike={strike_str}, premium={premium_str}, stock_price={rt_price:.2f}, custom_metric={custom_metric_str}"
+                f"expiration: {put['expiration']}\nstrike: {strike_str}\npremium: {premium_str}\nstock_price: {rt_price:.2f}\ncustom_metric: {custom_metric_str}"
             )
-        puts_concat = "\n" + "\n----------------------\n".join(puts_details)
+
+        puts_concat = "\n\n----------------------\n\n".join(puts_details)
+        puts_concat = "\n" + puts_concat + "\n"  # Extra newlines before/after
 
         # Append puts info to buy alert lines
         for i, alert_line in enumerate(buy_alerts):
             if alert_line.startswith(f"{buy_symbol}:"):
-                buy_alerts[i] = alert_line + " " + puts_concat
+                buy_alerts[i] = alert_line + puts_concat
                 break
-
 
         # Save puts data JSON file
         if puts_7weeks:
