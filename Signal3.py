@@ -355,7 +355,7 @@ def job(tickers_to_run):
             premium_str = f"{premium:.2f}" if premium is not None else "N/A"
             custom_metric_str = f"%{custom_metric:.1f}" if custom_metric is not None else "N/A"
             puts_details.append(
-                f"\nexpiration={put['expiration']}, strike={strike_str}, premium={premium_str}, stock_price={rt_price:.2f}, custom_metric={custom_metric_str}"
+                f"\n\nexpiration={put['expiration']}, strike={strike_str}, premium={premium_str}, stock_price={rt_price:.2f}, custom_metric={custom_metric_str}"
             )
         puts_concat = " ".join(puts_details)
 
