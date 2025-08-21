@@ -2,14 +2,14 @@ name: Scheduled Signal Processing
 
 on:
   schedule:
-    # 5am PT = 12:00 UTC
-    - cron: '0 12 * * *'      # 5:00 AM PT (RSI & PE filtering)
+    # 5:30 AM PT (12:30 UTC)
+    - cron: '30 12 * * *'
     # 6:30am PT = 13:30 UTC
-    - cron: '30 13 * * *'     # 6:30 AM PT (Signal.py on filtered tickers)
-    # 6:30am PT for rest tickers too (second run)
-    - cron: '31 13 * * *'     # 6:31 AM PT (Signal.py on rest tickers)
-    # Hourly from 7:00am PT (14:00 UTC) to 11:00pm PT (06:00 next day UTC)
-    - cron: '0 14-6/1 * * *'  # Hourly starting 7:00 AM PT (example, adjust as needed)
+    - cron: '30 13 * * *'
+    # Hourly from 7:30 AM to 12:30 PM PT (2:30 PM to 7:30 PM UTC)
+    - cron: '30 14-19 * * *'  
+
+
 
 jobs:
 
