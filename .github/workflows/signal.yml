@@ -37,8 +37,17 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
 
+      - name: List puts_data folder contents (debug)
+        run: ls -la puts_data || echo "No puts_data folder found"
+
       - name: Upload buy_signals.txt artifact
         uses: actions/upload-artifact@v4
         with:
           name: buy-signals
           path: buy_signals.txt
+
+      - name: Upload puts_data artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: puts-data-json
+          path: puts_data
