@@ -1,4 +1,4 @@
-# GitHub Actions workflow to run Signal4.py (Trading Bot)
+# GitHub Actions workflow to run Signal3.py (Trading Bot)
 # This workflow installs dependencies, runs the bot, and saves artifacts.
 
 name: Trading Bot Run
@@ -32,9 +32,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Running Signal4.py (Trading Bot)
+      # Running Signal3.py (Trading Bot)
       - name: Run Trading Bot (Signal4.py)
-        run: python Signal4.py
+        run: python Signal3.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
