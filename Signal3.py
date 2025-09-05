@@ -399,9 +399,9 @@ def main():
     new_buys = set(buy_tickers) - previous_buys
     new_buys = set(buy_tickers)
     if new_buys:
-        email_body = ""
+        email_body = "This is Signal version 4\n\n"
         if buy_alerts:
-            email_body += f"🔹 Buy Signals ({args.email_type}):\n"
+            email_body += f"🔹 Buy Signals:\n"
             email_body += "\n\n".join(f" - {alert}" for alert in buy_alerts) + "\n\n"
         if sell_alerts:
             email_body += f"🔸 Sell Signals:\n"
