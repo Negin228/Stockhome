@@ -260,10 +260,10 @@ def job(tickers_to_run):
         try:
             hist = fetch_cached_history(symbol)
             if hist.empty:
-                logger.info(f"No historical data found for {symbol}; skipping.")
-                failed_tickers.append(symbol)
+                logger.info(f"No historical data found for {symbol}; skipping without retry.")
+                #failed_tickers.append(symbol)
                 skipped += 1
-                continue
+                continue # DO NOT add to failed_tickers
         except Exception as e:
             if is_temporary_failure(e):
                 logger.warning(f"Temporary failure fetching data for {symbol}: {e}")
