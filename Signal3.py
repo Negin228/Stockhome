@@ -37,7 +37,7 @@ API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
-
+tickers = config.tickers
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
 def load_previous_buys(email_type):
