@@ -14,6 +14,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from collections import defaultdict
 import time
+import numpy as np
 
 # Logging setup
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -240,13 +241,24 @@ def job(tickers_to_run):
         if not iv_hist.empty:
             iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"])
         if sig:
-            mcap_million = f"{(mcap / 1_000_000):,.2f}M" if mcap else "N/A"
+            def format_market_cap(mcap):
+                if not mcap:
+                     return "N/A"
+                elif mcap >= 1_000_000_000:
+                     return f"{mcap / 1_000_000_000:.1f}B"
+                else:
+                     return f"{mcap / 1_000_000:.1f}M"
+            
+            mcap_formatted = format_market_cap(mcap)
+            pe_formatted = f"{pe:.1f}" if pe else "N/A"
+
             line_parts = [
                 f"{symbol}: {sig} at ${rt_price:.2f}",
                 reason,
-                f"PE={pe if pe else 'N/A'}",
-                f"MarketCap={mcap_million}"
+                f"PE={pe_formatted}",
+                f"MarketCap={mcap_formatted}"
             ]
+
             if iv_rank is not None:
                 line_parts.append(f"IV Rank={iv_rank}")
             line_parts.append(f"IV Percentile={iv_pct}")
