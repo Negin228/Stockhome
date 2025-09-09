@@ -15,7 +15,7 @@ from email.mime.multipart import MIMEMultipart
 from collections import defaultdict
 import time
 
-# === Logging setup: file + console with rotation ===
+# Logging setup
 os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
@@ -32,7 +32,6 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-# === Secrets from environment vars ===
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -66,7 +65,7 @@ def is_temporary_failure(error: Exception) -> bool:
         return True
     if any(term in msg for term in perm_errors):
         return False
-    return True  # default to retry
+    return True
 
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
@@ -172,58 +171,6 @@ def calc_iv_rank_percentile(iv_series):
     iv_pct = 100 * (s < cur).mean()
     return (round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None)
 
-def fetch_puts_for_7_weeks(symbol):
-    from dateutil.parser import parse
-    puts_data = []
-    try:
-        ticker = yf.Ticker(symbol)
-        today = datetime.datetime.now()
-        valid_dates = [d for d in ticker.options if (parse(d) - today).days <= 49]
-        for exp_date in valid_dates:
-            chain = ticker.option_chain(exp_date)
-            if chain.puts.empty:
-                continue
-            for _, put in chain.puts.iterrows():
-                strike = put["strike"]
-                last_price = put.get("lastPrice", None)
-                bid = put.get("bid", None)
-                ask = put.get("ask", None)
-                if last_price is not None and last_price > 0:
-                    premium = last_price
-                elif bid is not None and ask is not None:
-                    premium = (bid + ask) / 2
-                else:
-                    premium = None
-                puts_data.append({
-                    "expiration": exp_date,
-                    "strike": strike,
-                    "premium": premium
-                })
-    except Exception as e:
-        logger.warning(f"Failed to fetch 7 weeks puts for {symbol}: {e}")
-    return puts_data
-
-def calculate_custom_metric(puts_data, stock_price):
-    if stock_price is None or stock_price == 0:
-        return puts_data
-    for put in puts_data:
-        strike = put.get("strike", None)
-        premium = put.get("premium", None)
-        try:
-            prem_val = float(premium) if premium is not None else 0.0
-        except Exception:
-            prem_val = 0.0
-        if strike is not None:
-            try:
-                metric = (((stock_price - strike) + (prem_val / 100)) / stock_price) * 100
-                put["custom_metric"] = metric
-            except Exception as e:
-                logger.warning(f"Error computing custom metric for put: {put}, error: {e}")
-                put["custom_metric"] = None
-        else:
-            put["custom_metric"] = None
-    return puts_data
-
 def send_email(subject, body):
     if not EMAIL_SENDER or not EMAIL_RECEIVER or not EMAIL_PASSWORD:
         logger.error("Email environment variables are not properly set.")
@@ -261,11 +208,15 @@ def job(tickers_to_run):
             hist = fetch_cached_history(symbol)
             if hist.empty:
                 logger.info(f"No historical data found for {symbol}; skipping.")
-                failed_tickers.append(symbol)
                 skipped += 1
                 continue
         except Exception as e:
-            if is_temporary_failure(e):
+            msg = str(e).lower()
+            if "possibly delisted" in msg or "no price data found" in msg:
+                logger.info(f"Permanent failure (delisted) for {symbol}: {e}")
+                skipped += 1
+                continue
+            elif is_temporary_failure(e):
                 logger.warning(f"Temporary failure fetching data for {symbol}: {e}")
                 failed_tickers.append(symbol)
                 skipped += 1
@@ -320,7 +271,7 @@ def job(tickers_to_run):
             else:
                 sell_alerts.append(line)
 
-    # ... process puts as in previous code (omitted here to keep short)...
+    # Put processing omitted here for brevity
 
     return buy_tickers, buy_alerts, sell_alerts, failed_tickers
 
