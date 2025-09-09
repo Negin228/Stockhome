@@ -81,8 +81,8 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
                 df = pd.read_csv(file_path, skiprows=3, names=column_names)
                 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
                 df.set_index('Date', inplace=True)
-                #print("Columns after reading CSV:", df.columns.tolist())
-                #print("Index after parsing:", df.index)
+                print("Columns after reading CSV:", df.columns.tolist())
+                print("Index after parsing:", df.index)
                 
                 if df.index.isnull().any():
                     logger.warning("Date parsing failed in cached data for %s, forcing full refresh", symbol)
