@@ -15,6 +15,7 @@ from email.mime.multipart import MIMEMultipart
 from collections import defaultdict
 import time
 import numpy as np
+from dateutil.parser import parse
 
 # Logging setup
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -37,7 +38,7 @@ API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
-
+tickers = config.tickers
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
 def load_previous_buys(email_type):
@@ -174,6 +175,57 @@ def calc_iv_rank_percentile(iv_series):
     iv_pct = 100 * (s < cur).mean()
     return (round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None)
 
+def fetch_puts_for_7_weeks(symbol):
+    puts_data = []
+    try:
+        ticker = yf.Ticker(symbol)
+        today = datetime.datetime.now()
+        valid_dates = [d for d in ticker.options if (parse(d) - today).days <= 49]
+        for exp_date in valid_dates:
+            chain = ticker.option_chain(exp_date)
+            if chain.puts.empty:
+                continue
+            for _, put in chain.puts.iterrows():
+                strike = put["strike"]
+                last_price = put.get("lastPrice", None)
+                bid = put.get("bid", None)
+                ask = put.get("ask", None)
+                if last_price is not None and last_price > 0:
+                    premium = last_price
+                elif bid is not None and ask is not None:
+                    premium = (bid + ask) / 2
+                else:
+                    premium = None
+                puts_data.append({
+                    "expiration": exp_date,
+                    "strike": strike,
+                    "premium": premium
+                })
+    except Exception as e:
+        logger.warning(f"Failed to fetch 7 weeks puts for {symbol}: {e}")
+    return puts_data
+
+def calculate_custom_metric(puts_data, stock_price):
+    if stock_price is None or stock_price == 0:
+        return puts_data
+    for put in puts_data:
+        strike = put.get("strike", None)
+        premium = put.get("premium", None)
+        try:
+            prem_val = float(premium) if premium is not None else 0.0
+        except Exception:
+            prem_val = 0.0
+        if strike is not None:
+            try:
+                metric = (((stock_price - strike) + (prem_val / 100)) / stock_price) * 100
+                put["custom_metric"] = metric
+            except Exception as e:
+                logger.warning(f"Error computing custom metric for put: {put}, error: {e}")
+                put["custom_metric"] = None
+        else:
+            put["custom_metric"] = None
+    return puts_data
+
 def send_email(subject, body):
     if not EMAIL_SENDER or not EMAIL_RECEIVER or not EMAIL_PASSWORD:
         logger.error("Email environment variables are not properly set.")
@@ -196,6 +248,54 @@ def log_alert(alert):
     df = pd.DataFrame([alert])
     header = not os.path.exists(csv_path)
     df.to_csv(csv_path, mode="a", header=header, index=False)
+
+def format_email_body_clean(buy_alerts, sell_alerts, version="4"):
+    """
+    Format email body with clean table format
+    """
+    email_body = f"📊 StockHome Trading Signals v{version}\n"
+    email_body += f"Generated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+    email_body += "=" * 60 + "\n\n"
+    
+    if buy_alerts:
+        email_body += "🟢 BUY SIGNALS\n\n"
+        for alert in buy_alerts:
+            # Parse the alert to extract components
+            lines = alert.split('\n')
+            main_line = lines[0]
+            puts_data = [line for line in lines[1:] if line.strip() and 'expiration=' in line and '=' in line]
+            
+            email_body += f"📈 {main_line}\n"
+            
+            if puts_data:
+                email_body += "   📋 Recommended Put Options:\n"
+                for put_line in puts_data:
+                    if put_line.strip() and 'expiration=' in put_line:
+                        # Parse put line components
+                        try:
+                            parts = put_line.split(', ')
+                            exp = parts[0].split('=')[1] if len(parts) > 0 and 'expiration=' in parts[0] else 'N/A'
+                            strike = parts[1].split('=')[1] if len(parts) > 1 and 'strike=' in parts[1] else 'N/A'
+                            premium = parts[2].split('=')[1] if len(parts) > 2 and 'premium=' in parts[2] else 'N/A'
+                            stock_price = parts[3].split('=')[1] if len(parts) > 3 and 'stock_price=' in parts[3] else 'N/A'
+                            metric = parts[4].split('=')[1] if len(parts) > 4 and 'custom_metric=' in parts[4] else 'N/A'
+                            
+                            # Format cleanly
+                            clean_line = f"Exp: {exp}, Strike: ${strike}, Premium: ${premium}, Stock: ${stock_price}, Metric: {metric}"
+                            email_body += f"      • {clean_line}\n"
+                        except Exception as e:
+                            # Fallback to original formatting if parsing fails
+                            logger.warning(f"Failed to parse put line: {put_line}, error: {e}")
+                            clean_line = put_line.replace('expiration=', 'Exp: ').replace('strike=', 'Strike: $').replace('premium=', 'Premium: $').replace('stock_price=', 'Stock: $').replace('custom_metric=', 'Metric: ')
+                            email_body += f"      • {clean_line}\n"
+            email_body += "\n"
+    
+    if sell_alerts:
+        email_body += "🔴 SELL SIGNALS\n\n"
+        for alert in sell_alerts:
+            email_body += f"📉 {alert}\n\n"
+    
+    return email_body
 
 def job(tickers_to_run):
     buy_alerts = []
@@ -285,17 +385,83 @@ def job(tickers_to_run):
             else:
                 sell_alerts.append(line)
 
-    return buy_tickers, buy_alerts, sell_alerts, failed_tickers
+    logger.info(f"Total buy tickers collected: {len(buy_tickers)}")
 
-def format_email_body(buy_alerts, sell_alerts, version="4"):
-    email_body = f"This is Signal version {version}\n\n"
-    if buy_alerts:
-        email_body += f"🔹 Buy Signals:\n"
-        email_body += "\n\n".join(f" - {alert}" for alert in buy_alerts) + "\n\n"
-    if sell_alerts:
-        email_body += f"🔸 Sell Signals:\n"
-        email_body += "\n\n".join(f" - {alert}" for alert in sell_alerts) + "\n\n"
-    return email_body
+    if buy_tickers:
+        buy_file_path = "buy_signals.txt"
+        try:
+            with open(buy_file_path, "w", encoding="utf-8") as file:
+                for ticker in buy_tickers:
+                    file.write(ticker + "\n")
+            logger.info(f"Saved buy tickers to {buy_file_path}")
+        except Exception as e:
+            logger.error(f"Failed to save buy_signals.txt: {e}")
+
+    puts_dir = "puts_data"
+    os.makedirs(puts_dir, exist_ok=True)
+
+    for buy_symbol in buy_tickers:
+        puts_7weeks = fetch_puts_for_7_weeks(buy_symbol)
+        rt_price = buy_prices.get(buy_symbol, None)
+        if rt_price is None or rt_price == 0:
+            hist = fetch_cached_history(buy_symbol)
+            if not hist.empty:
+                rt_price = hist["Close"].iloc[-1]
+            else:
+                logger.warning(f"No spot or fallback price for {buy_symbol}")
+
+        puts_7weeks = calculate_custom_metric(puts_7weeks, rt_price)
+
+        puts_7weeks = [
+            put for put in puts_7weeks
+            if put.get("strike") is not None and put["strike"] < rt_price
+            and put.get("custom_metric") is not None and put["custom_metric"] >= 10
+        ]
+
+        puts_by_exp = defaultdict(list)
+        for put in puts_7weeks:
+            exp = put.get("expiration")
+            if exp:
+                puts_by_exp[exp].append(put)
+
+        selected_puts = []
+        for exp, puts_list in puts_by_exp.items():
+            closest_put = min(puts_list, key=lambda x: abs(x.get("custom_metric", float('inf')) - 10))
+            selected_puts.append(closest_put)
+
+        puts_7weeks = selected_puts
+
+        # Build concatenated puts details string with % sign on custom_metric
+        puts_details = []
+        for put in puts_7weeks:
+            strike = put.get("strike")
+            premium = put.get("premium")
+            custom_metric = put.get("custom_metric")
+            strike_str = f"{strike:.1f}" if strike is not None else "N/A"
+            premium_str = f"{premium:.2f}" if premium is not None else "N/A"
+            custom_metric_str = f"%{custom_metric:.1f}" if custom_metric is not None else "N/A"
+            puts_details.append(
+                f"\nexpiration={put['expiration']}, strike={strike_str}, premium={premium_str}, stock_price={rt_price:.2f}, custom_metric={custom_metric_str}"
+            )
+        puts_concat = "\n" + "\n----------------------\n".join(puts_details)
+
+        # Append puts info to buy alert lines
+        for i, alert_line in enumerate(buy_alerts):
+            if alert_line.startswith(f"{buy_symbol}:"):
+                buy_alerts[i] = alert_line + " " + puts_concat
+                break
+
+        # Save puts data JSON file
+        if puts_7weeks:
+            puts_file = os.path.join(puts_dir, f"{buy_symbol}_puts_7weeks.json")
+            try:
+                with open(puts_file, "w", encoding="utf-8") as f:
+                    json.dump(puts_7weeks, f, indent=2)
+                logger.info(f"Saved 7-week put option data with metrics to {puts_file}")
+            except Exception as e:
+                logger.error(f"Failed to save put data for {buy_symbol}: {e}")
+
+    return buy_tickers, buy_alerts, sell_alerts, failed_tickers
 
 def main():
     parser = argparse.ArgumentParser()
@@ -348,8 +514,9 @@ def main():
     new_buys = set(all_buy_tickers) - previous_buys
 
     if new_buys or all_sell_alerts:
-        email_body = format_email_body(all_buy_alerts, all_sell_alerts)
-        logger.info("Sending email with %d new buys (per-ticker retries)", len(new_buys))
+        email_body = format_email_body_clean(all_buy_alerts, all_sell_alerts)
+        logger.info(f"Sending email with {len(new_buys)} new buys after {retry_count} attempts")
+
         print(email_body)
         send_email("StockHome Trading Alerts (per-ticker retries)", email_body)
         save_buys(args.email_type, previous_buys.union(new_buys))
