@@ -69,7 +69,7 @@ jobs:
           python-version: '3.x'
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run Signal.py on all tickers and send second email if new buys
+      #- name: Run Signal.py on all tickers and send second email if new buys
         run: |
           python Signal.py --email-type second
 
