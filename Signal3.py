@@ -515,7 +515,7 @@ def main():
 
     if new_buys or all_sell_alerts:
         email_body = format_email_body_clean(all_buy_alerts, all_sell_alerts)
-        logger.info(f"Sending email with {len(new_buys)} new buys after {retry_count} attempts")
+        logger.info(f"Sending email with {len(new_buys)} new buys")
 
         print(email_body)
         send_email("StockHome Trading Alerts (per-ticker retries)", email_body)
