@@ -1,4 +1,4 @@
-name: Trading Bot Run
+name: Signals
 
 on:
   schedule:
@@ -13,41 +13,79 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-bot:
+  run-signals:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    permissions:
+      contents: read
+      actions: read
 
-      - name: Setup Python 3.10
+    env:
+      PYTHONUNBUFFERED: "1"
+      STATE_DIR: state
+      # your secrets here
+      SMTP_SERVER: smtp.gmail.com
+      SMTP_PORT: 587
+      EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+      # any API keys you use:
+      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install deps
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Restore latest cache snapshot (if any). This pulls data/logs/state from prior runs.
+      - name: Restore cache
+        id: restore-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            data
+            logs
+            state
+          key: signal-state-${{ runner.os }}-none
+          restore-keys: |
+            signal-state-${{ runner.os }}-
+            signal-state-
+            
       - name: Run Trading Bot
-        #run: python Signal.py
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+        run: python Signal3.py
+        
+      - name: Ensure folders exist
+        run: |
+          mkdir -p data logs state
 
-      - name: List puts_data folder contents (debug)
-        run: ls -la puts_data || echo "No puts_data folder found"
 
-      - name: Upload buy_signals.txt artifact
+
+      # (Nice to have) See outputs for this run
+      - name: Upload artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: buy-signals
-          path: buy_signals.txt
+          name: signals-outputs
+          path: |
+            data
+            logs
+            state
 
-      - name: Upload puts_data artifact
-        uses: actions/upload-artifact@v4
+      # Save a fresh cache snapshot for the *next* run
+      - name: Save updated cache
+        if: always()
+        uses: actions/cache/save@v4
         with:
-          name: puts-data-json
-          path: puts_data
+          path: |
+            data
+            logs
+            state
+          key: signal-state-${{ runner.os }}-${{ github.run_id }}
