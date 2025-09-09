@@ -15,6 +15,7 @@ from email.mime.multipart import MIMEMultipart
 from collections import defaultdict
 import time
 import numpy as np
+from dateutil.parser import parse
 
 # Logging setup
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -177,6 +178,57 @@ def calc_iv_rank_percentile(iv_series):
     iv_pct = 100 * (s < cur).mean()
     return (round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None)
 
+def fetch_puts_for_7_weeks(symbol):
+    puts_data = []
+    try:
+        ticker = yf.Ticker(symbol)
+        today = datetime.datetime.now()
+        valid_dates = [d for d in ticker.options if (parse(d) - today).days <= 49]
+        for exp_date in valid_dates:
+            chain = ticker.option_chain(exp_date)
+            if chain.puts.empty:
+                continue
+            for _, put in chain.puts.iterrows():
+                strike = put["strike"]
+                last_price = put.get("lastPrice", None)
+                bid = put.get("bid", None)
+                ask = put.get("ask", None)
+                if last_price is not None and last_price > 0:
+                    premium = last_price
+                elif bid is not None and ask is not None:
+                    premium = (bid + ask) / 2
+                else:
+                    premium = None
+                puts_data.append({
+                    "expiration": exp_date,
+                    "strike": strike,
+                    "premium": premium
+                })
+    except Exception as e:
+        logger.warning(f"Failed to fetch 7 weeks puts for {symbol}: {e}")
+    return puts_data
+
+def calculate_custom_metric(puts_data, stock_price):
+    if stock_price is None or stock_price == 0:
+        return puts_data
+    for put in puts_data:
+        strike = put.get("strike", None)
+        premium = put.get("premium", None)
+        try:
+            prem_val = float(premium) if premium is not None else 0.0
+        except Exception:
+            prem_val = 0.0
+        if strike is not None:
+            try:
+                metric = (((stock_price - strike) + (prem_val / 100)) / stock_price) * 100
+                put["custom_metric"] = metric
+            except Exception as e:
+                logger.warning(f"Error computing custom metric for put: {put}, error: {e}")
+                put["custom_metric"] = None
+        else:
+            put["custom_metric"] = None
+    return puts_data
+
 def send_email(subject, body):
     if not EMAIL_SENDER or not EMAIL_RECEIVER or not EMAIL_PASSWORD:
         logger.error("Email environment variables are not properly set.")
@@ -288,7 +340,81 @@ def job(tickers_to_run):
             else:
                 sell_alerts.append(line)
 
-    # Put processing omitted here for brevity
+    logger.info(f"Total buy tickers collected: {len(buy_tickers)}")
+
+    if buy_tickers:
+        buy_file_path = "buy_signals.txt"
+        try:
+            with open(buy_file_path, "w", encoding="utf-8") as file:
+                for ticker in buy_tickers:
+                    file.write(ticker + "\n")
+            logger.info(f"Saved buy tickers to {buy_file_path}")
+        except Exception as e:
+            logger.error(f"Failed to save buy_signals.txt: {e}")
+
+    puts_dir = "puts_data"
+    os.makedirs(puts_dir, exist_ok=True)
+
+    for buy_symbol in buy_tickers:
+        puts_7weeks = fetch_puts_for_7_weeks(buy_symbol)
+        rt_price = buy_prices.get(buy_symbol, None)
+        if rt_price is None or rt_price == 0:
+            hist = fetch_cached_history(buy_symbol)
+            if not hist.empty:
+                rt_price = hist["Close"].iloc[-1]
+            else:
+                logger.warning(f"No spot or fallback price for {buy_symbol}")
+
+        puts_7weeks = calculate_custom_metric(puts_7weeks, rt_price)
+
+        puts_7weeks = [
+            put for put in puts_7weeks
+            if put.get("strike") is not None and put["strike"] < rt_price
+            and put.get("custom_metric") is not None and put["custom_metric"] >= 10
+        ]
+
+        puts_by_exp = defaultdict(list)
+        for put in puts_7weeks:
+            exp = put.get("expiration")
+            if exp:
+                puts_by_exp[exp].append(put)
+
+        selected_puts = []
+        for exp, puts_list in puts_by_exp.items():
+            closest_put = min(puts_list, key=lambda x: abs(x.get("custom_metric", float('inf')) - 10))
+            selected_puts.append(closest_put)
+
+        puts_7weeks = selected_puts
+
+        # Build concatenated puts details string with % sign on custom_metric
+        puts_details = []
+        for put in puts_7weeks:
+            strike = put.get("strike")
+            premium = put.get("premium")
+            custom_metric = put.get("custom_metric")
+            strike_str = f"{strike:.1f}" if strike is not None else "N/A"
+            premium_str = f"{premium:.2f}" if premium is not None else "N/A"
+            custom_metric_str = f"%{custom_metric:.1f}" if custom_metric is not None else "N/A"
+            puts_details.append(
+                f"\nexpiration={put['expiration']}, strike={strike_str}, premium={premium_str}, stock_price={rt_price:.2f}, custom_metric={custom_metric_str}"
+            )
+        puts_concat = "\n" + "\n----------------------\n".join(puts_details)
+
+        # Append puts info to buy alert lines
+        for i, alert_line in enumerate(buy_alerts):
+            if alert_line.startswith(f"{buy_symbol}:"):
+                buy_alerts[i] = alert_line + " " + puts_concat
+                break
+
+        # Save puts data JSON file
+        if puts_7weeks:
+            puts_file = os.path.join(puts_dir, f"{buy_symbol}_puts_7weeks.json")
+            try:
+                with open(puts_file, "w", encoding="utf-8") as f:
+                    json.dump(puts_7weeks, f, indent=2)
+                logger.info(f"Saved 7-week put option data with metrics to {puts_file}")
+            except Exception as e:
+                logger.error(f"Failed to save put data for {buy_symbol}: {e}")
 
     return buy_tickers, buy_alerts, sell_alerts, failed_tickers
 
