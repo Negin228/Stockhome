@@ -65,7 +65,7 @@ jobs:
 
       - name: Run the script
         run: |
-          python Signal2.py --email-type hourly
+          #python Signal2.py --email-type hourly
         # or whatever args you use
 
       # (Nice to have) See outputs for this run

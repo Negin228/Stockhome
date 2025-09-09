@@ -15,7 +15,8 @@ from email.mime.multipart import MIMEMultipart
 from collections import defaultdict
 import time
 
-# === Logging setup: file + console with rotation ===
+
+# Logging setup
 os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
@@ -32,7 +33,6 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-# === Secrets from environment vars ===
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -66,7 +66,7 @@ def is_temporary_failure(error: Exception) -> bool:
         return True
     if any(term in msg for term in perm_errors):
         return False
-    return True  # default to retry
+    return True
 
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
@@ -78,8 +78,13 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
             force_full = True
         else:
             try:
-                df = pd.read_csv(file_path, index_col=0, parse_dates=False)
-                df.index = pd.to_datetime(df.index, format="%m/%d/%Y", errors='coerce')
+                column_names = ['Date', 'Price', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
+                df = pd.read_csv(file_path, skiprows=3, names=column_names)
+                df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+                df.set_index('Date', inplace=True)
+                print("Columns after reading CSV:", df.columns.tolist())
+                print("Index after parsing:", df.index)
+                
                 if df.index.isnull().any():
                     logger.warning("Date parsing failed in cached data for %s, forcing full refresh", symbol)
                     force_full = True
@@ -289,13 +294,24 @@ def job(tickers_to_run):
         if not iv_hist.empty:
             iv_rank, iv_pct = calc_iv_rank_percentile(iv_hist["IV"])
         if sig:
-            mcap_million = f"{(mcap / 1_000_000):,.2f}M" if mcap else "N/A"
+            def format_market_cap(mcap):
+                if not mcap:
+                     return "N/A"
+                elif mcap >= 1_000_000_000:
+                     return f"{mcap / 1_000_000_000:.1f}B"
+                else:
+                     return f"{mcap / 1_000_000:.1f}M"
+            
+            mcap_formatted = format_market_cap(mcap)
+            pe_formatted = f"{pe:.1f}" if pe else "N/A"
+
             line_parts = [
                 f"{symbol}: {sig} at ${rt_price:.2f}",
                 reason,
-                f"PE={pe if pe else 'N/A'}",
-                f"MarketCap={mcap_million}"
+                f"PE={pe_formatted}",
+                f"MarketCap={mcap_formatted}"
             ]
+
             if iv_rank is not None:
                 line_parts.append(f"IV Rank={iv_rank}")
             line_parts.append(f"IV Percentile={iv_pct}")
@@ -319,8 +335,6 @@ def job(tickers_to_run):
                 logger.info(f"Added buy ticker: {symbol}")
             else:
                 sell_alerts.append(line)
-
-    # ... process puts as in previous code (omitted here to keep short)...
 
     return buy_tickers, buy_alerts, sell_alerts, failed_tickers
 
