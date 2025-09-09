@@ -83,9 +83,6 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
                 df = pd.read_csv(file_path, skiprows=3, names=column_names)
                 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
                 df.set_index('Date', inplace=True)
-                print("Columns after reading CSV:", df.columns.tolist())
-                print("Index after parsing:", df.index)
-                
                 if df.index.isnull().any():
                     logger.warning("Date parsing failed in cached data for %s, forcing full refresh", symbol)
                     force_full = True
@@ -481,39 +478,50 @@ def main():
 
     previous_buys = load_previous_buys(args.email_type)
 
-    all_failed_tickers = tickers_to_run.copy()
-    all_buy_alerts = []
-    all_sell_alerts = []
-    all_buy_tickers = []
-    retry_count = 0
+    # --- Per-ticker retry tracking ---
+    retry_counts = defaultdict(int)
     max_retries = 10
+    to_process = tickers_to_run.copy()
 
-    while all_failed_tickers and (retry_count < max_retries):
-        logger.info(f"Attempt {retry_count+1}: Running job on {len(all_failed_tickers)} tickers")
-        buy_tickers, buy_alerts, sell_alerts, failed_tickers = job(all_failed_tickers)
+    all_buy_alerts, all_sell_alerts, all_buy_tickers = [], [], []
 
+    while to_process:
+        logger.info("Running job on %d tickers (per-ticker retries)", len(to_process))
+        buy_tickers, buy_alerts, sell_alerts, failed_tickers = job(to_process)
+
+        # Aggregate alerts/tickers
         all_buy_alerts.extend(buy_alerts)
         all_sell_alerts.extend(sell_alerts)
         all_buy_tickers.extend(buy_tickers)
 
-        all_failed_tickers = failed_tickers
+        # Update retry counts for only the ones that actually failed now
+        for sym in failed_tickers:
+            retry_counts[sym] += 1
 
-        if all_failed_tickers:
-            logger.info(f"Waiting before retrying {len(all_failed_tickers)} failed tickers...")
+        # Prepare the next batch: only those still under the retry limit
+        to_process = [s for s in failed_tickers if retry_counts[s] < max_retries]
+
+        if to_process:
+            max_left = max(max_retries - retry_counts[s] for s in to_process)
+            logger.info(
+                "Waiting 60s before retrying %d tickers (max %d retries left for any).",
+                len(to_process), max_left
+            )
             time.sleep(60)
-        retry_count += 1
 
+    # De-dup buys and figure out 'new'
     all_buy_tickers = list(set(all_buy_tickers))
     new_buys = set(all_buy_tickers) - previous_buys
 
     if new_buys or all_sell_alerts:
         email_body = format_email_body_clean(all_buy_alerts, all_sell_alerts)
         logger.info(f"Sending email with {len(new_buys)} new buys after {retry_count} attempts")
+
         print(email_body)
-        send_email(f"StockHome Trading Alerts (after {retry_count} attempts)", email_body)
+        send_email("StockHome Trading Alerts (per-ticker retries)", email_body)
         save_buys(args.email_type, previous_buys.union(new_buys))
     else:
-        logger.info("No new buys/sells to send after retry attempts.")
+        logger.info("No new buys/sells to send after per-ticker retry attempts.")
 
 if __name__ == "__main__":
     main()
