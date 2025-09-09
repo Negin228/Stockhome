@@ -252,6 +252,54 @@ def log_alert(alert):
     header = not os.path.exists(csv_path)
     df.to_csv(csv_path, mode="a", header=header, index=False)
 
+def format_email_body_clean(buy_alerts, sell_alerts, version="4"):
+    """
+    Format email body with clean table format
+    """
+    email_body = f"📊 StockHome Trading Signals v{version}\n"
+    email_body += f"Generated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+    email_body += "=" * 60 + "\n\n"
+    
+    if buy_alerts:
+        email_body += "🟢 BUY SIGNALS\n\n"
+        for alert in buy_alerts:
+            # Parse the alert to extract components
+            lines = alert.split('\n')
+            main_line = lines[0]
+            puts_data = [line for line in lines[1:] if line.strip() and 'expiration=' in line and '=' in line]
+            
+            email_body += f"📈 {main_line}\n"
+            
+            if puts_data:
+                email_body += "   📋 Recommended Put Options:\n"
+                for put_line in puts_data:
+                    if put_line.strip() and 'expiration=' in put_line:
+                        # Parse put line components
+                        try:
+                            parts = put_line.split(', ')
+                            exp = parts[0].split('=')[1] if len(parts) > 0 and 'expiration=' in parts[0] else 'N/A'
+                            strike = parts[1].split('=')[1] if len(parts) > 1 and 'strike=' in parts[1] else 'N/A'
+                            premium = parts[2].split('=')[1] if len(parts) > 2 and 'premium=' in parts[2] else 'N/A'
+                            stock_price = parts[3].split('=')[1] if len(parts) > 3 and 'stock_price=' in parts[3] else 'N/A'
+                            metric = parts[4].split('=')[1] if len(parts) > 4 and 'custom_metric=' in parts[4] else 'N/A'
+                            
+                            # Format cleanly
+                            clean_line = f"Exp: {exp}, Strike: ${strike}, Premium: ${premium}, Stock: ${stock_price}, Metric: {metric}"
+                            email_body += f"      • {clean_line}\n"
+                        except Exception as e:
+                            # Fallback to original formatting if parsing fails
+                            logger.warning(f"Failed to parse put line: {put_line}, error: {e}")
+                            clean_line = put_line.replace('expiration=', 'Exp: ').replace('strike=', 'Strike: $').replace('premium=', 'Premium: $').replace('stock_price=', 'Stock: $').replace('custom_metric=', 'Metric: ')
+                            email_body += f"      • {clean_line}\n"
+            email_body += "\n"
+    
+    if sell_alerts:
+        email_body += "🔴 SELL SIGNALS\n\n"
+        for alert in sell_alerts:
+            email_body += f"📉 {alert}\n\n"
+    
+    return email_body
+
 def job(tickers_to_run):
     buy_alerts = []
     sell_alerts = []
@@ -418,16 +466,6 @@ def job(tickers_to_run):
 
     return buy_tickers, buy_alerts, sell_alerts, failed_tickers
 
-def format_email_body(buy_alerts, sell_alerts, version="4"):
-    email_body = f"This is Signal version {version}\n\n"
-    if buy_alerts:
-        email_body += f"🔹 Buy Signals:\n"
-        email_body += "\n\n".join(f" - {alert}" for alert in buy_alerts) + "\n\n"
-    if sell_alerts:
-        email_body += f"🔸 Sell Signals:\n"
-        email_body += "\n\n".join(f" - {alert}" for alert in sell_alerts) + "\n\n"
-    return email_body
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None,
@@ -469,7 +507,7 @@ def main():
     new_buys = set(all_buy_tickers) - previous_buys
 
     if new_buys or all_sell_alerts:
-        email_body = format_email_body(all_buy_alerts, all_sell_alerts)
+        email_body = format_email_body_clean(all_buy_alerts, all_sell_alerts)
         logger.info(f"Sending email with {len(new_buys)} new buys after {retry_count} attempts")
         print(email_body)
         send_email(f"StockHome Trading Alerts (after {retry_count} attempts)", email_body)
