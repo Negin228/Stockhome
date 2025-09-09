@@ -60,16 +60,13 @@ def save_buys(email_type, buy_tickers):
 
 def is_temporary_failure(error: Exception) -> bool:
     msg = str(error).lower()
-    # Keywords to identify temporary limitation errors
     temp_errors = ["rate limit", "too many requests", "timed out", "timeout", "503", "429"]
-    # Keywords to identify permanent failures - ticker delisted, no price data etc.
     perm_errors = ["delisted", "no price data", "not found", "404"]
     if any(term in msg for term in temp_errors):
         return True
     if any(term in msg for term in perm_errors):
         return False
-    # Default to temporary for unknown errors to be safe or customize
-    return True
+    return True  # default to retry
 
 def fetch_cached_history(symbol, period="2y", interval="1d"):
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
@@ -94,9 +91,8 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
             df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
         except Exception as e:
             logger.error("Download error %s: %s", symbol, e)
-            # Decide if failure is temporary or permanent
             if is_temporary_failure(e):
-                raise  # Let caller decide to retry
+                raise
             else:
                 logger.info(f"Permanent failure for {symbol}: {e}")
                 return pd.DataFrame()
@@ -114,15 +110,142 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
             logger.warning("Update error %s: %s", symbol, e)
             if not is_temporary_failure(e):
                 return pd.DataFrame()
-            # else: continue with cached data
     try:
         df.to_csv(file_path)
     except Exception as e:
         logger.warning("Cache save failed for %s: %s", symbol, e)
     return df
 
-# Other functions (calculate_indicators, generate_rsi_signal, fetch_fundamentals, etc.)
-# same as before ...
+def calculate_indicators(df):
+    close = df["Close"]
+    if isinstance(close, pd.DataFrame):
+        close = close.squeeze()
+    df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
+    df["dma200"] = close.rolling(200).mean()
+    return df
+
+def generate_rsi_signal(df):
+    last = df.iloc[-1]
+    rsi, price = last["rsi"], last["Close"]
+    if isinstance(rsi, (pd.Series, pd.DataFrame)):
+        rsi = float(rsi.squeeze())
+    if isinstance(price, (pd.Series, pd.DataFrame)):
+        price = float(price.squeeze())
+    signal, reason = None, ""
+    if pd.notna(rsi):
+        if rsi < config.RSI_OVERSOLD:
+            signal, reason = "BUY", f"RSI={rsi:.1f} < {config.RSI_OVERSOLD}"
+        elif rsi > config.RSI_OVERBOUGHT:
+            signal, reason = "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
+    return signal, reason, rsi, price
+
+def fetch_fundamentals(symbol):
+    try:
+        info = yf.Ticker(symbol).info
+        return info.get("trailingPE", None), info.get("marketCap", None)
+    except Exception as e:
+        logger.warning("Fundamentals error %s: %s", symbol, e)
+    return None, None
+
+def fetch_option_iv_history(symbol, lookback_days=52):
+    iv_data = []
+    try:
+        ticker = yf.Ticker(symbol)
+        for date in ticker.options[-lookback_days:]:
+            chain = ticker.option_chain(date)
+            if chain.puts.empty:
+                continue
+            under = ticker.history(period="1d")["Close"].iloc[-1]
+            chain.puts["distance"] = abs(chain.puts["strike"] - under)
+            atm = chain.puts.loc[chain.puts["distance"].idxmin()]
+            iv_data.append({"date": date, "IV": atm["impliedVolatility"]})
+    except Exception as e:
+        logger.warning("IV history error %s: %s", symbol, e)
+    return pd.DataFrame(iv_data)
+
+def calc_iv_rank_percentile(iv_series):
+    s = pd.Series(iv_series).dropna()
+    if len(s) < 5:
+        return None, None
+    cur, hi, lo = s.iloc[-1], s.max(), s.min()
+    iv_rank = 100 * (cur - lo) / (hi - lo) if hi > lo else None
+    iv_pct = 100 * (s < cur).mean()
+    return (round(iv_rank, 2) if iv_rank else None, round(iv_pct, 2) if iv_pct else None)
+
+def fetch_puts_for_7_weeks(symbol):
+    from dateutil.parser import parse
+    puts_data = []
+    try:
+        ticker = yf.Ticker(symbol)
+        today = datetime.datetime.now()
+        valid_dates = [d for d in ticker.options if (parse(d) - today).days <= 49]
+        for exp_date in valid_dates:
+            chain = ticker.option_chain(exp_date)
+            if chain.puts.empty:
+                continue
+            for _, put in chain.puts.iterrows():
+                strike = put["strike"]
+                last_price = put.get("lastPrice", None)
+                bid = put.get("bid", None)
+                ask = put.get("ask", None)
+                if last_price is not None and last_price > 0:
+                    premium = last_price
+                elif bid is not None and ask is not None:
+                    premium = (bid + ask) / 2
+                else:
+                    premium = None
+                puts_data.append({
+                    "expiration": exp_date,
+                    "strike": strike,
+                    "premium": premium
+                })
+    except Exception as e:
+        logger.warning(f"Failed to fetch 7 weeks puts for {symbol}: {e}")
+    return puts_data
+
+def calculate_custom_metric(puts_data, stock_price):
+    if stock_price is None or stock_price == 0:
+        return puts_data
+    for put in puts_data:
+        strike = put.get("strike", None)
+        premium = put.get("premium", None)
+        try:
+            prem_val = float(premium) if premium is not None else 0.0
+        except Exception:
+            prem_val = 0.0
+        if strike is not None:
+            try:
+                metric = (((stock_price - strike) + (prem_val / 100)) / stock_price) * 100
+                put["custom_metric"] = metric
+            except Exception as e:
+                logger.warning(f"Error computing custom metric for put: {put}, error: {e}")
+                put["custom_metric"] = None
+        else:
+            put["custom_metric"] = None
+    return puts_data
+
+def send_email(subject, body):
+    if not EMAIL_SENDER or not EMAIL_RECEIVER or not EMAIL_PASSWORD:
+        logger.error("Email environment variables are not properly set.")
+        return
+    try:
+        msg = MIMEMultipart()
+        msg["From"], msg["To"], msg["Subject"] = EMAIL_SENDER, EMAIL_RECEIVER, subject
+        msg.attach(MIMEText(body, "plain"))
+        s = smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT)
+        s.starttls()
+        s.login(EMAIL_SENDER, EMAIL_PASSWORD)
+        s.send_message(msg)
+        s.quit()
+        logger.info("✉️ Email sent.")
+    except Exception as e:
+        logger.error("Email failed: %s", e)
+
+def log_alert(alert):
+    csv_path = config.ALERTS_CSV
+    df = pd.DataFrame([alert])
+    header = not os.path.exists(csv_path)
+    df.to_csv(csv_path, mode="a", header=header, index=False)
 
 def job(tickers_to_run):
     buy_alerts = []
@@ -197,7 +320,7 @@ def job(tickers_to_run):
             else:
                 sell_alerts.append(line)
 
-    # Process puts data as before...
+    # ... process puts as in previous code (omitted here to keep short)...
 
     return buy_tickers, buy_alerts, sell_alerts, failed_tickers
 
@@ -231,7 +354,7 @@ def main():
     all_sell_alerts = []
     all_buy_tickers = []
     retry_count = 0
-    max_retries = 10  # Safety cap
+    max_retries = 10
 
     while all_failed_tickers and (retry_count < max_retries):
         logger.info(f"Attempt {retry_count+1}: Running job on {len(all_failed_tickers)} tickers")
@@ -245,7 +368,7 @@ def main():
 
         if all_failed_tickers:
             logger.info(f"Waiting before retrying {len(all_failed_tickers)} failed tickers...")
-            time.sleep(60)  # Delay before retry
+            time.sleep(60)
         retry_count += 1
 
     all_buy_tickers = list(set(all_buy_tickers))
