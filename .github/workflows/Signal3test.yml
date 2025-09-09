@@ -34,7 +34,7 @@ jobs:
 
       # Running Signal3.py (Trading Bot)
       - name: Run Trading Bot (Signal4.py)
-        run: python Signal3.py
+        #run: python Signal3.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
