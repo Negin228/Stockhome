@@ -381,10 +381,12 @@ def job(tickers):
         for exp, group in grouped.items():
             max_premium_put = max(group, key=lambda x: x.get("premium_percent", -float('inf')))
             max_metric_put = max(group, key=lambda x: x.get("custom_metric", -float('inf')))
-            if max_premium_put == max_metric_put:
-                selected_puts.append(max_premium_put)
-            else:
-                selected_puts.extend([max_premium_put, max_metric_put])
+            # Use a dict keyed by (strike, expiration) to deduplicate
+            unique_puts = {}
+            unique_puts[(max_premium_put["strike"], max_premium_put["expiration"])] = max_premium_put
+            unique_puts[(max_metric_put["strike"], max_metric_put["expiration"])] = max_metric_put
+
+            selected_puts.extend(unique_puts.values())
 
         puts_texts = []
         for p in selected_puts:
