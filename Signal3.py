@@ -17,7 +17,7 @@ import time
 import numpy as np
 from dateutil.parser import parse
 
-# Logging setup
+# Setup logging
 os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
@@ -204,7 +204,7 @@ def fetch_puts_for_7_weeks(symbol):
     return puts_data
 
 def calculate_custom_metric(puts_data, stock_price):
-    if stock_price is None or stock_price == 0:
+    if stock_price is None or stock_price == 0 or (isinstance(stock_price, float) and np.isnan(stock_price)):
         return puts_data
     for put in puts_data:
         strike = put.get("strike", None)
@@ -256,9 +256,6 @@ def log_alert(alert):
     df.to_csv(csv_path, mode="a", header=header, index=False)
 
 def format_email_body_clean(buy_alerts, sell_alerts, version="4"):
-    """
-    Format email body with clean table format
-    """
     email_body = f"📊 StockHome Trading Signals v{version}\n"
     email_body += f"Generated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
     email_body += "=" * 60 + "\n\n"
@@ -282,7 +279,6 @@ def format_email_body_clean(buy_alerts, sell_alerts, version="4"):
                             metric = parts[4].split('=')[1] if len(parts) > 4 and 'custom_metric=' in parts[4] else 'N/A'
                             delta = parts[5].split('=')[1] if len(parts) > 5 and 'delta%' in parts[5] else 'N/A'
                             premium_pct = parts[6].split('=')[1] if len(parts) > 6 and 'premium%' in parts[6] else 'N/A'
-
                             clean_line = (f"Exp: {exp}, Strike: ${strike}, Premium: ${premium}, Stock: ${stock_price}, "
                                           f"Metric: {metric}, Delta%: {delta}, Premium%: {premium_pct}")
                             email_body += f" • {clean_line}\n"
@@ -331,12 +327,29 @@ def job(tickers_to_run):
 
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
+
+        # Robust fetching of real-time price
+        rt_price = None
         try:
-            rt_price = finnhub_client.quote(symbol).get("c", price)
-            if isinstance(rt_price, (pd.Series, pd.DataFrame)):
-                rt_price = float(rt_price.squeeze())
+            quote = finnhub_client.quote(symbol)
+            rt_price = quote.get("c", None)
+            if rt_price is None or (isinstance(rt_price, float) and np.isnan(rt_price)):
+                rt_price = None
         except Exception:
-            rt_price = price
+            rt_price = None
+
+        if rt_price is None:
+            # Fallback to last close from cache
+            if not hist.empty:
+                rt_price = hist["Close"].iloc[-1]
+            else:
+                logger.warning(f"No price available for {symbol}")
+                rt_price = None
+
+        if rt_price is None or (isinstance(rt_price, float) and np.isnan(rt_price)):
+            logger.warning(f"Skipping {symbol} due to invalid price")
+            skipped += 1
+            continue
 
         pe, mcap = fetch_fundamentals(symbol)
         iv_hist = fetch_option_iv_history(symbol)
@@ -355,8 +368,9 @@ def job(tickers_to_run):
 
             mcap_formatted = format_market_cap(mcap)
             pe_formatted = f"{pe:.1f}" if pe else "N/A"
+            price_str = f"${rt_price:.2f}" if rt_price is not None else "N/A"
             line_parts = [
-                f"{symbol}: {sig} at ${rt_price:.2f}",
+                f"{symbol}: {sig} at {price_str}",
                 reason,
                 f"PE={pe_formatted}",
                 f"MarketCap={mcap_formatted}"
@@ -408,7 +422,7 @@ def job(tickers_to_run):
             puts_7weeks = fetch_puts_for_7_weeks(buy_symbol)
             rt_price = buy_prices.get(buy_symbol, None)
 
-            if rt_price is None or rt_price == 0:
+            if rt_price is None or (isinstance(rt_price, float) and np.isnan(rt_price)):
                 hist = fetch_cached_history(buy_symbol)
                 if not hist.empty:
                     rt_price = hist["Close"].iloc[-1]
@@ -462,6 +476,7 @@ def job(tickers_to_run):
                     logger.info(f"Appended puts details to buy alert for {buy_symbol}")
                     break
 
+            # Save puts data JSON file
             if puts_7weeks:
                 puts_file = os.path.join(puts_dir, f"{buy_symbol}_puts_7weeks.json")
                 try:
