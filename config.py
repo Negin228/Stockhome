@@ -40,3 +40,5 @@ tickers = ['AMT', 'AMCR','SBAC', 'CMG']
 
 
 
+
+
