@@ -16,7 +16,7 @@ import time
 import numpy as np
 from dateutil.parser import parse
 
-import config  # Assumes config.py with constants like tickers, LOG_DIR, etc.
+import config
 
 # Setup logging
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -40,7 +40,6 @@ EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 tickers = config.tickers
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
-# Retry constants
 MAX_API_RETRIES = 5
 API_RETRY_INITIAL_WAIT = 60  # seconds
 MAX_TICKER_RETRIES = 100
@@ -296,7 +295,7 @@ def job(tickers):
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
                 logger.warning(f"Rate limit on price for {symbol}, waiting then retrying.")
-                time.sleep(60)
+                time.sleep(TICKER_RETRY_WAIT)
                 try:
                     rt_price = fetch_quote(symbol)
                 except Exception as e2:
@@ -355,7 +354,6 @@ def job(tickers):
             sell_alerts.append(alert_line)
             logger.info(f"Sell signal: {symbol}")
 
-    # Process options puts for buy signals with updated filtering logic
     puts_dir = "puts_data"
     os.makedirs(puts_dir, exist_ok=True)
 
@@ -366,11 +364,7 @@ def job(tickers):
 
         filtered_puts = [
             p for p in puts_list
-            if p.get("strike") is not None
-               and price
-               and p["strike"] < price
-               and p.get("custom_metric")
-               and p["custom_metric"] >= 10
+            if p.get("strike") is not None and price and p["strike"] < price and p.get("custom_metric") and p["custom_metric"] >= 10
         ]
 
         grouped = defaultdict(list)
@@ -381,25 +375,26 @@ def job(tickers):
         for exp, group in grouped.items():
             max_premium_put = max(group, key=lambda x: x.get("premium_percent", -float('inf')))
             max_metric_put = max(group, key=lambda x: x.get("custom_metric", -float('inf')))
-            # Use a dict keyed by (strike, expiration) to deduplicate
+
             unique_keys = set()
             unique_puts = []
-    
+
             for put in [max_premium_put, max_metric_put]:
-                        key = (put["strike"], put["expiration"])
-                        if key not in unique_keys:
-                                    unique_puts.append(put)
-                                    unique_keys.add(key)
-    
+                key = (put["strike"], put["expiration"])
+                if key not in unique_keys:
+                    unique_puts.append(put)
+                    unique_keys.add(key)
+
             selected_puts.extend(unique_puts)
 
         puts_texts = []
         for p in selected_puts:
             strike = f"{p['strike']:.1f}" if isinstance(p['strike'], (int, float)) else "N/A"
             premium = f"{p['premium']:.2f}" if isinstance(p['premium'], (int, float)) else "N/A"
-            metric = f"{p['custom_metric']:.1f}%" if p.get('custom_metric') else "N/A"
+            metric = f"{p.get('custom_metric', 'N/A'):.1f}%" if p.get('custom_metric') else "N/A"
             delta = f"{p.get('delta_percent', 'N/A'):.1f}%" if p.get('delta_percent') else "N/A"
             prem_pct = f"{p.get('premium_percent', 'N/A'):.1f}%" if p.get('premium_percent') else "N/A"
+
             puts_texts.append(
                 f"expiration={p['expiration']}, strike={strike}, premium={premium}, stock_price={price:.2f}, "
                 f"custom_metric={metric}, delta_percent={delta}, premium_percent={prem_pct}"
@@ -422,13 +417,12 @@ def job(tickers):
 
     return buy_symbols, buy_alerts, sell_alerts, failed
 
-
 def load_previous_buys(email_type):
-    # Placeholder for your actual loading logic
+    # Implement loading previous buys from persistent storage (file/db)
     return set()
 
 def save_buys(email_type, buys_set):
-    # Placeholder for your actual saving logic
+    # Implement saving updated buys to persistent storage (file/db)
     pass
 
 def calc_iv_rank_percentile(series):
@@ -441,15 +435,14 @@ def calc_iv_rank_percentile(series):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
-    parser.add_argument("--email-type", type=str, choices=["first","second","hourly"], default="hourly", help="Email type")
+    parser.add_argument("--email-type", type=str, choices=["first", "second", "hourly"], default="hourly", help="Email type")
     args = parser.parse_args()
 
     selected = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
+        
     prev_buys = load_previous_buys(args.email_type)
-
     retry_counts = defaultdict(int)
     to_process = selected[:]
-
     all_buy_alerts = []
     all_sell_alerts = []
     all_buy_symbols = []
