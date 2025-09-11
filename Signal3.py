@@ -265,7 +265,6 @@ def format_email_body_clean(buy_alerts, sell_alerts, version="4"):
     if buy_alerts:
         email_body += "🟢 BUY SIGNALS\n\n"
         for alert in buy_alerts:
-            # Parse the alert to extract components
             lines = alert.split('\n')
             main_line = lines[0]
             puts_data = [line for line in lines[1:] if line.strip() and 'expiration=' in line and '=' in line]
@@ -281,11 +280,9 @@ def format_email_body_clean(buy_alerts, sell_alerts, version="4"):
                             premium = parts[2].split('=')[1] if len(parts) > 2 and 'premium=' in parts[2] else 'N/A'
                             stock_price = parts[3].split('=')[1] if len(parts) > 3 and 'stock_price=' in parts[3] else 'N/A'
                             metric = parts[4].split('=')[1] if len(parts) > 4 and 'custom_metric=' in parts[4] else 'N/A'
-                            # Added new metrics if present
                             delta = parts[5].split('=')[1] if len(parts) > 5 and 'delta%' in parts[5] else 'N/A'
                             premium_pct = parts[6].split('=')[1] if len(parts) > 6 and 'premium%' in parts[6] else 'N/A'
 
-                            # Format cleanly with new metrics
                             clean_line = (f"Exp: {exp}, Strike: ${strike}, Premium: ${premium}, Stock: ${stock_price}, "
                                           f"Metric: {metric}, Delta%: {delta}, Premium%: {premium_pct}")
                             email_body += f" • {clean_line}\n"
@@ -439,7 +436,6 @@ def job(tickers_to_run):
 
             puts_7weeks = selected_puts
 
-            # Build concatenated puts details string including delta% and premium%
             puts_details = []
             for put in puts_7weeks:
                 strike = put.get("strike")
@@ -460,13 +456,12 @@ def job(tickers_to_run):
 
             puts_concat = "\n" + "\n----------------------\n".join(puts_details)
 
-            # Append puts info to buy alert lines
             for i, alert_line in enumerate(buy_alerts):
                 if alert_line.startswith(f"{buy_symbol}:"):
                     buy_alerts[i] = alert_line + " " + puts_concat
+                    logger.info(f"Appended puts details to buy alert for {buy_symbol}")
                     break
 
-            # Save puts data JSON file
             if puts_7weeks:
                 puts_file = os.path.join(puts_dir, f"{buy_symbol}_puts_7weeks.json")
                 try:
@@ -491,7 +486,6 @@ def main():
 
     previous_buys = load_previous_buys(args.email_type)
 
-    # --- Per-ticker retry tracking ---
     retry_counts = defaultdict(int)
     max_retries = 10
     to_process = tickers_to_run.copy()
@@ -500,22 +494,20 @@ def main():
     while to_process:
         logger.info("Running job on %d tickers (per-ticker retries)", len(to_process))
         buy_tickers, buy_alerts, sell_alerts, failed_tickers = job(to_process)
-        # Aggregate alerts/tickers
         all_buy_alerts.extend(buy_alerts)
         all_sell_alerts.extend(sell_alerts)
         all_buy_tickers.extend(buy_tickers)
 
-        # Update retry counts for only the ones that actually failed now
         for sym in failed_tickers:
             retry_counts[sym] += 1
-        # Prepare the next batch: only those still under the retry limit
+
         to_process = [s for s in failed_tickers if retry_counts[s] < max_retries]
+
         if to_process:
             max_left = max(max_retries - retry_counts[s] for s in to_process)
             logger.info("Waiting 60s before retrying %d tickers (max %d retries left for any).", len(to_process), max_left)
             time.sleep(60)
 
-    # De-dup buys and figure out 'new'
     all_buy_tickers = list(set(all_buy_tickers))
     new_buys = set(all_buy_tickers) - previous_buys
 
