@@ -430,7 +430,7 @@ def main():
 
     selected_tickers = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
 
-    prev_buys = load_previous(args.email_type)
+    prev_buys = load_previous_buys(args.email_type)
 
     retry_counts = defaultdict(int)
     MAX_RETRY = 5
