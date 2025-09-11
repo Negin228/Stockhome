@@ -16,9 +16,13 @@ import time
 import numpy as np
 from dateutil.parser import parse
 
+# Assuming config.py provides these constants
+import config
+
 # Setup logging
 os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
+
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
 file_handler = RotatingFileHandler(log_path, maxBytes=config.LOG_MAX_BYTES, backupCount=config.LOG_BACKUP_COUNT, encoding='utf-8')
@@ -30,6 +34,7 @@ if not logger.hasHandlers():
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
+# Environment variables for APIs and email
 API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -38,19 +43,26 @@ EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 tickers = config.tickers
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
-MAX_RETRIES = 5
-INITIAL_WAIT = 60  # seconds
+# Constants for retry logic
+MAX_API_RETRIES = 5
+API_RETRY_INITIAL_WAIT = 60  # seconds
+
+MAX_TICKER_RETRIES = 100      # For overall ticker retry count
+TICKER_RETRY_WAIT = 60        # Wait 1 minute before retrying tickers after rate limit
 
 def retry_on_rate_limit(func):
+    """
+    Decorator to retry API calls on rate-limit errors with exponential backoff.
+    """
     def wrapper(*args, **kwargs):
-        wait = INITIAL_WAIT
-        for attempt in range(MAX_RETRIES):
+        wait = API_RETRY_INITIAL_WAIT
+        for attempt in range(MAX_API_RETRIES):
             try:
                 return func(*args, **kwargs)
             except Exception as e:
                 e_str = str(e).lower()
                 if any(term in e_str for term in ["rate limit", "too many requests", "429"]):
-                    logger.warning(f"Rate limit hit on {func.__name__}, attempt {attempt + 1}/{MAX_RETRIES}: {e}")
+                    logger.warning(f"Rate limit hit on {func.__name__}, attempt {attempt + 1}/{MAX_API_RETRIES}: {e}")
                     logger.info(f"Sleeping for {wait} seconds before retry")
                     time.sleep(wait)
                     wait *= 2
@@ -65,6 +77,7 @@ def fetch_history(symbol, period="2y", interval="1d"):
     path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df = None
     force_full = False
+
     if os.path.exists(path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(path))).days
         if age_days > config.MAX_CACHE_DAYS:
@@ -82,6 +95,7 @@ def fetch_history(symbol, period="2y", interval="1d"):
             except Exception as e:
                 logger.warning(f"Failed reading cache for {symbol}: {e}")
                 df = None
+
     if df is None or df.empty or force_full:
         logger.info(f"Downloading full history for {symbol}")
         df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
@@ -116,7 +130,7 @@ def calculate_indicators(df):
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
-    df["dma200"] = close.rolling(200).mean()
+    df["dma200"] = close.rolling(window=200).mean()
     return df
 
 def generate_signal(df):
@@ -153,7 +167,7 @@ def fetch_puts(symbol):
             chain.puts["distance"] = abs(chain.puts["strike"] - under_price)
             for _, put in chain.puts.iterrows():
                 strike = put["strike"]
-                premium = put.get("lastPrice") or (put.get("bid") + put.get("ask")) / 2 if (put.get("bid") is not None and put.get("ask") is not None) else None
+                premium = put.get("lastPrice") or ((put.get("bid") + put.get("ask")) / 2 if (put.get("bid") is not None and put.get("ask") is not None) else None)
                 puts_data.append({
                     "expiration": exp,
                     "strike": strike,
@@ -214,7 +228,13 @@ def log_alert(alert):
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
 
 def format_email_body(buy_alerts, sell_alerts, version="4"):
-    lines = [f"📊 StockHome Trading Signals v{version}", f"Generated: {datetime.datetime.now():%Y-%m-%d %H:%M:%S}", "="*60, ""]
+    lines = [
+        f"📊 StockHome Trading Signals v{version}",
+        f"Generated: {datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
+        "="*60,
+        ""
+    ]
+
     if buy_alerts:
         lines.append("🟢 BUY SIGNALS\n")
         for alert in buy_alerts:
@@ -227,17 +247,21 @@ def format_email_body(buy_alerts, sell_alerts, version="4"):
                 for opt in options:
                     try:
                         fields = dict(part.split("=", 1) for part in opt.split(", "))
-                        line = (f" - Exp: {fields.get('expiration','N/A')}, Strike: ${fields.get('strike','N/A')}, "
-                                f"Premium: ${fields.get('premium','N/A')}, Stock: ${fields.get('stock_price','N/A')}, "
-                                f"Metric: {fields.get('custom_metric','N/A')}, Delta%: {fields.get('delta_percent','N/A')}, "
-                                f"Premium%: {fields.get('premium_percent','N/A')}")
+                        line = (
+                            f" - Exp: {fields.get('expiration','N/A')}, Strike: ${fields.get('strike','N/A')}, "
+                            f"Premium: ${fields.get('premium','N/A')}, Stock: ${fields.get('stock_price','N/A')}, "
+                            f"Metric: {fields.get('custom_metric','N/A')}, Delta%: {fields.get('delta_percent','N/A')}, "
+                            f"Premium%: {fields.get('premium_percent','N/A')}"
+                        )
                         lines.append(line)
                     except Exception:
                         lines.append(f" - {opt}")
-            lines.append("")
+                lines.append("")
+
     if sell_alerts:
         lines.append("🔴 SELL SIGNALS\n")
         lines.extend(f"{alert}\n" for alert in sell_alerts)
+
     return "\n".join(lines)
 
 def job(tickers):
@@ -260,7 +284,7 @@ def job(tickers):
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
                 logger.warning(f"Rate limited on fetching history for {symbol}, retry delayed.")
-                time.sleep(60)
+                failed.append(symbol)
                 continue
             if any(k in msg for k in ["delisted", "no data", "not found"]):
                 logger.info(f"{symbol} delisted or no data, skipping.")
@@ -272,17 +296,18 @@ def job(tickers):
 
         hist = calculate_indicators(hist)
         sig, reason = generate_signal(hist)
+
         if not sig:
             continue
 
-        # Fetch current price with retry on rate limit errors
+        # Fetch current price with fallback and retry on rate limit
         try:
             rt_price = fetch_quote(symbol)
         except Exception as e:
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
-                logger.warning(f"Rate limit on price for {symbol}, waiting then retrying.")
-                time.sleep(60)
+                logger.warning(f"Rate limit on price fetch for {symbol}, waiting before retrying.")
+                time.sleep(TICKER_RETRY_WAIT)
                 try:
                     rt_price = fetch_quote(symbol)
                 except Exception as e2:
@@ -294,7 +319,6 @@ def job(tickers):
 
         if rt_price is None or rt_price != rt_price or rt_price <= 0:
             rt_price = hist["Close"].iloc[-1] if not hist.empty else None
-
         if rt_price is None or rt_price != rt_price or rt_price <= 0:
             logger.warning(f"Invalid price for {symbol}, skipping.")
             skipped += 1
@@ -308,7 +332,6 @@ def job(tickers):
 
         cap_str = format_market_cap(mcap)
         pe_str = f"{pe:.1f}" if pe else "N/A"
-
         parts = [
             f"{symbol}: {sig} at ${rt_price:.2f}",
             reason,
@@ -343,7 +366,7 @@ def job(tickers):
             sell_alerts.append(alert_line)
             logger.info(f"Sell signal: {symbol}")
 
-    # Process options for buys
+    # Process options for buy signals
     puts_dir = "puts_data"
     os.makedirs(puts_dir, exist_ok=True)
 
@@ -353,7 +376,7 @@ def job(tickers):
         puts_list = calculate_custom_metrics(puts_list, price)
         filtered_puts = [p for p in puts_list if p.get("strike") is not None and price and p["strike"] < price and p.get("custom_metric") and p["custom_metric"] >= 10]
 
-        # Select best per expiration
+        # Group by expiration and select closest custom_metric to 10
         grouped = defaultdict(list)
         for put in filtered_puts:
             grouped[put["expiration"]].append(put)
@@ -362,7 +385,6 @@ def job(tickers):
         for exp, group in grouped.items():
             selected_puts.append(min(group, key=lambda x: abs(x.get("custom_metric", 0) - 10)))
 
-        # Format puts info
         puts_texts = []
         for p in selected_puts:
             strike = f"{p['strike']:.1f}" if isinstance(p['strike'], (int,float)) else "N/A"
@@ -370,20 +392,18 @@ def job(tickers):
             metric = f"{p['custom_metric']:.1f}%" if p.get('custom_metric') else "N/A"
             delta = f"{p.get('delta_percent', 'N/A'):.1f}%" if p.get('delta_percent') else "N/A"
             prem_pct = f"{p.get('premium_percent', 'N/A'):.1f}%" if p.get('premium_percent') else "N/A"
-
             puts_texts.append(
                 f"expiration={p['expiration']}, strike={strike}, premium={premium}, stock_price={price:.2f}, custom_metric={metric}, delta_percent={delta}, premium_percent={prem_pct}"
             )
 
         puts_block = "\n" + "\n------\n".join(puts_texts)
-
-        # Append puts to alert line
+        # Append puts info to matching buy alert
         for idx, alert_line in enumerate(buy_alerts):
             if alert_line.startswith(sym):
                 buy_alerts[idx] += puts_block
                 break
 
-        # Save json data
+        # Save JSON puts data
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
         try:
             with open(puts_json_path, "w") as fp:
@@ -392,7 +412,23 @@ def job(tickers):
         except Exception as e:
             logger.error(f"Failed to save puts json for {sym}: {e}")
 
-    return buy_symbols, buy_alerts, sell_alerts, []
+    return buy_symbols, buy_alerts, sell_alerts, failed
+
+def load_previous_buys(email_type):
+    # Dummy implementation - replace with actual loading method if needed
+    return set()
+
+def save_buys(email_type, buys_set):
+    # Dummy implementation - replace with actual saving method if needed
+    pass
+
+def calc_iv_rank_percentile(series):
+    # Dummy implementation - replace with actual IV rank and percentile calculation logic
+    if series.empty:
+        return None, None
+    iv_rank = (series.iloc[-1] - series.min()) / (series.max() - series.min()) * 100 if (series.max() - series.min()) != 0 else 0
+    iv_pct = series.rank(pct=True).iloc[-1] * 100
+    return iv_rank, iv_pct
 
 def main():
     parser = argparse.ArgumentParser()
@@ -401,16 +437,16 @@ def main():
     args = parser.parse_args()
 
     selected = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
-    prev_buys = load_previous_buys(args.email_type)
 
+    prev_buys = load_previous_buys(args.email_type)
     retry_counts = defaultdict(int)
-    MAX_RETRIES = 10
     to_process = selected[:]
+
     all_buy_alerts = []
     all_sell_alerts = []
     all_buy_symbols = []
 
-    while to_process:
+    while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
         buys, buy_alerts, sells, fails = job(to_process)
         all_buy_alerts.extend(buy_alerts)
@@ -420,11 +456,11 @@ def main():
         for f in fails:
             retry_counts[f] += 1
 
-        to_process = [f for f in fails if retry_counts[f] < MAX_RETRIES]
+        to_process = [f for f in fails if retry_counts[f] < MAX_TICKER_RETRIES]
+
         if to_process:
-            wait_sec = 60
-            logger.info(f"Rate limited. Waiting {wait_sec} seconds before retrying {len(to_process)} tickers...")
-            time.sleep(wait_sec)
+            logger.info(f"Rate limited. Waiting {TICKER_RETRY_WAIT} seconds before retrying {len(to_process)} tickers...")
+            time.sleep(TICKER_RETRY_WAIT)
 
     unique_buys = set(all_buy_symbols)
     new_buys = unique_buys.difference(prev_buys)
