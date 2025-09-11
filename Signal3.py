@@ -328,26 +328,28 @@ def job(tickers_to_run):
         hist = calculate_indicators(hist)
         sig, reason, rsi, price = generate_rsi_signal(hist)
 
-        # Robust fetching of real-time price
+        # Robust price fetching and fallback
         rt_price = None
         try:
             quote = finnhub_client.quote(symbol)
             rt_price = quote.get("c", None)
+            logger.info(f"Finnhub quote for {symbol}: {rt_price}")
             if rt_price is None or (isinstance(rt_price, float) and np.isnan(rt_price)):
                 rt_price = None
-        except Exception:
+        except Exception as e:
+            logger.warning(f"Finnhub quote error for {symbol}: {e}")
             rt_price = None
 
         if rt_price is None:
-            # Fallback to last close from cache
             if not hist.empty:
                 rt_price = hist["Close"].iloc[-1]
+                logger.info(f"Fallback cached close price for {symbol}: {rt_price}")
             else:
-                logger.warning(f"No price available for {symbol}")
+                logger.warning(f"No cached history to fallback for {symbol}")
                 rt_price = None
 
         if rt_price is None or (isinstance(rt_price, float) and np.isnan(rt_price)):
-            logger.warning(f"Skipping {symbol} due to invalid price")
+            logger.warning(f"Skipping {symbol} due to invalid price: {rt_price}")
             skipped += 1
             continue
 
@@ -476,7 +478,6 @@ def job(tickers_to_run):
                     logger.info(f"Appended puts details to buy alert for {buy_symbol}")
                     break
 
-            # Save puts data JSON file
             if puts_7weeks:
                 puts_file = os.path.join(puts_dir, f"{buy_symbol}_puts_7weeks.json")
                 try:
