@@ -26,7 +26,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-import config  # expects tickers, paths, SMTP_SERVER/PORT, RSI thresholds, etc.
+import config  # expects: tickers, LOG_DIR/FILE, DATA_DIR, SMTP_SERVER/PORT, RSI_* thresholds, etc.
 
 
 # ------------------------------
@@ -52,7 +52,7 @@ if not logger.handlers:
 # ------------------------------
 # Env & clients
 # ------------------------------
-API_KEY = os.getenv("API_KEY")  # your Finnhub API key
+API_KEY = os.getenv("API_KEY")  # Finnhub API key (optional)
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
@@ -62,8 +62,22 @@ finnhub_client = finnhub.Client(api_key=API_KEY) if (finnhub and API_KEY) else N
 
 
 # ------------------------------
-# Helpers for sent-buys
+# Utilities / helpers
 # ------------------------------
+def _flatten_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Ensure df has simple string column labels (no MultiIndex/tuples)."""
+    if df is None or df.empty:
+        return df
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [
+            "_".join([str(x) for x in tup if x is not None]).strip("_")
+            for tup in df.columns.to_list()
+        ]
+    else:
+        df.columns = [str(c) for c in df.columns]
+    return df
+
+
 def load_previous_buys(email_type: str) -> set:
     file_path = f"sent_buys_{email_type}.json"
     if os.path.exists(file_path):
@@ -84,19 +98,22 @@ def save_buys(email_type: str, buy_tickers: set) -> None:
         logger.warning(f"Could not save buys for {email_type}: {e}")
 
 
-def is_temporary_failure(error: Exception) -> bool:
-    msg = str(error).lower()
+def is_temporary_failure(error) -> bool:
+    try:
+        msg = str(error).lower()
+    except Exception:
+        return True
     temp = ["rate limit", "too many requests", "timed out", "timeout", "503", "429", "unavailable"]
     perm = ["delisted", "no price data", "not found", "404"]
     if any(t in msg for t in temp):
         return True
     if any(p in msg for p in perm):
         return False
-    return True  # default to retry
+    return True
 
 
 # ------------------------------
-# History with cache
+# History with cache (hardened)
 # ------------------------------
 def fetch_cached_history(symbol: str, period="2y", interval="1d") -> pd.DataFrame:
     file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
@@ -110,13 +127,12 @@ def fetch_cached_history(symbol: str, period="2y", interval="1d") -> pd.DataFram
         else:
             try:
                 df = pd.read_csv(file_path)
-                if "Date" in df.columns:
-                    df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
-                    df = df.dropna(subset=["Date"]).set_index("Date")
-                else:
-                    # fallback: assume first column is date
-                    df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0], errors="coerce")
-                    df = df.dropna(subset=[df.columns[0]]).set_index(df.columns[0])
+                df = _flatten_columns(df)
+                # Prefer "Date" column; else fallback to first column
+                date_col = "Date" if "Date" in df.columns else df.columns[0]
+                # Use dateutil.parse to avoid "Could not infer format" warning
+                df[date_col] = df[date_col].map(lambda x: parse(x) if pd.notna(x) else pd.NaT)
+                df = df.dropna(subset=[date_col]).set_index(date_col)
             except Exception:
                 df = None
 
@@ -124,6 +140,7 @@ def fetch_cached_history(symbol: str, period="2y", interval="1d") -> pd.DataFram
         try:
             logger.info("⬇️ Downloading full history: %s", symbol)
             df = yf.download(symbol, period=period, interval=interval, auto_adjust=False, progress=False)
+            df = _flatten_columns(df)
         except Exception as e:
             logger.error("Download error %s: %s", symbol, e)
             if is_temporary_failure(e):
@@ -140,17 +157,20 @@ def fetch_cached_history(symbol: str, period="2y", interval="1d") -> pd.DataFram
             logger.info("🔄 Updating %s from %s", symbol, start)
             new_df = yf.download(symbol, start=start, interval=interval, auto_adjust=False, progress=False)
             if not new_df.empty:
+                new_df = _flatten_columns(new_df)
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
         except Exception as e:
             logger.warning("Update error %s: %s", symbol, e)
             if not is_temporary_failure(e):
                 return pd.DataFrame()
 
-    # ensure numeric OHLCV
+    # ensure numeric OHLCV (use str(col).lower() to avoid tuple .lower() errors)
     for col in df.columns:
-        if any(k in col.lower() for k in ["open", "high", "low", "close", "adj", "volume"]):
+        col_l = str(col).lower()
+        if any(k in col_l for k in ["open", "high", "low", "close", "adj", "volume"]):
             df[col] = pd.to_numeric(df[col], errors="coerce")
 
+    # Save cache with a proper Date column
     try:
         df.reset_index().to_csv(file_path, index=False)
     except Exception as e:
@@ -165,12 +185,12 @@ def fetch_cached_history(symbol: str, period="2y", interval="1d") -> pd.DataFram
 def _close_series(df: pd.DataFrame) -> pd.Series | None:
     if df is None or df.empty:
         return None
-    # Prefer Close, then Adj Close, then any 'close' column
-    lower = {c.lower(): c for c in df.columns}
-    close_col = lower.get("close") or lower.get("adj close") or lower.get("adjclose")
+    # Map lowercased string labels -> original labels
+    lower_map = {str(c).lower(): c for c in df.columns}
+    close_col = lower_map.get("close") or lower_map.get("adj close") or lower_map.get("adjclose")
     if close_col is None:
         for c in df.columns:
-            if "close" in c.lower():
+            if "close" in str(c).lower():
                 close_col = c
                 break
     if close_col is None:
@@ -178,8 +198,7 @@ def _close_series(df: pd.DataFrame) -> pd.Series | None:
     s = df[close_col]
     if isinstance(s, pd.DataFrame):
         s = s.squeeze()
-    s = pd.to_numeric(s, errors="coerce")
-    return s
+    return pd.to_numeric(s, errors="coerce")
 
 
 def calculate_indicators(df: pd.DataFrame) -> pd.DataFrame:
@@ -246,7 +265,7 @@ def fetch_option_iv_history(symbol: str, lookback_days=52) -> pd.DataFrame:
     return pd.DataFrame(iv_data)
 
 
-def calc_iv_rank_percentile(iv_series) -> tuple | tuple[None, None]:
+def calc_iv_rank_percentile(iv_series) -> tuple:
     s = pd.Series(iv_series).dropna()
     if len(s) < 5:
         return None, None
@@ -300,7 +319,7 @@ def fetch_puts_for_7_weeks(symbol: str) -> list[dict]:
 
 
 # ------------------------------
-# NEW: three metrics per put
+# Three metrics per put
 # ------------------------------
 def calculate_option_metrics(puts_data: list[dict], stock_price: float) -> list[dict]:
     """
@@ -321,12 +340,9 @@ def calculate_option_metrics(puts_data: list[dict], stock_price: float) -> list[
         except Exception:
             prem_val = None
 
-        # Delta%
         put["delta_pct"] = ((float(stock_price) - float(strike)) / float(stock_price)) * 100 \
                            if strike is not None else None
-        # Premium%
         put["premium_pct"] = (prem_val / float(stock_price)) * 100 if prem_val is not None else None
-        # Overall% (your old custom metric)
         prem_for_overall = prem_val if prem_val is not None else 0.0
         put["overall_metric"] = (((float(stock_price) - float(strike)) + (prem_for_overall / 100)) / float(stock_price)) * 100 \
                                 if strike is not None else None
