@@ -1,91 +1,68 @@
-name: Signals
+name: Signal
 
 on:
   schedule:
     - cron: '30 13 * * 1-5'
     - cron: '30 14 * * 1-5'
-    #- cron: '30 15 * * 1-5'
-    #- cron: '30 16 * * 1-5'
-    #- cron: '30 17 * * 1-5'
     - cron: '30 18 * * 1-5'
-    #- cron: '30 19 * * 1-5'
-    #- cron: '30 20 * * 1-5'
   workflow_dispatch:
 
 jobs:
-  run-signals:
+  run-signal:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      actions: read
-
-    env:
-      PYTHONUNBUFFERED: "1"
-      STATE_DIR: state
-      # your secrets here
-      SMTP_SERVER: smtp.gmail.com
-      SMTP_PORT: 587
-      EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
-      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-      EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
-      # any API keys you use:
-      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.10"
 
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install yfinance finnhub-python pandas ta numpy
 
-      # Restore latest cache snapshot (if any). This pulls data/logs/state from prior runs.
-      - name: Restore cache
-        id: restore-cache
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            data
-            logs
-            state
-          key: signal-state-${{ runner.os }}-none
-          restore-keys: |
-            signal-state-${{ runner.os }}-
-            signal-state-
-            
-      - name: Run Trading Bot
-        run: python Signal3.py
-        
-      - name: Ensure folders exist
+      - name: Run Signal
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
         run: |
-          mkdir -p data logs state
+          python Signal.py --email-type hourly
 
+      # Gather outputs to a staging directory for artifact upload
+      - name: Collect outputs
+        if: always()
+        run: |
+          mkdir -p artifacts
+          cp -vr logs artifacts/ 2>/dev/null || true
+          cp -vr puts_data artifacts/ 2>/dev/null || true
+          cp -v logs/alerts_history.csv artifacts/ 2>/dev/null || true
+          cp -v sent_buys_* artifacts/ 2>/dev/null || true
 
+      - name: List artifacts (debug info)
+        if: always()
+        run: ls -R artifacts
 
-      # (Nice to have) See outputs for this run
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: signals-outputs
-          path: |
-            data
-            logs
-            state
+          path: artifacts/
+          if-no-files-found: warn
 
-      # Save a fresh cache snapshot for the *next* run
-      - name: Save updated cache
-        if: always()
-        uses: actions/cache/save@v4
+  use-artifact:
+    runs-on: ubuntu-latest
+    needs: run-signal
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
         with:
-          path: |
-            data
-            logs
-            state
-          key: signal-state-${{ runner.os }}-${{ github.run_id }}
+          name: signals-outputs
+          path: downloaded
+
+      - name: List downloaded files
+        run: ls -R downloaded
