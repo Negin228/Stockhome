@@ -174,9 +174,11 @@ def calculate_custom_metrics(puts, price):
         premium = p.get("premium") or 0.0
         try:
             premium_val = float(premium)
-            p["custom_metric"] = ((price - strike) + premium_val / 100) / price * 100 if strike else None
-            p["delta_percent"] = ((price - strike) / price) * 100 if strike else None
-            p["premium_percent"] = premium_val / price * 100 if premium_val else None
+            delta_percent = ((price - strike) / price) * 100 if strike else 0
+            premium_percent = (premium_val / price) * 100 if premium_val else 0
+            p["delta_percent"] = delta_percent
+            p["premium_percent"] = premium_percent
+            p["custom_metric"] = delta_percent + premium_percent if strike else None
         except Exception as e:
             logger.warning(f"Error computing metrics for put {p}: {e}")
             p["custom_metric"] = p["delta_percent"] = p["premium_percent"] = None
