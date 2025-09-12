@@ -167,6 +167,31 @@ def fetch_puts(symbol):
         logger.warning(f"Failed to fetch puts for {symbol}: {e}")
     return puts_data
 
+def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent):
+    price_str = f"{price:.2f}" if price is not None else "N/A"
+    rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
+    pe_str = f"{pe:.1f}" if pe is not None else "N/A"
+    strike_str = f"{strike:.1f}" if strike is not None else "N/A"
+    premium_str = f"{premium:.2f}" if premium is not None else "N/A"
+    dp = f"{delta_percent:.1f}%" if delta_percent is not None else "N/A"
+    pp = f"{premium_percent:.1f}%" if premium_percent is not None else "N/A"
+    metric_sum = None
+    if (delta_percent is not None) and (premium_percent is not None):
+        metric_sum = delta_percent + premium_percent
+    metric_sum_str = f"{metric_sum:.1f}%" if metric_sum is not None else "N/A"
+    return (
+        f"{ticker} (${price_str}): "
+        f"RSI={rsi_str}, "
+        f"P/E={pe_str}, "
+        f"Market Cap=${mcap}, "
+        f"${strike_str} on {expiration}, "
+        f"premium= ${premium_str}, "
+        f"[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}"
+    )
+
+def format_sell_alert_line(ticker, price, rsi, pe, mcap):
+    return f"{ticker} (${price:.2f}): RSI={rsi:.1f}, P/E={pe:.1f}, Market Cap=${mcap}"
+
 def calculate_custom_metrics(puts, price):
     if price is None or price <= 0 or np.isnan(price):
         return puts
@@ -216,38 +241,19 @@ def log_alert(alert):
     df_new = pd.DataFrame([alert])
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
 
-def format_email_body(buy_alerts, sell_alerts, version="4"):
+def format_email_body(buy_alerts, sell_alerts):
     lines = [
-        f"📊 StockHome Trading Signals v{version}",
-        f"Generated: {datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
-        "="*60,
-        ""
-    ]
+        f"📊 StockHome Trading Signals",
+        f"Generated: {(datetime.datetime.now() - datetime.timedelta(hours=7)):%Y-%m-%d %H:%M:%S} PT",
+        ""]
     if buy_alerts:
-        lines.append("🟢 BUY SIGNALS\n")
+        lines.append("🟢 BUY SIGNALS")
         for alert in buy_alerts:
-            parts = alert.split("\n")
-            header = parts
-            lines.append(f"📈 {header}")
-            options = [l for l in parts[1:] if 'expiration=' in l]
-            if options:
-                lines.append(" Recommended Puts:")
-                for opt in options:
-                    try:
-                        fields = dict(part.split("=", 1) for part in opt.split(", "))
-                        line = (
-                            f" - Exp: {fields.get('expiration','N/A')}, Strike: ${fields.get('strike','N/A')}, "
-                            f"Premium: ${fields.get('premium','N/A')}, Stock: ${fields.get('stock_price','N/A')}, "
-                            f"Metric: {fields.get('custom_metric','N/A')}, Delta%: {fields.get('delta_percent','N/A')}, "
-                            f"Premium%: {fields.get('premium_percent','N/A')}"
-                        )
-                        lines.append(line)
-                    except Exception:
-                        lines.append(f" - {opt}")
-                lines.append("")
+            lines.append(f"📈 {alert}")
     if sell_alerts:
-        lines.append("🔴 SELL SIGNALS\n")
-        lines.extend(f"{alert}\n" for alert in sell_alerts)
+        lines.append("🔴 SELL SIGNALS")
+        for alert in sell_alerts:
+            lines.append(f"📉 {alert}")
     return "\n".join(lines)
 
 def job(tickers):
@@ -303,22 +309,23 @@ def job(tickers):
             skipped += 1
             continue
         pe, mcap = fetch_fundamentals_safe(symbol)
-        iv_hist = fetch_puts(symbol)
-        iv_rank = iv_pct = None
-        if iv_hist:
-            iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
+        #iv_hist = fetch_puts(symbol)
+        #iv_rank = iv_pct = None
+        #if iv_hist:
+            #iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
         cap_str = format_market_cap(mcap)
+        rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         pe_str = f"{pe:.1f}" if pe else "N/A"
         parts = [
             f"{symbol}: {sig} at ${rt_price:.2f}",
             reason,
             f"PE={pe_str}",
-            f"MarketCap={cap_str}",
+            f"Market Cap={cap_str}",
         ]
-        if iv_rank is not None:
-            parts.append(f"IV Rank={iv_rank:.2f}")
-        if iv_pct is not None:
-            parts.append(f"IV Percentile={iv_pct:.2f}")
+        #if iv_rank is not None:
+            #parts.append(f"IV Rank={iv_rank:.2f}")
+        #if iv_pct is not None:
+            #parts.append(f"IV Percentile={iv_pct:.2f}")
         alert_line = ", ".join(parts)
         alert_data = {
             "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -328,25 +335,32 @@ def job(tickers):
             "rsi": hist["rsi"].iloc[-1] if "rsi" in hist.columns else None,
             "pe_ratio": pe,
             "market_cap": mcap,
-            "iv_rank": iv_rank,
-            "iv_percentile": iv_pct,
+            #"iv_rank": iv_rank,
+            #"iv_percentile": iv_pct,
         }
         log_alert(alert_data)
         if sig == "BUY":
-            buy_alerts.append(alert_line)
             buy_symbols.append(symbol)
             prices[symbol] = rt_price
-            logger.info(f"Buy signal: {symbol}")
         else:
-            sell_alerts.append(alert_line)
-            logger.info(f"Sell signal: {symbol}")
-
+            sell_alert_line = format_sell_alert_line(
+                        ticker=symbol,
+                        price=rt_price,
+                        rsi=rsi_val,
+                        pe=pe,
+                        mcap=cap_str)
+            sell_alerts.append(sell_alert_line)
+            
     # Only one best recommended put per ticker, by highest premium_percent
     puts_dir = "puts_data"
     os.makedirs(puts_dir, exist_ok=True)
     for sym in buy_symbols:
-        puts_list = fetch_puts(sym)
         price = prices.get(sym)
+        pe, mcap = fetch_fundamentals_safe(sym)
+        cap_str = format_market_cap(mcap)
+        hist = fetch_history(sym)
+        rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
+        puts_list = fetch_puts(sym)
         puts_list = calculate_custom_metrics(puts_list, price)
         filtered_puts = [
             p for p in puts_list
@@ -357,38 +371,35 @@ def job(tickers):
         if not filtered_puts:
             continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
-        strike = f"{best_put['strike']:.1f}" if isinstance(best_put['strike'], (int, float)) else "N/A"
-        premium = f"{best_put['premium']:.2f}" if isinstance(best_put['premium'], (int, float)) else "N/A"
-        metric = f"{best_put['custom_metric']:.1f}%" if best_put.get('custom_metric') is not None else "N/A"
-        delta = f"{best_put.get('delta_percent', 'N/A'):.1f}%" if best_put.get('delta_percent') is not None else "N/A"
-        prem_pct = f"{best_put.get('premium_percent', 'N/A'):.1f}%" if best_put.get('premium_percent') is not None else "N/A"
-        puts_text = (
-            f"expiration={best_put['expiration']}, strike={strike}, premium={premium}, stock_price={price:.2f}, custom_metric={metric}, delta_percent={delta}, premium_percent={prem_pct}"
+        expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
+        buy_alert_line = format_buy_alert_line(
+                ticker=sym,
+                price=price if price is not None else 0.0,
+                rsi=rsi_val if rsi_val is not None else 0.0,
+                pe=pe if pe is not None else 0.0,
+                mcap=cap_str if cap_str is not None else "N/A",
+                strike=float(best_put['strike']) if best_put.get('strike') is not None else 0.0,
+                expiration=expiration_fmt if expiration_fmt else "N/A",
+                premium=float(best_put['premium']) if best_put.get('premium') is not None else 0.0,
+                delta_percent=float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else 0.0,
+                premium_percent=float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else 0.0
         )
-        puts_block = "\n" + puts_text
-        for idx, alert_line in enumerate(buy_alerts):
-            if alert_line.startswith(sym):
-                buy_alerts[idx] += puts_block
-                break
+        buy_alerts.append(buy_alert_line)
+        # Save JSON for recordkeeping/other uses
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
         try:
-            with open(puts_json_path, "w") as fp:
-                json.dump([best_put], fp, indent=2)
-            logger.info(f"Saved puts data for {sym}")
+                with open(puts_json_path, "w") as fp:
+                        json.dump([best_put], fp, indent=2)
+                logger.info(f"Saved puts data for {sym}")
         except Exception as e:
-            logger.error(f"Failed to save puts json for {sym}: {e}")
+                logger.error(f"Failed to save puts json for {sym}: {e}")
     return buy_symbols, buy_alerts, sell_alerts, failed
 
 def load_previous_buys(email_type):
     return set()
 def save_buys(email_type, buys_set):
     pass
-def calc_iv_rank_percentile(series):
-    if series.empty:
-        return None, None
-    iv_rank = (series.iloc[-1] - series.min()) / (series.max() - series.min()) * 100 if (series.max() - series.min()) != 0 else 0
-    iv_pct = series.rank(pct=True).iloc[-1] * 100
-    return iv_rank, iv_pct
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -420,7 +431,7 @@ def main():
         body = format_email_body(all_buy_alerts, all_sell_alerts)
         logger.info(f"Sending email with {len(new_buys)} new buys")
         print(body)
-        send_email("Stock Home Trading Alerts", body)
+        send_email("StockHome Trading Alerts", body)
         save_buys(args.email_type, prev_buys.union(new_buys))
     else:
         logger.info("No new buys or sells to report.")
