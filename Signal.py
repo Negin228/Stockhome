@@ -81,7 +81,7 @@ def fetch_history(symbol, period="2y", interval="1d"):
             logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
             try:
-                df = pd.read_csv(path, index_col=0)  # Automatically match what to_csv writes
+                df = pd.read_csv(path, index_col=0, parse_dates=True)  # Automatically match what to_csv writes
                 df.index = pd.to_datetime(df.index, errors='coerce')
                 logger.info(f"Read cache for {symbol}, {df.shape} rows, columns: {df.columns.tolist()}")
             except Exception as e:
