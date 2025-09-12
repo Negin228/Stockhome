@@ -82,7 +82,10 @@ def fetch_history(symbol, period="2y", interval="1d"):
         else:
             try:
                 df = pd.read_csv(path, index_col=0, parse_dates=True)  # Automatically match what to_csv writes
-                df = df[[col for col in df.columns if col in ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']]]
+                df = df.loc[:, ~df.columns.duplicated()]
+                # Keep canonical columns only
+                df = df[[c for c in df.columns if c in ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']]]
+                # Ensure "Close" is Series for TA-Lib
                 df.index = pd.to_datetime(df.index, errors='coerce')
                 logger.info(f"Read cache for {symbol}, {df.shape} rows, columns: {df.columns.tolist()}")
                 logger.info(f"CMG columns: {df.columns.tolist()}")
@@ -131,8 +134,8 @@ def calculate_indicators(df):
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
-    df["rsi"] = ta.momentum.RSIIndicator(df["Close"], window=14).rsi()
-    df["dma200"] = close.rolling(200).mean()
+        df["rsi"] = ta.momentum.RSIIndicator(df["Close"], window=14).rsi()
+    #df["dma200"] = close.rolling(200).mean()
     return df
 
 def generate_signal(df):
