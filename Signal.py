@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, timedelta
+import datetime
 import json
 import yfinance as yf
 import finnhub
