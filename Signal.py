@@ -183,14 +183,14 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
         f"{ticker} (${price_str}): "
         f"RSI={rsi_str}, "
         f"P/E={pe_str}, "
-        f"MarketCap={mcap}, "
+        f"Market Cap={mcap}, "
         f"${strike_str} on {expiration}, "
         f"premium: ${premium_str}, "
         f"[𝚫 {dp} + premium {pp}] = {metric_sum_str}"
     )
 
 def format_sell_alert_line(ticker, price, rsi, pe, mcap):
-    return f"{ticker} (${price:.2f}): RSI={rsi:.1f}, P/E={pe:.1f}, MarketCap={mcap}"
+    return f"{ticker} (${price:.2f}): RSI={rsi:.1f}, P/E={pe:.1f}, Market Cap={mcap}"
 
 def calculate_custom_metrics(puts, price):
     if price is None or price <= 0 or np.isnan(price):
@@ -320,7 +320,7 @@ def job(tickers):
             f"{symbol}: {sig} at ${rt_price:.2f}",
             reason,
             f"PE={pe_str}",
-            f"MarketCap={cap_str}",
+            f"Market Cap={cap_str}",
         ]
         #if iv_rank is not None:
             #parts.append(f"IV Rank={iv_rank:.2f}")
