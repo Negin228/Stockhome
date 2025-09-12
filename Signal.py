@@ -168,17 +168,24 @@ def fetch_puts(symbol):
     return puts_data
 
 def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent):
+    price_str = f"{price:.2f}" if price is not None else "N/A"
+    rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
+    pe_str = f"{pe:.1f}" if pe is not None else "N/A"
+    strike_str = f"{strike:.1f}" if strike is not None else "N/A"
+    premium_str = f"{premium:.2f}" if premium is not None else "N/A"
     dp = f"{delta_percent:.1f}%" if delta_percent is not None else "N/A"
     pp = f"{premium_percent:.1f}%" if premium_percent is not None else "N/A"
-    metric_sum = delta_percent + premium_percent if (delta_percent is not None and premium_percent is not None) else None
+    metric_sum = None
+    if (delta_percent is not None) and (premium_percent is not None):
+        metric_sum = delta_percent + premium_percent
     metric_sum_str = f"{metric_sum:.1f}%" if metric_sum is not None else "N/A"
     return (
-        f"{ticker} (${price:.2f}): "
-        f"RSI:{rsi:.1f}, "
-        f"P/E={pe:.1f}, "
+        f"{ticker} (${price_str}): "
+        f"RSI:{rsi_str}, "
+        f"P/E={pe_str}, "
         f"MarketCap={mcap}, "
-        f"Buy ${strike:.1f} @ {expiration}, "
-        f"premium: ${premium:.2f}, "
+        f"Buy ${strike_str} @ {expiration}, "
+        f"premium: ${premium_str}, "
         f"[delta {dp} + premium {pp}] = {metric_sum_str}"
     )
 
@@ -368,15 +375,16 @@ def job(tickers):
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
         buy_alert_line = format_buy_alert_line(
                 ticker=sym,
-                price=price,
-                rsi=rsi_val,
-                pe=pe,
-                mcap=cap_str,
-                strike=float(best_put['strike']),
-                expiration=expiration_fmt,
-                premium=float(best_put['premium']),
-                delta_percent=float(best_put['delta_percent']),
-                premium_percent=float(best_put['premium_percent']))
+                price=price if price is not None else 0.0,
+                rsi=rsi_val if rsi_val is not None else 0.0,
+                pe=pe if pe is not None else 0.0,
+                mcap=cap_str if cap_str is not None else "N/A",
+                strike=float(best_put['strike']) if best_put.get('strike') is not None else 0.0,
+                expiration=expiration_fmt if expiration_fmt else "N/A",
+                premium=float(best_put['premium']) if best_put.get('premium') is not None else 0.0,
+                delta_percent=float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else 0.0,
+                premium_percent=float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else 0.0
+        )
         buy_alerts.append(buy_alert_line)
         # Save JSON for recordkeeping/other uses
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
