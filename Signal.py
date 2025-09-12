@@ -82,6 +82,7 @@ def fetch_history(symbol, period="2y", interval="1d"):
         else:
             try:
                 df = pd.read_csv(path, index_col=0)  # Automatically match what to_csv writes
+                df.index = pd.to_datetime(df.index, errors='coerce')
                 logger.info(f"Read cache for {symbol}, {df.shape} rows, columns: {df.columns.tolist()}")
             except Exception as e:
                 logger.warning(f"Failed reading cache for {symbol}: {e}")
