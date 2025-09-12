@@ -81,14 +81,8 @@ def fetch_history(symbol, period="2y", interval="1d"):
             logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
             try:
-                cols = ['Date', 'Price', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
-                df = pd.read_csv(path, skiprows=3, names=cols)
-                logger.info(f"Read cache for {symbol}, {df.shape} rows")
-                df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
-                df.set_index('Date', inplace=True)
-                if df.index.hasnans:
-                    logger.warning(f"Cache date parsing failed for {symbol}, refreshing cache")
-                    force_full = True
+                df = pd.read_csv(path, index_col=0)  # Automatically match what to_csv writes
+                logger.info(f"Read cache for {symbol}, {df.shape} rows, columns: {df.columns.tolist()}")
             except Exception as e:
                 logger.warning(f"Failed reading cache for {symbol}: {e}")
                 df = None
