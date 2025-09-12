@@ -37,6 +37,7 @@ EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 
 tickers = config.tickers
+
 finnhub_client = finnhub.Client(api_key=API_KEY)
 # Retry constants
 MAX_API_RETRIES = 5
