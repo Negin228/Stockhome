@@ -266,6 +266,7 @@ def job(tickers):
     buy_alerts, sell_alerts = [], []
     buy_symbols = []
     prices = {}
+    rsi_vals = {}
     failed = []
     total = skipped = 0
     for symbol in tickers:
