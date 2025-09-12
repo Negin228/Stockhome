@@ -82,7 +82,10 @@ def fetch_history(symbol, period="2y", interval="1d"):
         else:
             try:
                 cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
-                df = pd.read_csv(path, index_col=0, parse_dates=True)  # Automatically match what to_csv writes
+                df = pd.read_csv(path, index_col=0, parse_dates=True, date_parser=lambda x: pd.to_datetime(x, format='%Y-%m-%d'))
+                if not isinstance(df.index[-1], pd.Timestamp):
+                    df.index = pd.to_datetime(df.index, format='%Y-%m-%d', errors='coerce')
+                last = df.index[-1]
                 df = df[[c for c in df.columns if c in cols]]
                 df = df.apply(pd.to_numeric, errors='coerce')
                 df = df.dropna(how='any', subset=['Close'])
