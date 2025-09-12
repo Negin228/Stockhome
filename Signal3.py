@@ -329,7 +329,7 @@ def job(tickers):
                 logger.error(f"Failed to save puts json for {symbol}: {e}")
 
         alert_line = (
-            f"{symbol}: {sig} at ${rt_price:.2f}, {reason}, PE={pe_str}, Market Cap={cap_str}, IV Rank={iv_rank_str}, IV Percentile={iv_pct_str}"
+            f"{symbol}: {sig} at ${rt_price:.2f}, {reason}, PE={pe_str}, Market Cap={cap_str}, "
             + (f", {option_text}" if option_text else "")
         )
         alert_data = {
@@ -340,8 +340,6 @@ def job(tickers):
             "rsi": hist["rsi"].iloc[-1] if "rsi" in hist.columns else None,
             "pe_ratio": pe,
             "market_cap": mcap,
-            "iv_rank": iv_rank,
-            "iv_percentile": iv_pct,
         }
         log_alert(alert_data)
         if sig == "BUY":
