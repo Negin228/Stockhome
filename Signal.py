@@ -18,7 +18,10 @@ from dateutil.parser import parse
 import config
 
 # Setup logging
+puts_dir = "puts_data"
+os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
+os.makedirs(puts_dir, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
@@ -42,6 +45,7 @@ MAX_API_RETRIES = 5
 API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
+
 
 def retry_on_rate_limit(func):
     def wrapper(*args, **kwargs):
@@ -67,6 +71,9 @@ def fetch_history(symbol, period="2y", interval="1d"):
     path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df = None
     force_full = False
+    # Always log the directory state at start
+    logger.info(f"mydata contents: {os.listdir(config.DATA_DIR)}")
+    
     if os.path.exists(path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(path))).days
         if age_days > config.MAX_CACHE_DAYS:
@@ -76,6 +83,7 @@ def fetch_history(symbol, period="2y", interval="1d"):
             try:
                 cols = ['Date', 'Price', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
                 df = pd.read_csv(path, skiprows=3, names=cols)
+                logger.info(f"Read cache for {symbol}, {df.shape} rows")
                 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
                 df.set_index('Date', inplace=True)
                 if df.index.hasnans:
@@ -91,6 +99,7 @@ def fetch_history(symbol, period="2y", interval="1d"):
             logger.warning(f"{symbol}: yf.download returned EMPTY dataframe! No CSV will be saved.")
             return pd.DataFrame()
         df.to_csv(path)
+        logger.info(f"Saved CSV for {symbol} to {path}, {df.shape} rows")
     else:
         try:
             last = df.index[-1]
@@ -102,8 +111,11 @@ def fetch_history(symbol, period="2y", interval="1d"):
             if not new_df.empty:
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
                 df.to_csv(path)
+                logger.info(f"Updated and saved CSV for {symbol}, now {df.shape} rows")
         except Exception as e:
             logger.warning(f"Incremental update failed for {symbol}: {e}")
+    # Log the folder again at end
+    logger.info(f"mydata updated: {os.listdir(config.DATA_DIR)}")
     return df
 
 @retry_on_rate_limit
@@ -353,8 +365,7 @@ def job(tickers):
             sell_alerts.append(sell_alert_line)
             
     # Only one best recommended put per ticker, by highest premium_percent
-    puts_dir = "puts_data"
-    os.makedirs(config.DATA_DIR, exist_ok=True)
+
     for sym in buy_symbols:
         price = prices.get(sym)
         pe, mcap = fetch_fundamentals_safe(sym)
