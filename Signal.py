@@ -268,7 +268,7 @@ def job(tickers):
     for symbol in tickers:
         total += 1
         try:
-            hist = fetch_history(symbol)
+            hist = fetch_cached_history(symbol)
             if hist.empty or "Close" not in hist.columns:
                 logger.info(f"No historical data for {symbol}, skipping.")
                 skipped += 1
@@ -348,7 +348,7 @@ def job(tickers):
         price = prices.get(sym)
         pe, mcap = fetch_fundamentals_safe(sym)
         cap_str = format_market_cap(mcap)
-        hist = fetch_history(sym)
+        hist = fetch_cached_history(sym)
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         puts_list = fetch_puts(sym)
         puts_list = calculate_custom_metrics(puts_list, price)
