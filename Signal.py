@@ -1,5 +1,5 @@
 import os
-import datetime
+from datetime import datetime, timedelta
 import json
 import yfinance as yf
 import finnhub
@@ -244,7 +244,7 @@ def log_alert(alert):
 def format_email_body(buy_alerts, sell_alerts, version="1.2"):
     lines = [
         f"📊 StockHome Trading Signals v{version}",
-        f"Generated: {datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
+        f"Generated: {(datetime.now() + timedelta(hours=7)):%Y-%m-%d %H:%M:%S}",
         ""]
     if buy_alerts:
         lines.append("🟢 BUY SIGNALS")
