@@ -82,7 +82,7 @@ def fetch_history(symbol, period="2y", interval="1d"):
         else:
             try:
                 cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
-                df = pd.read_csv(path, index_col=0, parse_dates=True, date_parser=lambda x: pd.to_datetime(x, format='%Y-%m-%d'))
+                df = pd.read_csv(path, index_col=0, parse_dates=True, skiprows=1)
                 if not isinstance(df.index[-1], pd.Timestamp):
                     df.index = pd.to_datetime(df.index, format='%Y-%m-%d', errors='coerce')
                 last = df.index[-1]
