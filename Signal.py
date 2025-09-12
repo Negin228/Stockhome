@@ -17,6 +17,7 @@ import config
 
 def fetch_history(symbol, period="2y", interval="1d"):
     path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
+    os.makedirs(config.DATA_DIR, exist_ok=True)
     df = None
     force_full = False
     if os.path.exists(path):
@@ -58,7 +59,8 @@ def fetch_history(symbol, period="2y", interval="1d"):
     return df
 
 def fetch_quote(symbol):
-    finnhub_client = finnhub.Client(api_key=os.getenv("API_KEY"))
+    finnhub_key = os.getenv("API_KEY", getattr(config, "API_KEY", None))
+    finnhub_client = finnhub.Client(api_key=finnhub_key)
     quote = finnhub_client.quote(symbol)
     price = quote.get("c", None)
     if isinstance(price, (pd.Series, np.ndarray)):
@@ -162,22 +164,36 @@ def format_email_body(buy_alerts, sell_alerts, version="4"):
     return "\n".join(lines)
 
 def send_email(subject, body):
+    sender = os.getenv("EMAIL_SENDER", getattr(config, "EMAIL_SENDER", None))
+    password = os.getenv("EMAIL_PASSWORD", getattr(config, "EMAIL_PASSWORD", None))
+    receiver = os.getenv("EMAIL_RECEIVER", getattr(config, "EMAIL_RECEIVER", None))
+    smtp_server = getattr(config, "SMTP_SERVER", None)
+    smtp_port = getattr(config, "SMTP_PORT", 587)
     msg = MIMEMultipart()
-    msg["From"] = os.getenv("EMAIL_SENDER", config.EMAIL_SENDER)
-    msg["To"] = os.getenv("EMAIL_RECEIVER", config.EMAIL_RECEIVER)
+    msg["From"] = sender
+    msg["To"] = receiver
     msg["Subject"] = subject
     msg.attach(MIMEText(body, "plain"))
+
+    print("Sending email FROM:", sender)
+    print("TO:", receiver)
+    print("SMTP server:", smtp_server)
     try:
-        with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as s:
+        with smtplib.SMTP(smtp_server, smtp_port) as s:
             s.starttls()
-            s.login(os.getenv("EMAIL_SENDER", config.EMAIL_SENDER), os.getenv("EMAIL_PASSWORD", config.EMAIL_PASSWORD))
+            s.login(sender, password)
             s.send_message(msg)
+        print("Email sent.")
         logging.info("Email sent")
     except Exception as e:
+        print("Email sending failed:", e)
         logging.error(f"Email sending failed: {e}")
+        raise
 
 def job(tickers):
     buy_alerts, sell_alerts, failed = [], [], []
+    puts_dir = "puts_data"
+    os.makedirs(puts_dir, exist_ok=True)
     for symbol in tickers:
         try:
             hist = fetch_history(symbol)
@@ -211,8 +227,6 @@ def job(tickers):
         pe, mcap = fetch_fundamentals_safe(symbol)
         cap_str = format_market_cap(mcap)
         pe_str = f"{pe:.1f}" if pe is not None else "N/A"
-        puts_dir = "puts_data"
-        os.makedirs(puts_dir, exist_ok=True)
         puts_list = fetch_puts(symbol)
         puts_list = calculate_custom_metrics(puts_list, rt_price)
         filtered_puts = [
@@ -258,7 +272,11 @@ def main():
     body = format_email_body(all_buy_alerts, all_sell_alerts)
     print(body)
     if all_buy_alerts or all_sell_alerts:
-        send_email("Stock Home Trading Alerts", body)
+        try:
+            send_email("Stock Home Trading Alerts", body)
+        except Exception:
+            print("Email send failed. See logs above.")
+            exit(1)
 
 if __name__ == "__main__":
     try:
