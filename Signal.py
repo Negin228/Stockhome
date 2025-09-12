@@ -17,11 +17,11 @@ import numpy as np
 from dateutil.parser import parse
 import config
 
-# Setup logging
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
 os.makedirs(puts_dir, exist_ok=True)
+
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
@@ -45,7 +45,6 @@ MAX_API_RETRIES = 5
 API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
-
 
 def retry_on_rate_limit(func):
     def wrapper(*args, **kwargs):
@@ -71,29 +70,33 @@ def fetch_history(symbol, period="2y", interval="1d"):
     path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df = None
     force_full = False
-    # Always log the directory state at start
     logger.info(f"mydata contents: {os.listdir(config.DATA_DIR)}")
-    
     if os.path.exists(path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(path))).days
         if age_days > config.MAX_CACHE_DAYS:
             force_full = True
             logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
-            try:
-                expected_cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
-                cols_found = None
-                for n_skip in [0, 1, 2, 3]:
-                    try:
-                        df = pd.read_csv(path, index_col=0, parse_dates=True, skiprows=n_skip)
-                        cols_found = df.columns.tolist()
-                        if all(col in cols_found for col in expected_cols):
-                            break
-                    except Exception as e:
-                        continue
-                if not cols_found or "Close" not in cols_found:
-                    logger.error(f"Could not find 'Close' column in STZ cache after {n_skip} tries. Columns loaded: {cols_found}")
-                    return pd.DataFrame()
+            cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
+            # Try skiprows 0-3 for robust header detection
+            for skip in range(4):  
+                try:
+                    df = pd.read_csv(path, index_col=0, parse_dates=True, skiprows=skip)
+                    logger.info(f"Columns loaded (skiprows={skip}): {df.columns.tolist()}")
+                    if "Close" in df.columns and all(col in df.columns for col in cols):
+                        break
+                except Exception as e:
+                    logger.warning(f"Failed reading cache for {symbol} with skiprows={skip}: {e}")
+            if df is None or "Close" not in df.columns:
+                logger.warning(f"Cache for {symbol}: Could not find 'Close' column. Aborting cache for this ticker.")
+                df = None
+            else:
+                df.index = pd.to_datetime(df.index, errors='coerce')
+                df = df[cols]
+                df = df.apply(pd.to_numeric, errors='coerce')
+                df = df.dropna(subset=["Close"])
+                df = df[df.index.notna()]
+                logger.info(f"Read cache for {symbol}, shape={df.shape}, columns={df.columns.tolist()}")
     if df is None or df.empty or force_full:
         logger.info(f"Downloading full history for {symbol}")
         df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
@@ -118,7 +121,6 @@ def fetch_history(symbol, period="2y", interval="1d"):
                 logger.info(f"Updated and saved CSV for {symbol}, now {df.shape} rows")
         except Exception as e:
             logger.warning(f"Incremental update failed for {symbol}: {e}")
-    # Log the folder again at end
     logger.info(f"mydata updated: {os.listdir(config.DATA_DIR)}")
     return df
 
@@ -131,7 +133,7 @@ def fetch_quote(symbol):
     return price
 
 def calculate_indicators(df):
-    close = df["Close"]
+    close = df.get("Close", pd.Series([]))
     close = close.squeeze()
     if not isinstance(close, pd.Series):
         close = pd.Series(close)
@@ -142,7 +144,6 @@ def calculate_indicators(df):
         df["dma200"] = np.nan
         return df
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
-    #df["dma200"] = close.rolling(200).mean()
     return df
 
 def generate_signal(df):
@@ -171,7 +172,7 @@ def fetch_puts(symbol):
     try:
         ticker = yf.Ticker(symbol)
         today = datetime.datetime.now()
-        valid_dates = [d for d in ticker.options if (parse(d) - today).days <= 49]
+        valid_dates = [d for d in getattr(ticker, 'options', []) if (parse(d) - today).days <= 49]
         for exp in valid_dates:
             chain = ticker.option_chain(exp)
             if chain.puts.empty:
@@ -269,7 +270,8 @@ def format_email_body(buy_alerts, sell_alerts):
     lines = [
         f"📊 StockHome Trading Signals",
         f"Generated: {(datetime.datetime.now() - datetime.timedelta(hours=7)):%Y-%m-%d %H:%M:%S} PT",
-        ""]
+        ""
+    ]
     if buy_alerts:
         lines.append("🟢 BUY SIGNALS")
         for alert in buy_alerts:
@@ -290,7 +292,7 @@ def job(tickers):
         total += 1
         try:
             hist = fetch_history(symbol)
-            if hist.empty:
+            if hist.empty or "Close" not in hist.columns:
                 logger.info(f"No historical data for {symbol}, skipping.")
                 skipped += 1
                 continue
@@ -333,10 +335,6 @@ def job(tickers):
             skipped += 1
             continue
         pe, mcap = fetch_fundamentals_safe(symbol)
-        #iv_hist = fetch_puts(symbol)
-        #iv_rank = iv_pct = None
-        #if iv_hist:
-            #iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
         cap_str = format_market_cap(mcap)
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         pe_str = f"{pe:.1f}" if pe else "N/A"
@@ -346,10 +344,6 @@ def job(tickers):
             f"PE={pe_str}",
             f"Market Cap={cap_str}",
         ]
-        #if iv_rank is not None:
-            #parts.append(f"IV Rank={iv_rank:.2f}")
-        #if iv_pct is not None:
-            #parts.append(f"IV Percentile={iv_pct:.2f}")
         alert_line = ", ".join(parts)
         alert_data = {
             "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -359,8 +353,6 @@ def job(tickers):
             "rsi": hist["rsi"].iloc[-1] if "rsi" in hist.columns else None,
             "pe_ratio": pe,
             "market_cap": mcap,
-            #"iv_rank": iv_rank,
-            #"iv_percentile": iv_pct,
         }
         log_alert(alert_data)
         if sig == "BUY":
@@ -368,15 +360,13 @@ def job(tickers):
             prices[symbol] = rt_price
         else:
             sell_alert_line = format_sell_alert_line(
-                        ticker=symbol,
-                        price=rt_price,
-                        rsi=rsi_val,
-                        pe=pe,
-                        mcap=cap_str)
+                ticker=symbol,
+                price=rt_price,
+                rsi=rsi_val,
+                pe=pe,
+                mcap=cap_str)
             sell_alerts.append(sell_alert_line)
-            
-    # Only one best recommended put per ticker, by highest premium_percent
-
+    # Options section (only for BUY signals)
     for sym in buy_symbols:
         price = prices.get(sym)
         pe, mcap = fetch_fundamentals_safe(sym)
@@ -396,33 +386,32 @@ def job(tickers):
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
         buy_alert_line = format_buy_alert_line(
-                ticker=sym,
-                price=price if price is not None else 0.0,
-                rsi=rsi_val if rsi_val is not None else 0.0,
-                pe=pe if pe is not None else 0.0,
-                mcap=cap_str if cap_str is not None else "N/A",
-                strike=float(best_put['strike']) if best_put.get('strike') is not None else 0.0,
-                expiration=expiration_fmt if expiration_fmt else "N/A",
-                premium=float(best_put['premium']) if best_put.get('premium') is not None else 0.0,
-                delta_percent=float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else 0.0,
-                premium_percent=float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else 0.0
+            ticker=sym,
+            price=price if price is not None else 0.0,
+            rsi=rsi_val if rsi_val is not None else 0.0,
+            pe=pe if pe is not None else 0.0,
+            mcap=cap_str if cap_str is not None else "N/A",
+            strike=float(best_put['strike']) if best_put.get('strike') is not None else 0.0,
+            expiration=expiration_fmt if expiration_fmt else "N/A",
+            premium=float(best_put['premium']) if best_put.get('premium') is not None else 0.0,
+            delta_percent=float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else 0.0,
+            premium_percent=float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else 0.0
         )
         buy_alerts.append(buy_alert_line)
-        # Save JSON for recordkeeping/other uses
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
         try:
-                with open(puts_json_path, "w") as fp:
-                        json.dump([best_put], fp, indent=2)
-                logger.info(f"Saved puts data for {sym}")
+            with open(puts_json_path, "w") as fp:
+                json.dump([best_put], fp, indent=2)
+            logger.info(f"Saved puts data for {sym}")
         except Exception as e:
-                logger.error(f"Failed to save puts json for {sym}: {e}")
+            logger.error(f"Failed to save puts json for {sym}: {e}")
     return buy_symbols, buy_alerts, sell_alerts, failed
 
 def load_previous_buys(email_type):
     return set()
+
 def save_buys(email_type, buys_set):
     pass
-
 
 def main():
     parser = argparse.ArgumentParser()
