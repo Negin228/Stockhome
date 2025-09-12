@@ -181,12 +181,12 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
     metric_sum_str = f"{metric_sum:.1f}%" if metric_sum is not None else "N/A"
     return (
         f"{ticker} (${price_str}): "
-        f"RSI:{rsi_str}, "
+        f"RSI={rsi_str}, "
         f"P/E={pe_str}, "
         f"MarketCap={mcap}, "
-        f"Buy ${strike_str} @ {expiration}, "
+        f"${strike_str} on {expiration}, "
         f"premium: ${premium_str}, "
-        f"[delta {dp} + premium {pp}] = {metric_sum_str}"
+        f"[𝚫 {dp} + premium {pp}] = {metric_sum_str}"
     )
 
 def format_sell_alert_line(ticker, price, rsi, pe, mcap):
