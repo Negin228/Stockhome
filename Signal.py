@@ -66,48 +66,47 @@ def retry_on_rate_limit(func):
     return wrapper
 
 @retry_on_rate_limit
-def fetch_history(symbol, period="2y", interval="1d"):
-    path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
-    df = None
-    force_full = False
-    if os.path.exists(path):
-        age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(path))).days
-        if age_days > config.MAX_CACHE_DAYS:
+def fetch_cached_history(symbol, period="2y", interval="1d"):
+    file_path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
+    df, force_full = None, False
+    if os.path.exists(file_path):
+        age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(file_path))).days
+        if age_days > config.MAX_CACHE_AGE_DAYS:
+            logger.info("%s cache too old (%d days) → full refresh", symbol, age_days)
             force_full = True
-            logging.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
             try:
-                cols = ['Date', 'Price', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
-                df = pd.read_csv(path, skiprows=3, names=cols)
-                df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
-                df.set_index('Date', inplace=True)
-                if df.index.hasnans:
-                    logging.warning(f"Cache date parsing failed for {symbol}, refreshing cache")
+                df = pd.read_csv(file_path, index_col=0, parse_dates=False)
+                df.index = pd.to_datetime(df.index, format="%m/%d/%Y", errors='coerce')
+                if df.index.isnull().any():
+                    logger.warning("Date parsing failed in cached data for %s, forcing full refresh", symbol)
                     force_full = True
-            except Exception as e:
-                logging.warning(f"Failed reading cache for {symbol}: {e}")
+            except Exception:
                 df = None
     if df is None or df.empty or force_full:
-        logging.info(f"Downloading full history for {symbol}")
-        df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
-        if df is None or df.empty:
-            return pd.DataFrame()
-        df.to_csv(path)
-    else:
         try:
-            last = df.index[-1]
-            if not isinstance(last, pd.Timestamp):
-                last = pd.to_datetime(last)
-            start_date = (last - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-            logging.info(f"Updating {symbol} from {start_date}")
-            new_df = yf.download(symbol, start=start_date, interval=interval, auto_adjust=False)
+            logger.info("⬇️ Downloading full history: %s", symbol)
+            df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
+        except Exception as e:
+            logger.error("Download error %s: %s", symbol, e)
+            return pd.DataFrame()
+    else:
+        last_date = df.index[-1]
+        if not isinstance(last_date, pd.Timestamp):
+            last_date = pd.to_datetime(last_date)
+        start = (last_date - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
+        logger.info("🔄 Updating %s from %s", symbol, start)
+        try:
+            new_df = yf.download(symbol, start=start, interval=interval, auto_adjust=False)
             if not new_df.empty:
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
-                df.to_csv(path)
         except Exception as e:
-            logging.warning(f"Incremental update failed for {symbol}: {e}")
+            logger.warning("Update error %s: %s", symbol, e)
+    try:
+        df.to_csv(file_path)
+    except Exception as e:
+        logger.warning("Cache save failed for %s: %s", symbol, e)
     return df
-
 @retry_on_rate_limit
 def fetch_quote(symbol):
     quote = finnhub_client.quote(symbol)
