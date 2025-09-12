@@ -72,7 +72,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
     force_full = False
     if os.path.exists(path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(path))).days
-        if age_days > config.MAX_CACHE_DAYS:
+        if age_days < config.MAX_CACHE_DAYS:
             force_full = True
             logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
