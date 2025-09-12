@@ -70,58 +70,42 @@ def fetch_history(symbol, period="2y", interval="1d"):
     path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df = None
     force_full = False
-    logger.info(f"mydata contents: {os.listdir(config.DATA_DIR)}")
     if os.path.exists(path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(path))).days
         if age_days > config.MAX_CACHE_DAYS:
             force_full = True
-            logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
+            logging.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
-            cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
-            # Try skiprows 0-3 for robust header detection
-            for skip in range(4):  
-                try:
-                    df = pd.read_csv(path, index_col=0, parse_dates=True, skiprows=skip)
-                    logger.info(f"Columns loaded (skiprows={skip}): {df.columns.tolist()}")
-                    if "Close" in df.columns and all(col in df.columns for col in cols):
-                        break
-                except Exception as e:
-                    logger.warning(f"Failed reading cache for {symbol} with skiprows={skip}: {e}")
-            if df is None or "Close" not in df.columns:
-                logger.warning(f"Cache for {symbol}: Could not find 'Close' column. Aborting cache for this ticker.")
+            try:
+                cols = ['Date', 'Price', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
+                df = pd.read_csv(path, skiprows=3, names=cols)
+                df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+                df.set_index('Date', inplace=True)
+                if df.index.hasnans:
+                    logging.warning(f"Cache date parsing failed for {symbol}, refreshing cache")
+                    force_full = True
+            except Exception as e:
+                logging.warning(f"Failed reading cache for {symbol}: {e}")
                 df = None
-            else:
-                df.index = pd.to_datetime(df.index, errors='coerce')
-                df = df[cols]
-                df = df.apply(pd.to_numeric, errors='coerce')
-                df = df.dropna(subset=["Close"])
-                df = df[df.index.notna()]
-                logger.info(f"Read cache for {symbol}, shape={df.shape}, columns={df.columns.tolist()}")
     if df is None or df.empty or force_full:
-        logger.info(f"Downloading full history for {symbol}")
+        logging.info(f"Downloading full history for {symbol}")
         df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
         if df is None or df.empty:
-            logger.warning(f"{symbol}: yf.download returned EMPTY dataframe! No CSV will be saved.")
             return pd.DataFrame()
         df.to_csv(path)
-        logger.info(f"Saved CSV for {symbol} to {path}, {df.shape} rows")
     else:
         try:
             last = df.index[-1]
             if not isinstance(last, pd.Timestamp):
                 last = pd.to_datetime(last)
             start_date = (last - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-            logger.info(f"Updating {symbol} from {start_date}")
+            logging.info(f"Updating {symbol} from {start_date}")
             new_df = yf.download(symbol, start=start_date, interval=interval, auto_adjust=False)
             if not new_df.empty:
-                new_df.index = pd.to_datetime(new_df.index, errors='coerce')
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
-                df.index = pd.to_datetime(df.index, errors='coerce')
                 df.to_csv(path)
-                logger.info(f"Updated and saved CSV for {symbol}, now {df.shape} rows")
         except Exception as e:
-            logger.warning(f"Incremental update failed for {symbol}: {e}")
-    logger.info(f"mydata updated: {os.listdir(config.DATA_DIR)}")
+            logging.warning(f"Incremental update failed for {symbol}: {e}")
     return df
 
 @retry_on_rate_limit
@@ -133,17 +117,11 @@ def fetch_quote(symbol):
     return price
 
 def calculate_indicators(df):
-    close = df.get("Close", pd.Series([]))
-    close = close.squeeze()
-    if not isinstance(close, pd.Series):
-        close = pd.Series(close)
-    close = pd.to_numeric(close, errors='coerce')
-    close = close.dropna()
-    if close.empty or close.size < 30:
-        df["rsi"] = np.nan
-        df["dma200"] = np.nan
-        return df
+    close = df["Close"]
+    if isinstance(close, pd.DataFrame):
+        close = close.squeeze()
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
+    df["dma200"] = close.rolling(200).mean()
     return df
 
 def generate_signal(df):
