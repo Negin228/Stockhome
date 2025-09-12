@@ -17,6 +17,10 @@ import numpy as np
 from dateutil.parser import parse
 import config
 
+# ANSI bold escape codes for most terminals (works in many modern consoles and best effort in plain text emails)
+def bold(text):
+    return f"\033[1m{text}\033[0m"
+
 # Setup logging
 os.makedirs(config.LOG_DIR, exist_ok=True)
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
@@ -128,9 +132,9 @@ def generate_signal(df):
         return None, ""
     price = df["Close"].iloc[-1] if "Close" in df.columns else np.nan
     if rsi < config.RSI_OVERSOLD:
-        return "BUY", f"RSI={rsi:.1f} < {config.RSI_OVERSOLD}"
+        return "BUY", f"RSI={rsi:.1f}"
     if rsi > config.RSI_OVERBOUGHT:
-        return "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
+        return "SELL", f"RSI={rsi:.1f}"
     return None, ""
 
 def fetch_fundamentals_safe(symbol):
@@ -286,15 +290,8 @@ def job(tickers):
             skipped += 1
             continue
         pe, mcap = fetch_fundamentals_safe(symbol)
-        iv_hist = fetch_puts(symbol)
-        iv_rank, iv_pct = None, None
-        if iv_hist:
-            iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
-
         cap_str = format_market_cap(mcap)
         pe_str = f"{pe:.1f}" if pe is not None else "N/A"
-        iv_rank_str = f"{iv_rank:.2f}" if iv_rank is not None else "N/A"
-        iv_pct_str = f"{iv_pct:.2f}" if iv_pct is not None else "N/A"
 
         option_text = ""
         puts_dir = "puts_data"
@@ -313,12 +310,13 @@ def job(tickers):
             best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
             strike = f"{best_put['strike']:.1f}" if isinstance(best_put['strike'], (int, float)) else "N/A"
             premium = f"{best_put['premium']:.2f}" if isinstance(best_put['premium'], (int, float)) else "N/A"
-            metric = f"{best_put['custom_metric']:.1f}%" if best_put.get('custom_metric') is not None else "N/A"
-            delta = f"{best_put.get('delta_percent', 'N/A'):.1f}" if best_put.get('delta_percent') is not None else "N/A"
-            prem_pct = f"{best_put.get('premium_percent', 'N/A'):.1f}" if best_put.get('premium_percent') is not None else "N/A"
+            delta = best_put.get('delta_percent', 0)
+            prem_pct = best_put.get('premium_percent', 0)
+            metric_sum = delta + prem_pct
             exp = best_put['expiration']
             option_text = (
-                f"Recommended Put Option: Exp date: {exp}, Strike price: ${strike}, Premium: ${premium}, Delta%: {delta}, Premium%: {prem_pct}, Metric: {metric},"
+                f"Recommended Put Option: Exp date: {exp}, Strike price: ${strike}, Premium: ${premium}, "
+                f"[Δ%: {delta:.1f} + 💎%: {prem_pct:.1f}] = {metric_sum:.1f}%"
             )
             puts_json_path = os.path.join(puts_dir, f"{symbol}_puts_7weeks.json")
             try:
@@ -329,8 +327,8 @@ def job(tickers):
                 logger.error(f"Failed to save puts json for {symbol}: {e}")
 
         alert_line = (
-            f"{symbol}: {sig} at ${rt_price:.2f}, {reason}, PE={pe_str}, Market Cap={cap_str}, "
-            + (f", {option_text}" if option_text else "")
+            f"{bold(symbol)}: BUY at ${rt_price:.2f}, RSI={hist['rsi'].iloc[-1]:.1f}, "
+            f"PE={pe_str}, Market Cap={cap_str}, {option_text}"
         )
         alert_data = {
             "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -354,8 +352,10 @@ def job(tickers):
 
 def load_previous_buys(email_type):
     return set()
+
 def save_buys(email_type, buys_set):
     pass
+
 def calc_iv_rank_percentile(series):
     if series.empty:
         return None, None
