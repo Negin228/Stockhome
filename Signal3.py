@@ -164,7 +164,7 @@ def format_email_body(buy_alerts, sell_alerts, version="4"):
     return "\n".join(lines)
 
 def job(tickers):
-    buy_alerts, sell_alerts = [], [], []
+    buy_alerts, sell_alerts, failed = [], [], []
     prices = {}
     failed = []
     for symbol in tickers:
