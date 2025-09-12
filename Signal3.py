@@ -15,8 +15,7 @@ import argparse
 import time
 import numpy as np
 from dateutil.parser import parse
-
-import config  # Assumes config.py with constants like tickers, LOG_DIR, etc.
+import config
 
 # Setup logging
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -36,13 +35,10 @@ API_KEY = os.getenv("API_KEY")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
-
 tickers = config.tickers
 finnhub_client = finnhub.Client(api_key=API_KEY)
-
-# Retry constants
 MAX_API_RETRIES = 5
-API_RETRY_INITIAL_WAIT = 60  # seconds
+API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
 
@@ -70,7 +66,6 @@ def fetch_history(symbol, period="2y", interval="1d"):
     path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df = None
     force_full = False
-
     if os.path.exists(path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(path))).days
         if age_days > config.MAX_CACHE_DAYS:
@@ -88,7 +83,6 @@ def fetch_history(symbol, period="2y", interval="1d"):
             except Exception as e:
                 logger.warning(f"Failed reading cache for {symbol}: {e}")
                 df = None
-
     if df is None or df.empty or force_full:
         logger.info(f"Downloading full history for {symbol}")
         df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
@@ -192,9 +186,9 @@ def format_market_cap(mcap):
     if not mcap:
         return "N/A"
     if mcap >= 1e9:
-        return f"{mcap / 1e9:.1f}B"
+        return f"${mcap / 1e9:.1f}B"
     if mcap >= 1e6:
-        return f"{mcap / 1e6:.1f}M"
+        return f"${mcap / 1e6:.1f}M"
     return str(mcap)
 
 def send_email(subject, body):
@@ -229,30 +223,12 @@ def format_email_body(buy_alerts, sell_alerts, version="4"):
         ""
     ]
     if buy_alerts:
-        lines.append("🟢 BUY SIGNALS\n")
+        lines.append("🟢 BUY SIGNALS")
         for alert in buy_alerts:
-            parts = alert.split("\n")
-            header = parts[0]
-            lines.append(f"📈 {header}")
-            options = [l for l in parts[1:] if 'expiration=' in l]
-            if options:
-                lines.append(" Recommended Puts:")
-                for opt in options:
-                    try:
-                        fields = dict(part.split("=", 1) for part in opt.split(", "))
-                        line = (
-                            f" - Exp: {fields.get('expiration','N/A')}, Strike: ${fields.get('strike','N/A')}, "
-                            f"Premium: ${fields.get('premium','N/A')}, Stock: ${fields.get('stock_price','N/A')}, "
-                            f"Metric: {fields.get('custom_metric','N/A')}, Delta%: {fields.get('delta_percent','N/A')}, "
-                            f"Premium%: {fields.get('premium_percent','N/A')}"
-                        )
-                        lines.append(line)
-                    except Exception:
-                        lines.append(f" - {opt}")
-                lines.append("")
+            lines.append(f"📈 {alert}")
     if sell_alerts:
-        lines.append("🔴 SELL SIGNALS\n")
-        lines.extend(f"{alert}\n" for alert in sell_alerts)
+        lines.append("🔴 SELL SIGNALS")
+        lines.extend(f"📉 {alert}" for alert in sell_alerts)
     return "\n".join(lines)
 
 def job(tickers):
@@ -261,7 +237,6 @@ def job(tickers):
     prices = {}
     failed = []
     total = skipped = 0
-
     for symbol in tickers:
         total += 1
         try:
@@ -283,12 +258,10 @@ def job(tickers):
             logger.error(f"Error fetching history for {symbol}: {e}")
             skipped += 1
             continue
-
         hist = calculate_indicators(hist)
         sig, reason = generate_signal(hist)
         if not sig:
             continue
-
         try:
             rt_price = fetch_quote(symbol)
         except Exception as e:
@@ -304,34 +277,59 @@ def job(tickers):
             else:
                 logger.error(f"Error fetching price for {symbol}: {e}")
                 rt_price = None
-
         if rt_price is None or rt_price != rt_price or rt_price <= 0:
             rt_price = hist["Close"].iloc[-1] if not hist.empty else None
         if rt_price is None or rt_price != rt_price or rt_price <= 0:
             logger.warning(f"Invalid price for {symbol}, skipping.")
             skipped += 1
             continue
-
         pe, mcap = fetch_fundamentals_safe(symbol)
         iv_hist = fetch_puts(symbol)
-        iv_rank = iv_pct = None
+        iv_rank, iv_pct = None, None
         if iv_hist:
             iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
 
         cap_str = format_market_cap(mcap)
-        pe_str = f"{pe:.1f}" if pe else "N/A"
-        parts = [
-            f"{symbol}: {sig} at ${rt_price:.2f}",
-            reason,
-            f"PE={pe_str}",
-            f"MarketCap={cap_str}",
-        ]
-        if iv_rank is not None:
-            parts.append(f"IV Rank={iv_rank:.2f}")
-        if iv_pct is not None:
-            parts.append(f"IV Percentile={iv_pct:.2f}")
-        alert_line = ", ".join(parts)
+        pe_str = f"{pe:.1f}" if pe is not None else "N/A"
+        iv_rank_str = f"{iv_rank:.2f}" if iv_rank is not None else "N/A"
+        iv_pct_str = f"{iv_pct:.2f}" if iv_pct is not None else "N/A"
 
+        option_text = ""
+        puts_dir = "puts_data"
+        os.makedirs(puts_dir, exist_ok=True)
+        puts_list = fetch_puts(symbol)
+        price = rt_price
+        puts_list = calculate_custom_metrics(puts_list, price)
+        filtered_puts = [
+            p for p in puts_list
+            if p.get("strike") is not None and price
+            and p["strike"] < price
+            and p.get("custom_metric") and p["custom_metric"] >= 10
+        ]
+        best_put = None
+        if filtered_puts:
+            best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
+            strike = f"{best_put['strike']:.1f}" if isinstance(best_put['strike'], (int, float)) else "N/A"
+            premium = f"{best_put['premium']:.2f}" if isinstance(best_put['premium'], (int, float)) else "N/A"
+            metric = f"{best_put['custom_metric']:.1f}%" if best_put.get('custom_metric') is not None else "N/A"
+            delta = f"{best_put.get('delta_percent', 'N/A'):.1f}" if best_put.get('delta_percent') is not None else "N/A"
+            prem_pct = f"{best_put.get('premium_percent', 'N/A'):.1f}" if best_put.get('premium_percent') is not None else "N/A"
+            exp = best_put['expiration']
+            option_text = (
+                f"Recommended Put Option: Exp date: {exp}, Strike price: ${strike}, Premium: ${premium}, Delta%: {delta}, Premium%: {prem_pct}, Metric: {metric},"
+            )
+            puts_json_path = os.path.join(puts_dir, f"{symbol}_puts_7weeks.json")
+            try:
+                with open(puts_json_path, "w") as fp:
+                    json.dump([best_put], fp, indent=2)
+                logger.info(f"Saved puts data for {symbol}")
+            except Exception as e:
+                logger.error(f"Failed to save puts json for {symbol}: {e}")
+
+        alert_line = (
+            f"{symbol}: {sig} at ${rt_price:.2f}, {reason}, PE={pe_str}, Market Cap={cap_str}, IV Rank={iv_rank_str}, IV Percentile={iv_pct_str}"
+            + (f", {option_text}" if option_text else "")
+        )
         alert_data = {
             "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "ticker": symbol,
@@ -344,7 +342,6 @@ def job(tickers):
             "iv_percentile": iv_pct,
         }
         log_alert(alert_data)
-
         if sig == "BUY":
             buy_alerts.append(alert_line)
             buy_symbols.append(symbol)
@@ -353,59 +350,12 @@ def job(tickers):
         else:
             sell_alerts.append(alert_line)
             logger.info(f"Sell signal: {symbol}")
-
-    # Process options for buy signals
-    puts_dir = "puts_data"
-    os.makedirs(puts_dir, exist_ok=True)
-    for sym in buy_symbols:
-        puts_list = fetch_puts(sym)
-        price = prices.get(sym)
-        puts_list = calculate_custom_metrics(puts_list, price)
-        filtered_puts = [p for p in puts_list if p.get("strike") is not None and price and p["strike"] < price and p.get("custom_metric") and p["custom_metric"] >= 10]
-
-        grouped = defaultdict(list)
-        for put in filtered_puts:
-            grouped[put["expiration"]].append(put)
-
-        selected_puts = []
-        for exp, group in grouped.items():
-            selected_puts.append(min(group, key=lambda x: abs(x.get("custom_metric", 0) - 10)))
-
-        puts_texts = []
-        for p in selected_puts:
-            strike = f"{p['strike']:.1f}" if isinstance(p['strike'], (int,float)) else "N/A"
-            premium = f"{p['premium']:.2f}" if isinstance(p['premium'], (int,float)) else "N/A"
-            metric = f"{p['custom_metric']:.1f}%" if p.get('custom_metric') else "N/A"
-            delta = f"{p.get('delta_percent', 'N/A'):.1f}%" if p.get('delta_percent') else "N/A"
-            prem_pct = f"{p.get('premium_percent', 'N/A'):.1f}%" if p.get('premium_percent') else "N/A"
-            puts_texts.append(
-                f"expiration={p['expiration']}, strike={strike}, premium={premium}, stock_price={price:.2f}, custom_metric={metric}, delta_percent={delta}, premium_percent={prem_pct}"
-            )
-
-        puts_block = "\n" + "\n------\n".join(puts_texts)
-        for idx, alert_line in enumerate(buy_alerts):
-            if alert_line.startswith(sym):
-                buy_alerts[idx] += puts_block
-                break
-
-        puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
-        try:
-            with open(puts_json_path, "w") as fp:
-                json.dump(selected_puts, fp, indent=2)
-            logger.info(f"Saved puts data for {sym}")
-        except Exception as e:
-            logger.error(f"Failed to save puts json for {sym}: {e}")
-
     return buy_symbols, buy_alerts, sell_alerts, failed
 
 def load_previous_buys(email_type):
-    # Placeholder for your actual loading logic
     return set()
-
 def save_buys(email_type, buys_set):
-    # Placeholder for your actual saving logic
     pass
-
 def calc_iv_rank_percentile(series):
     if series.empty:
         return None, None
@@ -418,37 +368,27 @@ def main():
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
     parser.add_argument("--email-type", type=str, choices=["first","second","hourly"], default="hourly", help="Email type")
     args = parser.parse_args()
-
     selected = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
     prev_buys = load_previous_buys(args.email_type)
-
     retry_counts = defaultdict(int)
     to_process = selected[:]
-
     all_buy_alerts = []
     all_sell_alerts = []
     all_buy_symbols = []
-
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
         buys, buy_alerts, sells, fails = job(to_process)
-
         all_buy_alerts.extend(buy_alerts)
         all_sell_alerts.extend(sells)
         all_buy_symbols.extend(buys)
-
         for f in fails:
             retry_counts[f] += 1
-
         to_process = [f for f in fails if retry_counts[f] < MAX_TICKER_RETRIES]
-
         if to_process:
             logger.info(f"Rate limited. Waiting {TICKER_RETRY_WAIT} seconds before retrying {len(to_process)} tickers...")
             time.sleep(TICKER_RETRY_WAIT)
-
     unique_buys = set(all_buy_symbols)
     new_buys = unique_buys.difference(prev_buys)
-
     if new_buys or all_sell_alerts:
         body = format_email_body(all_buy_alerts, all_sell_alerts)
         logger.info(f"Sending email with {len(new_buys)} new buys")
