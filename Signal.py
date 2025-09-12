@@ -239,8 +239,7 @@ def format_email_body(buy_alerts, sell_alerts, version="1.2"):
         f"📊 StockHome Trading Signals v{version}",
         f"Generated: {datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
         "="*20,
-        ""
-    ]
+        ""]
     if buy_alerts:
         lines.append("🟢 BUY SIGNALS")
         for alert in buy_alerts:
