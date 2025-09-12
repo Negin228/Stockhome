@@ -77,7 +77,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
             logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
             try:
-                cols = ['Date', 'Price', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
+                cols = ['Date', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
                 df = pd.read_csv(path, skiprows=3, names=cols)
                 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
                 df.set_index('Date', inplace=True)
