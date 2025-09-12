@@ -78,6 +78,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
         else:
             try:
                 cols = ['Date', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
+                #cols = ['Date', 'Price', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
                 df = pd.read_csv(path, skiprows=3, names=cols)
                 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
                 df.set_index('Date', inplace=True)
