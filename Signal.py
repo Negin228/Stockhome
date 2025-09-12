@@ -81,12 +81,12 @@ def fetch_history(symbol, period="2y", interval="1d"):
             logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
             try:
+                cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
                 df = pd.read_csv(path, index_col=0, parse_dates=True)  # Automatically match what to_csv writes
-                df = df.loc[:, ~df.columns.duplicated()]
-                # Keep canonical columns only
-                df = df[[c for c in df.columns if c in ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']]]
-                # Ensure "Close" is Series for TA-Lib
-                df.index = pd.to_datetime(df.index, errors='coerce')
+                df = df[[c for c in df.columns if c in cols]]
+                df = df.apply(pd.to_numeric, errors='coerce')
+                df = df.dropna(how='any', subset=['Close'])
+                df = df[pd.to_datetime(df.index, errors='coerce').notna()]
                 logger.info(f"Read cache for {symbol}, {df.shape} rows, columns: {df.columns.tolist()}")
                 logger.info(f"CMG columns: {df.columns.tolist()}")
                 logger.info(f"Head:\n{df.head().to_string()}")
@@ -132,10 +132,15 @@ def fetch_quote(symbol):
 
 def calculate_indicators(df):
     close = df["Close"]
-    if isinstance(close, pd.DataFrame):
-        close = close.iloc[:,0]
-    else:
+    close = close.squeeze()
+    if not isinstance(close, pd.Series):
         close = pd.Series(close)
+    close = pd.to_numeric(close, errors='coerce')
+    close = close.dropna()
+    if close.empty or close.shape < 30:
+        df["rsi"] = np.nan
+        df["dma200"] = np.nan
+        return df
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     #df["dma200"] = close.rolling(200).mean()
     return df
