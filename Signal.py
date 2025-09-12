@@ -308,6 +308,7 @@ def job(tickers):
         #if iv_hist:
             #iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
         cap_str = format_market_cap(mcap)
+        rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         pe_str = f"{pe:.1f}" if pe else "N/A"
         parts = [
             f"{symbol}: {sig} at ${rt_price:.2f}",
