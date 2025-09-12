@@ -156,7 +156,7 @@ def fetch_puts(symbol):
             chain.puts["distance"] = abs(chain.puts["strike"] - under_price)
             for _, put in chain.puts.iterrows():
                 strike = put["strike"]
-                 = put.get("lastPrice") or ((put.get("bid") + put.get("ask")) / 2 if (put.get("bid") is not None and put.get("ask") is not None) else None)
+                = put.get("lastPrice") or ((put.get("bid") + put.get("ask")) / 2 if (put.get("bid") is not None and put.get("ask") is not None) else None)
                 puts_data.append({
                     "expiration": exp,
                     "strike": strike,
