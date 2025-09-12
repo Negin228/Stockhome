@@ -246,7 +246,7 @@ def format_email_body(buy_alerts, sell_alerts, version="1.2"):
         for alert in buy_alerts:
             lines.append(alert)
     if sell_alerts:
-         lines.append("🟢 SELL SIGNALS")
+        lines.append("🟢 SELL SIGNALS")
         for alert in buy_alerts:
             lines.append(alert)
 return "\n".join(lines)
