@@ -285,11 +285,14 @@ def job(tickers):
             continue
         pe, mcap = fetch_fundamentals_safe(symbol)
         iv_hist = fetch_puts(symbol)
-        iv_rank = iv_pct = None
+        iv_rank, iv_pct = None, None
         if iv_hist:
             iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
+
         cap_str = format_market_cap(mcap)
-        pe_str = f"{pe:.1f}" if pe else "N/A"
+        pe_str = f"{pe:.1f}" if pe is not None else "N/A"
+        iv_rank_str = f"{iv_rank:.2f}" if iv_rank is not None else "N/A"
+        iv_pct_str = f"{iv_pct:.2f}" if iv_pct is not None else "N/A"
 
         option_text = ""
         puts_dir = "puts_data"
@@ -313,8 +316,7 @@ def job(tickers):
             prem_pct = f"{best_put.get('premium_percent', 'N/A'):.1f}" if best_put.get('premium_percent') is not None else "N/A"
             exp = best_put['expiration']
             option_text = (
-                f"Recommended Put Option: Exp date: {exp}, Strike price: ${strike}, Premium: ${premium}, "
-                f"Delta%: {delta}, Premium%: {prem_pct}, Metric: {metric},"
+                f"Recommended Put Option: Exp date: {exp}, Strike price: ${strike}, Premium: ${premium}, Delta%: {delta}, Premium%: {prem_pct}, Metric: {metric},"
             )
             puts_json_path = os.path.join(puts_dir, f"{symbol}_puts_7weeks.json")
             try:
@@ -325,8 +327,7 @@ def job(tickers):
                 logger.error(f"Failed to save puts json for {symbol}: {e}")
 
         alert_line = (
-            f"{symbol}: {sig} at ${rt_price:.2f}, {reason}, PE={pe_str}, Market Cap={cap_str}, "
-            f"IV Rank={iv_rank:.2f if iv_rank is not None else 'N/A'}, IV Percentile={iv_pct:.2f if iv_pct is not None else 'N/A'}"
+            f"{symbol}: {sig} at ${rt_price:.2f}, {reason}, PE={pe_str}, Market Cap={cap_str}, IV Rank={iv_rank_str}, IV Percentile={iv_pct_str}"
             + (f", {option_text}" if option_text else "")
         )
         alert_data = {
