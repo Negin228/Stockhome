@@ -249,11 +249,11 @@ def format_email_body(buy_alerts, sell_alerts, version="1.2"):
     if buy_alerts:
         lines.append("🟢 BUY SIGNALS")
         for alert in buy_alerts:
-            lines.append(alert)
+            lines.append(f"📈 {alert}")
     if sell_alerts:
-        lines.append("🔴  SELL SIGNALS")
+        lines.append("🔴 SELL SIGNALS")
         for alert in sell_alerts:
-            lines.append(alert)
+            lines.append(f"📉 {alert}")
     return "\n".join(lines)
 
 def job(tickers):
