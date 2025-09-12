@@ -261,4 +261,10 @@ def main():
         send_email("Stock Home Trading Alerts", body)
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        import traceback
+        print("FATAL EXCEPTION OCCURRED:")
+        traceback.print_exc()
+        exit(1)
