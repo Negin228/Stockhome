@@ -10,9 +10,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import logging
 from logging.handlers import RotatingFileHandler
-from collections import defaultdict
 import argparse
-import time
 import numpy as np
 from dateutil.parser import parse
 import config
@@ -63,7 +61,7 @@ def fetch_quote(symbol):
     finnhub_client = finnhub.Client(api_key=os.getenv("API_KEY"))
     quote = finnhub_client.quote(symbol)
     price = quote.get("c", None)
-    if isinstance(price, (pd.Series, np.ndarray)):  # Defensive for weird API returns
+    if isinstance(price, (pd.Series, np.ndarray)):
         price = float(price[-1])
     return price if price is not None else None
 
@@ -163,9 +161,23 @@ def format_email_body(buy_alerts, sell_alerts, version="4"):
         lines.extend(f"📉 {alert}" for alert in sell_alerts)
     return "\n".join(lines)
 
+def send_email(subject, body):
+    msg = MIMEMultipart()
+    msg["From"] = os.getenv("EMAIL_SENDER", config.EMAIL_SENDER)
+    msg["To"] = os.getenv("EMAIL_RECEIVER", config.EMAIL_RECEIVER)
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain"))
+    try:
+        with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as s:
+            s.starttls()
+            s.login(os.getenv("EMAIL_SENDER", config.EMAIL_SENDER), os.getenv("EMAIL_PASSWORD", config.EMAIL_PASSWORD))
+            s.send_message(msg)
+        logging.info("Email sent")
+    except Exception as e:
+        logging.error(f"Email sending failed: {e}")
+
 def job(tickers):
     buy_alerts, sell_alerts, failed = [], [], []
-    prices = {}
     for symbol in tickers:
         try:
             hist = fetch_history(symbol)
@@ -191,11 +203,8 @@ def job(tickers):
             rt_price = fetch_quote(symbol)
         except Exception as e:
             rt_price = hist["Close"].iloc[-1] if not hist.empty else None
-        # --- THE FIX FOR THE AMBIGUOUS SERIES ERROR ---
-        # Always ensure rt_price is a float scalar
         if isinstance(rt_price, (pd.Series, np.ndarray)):
             rt_price = float(rt_price[-1])
-        # Now you can do proper numeric checks:
         if rt_price is None or np.isnan(rt_price) or rt_price <= 0:
             logging.warning(f"Invalid price for {symbol}, skipping.")
             continue
@@ -248,6 +257,8 @@ def main():
     all_buy_alerts, all_sell_alerts, _ = job(tickers)
     body = format_email_body(all_buy_alerts, all_sell_alerts)
     print(body)
+    if all_buy_alerts or all_sell_alerts:
+        send_email("Stock Home Trading Alerts", body)
 
 if __name__ == "__main__":
     main()
