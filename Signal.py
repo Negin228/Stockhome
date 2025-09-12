@@ -254,10 +254,12 @@ def format_email_body(buy_alerts, sell_alerts):
         lines.append("🟢 BUY SIGNALS")
         for alert in buy_alerts:
             lines.append(f"📈 {alert}")
+            lines.append("")  # Add blank line after each alert
     if sell_alerts:
         lines.append("🔴 SELL SIGNALS")
         for alert in sell_alerts:
             lines.append(f"📉 {alert}")
+            lines.append("")  # Add blank line after each alert
     return "\n".join(lines)
 
 def job(tickers):
