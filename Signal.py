@@ -88,6 +88,7 @@ def fetch_history(symbol, period="2y", interval="1d"):
         logger.info(f"Downloading full history for {symbol}")
         df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
         if df is None or df.empty:
+            logger.warning(f"{symbol}: yf.download returned EMPTY dataframe! No CSV will be saved.")
             return pd.DataFrame()
         df.to_csv(path)
     else:
@@ -353,7 +354,7 @@ def job(tickers):
             
     # Only one best recommended put per ticker, by highest premium_percent
     puts_dir = "puts_data"
-    os.makedirs(puts_dir, exist_ok=True)
+    os.makedirs(config.DATA_DIR, exist_ok=True)
     for sym in buy_symbols:
         price = prices.get(sym)
         pe, mcap = fetch_fundamentals_safe(sym)
