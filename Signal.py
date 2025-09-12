@@ -167,6 +167,24 @@ def fetch_puts(symbol):
         logger.warning(f"Failed to fetch puts for {symbol}: {e}")
     return puts_data
 
+def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent):
+    dp = f"{delta_percent:.1f}%" if delta_percent is not None else "N/A"
+    pp = f"{premium_percent:.1f}%" if premium_percent is not None else "N/A"
+    metric_sum = delta_percent + premium_percent if (delta_percent is not None and premium_percent is not None) else None
+    metric_sum_str = f"{metric_sum:.1f}%" if metric_sum is not None else "N/A"
+    return (
+        f"{ticker} (${price:.2f}): "
+        f"RSI:{rsi:.1f}, "
+        f"P/E={pe:.1f}, "
+        f"MarketCap={mcap}, "
+        f"Buy ${strike:.1f} @ {expiration}, "
+        f"premium: ${premium:.2f}, "
+        f"[delta {dp} + premium {pp}] = {metric_sum_str}"
+    )
+
+def format_sell_alert_line(ticker, price, rsi, pe, mcap):
+    return f"{ticker} (${price:.2f}): RSI={rsi:.1f}, P/E={pe:.1f}, MarketCap={mcap}"
+
 def calculate_custom_metrics(puts, price):
     if price is None or price <= 0 or np.isnan(price):
         return puts
@@ -216,38 +234,21 @@ def log_alert(alert):
     df_new = pd.DataFrame([alert])
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
 
-def format_email_body(buy_alerts, sell_alerts, version="4"):
+def format_email_body(buy_alerts, sell_alerts, version="1.2"):
     lines = [
         f"📊 StockHome Trading Signals v{version}",
         f"Generated: {datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
-        "="*60,
+        "="*20,
         ""
     ]
     if buy_alerts:
-        lines.append("🟢 BUY SIGNALS\n")
+        lines.append("🟢 BUY SIGNALS")
         for alert in buy_alerts:
-            parts = alert.split("\n")
-            header = parts
-            lines.append(f"📈 {header}")
-            options = [l for l in parts[1:] if 'expiration=' in l]
-            if options:
-                lines.append(" Recommended Puts:")
-                for opt in options:
-                    try:
-                        fields = dict(part.split("=", 1) for part in opt.split(", "))
-                        line = (
-                            f" - Exp: {fields.get('expiration','N/A')}, Strike: ${fields.get('strike','N/A')}, "
-                            f"Premium: ${fields.get('premium','N/A')}, Stock: ${fields.get('stock_price','N/A')}, "
-                            f"Metric: {fields.get('custom_metric','N/A')}, Delta%: {fields.get('delta_percent','N/A')}, "
-                            f"Premium%: {fields.get('premium_percent','N/A')}"
-                        )
-                        lines.append(line)
-                    except Exception:
-                        lines.append(f" - {opt}")
-                lines.append("")
+            lines.append(alert)
     if sell_alerts:
-        lines.append("🔴 SELL SIGNALS\n")
-        lines.extend(f"{alert}\n" for alert in sell_alerts)
+         lines.append("🟢 SELL SIGNALS")
+        for alert in buy_alerts:
+            lines.append(alert)
     return "\n".join(lines)
 
 def job(tickers):
@@ -333,20 +334,27 @@ def job(tickers):
         }
         log_alert(alert_data)
         if sig == "BUY":
-            buy_alerts.append(alert_line)
             buy_symbols.append(symbol)
             prices[symbol] = rt_price
-            logger.info(f"Buy signal: {symbol}")
         else:
-            sell_alerts.append(alert_line)
-            logger.info(f"Sell signal: {symbol}")
-
+            sell_alert_line = format_sell_alert_line(
+                        ticker=symbol,
+                        price=rt_price,
+                        rsi=rsi_val,
+                        pe=pe,
+                        mcap=cap_str)
+            sell_alerts.append(sell_alert_line)
+            
     # Only one best recommended put per ticker, by highest premium_percent
     puts_dir = "puts_data"
     os.makedirs(puts_dir, exist_ok=True)
     for sym in buy_symbols:
-        puts_list = fetch_puts(sym)
         price = prices.get(sym)
+        pe, mcap = fetch_fundamentals_safe(sym)
+        cap_str = format_market_cap(mcap)
+        hist = fetch_history(sym)
+        rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
+        puts_list = fetch_puts(sym)
         puts_list = calculate_custom_metrics(puts_list, price)
         filtered_puts = [
             p for p in puts_list
@@ -357,38 +365,34 @@ def job(tickers):
         if not filtered_puts:
             continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
-        strike = f"{best_put['strike']:.1f}" if isinstance(best_put['strike'], (int, float)) else "N/A"
-        premium = f"{best_put['premium']:.2f}" if isinstance(best_put['premium'], (int, float)) else "N/A"
-        metric = f"{best_put['custom_metric']:.1f}%" if best_put.get('custom_metric') is not None else "N/A"
-        delta = f"{best_put.get('delta_percent', 'N/A'):.1f}%" if best_put.get('delta_percent') is not None else "N/A"
-        prem_pct = f"{best_put.get('premium_percent', 'N/A'):.1f}%" if best_put.get('premium_percent') is not None else "N/A"
-        puts_text = (
-            f"expiration={best_put['expiration']}, strike={strike}, premium={premium}, stock_price={price:.2f}, custom_metric={metric}, delta_percent={delta}, premium_percent={prem_pct}"
-        )
-        puts_block = "\n" + puts_text
-        for idx, alert_line in enumerate(buy_alerts):
-            if alert_line.startswith(sym):
-                buy_alerts[idx] += puts_block
-                break
+        expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
+        buy_alert_line = format_buy_alert_line(
+                ticker=sym,
+                price=price,
+                rsi=rsi_val,
+                pe=pe,
+                mcap=cap_str,
+                strike=float(best_put['strike']),
+                expiration=expiration_fmt,
+                premium=float(best_put['premium']),
+                delta_percent=float(best_put['delta_percent']),
+                premium_percent=float(best_put['premium_percent']))
+        buy_alerts.append(buy_alert_line)
+        # Save JSON for recordkeeping/other uses
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
         try:
-            with open(puts_json_path, "w") as fp:
-                json.dump([best_put], fp, indent=2)
-            logger.info(f"Saved puts data for {sym}")
+                with open(puts_json_path, "w") as fp:
+                        json.dump([best_put], fp, indent=2)
+                logger.info(f"Saved puts data for {sym}")
         except Exception as e:
-            logger.error(f"Failed to save puts json for {sym}: {e}")
+                logger.error(f"Failed to save puts json for {sym}: {e}")
     return buy_symbols, buy_alerts, sell_alerts, failed
 
 def load_previous_buys(email_type):
     return set()
 def save_buys(email_type, buys_set):
     pass
-def calc_iv_rank_percentile(series):
-    if series.empty:
-        return None, None
-    iv_rank = (series.iloc[-1] - series.min()) / (series.max() - series.min()) * 100 if (series.max() - series.min()) != 0 else 0
-    iv_pct = series.rank(pct=True).iloc[-1] * 100
-    return iv_rank, iv_pct
+
 
 def main():
     parser = argparse.ArgumentParser()
