@@ -244,7 +244,7 @@ def log_alert(alert):
 def format_email_body(buy_alerts, sell_alerts):
     lines = [
         f"📊 StockHome Trading Signals",
-        f"Generated: {(datetime.datetime.now() + datetime.timedelta(hours=7)):%Y-%m-%d %H:%M:%S}",
+        f"Generated: {(datetime.datetime.now() - datetime.timedelta(hours=7)):%Y-%m-%d %H:%M:%S} PT",
         ""]
     if buy_alerts:
         lines.append("🟢 BUY SIGNALS")
