@@ -246,7 +246,7 @@ def format_email_body(buy_alerts, sell_alerts, version="1.2"):
             lines.append(alert)
     if sell_alerts:
         lines.append("🟢 SELL SIGNALS")
-        for alert in buy_alerts:
+        for alert in sell_alerts:
             lines.append(alert)
     return "\n".join(lines)
 
@@ -303,10 +303,10 @@ def job(tickers):
             skipped += 1
             continue
         pe, mcap = fetch_fundamentals_safe(symbol)
-        iv_hist = fetch_puts(symbol)
-        iv_rank = iv_pct = None
-        if iv_hist:
-            iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
+        #iv_hist = fetch_puts(symbol)
+        #iv_rank = iv_pct = None
+        #if iv_hist:
+            #iv_rank, iv_pct = calc_iv_rank_percentile(pd.Series([p["premium"] for p in iv_hist if p.get("premium") is not None]))
         cap_str = format_market_cap(mcap)
         pe_str = f"{pe:.1f}" if pe else "N/A"
         parts = [
@@ -315,10 +315,10 @@ def job(tickers):
             f"PE={pe_str}",
             f"MarketCap={cap_str}",
         ]
-        if iv_rank is not None:
-            parts.append(f"IV Rank={iv_rank:.2f}")
-        if iv_pct is not None:
-            parts.append(f"IV Percentile={iv_pct:.2f}")
+        #if iv_rank is not None:
+            #parts.append(f"IV Rank={iv_rank:.2f}")
+        #if iv_pct is not None:
+            #parts.append(f"IV Percentile={iv_pct:.2f}")
         alert_line = ", ".join(parts)
         alert_data = {
             "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -328,8 +328,8 @@ def job(tickers):
             "rsi": hist["rsi"].iloc[-1] if "rsi" in hist.columns else None,
             "pe_ratio": pe,
             "market_cap": mcap,
-            "iv_rank": iv_rank,
-            "iv_percentile": iv_pct,
+            #"iv_rank": iv_rank,
+            #"iv_percentile": iv_pct,
         }
         log_alert(alert_data)
         if sig == "BUY":
