@@ -71,7 +71,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
     df, force_full = None, False
     if os.path.exists(file_path):
         age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(file_path))).days
-        if age_days > config.MAX_CACHE_AGE_DAYS:
+        if age_days > config.MAX_CACHE_DAYS:
             logger.info("%s cache too old (%d days) → full refresh", symbol, age_days)
             force_full = True
         else:
