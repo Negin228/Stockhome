@@ -156,7 +156,7 @@ def fetch_puts(symbol):
             chain.puts["distance"] = abs(chain.puts["strike"] - under_price)
             for _, put in chain.puts.iterrows():
                 strike = put["strike"]
-                premium = put.get("lastPrice") or ((put.get("bid") + put.get("ask")) / 2 if (put.get("bid") is not None and put.get("ask") is not None) else None)
+                 = put.get("lastPrice") or ((put.get("bid") + put.get("ask")) / 2 if (put.get("bid") is not None and put.get("ask") is not None) else None)
                 puts_data.append({
                     "expiration": exp,
                     "strike": strike,
@@ -186,7 +186,7 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
         f"Market Cap=${mcap}, "
         f"${strike_str} on {expiration}, "
         f"premium= ${premium_str}, "
-        f"[𝚫 {dp} + premium {pp}] = {metric_sum_str}"
+        f"[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}"
     )
 
 def format_sell_alert_line(ticker, price, rsi, pe, mcap):
