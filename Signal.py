@@ -327,7 +327,7 @@ def job(tickers):
             "ticker": symbol,
             "signal": sig,
             "price": rt_price,
-            "rsi": hist["rsi"].iloc[-1] if "rsi" in hist.columns else None,
+            "rsi": rsi_val,
             "pe_ratio": pe,
             "market_cap": mcap,
         }
