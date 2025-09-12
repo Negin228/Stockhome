@@ -81,26 +81,19 @@ def fetch_history(symbol, period="2y", interval="1d"):
             logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
         else:
             try:
-                cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
-                df = pd.read_csv(path, index_col=0, parse_dates=True, skiprows=3)
-                df = df.apply(pd.to_numeric, errors='coerce')
-                logger.info(f"Columns loaded: {df.columns.tolist()}")
-                if "Close" not in df.columns:
-                    logger.error(f"'Close' column missing! Available columns: {df.columns.tolist()}")
-                if not isinstance(df.index[-1], pd.Timestamp):
-                    df.index = pd.to_datetime(df.index, format='%Y-%m-%d', errors='coerce')
-                last = df.index[-1]
-                df = df[[c for c in df.columns if c in cols]]
-                df = df.apply(pd.to_numeric, errors='coerce')
-                df = df.dropna(how='any', subset=['Close'])
-                df = df[pd.to_datetime(df.index, errors='coerce').notna()]
-                logger.info(f"Read cache for {symbol}, {df.shape} rows, columns: {df.columns.tolist()}")
-                logger.info(f"CMG columns: {df.columns.tolist()}")
-                logger.info(f"Head:\n{df.head().to_string()}")
-
-            except Exception as e:
-                logger.warning(f"Failed reading cache for {symbol}: {e}")
-                df = None
+                expected_cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
+                cols_found = None
+                for n_skip in [0, 1, 2, 3]:
+                    try:
+                        df = pd.read_csv(path, index_col=0, parse_dates=True, skiprows=n_skip)
+                        cols_found = df.columns.tolist()
+                        if all(col in cols_found for col in expected_cols):
+                            break
+                    except Exception as e:
+                        continue
+                if not cols_found or "Close" not in cols_found:
+                    logger.error(f"Could not find 'Close' column in STZ cache after {n_skip} tries. Columns loaded: {cols_found}")
+                    return pd.DataFrame()
     if df is None or df.empty or force_full:
         logger.info(f"Downloading full history for {symbol}")
         df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
