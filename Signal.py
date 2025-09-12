@@ -63,9 +63,9 @@ def fetch_quote(symbol):
     finnhub_client = finnhub.Client(api_key=os.getenv("API_KEY"))
     quote = finnhub_client.quote(symbol)
     price = quote.get("c", None)
-    if price is None or (isinstance(price, float) and np.isnan(price)):
-        return None
-    return price
+    if isinstance(price, (pd.Series, np.ndarray)):  # Defensive for weird API returns
+        price = float(price[-1])
+    return price if price is not None else None
 
 def calculate_indicators(df):
     close = df["Close"]
@@ -166,7 +166,6 @@ def format_email_body(buy_alerts, sell_alerts, version="4"):
 def job(tickers):
     buy_alerts, sell_alerts, failed = [], [], []
     prices = {}
-    failed = []
     for symbol in tickers:
         try:
             hist = fetch_history(symbol)
@@ -192,7 +191,12 @@ def job(tickers):
             rt_price = fetch_quote(symbol)
         except Exception as e:
             rt_price = hist["Close"].iloc[-1] if not hist.empty else None
-        if rt_price is None or rt_price != rt_price or rt_price <= 0:
+        # --- THE FIX FOR THE AMBIGUOUS SERIES ERROR ---
+        # Always ensure rt_price is a float scalar
+        if isinstance(rt_price, (pd.Series, np.ndarray)):
+            rt_price = float(rt_price[-1])
+        # Now you can do proper numeric checks:
+        if rt_price is None or np.isnan(rt_price) or rt_price <= 0:
             logging.warning(f"Invalid price for {symbol}, skipping.")
             continue
         pe, mcap = fetch_fundamentals_safe(symbol)
@@ -210,7 +214,6 @@ def job(tickers):
         ]
         if filtered_puts:
             best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
-            # Format expiration date
             try:
                 exp_date_fmt = datetime.datetime.strptime(str(best_put['expiration']), "%Y-%m-%d").strftime("%b %d, %Y")
             except Exception:
