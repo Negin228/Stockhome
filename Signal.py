@@ -133,8 +133,10 @@ def fetch_quote(symbol):
 def calculate_indicators(df):
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
-        close = close.squeeze()
-        df["rsi"] = ta.momentum.RSIIndicator(df["Close"], window=14).rsi()
+        close = close.iloc[:,0]
+    else:
+        close = pd.Series(close)
+    df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     #df["dma200"] = close.rolling(200).mean()
     return df
 
