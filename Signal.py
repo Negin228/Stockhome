@@ -137,7 +137,7 @@ def calculate_indicators(df):
         close = pd.Series(close)
     close = pd.to_numeric(close, errors='coerce')
     close = close.dropna()
-    if close.empty or close.shape < 30:
+    if close.empty or close.size < 30:
         df["rsi"] = np.nan
         df["dma200"] = np.nan
         return df
