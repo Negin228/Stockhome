@@ -348,8 +348,8 @@ def job(tickers):
         price = prices.get(sym)
         pe, mcap = fetch_fundamentals_safe(sym)
         cap_str = format_market_cap(mcap)
-        hist = fetch_cached_history(sym)
-        rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
+        #hist = fetch_cached_history(sym)
+        #rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         puts_list = fetch_puts(sym)
         puts_list = calculate_custom_metrics(puts_list, price)
         filtered_puts = [
