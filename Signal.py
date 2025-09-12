@@ -103,7 +103,9 @@ def fetch_history(symbol, period="2y", interval="1d"):
             logger.info(f"Updating {symbol} from {start_date}")
             new_df = yf.download(symbol, start=start_date, interval=interval, auto_adjust=False)
             if not new_df.empty:
+                new_df.index = pd.to_datetime(new_df.index, errors='coerce')
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
+                df.index = pd.to_datetime(df.index, errors='coerce')
                 df.to_csv(path)
                 logger.info(f"Updated and saved CSV for {symbol}, now {df.shape} rows")
         except Exception as e:
