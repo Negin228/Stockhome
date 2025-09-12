@@ -39,6 +39,7 @@ jobs:
           mkdir -p artifacts
           cp -vr logs artifacts/ 2>/dev/null || true
           cp -vr puts_data artifacts/ 2>/dev/null || true
+          cp -vr mydata artifacts/ 2>/dev/null || true
           cp -v logs/alerts_history.csv artifacts/ 2>/dev/null || true
           cp -v sent_buys_* artifacts/ 2>/dev/null || true
 
