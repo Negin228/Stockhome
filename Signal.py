@@ -83,6 +83,10 @@ def fetch_history(symbol, period="2y", interval="1d"):
             try:
                 cols = ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
                 df = pd.read_csv(path, index_col=0, parse_dates=True, skiprows=3)
+                df = df.apply(pd.to_numeric, errors='coerce')
+                logger.info(f"Columns loaded: {df.columns.tolist()}")
+                if "Close" not in df.columns:
+                    logger.error(f"'Close' column missing! Available columns: {df.columns.tolist()}")
                 if not isinstance(df.index[-1], pd.Timestamp):
                     df.index = pd.to_datetime(df.index, format='%Y-%m-%d', errors='coerce')
                 last = df.index[-1]
