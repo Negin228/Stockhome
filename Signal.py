@@ -431,7 +431,7 @@ def main():
         body = format_email_body(all_buy_alerts, all_sell_alerts)
         logger.info(f"Sending email with {len(new_buys)} new buys")
         print(body)
-        send_email("Stock Home Trading Alerts", body)
+        send_email("StockHome Trading Alerts", body)
         save_buys(args.email_type, prev_buys.union(new_buys))
     else:
         logger.info("No new buys or sells to report.")
