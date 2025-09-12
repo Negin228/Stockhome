@@ -58,3 +58,4 @@ tickers =['MMM', 'AOS', 'ABT', 'ABBV', 'ACN', 'ADBE', 'AMD', 'AES', 'AFL', 'A', 
 
 
 
+
