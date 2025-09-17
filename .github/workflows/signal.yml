@@ -38,6 +38,9 @@ jobs:
             name: StockHome-index-html
             path: index.html
 
+      - name: Debug index.html contents before upload
+        run: cat index.html
+
 
       # Gather outputs to a staging directory for artifact upload
       - name: Collect outputs
