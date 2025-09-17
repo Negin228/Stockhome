@@ -1,7 +1,7 @@
 import yfinance as yf
 from textblob import TextBlob
 
-def fetch_news(ticker):
+def fetch_news_ticker(ticker):
     # Use yfinance's news fetching
     try:
         stock = yf.Ticker(ticker)
