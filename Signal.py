@@ -399,7 +399,7 @@ def job(tickers):
 
         
         news_html += "</ul>"
-        buyalerts.append(f"{buyalertline}{news_html}")
+        buy_alerts.append(f"{buyalertline}{news_html}")
 
 
         
