@@ -399,6 +399,23 @@ def load_previous_buys(email_type):
 def save_buys(email_type, buys_set):
     pass
 
+# Assume finnhub_client is already created with your API key
+def fetch_news_and_sentiment(symbol):
+    today = datetime.now()
+    week_ago = today - timedelta(days=7)
+    news = finnhub_client.company_news(symbol, _from=week_ago.strftime('%Y-%m-%d'), to=today.strftime('%Y-%m-%d'))
+    sentiment = finnhub_client.news_sentiment(symbol)
+    return news[:3], sentiment  # Top 3 headlines + sentiment summary
+
+for sym in buysymbols:
+    headlines, sent = fetch_news_and_sentiment(sym)
+    # Extract headline text and create a user-friendly summary
+    headline_str = ' '.join([f"{n['headline']} ({n.get('source','')})" for n in headlines])
+    sentiment_str = f"Bullish: {sent.get('bullishPercent', 'NA')}, Bearish: {sent.get('bearishPercent','NA')}"
+    # Write to index or email output
+    # f.write(f"...{headline_str} Sentiment: {sentiment_str}...")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
@@ -455,6 +472,14 @@ def main():
         f.write("</ul>\n")
         f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
         f.write("</body></html>\n")
+
+        # ... in the HTML writing block
+        for (alert, news_summary) in zip(allbuyalerts, buy_alerts_news):
+        f.write(f"<li>{alert}<br>Recent News & Sentiment:<ul>")
+        for line in news_summary[1]:
+            f.write(f"<li>{line}</li>")
+        f.write("</ul></li>")
+
     logger.info("Written index.html")
     
     # Read and print contents for debugging (after closing above)
