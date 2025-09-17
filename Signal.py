@@ -441,13 +441,13 @@ def main():
     with open("output.html", "w", encoding="utf-8") as f:
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
         f.write(f"<h1>StockHome Trading Signals</h1>\n")
-            f.write("<h2>Buy Signals</h2>\n<ul>")
-            for alert in all_buy_alerts:   # Use allbuyalerts or buyalerts as appropriate
-                f.write(f"<li>{alert}</li>\n")
+        f.write("<h2>Buy Signals</h2>\n<ul>")
+        for alert in all_buy_alerts:   # Use allbuyalerts or buyalerts as appropriate
+            f.write(f"<li>{alert}</li>\n")
         f.write("</ul>\n")
         f.write("<h2>Sell Signals</h2>\n<ul>")
         for alert in all_sell_alerts:  # Use allsellalerts or sellalerts as appropriate
-                f.write(f"<li>{alert}</li>\n")
+            f.write(f"<li>{alert}</li>\n")
         f.write("</ul>\n")
         f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
         f.write("</body></html>\n")
