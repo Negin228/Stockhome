@@ -391,7 +391,13 @@ def job(tickers):
         news_items = fetch_news_ticker(sym)
         news_html = "<ul>"
         for news in news_items:
-            news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - Sentiment: {news['sentiment']}</li>"
+
+            if "error" in news:
+                news_html += f"<li>Error: {news['error']}</li>"
+            else:
+                news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - Sentiment: {news['sentiment']}</li>"
+
+        
         news_html += "</ul>"
         buyalerts.append(f"{buyalertline}{news_html}")
 
