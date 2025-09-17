@@ -16,6 +16,8 @@ import time
 import numpy as np
 from dateutil.parser import parse
 import config
+from news_fetcher import fetch_news_ticker
+
 
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
@@ -383,7 +385,19 @@ def job(tickers):
             delta_percent=float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else 0.0,
             premium_percent=float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else 0.0
         )
-        buy_alerts.append(buy_alert_line)
+            #buy_alerts.append(buy_alert_line)
+
+        
+        news_items = fetch_news_ticker(sym)
+        news_html = "<ul>"
+        for news in news_items:
+            news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - Sentiment: {news['sentiment']}</li>"
+        news_html += "</ul>"
+        buyalerts.append(f"{buyalertline}{news_html}")
+
+
+        
+
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
         try:
             with open(puts_json_path, "w") as fp:
