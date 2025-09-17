@@ -438,7 +438,7 @@ def main():
         logger.info("No new buys or sells to report.")
 
     # Save alerts to HTML
-    with open("output.html", "w", encoding="utf-8") as f:
+    with open("index.html", "w", encoding="utf-8") as f:
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
         f.write(f"<h1>StockHome Trading Signals</h1>\n")
         f.write("<h2>Buy Signals</h2>\n<ul>")
