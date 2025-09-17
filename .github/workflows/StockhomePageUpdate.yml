@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install yfinance finnhub-python pandas ta numpy
 
-      - name: Run Signal
+      - name: Run Signal & News
         env:
           API_KEY: ${{ secrets.API_KEY }}
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
@@ -32,13 +32,7 @@ jobs:
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
         run: |
           python Signal.py --email-type none
-
-
-      - name: Generate buy HTML
-        run: python signal.py --out index.html
-
-      - name: Enrich with news
-        run: python news_explainer.py --in index.html
+          python news_fetcher.py
 
 
 
