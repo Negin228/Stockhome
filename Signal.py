@@ -262,6 +262,22 @@ def format_email_body(buy_alerts, sell_alerts):
             lines.append("")  # Add blank line after each alert
     return "\n".join(lines)
 
+# Save alerts to HTML
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
+    f.write(f"<h1>StockHome Trading Signals</h1>\n")
+    f.write("<h2>Buy Signals</h2>\n<ul>")
+    for alert in buyalerts:
+        f.write(f"<li>{alert}</li>\n")
+    f.write("</ul>\n")
+    f.write("<h2>Sell Signals</h2>\n<ul>")
+    for alert in sellalerts:
+        f.write(f"<li>{alert}</li>\n")
+    f.write("</ul>\n")
+    f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
+    f.write("</body></html>\n")
+
+
 def job(tickers):
     buy_alerts, sell_alerts = [], []
     buy_symbols = []
