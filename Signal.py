@@ -263,15 +263,15 @@ def format_email_body(buy_alerts, sell_alerts):
     return "\n".join(lines)
 
 # Save alerts to HTML
-with open("index.html", "w", encoding="utf-8") as f:
+with open("output.html", "w", encoding="utf-8") as f:
     f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
     f.write(f"<h1>StockHome Trading Signals</h1>\n")
     f.write("<h2>Buy Signals</h2>\n<ul>")
-    for alert in buy_alerts:
+    for alert in allbuyalerts:   # Use allbuyalerts or buyalerts as appropriate
         f.write(f"<li>{alert}</li>\n")
     f.write("</ul>\n")
     f.write("<h2>Sell Signals</h2>\n<ul>")
-    for alert in sellalerts:
+    for alert in allsellalerts:  # Use allsellalerts or sellalerts as appropriate
         f.write(f"<li>{alert}</li>\n")
     f.write("</ul>\n")
     f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
@@ -424,6 +424,9 @@ def main():
     all_buy_alerts = []
     all_sell_alerts = []
     all_buy_symbols = []
+
+    buysymbols, buyalerts, sellalerts, failed = job(tickers)
+
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
         buys, buy_alerts, sells, fails = job(to_process)
