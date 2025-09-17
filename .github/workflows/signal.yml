@@ -32,6 +32,13 @@ jobs:
         run: |
           python Signal.py --email-type hourly
 
+      - name: Upload HTML output as artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: StockHome-index-html
+            path: index.html
+
+
       # Gather outputs to a staging directory for artifact upload
       - name: Collect outputs
         if: always()
