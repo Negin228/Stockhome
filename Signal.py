@@ -455,8 +455,11 @@ def main():
         f.write("</ul>\n")
         f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
         f.write("</body></html>\n")
-        print("Final index.html content:", f.read())
     logger.info("Written index.html")
+    
+    # Read and print contents for debugging (after closing above)
+    with open("index.html", "r", encoding="utf-8") as f:
+        print("Final index.html content:\n", f.read())
 
 
 
