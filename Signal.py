@@ -475,7 +475,7 @@ def main():
 
         # ... in the HTML writing block
         for (alert, news_summary) in zip(allbuyalerts, buy_alerts_news):
-        f.write(f"<li>{alert}<br>Recent News & Sentiment:<ul>")
+            f.write(f"<li>{alert}<br>Recent News & Sentiment:<ul>")
         for line in news_summary[1]:
             f.write(f"<li>{line}</li>")
         f.write("</ul></li>")
