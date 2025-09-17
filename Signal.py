@@ -402,7 +402,7 @@ def save_buys(email_type, buys_set):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
-    parser.add_argument("--email-type", type=str, choices=["first","second","hourly"], default="hourly", help="Email type")
+    parser.add_argument("--email-type", type=str, choices=["first","second","hourly", "none"], default="hourly", help="Email type")
     args = parser.parse_args()
     selected = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
     prev_buys = load_previous_buys(args.email_type)
@@ -428,14 +428,18 @@ def main():
             time.sleep(TICKER_RETRY_WAIT)
     unique_buys = set(all_buy_symbols)
     new_buys = unique_buys.difference(prev_buys)
-    if new_buys or all_sell_alerts:
-        body = format_email_body(all_buy_alerts, all_sell_alerts)
-        logger.info(f"Sending email with {len(new_buys)} new buys")
-        print(body)
-        send_email("StockHome Trading Alerts", body)
-        save_buys(args.email_type, prev_buys.union(new_buys))
+
+    if args.email_type in {"first", "second", "hourly"}: 
+        if new_buys or all_sell_alerts:
+            body = format_email_body(all_buy_alerts, all_sell_alerts)
+            logger.info(f"Sending email with {len(new_buys)} new buys")
+            print(body)
+            send_email("StockHome Trading Alerts", body)
+            save_buys(args.email_type, prev_buys.union(new_buys))
+        else:
+            logger.info("No new buys or sells to report.")
     else:
-        logger.info("No new buys or sells to report.")
+        logger.info("Email sending skipped by flag.")
 
     # Save alerts to HTML
     print("Running main, signals found:")
