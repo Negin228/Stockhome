@@ -407,13 +407,7 @@ def fetch_news_and_sentiment(symbol):
     sentiment = finnhub_client.news_sentiment(symbol)
     return news[:3], sentiment  # Top 3 headlines + sentiment summary
 
-for sym in buysymbols:
-    headlines, sent = fetch_news_and_sentiment(sym)
-    # Extract headline text and create a user-friendly summary
-    headline_str = ' '.join([f"{n['headline']} ({n.get('source','')})" for n in headlines])
-    sentiment_str = f"Bullish: {sent.get('bullishPercent', 'NA')}, Bearish: {sent.get('bearishPercent','NA')}"
-    # Write to index or email output
-    # f.write(f"...{headline_str} Sentiment: {sentiment_str}...")
+
 
 
 def main():
@@ -454,6 +448,15 @@ def main():
     else:
         logger.info("No new buys or sells to report.")
 
+    # Inside main(), after all_buy_symbols is populated
+    buy_alerts_news = []
+    for sym in all_buy_symbols:
+        headlines, sent = fetch_news_and_sentiment(sym)
+        news_lines = [f"{n['headline']} ({n.get('source', '')})" for n in headlines]
+        sentiment_str = f"Bullish: {sent.get('bullishPercent', 'NA')}, Bearish: {sent.get('bearishPercent', 'NA')}"
+        buy_alerts_news.append([*news_lines, sentiment_str])
+
+
     # Save alerts to HTML
     print("Running main, signals found:")
     print("Buy alerts:", all_buy_alerts)
@@ -471,10 +474,18 @@ def main():
             f.write(f"<li>{alert}</li>\n")
         f.write("</ul>\n")
         f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
+        # Ensure to use all_buy_alerts and buy_alerts_news when writing to HTML
+        for alert, news_summary in zip(all_buy_alerts, buy_alerts_news):
+            f.write(f"<li>{alert}<br>Recent News & Sentiment:<ul>")
+        for line in news_summary:
+            f.write(f"<li>{line}</li>")
+        f.write("</ul></li>")
+        
         f.write("</body></html>\n")
 
+
         # ... in the HTML writing block
-        for (alert, news_summary) in zip(allbuyalerts, buy_alerts_news):
+        for (alert, news_summary) in zip(all_buy_alerts, buy_alerts_news):
             f.write(f"<li>{alert}<br>Recent News & Sentiment:<ul>")
         for line in news_summary[1]:
             f.write(f"<li>{line}</li>")
