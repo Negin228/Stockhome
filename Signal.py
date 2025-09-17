@@ -267,7 +267,7 @@ with open("index.html", "w", encoding="utf-8") as f:
     f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
     f.write(f"<h1>StockHome Trading Signals</h1>\n")
     f.write("<h2>Buy Signals</h2>\n<ul>")
-    for alert in buyalerts:
+    for alert in buy_alerts:
         f.write(f"<li>{alert}</li>\n")
     f.write("</ul>\n")
     f.write("<h2>Sell Signals</h2>\n<ul>")
