@@ -42,6 +42,12 @@ jobs:
         run: cat index.html
 
 
+      - name: Commit and push updated index.html
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "Auto-update index.html from CI"
+          file_pattern: index.html
+
       # Gather outputs to a staging directory for artifact upload
       - name: Collect outputs
         if: always()
