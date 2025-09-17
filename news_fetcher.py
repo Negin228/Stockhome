@@ -8,8 +8,8 @@ def fetch_news_ticker(ticker):
         news = stock.news           # Returns dict of news articles (title, link etc.)
         summaries = []
         for article in news[:5]:
-            headline = article["title"]
-            url = article["link"]
+            headline = article.get("title", "No Title")
+            url = article.get("link", "#")
             blob = TextBlob(headline)
             sentiment = blob.sentiment.polarity
             summaries.append({
