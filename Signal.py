@@ -401,8 +401,8 @@ def save_buys(email_type, buys_set):
 
 # Assume finnhub_client is already created with your API key
 def fetch_news_and_sentiment(symbol):
-    today = datetime.now()
-    week_ago = today - timedelta(days=7)
+    today = datetime.datetime.now()
+    week_ago = today - datetime.timedelta(days=7)
     news = finnhub_client.company_news(symbol, _from=week_ago.strftime('%Y-%m-%d'), to=today.strftime('%Y-%m-%d'))
     sentiment = finnhub_client.news_sentiment(symbol)
     return news[:3], sentiment  # Top 3 headlines + sentiment summary
