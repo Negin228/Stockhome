@@ -454,7 +454,7 @@ def main():
             f.write(f"<li>{alert}</li>\n")
         f.write("</ul>\n")
         f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
-        f.write("</body></html>\n
+        f.write("</body></html>\n")
         print("Final index.html content:", f.read())
     logger.info("Written index.html")
 
