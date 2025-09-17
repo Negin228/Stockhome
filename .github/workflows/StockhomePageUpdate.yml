@@ -33,6 +33,16 @@ jobs:
         run: |
           python Signal.py --email-type none
 
+
+      - name: Generate buy HTML
+        run: python signal.py --out outputs/buys.html
+
+      - name: Enrich with news
+        run: python news_explainer.py --in outputs/buys.html
+
+
+
+
       - name: Upload HTML output as artifact
         uses: actions/upload-artifact@v4
         with:
