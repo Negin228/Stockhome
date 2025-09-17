@@ -402,6 +402,7 @@ def job(tickers):
         buy_alerts.append(f"{buy_alert_line}{news_html}")
 
 
+
         
 
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
@@ -433,6 +434,9 @@ def main():
     all_buy_symbols = []
 
     buysymbols, buyalerts, sellalerts, failed = job(tickers)
+    all_buy_alerts.extend(buy_alerts)
+    all_sell_alerts.extend(sell_alerts)
+
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
