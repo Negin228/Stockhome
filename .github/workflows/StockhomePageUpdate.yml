@@ -35,10 +35,10 @@ jobs:
 
 
       - name: Generate buy HTML
-        run: python signal.py --out outputs/buys.html
+        run: python signal.py --out index.html
 
       - name: Enrich with news
-        run: python news_explainer.py --in outputs/buys.html
+        run: python news_explainer.py --in index.html
 
 
 
