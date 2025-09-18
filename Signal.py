@@ -427,7 +427,7 @@ def job(tickers):
             news for news in news_items 
             if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) < 0.0]
 
-        drop_reason = None
+        #drop_reason = None
         if negative_news:
             # Sort for most negative or most relevant
             most_negative = min(negative_news, key=lambda n: float(n['sentiment']))
