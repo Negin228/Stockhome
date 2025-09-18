@@ -423,11 +423,11 @@ def job(tickers):
         # Find most negative news for "drop reason"
         summary_sentence = f"No recent reason found for {sym}."
         if news_items:
-            negative_news = [
-                news for news in news_items 
-                if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) < 0.0]
+            for news in news_items:
+                 print(news)  # Debug
+            negative_news = [news for news in news_items if float(news.get('sentiment', 0)) < 0]
             use_news = (negative_news[0] if negative_news else news_items[0])
-            reason_sentence = use_news.get('summary', use_news.get('headline', ''))
+            reason_sentence = use_news.get('summary') or use_news.get('headline')
             if reason_sentence:
                 summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
 
