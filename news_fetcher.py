@@ -11,14 +11,14 @@ API_KEY = os.getenv("API_KEY")
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
 def fetch_news_ticker(ticker):
+    summaries = []
     # Use yfinance's news fetching
     try:
-        from_date = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
-        to_date = datetime.datetime.now().strftime("%Y-%m-%d")
-        
+        #from_date = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
+        #to_date = datetime.datetime.now().strftime("%Y-%m-%d")
         #news = finnhub_client.company_news(ticker, _from=from_date, to=to_date)
+        ticker_obj = yf.Ticker(ticker)
         news = ticker_obj.news  # List of dicts with real news links!
-        summaries = []
         for article in news[:5]:
             print(article.keys())
             print(json.dumps(article, indent=2))  # show full available fields
