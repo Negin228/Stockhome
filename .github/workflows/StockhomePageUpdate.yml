@@ -47,6 +47,10 @@ jobs:
       - name: Debug index.html contents before upload
         run: cat index.html
 
+      - name: Ensure index.html is tracked in git
+        run: git add index.html
+
+
 
       - name: Commit and push updated index.html
         uses: stefanzweifel/git-auto-commit-action@v6
