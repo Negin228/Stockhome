@@ -389,6 +389,32 @@ def job(tickers):
 
         
         news_items = fetch_news_ticker(sym)
+
+
+        # Find most negative news for "drop reason"
+        negative_news = [
+            news for news in news_items 
+            if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) < 0.0]
+
+        drop_reason = None
+        if negative_news:
+            # Sort for most negative or most relevant
+            most_negative = min(negative_news, key=lambda n: float(n['sentiment']))
+            # Optionally fetch and summarize content here, else just use the headline:
+            try:
+                article_content = fetch_url(most_negative['url'])  # requires network function
+                # reason_extracted = ai_summarize(article_content)  # pseudo-code, real summary function needed
+                # drop_reason = reason_extracted or most_negative['headline']
+                drop_reason = most_negative['headline']  # Use headline unless real summarization is implemented
+            except:
+                drop_reason = most_negative['headline']
+            summary_sentence = f"{sym} has dropped because: \"{drop_reason}\""
+        else:
+            summary_sentence = f"{sym} has dropped, but no news headline explains the move clearly."
+
+
+
+        
         # Filter out zero-sentiment headlines and keep at most 4
         filtered_news = [
             news for news in news_items 
@@ -413,7 +439,7 @@ def job(tickers):
             fval = f"{float(news['sentiment']):.1f}"
             news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
         news_html += "</ul>"
-        buy_alerts.append(f"{buy_alert_line}{news_html}")
+        buy_alerts.append(f"{buy_alert_line}<br><span style='color: #888;'>{summary_sentence}</span>{news_html}")
 
 
 
