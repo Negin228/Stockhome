@@ -427,7 +427,7 @@ def job(tickers):
                  print(news)  # Debug
             negative_news = [news for news in news_items if float(news.get('sentiment', 0)) < 0]
             use_news = (negative_news[0] if negative_news else news_items[0])
-            reason_sentence = use_news.get('summary') or use_news.get('headline')
+            reason_sentence = use_news.get('summary') or use_news.get('headline') or use_news.get('title')
             if reason_sentence:
                 summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
 
