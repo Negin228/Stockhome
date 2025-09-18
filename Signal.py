@@ -446,6 +446,7 @@ def job(tickers):
         
         news_items = fetch_news_ticker(sym)
 
+        negative_news = [news for news in news_items if float(news.get('sentiment', 0)) < 0] if news_items else []
         use_news = None
         if negative_news:
             use_news = negative_news[0]
