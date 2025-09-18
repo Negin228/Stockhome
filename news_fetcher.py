@@ -5,10 +5,28 @@ import yfinance as yf
 import finnhub
 from textblob import TextBlob
 from newspaper import Article
+from transformers import pipeline
 
 
 API_KEY = os.getenv("API_KEY")
 finnhub_client = finnhub.Client(api_key=API_KEY)
+
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+
+def get_article_text(url):
+        try:
+                article = Article(url)
+                article.download()
+                article.parse()
+                return article.text
+        except Exception as e:
+                return ""
+                            
+def summarize_article_text(article_text):
+        if not article_text.strip():
+                return ""
+        result = summarizer(article_text, max_length=60, min_length=10, do_sample=False)
+        return result[0]['summary_text'].strip()
 
 def fetch_news_ticker(ticker):
         summaries = []
@@ -30,16 +48,23 @@ def fetch_news_ticker(ticker):
                         (meta.get("canonicalUrl") or {}).get("url")
                         or (meta.get("clickThroughUrl") or {}).get("url")
                         or "")
+                    article_text = get_article_text(url)
+                    if article_text:
+                        ai_summary = summarize_article_text(article_text)
+                    else:
+                        #ai_summary = item.get("summary") or item.get("title") or ""
+                        ai_summary = summary or headline
                     blob = TextBlob(headline)
                     sentiment = blob.sentiment.polarity
-                    text = ""
-            
+                    #text = ""
+                        
                     summaries.append({
                         "headline": headline,
                         "url": url,
                         "sentiment": sentiment,
-                        "summary": summary if summary else headline,
-                        "article_text": text[:500]})
+                        "summary": ai_summary,
+                        #"summary": summary if summary else headline,
+                        "article_text": article_text[:500]})
                 print("Fetched news for", ticker, ":", news_items)
                 return summaries
         except Exception as e:
