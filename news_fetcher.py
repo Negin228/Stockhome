@@ -1,3 +1,6 @@
+import os
+import datetime
+import json
 import yfinance as yf
 import finnhub
 from textblob import TextBlob
