@@ -550,7 +550,7 @@ def main():
     all_sell_alerts = []
     all_buy_symbols = []
 
-    buysymbols, buy_alerts_web, buy_alerts_email, sell_alerts, failed = job(tickers)
+    buysymbols, buy_alerts_web, buy_alerts_email, all_sell_alerts, failed = job(tickers)
     all_buy_alerts.extend(buy_alerts_email)
     all_sell_alerts.extend(sell_alerts)
 
