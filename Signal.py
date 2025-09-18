@@ -409,12 +409,9 @@ def job(tickers):
                 return "⚪"
         news_html = "<ul>"
         for news in top_news:
-            if "error" in news:
-                news_html += f"<li>Error: {news['error']}</li>"
-            else:
-                emoji = sentiment_emoji(news['sentiment'])
-                fval = f"{float(news['sentiment']):.1f}"
-                news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
+            emoji = sentiment_emoji(news['sentiment'])
+            fval = f"{float(news['sentiment']):.1f}"
+            news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
         news_html += "</ul>"
         buy_alerts.append(f"{buy_alert_line}{news_html}")
 
