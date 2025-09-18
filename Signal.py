@@ -401,7 +401,7 @@ def job(tickers):
             elif s < -0.2:
                 return "🔴"
             else:
-            return "⚪"
+                return "⚪"
         news_html = "<ul>"
         for news in news_items:
             if "error" in news:
