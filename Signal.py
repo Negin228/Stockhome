@@ -424,6 +424,7 @@ def job(tickers):
         # Find most negative news for "drop reason"
         summary_sentence = f"No recent reason found for {sym}."
         if news_items:
+            # Prefer the most recent, or negative sentiment if present
             main_news = news_items[0]  # Use most recent news
             reason_sentence = main_news.get('summary', main_news.get('headline', ''))
             if reason_sentence:
