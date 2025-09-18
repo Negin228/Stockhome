@@ -19,6 +19,10 @@ import config
 from news_fetcher import fetch_news_ticker
 from newspaper import Article
 import openai
+from transformers import pipeline
+
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")  # Or t5-small for less memory/CPU
+
 
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
@@ -48,6 +52,13 @@ MAX_API_RETRIES = 5
 API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
+
+def summarize_article_text(article_text):
+    if not article_text.strip():
+        return ""
+    result = summarizer(article_text, max_length=60, min_length=10, do_sample=False)
+    return result[0]['summary_text'].strip()
+
 
 def retry_on_rate_limit(func):
     def wrapper(*args, **kwargs):
