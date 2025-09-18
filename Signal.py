@@ -309,6 +309,7 @@ def format_email_body(buy_alerts_email, sell_alerts):
 
 def job(tickers):
     buy_alerts_email, sell_alerts = [], []
+    all_sell_alerts = []
     buy_symbols = []
     buy_alerts_web = []
     buy_alerts_email = []
@@ -503,20 +504,20 @@ def job(tickers):
         #buy_alerts_web.append(f"{buy_alert_line}<br><span style='color: #888;'>{summary_sentence}</span>{news_html}")
         buy_alerts_email.append(buy_alert_line)
 
-        sell_alert_html = f"""
-                <div class="main-info">
-                    <div>
-                        <span class="ticker-alert">{alert.split(':')[0]}</span>
-                    </div>
-                    <div class="price-details">
-                        <div class="current-price price-down">N/A</div>
-                    </div>
-                </div>
-                <p class="news-summary">
-                    {alert}
-                </p>
-            """
-            all_sell_alerts.append(sell_alert_html)
+        #sell_alert_html = f"""
+                #<div class="main-info">
+                    #<div>
+                        #<span class="ticker-alert">{alert.split(':')[0]}</span>
+                    #</div>
+                    #<div class="price-details">
+                        #<div class="current-price price-down">N/A</div>
+                    #</div>
+                #</div>
+                #<p class="news-summary">
+                    #{alert}
+                #</p>
+            #"""
+            #all_sell_alerts.append(sell_alert_html)
 
 
 
@@ -632,8 +633,8 @@ def main():
         f.write("    </ul>\n")
         f.write("</body></html>\n")
     logger.info("Written index.html")
-    with open("index.html", "r", encoding="utf-8") as f:
-        print("Final index.html content:\n", f.read())
+    #with open("index.html", "r", encoding="utf-8") as f:
+        #print("Final index.html content:\n", f.read())
 
             
 
