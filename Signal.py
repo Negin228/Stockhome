@@ -389,19 +389,14 @@ def job(tickers):
 
         
         news_items = fetch_news_ticker(sym)
+        # Filter out zero-sentiment headlines and keep at most 4
+        filtered_news = [news for news in newsitems if abs(float(news.get('sentiment', 0))) > 0][:4]
         news_html = "<ul>"
         for news in news_items:
-
             if "error" in news:
                 news_html += f"<li>Error: {news['error']}</li>"
             else:
                 news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - Sentiment: {news['sentiment']}</li>"
-
-
-
-
-
-        
         news_html += "</ul>"
         buy_alerts.append(f"{buy_alert_line}{news_html}")
 
