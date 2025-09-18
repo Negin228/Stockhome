@@ -32,7 +32,7 @@ jobs:
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
         run: |
           python Signal.py --email-type none
-          python news_fetcher.py
+          #python news_fetcher.py
 
 
 
