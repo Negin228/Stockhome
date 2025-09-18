@@ -4,6 +4,8 @@ import json
 import yfinance as yf
 import finnhub
 from textblob import TextBlob
+from newspaper import Article
+
 
 API_KEY = os.getenv("API_KEY")
 finnhub_client = finnhub.Client(api_key=API_KEY)
@@ -13,7 +15,9 @@ def fetch_news_ticker(ticker):
     try:
         from_date = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
         to_date = datetime.datetime.now().strftime("%Y-%m-%d")
-        news = finnhub_client.company_news(ticker, _from=from_date, to=to_date)
+        
+        #news = finnhub_client.company_news(ticker, _from=from_date, to=to_date)
+        news = ticker_obj.news  # List of dicts with real news links!
         summaries = []
         for article in news[:5]:
             print(article.keys())
@@ -22,10 +26,21 @@ def fetch_news_ticker(ticker):
             url = article.get("url", "#")
             blob = TextBlob(headline)
             sentiment = blob.sentiment.polarity
+            try:
+                art = Article(url)
+                art.download()
+                art.parse()
+                text = art.text
+            except Exception as e:
+                text = ""
+
+
+            
             summaries.append({
                 "headline": headline,
                 "url": url,
-                "sentiment": sentiment
+                "sentiment": sentiment,
+                "summary": text[:500]  # Optionally, summarize with LLM here
             })
         return summaries
     except Exception as e:
