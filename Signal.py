@@ -423,22 +423,31 @@ def job(tickers):
 
         # Find most negative news for "drop reason"
         summary_sentence = f"No recent reason found for {sym}."
-        negative_news = [
-            news for news in news_items 
-            if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) < 0.0]
+        if news_items:
+            main_news = news_items[0]  # Use most recent news
+            reason_sentence = main_news.get('summary', main_news.get('headline', ''))
+            if reason_sentence:
+                summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
+
+
+
+        
+        #negative_news = [
+            #news for news in news_items 
+            #if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) < 0.0]
 
         #drop_reason = None
-        if negative_news:
+        #if negative_news:
             # Sort for most negative or most relevant
-            most_negative = min(negative_news, key=lambda n: float(n['sentiment']))
-            logger.info(f"Trying to fetch and summarize article for ticker {symbol} from {most_negative['url']}")
-            reason_sentence = fetch_and_summarize_article(most_negative['url'], summarizer)
-            if not reason_sentence:
-                logger.info("Article summarization failed or returned nothing, using headline instead.")
-                reason_sentence = most_negative['headline']  # Fallback
-            else:
-                logger.info(f"SUMMARY for {symbol}: {reason_sentence[:130]}")
-            summary_sentence = f"{symbol} has dropped because: \"{reason_sentence}\""
+            #most_negative = min(negative_news, key=lambda n: float(n['sentiment']))
+            #logger.info(f"Trying to fetch and summarize article for ticker {symbol} from {most_negative['url']}")
+            #reason_sentence = fetch_and_summarize_article(most_negative['url'], summarizer)
+            #if not reason_sentence:
+                #logger.info("Article summarization failed or returned nothing, using headline instead.")
+                #reason_sentence = most_negative['headline']  # Fallback
+            #else:
+                #logger.info(f"SUMMARY for {symbol}: {reason_sentence[:130]}")
+            #summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
 
 
 
