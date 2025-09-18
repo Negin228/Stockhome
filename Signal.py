@@ -390,7 +390,7 @@ def job(tickers):
         
         news_items = fetch_news_ticker(sym)
         # Filter out zero-sentiment headlines and keep at most 4
-        filtered_news = [news for news in newsitems if abs(float(news.get('sentiment', 0))) > 0][:4]
+        filtered_news = [news for news in news_items if abs(float(news.get('sentiment', 0))) > 0][:4]
         news_html = "<ul>"
         for news in news_items:
             if "error" in news:
