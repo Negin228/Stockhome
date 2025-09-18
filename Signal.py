@@ -80,28 +80,27 @@ def retry_on_rate_limit(func):
     return wrapper
 
 
-def fetch_and_summarize_article(url, summarizer):
-    try:
-        a = Article(url)
-        a.download()
-        a.parse()
-        text = a.text
-        if not text.strip():
-            logger.warning(f"Article at {url} contains no text!")
+#def fetch_and_summarize_article(url, summarizer):
+    #try:
+        #a = Article(url)
+        #a.download()
+        #a.parse()
+        #text = a.text
+        #if not text.strip():
+            #logger.warning(f"Article at {url} contains no text!")
         # summarizer is a function or LLM API call that takes text and returns a one-line summary
-        return summarizer(text)
-    except Exception as e:
-        logger.error(f"Article fetch/summarize failed for {url}: {e}")
-        return None
+        #return summarizer(text)
+    #except Exception as e:
+        #logger.error(f"Article fetch/summarize failed for {url}: {e}")
+        #return None
 
-def summarizer(text):
-    prompt = f"Read the following article and summarize in one sentence why the company’s stock dropped:\n\n{text}"
-    response = openai.Completion.create(
-        engine="gpt-3.5-turbo", 
-        prompt=prompt, 
-        max_tokens=60
-    )
-    return response.choices[0].text.strip()
+#def summarizer(text):
+    #prompt = f"Read the following article and summarize in one sentence why the company’s stock dropped:\n\n{text}"
+    #response = openai.Completion.create(
+        #engine="gpt-3.5-turbo", 
+        #prompt=prompt, 
+        #max_tokens=60)
+    #return response.choices[0].text.strip()
 
 
 
@@ -396,6 +395,21 @@ def job(tickers):
                 pe=pe,
                 mcap=cap_str)
             sell_alerts.append(sell_alert_line)
+            sell_alert_html = f"""
+                <div class="main-info">
+                    <div>
+                        <span class="ticker-alert">{symbol}</span>
+                    </div>
+                    <div class="price-details">
+                        <div class="current-price price-down">{rt_price:.2f}</div>
+                    </div>
+                </div>
+                <p class="news-summary">
+                    {sell_alert_line}
+                </p>
+            """
+            all_sell_alerts.append(sell_alert_html)
+            
     # Options section (only for BUY signals)
     for sym in buy_symbols:
         price = prices.get(sym)
@@ -467,8 +481,42 @@ def job(tickers):
             fval = f"{float(news['sentiment']):.1f}"
             news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
         news_html += "</ul>"
-        buy_alerts_web.append(f"{buy_alert_line}<br><span style='color: #888;'>{summary_sentence}</span>{news_html}")
+
+        #Gemini
+        buy_alert_html = f"""
+            <div class="main-info">
+                <div>
+                    <span class="ticker-symbol">{sym}</span>
+                    <div class="pe-mcap">P/E: {pe:.1f}, Market Cap: ${cap_str}</div>
+                </div>
+                <div class="price-details">
+                    <div class="current-price price-up">${price:.2f}</div>
+                    <div class="pe-mcap">{best_put['delta_percent']:.1f}%</div>
+                </div>
+            </div>
+            <p class="news-summary">{summary_sentence}</p>
+            {news_html}
+        """
+        buy_alerts_web.append(buy_alert_html)
+
+        
+        #buy_alerts_web.append(f"{buy_alert_line}<br><span style='color: #888;'>{summary_sentence}</span>{news_html}")
         buy_alerts_email.append(buy_alert_line)
+
+        sell_alert_html = f"""
+                <div class="main-info">
+                    <div>
+                        <span class="ticker-alert">{alert.split(':')[0]}</span>
+                    </div>
+                    <div class="price-details">
+                        <div class="current-price price-down">N/A</div>
+                    </div>
+                </div>
+                <p class="news-summary">
+                    {alert}
+                </p>
+            """
+            all_sell_alerts.append(sell_alert_html)
 
 
 
@@ -481,7 +529,7 @@ def job(tickers):
             logger.info(f"Saved puts data for {sym}")
         except Exception as e:
             logger.error(f"Failed to save puts json for {sym}: {e}")
-    return buy_symbols, buy_alerts_web, buy_alerts_email, sell_alerts, failed
+    return buy_symbols, buy_alerts_web, buy_alerts_email, all_sell_alerts, failed
 
 def load_previous_buys(email_type):
     return set()
@@ -556,29 +604,47 @@ def main():
             unique_sell_alerts.append(alert)
             seen.add(alert)
     all_sell_alerts = unique_sell_alerts
-    
-
 
     
     logger.info("Writing HTML to index.html")
     with open("index.html", "w", encoding="utf-8") as f:
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
+        f.write("    <link rel='stylesheet' href='style.css'>\n")  # Link to your stylesheet
+        f.write("</head><body>\n")
+        f.write("    <div class='header'>\n")
+        
         f.write(f"<h1>StockHome Trading Signals</h1>\n")
-        f.write("<h2>Buy Signals</h2>\n<ul>")
-        for alert in buy_alerts_web:   # Use allbuyalerts or buyalerts as appropriate
-            f.write(f"<li>{alert}</li>\n")
+        f.write(f"        <p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>\n")
+        f.write("    </div>\n")
+        
+        f.write("    <h2>Buy Signals</h2>\n")
+        f.write("    <ul class='signals-container'>\n")
+        
+        for alert_html in buy_alerts_web:   # Use allbuyalerts or buyalerts as appropriate
+            f.write(f"<li class='signal-card buy-card'>\n{alert_html}</li>\n")
+            #f.write(f"<li>{alert}</li>\n")
         f.write("</ul>\n")
-        f.write("<h2>Sell Signals</h2>\n<ul>")
-        for alert in all_sell_alerts:  # Use allsellalerts or sellalerts as appropriate
-            f.write(f"<li>{alert}</li>\n")
-        f.write("</ul>\n")
-        f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
+        
+        f.write("    <h2>Sell Signals</h2>\n")
+        f.write("    <ul class='signals-container'>\n")
+        for alert_html in all_sell_alerts:
+                        f.write(f"<li class='signal-card sell-card'>\n{alert_html}</li>\n")
+        f.write("    </ul>\n")
         f.write("</body></html>\n")
     logger.info("Written index.html")
-    
-    # Read and print contents for debugging (after closing above)
     with open("index.html", "r", encoding="utf-8") as f:
         print("Final index.html content:\n", f.read())
+
+            
+
+
+    
+        #for alert in all_sell_alerts:  # Use allsellalerts or sellalerts as appropriate
+            #f.write(f"<li>{alert}</li>\n")
+        #f.write("</ul>\n")
+        #f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
+        #f.write("</body></html>\n")
+    #logger.info("Written index.html")
 
 
 
