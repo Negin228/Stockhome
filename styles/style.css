@@ -1,32 +1,108 @@
-/* styles.css */
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
 }
 
-.container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.header {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-canvas {
-  width: 80% !important;
-  height: 400px !important;
-  min-height: 400px;
-  display: block;
-  border: 1px solid #ddd;
+h1 {
+    font-size: 2.5rem;
+    color: #fff;
 }
 
-footer {
-  background-color: #f0f0f0;
-  text-align: center;
-  padding: 10px;
+h2 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid #555;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    color: #fff;
+}
+
+.signals-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+}
+
+.signal-card {
+    background-color: #2a2a2a;
+    border: 1px solid #3c3c3c;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.buy-card { border-left: 5px solid #4CAF50; }
+.sell-card { border-left: 5px solid #F44336; }
+
+.main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.ticker-symbol {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.price-details {
+    text-align: right;
+}
+
+.current-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.price-up { color: #4CAF50; }
+.price-down { color: #F44336; }
+
+.pe-mcap {
+    font-size: 0.8rem;
+    color: #a0a0a0;
+    margin-top: 5px;
+}
+
+.news-summary {
+    font-style: italic;
+    color: #b0b0b0;
+    margin-top: 15px;
+}
+
+.news-list {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.news-list li {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.news-list a {
+    color: #64B5F6;
+    text-decoration: none;
+}
+
+.news-list a:hover {
+    text-decoration: underline;
 }
