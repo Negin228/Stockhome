@@ -457,7 +457,7 @@ def job(tickers):
             news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
         news_html += "</ul>"
         buy_alerts_web.append(f"{buy_alert_line}<br><span style='color: #888;'>{summary_sentence}</span>{news_html}")
-        buy_alerts_email.append(f"{buy_alert_line})
+        buy_alerts_email.append(buy_alert_line)
 
 
 
@@ -470,7 +470,7 @@ def job(tickers):
             logger.info(f"Saved puts data for {sym}")
         except Exception as e:
             logger.error(f"Failed to save puts json for {sym}: {e}")
-    return buy_symbols, buy_alerts, sell_alerts, failed
+    return buy_symbols, buy_alerts_web, buy_alerts_email, sell_alerts, failed
 
 def load_previous_buys(email_type):
     return set()
