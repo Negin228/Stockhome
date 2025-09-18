@@ -394,7 +394,7 @@ def job(tickers):
             news for news in news_items 
             if 'sentiment' in news 
             and news['sentiment'] is not None
-            and (float(news['sentiment']) > 2.0 or float(news['sentiment']) < -2.0)
+            and (float(news['sentiment']) > 0.2 or float(news['sentiment']) < -0.2)
         ]
         sorted_news = sorted(filtered_news, key=lambda n: -float(n['sentiment']))
         top_news = sorted_news[:4]
