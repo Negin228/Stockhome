@@ -488,11 +488,18 @@ def job(tickers):
             <div class="main-info">
                 <div>
                     <span class="ticker-symbol">{sym}</span>
-                    <div class="pe-mcap">P/E: {pe:.1f}, Market Cap: ${cap_str}</div>
+                    <div class="pe-mcap">
+                        P/E: {f"{pe:.1f}" if pe is not None else "N/A"}, Market Cap: ${cap_str}
+                    </div>                    
                 </div>
                 <div class="price-details">
-                    <div class="current-price price-up">${price:.2f}</div>
-                    <div class="pe-mcap">{best_put['delta_percent']:.1f}%</div>
+                    <div class="current-price price-up">
+                        {f"${price:.2f}" if price is not None else "N/A"}
+                    </div>
+                    <div class="pe-mcap">
+                        {f"{best_put['delta_percent']:.1f}" if best_put.get('delta_percent') is not None else "N/A"}%
+                    </div>
+
                 </div>
             </div>
             <p class="news-summary">{summary_sentence}</p>
