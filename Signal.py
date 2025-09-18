@@ -577,7 +577,7 @@ def main():
 
     buysymbols, buy_alerts_web, buy_alerts_email, all_sell_alerts, failed = job(tickers)
     all_buy_alerts.extend(buy_alerts_email)
-    all_sell_alerts.extend(sell_alerts)
+    #all_sell_alerts.extend(sell_alerts)
 
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
