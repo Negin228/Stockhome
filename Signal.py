@@ -424,20 +424,25 @@ def job(tickers):
         # Find most negative news for "drop reason"
         summary_sentence = f"No recent reason found for {sym}."
         if news_items:
+
+            
             # Prefer the most recent, or negative sentiment if present
-            main_news = news_items[0]  # Use most recent news
-            reason_sentence = main_news.get('summary', main_news.get('headline', ''))
-            if reason_sentence:
-                summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
+            #main_news = news_items[0]  # Use most recent news
+            #reason_sentence = main_news.get('summary', main_news.get('headline', ''))
+            #if reason_sentence:
+                #summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
 
 
 
         
-        #negative_news = [
-            #news for news in news_items 
-            #if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) < 0.0]
+            negative_news = [
+                news for news in news_items 
+                if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) < 0.0]
+            use_news = (negative_news[0] if negative_news else news_items[0])
+            reason_sentence = use_news.get('summary', use_news.get('headline', ''))
+            if reason_sentence:
+                summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
 
-        #drop_reason = None
         #if negative_news:
             # Sort for most negative or most relevant
             #most_negative = min(negative_news, key=lambda n: float(n['sentiment']))
