@@ -23,7 +23,7 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml[html_clean] openai huggingface_hub
+          pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k openai lxml_html_clean transformers torch huggingface_hub
       - name: Run Signal & News
         env:
           API_KEY: ${{ secrets.API_KEY }}
