@@ -40,7 +40,7 @@ def fetch_news_ticker(ticker):
                         "sentiment": sentiment,
                         "summary": summary if summary else headline,
                         "article_text": text[:500]})
-                print("Fetched news for", ticker, ":", news)
+                print("Fetched news for", ticker, ":", news_items)
                 return summaries
         except Exception as e:
                 return [{"error": str(e)}]
