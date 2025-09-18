@@ -461,6 +461,7 @@ def job(tickers):
                 summary_sentence = reason_sentence
         else:
             summary_sentence = f"No recent reason found for {sym}."
+        print(f"news_items for {sym}:", news_items)
 
 
         # Find most negative news for "drop reason"
