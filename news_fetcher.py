@@ -37,6 +37,9 @@ def fetch_news_ticker(ticker):
         try:
                 ticker_obj = yf.Ticker(ticker)
                 news_items = ticker_obj.news  # List of dicts with real news links!
+                if not news_items or not isinstance(news_items, list):
+                        # Could be None, an error, or not a list of dicts
+                        return [{"error": "No news found from yfinance for ticker: " + str(ticker)}]
                 for item in news_items[:5]:
                     print(item.keys())
                     print(json.dumps(item, indent=2))  # show full available fields
