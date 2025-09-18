@@ -11,28 +11,38 @@ API_KEY = os.getenv("API_KEY")
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
 def fetch_news_ticker(ticker):
-    summaries = []
-    # Use yfinance's news fetching
-    try:
+        summaries = []
+        # Use yfinance's news fetching
         #from_date = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
         #to_date = datetime.datetime.now().strftime("%Y-%m-%d")
         #news = finnhub_client.company_news(ticker, _from=from_date, to=to_date)
         ticker_obj = yf.Ticker(ticker)
-        news = ticker_obj.news  # List of dicts with real news links!
-        for article in news[:5]:
+        news_items = ticker_obj.news  # List of dicts with real news links!
+        for item in news_items[:5]:
             print(article.keys())
             print(json.dumps(article, indent=2))  # show full available fields
-            headline = article.get("title", "No Title")
-            url = article.get("link", "#")
+
+            meta = item.get("content", {})
+            headline = meta.get("title", "")
+            summary = meta.get("summary", "")
+            url = (
+                (meta.get("canonicalUrl") or {}).get("url")
+                or (meta.get("clickThroughUrl") or {}).get("url")
+                or "")
+
+
+            
+            #headline = article.get("title", "No Title")
+            #url = article.get("link", "#")
             blob = TextBlob(headline)
             sentiment = blob.sentiment.polarity
-            try:
-                art = Article(url)
-                art.download()
-                art.parse()
-                text = art.text
-            except Exception as e:
-                text = ""
+            #try:
+                #art = Article(url)
+                #art.download()
+                #art.parse()
+                #text = art.text
+            #except Exception as e:
+                #text = ""
 
 
             
