@@ -492,14 +492,14 @@ def main():
     all_buy_symbols = []
 
     buysymbols, buy_alerts_web, buy_alerts_email, sell_alerts, failed = job(tickers)
-    all_buy_alerts.extend(buy_alerts)
+    all_buy_alerts.extend(buy_alerts_email)
     all_sell_alerts.extend(sell_alerts)
 
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
         buys, buy_alerts, sells, fails = job(to_process)
-        all_buy_alerts.extend(buy_alerts)
+        all_buy_alerts.extend(buy_alerts_email)
         all_sell_alerts.extend(sells)
         all_buy_symbols.extend(buys)
         for f in fails:
