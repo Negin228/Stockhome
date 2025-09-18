@@ -16,8 +16,8 @@ def fetch_news_ticker(ticker):
         news = finnhub_client.company_news(ticker, _from=from_date, to=to_date)
         summaries = []
         for article in news[:5]:
-            headline = article.get("title", "No Title")
-            url = article.get("link", "#")
+            headline = article.get("headline", "No Title")
+            url = article.get("url", "#")
             blob = TextBlob(headline)
             sentiment = blob.sentiment.polarity
             summaries.append({
