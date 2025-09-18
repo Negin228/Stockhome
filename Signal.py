@@ -478,9 +478,9 @@ def main():
     seen = set()
     unique_buy_alerts = []
     for alert in all_buy_alerts:
-    if alert not in seen:
-        unique_buy_alerts.append(alert)
-        seen.add(alert)
+        if alert not in seen:
+            unique_buy_alerts.append(alert)
+            seen.add(alert)
     all_buy_alerts = unique_buy_alerts
 
 
