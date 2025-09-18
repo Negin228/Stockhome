@@ -22,8 +22,8 @@ def fetch_news_ticker(ticker):
         for article in news[:5]:
             print(article.keys())
             print(json.dumps(article, indent=2))  # show full available fields
-            headline = article.get("headline", "No Title")
-            url = article.get("url", "#")
+            headline = article.get("title", "No Title")
+            url = article.get("link", "#")
             blob = TextBlob(headline)
             sentiment = blob.sentiment.polarity
             try:
