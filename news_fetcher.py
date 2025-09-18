@@ -23,25 +23,16 @@ def fetch_news_ticker(ticker):
                     print(item.keys())
                     print(json.dumps(item, indent=2))  # show full available fields
                     meta = item.get("content", {})
-                    headline = meta.get("title", "")
-                    summary = meta.get("summary", "")
+                    headline = item.get("title") or meta.get("title", "")
+                    summary = item.get("summary") or meta.get("summary", "")
                     url = (
+                        item.get("url") or
                         (meta.get("canonicalUrl") or {}).get("url")
                         or (meta.get("clickThroughUrl") or {}).get("url")
                         or "")
                     blob = TextBlob(headline)
                     sentiment = blob.sentiment.polarity
                     text = ""
-                        
-            #try:
-                #art = Article(url)
-                #art.download()
-                #art.parse()
-                #text = art.text
-            #except Exception as e:
-                #text = ""
-
-
             
                     summaries.append({
                         "headline": headline,
