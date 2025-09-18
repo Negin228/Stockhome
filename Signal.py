@@ -276,15 +276,15 @@ def log_alert(alert):
     df_new = pd.DataFrame([alert])
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
 
-def format_email_body(buy_alerts, sell_alerts):
+def format_email_body(buy_alerts_email, sell_alerts):
     lines = [
         f"📊 StockHome Trading Signals",
         f"Generated: {(datetime.datetime.now() - datetime.timedelta(hours=7)):%Y-%m-%d %H:%M:%S} PT",
         ""
     ]
-    if buy_alerts:
+    if buy_alerts_email:
         lines.append("🟢 BUY SIGNALS")
-        for alert in buy_alerts:
+        for alert in buy_alerts_email:
             lines.append(f"📈 {alert}")
             lines.append("")  # Add blank line after each alert
     if sell_alerts:
@@ -298,7 +298,7 @@ def format_email_body(buy_alerts, sell_alerts):
 
 
 def job(tickers):
-    buy_alerts, sell_alerts = [], []
+    buy_alerts_email, sell_alerts = [], []
     buy_symbols = []
     buy_alerts_web = []
     buy_alerts_email = []
