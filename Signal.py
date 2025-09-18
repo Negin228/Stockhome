@@ -392,7 +392,9 @@ def job(tickers):
         # Filter out zero-sentiment headlines and keep at most 4
         filtered_news = [
             news for news in news_items 
-            if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) != 0.0
+            if 'sentiment' in news 
+            and news['sentiment'] is not None
+            and (float(news['sentiment']) > 2.0 or float(news['sentiment']) < -2.0)
         ]
         sorted_news = sorted(filtered_news, key=lambda n: -float(n['sentiment']))
         top_news = sorted_news[:4]
