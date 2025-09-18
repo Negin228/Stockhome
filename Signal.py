@@ -473,6 +473,18 @@ def main():
     print("Running main, signals found:")
     print("Buy alerts:", all_buy_alerts)
     print("Sell alerts:", all_sell_alerts)
+
+    # Remove duplicates while preserving order
+    seen = set()
+    unique_buy_alerts = []
+    for alert in all_buy_alerts:
+    if alert not in seen:
+        unique_buy_alerts.append(alert)
+        seen.add(alert)
+    all_buy_alerts = unique_buy_alerts
+
+
+    
     logger.info("Writing HTML to index.html")
     with open("index.html", "w", encoding="utf-8") as f:
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
