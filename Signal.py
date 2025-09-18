@@ -20,8 +20,6 @@ from news_fetcher import fetch_news_ticker
 from newspaper import Article
 import openai
 
-
-
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -302,6 +300,8 @@ def format_email_body(buy_alerts, sell_alerts):
 def job(tickers):
     buy_alerts, sell_alerts = [], []
     buy_symbols = []
+    buy_alerts_web = []
+    buy_alerts_email = []
     prices = {}
     rsi_vals = {}
     failed = []
@@ -417,26 +417,12 @@ def job(tickers):
             delta_percent=float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else 0.0,
             premium_percent=float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else 0.0
         )
-            #buy_alerts.append(buy_alert_line)
-
         
         news_items = fetch_news_ticker(sym)
-
 
         # Find most negative news for "drop reason"
         summary_sentence = f"No recent reason found for {sym}."
         if news_items:
-
-            
-            # Prefer the most recent, or negative sentiment if present
-            #main_news = news_items[0]  # Use most recent news
-            #reason_sentence = main_news.get('summary', main_news.get('headline', ''))
-            #if reason_sentence:
-                #summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
-
-
-
-        
             negative_news = [
                 news for news in news_items 
                 if 'sentiment' in news and news['sentiment'] is not None and float(news['sentiment']) < 0.0]
@@ -444,22 +430,6 @@ def job(tickers):
             reason_sentence = use_news.get('summary', use_news.get('headline', ''))
             if reason_sentence:
                 summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
-
-        #if negative_news:
-            # Sort for most negative or most relevant
-            #most_negative = min(negative_news, key=lambda n: float(n['sentiment']))
-            #logger.info(f"Trying to fetch and summarize article for ticker {symbol} from {most_negative['url']}")
-            #reason_sentence = fetch_and_summarize_article(most_negative['url'], summarizer)
-            #if not reason_sentence:
-                #logger.info("Article summarization failed or returned nothing, using headline instead.")
-                #reason_sentence = most_negative['headline']  # Fallback
-            #else:
-                #logger.info(f"SUMMARY for {symbol}: {reason_sentence[:130]}")
-            #summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
-
-
-
-
 
         
         # Filter out zero-sentiment headlines and keep at most 4
@@ -486,12 +456,13 @@ def job(tickers):
             fval = f"{float(news['sentiment']):.1f}"
             news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
         news_html += "</ul>"
-        buy_alerts.append(f"{buy_alert_line}<br><span style='color: #888;'>{summary_sentence}</span>{news_html}")
+        buy_alerts_web.append(f"{buy_alert_line}<br><span style='color: #888;'>{summary_sentence}</span>{news_html}")
+        buy_alerts_email.append(f"{buy_alert_line})
+
 
 
 
         
-
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
         try:
             with open(puts_json_path, "w") as fp:
@@ -542,7 +513,7 @@ def main():
 
     if args.email_type in {"first", "second", "hourly"}: 
         if new_buys or all_sell_alerts:
-            body = format_email_body(all_buy_alerts, all_sell_alerts)
+            body = format_email_body(buy_alerts_email, all_sell_alerts)
             logger.info(f"Sending email with {len(new_buys)} new buys")
             print(body)
             send_email("StockHome Trading Alerts", body)
@@ -573,7 +544,7 @@ def main():
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
         f.write(f"<h1>StockHome Trading Signals</h1>\n")
         f.write("<h2>Buy Signals</h2>\n<ul>")
-        for alert in all_buy_alerts:   # Use allbuyalerts or buyalerts as appropriate
+        for alert in buy_alerts_web:   # Use allbuyalerts or buyalerts as appropriate
             f.write(f"<li>{alert}</li>\n")
         f.write("</ul>\n")
         f.write("<h2>Sell Signals</h2>\n<ul>")
