@@ -408,7 +408,7 @@ def job(tickers):
             else:
                 return "⚪"
         news_html = "<ul>"
-        for news in news_items:
+        for news in top_news:
             if "error" in news:
                 news_html += f"<li>Error: {news['error']}</li>"
             else:
