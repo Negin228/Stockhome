@@ -77,9 +77,12 @@ def fetch_and_summarize_article(url, summarizer):
         a.download()
         a.parse()
         text = a.text
+        if not text.strip():
+            logger.warning(f"Article at {url} contains no text!")
         # summarizer is a function or LLM API call that takes text and returns a one-line summary
         return summarizer(text)
     except Exception as e:
+        logger.error(f"Article fetch/summarize failed for {url}: {e}")
         return None
 
 def summarizer(text):
@@ -427,9 +430,13 @@ def job(tickers):
         if negative_news:
             # Sort for most negative or most relevant
             most_negative = min(negative_news, key=lambda n: float(n['sentiment']))
+            logger.info(f"Trying to fetch and summarize article for ticker {symbol} from {most_negative['url']}")
             reason_sentence = fetch_and_summarize_article(most_negative['url'], summarizer)
             if not reason_sentence:
+                logger.info("Article summarization failed or returned nothing, using headline instead.")
                 reason_sentence = most_negative['headline']  # Fallback
+            else:
+                logger.info(f"SUMMARY for {symbol}: {reason_sentence[:130]}")
             summary_sentence = f"{symbol} has dropped because: \"{reason_sentence}\""
 
 
