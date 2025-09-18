@@ -391,12 +391,25 @@ def job(tickers):
         news_items = fetch_news_ticker(sym)
         # Filter out zero-sentiment headlines and keep at most 4
         filtered_news = [news for news in news_items if abs(float(news.get('sentiment', 0))) > 0][:4]
+        sorted_news = sorted(filtered_news, key=lambda n: -float(n['sentiment']))
+        top_news = sorted_news[:4]
+
+        def sentiment_emoji(sent):
+            s = float(sent)
+            if s > 0.2:
+                return "🟢"
+            elif s < -0.2:
+                return "🔴"
+            else:
+            return "⚪"
         news_html = "<ul>"
         for news in news_items:
             if "error" in news:
                 news_html += f"<li>Error: {news['error']}</li>"
             else:
-                news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - Sentiment: {news['sentiment']}</li>"
+                emoji = sentiment_emoji(news['sentiment'])
+                fval = f"{float(news['sentiment']):.1f}"
+                news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
         news_html += "</ul>"
         buy_alerts.append(f"{buy_alert_line}{news_html}")
 
