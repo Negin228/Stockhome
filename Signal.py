@@ -549,6 +549,15 @@ def main():
             seen.add(alert)
     all_buy_alerts = unique_buy_alerts
 
+    seen = set()
+    unique_sell_alerts = []
+    for alert in all_sell_alerts:
+        if alert not in seen:
+            unique_sell_alerts.append(alert)
+            seen.add(alert)
+    all_sell_alerts = unique_sell_alerts
+    
+
 
     
     logger.info("Writing HTML to index.html")
