@@ -17,6 +17,9 @@ import numpy as np
 from dateutil.parser import parse
 import config
 from news_fetcher import fetch_news_ticker
+from newspaper import Article
+import openai
+
 
 
 puts_dir = "puts_data"
@@ -66,6 +69,30 @@ def retry_on_rate_limit(func):
         logger.error(f"Exceeded max retries for {func.__name__} with args {args}, kwargs {kwargs}")
         raise
     return wrapper
+
+
+def fetch_and_summarize_article(url, summarizer):
+    try:
+        a = Article(url)
+        a.download()
+        a.parse()
+        text = a.text
+        # summarizer is a function or LLM API call that takes text and returns a one-line summary
+        return summarizer(text)
+    except Exception as e:
+        return None
+
+def summarizer(text):
+    prompt = f"Read the following article and summarize in one sentence why the company’s stock dropped:\n\n{text}"
+    response = openai.Completion.create(
+        engine="gpt-3.5-turbo", 
+        prompt=prompt, 
+        max_tokens=60
+    )
+    return response.choices[0].text.strip()
+
+
+
 
 @retry_on_rate_limit
 def fetch_cached_history(symbol, period="2y", interval="1d"):
@@ -400,17 +427,12 @@ def job(tickers):
         if negative_news:
             # Sort for most negative or most relevant
             most_negative = min(negative_news, key=lambda n: float(n['sentiment']))
-            # Optionally fetch and summarize content here, else just use the headline:
-            try:
-                article_content = fetch_url(most_negative['url'])  # requires network function
-                # reason_extracted = ai_summarize(article_content)  # pseudo-code, real summary function needed
-                # drop_reason = reason_extracted or most_negative['headline']
-                drop_reason = most_negative['headline']  # Use headline unless real summarization is implemented
-            except:
-                drop_reason = most_negative['headline']
-            summary_sentence = f"{sym} has dropped because: \"{drop_reason}\""
-        else:
-            summary_sentence = f"{sym} has dropped, but no news headline explains the move clearly."
+            reason_sentence = fetch_and_summarize_article(most_negative['url'], summarizer)
+            if not reason_sentence:
+                reason_sentence = most_negative['headline']  # Fallback
+            summary_sentence = f"{symbol} has dropped because: \"{reason_sentence}\""
+
+
 
 
 
