@@ -395,7 +395,9 @@ def job(tickers):
             if "error" in news:
                 news_html += f"<li>Error: {news['error']}</li>"
             else:
-                news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - Sentiment: {news['sentiment']}</li>"
+                news_html += f"<li><a href=\"{news['url']}\">{news['headline']}</a> - Sentiment: {news['sentiment']}</li>"
+
+
 
         
         news_html += "</ul>"
