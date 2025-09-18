@@ -20,8 +20,8 @@ def fetch_news_ticker(ticker):
                 ticker_obj = yf.Ticker(ticker)
                 news_items = ticker_obj.news  # List of dicts with real news links!
                 for item in news_items[:5]:
-                    print(article.keys())
-                    print(json.dumps(article, indent=2))  # show full available fields
+                    print(item.keys())
+                    print(json.dumps(item, indent=2))  # show full available fields
                     meta = item.get("content", {})
                     headline = meta.get("title", "")
                     summary = meta.get("summary", "")
