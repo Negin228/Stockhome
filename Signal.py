@@ -429,7 +429,7 @@ def job(tickers):
             use_news = (negative_news[0] if negative_news else news_items[0])
             reason_sentence = use_news.get('summary') or use_news.get('headline') or use_news.get('title')
             if reason_sentence:
-                summary_sentence = f"{sym} has dropped because: \"{reason_sentence}\""
+                summary_sentence = reason_sentence
 
         
         # Filter out zero-sentiment headlines and keep at most 4
