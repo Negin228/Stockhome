@@ -94,13 +94,13 @@ def retry_on_rate_limit(func):
         #logger.error(f"Article fetch/summarize failed for {url}: {e}")
         #return None
 
-#def summarizer(text):
-    #prompt = f"Read the following article and summarize in one sentence why the company’s stock dropped:\n\n{text}"
-    #response = openai.Completion.create(
-        #engine="gpt-3.5-turbo", 
-        #prompt=prompt, 
-        #max_tokens=60)
-    #return response.choices[0].text.strip()
+
+def force_float(val):
+    if isinstance(val, (pd.Series, np.ndarray)):
+        return float(val.iloc[-1]) if hasattr(val, "iloc") and not val.empty else None
+    if isinstance(val, pd.DataFrame):
+        return float(val.values[-1][0])
+    return float(val) if val is not None else None
 
 
 
@@ -262,6 +262,8 @@ def format_market_cap(mcap):
         return f"{mcap / 1e6:.1f}M"
     return str(mcap)
 
+
+
 def send_email(subject, body):
     if not all([EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECEIVER]):
         logger.error("Email credentials not set!")
@@ -343,16 +345,9 @@ def job(tickers):
             continue
         try:
             rt_price = fetch_quote(symbol)
-            if isinstance(rt_price, (pd.Series, np.ndarray)):
-                if hasattr(rt_price, "iloc"):
-                    rt_price = float(rt_price.iloc[-1])
-                else:
-                    rt_price = float(rt_price[-1]) if len(rt_price) > 0 else None
-            if isinstance(rt_price, pd.DataFrame):
-                rt_price = float(rt_price.values[-1][0]) 
+            rt_price = force_float(rt_price)
 
 
-        
         except Exception as e:
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
@@ -360,9 +355,8 @@ def job(tickers):
                 time.sleep(TICKER_RETRY_WAIT)
                 try:
                     rt_price = fetch_quote(symbol)
-                    if isinstance(rt_price, (pd.Series, np.ndarray)):
-                        # If for some reason rt_price is still a Series or array, get last value or mean as fallback
-                        rt_price = float(rt_price.iloc[-1]) if hasattr(rt_price, "iloc") else float(rt_price[-1])
+                    rt_price = force_float(rt_price)
+
 
                 except Exception as e2:
                     logger.error(f"Failed second price fetch for {symbol}: {e2}")
@@ -370,12 +364,9 @@ def job(tickers):
             else:
                 logger.error(f"Error fetching price for {symbol}: {e}")
                 rt_price = None
-        if isinstance(rt_price, (pd.Series, np.ndarray)):
-            rt_price = float(rt_price.iloc[-1]) if hasattr(rt_price, "iloc") else float(rt_price[-1])
+         
         if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
-            rt_price = hist["Close"].iloc[-1] if not hist.empty else None
-            if isinstance(rt_price, (pd.Series, np.ndarray)):
-                rt_price = float(rt_price.iloc[-1]) if hasattr(rt_price, "iloc") else float(rt_price[-1])
+            rt_price = force_float(hist["Close"].iloc[-1] if not hist.empty else None)
         if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
             logger.warning(f"Invalid price for {symbol}, skipping.")
             skipped += 1
