@@ -1,4 +1,4 @@
-name: Signal
+ame: Signal
 
 on:
   schedule:
@@ -28,27 +28,10 @@ jobs:
       - name: Run Signal
         env:
           API_KEY: ${{ secrets.API_KEY }}
-          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+
         run: |
-          python Signal.py --email-type hourly
+          python Signal.py
 
-      #- name: Upload HTML output as artifact
-        #uses: actions/upload-artifact@v4
-        #with:
-            #name: StockHome-index-html
-            #path: index.html
-
-      #- name: Debug index.html contents before upload
-        #run: cat index.html
-
-
-      #- name: Commit and push updated index.html
-       # uses: stefanzweifel/git-auto-commit-action@v6
-        #with:
-         # commit_message: "Auto-update index.html from CI"
-          #file_pattern: index.html
 
       # Gather outputs to a staging directory for artifact upload
       - name: Collect outputs
