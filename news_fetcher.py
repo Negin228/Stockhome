@@ -62,6 +62,9 @@ def fetch_news_ticker(ticker):
                         break
 
                 article_text = get_article_text(url)
+                article_length = len(article_text.split())
+                logger.info(f"[NEWS] {ticker} | URL: {url} | Article length: {article_length} words")
+
                 if article_text:
                     ai_summary = summarize_article_text(article_text)
                 else:
