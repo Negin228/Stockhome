@@ -112,9 +112,12 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
 def fetch_quote(symbol):
     quote = finnhub_client.quote(symbol)
     price = quote.get("c", None)
+    if isinstance(price, (pd.Series, np.ndarray)):
+        price = price[-1] if len(price) else None
     if price is None or (isinstance(price, float) and np.isnan(price)):
         return None
     return price
+
 
 def calculate_indicators(df):
     close = df["Close"]
