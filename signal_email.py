@@ -302,6 +302,10 @@ def job(tickers):
             continue
         try:
             rt_price = fetch_quote(symbol)
+            if isinstance(rt_price, pd.Series) or isinstance(rt_price, np.ndarray):
+                # Take the last value if not empty, else None
+                rt_price = float(rt_price.iloc[-1]) if hasattr(rt_price, "iloc") and not rt_price.empty else None
+    
         except Exception as e:
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
@@ -309,6 +313,9 @@ def job(tickers):
                 time.sleep(TICKER_RETRY_WAIT)
                 try:
                     rt_price = fetch_quote(symbol)
+                    if isinstance(rt_price, pd.Series) or isinstance(rt_price, np.ndarray):
+                        # Take the last value if not empty, else None
+                        rt_price = float(rt_price.iloc[-1]) if hasattr(rt_price, "iloc") and not rt_price.empty else None
                 except Exception as e2:
                     logger.error(f"Failed second price fetch for {symbol}: {e2}")
                     rt_price = None
@@ -317,6 +324,9 @@ def job(tickers):
                 rt_price = None
         if rt_price is None or rt_price != rt_price or rt_price <= 0:
             rt_price = hist["Close"].iloc[-1] if not hist.empty else None
+            if isinstance(rt_price, pd.Series) or isinstance(rt_price, np.ndarray):
+                rt_price = float(rt_price.iloc[-1]) if hasattr(rt_price, "iloc") and not rt_price.empty else None
+    
         if rt_price is None or rt_price != rt_price or rt_price <= 0:
             logger.warning(f"Invalid price for {symbol}, skipping.")
             skipped += 1
