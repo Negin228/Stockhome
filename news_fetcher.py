@@ -21,7 +21,7 @@ def summarize_article_text(article_text):
         return ""
     try:
         # Check if article_text is long enough for the model
-        if len(article_text.split()) < 10:  # Adjust this threshold as needed
+        if len(article_text.split()) < 10:
             return ""
 
         result = summarizer(article_text, max_length=60, min_length=10, do_sample=False)
