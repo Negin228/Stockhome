@@ -262,9 +262,6 @@ def format_email_body(buy_alerts, sell_alerts):
             lines.append("")  # Add blank line after each alert
     return "\n".join(lines)
 
-
-
-
 def job(tickers):
     buy_alerts, sell_alerts = [], []
     buy_symbols = []
@@ -411,9 +408,6 @@ def main():
     all_buy_alerts = []
     all_sell_alerts = []
     all_buy_symbols = []
-
-    buysymbols, buyalerts, sellalerts, failed = job(tickers)
-
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
         buys, buy_alerts, sells, fails = job(to_process)
@@ -436,8 +430,6 @@ def main():
         save_buys(args.email_type, prev_buys.union(new_buys))
     else:
         logger.info("No new buys or sells to report.")
-
-
 
 if __name__ == "__main__":
     main()
