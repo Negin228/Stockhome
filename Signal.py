@@ -21,8 +21,6 @@ from newspaper import Article
 import openai
 #from transformers import pipeline
 
-#summarizer = pipeline("summarization", model="facebook/bart-large-cnn")  # Or t5-small for less memory/CPU
-
 
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
@@ -53,12 +51,6 @@ API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
 
-#def summarize_article_text(article_text):
-    #if not article_text.strip():
-        #return ""
-    #result = summarizer(article_text, max_length=60, min_length=10, do_sample=False)
-    #return result[0]['summary_text'].strip()
-
 
 def retry_on_rate_limit(func):
     def wrapper(*args, **kwargs):
@@ -80,19 +72,6 @@ def retry_on_rate_limit(func):
     return wrapper
 
 
-#def fetch_and_summarize_article(url, summarizer):
-    #try:
-        #a = Article(url)
-        #a.download()
-        #a.parse()
-        #text = a.text
-        #if not text.strip():
-            #logger.warning(f"Article at {url} contains no text!")
-        # summarizer is a function or LLM API call that takes text and returns a one-line summary
-        #return summarizer(text)
-    #except Exception as e:
-        #logger.error(f"Article fetch/summarize failed for {url}: {e}")
-        #return None
 
 
 def force_float(val):
