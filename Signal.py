@@ -444,25 +444,21 @@ def job(tickers):
             else:
                 use_news = news_items[0]
             if use_news is not None:
+                article_text = use_news.get('article_text')
                 reason_sentence = use_news.get('summary') or use_news.get('headline') or use_news.get('title')
+                if not reason_sentence and article_text:
+                    try:
+                        summary = summarizer(article_text)
+                    except Exception as e:
+                        logger.error(f"Error during summarization: {e}")
+                        summary = "No summary available."
+                    reason_sentence = summary
                 if reason_sentence:
                     summary_sentence = reason_sentence
         print(f"news_items for {sym}:", news_items)
 
 
-        # Find most negative news for "drop reason"
-        #summary_sentence = f"No recent reason found for {sym}."
-        #if news_items:
-            #for news in news_items:
-                 #print(news)  # Debug
-            #negative_news = [news for news in news_items if float(news.get('sentiment', 0)) < 0]
-            #use_news = (negative_news[0] if negative_news else news_items[0])
-            #reason_sentence = use_news.get('summary') or use_news.get('headline') or use_news.get('title')
-            #if reason_sentence:
-                #summary_sentence = reason_sentence
-
         
-        # Filter out zero-sentiment headlines and keep at most 4
         filtered_news = [
             news for news in news_items 
             if 'sentiment' in news 
