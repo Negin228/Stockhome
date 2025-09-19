@@ -19,8 +19,20 @@ def get_article_text(url):
 def summarize_article_text(article_text):
     if not article_text.strip():
         return ""
-    result = summarizer(article_text, max_length=60, min_length=10, do_sample=False)
-    return result[0]['summary_text'].strip()
+    try:
+        # Check if article_text is long enough for the model
+        if len(article_text.split()) < 10:  # Adjust this threshold as needed
+            return ""
+
+        result = summarizer(article_text, max_length=60, min_length=10, do_sample=False)
+        # Add a check to ensure the result list is not empty
+        if result and len(result) > 0 and 'summary_text' in result[0]:
+            return result[0]['summary_text'].strip()
+        else:
+            return ""  # Return an empty string if the summary fails
+    except Exception as e:
+        print(f"Error during summarization: {e}")
+        return ""
 
 def fetch_news_ticker(ticker):
     summaries = []
