@@ -6,8 +6,8 @@ import finnhub
 import pandas as pd
 import ta
 import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+#from email.mime.text import MIMEText
+#from email.mime.multipart import MIMEMultipart
 import logging
 from logging.handlers import RotatingFileHandler
 from collections import defaultdict
@@ -243,23 +243,23 @@ def format_market_cap(mcap):
 
 
 
-def send_email(subject, body):
-    if not all([EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECEIVER]):
-        logger.error("Email credentials not set!")
-        return
-    try:
-        msg = MIMEMultipart()
-        msg["From"] = EMAIL_SENDER
-        msg["To"] = EMAIL_RECEIVER
-        msg["Subject"] = subject
-        msg.attach(MIMEText(body, "plain"))
-        with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as s:
-            s.starttls()
-            s.login(EMAIL_SENDER, EMAIL_PASSWORD)
-            s.send_message(msg)
-        logger.info("Email sent")
-    except Exception as e:
-        logger.error(f"Email sending failed: {e}")
+#def send_email(subject, body):
+    #if not all([EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECEIVER]):
+        #logger.error("Email credentials not set!")
+        #return
+    #try:
+        #msg = MIMEMultipart()
+        #msg["From"] = EMAIL_SENDER
+        #msg["To"] = EMAIL_RECEIVER
+        #msg["Subject"] = subject
+        #msg.attach(MIMEText(body, "plain"))
+        #with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as s:
+            #s.starttls()
+            #s.login(EMAIL_SENDER, EMAIL_PASSWORD)
+            #s.send_message(msg)
+        #logger.info("Email sent")
+    #except Exception as e:
+        #logger.error(f"Email sending failed: {e}")
 
 def log_alert(alert):
     csv_path = config.ALERTS_CSV
@@ -267,29 +267,30 @@ def log_alert(alert):
     df_new = pd.DataFrame([alert])
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
 
-def format_email_body(buy_alerts_email, sell_alerts):
-    lines = [
-        f"📊 StockHome Trading Signals",
-        f"Generated: {(datetime.datetime.now() - datetime.timedelta(hours=7)):%Y-%m-%d %H:%M:%S} PT",
-        ""
-    ]
-    if buy_alerts_email:
-        lines.append("🟢 BUY SIGNALS")
-        for alert in buy_alerts_email:
-            lines.append(f"📈 {alert}")
-            lines.append("")  # Add blank line after each alert
-    if sell_alerts:
-        lines.append("🔴 SELL SIGNALS")
-        for alert in sell_alerts:
-            lines.append(f"📉 {alert}")
-            lines.append("")  # Add blank line after each alert
-    return "\n".join(lines)
+#def format_email_body(buy_alerts_email, sell_alerts):
+    #lines = [
+        #f"📊 StockHome Trading Signals",
+        #f"Generated: {(datetime.datetime.now() - datetime.timedelta(hours=7)):%Y-%m-%d %H:%M:%S} PT",
+        #""
+    #]
+    #if buy_alerts_email:
+        #lines.append("🟢 BUY SIGNALS")
+        #for alert in buy_alerts_email:
+            #lines.append(f"📈 {alert}")
+            #lines.append("")  # Add blank line after each alert
+    #if sell_alerts:
+        #lines.append("🔴 SELL SIGNALS")
+        #for alert in sell_alerts:
+            #lines.append(f"📉 {alert}")
+            #lines.append("")  # Add blank line after each alert
+    #return "\n".join(lines)
 
 
 
 
 def job(tickers):
-    buy_alerts_email, sell_alerts = [], []
+    #buy_alerts_email = []
+    sell_alerts = []
     all_sell_alerts = []
     buy_symbols = []
     buy_alerts_web = []
@@ -509,7 +510,7 @@ def job(tickers):
 
         
         #buy_alerts_web.append(f"{buy_alert_line}<br><span style='color: #888;'>{summary_sentence}</span>{news_html}")
-        buy_alerts_email.append(buy_alert_line)
+        #buy_alerts_email.append(buy_alert_line)
 
         #sell_alert_html = f"""
                 #<div class="main-info">
@@ -537,13 +538,13 @@ def job(tickers):
             logger.info(f"Saved puts data for {sym}")
         except Exception as e:
             logger.error(f"Failed to save puts json for {sym}: {e}")
-    return buy_symbols, buy_alerts_web, buy_alerts_email, all_sell_alerts, failed
+    return buy_symbols, buy_alerts_web, all_sell_alerts, failed
 
-def load_previous_buys(email_type):
-    return set()
+#def load_previous_buys(email_type):
+    #return set()
 
-def save_buys(email_type, buys_set):
-    pass
+#def save_buys(email_type, buys_set):
+    #pass
 
 def main():
     parser = argparse.ArgumentParser()
@@ -578,17 +579,17 @@ def main():
     unique_buys = set(all_buy_symbols)
     new_buys = unique_buys.difference(prev_buys)
 
-    if args.email_type in {"first", "second", "hourly"}: 
-        if new_buys or all_sell_alerts:
-            body = format_email_body(buy_alerts_email, all_sell_alerts)
-            logger.info(f"Sending email with {len(new_buys)} new buys")
-            print(body)
-            send_email("StockHome Trading Alerts", body)
-            save_buys(args.email_type, prev_buys.union(new_buys))
-        else:
-            logger.info("No new buys or sells to report.")
-    else:
-        logger.info("Email sending skipped by flag.")
+    #if args.email_type in {"first", "second", "hourly"}: 
+        #if new_buys or all_sell_alerts:
+            #body = format_email_body(buy_alerts_email, all_sell_alerts)
+            #logger.info(f"Sending email with {len(new_buys)} new buys")
+            #print(body)
+            #send_email("StockHome Trading Alerts", body)
+            #save_buys(args.email_type, prev_buys.union(new_buys))
+        #else:
+            #logger.info("No new buys or sells to report.")
+    #else:
+        #logger.info("Email sending skipped by flag.")
 
     # Save alerts to HTML
     print("Running main, signals found:")
