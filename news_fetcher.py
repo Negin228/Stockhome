@@ -63,7 +63,8 @@ def fetch_news_ticker(ticker):
 
                 article_text = get_article_text(url)
                 article_length = len(article_text.split())
-                print(f"[NEWS] {ticker} | URL: {url} | Article length: {article_length} words")
+                print(f"[NEWS] {ticker} | URL: {url} | Article length: {article_length} words | Extract: {article_text[:80]!r}")
+
 
 
                 if article_text:
