@@ -38,9 +38,12 @@ def fetch_news_ticker(ticker):
                 ticker_obj = yf.Ticker(ticker)
                 news_items = ticker_obj.news  # List of dicts with real news links!
                 if not news_items or not isinstance(news_items, list):
+                        print(f"[DEBUG] news_items not a list or empty for {ticker}: {news_items}")
                         # Could be None, an error, or not a list of dicts
                         return [{"error": "No news found from yfinance for ticker: " + str(ticker)}]
                 for item in news_items[:5]:
+                    print("[DEBUG] item keys:", item.keys())
+                    print("[DEBUG] item full:", json.dumps(item, indent=2))
                     print(item.keys())
                     print(json.dumps(item, indent=2))  # show full available fields
                     meta = item.get("content", {})
@@ -71,4 +74,5 @@ def fetch_news_ticker(ticker):
                 print("Fetched news for", ticker, ":", news_items)
                 return summaries
         except Exception as e:
+                print(f"Exception in fetch_news_ticker for {ticker}:", e)
                 return [{"error": str(e)}]
