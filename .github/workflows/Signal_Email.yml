@@ -32,7 +32,7 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
         run: |
-          python Signal_email.py --email-type hourly
+          python signal_email.py --email-type hourly
 
       #- name: Upload HTML output as artifact
         #uses: actions/upload-artifact@v4
