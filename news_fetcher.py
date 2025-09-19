@@ -33,22 +33,21 @@ def fetch_news_ticker(ticker):
         for item in news_items[:5]:
             try:
                 meta = item.get("content", {})
-                headline = meta.get("title", "")
-                summary = meta.get("summary", "")
+                headline = str(meta.get("title", ""))
+                summary = str(meta.get("summary", ""))
                 
                 # Handle canonicalUrl and clickThroughUrl safely (dict or str)
                 canonical_url = meta.get("canonicalUrl")
                 click_url = meta.get("clickThroughUrl")
                 url = ""
-                if isinstance(canonical_url, dict):
-                    url = canonical_url.get("url", "")
-                elif isinstance(canonical_url, str):
-                    url = canonical_url
-                if not url:
-                    if isinstance(click_url, dict):
-                        url = click_url.get("url", "")
-                    elif isinstance(click_url, str):
-                        url = click_url
+                for key in ("canonicalUrl", "clickThroughUrl"):
+                    field = meta.get(key)
+                    if isinstance(field, dict):
+                        url = field.get("url", "")
+                    elif isinstance(field, str):
+                        url = field
+                    if url:
+                        break
 
                 article_text = get_article_text(url)
                 if article_text:
