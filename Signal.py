@@ -5,7 +5,6 @@ import yfinance as yf
 import finnhub
 import pandas as pd
 import ta
-#import smtplib
 import logging
 from logging.handlers import RotatingFileHandler
 from collections import defaultdict
