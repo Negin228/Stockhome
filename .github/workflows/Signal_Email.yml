@@ -1,4 +1,4 @@
-name: Signal_email
+name: Signal_Email
 
 on:
   schedule:
@@ -24,7 +24,8 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k openai lxml_html_clean transformers torch huggingface_hub
+          pip install yfinance finnhub-python pandas ta numpy
+
       - name: Run Signal
         env:
           API_KEY: ${{ secrets.API_KEY }}
@@ -34,21 +35,6 @@ jobs:
         run: |
           python signal_email.py --email-type hourly
 
-      #- name: Upload HTML output as artifact
-        #uses: actions/upload-artifact@v4
-        #with:
-            #name: StockHome-index-html
-            #path: index.html
-
-      #- name: Debug index.html contents before upload
-        #run: cat index.html
-
-
-      #- name: Commit and push updated index.html
-       # uses: stefanzweifel/git-auto-commit-action@v6
-        #with:
-         # commit_message: "Auto-update index.html from CI"
-          #file_pattern: index.html
 
       # Gather outputs to a staging directory for artifact upload
       - name: Collect outputs
