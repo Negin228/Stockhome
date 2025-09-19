@@ -644,21 +644,6 @@ def main():
         f.write("    </ul>\n")
         f.write("</body></html>\n")
     logger.info("Written index.html")
-    #with open("index.html", "r", encoding="utf-8") as f:
-        #print("Final index.html content:\n", f.read())
-
-            
-
-
-    
-        #for alert in all_sell_alerts:  # Use allsellalerts or sellalerts as appropriate
-            #f.write(f"<li>{alert}</li>\n")
-        #f.write("</ul>\n")
-        #f.write(f"<p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>")
-        #f.write("</body></html>\n")
-    #logger.info("Written index.html")
-
-
 
 if __name__ == "__main__":
     main()
