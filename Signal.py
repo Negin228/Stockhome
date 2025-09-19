@@ -446,21 +446,20 @@ def job(tickers):
         
         news_items = fetch_news_ticker(sym)
         summary_sentence = f"No recent reason found for {sym}."
-        negative_news = [news for news in news_items if float(news.get('sentiment', 0)) < 0] if news_items else []
-        use_news = None
-        if negative_news:
-            use_news = negative_news[0]
+        if (news_items and isinstance(news_items[0], dict) and 'error' in news_items[0]):
+            # Optionally include error: summary_sentence = f"No news available for {sym} ({news_items[0]['error']})"
+            pass  # Keep default summary_sentence, do not use below logic
         elif news_items:
-            use_news = news_items[0]
-        else:
+            negative_news = [news for news in news_items if float(news.get('sentiment', 0)) < 0]
             use_news = None
-
-        if use_news is not None:
-            reason_sentence = use_news.get('summary') or use_news.get('headline') or use_news.get('title')
-            if reason_sentence:
-                summary_sentence = reason_sentence
-        else:
-            summary_sentence = f"No recent reason found for {sym}."
+            if negative_news:
+                use_news = negative_news[0]
+            else:
+                use_news = news_items[0]
+            if use_news is not None:
+                reason_sentence = use_news.get('summary') or use_news.get('headline') or use_news.get('title')
+                if reason_sentence:
+                    summary_sentence = reason_sentence
         print(f"news_items for {sym}:", news_items)
 
 
