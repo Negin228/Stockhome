@@ -40,9 +40,9 @@ if not logger.hasHandlers():
     logger.addHandler(console_handler)
 
 API_KEY = os.getenv("API_KEY")
-EMAIL_SENDER = os.getenv("EMAIL_SENDER")
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
+#EMAIL_SENDER = os.getenv("EMAIL_SENDER")
+#EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+#EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 tickers = config.tickers
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
