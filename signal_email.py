@@ -429,7 +429,7 @@ def main():
     all_sell_alerts = []
     all_buy_symbols = []
 
-    buysymbols, buyalerts, sellalerts, failed = job(tickers)
+    #buysymbols, buyalerts, sellalerts, failed = job(tickers)
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
