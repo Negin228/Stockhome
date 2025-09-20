@@ -461,7 +461,6 @@ def job(tickers):
                     <span class="ticker-alert">{sym}</span>
                 </div>
                 <div class="price-details">
-                        #<div class="current-price price-up">{rt_price:.2f}</div>
                         <div class="current-price price-up">{price:.2f}</div>
                 </div>                    
             </div>
