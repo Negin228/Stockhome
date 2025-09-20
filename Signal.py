@@ -457,7 +457,7 @@ def job(tickers):
             <span class='ticker-symbol'>{sym} (${price_str})</span>
             <span class='rsi'>RSI={rsi_str}</span>,
             <span class='pe'>P/E={pe_str}</span>,
-            <span class='market-cap'>Market Cap=${mcap}</span>,
+            <span class='market-cap'>Market Cap=${mcap_str}</span>,
             <span class='strike-premium'>
                 ${strike_str} strike &amp; ${premium_str} premium on {expiration_fmt}
             </span>,
