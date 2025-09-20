@@ -439,16 +439,31 @@ def job(tickers):
             news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
         news_html += "</ul>"
 
+
         buy_alert_html = f"""
         <li class='signal-card buy-card'>
             <span class='buy-icon' style='color:green;'>🟢</span>
-            <span class='ticker-symbol'>{sym}</span>
-            <span class='current-price price-up'>{f"${price:.2f}" if price is not None else "N/A"}</span>
-            <span class='pe-mcap'>P/E: {f"{pe:.1f}" if pe is not None else "N/A"}, Market Cap: ${cap_str}</span>                    
-            <span class='current-price price-up'>{f"${price:.2f}" if price is not None else "N/A"}</span>
-            <span class='delta'>{f"{best_put['delta_percent']:.1f}" if best_put.get('delta_percent') is not None else "N/A"}%</span>
-            <span class='metric-sum'>{best_put['delta_percent'] + best_put['premium_percent']:.1f}%</span>
-            <span class='expiration'>{expiration_fmt}</span>,
+            <span class='ticker-symbol'>{ticker} (${price_str})</span>
+            <span class='rsi'>RSI={rsi_str}</span>,
+            <span class='pe'>P/E={pe_str}</span>,
+            <span class='market-cap'>Market Cap=${mcap}</span>,
+            <span class='strike-premium'>
+                ${strike_str} strike &amp; ${premium_str} premium on {expiration}
+            </span>,
+            <span class='option-metrics'>[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}</span>
+        </li>
+        """
+
+        #buy_alert_html = f"""
+        #<li class='signal-card buy-card'>
+            #<span class='buy-icon' style='color:green;'>🟢</span>
+            #<span class='ticker-symbol'>{sym}</span>
+            #<span class='current-price price-up'>{f"${price:.2f}" if price is not None else "N/A"}</span>
+            #<span class='pe-mcap'>P/E: {f"{pe:.1f}" if pe is not None else "N/A"}, Market Cap: ${cap_str}</span>                    
+            #<span class='current-price price-up'>{f"${price:.2f}" if price is not None else "N/A"}</span>
+            #<span class='delta'>{f"{best_put['delta_percent']:.1f}" if best_put.get('delta_percent') is not None else "N/A"}%</span>
+            #<span class='metric-sum'>{best_put['delta_percent'] + best_put['premium_percent']:.1f}%</span>
+            #<span class='expiration'>{expiration_fmt}</span>,
 
 
             #<p class="news-summary">{summary_sentence}</p>
