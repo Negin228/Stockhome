@@ -439,7 +439,18 @@ def job(tickers):
             news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
         news_html += "</ul>"
 
-
+        price_str = f"{price:.2f}" if price is not None else "N/A"
+        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
+        pe_str = f"{pe:.1f}" if pe is not None else "N/A"
+        mcap_str = cap_str  # Already formatted above
+        strike_str = f"{best_put['strike']:.1f}" if best_put.get('strike') is not None else "N/A"
+        premium_str = f"{best_put['premium']:.2f}" if best_put.get('premium') is not None else "N/A"
+        dp = f"{best_put['delta_percent']:.1f}%" if best_put.get('delta_percent') is not None else "N/A"
+        pp = f"{best_put['premium_percent']:.1f}%" if best_put.get('premium_percent') is not None else "N/A"
+        metric_sum = (best_put.get('delta_percent', 0) or 0) + (best_put.get('premium_percent', 0) or 0)
+        metric_sum_str = f"{metric_sum:.1f}%" if (best_put.get('delta_percent') is not None and best_put.get('premium_percent') is not None) else "N/A"
+        
+        
         buy_alert_html = f"""
         <li class='signal-card buy-card'>
             <span class='buy-icon' style='color:green;'>🟢</span>
