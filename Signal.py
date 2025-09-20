@@ -453,61 +453,24 @@ def job(tickers):
         metric_sum_str = f"{metric_sum:.1f}%" if (best_put.get('delta_percent') is not None and best_put.get('premium_percent') is not None) else "N/A"
         
         
-        buy_alert_html = f"""
-        <li class='signal-card buy-card'>
-            <span class='buy-icon' style='color:green;'>🟢</span>
-            <span class='ticker-symbol'>{sym} (${price_str})</span>
-            <span class='rsi'>RSI={rsi_str}</span>,
-            <span class='pe'>P/E={pe_str}</span>,
-            <span class='market-cap'>Market Cap=${mcap_str}</span>,
-            <span class='strike-premium'>
-                ${strike_str} strike &amp; ${premium_str} premium on {expiration_fmt}
-            </span>,
-            <span class='option-metrics'>[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}</span>
-            <p class="news-summary">{summary_sentence}</p>
-            {news_html}
-        </li>
-        """
-
-        #buy_alert_html = f"""
-        #<li class='signal-card buy-card'>
-            #<span class='buy-icon' style='color:green;'>🟢</span>
-            #<span class='ticker-symbol'>{sym}</span>
-            #<span class='current-price price-up'>{f"${price:.2f}" if price is not None else "N/A"}</span>
-            #<span class='pe-mcap'>P/E: {f"{pe:.1f}" if pe is not None else "N/A"}, Market Cap: ${cap_str}</span>                    
-            #<span class='current-price price-up'>{f"${price:.2f}" if price is not None else "N/A"}</span>
-            #<span class='delta'>{f"{best_put['delta_percent']:.1f}" if best_put.get('delta_percent') is not None else "N/A"}%</span>
-            #<span class='metric-sum'>{best_put['delta_percent'] + best_put['premium_percent']:.1f}%</span>
-            #<span class='expiration'>{expiration_fmt}</span>,
-
-
-            #<p class="news-summary">{summary_sentence}</p>
-            #{news_html}
-        #"""
-
 
         
-        #buy_alert_html = f"""
-            #<div class="main-info">
-                #<div>
-                    #<span class="ticker-symbol">{sym}</span>
-                    #<div class="pe-mcap">
-                        #P/E: {f"{pe:.1f}" if pe is not None else "N/A"}, Market Cap: ${cap_str}
-                    #</div>                    
-                #</div>
-                #<div class="price-details">
-                    #<div class="current-price price-up">
-                        #{f"${price:.2f}" if price is not None else "N/A"}
-                    #</div>
-                    #<div class="pe-mcap">
-                        #{f"{best_put['delta_percent']:.1f}" if best_put.get('delta_percent') is not None else "N/A"}%
-                    #</div>
-                #</div>
-            #</div>
-            #<p class="news-summary">{summary_sentence}</p>
-            #{news_html}
-        #"""
-        buy_alerts_web.append(buy_alert_html)
+        buy_alert_html = f"""
+            <div class="main-info">
+                <div>
+                    <span class="ticker-alert">{symbol}</span>
+                </div>
+                <div class="price-details">
+                        <div class="current-price price-up">{rt_price:.2f}</div>
+                </div>                    
+            </div>
+            <p class="news-summary">
+                    {buy_alert_line}
+            </p>
+            <p class="news-summary">{summary_sentence}</p>
+                {news_html}
+        """
+
 
 
         
