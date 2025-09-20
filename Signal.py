@@ -443,7 +443,7 @@ def job(tickers):
         buy_alert_html = f"""
         <li class='signal-card buy-card'>
             <span class='buy-icon' style='color:green;'>🟢</span>
-            <span class='ticker-symbol'>{ticker} (${price_str})</span>
+            <span class='ticker-symbol'>{sym} (${price_str})</span>
             <span class='rsi'>RSI={rsi_str}</span>,
             <span class='pe'>P/E={pe_str}</span>,
             <span class='market-cap'>Market Cap=${mcap}</span>,
