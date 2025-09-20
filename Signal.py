@@ -462,6 +462,8 @@ def job(tickers):
                 ${strike_str} strike &amp; ${premium_str} premium on {expiration_fmt}
             </span>,
             <span class='option-metrics'>[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}</span>
+            <p class="news-summary">{summary_sentence}</p>
+            {news_html}
         </li>
         """
 
