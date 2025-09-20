@@ -210,7 +210,7 @@ def format_sell_alert_line(ticker, price, rsi, pe, mcap):
     rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
     pe_str = f"{pe:.1f}" if pe is not None else "N/A"
     #return f"{ticker} (${price_str}) | RSI={rsi_str}, P/E={pe_str}, Market Cap=${mcap}"
-    return f"{RSI={rsi_str}, P/E={pe_str}, Market Cap=${mcap}}"
+    return f"RSI={rsi_str}, P/E={pe_str}, Market Cap=${mcap}"
 
 def calculate_custom_metrics(puts, price):
     if price is None or price <= 0 or np.isnan(price):
