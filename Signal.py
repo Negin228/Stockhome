@@ -459,7 +459,7 @@ def job(tickers):
             <span class='pe'>P/E={pe_str}</span>,
             <span class='market-cap'>Market Cap=${mcap}</span>,
             <span class='strike-premium'>
-                ${strike_str} strike &amp; ${premium_str} premium on {expiration}
+                ${strike_str} strike &amp; ${premium_str} premium on {expiration_fmt}
             </span>,
             <span class='option-metrics'>[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}</span>
         </li>
