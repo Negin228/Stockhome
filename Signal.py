@@ -550,7 +550,7 @@ def main():
     logger.info("Writing HTML to index.html")
     with open("index.html", "w", encoding="utf-8") as f:
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
-        f.write("    <link rel='stylesheet' href='style.css'>\n")  # Link to your stylesheet
+        f.write("    <link rel='stylesheet' href='styles/style.css'>\n")  # Link to your stylesheet
         f.write("</head><body>\n")
         f.write("    <div class='header'>\n")
         
