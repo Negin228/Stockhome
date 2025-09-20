@@ -458,10 +458,11 @@ def job(tickers):
         buy_alert_html = f"""
             <div class="main-info">
                 <div>
-                    <span class="ticker-alert">{symbol}</span>
+                    <span class="ticker-alert">{sym}</span>
                 </div>
                 <div class="price-details">
-                        <div class="current-price price-up">{rt_price:.2f}</div>
+                        #<div class="current-price price-up">{rt_price:.2f}</div>
+                        <div class="current-price price-up">{price:.2f}</div>
                 </div>                    
             </div>
             <p class="news-summary">
