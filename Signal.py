@@ -338,7 +338,7 @@ def job(tickers):
                 rsi=rsi_val,
                 pe=pe,
                 mcap=cap_str)
-            sell_alerts.append(sell_alert_line)
+            #sell_alerts.append(sell_alert_line)
             sell_alert_html = f"""
                 <div class="main-info">
                     <div>
