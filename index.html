@@ -3,7 +3,7 @@
 </head><body>
     <div class='header'>
 <h1>StockHome Trading Signals</h1>
-        <p>Generated at 2025-09-21 23:36:11 Pacific Time</p>
+        <p>Generated at 2025-09-21 23:54:49 Pacific Time</p>
     </div>
     <h2>Buy Signals</h2>
     <ul class='signals-container'>
@@ -71,4 +71,17 @@
                 </p>
             </li>
     </ul>
+<div class="filter-section">
+  <label>RSI: <span id="rsi-value"></span></label>
+  <input type="range" min="0" max="100" value="0" id="rsi-slider">
+  <label>P/E: <span id="pe-value"></span></label>
+  <input type="range" min="0" max="100" value="0" id="pe-slider">
+  <label>Market Cap ($B): <span id="cap-value"></span></label>
+  <input type="range" min="0" max="1000" value="0" id="cap-slider">
+  <button onclick="filterStocks()">Filter</button>
+</div>
+<div id="filtered-stocks"></div>
+<script>var allStocks = [{"ticker": "DRI", "rsi": 19.11664353267855, "pe": 19.79957, "market_cap": 21538576384}, {"ticker": "Goog", "rsi": 86.23063979264448, "pe": 27.24013, "market_cap": 3083407458304}, {"ticker": "ABBV", "rsi": 72.75925863425479, "pe": 106.444984, "market_cap": 393006219264}, {"ticker": "TTD", "rsi": 27.34701241836912, "pe": 53.578316, "market_cap": 21743290368}];</script>
+<script src="stock_filter.js"></script>
+</body></html>
 </body></html>
