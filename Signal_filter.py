@@ -494,7 +494,13 @@ def job(tickers):
         """
         buy_alerts_web.append(buy_alert_html)
 
-
+        stock_data_list = []
+        for symbol in tickers:
+            stock_data_list.append({
+                'ticker': symbol,
+                'rsi': rsi_val,
+                'pe': pe,
+                'market_cap': mcap})
 
 
         
@@ -521,7 +527,7 @@ def main():
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
-        buys, buy_alerts_web, sells, fails = job(to_process)
+        buys, buy_alerts_web, sells, fails, stock_data_list = job(to_process)
         all_buy_alerts_web.extend(buy_alerts_web)
         all_sell_alerts.extend(sells)
         all_buy_symbols.extend(buys)
@@ -548,14 +554,7 @@ def main():
             seen.add(alert)
     all_sell_alerts = unique_sell_alerts
 
-    stock_data_list = []
-    for symbol in tickers:
-    # ...
-        stock_data_list.append({
-            'ticker': symbol,
-            'rsi': rsi_val,
-            'pe': pe,
-            'market_cap': mcap})
+
     logger.info("Writing HTML to index.html")
     with open("index.html", "w", encoding="utf-8") as f:
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
