@@ -275,6 +275,8 @@ def job(tickers):
     rsi_vals = {}
     failed = []
     total = skipped = 0
+    stock_data_list = []
+
     for symbol in tickers:
         total += 1
         try:
@@ -303,6 +305,8 @@ def job(tickers):
         try:
             rt_price = fetch_quote(symbol)
             rt_price = force_float(rt_price)
+
+
 
 
         except Exception as e:
@@ -349,6 +353,14 @@ def job(tickers):
             "market_cap": mcap,
         }
         log_alert(alert_data)
+
+        stock_data_list.append({
+                'ticker': symbol,
+                'rsi': rsi_val,
+                'pe': pe,
+                'market_cap': mcap})
+
+        
         if sig == "BUY":
             buy_symbols.append(symbol)
             prices[symbol] = rt_price
@@ -494,13 +506,7 @@ def job(tickers):
         """
         buy_alerts_web.append(buy_alert_html)
 
-        stock_data_list = []
-        for symbol in tickers:
-            stock_data_list.append({
-                'ticker': symbol,
-                'rsi': rsi_val,
-                'pe': pe,
-                'market_cap': mcap})
+
 
 
         
@@ -511,7 +517,7 @@ def job(tickers):
             logger.info(f"Saved puts data for {sym}")
         except Exception as e:
             logger.error(f"Failed to save puts json for {sym}: {e}")
-    return buy_symbols, buy_alerts_web, all_sell_alerts, failed
+    return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list
 
 
 def main():
