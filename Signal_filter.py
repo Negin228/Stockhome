@@ -551,13 +551,11 @@ def main():
     stock_data_list = []
     for symbol in tickers:
     # ...
-    stock_data_list.append({
-        'ticker': symbol,
-        'rsi': rsi_val,
-        'pe': pe,
-        'market_cap': mcap
-    })
-
+        stock_data_list.append({
+            'ticker': symbol,
+            'rsi': rsi_val,
+            'pe': pe,
+            'market_cap': mcap})
     logger.info("Writing HTML to index.html")
     with open("index.html", "w", encoding="utf-8") as f:
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
