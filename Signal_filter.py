@@ -548,7 +548,16 @@ def main():
             seen.add(alert)
     all_sell_alerts = unique_sell_alerts
 
-    
+    stock_data_list = []
+    for symbol in tickers:
+    # ...
+    stock_data_list.append({
+        'ticker': symbol,
+        'rsi': rsi_val,
+        'pe': pe,
+        'market_cap': mcap
+    })
+
     logger.info("Writing HTML to index.html")
     with open("index.html", "w", encoding="utf-8") as f:
         f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
@@ -572,6 +581,23 @@ def main():
         for alert_html in all_sell_alerts:
                         f.write(f"<li class='signal-card sell-card'>\n{alert_html}</li>\n")
         f.write("    </ul>\n")
+        f.write('<div class="filter-section">\n')
+        f.write('  <label>RSI: <span id="rsi-value"></span></label>\n')
+        f.write('  <input type="range" min="0" max="100" value="0" id="rsi-slider">\n')
+        f.write('  <label>P/E: <span id="pe-value"></span></label>\n')
+        f.write('  <input type="range" min="0" max="100" value="0" id="pe-slider">\n')
+        f.write('  <label>Market Cap ($B): <span id="cap-value"></span></label>\n')
+        f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider">\n')
+        f.write('  <button onclick="filterStocks()">Filter</button>\n')
+        f.write('</div>\n')
+        f.write('<div id="filtered-stocks"></div>\n')
+        f.write(f'<script>var allStocks = {json.dumps(stock_data_list)};</script>\n')
+
+
+
+        f.write('<script src="stock_filter.js"></script>\n')
+        f.write("</body></html>\n")
+
         f.write("</body></html>\n")
     logger.info("Written index.html")
 
