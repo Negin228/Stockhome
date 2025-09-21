@@ -434,12 +434,12 @@ def job(tickers):
                 return "🔴"
             else:
                 return "⚪"
-        news_html = "<ul>"
+        news_html = '<ul class="news-list">'
         for news in top_news:
             emoji = sentiment_emoji(news['sentiment'])
             fval = f"{float(news['sentiment']):.1f}"
             news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
-        news_html += "</ul>"
+        news_html += '</ul>'
 
         price_str = f"{price:.2f}" if price is not None else "N/A"
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
