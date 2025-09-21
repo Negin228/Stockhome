@@ -80,17 +80,22 @@ def force_float(val):
 def extend_to_next_period(text):
     if not text or not text.strip():
         return ""
-    # Find all full sentences ending in a period
-    sentences = re.findall(r'[^.]*\\.', text)
-    if sentences:
-        # If the text does not end with a period, take everything up to the next period
-        if not text.strip().endswith('.'):
-            match = re.search(r'(.+?\\.)', text)
-            if match:
-                return match.group(1).strip()
-            return text.strip()
+    # If already ends in period, no change needed
+    if text.strip().endswith('.'):
         return text.strip()
+    # Find position of next period after the last character
+    idx = text.find('.')
+    # If no period, just return the whole string
+    if idx == -1:
+        return text.strip()
+    # If summary doesn't start at the beginning, append up to next period after its current length
+    # meaning, the summary is possibly a truncated portion of a full sentence or paragraph
+    # So we want: everything from beginning up to first period after existing summary
+    match = re.search(r'^(.*?\\.)', text)
+    if match:
+        return match.group(1).strip()
     return text.strip()
+
 
 
 
