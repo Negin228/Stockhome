@@ -1,10 +1,9 @@
-name: Signal_Email
+
+name: StockhomePageUpdate
 
 on:
   schedule:
-    - cron: '30 13 * * 1-5'
-    - cron: '30 14 * * 1-5'
-    - cron: '30 18 * * 1-5'
+    - cron: '30 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -24,17 +23,37 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance finnhub-python pandas ta numpy
-
-      - name: Run Signal
+          pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k openai lxml_html_clean transformers torch huggingface_hub
+      - name: Run Signal & News
         env:
           API_KEY: ${{ secrets.API_KEY }}
-          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
-        run: |
-          python signal_email.py --email-type hourly
 
+        run: |
+          python Signal_filter.py
+          #python news_fetcher.py
+
+
+
+
+      - name: Upload HTML output as artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: StockHome-index-html
+            path: index.html
+
+      - name: Debug index.html contents before upload
+        run: cat index.html
+
+      - name: Ensure index.html is tracked in git
+        run: git add index.html
+
+
+
+      - name: Commit and push updated index.html
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "Auto-update index.html from CI"
+          file_pattern: index.html
 
       # Gather outputs to a staging directory for artifact upload
       - name: Collect outputs
