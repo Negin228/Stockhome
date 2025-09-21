@@ -220,7 +220,7 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
         #f"{ticker} (${price_str}) | "
         f"RSI={rsi_str} "
         f"P/E={pe_str} "
-        f"Market Cap=${mcap}\n"
+        f"Market Cap=${mcap}<br>"
         f"${strike_str} strike & "
         f"${premium_str} premium on {expiration}, "
         f"[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}"
