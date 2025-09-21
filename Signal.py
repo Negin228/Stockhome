@@ -17,6 +17,7 @@ from news_fetcher import fetch_news_ticker
 from newspaper import Article
 #import openai
 #from transformers import pipeline
+import re
 
 
 puts_dir = "puts_data"
@@ -75,6 +76,21 @@ def force_float(val):
         return float(val.values[-1][0])
     return float(val) if val is not None else None
 
+
+def extend_to_next_period(text):
+    if not text or not text.strip():
+        return ""
+    # Find all full sentences ending in a period
+    sentences = re.findall(r'[^.]*\\.', text)
+    if sentences:
+        # If the text does not end with a period, take everything up to the next period
+        if not text.strip().endswith('.'):
+            match = re.search(r'(.+?\\.)', text)
+            if match:
+                return match.group(1).strip()
+            return text.strip()
+        return text.strip()
+    return text.strip()
 
 
 
@@ -412,8 +428,10 @@ def job(tickers):
                         summary = "No summary available."
                     reason_sentence = summary
                 if reason_sentence:
-                    summary_sentence = reason_sentence
+                        summary_sentence = extend_to_next_period(reason_sentence)
         print(f"news_items for {sym}:", news_items)
+
+        
 
 
         
