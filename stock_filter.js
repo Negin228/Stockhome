@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
       filterStocks();
   }
 
-  document.getElementById('drop-slider').oninput = function() {
-    document.getElementById('drop-value').innerText = this.value + "%";
+  document.getElementById('change-slider').oninput = function() {
+    document.getElementById('change-value').innerText = this.value + "%";
     filterStocks();
 }
   
@@ -27,16 +27,16 @@ function filterStocks() {
     var rsi = parseFloat(document.getElementById('rsi-slider').value);
     var pe = parseFloat(document.getElementById('pe-slider').value);
     var cap = parseFloat(document.getElementById('cap-slider').value) * 1e9;
-    var drop = parseFloat(document.getElementById('drop-slider').value);
+    var change = parseFloat(document.getElementById('change-slider').value);
 
     var filtered = allStocks.filter(function(stock) {
       
-       var dropOk = (typeof stock.pct_drop === "number") ? (stock.pct_drop <= drop) : true;
-        return stock.rsi >= rsi && stock.pe >= pe && stock.market_cap >= cap && dropOk;
+       var changeOk = (typeof stock.pct_change === "number") ? (stock.pct_change <= change) : true;
+        return stock.rsi >= rsi && stock.pe >= pe && stock.market_cap >= cap && changeOk;
     });
     var div = document.getElementById('filtered-stocks');
     div.innerHTML = filtered.length ? "<ul>" + filtered.map(function(stock) {
-        return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, Drop=${(typeof stock.pct_drop === "number" ? stock.pct_drop.toFixed(1) + "%" : "N/A")})</li>`;
+        return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, Change=${(typeof stock.pct_change === "number" ? stock.pct_change.toFixed(1) + "%" : "N/A")})</li>`;
     }).join("") + "</ul>" : "<p>No stocks match.</p>";
 }
 
@@ -47,8 +47,8 @@ function resetFilters() {
     document.getElementById('rsi-value').innerText = 0;
     document.getElementById('pe-value').innerText = 0;
     document.getElementById('cap-value').innerText = 0;
-    document.getElementById('drop-slider').value = 0;
-    document.getElementById('drop-value').innerText = "0%";
+    document.getElementById('change-slider').value = 0;
+    document.getElementById('change-value').innerText = "0%";
 
     filterStocks();
 }
