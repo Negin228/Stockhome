@@ -3,7 +3,7 @@
 </head><body>
     <div class='header'>
 <h1>StockHome Trading Signals</h1>
-        <p>Generated at 2025-09-22 02:19:22 Pacific Time</p>
+        <p>Generated at 2025-09-22 02:29:20 Pacific Time</p>
     </div>
     <h2>Buy Signals</h2>
     <ul class='signals-container'>
@@ -18,7 +18,7 @@
                 </div>                    
             </div>
             <p class="news-summary">
-                    RSI=19.1 Market Cap=$21.5B P/E=19.8<br>Sell a $140.0 put option with Oct 17, 2025 expiration for a premium of $4.00<br>[𝚫 24.2% + 💎 2.2%] = 26.4%
+                    RSI=19.1Market Cap=$21.5BP/E=19.8<br>Sell a $140.0 put option with Oct 17, 2025 expiration for a premium of $4.00<br>[𝚫 24.2% + 💎 2.2%] = 26.4%
             </p>
             <p class="news-summary">Open the menu and switch the Market flag for targeted data from your country.</p>
                 <ul class="news-list"><li><a href='https://finance.yahoo.com/news/darden-restaurants-first-quarter-2026-121728205.html'>Darden Restaurants First Quarter 2026 Earnings: EPS Beats Expectations</a> - 🟢 0.2</li><li><a href='https://finance.yahoo.com/news/look-darden-restaurants-valuation-following-121811292.html'>A Look at Darden Restaurants’s Valuation Following Strong Q1 Earnings and Upbeat 2026 Guidance</a> - 🟢 0.2</li></ul>
@@ -34,9 +34,9 @@
                 </div>                    
             </div>
             <p class="news-summary">
-                    RSI=27.3 Market Cap=$21.7B P/E=53.6<br>Sell a $40.0 put option with Oct 31, 2025 expiration for a premium of $1.28<br>[𝚫 10.1% + 💎 2.9%] = 12.9%
+                    RSI=27.3Market Cap=$21.7BP/E=53.6<br>Sell a $40.0 put option with Oct 31, 2025 expiration for a premium of $1.28<br>[𝚫 10.1% + 💎 2.9%] = 12.9%
             </p>
-            <p class="news-summary">The Trade Desk (TTD) closed at $44.90 in the latest trading session, marking a -1.42% move from the prior day. T</p>
+            <p class="news-summary">The Trade Desk (TTD) closed at $44.90 in the latest trading session, marking a -1.42% move from the prior day. The stock's performance was behind the S&P 500's daily loss of 0.13%. Meanwhile, the Dow experienced a</p>
                 <ul class="news-list"></ul>
         </li>
 </ul>
@@ -71,4 +71,18 @@
                 </p>
             </li>
     </ul>
+<div class="filter-section">
+  <label>RSI: <span id="rsi-value"></span></label>
+  <input type="range" min="0" max="100" value="0" id="rsi-slider">
+  <label>P/E: <span id="pe-value"></span></label>
+  <input type="range" min="0" max="100" value="0" id="pe-slider">
+  <label>Market Cap ($B): <span id="cap-value"></span></label>
+  <input type="range" min="0" max="1000" value="0" id="cap-slider">
+  <button onclick="filterStocks()">Filter</button>
+  <button onclick="resetFilters()">Reset</button>
+</div>
+<div id="filtered-stocks"></div>
+<script>var allStocks = [{"ticker": "DRI", "rsi": 19.11664353267855, "pe": 19.79957, "market_cap": 21538576384.0, "rsi_str": "19.1", "pe_str": "19.8", "market_cap_str": "21.5B"}, {"ticker": "Goog", "rsi": 86.23063979264448, "pe": 27.24013, "market_cap": 3083407458304.0, "rsi_str": "86.2", "pe_str": "27.2", "market_cap_str": "3083.4B"}, {"ticker": "ABBV", "rsi": 72.75925863425479, "pe": 106.444984, "market_cap": 393006219264.0, "rsi_str": "72.8", "pe_str": "106.4", "market_cap_str": "393.0B"}, {"ticker": "TTD", "rsi": 27.34701241836912, "pe": 53.578316, "market_cap": 21743290368.0, "rsi_str": "27.3", "pe_str": "53.6", "market_cap_str": "21.7B"}, {"ticker": "ACN", "rsi": 35.72567746908477, "pe": 19.084394, "market_cap": 149297790976.0, "rsi_str": "35.7", "pe_str": "19.1", "market_cap_str": "149.3B"}];</script>
+<script src="stock_filter.js"></script>
+</body></html>
 </body></html>
