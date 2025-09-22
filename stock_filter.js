@@ -30,8 +30,7 @@ function filterStocks() {
     var change = parseFloat(document.getElementById('change-slider').value);
 
     var filtered = allStocks.filter(function(stock) {
-      
-       var changeOk = (typeof stock.pct_change === "number") ? (stock.pct_change <= change) : true;
+        var changeOk = (change === 0) ? true : (typeof stock.pct_change === "number" ? stock.pct_change <= -change : false);
         return stock.rsi >= rsi && stock.pe >= pe && stock.market_cap >= cap && changeOk;
     });
     var div = document.getElementById('filtered-stocks');
