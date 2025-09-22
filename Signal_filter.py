@@ -644,7 +644,7 @@ def main():
         f.write('  <input type="range" min="0" max="100" value="0" id="pe-slider"><br>\n')
         f.write('  <label>Market Cap ($B): <span id="cap-value"></span></label>\n')
         f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider"><br>\n')
-        f.write('  <label>%drop: <span id="drop-value"></span></label>\n')
+        f.write('  <label>Drop(%): <span id="drop-value"></span></label>\n')
         f.write('  <input type="range" min="0" max="100" value="0" id="drop-slider"><br>\n')
 
         #f.write('  <button onclick="filterStocks()">Filter</button>\n')
