@@ -371,7 +371,9 @@ def job(tickers):
         'pct_drop': float(pct_drop) if pct_drop is not None else None,
         'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
         'pe_str': f"{pe:.1f}" if pe is not None else "N/A",
-        'market_cap_str': format_market_cap(mcap)
+        'market_cap_str': format_market_cap(mcap),
+        'dma200': float(dma200val) if dma200val is not None else None,
+        'dma50': float(dma50val) if dma50val is not None else None,
         })
         if not sig:
             continue
@@ -646,7 +648,7 @@ def main():
         f.write('  <label>Market Cap ($B): <span id="cap-value"></span></label>\n')
         f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider"><br>\n')
         f.write('  <label>Drop(%): <span id="drop-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="100" value="0" id="drop-slider"><br>\n')
+        f.write('  <input type="range" min="0" max="20" value="0" id="drop-slider"><br>\n')
 
         #f.write('  <button onclick="filterStocks()">Filter</button>\n')
         f.write('  <button onclick="resetFilters()">Reset Filters</button>\n')
