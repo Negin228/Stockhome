@@ -620,8 +620,8 @@ def main():
         f.write("    <div class='header'>\n")
         
         f.write(f"<h1>StockHome Trading Signals</h1>\n")
-        #f.write(f"        <p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>\n")
-        f.write(f"        <p>Last update: {dt_pacific.strftime('%Y-%m-%d %H:%M:%S')} PT</p>\n")
+        #f.write(f"        <p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}PT</p>\n")
+        f.write(f"        <p>Last update: {dt_pacific.strftime('%Y-%m-%d %H:%M')}PT</p>\n")
 
         f.write("    </div>\n")
         
