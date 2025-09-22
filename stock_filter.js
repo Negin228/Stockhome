@@ -28,3 +28,14 @@ function filterStocks() {
         return `<li>${stock.ticker} (RSI=${stock.rsi}, P/E=${stock.pe}, Cap=${stock.market_cap})</li>`;
     }).join("") + "</ul>" : "<p>No stocks match.</p>";
 }
+
+function resetFilters() {
+    document.getElementById('rsi-slider').value = 0;
+    document.getElementById('pe-slider').value = 0;
+    document.getElementById('cap-slider').value = 0;
+    document.getElementById('rsi-value').innerText = 0;
+    document.getElementById('pe-value').innerText = 0;
+    document.getElementById('cap-value').innerText = 0;
+    filterStocks();
+}
+
