@@ -373,6 +373,8 @@ def job(tickers):
         'market_cap_str': format_market_cap(mcap),
         'dma200': float(dma200_val) if dma200_val is not None else None,
         'dma50': float(dma50_val) if dma50_val is not None else None,
+        'dma200_str': f"{dma200_val:.1f}" if dma200_val is not None else "N/A",
+        'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
 
         })
         if not sig:
