@@ -353,12 +353,15 @@ def job(tickers):
             "market_cap": mcap,
         }
         log_alert(alert_data)
+        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
+        pe_str = f"{pe:.1f}" if pe is not None else "N/A"
+        cap_str = format_market_cap(mcap)
 
         stock_data_list.append({
-                'ticker': symbol,
-                'rsi': rsi_val,
-                'pe': pe,
-                'market_cap': mcap})
+            'ticker': symbol,
+            'rsi': rsi_str,
+            'pe': pe_str,
+            'market_cap': cap_str})
 
         
         if sig == "BUY":
@@ -393,8 +396,6 @@ def job(tickers):
         price = prices.get(sym)
         pe, mcap = fetch_fundamentals_safe(sym)
         cap_str = format_market_cap(mcap)
-        #hist = fetch_cached_history(sym)
-        #rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         rsi_val = rsi_vals.get(sym, None)
         puts_list = fetch_puts(sym)
         puts_list = calculate_custom_metrics(puts_list, price)
