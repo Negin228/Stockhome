@@ -30,12 +30,12 @@ function filterStocks() {
     var change = parseFloat(document.getElementById('change-slider').value);
 
     var filtered = allStocks.filter(function(stock) {
-        var changeOk = (change === 0) ? true : (typeof stock.pct_change === "number" ? stock.pct_change <= -change : false);
+        var changeOk = (change === 0) ? true : (typeof stock.pct_drop === "number" ? stock.pct_drop <= -change : false);
         return stock.rsi >= rsi && stock.pe >= pe && stock.market_cap >= cap && changeOk;
     });
     var div = document.getElementById('filtered-stocks');
     div.innerHTML = filtered.length ? "<ul>" + filtered.map(function(stock) {
-        return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, Change=${(typeof stock.pct_change === "number" ? stock.pct_change.toFixed(1) + "%" : "N/A")})</li>`;
+        return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, Change=${(typeof stock.pct_drop === "number" ? stock.pct_drop.toFixed(1) + "%" : "N/A")})</li>`;
     }).join("") + "</ul>" : "<p>No stocks match.</p>";
 }
 
