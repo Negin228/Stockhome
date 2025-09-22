@@ -339,11 +339,11 @@ def job(tickers):
         prev_close = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
 
         if last_close is not None and prev_close is not None and prev_close != 0:
-            pct_change = ((last_close - prev_close) / prev_close * 100)
-            pct_change_str = f"{pct_change:+.1f}%"
+            pct_drop = ((last_close - prev_close) / prev_close * 100)
+            pct_drop_str = f"{pct_drop:+.1f}%"
         else:
-            pct_change = None
-            pct_change_str = "N/A"
+            pct_drop = None
+            pct_drop_str = "N/A"
         
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
@@ -353,7 +353,7 @@ def job(tickers):
         'rsi': float(rsi_val) if rsi_val is not None else None,
         'pe': float(pe) if pe is not None else None,
         'market_cap': float(mcap) if mcap is not None else None,
-        'pct_change': float(pct_change) if pct_change is not None else None,
+        'pct_drop': float(pct_drop) if pct_drop is not None else None,
         'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
         'pe_str': f"{pe:.1f}" if pe is not None else "N/A",
         'market_cap_str': format_market_cap(mcap)
