@@ -312,9 +312,6 @@ def job(tickers):
         try:
             rt_price = fetch_quote(symbol)
             rt_price = force_float(rt_price)   
-               
-        #if not sig:
-            #continue
 
         except Exception as e:
             msg = str(e).lower()
@@ -341,6 +338,8 @@ def job(tickers):
         cap_str = format_market_cap(mcap)
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         pe_str = f"{pe:.1f}" if pe else "N/A"
+        dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
+        dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
         
 
         last_close = hist["Close"].iloc[-1].item() if not hist.empty else None
