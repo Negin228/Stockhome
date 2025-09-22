@@ -338,13 +338,13 @@ def job(tickers):
         pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
         
         stock_data_list.append({
-            'ticker': symbol,
-            'rsi': rsi_str,
-            'pe': pe_str_filter,
-            'market_cap': cap_str,
-            'price': f"{rt_price:.2f}" if rt_price is not None else "N/A",
-            'has_signal': sig is not None,
-            'signal_type': sig if sig else None
+        'ticker': symbol,
+        'rsi': float(rsi_val) if rsi_val is not None else None,
+        'pe': float(pe) if pe is not None else None,
+        'market_cap': float(mcap) if mcap is not None else None,
+        'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
+        'pe_str': f"{pe:.1f}" if pe is not None else "N/A",
+        'market_cap_str': format_market_cap(mcap)
         })
         if not sig:
             continue
