@@ -154,6 +154,8 @@ def calculate_indicators(df):
         close = close.squeeze()
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
+    df["dma50"] = close.rolling(50).mean()
+
     return df
 
 def generate_signal(df):
@@ -206,8 +208,8 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
     price_str = f"{price:.2f}" if price is not None else "N/A"
     rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
     pe_str = f"{pe:.1f}" if pe is not None else "N/A"
-    dma200_str = f"{dma200:.1f}" if pe is not None else "N/A"
-    dma50_str = f"{dma50:.1f}" if pe is not None else "N/A"
+    dma200_str = f"{dma200:.1f}" if dma200 is not None else "N/A"
+    dma50_str = f"{dma50:.1f}" if dma50 is not None else "N/A"
     strike_str = f"{strike:.1f}" if strike is not None else "N/A"
     premium_str = f"{premium:.2f}" if premium is not None else "N/A"
     dp = f"{delta_percent:.1f}%" if delta_percent is not None else "N/A"
