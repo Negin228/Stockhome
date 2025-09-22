@@ -338,7 +338,12 @@ def job(tickers):
         last_close = hist["Close"].iloc[-1].item() if not hist.empty else None
         prev_close = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
 
-        pct_drop = ((last_close - prev_close) / prev_close * 100) if last_close and prev_close else None
+        if last_close is not None and prev_close is not None and prev_close != 0:
+            pct_change = ((last_close - prev_close) / prev_close * 100)
+            pct_change_str = f"{pct_change:+.1f}%"
+        else:
+            pct_change = None
+            pct_change_str = "N/A"
         
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
@@ -348,7 +353,7 @@ def job(tickers):
         'rsi': float(rsi_val) if rsi_val is not None else None,
         'pe': float(pe) if pe is not None else None,
         'market_cap': float(mcap) if mcap is not None else None,
-        'pct_drop': float(pct_drop) if pct_drop is not None else None,
+        'pct_change': float(pct_change) if pct_change is not None else None,
         'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
         'pe_str': f"{pe:.1f}" if pe is not None else "N/A",
         'market_cap_str': format_market_cap(mcap)
@@ -618,8 +623,8 @@ def main():
         f.write('  <input type="range" min="0" max="100" value="0" id="pe-slider">\n')
         f.write('  <label>Market Cap ($B): <span id="cap-value"></span></label>\n')
         f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider">\n')
-        f.write('  <label>% Drop vs Last Close: <span id="drop-value"></span></label>\n')
-        f.write('  <input type="range" min="-50" max="0" value="0" id="drop-slider">\n')
+        f.write('  <label>%Change: <span id="change-value"></span></label>\n')
+        f.write('  <input type="range" min="-100" max="100" value="0" id="change-slider">\n')
 
         f.write('  <button onclick="filterStocks()">Filter</button>\n')
         f.write('  <button onclick="resetFilters()">Reset</button>\n')
