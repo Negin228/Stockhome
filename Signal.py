@@ -151,6 +151,7 @@ def calculate_indicators(df):
         close = close.squeeze()
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
+    df["dma50"] = close.rolling(200).mean()
     return df
 
 def generate_signal(df):
@@ -199,10 +200,12 @@ def fetch_puts(symbol):
         logger.warning(f"Failed to fetch puts for {symbol}: {e}")
     return puts_data
 
-def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent):
+def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent, dma200, dma50):
     price_str = f"{price:.2f}" if price is not None else "N/A"
     rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
     pe_str = f"{pe:.1f}" if pe is not None else "N/A"
+    dma200_str =  f"{dma200:.1f}" if dma200 is not None else "N/A"
+    dma50_str =  f"{dma50:.1f}" if dma50 is not None else "N/A"
     strike_str = f"{strike:.1f}" if strike is not None else "N/A"
     premium_str = f"{premium:.2f}" if premium is not None else "N/A"
     dp = f"{delta_percent:.1f}%" if delta_percent is not None else "N/A"
@@ -213,8 +216,10 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
     metric_sum_str = f"{metric_sum:.1f}%" if metric_sum is not None else "N/A"
     return (
         #f"{ticker} (${price_str}) | "
-        f"RSI={rsi_str} "
-        f"Market Cap=${mcap} "
+        f"RSI={rsi_str}  "
+        f"Market Cap=${mcap}  "
+        f"DMA 200={dma200_str}  "
+        f"DMA 50={dma50_str}  "
         f"P/E={pe_str}<br>"
         f"Sell a ${strike_str} put option with {expiration} expiration for a premium of ${premium_str}<br>"
         f"[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}"
@@ -327,6 +332,8 @@ def job(tickers):
         cap_str = format_market_cap(mcap)
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         pe_str = f"{pe:.1f}" if pe else "N/A"
+        dma200_str = f"{dma200:.1f}" if pe else "N/A"
+        dma50_str = f"{dma50:.1f}" if pe else "N/A"
         parts = [
             f"{symbol}: {sig} at ${rt_price:.2f}",
             reason,
@@ -396,6 +403,8 @@ def job(tickers):
             price=price if price is not None else 0.0,
             rsi=rsi_val if rsi_val is not None else 0.0,
             pe=pe if pe is not None else 0.0,
+            dma200=dma200 if dma200 is not None else 0.0,
+            dma50=dma50 if dma50 is not None else 0.0,
             mcap=cap_str if cap_str is not None else "N/A",
             strike=float(best_put['strike']) if best_put.get('strike') is not None else 0.0,
             expiration=expiration_fmt if expiration_fmt else "N/A",
@@ -461,6 +470,8 @@ def job(tickers):
         price_str = f"{price:.2f}" if price is not None else "N/A"
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str = f"{pe:.1f}" if pe is not None else "N/A"
+        dma200_str = f"{dma200:.1f}" if dma200 is not None else "N/A"
+        dma50_str = f"{dma50:.1f}" if dma50 is not None else "N/A"
         mcap_str = cap_str  # Already formatted above
         strike_str = f"{best_put['strike']:.1f}" if best_put.get('strike') is not None else "N/A"
         premium_str = f"{best_put['premium']:.2f}" if best_put.get('premium') is not None else "N/A"
