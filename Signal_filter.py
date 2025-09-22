@@ -645,7 +645,7 @@ def main():
         f.write('  <label>Market Cap ($B): <span id="cap-value"></span></label>\n')
         f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider">\n')
         f.write('  <label>%drop: <span id="drop-value"></span></label>\n')
-        f.write('  <input type="range" min="-100" max="100" value="0" id="drop-slider">\n')
+        f.write('  <input type="range" min="0" max="100" value="0" id="drop-slider">\n')
 
         f.write('  <button onclick="filterStocks()">Filter</button>\n')
         f.write('  <button onclick="resetFilters()">Reset</button>\n')
