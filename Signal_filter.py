@@ -88,10 +88,12 @@ def extend_to_next_period(text):
     
 def ensure_sentence_completion(text):
     text = text.strip()
-    # If text does not end with a full stop, add ellipsis as a hint.
+    if not text:
+        return ""
     if not re.search(r'[.!?]$', text):
-        text += "..."
+        text += "."
     return text
+
 
 
 
