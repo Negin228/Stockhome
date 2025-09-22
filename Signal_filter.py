@@ -623,7 +623,6 @@ def main():
         f.write('<div id="filtered-stocks"></div>\n')
         f.write(f'<script>var allStocks = {json.dumps(all_stock_data)};</script>\n')
         f.write('<script src="stock_filter.js"></script>\n')
-        f.write("</body></html>\n")
 
         f.write("</body></html>\n")
     logger.info("Written index.html")
