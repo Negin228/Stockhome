@@ -633,11 +633,11 @@ def main():
             f.write(f"<li class='signal-card buy-card'>\n{alert_html}</li>\n")
         f.write("</ul>\n")
         
-        f.write("    <h2>Sell Signals</h2>\n")
-        f.write("    <ul class='signals-container'>\n")
-        for alert_html in all_sell_alerts:
-            f.write(f"<li class='signal-card sell-card'>\n{alert_html}</li>\n")
-        f.write("    </ul>\n")
+        #f.write("    <h2>Sell Signals</h2>\n")
+        #f.write("    <ul class='signals-container'>\n")
+        #for alert_html in all_sell_alerts:
+            #f.write(f"<li class='signal-card sell-card'>\n{alert_html}</li>\n")
+        #f.write("    </ul>\n")
         f.write('<div class="filter-section">\n')
         f.write('  <label>RSI: <span id="rsi-value"></span></label>\n')
         f.write('  <input type="range" min="0" max="100" value="0" id="rsi-slider"><br>\n')
