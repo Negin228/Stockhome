@@ -300,14 +300,13 @@ def job(tickers):
             continue
         hist = calculate_indicators(hist)
         sig, reason = generate_signal(hist)
-        if not sig:
-            continue
+
         try:
             rt_price = fetch_quote(symbol)
-            rt_price = force_float(rt_price)
-
-
-
+            rt_price = force_float(rt_price)   
+               
+        #if not sig:
+            #continue
 
         except Exception as e:
             msg = str(e).lower()
@@ -317,8 +316,6 @@ def job(tickers):
                 try:
                     rt_price = fetch_quote(symbol)
                     rt_price = force_float(rt_price)
-
-
                 except Exception as e2:
                     logger.error(f"Failed second price fetch for {symbol}: {e2}")
                     rt_price = None
@@ -336,6 +333,23 @@ def job(tickers):
         cap_str = format_market_cap(mcap)
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         pe_str = f"{pe:.1f}" if pe else "N/A"
+        
+        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
+        pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
+        
+        stock_data_list.append({
+            'ticker': symbol,
+            'rsi': rsi_str,
+            'pe': pe_str_filter,
+            'market_cap': cap_str,
+            'price': f"{rt_price:.2f}" if rt_price is not None else "N/A",
+            'has_signal': sig is not None,
+            'signal_type': sig if sig else None
+        })
+        if not sig:
+            continue
+
+        
         parts = [
             f"{symbol}: {sig} at ${rt_price:.2f}",
             reason,
@@ -353,15 +367,7 @@ def job(tickers):
             "market_cap": mcap,
         }
         log_alert(alert_data)
-        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
-        pe_str = f"{pe:.1f}" if pe is not None else "N/A"
-        cap_str = format_market_cap(mcap)
 
-        stock_data_list.append({
-            'ticker': symbol,
-            'rsi': rsi_str,
-            'pe': pe_str,
-            'market_cap': cap_str})
 
         
         if sig == "BUY":
