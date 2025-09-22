@@ -36,7 +36,7 @@ function filterStocks() {
     });
     var div = document.getElementById('filtered-stocks');
     div.innerHTML = filtered.length ? "<ul>" + filtered.map(function(stock) {
-        return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, drop=${(typeof stock.pct_drop === "number" ? stock.pct_drop.toFixed(1) + "%" : "N/A")}, DMA200=${stock.dma200}, DMA50=${stock.dma50})</li>`;
+        return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, drop=${(typeof stock.pct_drop === "number" ? stock.pct_drop.toFixed(1) + "%" : "N/A")}, DMA200=${stock.dma200_str}, DMA50=${stock.dma50_str})</li>`;
     }).join("") + "</ul>" : "<p>No stocks match.</p>";
 }
 
