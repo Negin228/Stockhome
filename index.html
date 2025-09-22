@@ -3,7 +3,7 @@
 </head><body>
     <div class='header'>
 <h1>StockHome Trading Signals</h1>
-        <p>Generated at 2025-09-22 05:32:47 Pacific Time</p>
+        <p>Generated at 2025-09-22 05:42:04 Pacific Time</p>
     </div>
     <h2>Buy Signals</h2>
     <ul class='signals-container'>
@@ -78,12 +78,12 @@
   <input type="range" min="0" max="100" value="0" id="pe-slider">
   <label>Market Cap ($B): <span id="cap-value"></span></label>
   <input type="range" min="0" max="1000" value="0" id="cap-slider">
-  <label>% Drop vs Last Close: <span id="drop-value"></span></label>
-  <input type="range" min="-50" max="0" value="0" id="drop-slider">
+  <label>%Change: <span id="change-value"></span></label>
+  <input type="range" min="-100" max="100" value="0" id="change-slider">
   <button onclick="filterStocks()">Filter</button>
   <button onclick="resetFilters()">Reset</button>
 </div>
 <div id="filtered-stocks"></div>
-<script>var allStocks = [{"ticker": "DRI", "rsi": 19.11664353267855, "pe": 19.79957, "market_cap": 21538576384.0, "pct_drop": -4.155862580334467, "rsi_str": "19.1", "pe_str": "19.8", "market_cap_str": "21.5B"}, {"ticker": "Goog", "rsi": 86.23063979264448, "pe": 27.24013, "market_cap": 3083407458304.0, "pct_drop": 1.1532531371587522, "rsi_str": "86.2", "pe_str": "27.2", "market_cap_str": "3083.4B"}, {"ticker": "ABBV", "rsi": 72.75925863425479, "pe": 106.444984, "market_cap": 393006219264.0, "pct_drop": 0.21622402615501687, "rsi_str": "72.8", "pe_str": "106.4", "market_cap_str": "393.0B"}, {"ticker": "TTD", "rsi": 27.34701241836912, "pe": 53.578316, "market_cap": 21743290368.0, "pct_drop": 1.2292303932984983, "rsi_str": "27.3", "pe_str": "53.6", "market_cap_str": "21.7B"}, {"ticker": "ACN", "rsi": 35.72567746908477, "pe": 19.084394, "market_cap": 149297790976.0, "pct_drop": 0.06261485893279949, "rsi_str": "35.7", "pe_str": "19.1", "market_cap_str": "149.3B"}];</script>
+<script>var allStocks = [{"ticker": "DRI", "rsi": 19.11664353267855, "pe": 19.79957, "market_cap": 21538576384.0, "pct_change": -4.155862580334467, "rsi_str": "19.1", "pe_str": "19.8", "market_cap_str": "21.5B"}, {"ticker": "Goog", "rsi": 86.23063979264448, "pe": 27.24013, "market_cap": 3083407458304.0, "pct_change": 1.1532531371587522, "rsi_str": "86.2", "pe_str": "27.2", "market_cap_str": "3083.4B"}, {"ticker": "ABBV", "rsi": 72.75925863425479, "pe": 106.444984, "market_cap": 393006219264.0, "pct_change": 0.21622402615501687, "rsi_str": "72.8", "pe_str": "106.4", "market_cap_str": "393.0B"}, {"ticker": "TTD", "rsi": 27.34701241836912, "pe": 53.578316, "market_cap": 21743290368.0, "pct_change": 1.2292303932984983, "rsi_str": "27.3", "pe_str": "53.6", "market_cap_str": "21.7B"}, {"ticker": "ACN", "rsi": 35.72567746908477, "pe": 19.084394, "market_cap": 149297790976.0, "pct_change": 0.06261485893279949, "rsi_str": "35.7", "pe_str": "19.1", "market_cap_str": "149.3B"}];</script>
 <script src="stock_filter.js"></script>
 </body></html>
