@@ -75,25 +75,20 @@ def force_float(val):
     if isinstance(val, pd.DataFrame):
         return float(val.values[-1][0])
     return float(val) if val is not None else None
-
-
 def extend_to_next_period(text):
     if not text or not text.strip():
         return ""
-    # If already ends in period, no change needed
+    # If already ends with period, no change needed
     if text.strip().endswith('.'):
         return text.strip()
-    # Find position of next period after the last character
-    idx = text.find('.')
-    # If no period, just return the whole string
-    if idx == -1:
-        return text.strip()
-    # If summary doesn't start at the beginning, append up to next period after its current length
-    # meaning, the summary is possibly a truncated portion of a full sentence or paragraph
-    # So we want: everything from beginning up to first period after existing summary
-    match = re.search(r'^(.*?\\.)', text)
+    match = re.search(r'(.*?\.(?:\s+[A-Z]|$))', text)
     if match:
-        return match.group(1).strip()
+        result = match.group(1).strip()
+        # If it ends with ". " (period + space), remove the trailing space
+        if result.endswith('. '):
+            result = result[:-1]
+        return result
+    # If no proper sentence ending found, return the original text
     return text.strip()
 
 
