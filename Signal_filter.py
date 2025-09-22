@@ -95,7 +95,13 @@ def extend_to_next_period(text):
     if match:
         return match.group(1).strip()
     return text.strip()
-
+    
+def ensure_sentence_completion(text):
+    text = text.strip()
+    # If text does not end with a full stop, add ellipsis as a hint.
+    if not re.search(r'[.!?]$', text):
+        text += "..."
+    return text
 
 
 
@@ -452,6 +458,8 @@ def job(tickers):
                     reason_sentence = summary
                 if reason_sentence:
                         summary_sentence = extend_to_next_period(reason_sentence)
+                        summary_sentence = ensure_sentence_completion(summary_sentence)
+
         print(f"news_items for {sym}:", news_items)
 
         
