@@ -593,6 +593,9 @@ def main():
         f.write('  <label>Market Cap ($B): <span id="cap-value"></span></label>\n')
         f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider">\n')
         f.write('  <button onclick="filterStocks()">Filter</button>\n')
+        f.write('  <button onclick="resetFilters()">Reset</button>\n')
+
+
         f.write('</div>\n')
         f.write('<div id="filtered-stocks"></div>\n')
         f.write(f'<script>var allStocks = {json.dumps(stock_data_list)};</script>\n')
