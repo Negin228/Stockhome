@@ -331,10 +331,10 @@ def job(tickers):
         cap_str = format_market_cap(mcap)
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         pe_str = f"{pe:.1f}" if pe else "N/A"
-        last_close = hist["Close"].iloc[-1] if not hist.empty else None
-        prev_close = hist["Close"].iloc[-2] if len(hist) > 1 else None
+        
+        last_close = float(hist["Close"].iloc[-1]) if not hist.empty else None
+        prev_close = float(hist["Close"].iloc[-2]) if len(hist) > 1 else None
         pct_drop = ((last_close - prev_close) / prev_close * 100) if last_close and prev_close else None
-
         
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
