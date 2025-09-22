@@ -25,7 +25,7 @@ function filterStocks() {
     });
     var div = document.getElementById('filtered-stocks');
     div.innerHTML = filtered.length ? "<ul>" + filtered.map(function(stock) {
-        return `<li>${stock.ticker} (RSI=${stock.rsi}, P/E=${stock.pe}, Cap=${stock.market_cap})</li>`;
+        return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str})</li>`;
     }).join("") + "</ul>" : "<p>No stocks match.</p>";
 }
 
