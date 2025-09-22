@@ -616,7 +616,9 @@ def main():
 
         f.write('</div>\n')
         f.write('<div id="filtered-stocks"></div>\n')
-        f.write(f'<script>var allStocks = {json.dumps(stock_data_list)};</script>\n')
+        f.write(f'<script>var allStocks = {json.dumps(all_stock_data)};</script>\n')
+
+        
 
 
 
