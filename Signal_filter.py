@@ -372,8 +372,9 @@ def job(tickers):
         'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
         'pe_str': f"{pe:.1f}" if pe is not None else "N/A",
         'market_cap_str': format_market_cap(mcap),
-        'dma200': float(dma200val) if dma200val is not None else None,
-        'dma50': float(dma50val) if dma50val is not None else None,
+        'dma200': float(dma200_val) if dma200_val is not None else None,
+        'dma50': float(dma50_val) if dma50_val is not None else None,
+
         })
         if not sig:
             continue
