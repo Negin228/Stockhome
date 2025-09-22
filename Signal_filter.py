@@ -635,24 +635,26 @@ def main():
         f.write("    <h2>Sell Signals</h2>\n")
         f.write("    <ul class='signals-container'>\n")
         for alert_html in all_sell_alerts:
-                        f.write(f"<li class='signal-card sell-card'>\n{alert_html}</li>\n")
+            f.write(f"<li class='signal-card sell-card'>\n{alert_html}</li>\n")
         f.write("    </ul>\n")
         f.write('<div class="filter-section">\n')
         f.write('  <label>RSI: <span id="rsi-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="100" value="0" id="rsi-slider">\n')
+        f.write('  <input type="range" min="0" max="100" value="0" id="rsi-slider"><br>\n')
         f.write('  <label>P/E: <span id="pe-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="100" value="0" id="pe-slider">\n')
+        f.write('  <input type="range" min="0" max="100" value="0" id="pe-slider"><br>\n')
         f.write('  <label>Market Cap ($B): <span id="cap-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider">\n')
+        f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider"><br>\n')
         f.write('  <label>%drop: <span id="drop-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="100" value="0" id="drop-slider">\n')
+        f.write('  <input type="range" min="0" max="100" value="0" id="drop-slider"><br>\n')
 
-        f.write('  <button onclick="filterStocks()">Filter</button>\n')
-        f.write('  <button onclick="resetFilters()">Reset</button>\n')
+        #f.write('  <button onclick="filterStocks()">Filter</button>\n')
+        f.write('  <button onclick="resetFilters()">Reset Filters</button>\n')
         f.write('</div>\n')
         f.write('<div id="filtered-stocks"></div>\n')
         f.write(f'<script>var allStocks = {json.dumps(all_stock_data)};</script>\n')
         f.write('<script src="stock_filter.js"></script>\n')
+
+
 
         f.write("</body></html>\n")
     logger.info("Written index.html")
