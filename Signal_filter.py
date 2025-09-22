@@ -537,6 +537,7 @@ def main():
     all_buy_symbols = []
     all_buy_alerts_web = []
     all_sell_alerts = []
+    all_stock_data = []
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
@@ -544,6 +545,8 @@ def main():
         all_buy_alerts_web.extend(buy_alerts_web)
         all_sell_alerts.extend(sells)
         all_buy_symbols.extend(buys)
+        all_stock_data.extend(stock_data_list)  
+
         for f in fails:
             retry_counts[f] += 1
         to_process = [f for f in fails if retry_counts[f] < MAX_TICKER_RETRIES]
@@ -566,6 +569,15 @@ def main():
             unique_sell_alerts.append(alert)
             seen.add(alert)
     all_sell_alerts = unique_sell_alerts
+
+    seen = set()
+    unique_stock_data = []
+    for stock in all_stock_data:
+        if stock['ticker'] not in seen:
+            unique_stock_data.append(stock)
+            seen.add(stock['ticker'])
+    all_stock_data = unique_stock_data
+
 
 
     logger.info("Writing HTML to index.html")
