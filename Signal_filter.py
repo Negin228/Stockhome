@@ -18,6 +18,10 @@ from newspaper import Article
 #import openai
 #from transformers import pipeline
 import re
+import pytz
+
+pacific = pytz.timezone('US/Pacific')
+dt_pacific = datetime.datetime.now(pacific
 
 
 puts_dir = "puts_data"
@@ -536,7 +540,7 @@ def job(tickers):
             <p class="news-summary">
                     {buy_alert_line}
             </p>
-            <p class="news-summary">{summary_sentence}</p>
+            <p class="news-summary">{summary_sentence}...</p>
                 {news_html}
         """
         buy_alerts_web.append(buy_alert_html)
@@ -616,7 +620,9 @@ def main():
         f.write("    <div class='header'>\n")
         
         f.write(f"<h1>StockHome Trading Signals</h1>\n")
-        f.write(f"        <p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>\n")
+        #f.write(f"        <p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>\n")
+        f.write(f"        <p>Last update: {dt_pacific.strftime('%Y-%m-%d %H:%M:%S')} PT</p>\n")
+
         f.write("    </div>\n")
         
         f.write("    <h2>Buy Signals</h2>\n")
