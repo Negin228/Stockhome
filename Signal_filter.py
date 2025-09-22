@@ -21,7 +21,7 @@ import re
 import pytz
 
 pacific = pytz.timezone('US/Pacific')
-dt_pacific = datetime.datetime.now(pacific
+dt_pacific = datetime.datetime.now(pacific)
 
 
 puts_dir = "puts_data"
