@@ -3,7 +3,7 @@
 </head><body>
     <div class='header'>
 <h1>StockHome Trading Signals</h1>
-        <p>Last update: 2025-09-22 12:45:06 PT</p>
+        <p>Last update: 2025-09-22 12:59:14 PT</p>
     </div>
     <h2>Buy Signals</h2>
     <ul class='signals-container'>
@@ -14,11 +14,11 @@
                     <span class="ticker-alert">DRI</span>
                 </div>
                 <div class="price-details">
-                        <div class="current-price price-up">184.25</div>
+                        <div class="current-price price-up">185.24</div>
                 </div>                    
             </div>
             <p class="news-summary">
-                    RSI=18.9 P/E=19.7 Market Cap=$21.5B<br>DMA 200=312.5 DMA 50=257.4<br>Sell a $140.0 put option with Oct 17, 2025 expiration for a premium of $4.00<br>[𝚫 24.0% + 💎 2.2%] = 26.2%
+                    RSI=20.1 P/E=19.8 Market Cap=$21.6B<br>DMA 200=312.5 DMA 50=257.3<br>Sell a $140.0 put option with Oct 17, 2025 expiration for a premium of $4.00<br>[𝚫 24.4% + 💎 2.2%] = 26.6%
             </p>
             <p class="news-summary">Darden Restaurants (DRI) is well positioned to maintain underlying sales and traffic momentum. The company is well-positioned to benefit from a strong economy. Darden is one of the largest U.S. restaurants....</p>
                 <ul class="news-list"><li><a href='https://finance.yahoo.com/news/darden-restaurants-first-quarter-2026-121728205.html'>Darden Restaurants First Quarter 2026 Earnings: EPS Beats Expectations</a> - 🟢 0.2</li><li><a href='https://finance.yahoo.com/news/look-darden-restaurants-valuation-following-121811292.html'>A Look at Darden Restaurants’s Valuation Following Strong Q1 Earnings and Upbeat 2026 Guidance</a> - 🟢 0.2</li></ul>
@@ -33,11 +33,11 @@
                         <span class="ticker-alert">Goog</span>
                     </div>
                     <div class="price-details">
-                        <div class="current-price price-down">252.03</div>
+                        <div class="current-price price-down">252.98</div>
                     </div>
                 </div>
                 <p class="news-summary">
-                    RSI=79.4, P/E=26.9, Market Cap=$3044.6B
+                    RSI=81.3, P/E=27.0, Market Cap=$3056.2B
                 </p>
             </li>
 <li class='signal-card sell-card'>
@@ -47,11 +47,11 @@
                         <span class="ticker-alert">ABBV</span>
                     </div>
                     <div class="price-details">
-                        <div class="current-price price-down">223.74</div>
+                        <div class="current-price price-down">223.22</div>
                     </div>
                 </div>
                 <p class="news-summary">
-                    RSI=74.2, P/E=107.1, Market Cap=$395.4B
+                    RSI=73.4, P/E=106.7, Market Cap=$394.0B
                 </p>
             </li>
     </ul>
@@ -63,11 +63,11 @@
   <label>Market Cap ($B): <span id="cap-value"></span></label>
   <input type="range" min="0" max="1000" value="0" id="cap-slider">
   <label>%drop: <span id="drop-value"></span></label>
-  <input type="range" min="-100" max="100" value="0" id="drop-slider">
+  <input type="range" min="0" max="100" value="0" id="drop-slider">
   <button onclick="filterStocks()">Filter</button>
   <button onclick="resetFilters()">Reset</button>
 </div>
 <div id="filtered-stocks"></div>
-<script>var allStocks = [{"ticker": "DRI", "rsi": 18.86008271347724, "pe": 19.748661, "market_cap": 21483194368.0, "pct_drop": 0.2625430296952884, "rsi_str": "18.9", "pe_str": "19.7", "market_cap_str": "21.5B"}, {"ticker": "Goog", "rsi": 79.35271942985081, "pe": 26.897545, "market_cap": 3044629282816.0, "pct_drop": 1.257642471706168, "rsi_str": "79.4", "pe_str": "26.9", "market_cap_str": "3044.6B"}, {"ticker": "ABBV", "rsi": 74.2173226901213, "pe": 107.09092, "market_cap": 395391074304.0, "pct_drop": -0.5708629353748111, "rsi_str": "74.2", "pe_str": "107.1", "market_cap_str": "395.4B"}, {"ticker": "TTD", "rsi": 33.34756769863978, "pe": 55.524097, "market_cap": 22532931584.0, "pct_drop": -3.7778249003392106, "rsi_str": "33.3", "pe_str": "55.5", "market_cap_str": "22.5B"}, {"ticker": "ACN", "rsi": 35.625180813273545, "pe": 19.076433, "market_cap": 149235499008.0, "pct_drop": 0.08969418063388529, "rsi_str": "35.6", "pe_str": "19.1", "market_cap_str": "149.2B"}];</script>
+<script>var allStocks = [{"ticker": "DRI", "rsi": 20.145770582378304, "pe": 19.849947, "market_cap": 21593376768.0, "pct_drop": -0.2733742673852433, "rsi_str": "20.1", "pe_str": "19.8", "market_cap_str": "21.6B"}, {"ticker": "Goog", "rsi": 81.27115960408565, "pe": 27.0, "market_cap": 3056226533376.0, "pct_drop": 0.8854449604239365, "rsi_str": "81.3", "pe_str": "27.0", "market_cap_str": "3056.2B"}, {"ticker": "ABBV", "rsi": 73.4054118245578, "pe": 106.71532, "market_cap": 394004332544.0, "pct_drop": -0.3372134558279792, "rsi_str": "73.4", "pe_str": "106.7", "market_cap_str": "394.0B"}, {"ticker": "TTD", "rsi": 33.534518471902246, "pe": 55.596386, "market_cap": 22562269184.0, "pct_drop": -3.7778249003392106, "rsi_str": "33.5", "pe_str": "55.6", "market_cap_str": "22.6B"}, {"ticker": "ACN", "rsi": 35.525232760320264, "pe": 19.065287, "market_cap": 149148303360.0, "pct_drop": 0.020858134701177127, "rsi_str": "35.5", "pe_str": "19.1", "market_cap_str": "149.1B"}];</script>
 <script src="stock_filter.js"></script>
 </body></html>
