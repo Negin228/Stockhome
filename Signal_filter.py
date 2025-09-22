@@ -511,7 +511,8 @@ def job(tickers):
         for news in top_news:
             emoji = sentiment_emoji(news['sentiment'])
             fval = f"{float(news['sentiment']):.1f}"
-            news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
+            #news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
+            news_html += f"<li>{emoji} <a href='{news['url']}'>{news['headline']}</a></li>"
         news_html += '</ul>'
 
         price_str = f"{price:.2f}" if price is not None else "N/A"
