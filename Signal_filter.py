@@ -449,8 +449,7 @@ def job(tickers):
                         summary = "No summary available."
                     reason_sentence = summary
                 if reason_sentence:
-                        summary_sentence = extend_to_next_period(reason_sentence)
-                        summary_sentence = ensure_sentence_completion(summary_sentence)
+                        summary_sentence = ensure_sentence_completion(reason_sentence)
 
         print(f"news_items for {sym}:", news_items)
 
