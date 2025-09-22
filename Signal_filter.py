@@ -204,7 +204,7 @@ def fetch_puts(symbol):
         logger.warning(f"Failed to fetch puts for {symbol}: {e}")
     return puts_data
 
-def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent):
+def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent, dma200, dma50):
     price_str = f"{price:.2f}" if price is not None else "N/A"
     rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
     pe_str = f"{pe:.1f}" if pe is not None else "N/A"
