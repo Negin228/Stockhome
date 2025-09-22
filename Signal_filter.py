@@ -433,12 +433,16 @@ def job(tickers):
             continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
+        dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None,
+        dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None,
         buy_alert_line = format_buy_alert_line(
             ticker=sym,
             price=price if price is not None else 0.0,
             rsi=rsi_val if rsi_val is not None else 0.0,
             pe=pe if pe is not None else 0.0,
-            mcap=cap_str if cap_str is not None else "N/A",
+            mcap=cap_str if cap_str is not None else "N/A",    
+            dma200=dma200_val,
+            dma50=dma50_val,
             strike=float(best_put['strike']) if best_put.get('strike') is not None else 0.0,
             expiration=expiration_fmt if expiration_fmt else "N/A",
             premium=float(best_put['premium']) if best_put.get('premium') is not None else 0.0,
