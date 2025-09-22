@@ -221,7 +221,7 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
     return (
         #f"{ticker} (${price_str}) | "
         f"RSI={rsi_str} "
-        f"Market Cap=${mcap} "
+        f"Market Cap=${mcap}<br>"
         f"DMA 200={dma200_str} "
         f"DMA 50={dma50_str} "
         f"P/E={pe_str}<br>"
