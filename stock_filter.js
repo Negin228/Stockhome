@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
   filterStocks(); // initial load
 });
 
-
 function filterStocks() {
     var rsi = parseFloat(document.getElementById('rsi-slider').value);
     var pe = parseFloat(document.getElementById('pe-slider').value);
@@ -41,7 +40,6 @@ function filterStocks() {
     }).join("") + "</ul>" : "<p>No stocks match.</p>";
 }
 
-
 function resetFilters() {
     document.getElementById('cap-slider').value = 0;     // Minimum market cap
     document.getElementById('drop-slider').value = 0;
@@ -51,8 +49,6 @@ function resetFilters() {
     document.getElementById('pe-value').innerText = 100;
     document.getElementById('cap-value').innerText = 0;
     document.getElementById('drop-value').innerText = "0%";
-
-
 
     filterStocks();
 }
