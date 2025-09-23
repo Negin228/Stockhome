@@ -50,7 +50,6 @@ API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
 
-
 def retry_on_rate_limit(func):
     def wrapper(*args, **kwargs):
         wait = API_RETRY_INITIAL_WAIT
@@ -71,15 +70,12 @@ def retry_on_rate_limit(func):
     return wrapper
 
 
-
-
 def force_float(val):
     if isinstance(val, (pd.Series, np.ndarray)):
         return float(val.iloc[-1]) if hasattr(val, "iloc") and not val.empty else None
     if isinstance(val, pd.DataFrame):
         return float(val.values[-1][0])
     return float(val) if val is not None else None
-
 
 def extend_to_next_period(text):
     if not text or not text.strip():
@@ -97,8 +93,6 @@ def ensure_sentence_completion(text):
     if not re.search(r'[.!?]$', text):
         text += "."
     return text
-
-
 
 
 @retry_on_rate_limit
@@ -657,11 +651,7 @@ def main():
         f.write('<div id="filtered-stocks"></div>\n')
         f.write(f'<script>var allStocks = {json.dumps(all_stock_data)};</script>\n')
         f.write('<script src="stock_filter.js"></script>\n')
-
-
-
         f.write("</body></html>\n")
     logger.info("Written index.html")
-
 if __name__ == "__main__":
     main()
