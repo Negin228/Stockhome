@@ -34,6 +34,7 @@ function filterStocks() {
         var dropOk = (drop === 0) ? true : (typeof stock.pct_drop === "number" ? stock.pct_drop >= drop : false);
         return stock.rsi <= rsi && stock.pe <= pe && stock.market_cap >= cap && dropOk;
     });
+  
     var div = document.getElementById('filtered-stocks');
     div.innerHTML = filtered.length ? "<ul>" + filtered.map(function(stock) {
         return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, drop=${(typeof stock.pct_drop === "number" ? stock.pct_drop.toFixed(1) + "%" : "N/A")}, DMA200=${stock.dma200_str}, DMA50=${stock.dma50_str})</li>`;
@@ -42,14 +43,16 @@ function filterStocks() {
 
 
 function resetFilters() {
-    document.getElementById('rsi-slider').value = 0;
-    document.getElementById('pe-slider').value = 0;
-    document.getElementById('cap-slider').value = 0;
-    document.getElementById('rsi-value').innerText = 0;
-    document.getElementById('pe-value').innerText = 0;
-    document.getElementById('cap-value').innerText = 0;
+    document.getElementById('cap-slider').value = 0;     // Minimum market cap
     document.getElementById('drop-slider').value = 0;
+    document.getElementById('rsi-slider').value = 100;   // Or slider's max
+    document.getElementById('pe-slider').value = 100;    // Or slider's max
+    document.getElementById('rsi-value').innerText = 100;
+    document.getElementById('pe-value').innerText = 100;
+    document.getElementById('cap-value').innerText = 0;
     document.getElementById('drop-value').innerText = "0%";
+
+
 
     filterStocks();
 }
