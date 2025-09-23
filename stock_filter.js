@@ -2,11 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('rsi-slider').oninput = function() {
       document.getElementById('rsi-value').innerText = this.value;
       filterStocks();}
-
   document.getElementById('drop-slider').oninput = function() {
     document.getElementById('drop-value').innerText = this.value + "%";
     filterStocks();}
-  
   document.getElementById('pe-slider').oninput = function() {
       document.getElementById('pe-value').innerText = this.value;
       filterStocks();}
@@ -39,4 +37,3 @@ function filterStocks() {
     document.getElementById('drop-value').innerText = "0%";
     filterStocks();
 }
-
