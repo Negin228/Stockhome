@@ -215,5 +215,23 @@ input[type=range]::-ms-fill-upper {
     border-radius: 6px;
 }
 
+.filter-button {
+    margin-top: 14px;
+    padding: 9px 20px;
+    border-radius: 8px;
+    background: #333e;
+    color: #f2f2f2;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0004;
+    transition: background 0.2s;
+}
+.filter-button:hover {
+    background: #00b4d8;
+    color: #111;
+}
+
 
 
