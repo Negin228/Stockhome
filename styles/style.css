@@ -137,12 +137,19 @@ h2 {
 
 input[type=range] {
     width: 360px;
-    margin-bottom: 18px;
-    appearance: none;
-    height: 6px;
+    /* Increase height to help with centering */
+    height: 22px; /* match approx. the thumb size */
     background: #313131;
     border-radius: 6px;
     outline: none;
+}
+
+/* Track should fill most of the height, e.g. 6px, but be vertically centered */
+input[type=range]::-webkit-slider-runnable-track {
+    height: 6px;
+    margin-top: 8px; /* or adjust as needed */
+    border-radius: 6px;
+    background: #444;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -154,6 +161,8 @@ input[type=range]::-webkit-slider-thumb {
     box-shadow: 0 0 8px #0077b6;
     cursor: pointer;
     border: 2px solid #fff;
+    /* Center the thumb vertically */
+    margin-top: -8px; /* (track height - thumb height)/2, adjust as needed */
     transition: background 0.2s, transform 0.2s;
 }
 
@@ -162,7 +171,7 @@ input[type=range]:focus::-webkit-slider-thumb {
     transform: scale(1.04);
 }
 
-/* Support Firefox */
+/* For Firefox */
 input[type=range]::-moz-range-thumb {
     width: 22px;
     height: 22px;
@@ -171,6 +180,7 @@ input[type=range]::-moz-range-thumb {
     box-shadow: 0 0 8px #0077b6;
     cursor: pointer;
     border: 2px solid #fff;
+    margin-top: 0; /* Not required in most cases for FireFox */
     transition: background 0.2s, transform 0.2s;
 }
 
@@ -179,6 +189,7 @@ input[type=range]:focus::-moz-range-thumb {
     transform: scale(1.04);
 }
 
+/* For Edge & IE */
 input[type=range]::-ms-thumb {
     width: 22px;
     height: 22px;
@@ -187,34 +198,16 @@ input[type=range]::-ms-thumb {
     box-shadow: 0 0 8px #0077b6;
     cursor: pointer;
     border: 2px solid #fff;
+    margin-top: 0;
     transition: background 0.2s, transform 0.2s;
 }
 
-input[type=range]:focus::-ms-thumb {
-    background: #29c7ff;
-    transform: scale(1.04);
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-    height: 6px;
-    border-radius: 6px;
-    background: #444;
-}
-
-input[type=range]:focus {
-    outline: none;
-}
-
-input[type=range]::-ms-fill-lower {
-    background: #313131;
-    border-radius: 6px;
-}
-
+/* Ensures alignment for IE/Edge */
+input[type=range]::-ms-fill-lower,
 input[type=range]::-ms-fill-upper {
     background: #444;
     border-radius: 6px;
 }
-
 .filter-button {
     margin-top: 14px;
     padding: 9px 20px;
