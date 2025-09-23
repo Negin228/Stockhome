@@ -1,5 +1,3 @@
-// stock_filter.js
-
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('rsi-slider').oninput = function() {
       document.getElementById('rsi-value').innerText = this.value;
