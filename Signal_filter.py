@@ -23,7 +23,6 @@ import pytz
 pacific = pytz.timezone('US/Pacific')
 dt_pacific = datetime.datetime.now(pacific)
 
-
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
