@@ -54,6 +54,11 @@ def calculate_indicators(df):
     df["rsi"] = RSIIndicator(close, window=14).rsi()
     return df
 
+if 'rsi' not in hist.columns:
+    print(f"  'rsi' column missing for {t}, skipping.")
+    continue
+
+
 
 cash = initial_cash
 holdings = {}  # {ticker: {'buy_price':..., 'buy_date':...}}
