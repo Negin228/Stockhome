@@ -51,8 +51,9 @@ def calculate_indicators(df):
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
-    df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
+    df["rsi"] = RSIIndicator(close, window=14).rsi()
     return df
+
 
 cash = initial_cash
 holdings = {}  # {ticker: {'buy_price':..., 'buy_date':...}}
