@@ -47,8 +47,11 @@ def fetch_cached_history(symbol, period="2y", interval="1d", max_cache_days=7):
     return df
 
 def calculate_indicators(df):
-    if "Close" not in df.columns or df["Close"].isnull().all():
-        return df  # Leave unmodified so checks in main loop can skip
+    def calculate_indicators(df):
+    if "Close" not in df.columns:
+        return df
+    if df["Close"].isnull().all():
+        return df
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
