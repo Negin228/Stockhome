@@ -26,7 +26,7 @@ function filterStocks() {
         return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, drop=${(typeof stock.pct_drop === "number" ? stock.pct_drop.toFixed(1) + "%" : "N/A")}, DMA200=${stock.dma200_str}, DMA50=${stock.dma50_str})</li>`;
     }).join("") + "</ul>" : "<p>No stocks match.</p>";}
 
-  function resetFilters() {
+function resetFilters() {
     document.getElementById('cap-slider').value = 0;     // Minimum market cap
     document.getElementById('drop-slider').value = 0;
     document.getElementById('rsi-slider').value = 100;   // Or slider's max
