@@ -3,7 +3,6 @@ name: Signal_Email
 on:
   schedule:
     - cron: '30 13 * * 1-5'
-    - cron: '30 14 * * 1-5'
     - cron: '30 18 * * 1-5'
   workflow_dispatch:
 
