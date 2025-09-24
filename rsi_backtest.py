@@ -129,11 +129,16 @@ def fetch_quote(symbol):
     return price
 
 def calculate_indicators(df):
+    if "Close" not in df.columns:
+        return df
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
-    df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
+    if close.empty or close.isnull().all():
+        return df
+    df["rsi"] = RSIIndicator(close, window=14).rsi()
     return df
+
 
 def generate_signal(df):
     if df.empty or "rsi" not in df.columns:
