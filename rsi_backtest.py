@@ -47,7 +47,6 @@ def fetch_cached_history(symbol, period="2y", interval="1d", max_cache_days=7):
     return df
 
 def calculate_indicators(df):
-    def calculate_indicators(df):
     if "Close" not in df.columns:
         return df
     if df["Close"].isnull().all():
@@ -57,6 +56,7 @@ def calculate_indicators(df):
         close = close.squeeze()
     df["rsi"] = RSIIndicator(close, window=14).rsi()
     return df
+
 
 cash = initial_cash
 holdings = {}  # {ticker: {'buy_price':..., 'buy_date':...}}
