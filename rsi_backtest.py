@@ -46,19 +46,14 @@ def fetch_cached_history(symbol, period="2y", interval="1d", max_cache_days=7):
             df.index = pd.to_datetime(df.index, errors='coerce')
     return df
 
-
 def calculate_indicators(df):
+    if "Close" not in df.columns or df["Close"].isnull().all():
+        return df  # Leave unmodified so checks in main loop can skip
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
     df["rsi"] = RSIIndicator(close, window=14).rsi()
     return df
-
-if 'rsi' not in hist.columns:
-    print(f"  'rsi' column missing for {t}, skipping.")
-    continue
-
-
 
 cash = initial_cash
 holdings = {}  # {ticker: {'buy_price':..., 'buy_date':...}}
@@ -75,9 +70,10 @@ for t in tickers:
         continue
     hist = calculate_indicators(hist)
     if 'rsi' not in hist.columns or hist['rsi'].isnull().all():
-        print(f"  No RSI for {t}, skipping.")
+        print(f"  'rsi' column missing or all NaN for {t}, skipping.")
         continue
     hist = hist.dropna(subset=['rsi'])
+
     for date, row in hist.iterrows():
         price = float(row['Close'])
         rsi = float(row['rsi'])
@@ -108,7 +104,7 @@ for t in tickers:
             del holdings[t]
 
 # Liquidate any remaining holdings at the most recent price
-for t in holdings:
+for t in list(holdings):  # convert to list to safely mutate holdings
     try:
         df_recent = fetch_cached_history(t, period="5d", interval="1d")
         if not df_recent.empty and "Close" in df_recent.columns:
@@ -124,6 +120,7 @@ for t in holdings:
                 'pnl': pnl,
                 'cash': cash
             })
+            del holdings[t]
     except Exception:
         print(f"  Could not liquidate {t}")
 
