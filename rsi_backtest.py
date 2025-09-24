@@ -1,10 +1,7 @@
-import config
-from signal_filter import fetch_cached_history, calculate_indicators
-
 import pandas as pd
 import datetime
 import config
-from signal_filter import fetch_cached_history, calculate_indicators
+from Signal_filter import fetch_cached_history, calculate_indicators
 
 initial_cash = 300_000
 max_positions = 5
