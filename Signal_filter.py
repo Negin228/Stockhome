@@ -23,6 +23,7 @@ import pytz
 pacific = pytz.timezone('US/Pacific')
 dt_pacific = datetime.datetime.now(pacific)
 
+
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -49,6 +50,7 @@ API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
 
+
 def retry_on_rate_limit(func):
     def wrapper(*args, **kwargs):
         wait = API_RETRY_INITIAL_WAIT
@@ -69,12 +71,15 @@ def retry_on_rate_limit(func):
     return wrapper
 
 
+
+
 def force_float(val):
     if isinstance(val, (pd.Series, np.ndarray)):
         return float(val.iloc[-1]) if hasattr(val, "iloc") and not val.empty else None
     if isinstance(val, pd.DataFrame):
         return float(val.values[-1][0])
     return float(val) if val is not None else None
+
 
 def extend_to_next_period(text):
     if not text or not text.strip():
@@ -92,6 +97,8 @@ def ensure_sentence_completion(text):
     if not re.search(r'[.!?]$', text):
         text += "."
     return text
+
+
 
 
 @retry_on_rate_limit
@@ -642,15 +649,19 @@ def main():
         f.write('  <label for="pe-slider">P/E: <span id="pe-value"></span></label>\n')
         f.write('  <input type="range" min="0" max="100" value="100" id="pe-slider" style="width:360px;"><br>\n')
         f.write('  <label for="cap-slider">Market Cap ($B): <span id="cap-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="1000" value="0" id="cap-slider" style="width:360px;"><br>\n')
+        f.write('  <input type="range" min="0" max="3000" value="0" id="cap-slider" style="width:360px;"><br>\n')
         f.write('  <label for="drop-slider">Drop(%): <span id="drop-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="15" value="0" id="drop-slider" style="width:360px;"><br>\n')
+        f.write('  <input type="range" min="0" max="20" value="0" id="drop-slider" style="width:360px;"><br>\n')
         f.write('  <button class="filter-button" onclick="resetFilters()">Reset Filters</button>\n')
         f.write('</div>\n')
         f.write('<div id="filtered-stocks"></div>\n')
         f.write(f'<script>var allStocks = {json.dumps(all_stock_data)};</script>\n')
         f.write('<script src="stock_filter.js"></script>\n')
+
+
+
         f.write("</body></html>\n")
     logger.info("Written index.html")
+
 if __name__ == "__main__":
     main()
