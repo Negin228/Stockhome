@@ -135,6 +135,15 @@ def calculate_indicators(df):
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     return df
 
+def generate_signal(df):
+    if df.empty or "rsi" not in df.columns:
+        return None, ""
+    rsi = df["rsi"].iloc[-1]
+    if pd.isna(rsi):
+        return None, ""
+    price = df["Close"].iloc[-1] if "Close" in df.columns else np.nan
+    return None, ""
+
 
 def fetch_fundamentals_safe(symbol):
     try:
