@@ -668,6 +668,10 @@ def main():
           <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
         </div>
         """)
+        f.write('<div id="filtered-stocks"></div>\n')
+        f.write(f'<script>var allStocks = {json.dumps(all_stock_data)};</script>\n')
+        f.write('<script src="stock_filter.js"></script>\n')
+
 
 
         f.write("</body></html>\n")
