@@ -132,13 +132,35 @@ h2 {
     margin-right: auto;
 }
 
-.filter-section label {
-    display: block;
-    margin-bottom: 8px;
+.slider-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.slider-row label {
+    min-width: 110px;
+    margin-bottom: 0;
+    margin-right: 12px;
     font-size: 1.1rem;
     color: #f2f2f2;
     font-weight: 600;
 }
+
+.slider-row input[type=range] {
+    flex: 1 1 0px;
+    width: 240px; /* can adjust as needed */
+    margin: 0 12px 0 0;
+    height: 22px;
+}
+
+.slider-row span {
+    min-width: 40px;
+    color: #edf6f9;
+    font-size: 1.05rem;
+}
+
+
 
 input[type=range] {
     width: 360px;
