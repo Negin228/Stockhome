@@ -179,9 +179,9 @@ for t in tickers:
         print(f"  No data for {t}, skipping.")
         continue
     hist = calculate_indicators(hist)
-    if 'rsi' not in hist.columns or hist['rsi'].isnull().all():
-        print(f"  'rsi' column missing or all NaN for {t}, skipping.")
-        continue
+    if 'rsi' not in hist.columns:
+        print(f"  'rsi' column not present for {t} after indicator calc, skipping.")
+        continue  # Skip to next ticker if missing
     hist = hist.dropna(subset=['rsi'])
 
     for date, row in hist.iterrows():
