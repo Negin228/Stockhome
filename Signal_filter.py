@@ -643,21 +643,31 @@ def main():
             #f.write(f"<li class='signal-card sell-card'>\n{alert_html}</li>\n")
         #f.write("    </ul>\n")
         
-        f.write('<div class="filter-section">\n')
-        f.write('  <label for="rsi-slider">RSI: <span id="rsi-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="100" value="100" id="rsi-slider" style="width:360px;"><br>\n')
-        f.write('  <label for="pe-slider">P/E: <span id="pe-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="100" value="100" id="pe-slider" style="width:360px;"><br>\n')
-        f.write('  <label for="cap-slider">Market Cap ($B): <span id="cap-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="3000" value="0" id="cap-slider" style="width:360px;"><br>\n')
-        f.write('  <label for="drop-slider">Drop(%): <span id="drop-value"></span></label>\n')
-        f.write('  <input type="range" min="0" max="20" value="0" id="drop-slider" style="width:360px;"><br>\n')
-        f.write('  <button class="filter-button" onclick="resetFilters()">Reset Filters</button>\n')
-        f.write('</div>\n')
-        f.write('<div id="filtered-stocks"></div>\n')
-        f.write(f'<script>var allStocks = {json.dumps(all_stock_data)};</script>\n')
-        f.write('<script src="stock_filter.js"></script>\n')
-
+        f.write("""
+        <div class="filter-section">
+          <div class="slider-row">
+            <label for="rsi-slider">RSI:</label>
+            <input type="range" min="0" max="100" value="100" id="rsi-slider">
+            <span id="rsi-value"></span>
+          </div>
+          <div class="slider-row">
+            <label for="pe-slider">P/E:</label>
+            <input type="range" min="0" max="100" value="100" id="pe-slider">
+            <span id="pe-value"></span>
+          </div>
+          <div class="slider-row">
+            <label for="cap-slider">Market Cap ($B):</label>
+            <input type="range" min="0" max="3000" value="0" id="cap-slider">
+            <span id="cap-value"></span>
+          </div>
+          <div class="slider-row">
+            <label for="drop-slider">Drop(%):</label>
+            <input type="range" min="0" max="20" value="0" id="drop-slider">
+            <span id="drop-value"></span>
+          </div>
+          <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
+        </div>
+        """)
 
 
         f.write("</body></html>\n")
