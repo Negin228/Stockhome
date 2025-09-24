@@ -141,10 +141,11 @@ h2 {
 .slider-row label {
     min-width: 110px;
     margin-bottom: 0;
-    margin-right: 12px;
     font-size: 1.1rem;
     color: #f2f2f2;
     font-weight: 600;
+    min-width: 135px;
+    margin-right: 8px;
 }
 
 .slider-row input[type=range] {
@@ -155,10 +156,20 @@ h2 {
 }
 
 .slider-row span {
-    min-width: 40px;
+    min-width: 58px;
     color: #edf6f9;
     font-size: 1.05rem;
+    text-align: right;
+    display: inline-block;
+    white-space: nowrap;
 }
+
+.slider-row label {
+    min-width: 135px;
+    margin-right: 8px;
+}
+
+
 
 
 
