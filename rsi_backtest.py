@@ -79,7 +79,7 @@ def force_float(val):
 
 @retry_on_rate_limit
 def fetch_cached_history(symbol, period="2y", interval="1d"):
-    path = os.path.join(DATA_DIR, f"{symbol}.csv")
+    path = os.path.join(LOG_DIR, f"{symbol}.csv")
     df = None
     force_full = False
     if os.path.exists(path):
