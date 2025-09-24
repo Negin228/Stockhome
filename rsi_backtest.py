@@ -49,13 +49,17 @@ def fetch_cached_history(symbol, period="2y", interval="1d", max_cache_days=7):
 def calculate_indicators(df):
     if "Close" not in df.columns:
         return df
-    if df["Close"].isnull().all():
-        return df
+    # Explicitly handle empty frame and ambiguity
     close = df["Close"]
+    if close.empty:
+        return df
+    if close.isnull().all():
+        return df
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
     df["rsi"] = RSIIndicator(close, window=14).rsi()
     return df
+
 
 
 cash = initial_cash
