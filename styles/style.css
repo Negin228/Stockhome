@@ -1,3 +1,40 @@
+:root{
+  --bg:#ffffff; --text:#1E2A38; --muted:#576476; --accent:#00B686; --border:#E6ECF2;
+}
+*{box-sizing:border-box}
+body{margin:0; font:16px/1.5 Inter, Roboto, Arial, sans-serif; color:var(--text); background:var(--bg)}
+.site-header{
+  position:sticky; top:0; z-index:10; display:flex; gap:16px; align-items:center; justify-content:space-between;
+  padding:12px 20px; background:#fff; border-bottom:1px solid var(--border);
+}
+.logo{display:flex; align-items:center; gap:8px; text-decoration:none}
+.nav{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+.nav-link{color:var(--muted); text-decoration:none; padding:6px 10px; border-radius:10px}
+.nav-link:hover{background:#f6faf9; color:var(--text)}
+.nav-link.active{color:var(--text); font-weight:600}
+.nav-link.cta{background:var(--accent); color:#fff; padding:8px 14px; border-radius:12px}
+.hero{padding:56px 20px 28px; text-align:center; border-bottom:1px solid var(--border); background:linear-gradient(180deg,#fff, #f8fbfa)}
+.hero h1{margin:0 0 10px; font-size:34px; line-height:1.2}
+.hero .sub{color:var(--muted); margin:0 auto 16px; max-width:720px}
+.cta-row{display:flex; gap:12px; justify-content:center}
+.btn{display:inline-block; padding:10px 16px; border:1px solid var(--border); border-radius:12px; text-decoration:none; color:var(--text)}
+.btn.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+.section{padding:28px 20px}
+.section h2{margin:0 0 12px}
+.signals-container{display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:14px; padding:0; margin:0; list-style:none}
+.signal-card{border:1px solid var(--border); border-radius:14px; padding:14px; background:#fff}
+.signal-card.buy-card{outline:2px solid rgba(0,182,134,.1)}
+.signal-card.sell-card{outline:2px solid rgba(30,42,56,.08)}
+.main-info{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+.ticker-alert{font-weight:700}
+.price-up{color:#157347}
+.price-down{color:#b42318}
+.news-summary{color:var(--muted); margin:8px 0 0}
+.meta{padding:6px 20px 28px; color:var(--muted)}
+.site-footer{border-top:1px solid var(--border); padding:16px 20px; color:var(--muted); text-align:center}
+@media (max-width:640px){
+  .hero h1{font-size:26px}
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #1a1a1a;
