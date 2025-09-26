@@ -18,6 +18,10 @@ from newspaper import Article
 #import openai
 #from transformers import pipeline
 import re
+import pytz
+
+pacific = pytz.timezone('US/Pacific')
+dt_pacific = datetime.datetime.now(pacific)
 
 
 puts_dir = "puts_data"
@@ -75,21 +79,24 @@ def force_float(val):
     if isinstance(val, pd.DataFrame):
         return float(val.values[-1][0])
     return float(val) if val is not None else None
+
+
 def extend_to_next_period(text):
     if not text or not text.strip():
         return ""
-    # If already ends with period, no change needed
-    if text.strip().endswith('.'):
+    idx = text.find('.')
+    if idx == -1:
         return text.strip()
-    match = re.search(r'(.*?\.(?:\s+[A-Z]|$))', text)
-    if match:
-        result = match.group(1).strip()
-        # If it ends with ". " (period + space), remove the trailing space
-        if result.endswith('. '):
-            result = result[:-1]
-        return result
-    # If no proper sentence ending found, return the original text
-    return text.strip()
+    return text[:idx+1].strip()
+
+    
+def ensure_sentence_completion(text):
+    text = text.strip()
+    if not text:
+        return ""
+    if not re.search(r'[.!?]$', text):
+        text += "."
+    return text
 
 
 
@@ -151,7 +158,8 @@ def calculate_indicators(df):
         close = close.squeeze()
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
-    df["dma50"] = close.rolling(200).mean()
+    df["dma50"] = close.rolling(50).mean()
+
     return df
 
 def generate_signal(df):
@@ -204,8 +212,8 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
     price_str = f"{price:.2f}" if price is not None else "N/A"
     rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
     pe_str = f"{pe:.1f}" if pe is not None else "N/A"
-    dma200_str =  f"{dma200:.1f}" if dma200 is not None else "N/A"
-    dma50_str =  f"{dma50:.1f}" if dma50 is not None else "N/A"
+    dma200_str = f"{dma200:.1f}" if dma200 is not None else "N/A"
+    dma50_str = f"{dma50:.1f}" if dma50 is not None else "N/A"
     strike_str = f"{strike:.1f}" if strike is not None else "N/A"
     premium_str = f"{premium:.2f}" if premium is not None else "N/A"
     dp = f"{delta_percent:.1f}%" if delta_percent is not None else "N/A"
@@ -216,11 +224,11 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
     metric_sum_str = f"{metric_sum:.1f}%" if metric_sum is not None else "N/A"
     return (
         #f"{ticker} (${price_str}) | "
-        f"RSI={rsi_str}  "
-        f"Market Cap=${mcap}  "
-        f"DMA 200={dma200_str}  "
-        f"DMA 50={dma50_str}  "
-        f"P/E={pe_str}<br>"
+        f"RSI={rsi_str} "
+        f"P/E={pe_str} "
+        f"Market Cap=${mcap}<br>"
+        f"DMA 200={dma200_str} "
+        f"DMA 50={dma50_str}<br>"
         f"Sell a ${strike_str} put option with {expiration} expiration for a premium of ${premium_str}<br>"
         f"[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}"
     )
@@ -275,6 +283,8 @@ def job(tickers):
     rsi_vals = {}
     failed = []
     total = skipped = 0
+    stock_data_list = []
+
     for symbol in tickers:
         total += 1
         try:
@@ -298,12 +308,10 @@ def job(tickers):
             continue
         hist = calculate_indicators(hist)
         sig, reason = generate_signal(hist)
-        if not sig:
-            continue
+
         try:
             rt_price = fetch_quote(symbol)
-            rt_price = force_float(rt_price)
-
+            rt_price = force_float(rt_price)   
 
         except Exception as e:
             msg = str(e).lower()
@@ -313,8 +321,6 @@ def job(tickers):
                 try:
                     rt_price = fetch_quote(symbol)
                     rt_price = force_float(rt_price)
-
-
                 except Exception as e2:
                     logger.error(f"Failed second price fetch for {symbol}: {e2}")
                     rt_price = None
@@ -332,8 +338,49 @@ def job(tickers):
         cap_str = format_market_cap(mcap)
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         pe_str = f"{pe:.1f}" if pe else "N/A"
-        dma200_str = f"{dma200:.1f}" if pe else "N/A"
-        dma50_str = f"{dma50:.1f}" if pe else "N/A"
+        dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
+        dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
+        
+
+        last_close = hist["Close"].iloc[-1].item() if not hist.empty else None
+        prev_close = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
+
+        if prev_close is not None and rt_price is not None and prev_close != 0:
+            pct_drop = (-(rt_price - prev_close) / prev_close * 100)
+            pct_drop_str = f"{pct_drop:+.1f}%"
+        else:
+            pct_drop = None
+            pct_drop_str = "N/A"
+
+        #if last_close is not None and prev_close is not None and prev_close != 0:
+            #pct_drop = ((last_close - prev_close) / prev_close * 100)
+            #pct_drop_str = f"{pct_drop:+.1f}%"
+        #else:
+            #pct_drop = None
+            #pct_drop_str = "N/A"
+        
+        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
+        pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
+        
+        stock_data_list.append({
+        'ticker': symbol,
+        'rsi': float(rsi_val) if rsi_val is not None else None,
+        'pe': float(pe) if pe is not None else None,
+        'market_cap': float(mcap) if mcap is not None else None,
+        'pct_drop': float(pct_drop) if pct_drop is not None else None,
+        'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
+        'pe_str': f"{pe:.1f}" if pe is not None else "N/A",
+        'market_cap_str': format_market_cap(mcap),
+        'dma200': float(dma200_val) if dma200_val is not None else None,
+        'dma50': float(dma50_val) if dma50_val is not None else None,
+        'dma200_str': f"{dma200_val:.1f}" if dma200_val is not None else "N/A",
+        'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
+
+        })
+        if not sig:
+            continue
+
+        
         parts = [
             f"{symbol}: {sig} at ${rt_price:.2f}",
             reason,
@@ -351,6 +398,9 @@ def job(tickers):
             "market_cap": mcap,
         }
         log_alert(alert_data)
+
+
+        
         if sig == "BUY":
             buy_symbols.append(symbol)
             prices[symbol] = rt_price
@@ -383,8 +433,6 @@ def job(tickers):
         price = prices.get(sym)
         pe, mcap = fetch_fundamentals_safe(sym)
         cap_str = format_market_cap(mcap)
-        #hist = fetch_cached_history(sym)
-        #rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         rsi_val = rsi_vals.get(sym, None)
         puts_list = fetch_puts(sym)
         puts_list = calculate_custom_metrics(puts_list, price)
@@ -398,14 +446,16 @@ def job(tickers):
             continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
+        dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
+        dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
         buy_alert_line = format_buy_alert_line(
             ticker=sym,
             price=price if price is not None else 0.0,
             rsi=rsi_val if rsi_val is not None else 0.0,
             pe=pe if pe is not None else 0.0,
-            dma200=dma200 if dma200 is not None else 0.0,
-            dma50=dma50 if dma50 is not None else 0.0,
-            mcap=cap_str if cap_str is not None else "N/A",
+            mcap=cap_str if cap_str is not None else "N/A",    
+            dma200=dma200_val,
+            dma50=dma50_val,
             strike=float(best_put['strike']) if best_put.get('strike') is not None else 0.0,
             expiration=expiration_fmt if expiration_fmt else "N/A",
             premium=float(best_put['premium']) if best_put.get('premium') is not None else 0.0,
@@ -436,7 +486,8 @@ def job(tickers):
                         summary = "No summary available."
                     reason_sentence = summary
                 if reason_sentence:
-                        summary_sentence = extend_to_next_period(reason_sentence)
+                        summary_sentence = ensure_sentence_completion(reason_sentence)
+
         print(f"news_items for {sym}:", news_items)
 
         
@@ -464,14 +515,13 @@ def job(tickers):
         for news in top_news:
             emoji = sentiment_emoji(news['sentiment'])
             fval = f"{float(news['sentiment']):.1f}"
-            news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
+            #news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
+            news_html += f"<li>{emoji} <a href='{news['url']}'>{news['headline']}</a></li>"
         news_html += '</ul>'
 
         price_str = f"{price:.2f}" if price is not None else "N/A"
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str = f"{pe:.1f}" if pe is not None else "N/A"
-        dma200_str = f"{dma200:.1f}" if dma200 is not None else "N/A"
-        dma50_str = f"{dma50:.1f}" if dma50 is not None else "N/A"
         mcap_str = cap_str  # Already formatted above
         strike_str = f"{best_put['strike']:.1f}" if best_put.get('strike') is not None else "N/A"
         premium_str = f"{best_put['premium']:.2f}" if best_put.get('premium') is not None else "N/A"
@@ -495,7 +545,7 @@ def job(tickers):
             <p class="news-summary">
                     {buy_alert_line}
             </p>
-            <p class="news-summary">{summary_sentence}</p>
+            <p class="news-summary">{summary_sentence}...</p>
                 {news_html}
         """
         buy_alerts_web.append(buy_alert_html)
@@ -511,7 +561,7 @@ def job(tickers):
             logger.info(f"Saved puts data for {sym}")
         except Exception as e:
             logger.error(f"Failed to save puts json for {sym}: {e}")
-    return buy_symbols, buy_alerts_web, all_sell_alerts, failed
+    return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list
 
 
 def main():
@@ -524,13 +574,16 @@ def main():
     all_buy_symbols = []
     all_buy_alerts_web = []
     all_sell_alerts = []
+    all_stock_data = []
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
-        buys, buy_alerts_web, sells, fails = job(to_process)
+        buys, buy_alerts_web, sells, fails, stock_data_list = job(to_process)
         all_buy_alerts_web.extend(buy_alerts_web)
         all_sell_alerts.extend(sells)
         all_buy_symbols.extend(buys)
+        all_stock_data.extend(stock_data_list)  
+
         for f in fails:
             retry_counts[f] += 1
         to_process = [f for f in fails if retry_counts[f] < MAX_TICKER_RETRIES]
@@ -554,31 +607,25 @@ def main():
             seen.add(alert)
     all_sell_alerts = unique_sell_alerts
 
-    
+    seen = set()
+    unique_stock_data = []
+    for stock in all_stock_data:
+        if stock['ticker'] not in seen:
+            unique_stock_data.append(stock)
+            seen.add(stock['ticker'])
+    all_stock_data = unique_stock_data
+
+
+
     logger.info("Writing HTML to index.html")
-    with open("index.html", "w", encoding="utf-8") as f:
-        f.write("<html><head><title>StockHome Trading Signals</title></head><body>\n")
-        f.write("    <link rel='stylesheet' href='styles/style.css'>\n")  # Link to your stylesheet
-        f.write("</head><body>\n")
-        f.write("    <div class='header'>\n")
-        
-        f.write(f"<h1>StockHome Trading Signals</h1>\n")
-        f.write(f"        <p>Generated at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Pacific Time</p>\n")
-        f.write("    </div>\n")
-        
-        f.write("    <h2>Buy Signals</h2>\n")
-        f.write("    <ul class='signals-container'>\n")
-        
-        for alert_html in buy_alerts_web:   # Use allbuyalerts or buyalerts as appropriate
-            f.write(f"<li class='signal-card buy-card'>\n{alert_html}</li>\n")
-        f.write("</ul>\n")
-        
-        f.write("    <h2>Sell Signals</h2>\n")
-        f.write("    <ul class='signals-container'>\n")
-        for alert_html in all_sell_alerts:
-                        f.write(f"<li class='signal-card sell-card'>\n{alert_html}</li>\n")
-        f.write("    </ul>\n")
-        f.write("</body></html>\n")
+    payload = {
+        "generated_at_pt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "buys_html": [f"<li class='signal-card buy-card'>{html}</li>" for html in all_buy_alerts_web],
+        "sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
+    with open("data/signals.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+
+
     logger.info("Written index.html")
 
 if __name__ == "__main__":
