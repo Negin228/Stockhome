@@ -50,6 +50,22 @@ API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
 
+def write_index_html(buys_html, sells_html, timestamp, index_html_template_path="index.html", output_index_path="index.html"):
+    # Read your index.html shell.
+    with open(index_html_template_path, "r", encoding="utf-8") as f:
+        html = f.read()
+    # Insert buy signals.
+    html = re.sub(r'(<ul id="buy-list"[^>]*>).*?(</ul>)',
+                  r'\1{}\2'.format("\n".join(buys_html)), html, flags=re.DOTALL)
+    # Insert sell signals.
+    html = re.sub(r'(<ul id="sell-list"[^>]*>).*?(</ul>)',
+                  r'\1{}\2'.format("\n".join(sells_html)), html, flags=re.DOTALL)
+    # Insert last updated timestamp.
+    html = re.sub(r'(<time id="last-updated">)[^<]*(</time>)',
+                  r'\1{}\2'.format(timestamp), html, flags=re.DOTALL)
+    # Write updated index.html.
+    with open(output_index_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
 def retry_on_rate_limit(func):
     def wrapper(*args, **kwargs):
@@ -622,8 +638,9 @@ def main():
         "generated_at_pt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "buys_html": [f"<li class='signal-card buy-card'>{html}</li>" for html in all_buy_alerts_web],
         "sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
-    with open("mydata/signals.json", "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=2)
+    write_index_html(payload["buys_html"], payload["sells_html"], payload["generated_at_pt"])
+    logger.info("Written index.html")
+
 
 
     logger.info("Written index.html")
