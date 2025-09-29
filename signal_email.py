@@ -120,12 +120,22 @@ def fetch_quote(symbol):
 
 
 def calculate_indicators(df):
-    close = df["Close"]
-    if isinstance(close, pd.DataFrame):
-        close = close.squeeze()
+    close = df.get("Close")
+    # Defensive check: convert close to Series if possible
+    if isinstance(close, (pd.Series, pd.DataFrame)):
+        if isinstance(close, pd.DataFrame):
+            close = close.squeeze()
+    else:
+        # If close is a scalar, convert to a Series or return df unchanged
+        logger.warning("Close column is a scalar or missing; skipping indicator calculation.")
+        return df
+    if close.empty or len(close) < 15:
+        logger.warning("Close price series too short for RSI calculation")
+        return df
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
     return df
+
 
 def generate_signal(df):
     if df.empty or "rsi" not in df.columns:
