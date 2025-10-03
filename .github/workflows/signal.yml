@@ -59,6 +59,15 @@ jobs:
           find artifacts/ -type f -links +1 | tee hardlinks.txt
           echo "===== Size ====="
           du -sh artifacts/
+      - name: Clean up artifacts
+        run: |
+          find artifacts/ -name '.DS_Store' -delete
+          find artifacts/ -name 'Thumbs.db' -delete
+
+      - name: Move site files to artifacts root (if needed)
+        run: |
+          mkdir -p artifacts
+          cp -r index.html scripts styles data assets artifacts/
 
 
 
