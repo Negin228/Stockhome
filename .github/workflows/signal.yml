@@ -12,14 +12,15 @@ jobs:
   run-signal:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - name: Install deps
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml_html_clean transformers torch huggingface_hub
@@ -29,68 +30,42 @@ jobs:
           rm -rf artifacts
           mkdir artifacts
 
-      - name: Move site files to artifacts root
+      - name: Build site (Signal.py output to artifacts/)
         run: |
-          cp -r index.html scripts styles data assets artifacts/
-
-      - name: Build site
-        run: |
-          python Signal.py   # must write all files into artifacts/
+          python Signal.py   # Ensure Signal.py writes all output to artifacts/ 
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
-      - name: Remove symlinks before Pages deploy
+      - name: List built site for debug
         run: |
-          find artifacts/ -type l -exec rm {} +
-
-      - name: Debug artifact contents and find symlinks
-        run: |
-          echo "===== Artifact file list ====="
+          echo '========== BUILT SITE LAYOUT =========='
           find artifacts/
-          echo "===== Symlinks in artifact ====="
-          find artifacts/ -type l
 
-      - name: Debug hard links in artifact
+      - name: Check for and remove symlinks
         run: |
-          find artifacts/ -type f -links +1
+          find artifacts/ -type l -exec rm -v {} +
+
+      - name: Check for hardlinks
+        run: |
+          find artifacts/ -type f -links +1 || true
 
       - name: Check artifact size
         run: du -sh artifacts/
 
-      - name: List all files and symlinks (debug)
-        run: |
-          echo "===== ALL FILES ====="
-          find artifacts/
-          echo "===== Symlinks ====="
-          find artifacts/ -type l | tee symlinks.txt
-          echo "===== Hard-links ====="
-          find artifacts/ -type f -links +1 | tee hardlinks.txt
-          echo "===== Size ====="
-          du -sh artifacts/
-      - name: Clean up artifacts
+      - name: Clean up unwanted system files
         run: |
           find artifacts/ -name '.DS_Store' -delete
           find artifacts/ -name 'Thumbs.db' -delete
 
-      - name: Move site files to artifacts root (if needed)
-        run: |
-          mkdir -p artifacts
-          cp -r index.html scripts styles data assets artifacts/
-
-      - name: Final artifact structure
+      - name: Final structure for artifacts
         run: |
           echo "==== FINAL ARTIFACTS CONTENT ===="
           find artifacts/
 
-
-
-
-
       - name: Upload github-pages artifact
-        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages                # EXPLICIT -- required
+          name: github-pages
           path: artifacts/
           if-no-files-found: warn
 
