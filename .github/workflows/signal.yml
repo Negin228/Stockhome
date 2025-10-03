@@ -44,7 +44,7 @@ jobs:
       - name: Remove all symlinks from artifacts
         run: find artifacts/ -type l -exec rm -v {} +
 
-      - name: Debug: List artifact structure symlinks hard links size
+      - name: Debug List artifact structure symlinks hard links size
         run: |
           echo "==== FILES ===="
           find artifacts/
