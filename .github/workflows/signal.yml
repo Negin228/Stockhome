@@ -24,6 +24,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml_html_clean transformers torch huggingface_hub
 
+      - name: Prepare artifacts directory
+        run: |
+          rm -rf artifacts
+          mkdir artifacts
+
+      - name: Move site files to artifacts root
+        run: |
+          cp -r index.html scripts styles data assets artifacts/
 
       - name: Build site
         run: |
@@ -69,6 +77,10 @@ jobs:
           mkdir -p artifacts
           cp -r index.html scripts styles data assets artifacts/
 
+      - name: Final artifact structure
+        run: |
+          echo "==== FINAL ARTIFACTS CONTENT ===="
+          find artifacts/
 
 
 
