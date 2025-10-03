@@ -29,6 +29,9 @@ os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
 os.makedirs(puts_dir, exist_ok=True)
 os.makedirs("data", exist_ok=True)
+os.makedirs("artifacts/data", exist_ok=True)
+
+
 
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
@@ -625,7 +628,7 @@ def main():
         "sells": [s for s in all_stock_data if s.get('signal') == 'SELL']}
         #"buys_html": [f"<li class='signal-card buy-card'>{html}</li>" for html in all_buy_alerts_web],
         #"sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
-    with open("mydata/signals.json", "w", encoding="utf-8") as f:
+    with open("artifacts/data/signals.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
 
