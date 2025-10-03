@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>StockHome Trading Signals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="logo" href="/">
+      <img src="/assets/logo.svg" alt="StockHome" height="28">
+    </a>
+    <nav class="nav">
+      <a href="/" class="nav-link active">Home</a>
+      <a href="/how-it-works.html" class="nav-link">How It Works</a>
+      <a href="/performance.html" class="nav-link">Performance</a>
+      <a href="/pricing.html" class="nav-link">Pricing</a>
+      <a href="/faq.html" class="nav-link">FAQ</a>
+      <a href="/contact.html" class="nav-link cta">Get Started</a>
+    </nav>
+  </header>
 
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Real-Time Trading Signals. Backed by Data.</h1>
+    <p class="sub">Clear, actionable alerts for options and equities with transparent context.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="/pricing.html">See Plans</a>
+      <a class="btn" href="#buy-signals">View Today’s Signals</a>
+    </div>
+  </section>
+
+  <!-- SIGNALS (these lists will be filled by app.js using signals.json) -->
+  <main>
+    <section id="buy-signals" class="section">
+      <h2>Buy Signals</h2>
+      <ul id="buy-list" class="signals-container"></ul>
+    </section>
+
+    <section id="sell-signals" class="section">
+      <h2>Sell Signals</h2>
+      <ul id="sell-list" class="signals-container"></ul>
+    </section>
+
+    <section class="meta">
+      <span>Last updated: <time id="last-updated">—</time> PT</span>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <small>© <span id="year"></span> StockHome. Past performance is not indicative of future results.</small>
+  </footer>
+
+  <!-- JS that loads signals.json and injects into #buy-list / #sell-list -->
+  <script src="/scripts/app.js" defer></script>
+</body>
+</html>
