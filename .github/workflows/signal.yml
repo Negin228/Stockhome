@@ -28,43 +28,32 @@ jobs:
       - name: Prepare artifacts directory
         run: |
           rm -rf artifacts
-          mkdir artifacts
+          mkdir -p artifacts
 
       - name: Build site (Signal.py output to artifacts/)
         run: |
-          python Signal.py   # Ensure Signal.py writes all output to artifacts/ 
+          python Signal.py   # Ensure Signal.py writes ALL outputs to artifacts/
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
-      - name: Copy static files to artifacts
-        run: cp -r index.html scripts styles assets artifacts/
+      # Only use this step if your static files (HTML, JS, CSS, images) are NOT written to artifacts/ by Python.
+      # If those files ARE written there, you can remove this step.
+      - name: Copy static files (dereference links)
+        run: cp -rL index.html scripts styles assets artifacts/
 
+      - name: Remove all symlinks from artifacts
+        run: find artifacts/ -type l -exec rm -v {} +
 
-      - name: List built site for debug
-        run: |
-          echo '========== BUILT SITE LAYOUT =========='
-          find artifacts/
-
-      - name: Check for and remove symlinks
-        run: |
-          find artifacts/ -type l -exec rm -v {} +
-
-      - name: Check for hardlinks
-        run: |
-          find artifacts/ -type f -links +1 || true
-
-      - name: Check artifact size
-        run: du -sh artifacts/
-
-      - name: Clean up unwanted system files
-        run: |
-          find artifacts/ -name '.DS_Store' -delete
-          find artifacts/ -name 'Thumbs.db' -delete
-
-      - name: Final structure for artifacts
+      - name: List all files for debug
         run: |
           echo "==== FINAL ARTIFACTS CONTENT ===="
           find artifacts/
+          echo "==== SYMLINKS ===="
+          find artifacts/ -type l
+          echo "==== HARD LINKS ===="
+          find artifacts/ -type f -links +1
+          echo "==== SIZE ===="
+          du -sh artifacts/
 
       - name: Upload github-pages artifact
         uses: actions/upload-artifact@v4
