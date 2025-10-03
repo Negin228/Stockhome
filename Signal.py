@@ -643,8 +643,6 @@ def main():
         #"sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
     with open("data/signals.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
-    #write_index_html(payload["buys_html"], payload["sells_html"], payload["generated_at_pt"])
-    logger.info("Written index.html")
 
 
 
