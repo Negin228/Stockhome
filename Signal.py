@@ -641,7 +641,7 @@ def main():
         "sells": all_sell_alerts}
         #"buys_html": [f"<li class='signal-card buy-card'>{html}</li>" for html in all_buy_alerts_web],
         #"sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
-    with open("data/signals.json", "w", encoding="utf-8") as f:
+    with open("mydata/signals.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
 
