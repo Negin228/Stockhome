@@ -637,8 +637,8 @@ def main():
     logger.info("Writing HTML to index.html")
     payload = {
         "generated_at_pt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "buys": buys_data_list,   # list[dict] you assemble instead of HTML strings
-        "sells": sells_data_list}
+        "buys": all_buy_alerts_web,   # list[dict] you assemble instead of HTML strings
+        "sells": all_sell_alerts}
         #"buys_html": [f"<li class='signal-card buy-card'>{html}</li>" for html in all_buy_alerts_web],
         #"sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
     with open("data/signals.json", "w", encoding="utf-8") as f:
