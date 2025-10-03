@@ -1,70 +1,61 @@
-<html><head><title>StockHome Trading Signals</title></head><body>
-    <link rel='stylesheet' href='styles/style.css'>
-</head><body>
-    <div class='header'>
-<h1>StockHome Trading Signals</h1>
-        <p>Last update: 2025-10-02 20:41PT</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>StockHome Trading Signals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="logo" href="/">
+      <img src="/assets/logo.svg" alt="StockHome" height="28">
+    </a>
+    <nav class="nav">
+      <a href="/" class="nav-link active">Home</a>
+      <a href="/how-it-works.html" class="nav-link">How It Works</a>
+      <a href="/performance.html" class="nav-link">Performance</a>
+      <a href="/pricing.html" class="nav-link">Pricing</a>
+      <a href="/faq.html" class="nav-link">FAQ</a>
+      <a href="/contact.html" class="nav-link cta">Get Started</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Real-Time Trading Signals. Backed by Data.</h1>
+    <p class="sub">Clear, actionable alerts for options and equities with transparent context.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="/pricing.html">See Plans</a>
+      <a class="btn" href="#buy-signals">View Today’s Signals</a>
     </div>
-    <h2>Buy Signals</h2>
-    <ul class='signals-container'>
-<li class='signal-card buy-card'>
+  </section>
 
-            <div class="main-info">
-                <div>
-                    <span class="ticker-alert">T</span>
-                </div>
-                <div class="price-details">
-                        <div class="current-price price-up">27.01</div>
-                </div>                    
-            </div>
-            <p class="news-summary">
-                    RSI=27.6 P/E=15.4 Market Cap=$193.1B<br>DMA 200=239.9 DMA 50=251.7<br>Sell a $19.0 put option with Oct 24, 2025 expiration for a premium of $0.33<br>[𝚫 29.7% + 💎 1.2%] = 30.9%
-            </p>
-            <p class="news-summary">RBC Capital analyst Jonathan Atkin downgraded American Tower’s stock rating from Outperform to Sector Perform. American Tower faces pressure as Verizon launches a high-rent relocation program, targeting its largest tower landlord ahead of a key master lease expiration....</p>
-                <ul class="news-list"><li>🟢 <a href='https://finance.yahoo.com/news/don-t-know-why-college-212822599.html'>‘I don’t know why I need to go to college’: Ford CEO says his Gen Z son worked as a mechanic and wondered if the 4-year degree was still worth it</a></li><li>🔴 <a href='https://finance.yahoo.com/news/verizon-targets-american-tower-expensive-174110712.html'>Verizon Targets American Tower With Expensive Relocation Plan, Analysts Warn</a></li></ul>
-        </li>
-<li class='signal-card buy-card'>
+  <!-- SIGNALS (these lists will be filled by app.js using signals.json) -->
+  <main>
+    <section id="buy-signals" class="section">
+      <h2>Buy Signals</h2>
+      <ul id="buy-list" class="signals-container"></ul>
+    </section>
 
-            <div class="main-info">
-                <div>
-                    <span class="ticker-alert">BR</span>
-                </div>
-                <div class="price-details">
-                        <div class="current-price price-up">233.69</div>
-                </div>                    
-            </div>
-            <p class="news-summary">
-                    RSI=29.4 P/E=32.9 Market Cap=$27.4B<br>DMA 200=239.9 DMA 50=251.7<br>Sell a $210.0 put option with Nov 21, 2025 expiration for a premium of $2.35<br>[𝚫 10.1% + 💎 1.0%] = 11.1%
-            </p>
-            <p class="news-summary">The Canton Network, a blockchain built for regulated finance, has quietly surged. Goldman Sachs, HSBC and Broadridge are backing the network. Canton recorded more than 500,000 daily transactions by September’s end....</p>
-                <ul class="news-list"><li>🟢 <a href='https://finance.yahoo.com/news/heres-why-broadridge-financial-solutions-134503793.html'>Here's Why Broadridge Financial Solutions (BR) is a Strong Growth Stock</a></li></ul>
-        </li>
-</ul>
+    <section id="sell-signals" class="section">
+      <h2>Sell Signals</h2>
+      <ul id="sell-list" class="signals-container"></ul>
+    </section>
 
-        <div class="filter-section">
-          <div class="slider-row">
-            <label for="rsi-slider">RSI:</label>
-            <input type="range" min="0" max="100" value="100" id="rsi-slider">
-            <span id="rsi-value"></span>
-          </div>
-          <div class="slider-row">
-            <label for="pe-slider">P/E:</label>
-            <input type="range" min="0" max="100" value="100" id="pe-slider">
-            <span id="pe-value"></span>
-          </div>
-          <div class="slider-row">
-            <label for="cap-slider">Market Cap ($B):</label>
-            <input type="range" min="0" max="3000" value="0" id="cap-slider">
-            <span id="cap-value"></span>
-          </div>
-          <div class="slider-row">
-            <label for="drop-slider">Drop(%):</label>
-            <input type="range" min="0" max="20" value="0" id="drop-slider">
-            <span id="drop-value"></span>
-          </div>
-          <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
-        </div>
-        <div id="filtered-stocks"></div>
-<script>var allStocks = [{"ticker": "T", "rsi": 27.62642032863944, "pe": 15.434286, "market_cap": 193131921408.0, "pct_drop": 1.9600698802711134, "rsi_str": "27.6", "pe_str": "15.4", "market_cap_str": "193.1B", "dma200": 26.81715003013611, "dma50": 28.587400054931642, "dma200_str": "26.8", "dma50_str": "28.6"}, {"ticker": "BR", "rsi": 29.365653461256542, "pe": 32.86779, "market_cap": 27371950080.0, "pct_drop": 0.38789687972731485, "rsi_str": "29.4", "pe_str": "32.9", "market_cap_str": "27.4B", "dma200": 239.94124977111815, "dma50": 251.65460083007812, "dma200_str": "239.9", "dma50_str": "251.7"}];</script>
-<script src="stock_filter.js"></script>
-</body></html>
+    <section class="meta">
+      <span>Last updated: <time id="last-updated">—</time> PT</span>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <small>© <span id="year"></span> StockHome. Past performance is not indicative of future results.</small>
+  </footer>
+
+  <!-- JS that loads signals.json and injects into #buy-list / #sell-list -->
+  <script src="/scripts/app.js" defer></script>
+</body>
+</html>
