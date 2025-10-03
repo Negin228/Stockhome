@@ -35,6 +35,35 @@ jobs:
         run: |
           find artifacts/ -type l -exec rm {} +
 
+      - name: Debug artifact contents and find symlinks
+        run: |
+          echo "===== Artifact file list ====="
+          find artifacts/
+          echo "===== Symlinks in artifact ====="
+          find artifacts/ -type l
+
+      - name: Debug hard links in artifact
+        run: |
+          find artifacts/ -type f -links +1
+
+      - name: Check artifact size
+        run: du -sh artifacts/
+
+      - name: List all files and symlinks (debug)
+        run: |
+          echo "===== ALL FILES ====="
+          find artifacts/
+          echo "===== Symlinks ====="
+          find artifacts/ -type l | tee symlinks.txt
+          echo "===== Hard-links ====="
+          find artifacts/ -type f -links +1 | tee hardlinks.txt
+          echo "===== Size ====="
+          du -sh artifacts/
+
+
+
+
+
 
       - name: Upload github-pages artifact
         if: always()
