@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "2025-10-04 18:16:42",
+  "generated_at_pt": "2025-10-04 18:35:23",
   "buys": [
     {
       "ticker": "T",
@@ -16,7 +16,15 @@
       "dma200": 26.834300031661986,
       "dma50": 28.570200042724608,
       "dma200_str": "26.8",
-      "dma50_str": "28.6"
+      "dma50_str": "28.6",
+      "put": {
+        "strike": 19.0,
+        "expiration": "Oct 24, 2025",
+        "premium": 0.33,
+        "delta_percent": 29.78566149297856,
+        "premium_percent": 1.2195121951219512,
+        "metric_sum": 31.00517368810051
+      }
     },
     {
       "ticker": "DLTR",
@@ -33,7 +41,15 @@
       "dma200": 87.8100500869751,
       "dma50": 105.71360061645508,
       "dma200_str": "87.8",
-      "dma50_str": "105.7"
+      "dma50_str": "105.7",
+      "put": {
+        "strike": 40.0,
+        "expiration": "Nov 21, 2025",
+        "premium": 1.37,
+        "delta_percent": 55.545676817070465,
+        "premium_percent": 1.5225605690153368,
+        "metric_sum": 57.068237386085805
+      }
     }
   ],
   "sells": []
