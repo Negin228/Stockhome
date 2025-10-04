@@ -95,7 +95,7 @@ jobs:
           echo "=== Verify signals path referenced relatively in index.html ==="
           grep -n "data/signals.json" -n public/index.html || true
           echo "=== Try parsing signals.json ==="
-          python <<EOF
+python <<EOF
 import json,sys
 p='public/data/signals.json'
 with open(p,'r',encoding='utf-8') as f:
