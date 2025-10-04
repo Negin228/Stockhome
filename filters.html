@@ -22,9 +22,19 @@
     <button onclick="resetFilters()">Reset Filters</button>
   </section>
   <section id="filtered-stocks"></section>
-  <script src="stock_filter.js"></script>
+  
+  <!-- Fetch JSON and call filter logic -->
   <script>
-
+    let allStocks = [];
+    fetch('artifacts/data/signals.json')
+      .then(response => response.json())
+      .then(data => {
+        allStocks = (data.buys || []).concat(data.sells || []);
+        // filterStocks() must be available from the JS file loaded below
+        filterStocks();
+      });
   </script>
+  <!-- Load your filter JS after the fetch block -->
+  <script src="stock_filter.js"></script>
 </body>
 </html>
