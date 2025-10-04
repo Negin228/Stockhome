@@ -546,6 +546,12 @@ def job(tickers):
             news_html += f"<li>{emoji} <a href='{news['url']}'>{news['headline']}</a></li>"
         news_html += '</ul>'
 
+        for s in stock_data_list:
+            if s['ticker'] == sym:
+                s['news_summary'] = summary_sentence
+                s['news'] = news_items
+                break
+
         price_str = f"{price:.2f}" if price is not None else "N/A"
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str = f"{pe:.1f}" if pe is not None else "N/A"
