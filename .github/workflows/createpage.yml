@@ -95,15 +95,7 @@ jobs:
           echo "=== Verify signals path referenced relatively in index.html ==="
           grep -n "data/signals.json" -n public/index.html || true
           echo "=== Try parsing signals.json ==="
-          python <<EOF
-import json
-p='public/data/signals.json'
-with open(p,'r',encoding='utf-8') as f:
-    data=json.load(f)
-print('keys:', list(data.keys())[:10])
-print('buys:', len(data.get('buys', [])))
-print('sells:', len(data.get('sells', [])))
-EOF
+
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
