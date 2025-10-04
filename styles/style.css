@@ -243,6 +243,29 @@ body {
   margin-right: auto;
 }
 
+#filtered-stocks {
+  margin: 48px auto 0 auto; max-width:700px; display:block;
+  font-size: 1.1em;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 40px 32px 24px 32px;
+  background: #f8fbfa;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(30, 42, 56, 0.05);
+  flex-direction: row;
+}
+@media (max-width: 640px) {
+  .filter-controls { flex-direction: column; }
+}
+
+
 .slider-row {
   display: flex;
   align-items: center;
