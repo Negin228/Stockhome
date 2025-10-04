@@ -40,7 +40,7 @@ jobs:
           echo "==== FILES ===="
           find artifacts/
           echo "==== SIGNAL JSON ===="
-          cat artifacts/data/signal.json || echo "No signal.json found"
+          cat artifacts/data/signals.json || echo "No signal.json found"
           echo "==== INDEX HTML ===="
           cat artifacts/index.html || echo "No index.html found"
           echo "==== SYMLINKS ===="
