@@ -10,7 +10,7 @@ function renderBuyCard(b){
         <div class="price-details"><div class="current-price price-up">${fmt(b.price,2)}</div></div>
       </div>
       <p class="news-summary">
-        RSI=${fmt(b.rsi_str)}&nbsp;&nbsp;P/E=${fmt(b.pe_str)}&nbsp;&nbsp;DMA 50=${fmt(b.dma50_str)}&nbsp;&nbsp;DMA 200=${fmt(b.dma200_str)}&nbsp;&nbsp;Market Cap=${b.market_cap_str||"N/A"}
+        RSI=${fmt(b.rsi_str)}&nbsp;&nbsp;P/E=${fmt(b.pe_str)}&nbsp;&nbsp;DMA 50=${fmt(b.dma50_str)}&nbsp;&nbsp;DMA 200=${fmt(b.dma200_str)}&nbsp;&nbsp;Market Cap=$${b.market_cap_str||"N/A"}
         <br>Sell a $${fmt(put.strike,1)} put option expiring ${put.expiration || "N/A"} for $${fmt(put.premium,2)}
         <br>[𝚫 ${fmt(put.delta_percent,1)}% + 💎 ${fmt(put.premium_percent,1)}%] = ${fmt(put.metric_sum,1)}%
       </p>
