@@ -32,9 +32,9 @@ function renderSellCard(s){
 function renderNews(summary, items){
   const safeSummary = summary ? `<p class="news-summary">${summary}</p>` : "";
   if (!items || !items.length) return safeSummary;
+  
   const list = items.slice(0,4).map(n=>{
-    const emoji = (n.sentiment>0.2) ? "🟢" : (n.sentiment<-0.2) ? "🔴" : "⚪";
-    return `<li><a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a> - ${emoji} ${fmt(n.sentiment,1)}</li>`;
+    return `<li><a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a></li>`;
   }).join("");
   return `${safeSummary}<ul class="news-list">${list}</ul>`;
 }
