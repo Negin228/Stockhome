@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Filtered Stocks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <header>
+    <h1>Filtered Stock Section</h1>
+  </header>
+  <section>
+    <label>RSI <input id="rsi-slider" type="range" min="0" max="100" value="100"></label>
+    <span id="rsi-value">100</span>
+    <label>PE <input id="pe-slider" type="range" min="0" max="100" value="100"></label>
+    <span id="pe-value">100</span>
+    <label>Market Cap <input id="cap-slider" type="range" min="0" max="100" value="0"></label>
+    <span id="cap-value">0</span>
+    <label>Drop % <input id="drop-slider" type="range" min="0" max="100" value="0"></label>
+    <span id="drop-value">0</span>
+    <button onclick="resetFilters()">Reset Filters</button>
+  </section>
+  <section id="filtered-stocks"></section>
+  <script src="stock_filter.js"></script>
+  <script>
+
+  </script>
+</body>
+</html>
