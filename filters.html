@@ -2,38 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Filtered Stocks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StockHome Trading Signals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/styles/style.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
-  <header>
-    <h1>Filtered Stock Section</h1>
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="logo" href="/">
+      <img src="/assets/logo.svg" alt="StockHome" height="28">
+    </a>
+    <nav class="nav">
+      <a href="/" class="nav-link active">Home</a>
+      <a href="/how-it-works.html" class="nav-link">How It Works</a>
+      <a href="/performance.html" class="nav-link">Performance</a>
+      <a href="/filters.html" class="nav-link">Filters</a>
+      <a href="/faq.html" class="nav-link">FAQ</a>
+      <a href="/contact.html" class="nav-link cta">Get Started</a>
+    </nav>
   </header>
-  
-  <div class="filter-controls">
-    <label>RSI <input id="rsi-slider" type="range" min="0" max="100" value="100"></label>
-    <span id="rsi-value">100</span>
-    <label>PE <input id="pe-slider" type="range" min="0" max="100" value="100"></label>
-    <span id="pe-value">100</span>
-    <label>Market Cap ($B) <input id="cap-slider" type="range" min="0" max="3000" value="0"></label>
-    <span id="cap-value">0</span>
-    <label>Drop % <input id="drop-slider" type="range" min="0" max="20" value="0"></label>
-    <span id="drop-value">0</span>
-    <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
-  </div>
-  
-  <section id="filtered-stocks"></section>
-  
-  <script>
-    let allStocks = [];
-    fetch('data/signals.json')
-      .then(response => response.json())
-      .then(data => {
-        allStocks = (data.buys || []).concat(data.sells || []);
-        filterStocks();
-      });
-  </script>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Signals Backed by Data.</h1>
+    <p class="sub">Actionable alerts for options and stocks.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="/filters.html">Filters</a>
+      <a class="btn" href="#buy-signals">View Today’s Signals</a>
+    </div>
+  </section>
+
+
+  <main>
+    <section id="filtered-stocks" class="section">
+      <div class="filter-controls">
+        <label>RSI <input id="rsi-slider" type="range" min="0" max="100" value="100"></label>
+        <span id="rsi-value">100</span>
+        <label>PE <input id="pe-slider" type="range" min="0" max="100" value="100"></label>
+        <span id="pe-value">100</span>
+        <label>Market Cap ($B) <input id="cap-slider" type="range" min="0" max="3000" value="0"></label>
+        <span id="cap-value">0</span>
+        <label>Drop % <input id="drop-slider" type="range" min="0" max="20" value="0"></label>
+        <span id="drop-value">0</span>
+        <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
+      </div>
+    </section>
+
+      <script>
+        let allStocks = [];
+        fetch('data/signals.json')
+          .then(response => response.json())
+          .then(data => {
+            allStocks = (data.buys || []).concat(data.sells || []);
+            filterStocks();});
+      </script>
+    
+    <section class="meta">
+      <span>Last updated: <time id="last-updated">—</time> PT</span>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <small>© <span id="year"></span> StockHome. Past performance is not indicative of future results.</small>
+  </footer>
+
   <script src="stock_filter.js"></script>
 </body>
 </html>
+
