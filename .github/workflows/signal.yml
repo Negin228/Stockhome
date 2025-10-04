@@ -35,6 +35,15 @@ jobs:
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
+      - name: Commit updated signals.json
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add data/signals.json
+          git commit -m "Update signals.json from workflow" || echo "No changes to commit"
+          git push
+
+
       - name: Debug output
         run: |
           echo "==== FILES ===="
