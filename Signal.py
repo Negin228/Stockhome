@@ -455,6 +455,26 @@ def job(tickers):
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
         dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
         dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
+
+        put_obj = {
+            "strike": float(best_put['strike']) if best_put.get('strike') is not None else None,
+            "expiration": expiration_fmt if expiration_fmt else "N/A",
+            "premium": float(best_put['premium']) if best_put.get('premium') is not None else None,
+            "delta_percent": float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else None,
+            "premium_percent": float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else None,
+            "metric_sum": (
+                    float(best_put['delta_percent'] or 0) + float(best_put['premium_percent'] or 0)
+                    if best_put.get('delta_percent') is not None and best_put.get('premium_percent') is not None
+                    else None),}
+        # Insert the put metrics into the correct stock_data_list object:
+        for s in stock_data_list:
+            if s['ticker'] == sym:
+                s['put'] = put_obj
+                break
+
+
+
+        
         buy_alert_line = format_buy_alert_line(
             ticker=sym,
             price=price if price is not None else 0.0,
