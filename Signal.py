@@ -368,6 +368,7 @@ def job(tickers):
         
         stock_data_list.append({
         'ticker': symbol,
+        'signal' : sig,
         'rsi': float(rsi_val) if rsi_val is not None else None,
         'pe': float(pe) if pe is not None else None,
         'market_cap': float(mcap) if mcap is not None else None,
