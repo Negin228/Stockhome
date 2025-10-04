@@ -1,5 +1,15 @@
 // stock_filter.js
 
+let allStocks = [];
+
+// Fetch stock data and initialize filtering
+fetch('data/signals.json')
+  .then(response => response.json())
+  .then(data => {
+    allStocks = (data.buys || []).concat(data.sells || []);
+    filterStocks(); // Only call filter after data is loaded
+  });
+
 document.addEventListener('DOMContentLoaded', function() {
   
   document.getElementById('rsi-slider').oninput = function() {
