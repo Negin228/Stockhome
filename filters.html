@@ -34,7 +34,7 @@
   </section>
 
   <main>
-    <section id="filtered-stocks" class="section">
+    <section class="section">
       <div class="filter-controls">
         <label>RSI <input id="rsi-slider" type="range" min="0" max="100" value="100"></label>
         <span id="rsi-value">100</span>
@@ -46,17 +46,10 @@
         <span id="drop-value">0</span>
         <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
       </div>
+      <div id="filtered-stocks"></div> 
     </section>
 
-    <script>
-        let allStocks = [];
-        fetch('data/signals.json')
-          .then(response => response.json())
-          .then(data => {
-            allStocks = data.all || [];
-            filterStocks();});
-    </script>
-    
+
     <section class="meta">
       <div>Last updated: <time id="last-updated">—</time> PT</div>
     </section>
