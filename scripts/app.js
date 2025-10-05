@@ -30,7 +30,7 @@ function renderSellCard(s){
 }
 
 function renderNews(summary, items){
-  const safeSummary = summary ? `<p class="news-summary">${summary}...</p>` : "";
+  const safeSummary = summary ? `<p class="news-summary">${summary}..</p>` : "";
   if (!items || !items.length) return safeSummary;
   
   const list = items.slice(0,4).map(n=>{
