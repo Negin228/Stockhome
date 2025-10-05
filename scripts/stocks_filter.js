@@ -6,8 +6,11 @@ let allStocks = [];
 fetch('data/signals.json')
   .then(response => response.json())
   .then(data => {
-    allStocks = (data.buys || []).concat(data.sells || []);
-    filterStocks(); // Only call filter after data is loaded
+    allStocks = data.all || [];
+    filterStocks();
+    if (data.generated_at_pt) {
+      document.getElementById('last-update').innerText = "Last update: " + data.generated_at_pt;
+    }
   });
 
 document.addEventListener('DOMContentLoaded', function() {
