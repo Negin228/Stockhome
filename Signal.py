@@ -578,7 +578,7 @@ def job(tickers):
             <p class="news-summary">
                     {buy_alert_line}
             </p>
-            <p class="news-summary">{summary_sentence}...</p>
+            <p class="news-summary">{summary_sentence}..</p>
                 {news_html}
         """
         buy_alerts_web.append(buy_alert_html)
