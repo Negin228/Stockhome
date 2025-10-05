@@ -48,15 +48,16 @@
         <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
       </div>
     </section>
+    <script src="/scripts/stock_filter.js"></script>
 
-      <script>
+    <script>
         let allStocks = [];
         fetch('data/signals.json')
           .then(response => response.json())
           .then(data => {
             allStocks = (data.buys || []).concat(data.sells || []);
             filterStocks();});
-      </script>
+    </script>
     
     <section class="meta">
       <div id="time"></div>
@@ -69,7 +70,6 @@
   <footer class="site-footer">
     <small>© <span id="year"></span> StockHome. Past performance is not indicative of future results.</small>
   </footer>
-  <script src="/scripts/stock_filter.js"></script>
 
 </body>
 </html>
