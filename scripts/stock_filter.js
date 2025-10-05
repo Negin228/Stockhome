@@ -9,7 +9,7 @@ fetch('data/signals.json')
     allStocks = data.all || [];
     filterStocks();
     if (data.generated_at_pt) {
-      document.getElementById('last-update').innerText = "Last update: " + data.generated_at_pt;
+      document.getElementById('last-updated').innerText = "Last update: " + data.generated_at_pt;
     }
   });
 
