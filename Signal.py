@@ -654,7 +654,8 @@ def main():
     payload = {
         "generated_at_pt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "buys": [s for s in all_stock_data if s.get('signal') == 'BUY'],
-        "sells": [s for s in all_stock_data if s.get('signal') == 'SELL']}
+        "sells": [s for s in all_stock_data if s.get('signal') == 'SELL'],
+        "all": all_stock_data}
         #"buys_html": [f"<li class='signal-card buy-card'>{html}</li>" for html in all_buy_alerts_web],
         #"sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
     with open("artifacts/data/signals.json", "w", encoding="utf-8") as f:
