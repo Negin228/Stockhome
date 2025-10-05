@@ -55,7 +55,7 @@
         fetch('data/signals.json')
           .then(response => response.json())
           .then(data => {
-            allStocks = (data.buys || []).concat(data.sells || []);
+            allStocks = data.all || [];
             filterStocks();});
     </script>
     
