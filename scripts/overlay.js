@@ -1,18 +1,17 @@
 const buySignalsSection = document.getElementById('buy-signals');
-const originalBuySignalsHTML = buySignalsSection.innerHTML;
+let originalBuySignalsHTML = buySignalsSection.innerHTML;
 
 document.getElementById('filters-btn').onclick = function(event) {
-  event.preventDefault();
-  fetch('pages/filters-1.html')
-    .then(response => response.text())
-    .then(html => {
-      buySignalsSection.innerHTML = html;
-    });
+    event.preventDefault();
+    fetch('pages/filters.html') // or filters-1.html, matching your file
+        .then(response => response.text())
+        .then(html => {
+            buySignalsSection.innerHTML = html;
+        });
 };
 
 document.getElementById('signals-btn').onclick = function(event) {
-  event.preventDefault();
-  buySignalsSection.innerHTML = originalBuySignalsHTML;
-  // (Optional) reinitialize your signals if dynamically loaded
-  // Example: if (typeof loadSignals === 'function') loadSignals();
+    event.preventDefault();
+    buySignalsSection.innerHTML = originalBuySignalsHTML;
+    // Optionally reload signals here if needed
 };
