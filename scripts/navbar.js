@@ -10,3 +10,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+<!-- index.html or main file -->
+<div id="header-include"></div>
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('header-include').innerHTML = html;
+      // Now DOM has hamburger/button/menu, so run navbar.js
+      var script = document.createElement('script');
+      script.src = 'navbar.js';
+      document.body.appendChild(script);
+    });
+</script>
+
+
