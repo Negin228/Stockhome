@@ -1,5 +1,6 @@
 function setupOverlayHandlers() {
   const buySignalsSection = document.getElementById('buy-signals');
+  const sellSignalsSection = document.getElementById('sell-signals');
   const filtersBtn = document.getElementById('filters-btn');
   const signalsBtn = document.getElementById('signals-btn');
   let originalBuySignalsHTML = buySignalsSection.innerHTML;
@@ -13,6 +14,9 @@ function setupOverlayHandlers() {
               buySignalsSection.innerHTML = html;
               filtersBtn.classList.add('active');
               signalsBtn.classList.remove('active');
+              if (sellSignalsSection) sellSignalsSection.style.display = 'none';
+              // ... your slider setup...
+              setupSliderHandlers();
           });
   }
 
@@ -20,6 +24,7 @@ function setupOverlayHandlers() {
       buySignalsSection.innerHTML = originalBuySignalsHTML;
       signalsBtn.classList.add('active');
       filtersBtn.classList.remove('active');
+      if (sellSignalsSection) sellSignalsSection.style.display = '';
   }
 
   filtersBtn.onclick = function(event) {
