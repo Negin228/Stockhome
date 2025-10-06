@@ -18,14 +18,14 @@ fetch('pages/header.html')
 
 
   <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Signals Backed by Data.</h1>
-    <p class="sub">Actionable alerts for options and stocks.</p>
-    <div class="cta-row">
-      <a class="btn primary" href="/filters.html">Filters</a>
-      <a class="btn" href="#buy-signals">View Today’s Signals</a>
-    </div>
-  </section>
+  <!-- HERO SECTION -->
+  <div id="hero-include"></div>
+  <script>
+  fetch('pages/hero.html')
+    .then(res => res.text())
+    .then(html => { document.getElementById('hero-include').innerHTML = html; });
+  </script>
+  
 
   <main>
     <section class="section">
