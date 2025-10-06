@@ -41,3 +41,9 @@ window.addEventListener('popstate', function() {
     });
 });
 
+fetch('/pages/filters.html')
+  .then(response => response.text())
+  .then(html => {
+    document.querySelector('main').innerHTML = html;
+  });
+
