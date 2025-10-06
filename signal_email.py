@@ -118,6 +118,13 @@ def fetch_quote(symbol):
         return None
     return price
 
+def fetch_company_name(symbol):
+    try:
+        info = yf.Ticker(symbol).info
+        return info.get("shortName") or info.get("longName") or ""
+    except Exception as e:
+        logger.warning(f"Failed to fetch company name for {symbol}: {e}")
+        return ""
 
 def calculate_indicators(df):
     close = df.get("Close")
@@ -183,7 +190,7 @@ def fetch_puts(symbol):
         logger.warning(f"Failed to fetch puts for {symbol}: {e}")
     return puts_data
 
-def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent):
+def format_buy_alert_line(ticker, company_name, price, rsi, pe, mcap, strike, expiration, premium, delta_percent, premium_percent):
     price_str = f"{price:.2f}" if price is not None else "N/A"
     rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
     pe_str = f"{pe:.1f}" if pe is not None else "N/A"
@@ -196,7 +203,7 @@ def format_buy_alert_line(ticker, price, rsi, pe, mcap, strike, expiration, prem
         metric_sum = delta_percent + premium_percent
     metric_sum_str = f"{metric_sum:.1f}%" if metric_sum is not None else "N/A"
     return (
-        f"{ticker} (${price_str}) | "
+        f"{ticker} ({company_name}) (${price_str}) | "
         f"RSI={rsi_str}, "
         f"P/E={pe_str}, "
         f"Market Cap=${mcap}, "
@@ -398,8 +405,10 @@ def job(tickers):
             continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
+        company_name = fetch_company_name(sym)
         buy_alert_line = format_buy_alert_line(
             ticker=sym,
+            company_name=company_name,
             price=price if price is not None else 0.0,
             rsi=rsi_val if rsi_val is not None else 0.0,
             pe=pe if pe is not None else 0.0,
