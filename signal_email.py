@@ -249,7 +249,7 @@ def format_email_body_html(buy_alerts, sell_alerts):
         '<html><body style="font-family: Arial, sans-serif;">',
         f'<div style="margin-bottom:24px;">'
         f'<a href="https://stockhome.me" target="_blank">'
-        f'<img src="https://stockhome.me/assets/logo.svg" alt="StockHome Logo" style="height:60px;vertical-align:middle;">'
+        f'<img src="https://stockhome.me/assets/logo.png" alt="StockHome Logo" style="height:60px;vertical-align:middle;">'
         '</a>'
         f' <span style="font-size:2em;font-weight:bold;vertical-align:middle;">StockHome.me Trading Signals</span>'
         '</div>',
