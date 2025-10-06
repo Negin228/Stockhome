@@ -3,6 +3,8 @@ function setupOverlayHandlers() {
   const filtersBtn = document.getElementById('filters-btn');
   const signalsBtn = document.getElementById('signals-btn');
   let originalBuySignalsHTML = buySignalsSection.innerHTML;
+  setupSliderHandlers();
+
 
   function showFilters() {
       fetch('pages/filters.html')
