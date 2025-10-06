@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>StockHome Trading Signals</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/styles/style.css">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-</head>
-<body>
-  <!-- HEADER -->
-<div id="header-include"></div>
-<script>
-fetch('/pages/header.html')
-  .then(res => res.text())
-  .then(html => { document.getElementById('header-include').innerHTML = html; });
-</script>
-
-  <!-- HERO SECTION -->
-  <div id="hero-include"></div>
-  <script>
-  fetch('/pages/hero.html')
-    .then(res => res.text())
-    .then(html => { document.getElementById('hero-include').innerHTML = html; });
-  </script>
-  
-
-  <main>
-    <section class="section">
+<section class="section">
       <div class="filter-controls">
         <label>RSI <input id="rsi-slider" type="range" min="0" max="100" value="100"></label>
         <span id="rsi-value">100</span>
@@ -39,21 +11,4 @@ fetch('/pages/header.html')
         <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
       </div>
       <div id="filtered-stocks"></div> 
-    </section>
-
-
-    <section class="meta">
-      <div>Last updated: <time id="last-updated">—</time> PT</div>
-    </section>
-    
-  </main>
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <small>© <span id="year"></span> StockHome. Past performance is not indicative of future results.</small>
-  </footer>
-  <script src="/scripts/stock_filter.js"></script>
-  <script src="/scripts/navbar.js"></script>
-  <script src="/scripts/spa-helper.js"></script>
-
-</body>
-</html>
+</section>
