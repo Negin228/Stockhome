@@ -29,6 +29,8 @@ jobs:
         run: |
           rm -rf artifacts
           mkdir -p artifacts
+          mkdir -p artifacts/pages
+
 
       - name: Run Signal script and generate artifacts
         run: python Signal.py
@@ -66,8 +68,9 @@ jobs:
       
      
       - name: Copy static files to artifacts (dereference symlinks)
-        run: cp -rL index.html scripts styles assets artifacts/
-            cp header.html hero.html filters.html artifacts/pages/
+        run: |
+            cp -rL index.html scripts styles assets artifacts/
+            cp header.html hero.html filters.html artifacts/pages/ || echo "file missing"
 
 
       # Remove any remaining symlinks (guaranteed Pages compliance)
