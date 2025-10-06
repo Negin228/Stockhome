@@ -54,6 +54,17 @@ function filterStocks() {
     }).join("") + "</ul>" : "<p>No stocks match.</p>";
 }
 
+function showFilters() {
+  fetch('pages/filters.html')
+    .then(response => response.text())
+    .then(html => {
+      buySignalsSection.innerHTML = html;
+      filtersBtn.classList.add('active');
+      signalsBtn.classList.remove('active');
+      setupSliderHandlers();
+    });
+}
+
 
 function resetFilters() {
     document.getElementById('cap-slider').value = 0;     // Minimum market cap
