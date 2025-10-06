@@ -21,9 +21,12 @@ fetch('pages/header.html')
   <!-- HERO SECTION -->
   <div id="hero-include"></div>
   <script>
-  fetch('pages/hero.html')
-    .then(res => res.text())
-    .then(html => { document.getElementById('hero-include').innerHTML = html; });
+    fetch('pages/hero.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('hero-include').innerHTML = html;
+        setupOverlayHandlers(); // Attach button handlers here!
+      });
   </script>
 
   
