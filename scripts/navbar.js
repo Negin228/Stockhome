@@ -35,3 +35,20 @@ document.querySelectorAll('a[data-spa]').forEach(link => {
       });
   });
 });
+
+window.addEventListener('popstate', () => {
+  fetch(window.location.href)
+    .then(response => response.text())
+    .then(html => {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      const newMain = tempDiv.querySelector('main');
+      if (newMain) {
+        document.querySelector('main').innerHTML = newMain.innerHTML;
+        // OPTIONAL: update active nav button here
+      } else {
+        window.location.reload();
+      }
+    });
+});
+
