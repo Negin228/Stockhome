@@ -12,21 +12,20 @@
   <!-- HEADER -->
 <div id="header-include"></div>
 <script>
-fetch('/header.html')
+fetch('pages/header.html')
   .then(res => res.text())
   .then(html => { document.getElementById('header-include').innerHTML = html; });
 </script>
 
 
   <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Signals Backed by Data.</h1>
-    <p class="sub">Actionable alerts for options and stocks.</p>
-    <div class="cta-row">
-      <a class="btn" href="pages/filters.html">Filters</a>
-      <a class="btn primary" href="/index.html#buy-signals">View Today’s Signals</a>
-    </div>
-  </section>
+  <div id="hero-include"></div>
+  <script>
+  fetch('pages/hero.html')
+    .then(res => res.text())
+    .then(html => { document.getElementById('hero-include').innerHTML = html; });
+  </script>
+
 
   <!-- SIGNALS (these lists will be filled by app.js using signals.json) -->
   <main>
