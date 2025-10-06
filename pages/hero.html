@@ -6,3 +6,20 @@
     <a class="btn" id="signals-btn" href="/index.html#buy-signals">View Today’s Signals</a>
   </div>
 </section>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.getElementById('filters-btn') && document.getElementById('signals-btn')) {
+    document.getElementById('filters-btn').classList.remove('primary');
+    document.getElementById('signals-btn').classList.remove('primary');
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+
+    if (path.endsWith('/filters.html')) {
+      document.getElementById('filters-btn').classList.add('primary');
+    } else if ((path.endsWith('/index.html') || path === "/") && hash === "#buy-signals") {
+      document.getElementById('signals-btn').classList.add('primary');
+    }
+  }
+});
+</script>
+
