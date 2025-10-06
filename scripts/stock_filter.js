@@ -13,28 +13,6 @@ fetch('/data/signals.json')
     }
   });
 
-document.addEventListener('DOMContentLoaded', function() {
-  
-  document.getElementById('rsi-slider').oninput = function() {
-      document.getElementById('rsi-value').innerText = this.value;
-      filterStocks();
-  }
-
-  document.getElementById('drop-slider').oninput = function() {
-    document.getElementById('drop-value').innerText = this.value + "%";
-    filterStocks();
-}
-  
-  document.getElementById('pe-slider').oninput = function() {
-      document.getElementById('pe-value').innerText = this.value;
-      filterStocks();
-  }
-  document.getElementById('cap-slider').oninput = function() {
-      document.getElementById('cap-value').innerText = this.value;
-      filterStocks();
-  }
-  filterStocks(); // initial load
-});
 
 
 function filterStocks() {
