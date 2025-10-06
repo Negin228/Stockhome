@@ -243,6 +243,28 @@ def format_market_cap(mcap):
     if mcap >= 1e6:
         return f"{mcap / 1e6:.1f}M"
     return str(mcap)
+    
+def format_email_body_html(buy_alerts, sell_alerts):
+    lines = [
+        '<html><body>',
+        '<h2>📊 StockHome.me Trading Signals</h2>',
+        f'<div><strong>Generated:</strong> {(datetime.datetime.now() - datetime.timedelta(hours=7)):%m-%d-%Y %H:%M} PT</div>',
+        '<br>'
+    ]
+    if buy_alerts:
+        lines.append('<h3 style="color:green;">🟢 BUY SIGNALS</h3>')
+        lines.append('<ul>')
+        for alert in buy_alerts:
+            lines.append(f"<li>📈 {alert}</li>")
+        lines.append('</ul>')
+    if sell_alerts:
+        lines.append('<h3 style="color:red;">🔴 SELL SIGNALS</h3>')
+        lines.append('<ul>')
+        for alert in sell_alerts:
+            lines.append(f"<li>📉 {alert}</li>")
+        lines.append('</ul>')
+    lines.append('</body></html>')
+    return "\n".join(lines)
 
 def send_email(subject, body):
     if not all([EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECEIVER]):
