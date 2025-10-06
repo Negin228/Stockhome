@@ -43,6 +43,29 @@ function showFilters() {
     });
 }
 
+function setupSliderHandlers() {
+  var rsiSlider = document.getElementById('rsi-slider');
+  if (rsiSlider) rsiSlider.oninput = function() {
+    document.getElementById('rsi-value').innerText = this.value;
+    filterStocks();
+  };
+  var dropSlider = document.getElementById('drop-slider');
+  if (dropSlider) dropSlider.oninput = function() {
+    document.getElementById('drop-value').innerText = this.value + "%";
+    filterStocks();
+  };
+  var peSlider = document.getElementById('pe-slider');
+  if (peSlider) peSlider.oninput = function() {
+    document.getElementById('pe-value').innerText = this.value;
+    filterStocks();
+  };
+  var capSlider = document.getElementById('cap-slider');
+  if (capSlider) capSlider.oninput = function() {
+    document.getElementById('cap-value').innerText = this.value;
+    filterStocks();
+  };
+}
+
 
 function resetFilters() {
     document.getElementById('cap-slider').value = 0;     // Minimum market cap
