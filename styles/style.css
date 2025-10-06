@@ -45,6 +45,8 @@ body {
   text-decoration: none;
 }
 
+#filters-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; }
+
 /* Hide nav links and show hamburger by default on mobile */
 @media (max-width: 700px) {
   .nav {
