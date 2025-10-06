@@ -70,7 +70,7 @@ jobs:
       - name: Copy static files to artifacts (dereference symlinks)
         run: |
             cp -rL index.html scripts styles assets artifacts/
-            cp header.html hero.html filters.html artifacts/pages/ || echo "file missing"
+            cp pages/header.html pages/hero.html pages/filters.html artifacts/pages/ || echo "file missing"
 
 
       # Remove any remaining symlinks (guaranteed Pages compliance)
