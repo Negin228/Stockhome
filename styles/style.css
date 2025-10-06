@@ -149,6 +149,7 @@ body {
   background: #fff;
 }
 
+.btn.active,
 .btn.primary {
   background: var(--accent);
   color: #fff;
