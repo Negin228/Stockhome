@@ -250,7 +250,7 @@ def format_email_body_html(buy_alerts, sell_alerts):
         f'<div style="margin-bottom:24px;">'
         f'<a href="https://stockhome.me" target="_blank">'
         f'<img src="https://stockhome.me/assets/logo.png" alt="StockHome Logo" style="height:40px; max-width:220px; width:auto; vertical-align:middle;"></a>'
-        f' <span style="font-size:2em;font-weight:bold;vertical-align:middle;">StockHome.me Trading Signals</span>'
+        f' <span style="font-size:2em;font-weight:bold;vertical-align:middle;">Trading Signals</span>'
         '</div>',
         f'<div><strong>Generated:</strong> {(datetime.datetime.now() - datetime.timedelta(hours=7)):%m-%d-%Y %H:%M} PT</div>',
         '<br>'
