@@ -266,16 +266,17 @@ def format_email_body_html(buy_alerts, sell_alerts):
     lines.append('</body></html>')
     return "\n".join(lines)
 
-def send_email(subject, body):
+def send_email(subject, html_body):
     if not all([EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECEIVER]):
         logger.error("Email credentials not set!")
         return
     try:
-        msg = MIMEMultipart()
+        msg = MIMEMultipart("alternative")
         msg["From"] = EMAIL_SENDER
         msg["To"] = EMAIL_RECEIVER
         msg["Subject"] = subject
-        msg.attach(MIMEText(body, "plain"))
+        # Attach HTML body
+        msg.attach(MIMEText(html_body, "html"))
         with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as s:
             s.starttls()
             s.login(EMAIL_SENDER, EMAIL_PASSWORD)
@@ -283,6 +284,7 @@ def send_email(subject, body):
         logger.info("Email sent")
     except Exception as e:
         logger.error(f"Email sending failed: {e}")
+
 
 def log_alert(alert):
     csv_path = config.ALERTS_CSV
@@ -487,10 +489,10 @@ def main():
     unique_buys = set(all_buy_symbols)
     new_buys = unique_buys.difference(prev_buys)
     if new_buys or all_sell_alerts:
-        body = format_email_body(all_buy_alerts, all_sell_alerts)
+        html_body = format_email_body_html(all_buy_alerts, all_sell_alerts)  # Use new function
         logger.info(f"Sending email with {len(new_buys)} new buys")
-        print(body)
-        send_email("StockHome.me Trading Alerts", body)
+        print(html_body)
+        send_email("StockHome.me Trading Alerts", html_body)
         save_buys(args.email_type, prev_buys.union(new_buys))
     else:
         logger.info("No new buys or sells to report.")
