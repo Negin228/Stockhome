@@ -32,16 +32,7 @@ function filterStocks() {
     }).join("") + "</ul>" : "<p>No stocks match.</p>";
 }
 
-function showFilters() {
-  fetch('pages/filters.html')
-    .then(response => response.text())
-    .then(html => {
-      buySignalsSection.innerHTML = html;
-      filtersBtn.classList.add('active');
-      signalsBtn.classList.remove('active');
-      setupSliderHandlers();
-    });
-}
+
 
 function setupSliderHandlers() {
   var rsiSlider = document.getElementById('rsi-slider');
@@ -64,6 +55,7 @@ function setupSliderHandlers() {
     document.getElementById('cap-value').innerText = this.value;
     filterStocks();
   };
+  filterStocks();
 }
 
 
