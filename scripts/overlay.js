@@ -21,3 +21,25 @@ signalsBtn.onclick = function(event) {
     filtersBtn.classList.remove('active');
     // Optionally reload signals here if needed
 };
+
+function showFilters() {
+    fetch('pages/filters.html')
+        .then(response => response.text())
+        .then(html => {
+            buySignalsSection.innerHTML = html;
+            filtersBtn.classList.add('active');
+            signalsBtn.classList.remove('active');
+        });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash === '#filters') {
+        showFilters();
+    }
+});
+
+filtersBtn.onclick = function(event) {
+    event.preventDefault();
+    window.location.hash = '#filters';
+    showFilters();
+};
