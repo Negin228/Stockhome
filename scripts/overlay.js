@@ -29,13 +29,13 @@ function setupOverlayHandlers() {
 
   filtersBtn.onclick = function(event) {
       event.preventDefault();
-      window.location.hash = '#filters';
+      window.location.hash = 'filters';
       showFilters();
   };
 
   signalsBtn.onclick = function(event) {
       event.preventDefault();
-      window.location.hash = '#signals';
+      window.location.hash = 'signals';
       showSignals();
   };
 
