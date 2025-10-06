@@ -259,13 +259,13 @@ def format_email_body_html(buy_alerts, sell_alerts):
         '<br>'
     ]
     if buy_alerts:
-        lines.append('<h3 style="color:green;">🟢 BUY SIGNALS</h3>')
+        lines.append('<h3><span style="color:#00B686;">🟢</span> BUY SIGNALS</h3>')
         lines.append('<ul>')
         for alert in buy_alerts:
             lines.append(f"<li>📈 {alert}</li>")
         lines.append('</ul>')
     if sell_alerts:
-        lines.append('<h3 style="color:red;">🔴 SELL SIGNALS</h3>')
+        lines.append('<h3><span style="color:#F44336;">🔴</span> SELL SIGNALS</h3>')
         lines.append('<ul>')
         for alert in sell_alerts:
             lines.append(f"<li>📉 {alert}</li>")
