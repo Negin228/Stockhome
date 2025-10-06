@@ -249,13 +249,11 @@ def format_email_body_html(buy_alerts, sell_alerts):
         '<html><body style="font-family: Arial, sans-serif;">',
         f'<div style="margin-bottom:24px;">'
         f'<a href="https://stockhome.me" target="_blank">'
-        f'<img src="/assets/logo.svg" alt="StockHome Logo" style="height:60px;vertical-align:middle;">'
+        f'<img src="https://stockhome.me/assets/logo.svg" alt="StockHome Logo" style="height:60px;vertical-align:middle;">'
         '</a>'
         f' <span style="font-size:2em;font-weight:bold;vertical-align:middle;">StockHome.me Trading Signals</span>'
         '</div>',
         f'<div><strong>Generated:</strong> {(datetime.datetime.now() - datetime.timedelta(hours=7)):%m-%d-%Y %H:%M} PT</div>',
-        '<br>',
-        f'<div><a href="https://stockhome.me" style="color:#1976d2;text-decoration:none;font-size:1.1em;">Visit StockHome.me</a></div>',
         '<br>'
     ]
     if buy_alerts:
@@ -270,6 +268,7 @@ def format_email_body_html(buy_alerts, sell_alerts):
         for alert in sell_alerts:
             lines.append(f"<li>📉 {alert}</li>")
         lines.append('</ul>')
+    lines.append(f'<br><div><a href="https://stockhome.me" style="color:#1976d2;text-decoration:none;font-size:1.1em;">Visit StockHome.me</a></div>')
     lines.append('</body></html>')
     return "\n".join(lines)
 
