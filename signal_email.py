@@ -245,8 +245,6 @@ def format_market_cap(mcap):
     return str(mcap)
     
 def format_email_body_html(buy_alerts, sell_alerts):
-
-    img src="/assets/logo.svg"
     lines = [
         '<html><body style="font-family: Arial, sans-serif;">',
         f'<div style="margin-bottom:24px;">'
