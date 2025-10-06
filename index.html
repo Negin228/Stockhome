@@ -61,6 +61,12 @@ fetch('pages/header.html')
   <script src="/scripts/spa-helper.js"></script>
   <script src="/scripts/stock_filter.js"></script>
   <div id="filters-overlay" style="display:none;"></div>
+  <script>
+    document.getElementById('filters-btn').onclick = function(event) {
+      event.preventDefault();
+      openFiltersOverlay();};
+  </script>
+
 
 </body>
 </html>
