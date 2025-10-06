@@ -247,15 +247,18 @@ def format_market_cap(mcap):
 def format_email_body_html(buy_alerts, sell_alerts):
     lines = [
         '<html><body style="font-family: Arial, sans-serif;">',
-        f'<div style="margin-bottom:24px;">'
-        f'<a href="https://stockhome.me" target="_blank">'
-        f'<img src="https://stockhome.me/assets/logo.png" alt="StockHome Logo" style="height:40px; max-width:220px; width:auto; vertical-align:middle;"></a>',
-        '<br>'
-        f' <span style="font-size:2em;font-weight:bold;vertical-align:middle;">Trading Signals</span>'
+        '<div style="text-align:center; margin-bottom:8px;">'
+        '<a href="https://stockhome.me" target="_blank">'
+        '<img src="https://stockhome.me/assets/logo.png" alt="StockHome Logo" style="height:40px; max-width:220px; width:auto; display:inline-block;">'
+        '</a>'
         '</div>',
-        f'<div><strong>Generated:</strong> {(datetime.datetime.now() - datetime.timedelta(hours=7)):%m-%d-%Y %H:%M} PT</div>',
+        '<div style="text-align:center; margin-bottom:24px;">'
+        '<span style="font-size:2em; font-weight:bold;">Trading Signals</span>'
+        '</div>',
+        f'<div style="margin-bottom:24px;">Generated: {(datetime.datetime.now() - datetime.timedelta(hours=7)):%m-%d-%Y %H:%M} PT</div>',
         '<br>'
     ]
+
     if buy_alerts:
         lines.append('<h3><span style="color:#00B686;">🟢</span> BUY SIGNALS</h3>')
         lines.append('<ul>')
