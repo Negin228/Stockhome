@@ -45,12 +45,47 @@ body {
   text-decoration: none;
 }
 
-.nav {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  flex-wrap: wrap;
+/* Hide nav links and show hamburger by default on mobile */
+@media (max-width: 700px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 60px; /* adjust as needed for your header's height */
+    right: 0;
+    width: 200px;
+    border: 1px solid #e6ecf2;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    z-index: 100;
+  }
+  .nav.open {
+    display: flex;
+  }
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+  }
 }
+
+/* On desktop, hide hamburger and show nav as before */
+@media (min-width: 701px) {
+  .nav-toggle {
+    display: none;
+  }
+  .nav {
+    display: flex !important;
+    position: static;
+    width: auto;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+}
+
 
 .nav-link {
   color: var(--muted);
