@@ -1,4 +1,3 @@
-
 import os
 import datetime
 import json
@@ -14,6 +13,10 @@ import time
 import numpy as np
 from dateutil.parser import parse
 import config
+from news_fetcher import fetch_news_ticker
+from newspaper import Article
+#import openai
+#from transformers import pipeline
 import re
 import pytz
 
@@ -25,6 +28,10 @@ puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
 os.makedirs(puts_dir, exist_ok=True)
+os.makedirs("data", exist_ok=True)
+os.makedirs("artifacts/data", exist_ok=True)
+
+
 
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
@@ -46,13 +53,6 @@ MAX_API_RETRIES = 5
 API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
-
-initial_cash = 300_000
-max_positions = 5
-rsi_threshold = 30
-sell_target = 1.2  # Sell when price rises 20% above buy
-days_back = 730  # 2 years
-MAX_CACHE_DAYS = 7
 
 
 def retry_on_rate_limit(func):
@@ -84,6 +84,23 @@ def force_float(val):
         return float(val.values[-1][0])
     return float(val) if val is not None else None
 
+
+def extend_to_next_period(text):
+    if not text or not text.strip():
+        return ""
+    idx = text.find('.')
+    if idx == -1:
+        return text.strip()
+    return text[:idx+1].strip()
+
+    
+def ensure_sentence_completion(text):
+    text = text.strip()
+    if not text:
+        return ""
+    if not re.search(r'[.!?]$', text):
+        text += "."
+    return text
 
 
 
@@ -262,43 +279,6 @@ def log_alert(alert):
 
 
 def job(tickers):
-
-    cash = initial_cash
-    holdings = {}
-    trade_log = []
-
-    for symbol in tickers:
-        hist = fetch_cached_history(symbol)
-        hist = calculate_indicators(hist)
-        if hist.empty or 'rsi' not in hist.columns or hist['rsi'].isnull().all():
-            continue
-        for date, row in hist.iterrows():
-            price = float(row['Close'])
-            rsi = float(row['rsi'])
-            already_holding = symbol in holdings
-            if rsi < rsi_threshold and len(holdings) < max_positions and not already_holding:
-                holdings[symbol] = {'buy_price': price, 'buy_date': date}
-                cash -= price
-                trade_log.append({'ticker': symbol,'action': 'BUY','date': date,'price': price,'cash': cash})
-            elif already_holding and price >= holdings[symbol]['buy_price'] * sell_target:
-                pnl = price - holdings[symbol]['buy_price']
-                cash += price
-                trade_log.append({'ticker': symbol,'action': 'SELL','date': date,'price': price,'pnl': pnl,'cash': cash})
-                del holdings[symbol]
-
-# Liquidate remaining
-    for symbol in list(holdings):
-        final_hist = fetch_cached_history(symbol, period="5d", interval="1d")
-        final_price = final_hist['Close'].iloc[-1] if not final_hist.empty else holdings[symbol]['buy_price']
-        pnl = final_price - holdings[symbol]['buy_price']
-        cash += final_price
-        trade_log.append({'ticker': symbol,'action': 'LIQUIDATE','date': datetime.datetime.now(),'price': final_price,'pnl': pnl,'cash': cash})
-        del holdings[symbol]
-
-    df_trades = pd.DataFrame(trade_log)
-    df_trades.to_excel("backtest_results.xlsx", index=False)
-    print(f"Final value: ${cash:,.2f}")
-
     sell_alerts = []
     all_sell_alerts = []
     buy_symbols = []
@@ -308,7 +288,6 @@ def job(tickers):
     failed = []
     total = skipped = 0
     stock_data_list = []
-
 
     for symbol in tickers:
         total += 1
@@ -389,6 +368,9 @@ def job(tickers):
         
         stock_data_list.append({
         'ticker': symbol,
+        'signal' : sig,
+        'price': float(rt_price) if rt_price is not None else None,
+        'price_str': f"{rt_price:.2f}" if rt_price is not None else "N/A",
         'rsi': float(rsi_val) if rsi_val is not None else None,
         'pe': float(pe) if pe is not None else None,
         'market_cap': float(mcap) if mcap is not None else None,
@@ -423,6 +405,8 @@ def job(tickers):
             "market_cap": mcap,
         }
         log_alert(alert_data)
+
+
         
         if sig == "BUY":
             buy_symbols.append(symbol)
@@ -471,6 +455,26 @@ def job(tickers):
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
         dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
         dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
+
+        put_obj = {
+            "strike": float(best_put['strike']) if best_put.get('strike') is not None else None,
+            "expiration": expiration_fmt if expiration_fmt else "N/A",
+            "premium": float(best_put['premium']) if best_put.get('premium') is not None else None,
+            "delta_percent": float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else None,
+            "premium_percent": float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else None,
+            "metric_sum": (
+                    float(best_put['delta_percent'] or 0) + float(best_put['premium_percent'] or 0)
+                    if best_put.get('delta_percent') is not None and best_put.get('premium_percent') is not None
+                    else None),}
+        # Insert the put metrics into the correct stock_data_list object:
+        for s in stock_data_list:
+            if s['ticker'] == sym:
+                s['put'] = put_obj
+                break
+
+
+
+        
         buy_alert_line = format_buy_alert_line(
             ticker=sym,
             price=price if price is not None else 0.0,
@@ -486,6 +490,68 @@ def job(tickers):
             premium_percent=float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else 0.0
         )
         
+        news_items = fetch_news_ticker(sym)
+        summary_sentence = f"No recent reason found for {sym}."
+        if (news_items and isinstance(news_items[0], dict) and 'error' in news_items[0]):
+            # Optionally include error: summary_sentence = f"No news available for {sym} ({news_items[0]['error']})"
+            pass  # Keep default summary_sentence, do not use below logic
+        elif news_items:
+            negative_news = [news for news in news_items if float(news.get('sentiment', 0)) < 0]
+            use_news = None
+            if negative_news:
+                use_news = negative_news[0]
+            else:
+                use_news = news_items[0]
+            if use_news is not None:
+                article_text = use_news.get('article_text')
+                reason_sentence = use_news.get('summary') or use_news.get('headline') or use_news.get('title')
+                if not reason_sentence and article_text:
+                    try:
+                        summary = summarizer(article_text)
+                    except Exception as e:
+                        logger.error(f"Error during summarization: {e}")
+                        summary = "No summary available."
+                    reason_sentence = summary
+                if reason_sentence:
+                        summary_sentence = ensure_sentence_completion(reason_sentence)
+
+        print(f"news_items for {sym}:", news_items)
+
+        
+
+
+        
+        filtered_news = [
+            news for news in news_items 
+            if 'sentiment' in news 
+            and news['sentiment'] is not None
+            and (float(news['sentiment']) > 0.2 or float(news['sentiment']) < -0.2)
+        ]
+        sorted_news = sorted(filtered_news, key=lambda n: -float(n['sentiment']))
+        top_news = sorted_news[:4]
+
+        def sentiment_emoji(sent):
+            s = float(sent)
+            if s > 0.2:
+                return "🟢"
+            elif s < -0.2:
+                return "🔴"
+            else:
+                return "⚪"
+        news_html = '<ul class="news-list">'
+        for news in top_news:
+            emoji = sentiment_emoji(news['sentiment'])
+            fval = f"{float(news['sentiment']):.1f}"
+            #news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
+            news_html += f"<li>{emoji} <a href='{news['url']}'>{news['headline']}</a></li>"
+        news_html += '</ul>'
+
+        for s in stock_data_list:
+            if s['ticker'] == sym:
+                s['news_summary'] = summary_sentence
+                s['news'] = news_items
+                break
+
         price_str = f"{price:.2f}" if price is not None else "N/A"
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str = f"{pe:.1f}" if pe is not None else "N/A"
@@ -496,14 +562,31 @@ def job(tickers):
         pp = f"{best_put['premium_percent']:.1f}%" if best_put.get('premium_percent') is not None else "N/A"
         metric_sum = (best_put.get('delta_percent', 0) or 0) + (best_put.get('premium_percent', 0) or 0)
         metric_sum_str = f"{metric_sum:.1f}%" if (best_put.get('delta_percent') is not None and best_put.get('premium_percent') is not None) else "N/A"
+        
+        
+
+        
+        buy_alert_html = f"""
+            <div class="main-info">
+                <div>
+                    <span class="ticker-alert">{sym}</span>
+                </div>
+                <div class="price-details">
+                        <div class="current-price price-up">{price:.2f}</div>
+                </div>                    
+            </div>
+            <p class="news-summary">
+                    {buy_alert_line}
+            </p>
+            <p class="news-summary">{summary_sentence}..</p>
+                {news_html}
+        """
+        buy_alerts_web.append(buy_alert_html)
 
 
 
 
         
-        
-
-
         puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
         try:
             with open(puts_json_path, "w") as fp:
@@ -541,6 +624,46 @@ def main():
             logger.info(f"Rate limited. Waiting {TICKER_RETRY_WAIT} seconds before retrying {len(to_process)} tickers...")
             time.sleep(TICKER_RETRY_WAIT)
 
+    seen = set()
+    unique_buy_alerts_web = []
+    for alert in all_buy_alerts_web:
+        if alert not in seen:
+            unique_buy_alerts_web.append(alert)
+            seen.add(alert)
+    all_buy_alerts_web = unique_buy_alerts_web
+
+    seen = set()
+    unique_sell_alerts = []
+    for alert in all_sell_alerts:
+        if alert not in seen:
+            unique_sell_alerts.append(alert)
+            seen.add(alert)
+    all_sell_alerts = unique_sell_alerts
+
+    seen = set()
+    unique_stock_data = []
+    for stock in all_stock_data:
+        if stock['ticker'] not in seen:
+            unique_stock_data.append(stock)
+            seen.add(stock['ticker'])
+    all_stock_data = unique_stock_data
+
+
+
+    logger.info("Writing HTML to index.html")
+    payload = {
+        "generated_at_pt": datetime.datetime.now().strftime("%m-%d-%Y %H:%M"),
+        "buys": [s for s in all_stock_data if s.get('signal') == 'BUY'],
+        "sells": [s for s in all_stock_data if s.get('signal') == 'SELL'],
+        "all": all_stock_data}
+        #"buys_html": [f"<li class='signal-card buy-card'>{html}</li>" for html in all_buy_alerts_web],
+        #"sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
+    with open("artifacts/data/signals.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+
+
+
+    logger.info("Written index.html")
 
 if __name__ == "__main__":
     main()
