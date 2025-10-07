@@ -46,14 +46,15 @@ def strike_for_target_delta(S, T, r, sigma, target_abs_delta=0.20):
 def add_iv_proxies(df_prices, lookback_ivr=252):
     logret = np.log(df_prices["Close"]).diff()
     hv20 = logret.rolling(20).std() * math.sqrt(252)
-    df_prices["iv_proxy"] = hv20.clip(lower=0.05).bfill()
+    # iv_proxy for volatility (set a higher floor if desired)
+    df_prices["iv_proxy"] = hv20.clip(lower=0.15).bfill()
     lo = hv20.rolling(lookback_ivr).min()
     hi = hv20.rolling(lookback_ivr).max()
     ivr = (hv20 - lo) / (hi - lo)
-    #df_prices["ivr_proxy"] = ivr.clip(lower=0.0, upper=1.0).fillna(0.0)
-    df_prices["iv_proxy"] = hv20.clip(lower=0.15).bfill()
-
+    # ivr_proxy for IV Rank (this must be present for filter criteria)
+    df_prices["ivr_proxy"] = ivr.clip(lower=0.0, upper=1.0).fillna(0.0)
     return df_prices
+
 
 # -----------------------------
 # Backtest
@@ -93,8 +94,15 @@ def backtest_csp(
             df_t = data[t][["Close"]].dropna().copy()
         except Exception:
             df_t = data[["Close"]].dropna().copy()
-        df_t = add_iv_proxies(df_t)
-        per_ticker[t] = df_t
+
+        if df_t.empty:
+            print(f"{t} is empty after download – skipping IV proxy addition!")
+        else:
+            df_t = add_iv_proxies(df_t)
+            per_ticker[t] = df_t
+            print(f"{t} columns: {list(df_t.columns)}")
+
+
 
     # Print diagnostic info about ticker data ranges
     for t, df in per_ticker.items():
