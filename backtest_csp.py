@@ -61,12 +61,12 @@ def add_iv_proxies(df_prices, lookback_ivr=252):
 # -----------------------------
 def backtest_csp(
     tickers,
-    start_cash=100_000.0,
+    start_cash=100_000_000.0,
     risk_free_rate=0.02,
     target_delta=0.20,
     target_dte_days=30,
-    min_ivr=0.40,
-    min_yield_per_30d=0.02,
+    min_ivr=0.10,
+    min_yield_per_30d=0.005,
     seed=7
 ):
     np.random.seed(seed)
