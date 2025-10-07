@@ -10,7 +10,7 @@ import yfinance as yf
 # Black–Scholes helpers
 # -----------------------------
 def _norm_cdf(x):  # standard normal CDF
-    return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))t
+    return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
 
 def bs_put_price(S, K, T, r, sigma):
     if T <= 0:  # expiry
