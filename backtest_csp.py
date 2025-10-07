@@ -29,9 +29,8 @@ def bs_put_delta(S, K, T, r, sigma):
     return _norm_cdf(d1) - 1.0
 
 def strike_for_target_delta(S, T, r, sigma, target_abs_delta=0.20):
-    # Bisection on K to achieve |put delta| ~ target
-    # Search K in (tiny, 2*S] to be safe
-    low, high = max(1e-4, 0.01*S), 2.0*S
+    # Strike must not exceed the spot -- this matches how actual put options are traded
+    low, high = max(1e-4, 0.01*S), S
     for _ in range(60):
         mid = 0.5*(low + high)
         d = abs(bs_put_delta(S, mid, T, r, sigma))
@@ -40,6 +39,7 @@ def strike_for_target_delta(S, T, r, sigma, target_abs_delta=0.20):
         else:
             high = mid
     return 0.5*(low + high)
+
 
 # -----------------------------
 # IV / IV Rank proxies
