@@ -50,7 +50,9 @@ def add_iv_proxies(df_prices, lookback_ivr=252):
     lo = hv20.rolling(lookback_ivr).min()
     hi = hv20.rolling(lookback_ivr).max()
     ivr = (hv20 - lo) / (hi - lo)
-    df_prices["ivr_proxy"] = ivr.clip(lower=0.0, upper=1.0).fillna(0.0)
+    #df_prices["ivr_proxy"] = ivr.clip(lower=0.0, upper=1.0).fillna(0.0)
+    df_prices["iv_proxy"] = hv20.clip(lower=0.15).bfill()
+
     return df_prices
 
 # -----------------------------
