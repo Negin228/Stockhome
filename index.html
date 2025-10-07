@@ -12,15 +12,19 @@
   <!-- HEADER -->
 <div id="header-include"></div>
 <script>
-fetch('pages/header.html')
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById('header-include').innerHTML = html;
-    // Now, inject the navbar.js script so it runs AFTER header is in DOM
-    var script = document.createElement('script');
-    script.src = '/scripts/navbar.js';
-    document.body.appendChild(script);
-  });
+  fetch('pages/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('header-include').innerHTML = html;
+
+      var script = document.createElement('script');
+      script.src = '/scripts/navbar.js';
+      script.onload = function () {
+        // now that the header HTML is in the DOM, wire up the hamburger
+        if (window.initNavbar) window.initNavbar();
+      };
+      document.body.appendChild(script);
+    });
 </script>
 
 
