@@ -12,7 +12,6 @@ import yfinance as yf
 # Black–Scholes helpers
 # -----------------------------
 def _norm_cdf(x):
-    """Standard normal CDF"""
     return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
 
 def bs_put_price(S, K, T, r, sigma):
@@ -31,7 +30,6 @@ def bs_put_delta(S, K, T, r, sigma):
     return _norm_cdf(d1) - 1.0
 
 def strike_for_target_delta(S, T, r, sigma, target_abs_delta=0.20):
-    # Restrict strike to never exceed the spot price (realistic CSP)
     low, high = max(1e-4, 0.01 * S), S
     for _ in range(60):
         mid = 0.5 * (low + high)
@@ -46,7 +44,6 @@ def strike_for_target_delta(S, T, r, sigma, target_abs_delta=0.20):
 # IV / IV Rank proxies
 # -----------------------------
 def add_iv_proxies(df_prices, lookback_ivr=252):
-    """Adds columns: iv_proxy (HV20 annualized), ivr_proxy in [0,1]"""
     logret = np.log(df_prices["Close"]).diff()
     hv20 = logret.rolling(20).std() * math.sqrt(252)
     df_prices["iv_proxy"] = hv20.clip(lower=0.05).bfill()
@@ -97,10 +94,15 @@ def backtest_csp(
         df_t = add_iv_proxies(df_t)
         per_ticker[t] = df_t
 
+    # Print diagnostic info about ticker data ranges
+    for t, df in per_ticker.items():
+        print(f"{t}: {len(df)} rows from {df.index.min()} to {df.index.max()}")
+
     # Align a common calendar (business days)
     all_dates = sorted(set().union(*[set(df.index) for df in per_ticker.values()]))
     cal = pd.DatetimeIndex(all_dates)
     cal = cal[cal.date >= start_bt]
+    print("Backtest calendar length:", len(cal))
 
     # State variables and ledger
     cash = start_cash
@@ -176,6 +178,7 @@ def backtest_csp(
             ivr = float(row["ivr_proxy"])
 
             if ivr < min_ivr:
+                print(f"Skip {t} {current_date.date()} - IVR {ivr:.2f} < {min_ivr}")
                 continue
 
             T = target_dte_days / 365.0
@@ -185,12 +188,15 @@ def backtest_csp(
 
             yld = (premium / K) * (30.0 / target_dte_days)
             if yld < min_yield_per_30d:
+                print(f"Skip {t} {current_date.date()} - yield {yld:.4f} < {min_yield_per_30d}")
                 continue
 
             collateral = K * 100.0
             if cash - 1e-9 < collateral:
+                print(f"Skip {t} {current_date.date()} - not enough cash for collateral")
                 continue
 
+            print(f"Entry: {t} date={current_date.date()} S={S:.2f} K={K:.2f} premium={premium:.2f} IVR={ivr:.2f} yield={yld:.4f}")
             credit(premium * 100.0, current_date, f"{t} short put premium")
             reserve(collateral, current_date, f"{t} collateral")
             open_csp[t] = {
@@ -201,7 +207,6 @@ def backtest_csp(
                 "S_at_open": S
             }
 
-    # Validate the ledger after the loop
     if not ledger:
         raise RuntimeError("No ledger entries were created—likely due to no trades or a filtering/data problem.")
     for entry in ledger:
@@ -242,9 +247,6 @@ def backtest_csp(
 
     return trades_df, equity_path.reset_index().rename(columns={"index": "date"}), res_path.reset_index().rename(columns={"index": "date"}), summary
 
-# -----------------------------
-# Run example
-# -----------------------------
 if __name__ == "__main__":
     TICKERS = ["AAPL", "MSFT", "AMZN", "META", "NVDA", "GOOGL", "TSLA"]
 
@@ -254,8 +256,8 @@ if __name__ == "__main__":
         risk_free_rate=0.02,
         target_delta=0.20,
         target_dte_days=30,
-        min_ivr=0.40,
-        min_yield_per_30d=0.02
+        min_ivr=0.10,             # temporarily loose for testing
+        min_yield_per_30d=0.005   # temporarily loose for testing
     )
 
     print("SUMMARY")
