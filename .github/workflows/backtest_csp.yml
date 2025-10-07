@@ -1,0 +1,77 @@
+#Original page update file. Writes the whole html file.
+name: CSP Backtest
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+  push:
+    paths:
+      - backtest_csp.py
+      - .github/workflows/backtest_csp.yml
+      - requirements.txt
+      
+concurrency:
+  group: backtest_csp
+  cancel-in-progress: false
+
+jobs:
+  run-backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance pandas numpy
+
+      - name: Run backtest
+        run: |
+          set -e
+          python backtest_csp.py | tee backtest_log.txt
+
+      - name: Upload artifacts (CSVs + log)
+        uses: actions/upload-artifact@v4
+        with:
+          name: csp-backtest-${{ github.run_number }}
+          path: |
+            csp_trades.csv
+            csp_equity.csv
+            csp_collateral.csv
+            backtest_log.txt
+          if-no-files-found: error
+
+      - name: Post summary
+        if: always()
+        run: |
+          echo "## CSP Backtest (run ${{ github.run_number }})" >> $GITHUB_STEP_SUMMARY
+          if [ -f csp_trades.csv ]; then
+            TRADES=$( (wc -l < csp_trades.csv) 2>/dev/null || echo 1 )
+            TRADES=$((TRADES-1))
+            echo "- Trades: ${TRADES}" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f backtest_log.txt ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Log tail" >> $GITHUB_STEP_SUMMARY
+            tail -n 20 backtest_log.txt >> $GITHUB_STEP_SUMMARY
+          fi
+          
+
+
+
