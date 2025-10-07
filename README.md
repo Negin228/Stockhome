@@ -20,12 +20,29 @@ This list will be the input for Monday.
 
 If the output of 1 shows any ticker with P/E <=30, it sends out an email. Then runs 2-5, and if there are more tickers, it will list them in a separate email. Aggregates all in a file, and runs the code every hour. This time, runs 1-5, and sends emails if there are any new tickers.
 
+New Pro Metric:
+delta ~0.20–0.30
+Pick puts with 20–45 days left
+Look for 1–2% of the stock price per month as your target.
+Pro metric: (premium ÷ strike) × (30 ÷ DTE).
+Only sell when IV Rank ≥ 40 (means options are expensive, so you’re paid better for the risk).
+High IV = better premiums for you.
+Skip stocks with earnings announcements in the next 7 days (price can jump or crash too much).
 
-What to fix:
-1) works if the file is not there, but then gives this error:
-2025-08-20 00:36:38,872 [WARNING] Date parsing failed in cached data for CHTR, forcing full refresh
-2) CSV files were not created when running on Github Actions
-3) 6 or 7 weeks
-4) PE --> p/E
-5) highlight the strike prices where =~0.1
-6) Can't rewrite the json files if they already exist
+Take profits early: If you’ve earned 50–70% of the premium, close the trade early.
+Roll at 21 DTE: If still open with no profit, “roll” it to next month’s promise.
+Assignment = okay: You’re happy to own the stock at your strike price.
+
+You’re basically the “insurance company.”
+You only promise to buy strong, liquid stocks you’d be okay owning.
+You either get free money or you get stocks at a discount.
+Rinse, repeat.
+
+Sell 20–45 DTE puts at ~0.20 delta, when IVR ≥ 40, avoid earnings, aim for 1–2% premium per month, take profit at 50–70%, roll losers, accept assignment only on stocks you love.
+
+Check IV Rank ≥ 40
+Pick 20–45 DTE
+Choose ~0.20 delta strike
+Avoid earnings ±7d
+Collect premium
+Then follow the management rules (close early, roll, or accept assignment).
