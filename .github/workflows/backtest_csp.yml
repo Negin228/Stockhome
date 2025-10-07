@@ -6,11 +6,6 @@ on:
 
 permissions:
   contents: read
-
-paths:
-      - backtest_csp.py
-      - .github/workflows/backtest_csp.yml
-      - requirements.txt
       
 concurrency:
   group: backtest_csp
