@@ -14,8 +14,15 @@
 <script>
 fetch('pages/header.html')
   .then(res => res.text())
-  .then(html => { document.getElementById('header-include').innerHTML = html; });
+  .then(html => {
+    document.getElementById('header-include').innerHTML = html;
+    // Now, inject the navbar.js script so it runs AFTER header is in DOM
+    var script = document.createElement('script');
+    script.src = '/scripts/navbar.js';
+    document.body.appendChild(script);
+  });
 </script>
+
 
 
   <!-- HERO SECTION -->
@@ -53,9 +60,7 @@ fetch('pages/header.html')
     <small>© <span id="year"></span> StockHome. Past performance is not indicative of future results.</small>
   </footer>
 
-  <!-- JS that loads signals.json and injects into #buy-list / #sell-list -->
   <script src="/scripts/app.js" defer></script>
-  <script src="/scripts/navbar.js"></script>
   <script src="/scripts/stock_filter.js"></script>
   <script src="/scripts/overlay.js"></script>
   <script>
