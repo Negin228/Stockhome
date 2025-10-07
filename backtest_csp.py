@@ -223,8 +223,8 @@ def backtest_csp(
         cash_series.append((last_date, cur_cash))
         reserved_series.append((last_date, cur_reserved))
 
-    cash_df = pd.DataFrame(cash_series, columns=["date","cash"]).set_index("date").sort_index()
-    reserved_df = pd.DataFrame(reserved_series, columns=["date","reserved"]).set_index("date").sort_index()
+    cash_df = pd.DataFrame(cash_series, columns=["date", "cash"]).drop_duplicates("date", keep="last").set_index("date").sort_index()
+    reserved_df = pd.DataFrame(reserved_series, columns=["date", "reserved"]).drop_duplicates("date", keep="last").set_index("date").sort_index()
     idx = pd.DatetimeIndex(cal)
     # forward fill to daily path
     cash_path = cash_df.reindex(idx).ffill().fillna(start_cash)
