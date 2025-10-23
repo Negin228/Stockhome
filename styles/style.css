@@ -47,6 +47,8 @@ body {
 
 #filters-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; }
 
+
+
 /* Hide nav links and show hamburger by default on mobile */
 @media (max-width: 700px) {
   .nav {
@@ -213,6 +215,28 @@ body {
   font-size: 1.75rem;
   margin: 0;
 }
+
+
+.ticker-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+}
+
+.ticker-alert {
+  font-weight: bold;
+  font-size: 1.3em;
+  color: #212121;
+}
+
+.company-name {
+  font-weight: 600;
+  font-size: 1.07em;
+  color: #444;
+  letter-spacing: 0.01em;
+  margin-left: 0.5em;
+}
+
 
 .price-details {
   text-align: right;
