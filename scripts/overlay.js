@@ -18,13 +18,20 @@ function setupOverlayHandlers() {
   }
 
   function showSignals() {
-    buySignalsSection.innerHTML = originalBuySignalsHTML;
-    signalsBtn.classList.add('active');
-    filtersBtn.classList.remove('active');
-    if (sellSignalsSection) sellSignalsSection.style.display = '';
-    // Do NOT call setupSliderHandlers here,
-    // as sliders exist only in filters view.
-  }
+  // Reload data dynamically, not from originalBuySignalsHTML
+  fetch('artifacts/data/signals.json')
+    .then(r => r.json())
+    .then(data => {
+      const buys = data.buys || [];
+      const html = buys.map(renderBuyCard).join('');
+      buySignalsSection.innerHTML = `<ul class="signal-list">${html}</ul>`;
+      signalsBtn.classList.add('active');
+      filtersBtn.classList.remove('active');
+      if (sellSignalsSection) sellSignalsSection.style.display = '';
+    })
+    .catch(err => console.error("Failed to reload signals:", err));
+}
+
 
   filtersBtn.onclick = function(event) {
     event.preventDefault();
