@@ -58,9 +58,19 @@ function showSignals() {
   };
 
   // Handle initial view based on URL hash
+if (window.location.hash === '#filters') {
+  showFilters();
+} else {
+  showSignals();
+}
+
+
+window.addEventListener('hashchange', () => {
   if (window.location.hash === '#filters') {
     showFilters();
-  } else {
+  } else if (window.location.hash === '#signals' || window.location.hash === '') {
     showSignals();
   }
+});
+  
 }
