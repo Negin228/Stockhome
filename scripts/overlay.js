@@ -5,17 +5,28 @@ function setupOverlayHandlers() {
   const signalsBtn = document.getElementById('signals-btn');
   let originalBuySignalsHTML = buySignalsSection.innerHTML;
 
-  function showFilters() {
-    fetch('pages/filters.html')
-      .then(response => response.text())
-      .then(html => {
-        buySignalsSection.innerHTML = html;
-        filtersBtn.classList.add('active');
-        signalsBtn.classList.remove('active');
-        if (sellSignalsSection) sellSignalsSection.style.display = 'none';
-        setupSliderHandlers(); // Only called after filters HTML is injected
-      });
-  }
+function showFilters() {
+  fetch('pages/filters.html')
+    .then(response => response.text())
+    .then(html => {
+      buySignalsSection.innerHTML = html;
+      filtersBtn.classList.add('active');
+      signalsBtn.classList.remove('active');
+      if (sellSignalsSection) sellSignalsSection.style.display = 'none';
+      setupSliderHandlers(); // Only called after filters HTML is injected
+
+      // IMPORTANT: Re-acquire "view today's signals" button from DOM!
+      const newSignalsBtn = document.getElementById('signals-btn');
+      if (newSignalsBtn) {
+        newSignalsBtn.onclick = function(event) {
+          event.preventDefault();
+          window.location.hash = 'signals';
+          showSignals();
+        };
+      }
+    });
+}
+
 
   function showSignals() {
   // Reload data dynamically, not from originalBuySignalsHTML
