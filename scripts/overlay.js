@@ -13,34 +13,35 @@ function showFilters() {
       filtersBtn.classList.add('active');
       signalsBtn.classList.remove('active');
       if (sellSignalsSection) sellSignalsSection.style.display = 'none';
-      setupSliderHandlers(); // Only called after filters HTML is injected
 
-      // IMPORTANT: Re-acquire "view today's signals" button from DOM!
+      setupSliderHandlers(); // custom handler for sliders
+
+      // **Re-attach event listeners after new HTML is inserted**
       const newSignalsBtn = document.getElementById('signals-btn');
       if (newSignalsBtn) {
-        newSignalsBtn.onclick = function(event) {
+        newSignalsBtn.onclick = function (event) {
           event.preventDefault();
           window.location.hash = 'signals';
           showSignals();
         };
       }
-    });
+    })
+    .catch(err => console.error('Failed to load filters:', err));
 }
 
 
-  function showSignals() {
-  // Reload data dynamically, not from originalBuySignalsHTML
+function showSignals() {
   fetch('artifacts/data/signals.json')
     .then(r => r.json())
     .then(data => {
-      const buys = data.buys || [];
+      const buys = data.buys;
       const html = buys.map(renderBuyCard).join('');
       buySignalsSection.innerHTML = `<ul class="signal-list">${html}</ul>`;
       signalsBtn.classList.add('active');
       filtersBtn.classList.remove('active');
       if (sellSignalsSection) sellSignalsSection.style.display = '';
     })
-    .catch(err => console.error("Failed to reload signals:", err));
+    .catch(err => console.error('Failed to reload signals:', err));
 }
 
 
