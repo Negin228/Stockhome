@@ -223,6 +223,12 @@ body {
   gap: 0.8em;
 }
 
+.ticker-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .ticker-alert {
   font-weight: bold;
   font-size: 1.3em;
@@ -230,11 +236,10 @@ body {
 }
 
 .company-name {
-  font-weight: 600;
-  font-size: 1.07em;
-  color: #444;
-  letter-spacing: 0.01em;
-  margin-left: 0.5em;
+  margin-left: 0; /* remove extra gap */
+  font-size: 1em;
+  color: var(--muted);
+  margin-top: 2px;
 }
 
 
