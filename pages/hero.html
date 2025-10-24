@@ -2,56 +2,7 @@
   <h1>Signals Backed by Data</h1>
   <p class="sub">Actionable alerts for options and stocks</p>
   <div class="cta-row">
-    <a class="btn" id="filters-btn" href="/index.html#filters">Filters</a>
-    <a class="btn" id="signals-btn" href="/index.html#buy-signals" data-signal-type="buy">View Today’s Signals</a>
+    <a class="btn" id="filters-btn" href="#filters">Filters</a>
+    <a class="btn" id="signals-btn" href="#signals">View Today’s Signals</a>
   </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const filtersBtn = document.getElementById('filters-btn');
-  const signalsBtn = document.getElementById('signals-btn');
-
-  if (filtersBtn && signalsBtn) {
-    filtersBtn.classList.remove('primary');
-    signalsBtn.classList.remove('primary');
-
-    const path = window.location.pathname;
-    const hash = window.location.hash;
-
-    if (path.endsWith('/filters.html')) {
-      filtersBtn.classList.add('primary');
-    } else if ((path.endsWith('/index.html') || path === "/") && hash === "#buy-signals") {
-      signalsBtn.classList.add('primary');
-      // Force showing buy signals explicitly
-      showBuySignals();
-    }
-  }
-
-  // When clicking the signals button, always reset to buy signals
-  const signalsBtn = document.getElementById('signals-btn');
-  if (signalsBtn) {
-    signalsBtn.addEventListener('click', function(e) {
-      localStorage.setItem('activeSignalTab', 'buy');
-    });
-  }
-
-  // When page loads, restore last tab if needed
-  const activeTab = localStorage.getItem('activeSignalTab');
-  if (activeTab === 'buy') {
-    showBuySignals();
-  } else if (activeTab === 'sell') {
-    showSellSignals();
-  }
-
-  function showBuySignals() {
-    document.querySelector('#buy-signals')?.classList.remove('hidden');
-    document.querySelector('#sell-signals')?.classList.add('hidden');
-  }
-
-  function showSellSignals() {
-    document.querySelector('#sell-signals')?.classList.remove('hidden');
-    document.querySelector('#buy-signals')?.classList.add('hidden');
-  }
-});
-</script>
