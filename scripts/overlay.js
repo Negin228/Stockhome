@@ -6,6 +6,11 @@ function setupOverlayHandlers() {
     console.error("filtersBtn or signalsBtn is missing from DOM!");
     return;
   }
+  console.log("Overlay initialized with:", { 
+    filtersBtn, 
+    signalsBtn, 
+    filtersContainer: document.getElementById('filters-container')
+  });
 
   function showFilters() {
     const buySignalsSection = document.getElementById('buy-signals');
