@@ -204,7 +204,7 @@ body {
 
 .main-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 8px;
 }
@@ -231,7 +231,6 @@ body {
 
 .ticker-block {
   text-align: left;
-  margin-bottom: 6px;
 }
 
 .ticker-alert {
