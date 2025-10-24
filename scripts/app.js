@@ -9,7 +9,7 @@ function renderBuyCard(b) {
   return `
     <li class="signal-card buy-card">
       <div class="main-info">
-        <span class="ticker-alert">${b.ticker}</span>
+        <span class="ticker-alert">${b.ticker}</span><br>
         <span class="company-name">${b.company || ""}</span>
         <div class="price-details">
           <div class="current-price price-up">${fmt(b.price, 2)}</div>
