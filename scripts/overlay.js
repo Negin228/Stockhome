@@ -7,71 +7,68 @@ function setupOverlayHandlers() {
     return;
   }
 
-function showFilters() {
-  const buySignalsSection = document.getElementById('buy-signals');
-  const sellSignalsSection = document.getElementById('sell-signals');
-  const filtersContainer = document.getElementById('filters-container');
+  function showFilters() {
+    const buySignalsSection = document.getElementById('buy-signals');
+    const sellSignalsSection = document.getElementById('sell-signals');
+    const filtersContainer = document.getElementById('filters-container');
 
-  fetch('pages/filters.html')
-    .then(response => response.text())
-    .then(html => {
-      filtersContainer.innerHTML = html;
-      filtersContainer.style.display = 'block';
+    fetch('pages/filters.html')
+      .then(response => response.text())
+      .then(html => {
+        filtersContainer.innerHTML = html;
+        filtersContainer.style.display = 'block';
+        buySignalsSection.style.display = 'none';
+        if (sellSignalsSection) sellSignalsSection.style.display = 'none';
 
-      buySignalsSection.style.display = 'none';
-      if (sellSignalsSection) sellSignalsSection.style.display = 'none';
+        filtersBtn.classList.add('active');
+        signalsBtn.classList.remove('active');
 
-      filtersBtn.classList.add('active');
-      signalsBtn.classList.remove('active');
-      setupSliderHandlers();
+        setupSliderHandlers(); // only if defined elsewhere
 
-      const newSignalsBtn = document.getElementById('signals-btn');
-      if (newSignalsBtn) {
-        newSignalsBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.location.hash = '#signals';
-          showSignals();
-        });
-      } else {
+        const newSignalsBtn = document.getElementById('signals-btn');
+        if (newSignalsBtn) {
+          newSignalsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.hash = '#signals';
+            showSignals();
+          });
+        } else {
           console.warn("signals-btn missing after loading filters HTML");
-    });
-}
-
-
-function showSignals() {
-  const buySignalsSection = document.getElementById('buy-signals');
-  const sellSignalsSection = document.getElementById('sell-signals');
-  if (!buySignalsSection || !sellSignalsSection) {
-    console.error("buySignalsSection or sellSignalsSection missing");
-    return;
+        }
+      })
+      .catch(err => console.error('Failed to load filters:', err));
   }
 
-  // Rebuild the signal list containers
-  buySignalsSection.innerHTML = `
-    <h2>Buy Signals</h2>
-    <ul id="buy-list" class="signals-container"></ul>
-  `;
-  sellSignalsSection.innerHTML = `
-    <h2>Sell Signals</h2>
-    <ul id="sell-list" class="signals-container"></ul>
-  `;
+  function showSignals() {
+    const buySignalsSection = document.getElementById('buy-signals');
+    const sellSignalsSection = document.getElementById('sell-signals');
+    if (!buySignalsSection || !sellSignalsSection) {
+      console.error("buySignalsSection or sellSignalsSection missing");
+      return;
+    }
 
-  const buyList = document.getElementById('buy-list');
-  const sellList = document.getElementById('sell-list');
-  if (!buyList || !sellList) {
-    console.error("buy-list or sell-list missing after rebuild");
-    return;
+    buySignalsSection.innerHTML = `
+      <h2>Buy Signals</h2>
+      <ul id="buy-list" class="signals-container"></ul>
+    `;
+    sellSignalsSection.innerHTML = `
+      <h2>Sell Signals</h2>
+      <ul id="sell-list" class="signals-container"></ul>
+    `;
+
+    const buyList = document.getElementById('buy-list');
+    const sellList = document.getElementById('sell-list');
+
+    fetch('/data/signals.json', { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => {
+        const buys = data.buys || [];
+        const sells = data.sells || [];
+        buyList.innerHTML = buys.length ? buys.map(renderBuyCard).join('') : '<li>No buy signals</li>';
+        sellList.innerHTML = sells.length ? sells.map(renderSellCards).join('') : '<li>No sell signals</li>';
+      })
+      .catch(err => console.error('Failed to reload signals:', err));
   }
-  fetch('/data/signals.json', { cache: 'no-store' })
-    .then(res => res.json())
-    .then(data => {
-      buyList.innerHTML = data.buys.map(renderBuyCard).join('');
-      sellList.innerHTML = data.sells.map(renderSellCards).join('');
-    })
-    .catch(err => console.error('Failed to reload signals:', err));
-}
-
-
 
   filtersBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -85,19 +82,11 @@ function showSignals() {
     showSignals();
   });
 
-  // On initial load
-  if (window.location.hash === '#filters') {
-    showFilters();
-  } else {
-    showSignals();
-  }
+  if (window.location.hash === '#filters') showFilters();
+  else showSignals();
 
-  // Handle browser back/forward
   window.addEventListener('hashchange', () => {
-    if (window.location.hash === '#filters') {
-      showFilters();
-    } else {
-      showSignals();
-    }
+    if (window.location.hash === '#filters') showFilters();
+    else showSignals();
   });
 }
