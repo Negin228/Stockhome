@@ -36,14 +36,12 @@
       .then(res => res.text())
       .then(html => {
         document.getElementById('hero-include').innerHTML = html;
+        setupOverlayHandlers(); // Call handlers setup ONLY here, not on DOMContentLoaded separately!
+
       });
   </script>
 
-  <!-- FILTER/SIGNALS BUTTON BAR -->
-  <div class="cta-row">
-    <a href="#filters" id="filters-btn" class="btn">Filters</a>
-    <a href="#signals" id="signals-btn" class="btn primary">View Today's Signals</a>
-  </div>
+
   <!-- FILTERS CONTAINER (hidden by default) -->
   <div id="filters-container" style="display: none;"></div>
 
@@ -79,11 +77,7 @@
   <script src="/scripts/app.js" defer></script>
   <script src="/scripts/stock_filter.js"></script>
   <script src="/scripts/overlay.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(setupOverlayHandlers, 100);
-    });
-  </script>
+
 
 
 
