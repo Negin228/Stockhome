@@ -229,7 +229,13 @@ body {
   align-items: flex-start;
 }
 
+.ticker-block {
+  text-align: left;
+  margin-bottom: 6px;
+}
+
 .ticker-alert {
+  display: block;
   font-weight: bold;
   font-size: 1.3em;
   color: #212121;
@@ -237,7 +243,7 @@ body {
 
 .company-name {
   display: block;
-  margin-top: 2px;
+  margin-left: 0;
   font-size: 1em;
   color: var(--muted);
 }
