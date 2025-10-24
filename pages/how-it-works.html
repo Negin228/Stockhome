@@ -1,12 +1,59 @@
-<b>How It Works</b>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How It Works - StockHome</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
 
-StockHome automatically scans the market (S&P 500 list) to identify actionable trading signals for stocks and options. It analyzes technical indicators like RSI (Relative Strength Index), moving averages (DMA-50 and DMA-200), and fundamental metrics such as P/E ratio and market capitalization.
+  <!-- HEADER -->
+  <div id="header-include"></div>
+  <script>
+    fetch('../pages/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-include').innerHTML = html;
+      });
+  </script>
 
-When the RSI drops below the oversold threshold (30), a Buy signal is generated — indicating potential short-term recovery opportunities. For these cases, StockHome also recommends a cash-secured put option that offers attractive returns. For each Buy signal, the system scans put options expiring within the next 6–7 weeks and evaluates them based on two key metrics:
+  <!-- HERO SUBSECTION -->
+  <section class="hero sub-hero">
+    <h1>How StockHome Works</h1>
+    <p class="sub">
+      Understand how we generate trading insights driven by real data.
+    </p>
+  </section>
 
-Δ (Delta %) — measures how far the strike price is below the current stock price
-💎 (Premium %) — reflects the option income as a percentage of the stock price
+  <main class="section how-section">
+    
+    <section class="step">
+      <h2>Data Collection</h2>
+      <p>StockHome automatically scans the market (S&P 500 list) to identify actionable trading signals for stocks and options. It analyzes technical indicators like RSI (Relative Strength Index), moving averages (DMA-50 and DMA-200), and fundamental metrics such as P/E ratio and market capitalization. When the RSI drops below the oversold threshold (30), a Buy signal is generated — indicating potential short-term recovery opportunities. For these cases, StockHome also recommends a cash-secured put option that offers attractive returns. For each Buy signal, the system scans put options expiring within the next 6–7 weeks and evaluates them based on two key metrics:</p>
+      <p>Δ (Delta %) — measures how far the strike price is below the current stock price</p>
+      <p>💎 (Premium %) — reflects the option income as a percentage of the stock price</p>
+      <p>If the combination of delta and premium exceeds a certain threshold (10 % or higher), it suggests that the option offers an attractive balance between risk (distance from strike) and reward (income premium) — making it a strong Buy candidate.</p>
+    </section>
 
-If the combination of delta and premium exceeds a certain threshold (10 % or higher), it suggests that the option offers an attractive balance between risk (distance from strike) and reward (income premium) — making it a strong Buy candidate.
+    <section class="step">
+      <h2>Real-time Updates</h2>
+      <p>The site automatically refreshes alerts and metrics at scheduled intervals of 1 hour, keeping your signals timely and consistent without manual updates. Signals accompanied by the latest market news and sentiment insights, giving you context on why a stock might be moving — so you can make informed decisions.</p>
+    </section>
 
-All signals are refreshed automatically and accompanied by the latest market news and sentiment insights, giving you context on why a stock might be moving — so you can make informed decisions.
+  </main>
+
+
+    <!-- Footer -->
+  <div id="footer-include"></div>
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-include').innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
