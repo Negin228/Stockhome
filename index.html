@@ -59,10 +59,16 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <small>© <span id="year"></span> StockHome. Past performance is not indicative of future results.</small>
-  </footer>
+  <!-- Footer -->
+  <div id="footer-include"></div>
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-include').innerHTML = html;
+      });
+  </script>
+
 
   <script src="/scripts/app.js" defer></script>
   <script src="/scripts/stock_filter.js"></script>
