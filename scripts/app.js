@@ -8,9 +8,11 @@ function renderBuyCard(b) {
   const put = b.put || {};
   return `
     <li class="signal-card buy-card">
-      <div class="ticker-block">
-        <span class="ticker-alert">${b.ticker}</span><br>
-        <span class="company-name">${b.company || ""}</span>
+      <div class="main-info">
+        <div class="ticker-block">
+          <span class="ticker-alert">${b.ticker}</span>
+          <span class="company-name">${b.company || ""}</span>
+        </div>
         <div class="price-details">
           <div class="current-price price-up">${fmt(b.price, 2)}</div>
         </div>
