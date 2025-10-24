@@ -21,14 +21,23 @@ function setupOverlayHandlers() {
       .then(response => response.text())
       .then(html => {
         filtersContainer.innerHTML = html;
+        filtersContainer.insertAdjacentHTML('beforebegin', `
+          <a class="btn" id="signals-btn" href="#signals">View Today's Signals</a>
+  `      );
+
+        const newSignalsBtn = document.getElementById('signals-btn');
+        newSignalsBtn.addEventListener('click', e => {
+          e.preventDefault();
+          window.location.hash = '#signals';
+          showSignals();
+        });
+
         filtersContainer.style.display = 'block';
         buySignalsSection.style.display = 'none';
         if (sellSignalsSection) sellSignalsSection.style.display = 'none';
-
         filtersBtn.classList.add('active');
         signalsBtn.classList.remove('active');
-
-        setupSliderHandlers(); // only if defined elsewhere
+        setupSliderHandlers();
 
         const newSignalsBtn = document.getElementById('signals-btn');
         if (newSignalsBtn) {
