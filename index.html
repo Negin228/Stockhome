@@ -36,7 +36,6 @@
       .then(res => res.text())
       .then(html => {
         document.getElementById('hero-include').innerHTML = html;
-        setupOverlayHandlers(); // Attach button handlers here!
       });
   </script>
 
@@ -82,7 +81,7 @@
   <script src="/scripts/overlay.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      setupOverlayHandlers();
+      setTimeout(setupOverlayHandlers, 100);
     });
   </script>
 
