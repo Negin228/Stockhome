@@ -17,7 +17,7 @@ function setupOverlayHandlers() {
     const sellSignalsSection = document.getElementById('sell-signals');
     const filtersContainer = document.getElementById('filters-container');
 
-    fetch('pages/filters.html')
+    fetch('/pages/filters.html')
       .then(response => response.text())
       .then(html => {
         filtersContainer.innerHTML = html;
