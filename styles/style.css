@@ -236,10 +236,10 @@ body {
 }
 
 .company-name {
-  margin-left: 0; /* remove extra gap */
+  display: block;
+  margin-top: 2px;
   font-size: 1em;
   color: var(--muted);
-  margin-top: 2px;
 }
 
 
