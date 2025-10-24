@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ - StockHome</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div id="header-include"></div>
+  <script>
+    fetch('../pages/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-include').innerHTML = html;
+      });
+  </script>
+
+  <!-- HERO SUBSECTION -->
+  <section class="hero sub-hero">
+    <h1>Frequently Asked Questions</h1>
+    <p class="sub">
+      Get quick answers about how StockHome works, subscription details, and how to contact us.
+    </p>
+  </section>
+
+  <main class="section faq-section">
+
+    <section class="faq-item">
+      <h2>What is StockHome?</h2>
+      <p>
+        StockHome is a web-based tool that generates data-backed signals for option sellers
+        and stock traders. It helps identify buy and sell points using indicators such as RSI,
+        IV Rank, and Moving Averages.
+      </p>
+    </section>
+
+    <section class="faq-item">
+      <h2>How often are the signals updated?</h2>
+      <p>
+        Signals update automatically every hour using real-time data from APIs like
+        Yahoo Finance and Finnhub. No manual refresh is required.
+      </p>
+    </section>
+
+    <section class="faq-item">
+      <h2>How does StockHome decide a Buy or Sell signal?</h2>
+      <p>
+        Our backend Python scripts analyze multiple technical indicators using threshold-based
+        filters. A signal appears only when quantitative criteria are met.
+      </p>
+    </section>
+
+    <section class="faq-item">
+      <h2>Do I need any account or login to use it?</h2>
+      <p>
+        No login is required. All trading signals are publicly visible for research purposes,
+        though premium data feeds may be added in future updates.
+      </p>
+    </section>
+
+    <section class="faq-item">
+      <h2>How can I contact StockHome support?</h2>
+      <p>
+        Use the <a href="contact.html" data-spa>Contact</a> page linked in the header or footer.
+        You can also email us directly at <a href="mailto:support@stockhome.me">support@stockhome.me</a>.
+      </p>
+    </section>
+
+
+  </main>
+
+    <!-- Footer -->
+  <div id="footer-include"></div>
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-include').innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
