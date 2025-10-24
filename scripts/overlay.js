@@ -34,7 +34,7 @@ function setupOverlayHandlers() {
     const buySignalsSection = document.getElementById('buy-signals');
     const sellSignalsSection = document.getElementById('sell-signals');
 
-    fetch('artifacts/data/signals.json')
+    fetch('/data/signals.json')
       .then(res => res.json())
       .then(data => {
         const buys = data.buys;
