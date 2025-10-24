@@ -8,7 +8,7 @@ function renderBuyCard(b) {
   const put = b.put || {};
   return `
     <li class="signal-card buy-card">
-      <div class="main-info">
+      <div class="ticker-block">
         <span class="ticker-alert">${b.ticker}</span><br>
         <span class="company-name">${b.company || ""}</span>
         <div class="price-details">
