@@ -366,12 +366,6 @@ def job(tickers):
             pct_drop = None
             pct_drop_str = "N/A"
 
-        #if last_close is not None and prev_close is not None and prev_close != 0:
-            #pct_drop = ((last_close - prev_close) / prev_close * 100)
-            #pct_drop_str = f"{pct_drop:+.1f}%"
-        #else:
-            #pct_drop = None
-            #pct_drop_str = "N/A"
         
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
@@ -664,17 +658,12 @@ def main():
 
     logger.info("Writing HTML to index.html")
     payload = {
-        #"generated_at_pt": datetime.datetime.now().strftime("%m-%d-%Y %H:%M"),
         "generated_at_pt": dt_pacific.strftime("%m-%d-%Y %H:%M"),
         "buys": [s for s in all_stock_data if s.get('signal') == 'BUY'],
         "sells": [s for s in all_stock_data if s.get('signal') == 'SELL'],
         "all": all_stock_data}
-        #"buys_html": [f"<li class='signal-card buy-card'>{html}</li>" for html in all_buy_alerts_web],
-        #"sells_html": [f"<li class='signal-card sell-card'>{html}</li>" for html in all_sell_alerts]}
     with open("artifacts/data/signals.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
-
-
 
     logger.info("Written index.html")
 
