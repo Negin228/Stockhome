@@ -664,7 +664,8 @@ def main():
 
     logger.info("Writing HTML to index.html")
     payload = {
-        "generated_at_pt": datetime.datetime.now().strftime("%m-%d-%Y %H:%M"),
+        #"generated_at_pt": datetime.datetime.now().strftime("%m-%d-%Y %H:%M"),
+        "generated_at_pt": dt_pacific.strftime("%m-%d-%Y %H:%M"),
         "buys": [s for s in all_stock_data if s.get('signal') == 'BUY'],
         "sells": [s for s in all_stock_data if s.get('signal') == 'SELL'],
         "all": all_stock_data}
