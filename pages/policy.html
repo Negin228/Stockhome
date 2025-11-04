@@ -1,6 +1,40 @@
-Privacy Policy
-Introduction
-Stockhome (“we,” “us,” “our”) is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, and your rights regarding your personal data. This policy applies to all users accessing our website and services.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ - StockHome</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div id="header-include"></div>
+  <script>
+    fetch('../pages/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-include').innerHTML = html;
+      });
+  </script>
+
+  <!-- HERO SUBSECTION -->
+  <section class="hero sub-hero">
+    <h1>Frequently Asked Questions</h1>
+    <p class="sub">
+      Get quick answers about how StockHome works, subscription details, and how to contact us.
+    </p>
+  </section>
+
+  <main class="section faq-section">
+
+    <section class="faq-item">
+        <h2>Privacy Policy</h2>
+        <h2>Introduction</h2>
+        <p>Stockhome (“we,” “us,” “our”) is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, and your rights regarding your personal data. This policy applies to all users accessing our website and services.
+        </p>
+    </section>
 
 Information We Collect
 We collect personal data you provide directly, such as name, email, phone number, and any financial data required for account creation or trading activities. Automated data collection through cookies or analytics (e.g., IP address, browsing behavior) is also performed to improve user experience and security.​
@@ -31,3 +65,32 @@ For privacy issues or questions, please contact us via [your contact email/phone
 
 Updates to Policy
 This policy may be reviewed and revised periodically. Updates will be posted on this page and effective upon publishing.
+
+      </p>
+    </section>
+
+    <section class="faq-item">
+      <h2>How often are the signals updated?</h2>
+      <p>
+        Signals update automatically every hour using real-time data from APIs like
+        Yahoo Finance and Finnhub. No manual refresh is required.
+      </p>
+    </section>
+
+
+
+  </main>
+
+    <!-- Footer -->
+  <div id="footer-include"></div>
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-include').innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
+
