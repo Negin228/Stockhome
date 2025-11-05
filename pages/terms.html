@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ - StockHome</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
 
+  <!-- HEADER -->
+  <div id="header-include"></div>
+  <script>
+    fetch('../pages/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-include').innerHTML = html;
+      });
+  </script>
+
+  <!-- HERO SUBSECTION -->
+  <section class="hero sub-hero">
+    <h1>Terms of Use</h1>
+  </section>
+
+  <main class="section policy-section">
+
+    <section class="terms-item">
+        <h2>Acceptance of Terms</h2>
+        <p>By accessing Stockhome, you agree to these Terms of Use and all related policies. If you do not agree, please discontinue use.</p>
+    </section>
+    <section class="terms-item">
+        <h2>User Accounts</h2>
+        <p>You agree to provide accurate account information and are responsible for maintaining confidentiality of your login credentials. Unauthorized use of accounts must be reported immediately.</p>
+    </section>
+    <section class="terms-item">
+        <h2>Permitted Use</h2>
+        <p>You may use Stockhome for lawful purposes related to stock trading and information analysis. Unlawful activities, including attempting to breach site security or impersonating others, are strictly prohibited.​</p>
+    </section>
+    <section class="terms-item">
+        <h2>Account Termination</h2>
+        <p>We reserve the right to suspend or terminate accounts for violations of these terms, or if required by law.​</p>
+    </section>
+    <section class="terms-item">
+        <h2>Intellectual Property</h2>
+        <p>All content, trademarks, and software on Stockhome remain the property of Stockhome or its licensors. Users may not copy, distribute, or reverse-engineer site features except as expressly permitted.</p>
+    </section>
+    <section class="terms-item">
+        <h2>Disclaimers and Limitation of Liability</h2>
+        <p>Stockhome provides information and trading tools “as is.” We do not guarantee accuracy, completeness, or investment performance. Use site resources at your own risk; we are not liable for any losses or damages arising from service use.​</p>
+    </section>
+    <section class="terms-item">
+        <h2>Third-Party Links</h2>
+        <p>Stockhome may link to other sites. We are not responsible for the privacy or terms of those third-party sites.</p>
+    </section>
+    <section class="terms-item">
+        <h2>Changes to Terms</h2>
+        <p>We may modify these Terms of Use periodically. Updates will become effective upon posting, and continued use means acceptance of modified terms.</p>
+    </section>
+    
+  </main>
+
+    <!-- Footer -->
+  <div id="footer-include"></div>
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-include').innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
