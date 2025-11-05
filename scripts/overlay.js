@@ -13,6 +13,37 @@ function setupOverlayHandlers() {
     filtersContainer: document.getElementById('filters-container')
   });
 
+  function ensureSignalSections(filtersContainer) {
+    // Make sure the buy/sell sections exist. If they were removed/replaced by loading filters,
+    // create them so showSignals can always render into them.
+    let buySignalsSection = document.getElementById('buy-signals');
+    let sellSignalsSection = document.getElementById('sell-signals');
+
+    const parent = (filtersContainer && filtersContainer.parentNode) ? filtersContainer.parentNode : document.body;
+
+    if (!buySignalsSection) {
+      buySignalsSection = document.createElement('section');
+      buySignalsSection.id = 'buy-signals';
+      buySignalsSection.style.display = 'none';
+      // insert right after filtersContainer if possible, otherwise append to parent
+      if (filtersContainer && filtersContainer.nextSibling) parent.insertBefore(buySignalsSection, filtersContainer.nextSibling);
+      else parent.appendChild(buySignalsSection);
+      console.warn("Created missing #buy-signals section");
+    }
+
+    if (!sellSignalsSection) {
+      sellSignalsSection = document.createElement('section');
+      sellSignalsSection.id = 'sell-signals';
+      sellSignalsSection.style.display = 'none';
+      // insert after buySignalsSection so order is buy then sell
+      if (buySignalsSection && buySignalsSection.nextSibling) parent.insertBefore(sellSignalsSection, buySignalsSection.nextSibling);
+      else parent.appendChild(sellSignalsSection);
+      console.warn("Created missing #sell-signals section");
+    }
+
+    return { buySignalsSection, sellSignalsSection };
+  }
+
   function showFilters() {
     const buySignalsSection = document.getElementById('buy-signals');
     const sellSignalsSection = document.getElementById('sell-signals');
@@ -22,6 +53,10 @@ function setupOverlayHandlers() {
       .then(response => response.text())
       .then(html => {
         // Load filters
+        if (!filtersContainer) {
+          console.error('#filters-container not found in DOM; cannot load filters.');
+          return;
+        }
         filtersContainer.innerHTML = html;
         filtersContainer.style.display = 'block';
         if (buySignalsSection) buySignalsSection.style.display = 'none';
@@ -52,17 +87,23 @@ function setupOverlayHandlers() {
   }
 
   function showSignals() {
-    const buySignalsSection = document.getElementById('buy-signals');
-    const sellSignalsSection = document.getElementById('sell-signals');
     const filtersContainer = document.getElementById('filters-container');
 
+    // Ensure buy/sell sections exist (create them if they were removed by the filters HTML)
+    const { buySignalsSection, sellSignalsSection } = ensureSignalSections(filtersContainer);
+
     if (!buySignalsSection || !sellSignalsSection) {
-      console.error("buySignalsSection or sellSignalsSection missing");
+      // This should no longer happen because ensureSignalSections creates them,
+      // but keep a defensive check and informative logging.
+      console.error("buySignalsSection or sellSignalsSection missing after ensureSignalSections()", {
+        buySignalsSection,
+        sellSignalsSection
+      });
       return;
     }
 
-    // Hide filters when viewing signals
-    filtersContainer.style.display = 'none';
+    // Hide filters when viewing signals (only if filtersContainer exists)
+    if (filtersContainer) filtersContainer.style.display = 'none';
     const tempBtn = document.getElementById('signals-btn-temp');
     if (tempBtn) tempBtn.remove();
 
