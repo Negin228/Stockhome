@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - StockHome</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div id="header-include"></div>
+  <script>
+    fetch('../pages/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-include').innerHTML = html;
+      });
+  </script>
+
+  <!-- HERO SUBSECTION -->
+  <section class="hero sub-hero">
+    <h1>Contact</h1>
+  </section>
+
+  <main class="section contact-section">
+
+    <section class="contact-item">
+        <h2>Contact Us</h2>
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="9609e8bd-19e6-489f-85b0-acff550d7fe0">
+          <label for="name">Name</label>
+          <input type="text" name="name" required>
+          <label for="email">Email</label>
+          <input type="email" name="email" required>
+          <label for="message">Message</label>
+          <textarea name="message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+  
+    </section>
+  </main>
+
+    <!-- Footer -->
+  <div id="footer-include"></div>
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-include').innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
+
 
