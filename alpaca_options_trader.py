@@ -7,7 +7,7 @@ API_KEY = 'YOUR_API_KEY'
 API_SECRET = 'YOUR_SECRET_KEY'
 PAPER_TRADING = True  # Set False for live trading
 
-client = TradingClient(API_KEY, API_SECRET, paper=PAPER_TRADING)
+client = TradingClient(API_KEY, API_SECRET, paper=True)
 
 def find_put_contract(symbol, strike, expiry):
     req = GetOptionContractsRequest(
