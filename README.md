@@ -98,4 +98,5 @@ Place a sell call with nearest expiry & strike 10% above assigned put’s strike
 
 Do NOT sell new puts on this symbol until all shares are sold (via call or market).
 
-
+_______
+To Do: sell the option if premium is minus X% of what the signal suggested. premium is min. higher is ok. 
