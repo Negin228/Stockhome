@@ -1,5 +1,7 @@
 import os
 import json
+from datetime import datetime
+
 from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import GetOptionContractsRequest
 from alpaca.trading.enums import AssetStatus, ContractType
@@ -9,15 +11,16 @@ API_SECRET = os.environ["APCA_API_SECRET_KEY"]
 client = TradingClient(API_KEY, API_SECRET, paper=True)
 
 def get_put_contract_symbol(symbol, strike, expiry):
+    expiry_formatted = datetime.strptime(expiry, '%b %d, %Y').strftime('%Y-%m-%d')
     req = GetOptionContractsRequest(
         underlying_symbols=[symbol],
         status=AssetStatus.ACTIVE,
         contract_type=ContractType.PUT,
-        expiration_date=expiry
+        expiration_date=expiry_formatted
     )
     response = client.get_option_contracts(req)
     for contract in response.option_contracts:
-        if float(contract.strike_price) == float(strike) and contract.expiration_date == expiry:
+        if float(contract.strike_price) == float(strike) and contract.expiration_date == expiry_formatted:
             return contract.symbol
     return None
 
