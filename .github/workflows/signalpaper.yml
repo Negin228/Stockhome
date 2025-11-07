@@ -1,4 +1,5 @@
-name: Paper Trading ALPACA
+name: Deploy StockHome Site (app.js)
+
 on:
   schedule:
     - cron: '30 * * * *'
@@ -49,6 +50,16 @@ jobs:
           git commit -m "Update signals.json from workflow" || echo "No changes to commit"
           git push
 
+      - name: Install alpaca-py and related Python libraries
+        run: |
+          pip install alpaca-py
+
+      - name: Run Alpaca Options Trader
+        run: python alpaca_options_trader.py
+        env:
+          ALPACA_PAPER_API_KEY_ID: ${{ secrets.ALPACA_PAPER_API_KEY_ID }}
+          ALPACA_PAPER_API_SECRET_KEY: ${{ secrets.ALPACA_PAPER_API_SECRET_KEY }}
+
 
       - name: Debug output
         run: |
@@ -82,23 +93,6 @@ jobs:
           name: github-pages
           path: artifacts/
           if-no-files-found: warn
-
-    run-paper-trading-script:
-      runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Run signal.py
-        run: python signal.py
-        env:
-          ALPACA_PAPER_API_KEY_ID: ${{ secrets.ALPACA_PAPER_API_KEY_ID }}
-          ALPACA_PAPER_API_SECRET_KEY: ${{ secrets.ALPACA_PAPER_API_SECRET_KEY }}
-      
 
   deploy:
     needs: run-signal
