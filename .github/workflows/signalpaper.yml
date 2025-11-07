@@ -58,8 +58,8 @@ jobs:
       - name: Run Alpaca Options Trader
         run: python alpaca_options_trader.py
         env:
-          ALPACA_PAPER_API_KEY_ID: ${{ secrets.ALPACA_PAPER_API_KEY_ID }}
-          ALPACA_PAPER_API_SECRET_KEY: ${{ secrets.ALPACA_PAPER_API_SECRET_KEY }}
+          APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
+          APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
 
 
       - name: Debug output
