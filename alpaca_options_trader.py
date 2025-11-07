@@ -1,144 +1,46 @@
-import json
-import os
 from alpaca.trading.client import TradingClient
+from alpaca.trading.requests import GetOptionContractsRequest, MarketOrderRequest
+from alpaca.trading.enums import OrderSide, AssetStatus, ContractType
 
-# ---- CONFIG ----
-API_KEY = os.environ["APCA_API_KEY_ID"]
-API_SECRET = os.environ["APCA_API_SECRET_KEY"]
-client = TradingClient(API_KEY, API_SECRET, paper=True)
+# Enter your Alpaca keys
+API_KEY = 'YOUR_API_KEY'
+API_SECRET = 'YOUR_SECRET_KEY'
+PAPER_TRADING = True  # Set False for live trading
 
-# ---- UTILITY FUNCTIONS ----
+client = TradingClient(API_KEY, API_SECRET, paper=PAPER_TRADING)
 
 def find_put_contract(symbol, strike, expiry):
-    """Finds the symbol of the desired put option."""
-    options = client.get_option_contracts(
-        underlying_symbol=symbol,
+    req = GetOptionContractsRequest(
+        underlying_symbols=[symbol],
+        status=AssetStatus.ACTIVE,
+        contract_type=ContractType.PUT,
         expiration_date=expiry,
-        type="put"
+        strike_price=strike
     )
-    for contract in options:
-        if float(contract.strike_price) == float(strike):
+    contracts = client.get_option_contracts(req)
+    for contract in contracts.option_contracts:
+        if contract.strike_price == strike and contract.expiration_date == expiry:
             return contract.symbol
     return None
 
-def find_call_contract(symbol, call_strike):
-    """Finds the nearest expiry call contract at or just above the target strike."""
-    # Alpaca recommends not passing expiration_date to get all
-    options = client.get_option_contracts(
-        underlying_symbol=symbol,
-        type="call"
+def place_put_order(option_symbol, qty):
+    order_req = MarketOrderRequest(
+        symbol=option_symbol,
+        qty=qty,
+        side=OrderSide.BUY
     )
-    candidates = [
-        c for c in options
-        if float(c.strike_price) >= call_strike
-    ]
-    if not candidates:
-        return None
-    # Sort for earliest expiry and lowest strike (closest above target)
-    candidates.sort(key=lambda c: (c.expiration_date, float(c.strike_price)))
-    return candidates[0].symbol
+    order = client.submit_order(order_req)
+    return order
 
-def open_option_positions(symbol, side):  # side = 'put'/'call'
-    """Returns list of ACTIVE short positions for given symbol/type."""
-    positions = client.get_all_positions()
-    return [
-        p for p in positions
-        if p.symbol.startswith(symbol) and p.asset_class == "option"
-        and p.side == "short" and side in p.symbol.lower()
-    ]
-
-def pending_option_orders(symbol, side):  # side = 'put'/'call'
-    """Returns list of OPEN option orders for symbol/type."""
-    all_orders = client.get_orders(status='open')
-    result = []
-    for o in all_orders:
-        if hasattr(o, 'legs') and o.legs:
-            if (
-                symbol.upper() in o.legs[0]['symbol'].upper()
-                and o.legs[0]['side'] == 'sell_to_open'
-                and side in o.legs[0]['symbol'].lower()
-            ):
-                result.append(o)
-    return result
-
-# ---- MAIN PUT LOGIC ----
-
-with open("artifacts/data/signals.json", "r") as f:
-    signals = json.load(f)
-
-for buy in signals.get("buys", []):
-    symbol = buy['ticker']
-    strike = float(buy['put']['strike'])
-    expiry = buy['put']['expiration']
+if __name__ == "__main__":
+    # Example usage for SPY 450 strike expiring 2025-11-21
+    symbol = "SPY"
+    strike = 450
+    expiry = "2025-11-21"
     option_symbol = find_put_contract(symbol, strike, expiry)
-    if not option_symbol:
-        print(f"[PUT] No contract found for {symbol} {strike} {expiry}")
-        continue
-
-    filled_puts = open_option_positions(symbol, "put")
-    pending_puts = pending_option_orders(symbol, "put")
-
-    # Rule: If a filled PUT exists, do nothing
-    if filled_puts:
-        print(f"[PUT] Already have filled put for {symbol}, skipping.")
-        continue
-
-    # Rule: If matching pending PUT exists, do nothing
-    already_pending = [
-        o for o in pending_puts
-        if o.legs[0]['symbol'] == option_symbol and float(o.legs[0]['strike_price']) == strike and o.legs[0]['expiration_date'] == expiry
-    ]
-    if already_pending:
-        print(f"[PUT] Pending put already exists for {symbol}, skipping.")
-        continue
-
-    # Rule: If unrelated pending PUT exists, cancel it then place new
-    for o in pending_puts:
-        print(f"[PUT] Cancelling outdated pending put for {symbol}: {o.id}")
-        client.cancel_order(o.id)
-
-    print(f"[PUT] Selling put for {symbol} {expiry} ${strike}")
-    put_order_data = {
-        "symbol": option_symbol,
-        "qty": 1,
-        "side": "sell",
-        "type": "market",
-        "time_in_force": "day",
-        "asset_class": "option"
-    }
-    response = client.submit_order(put_order_data)
-    print(response)
-
-# ---- ASSIGNMENT LOGIC (SELL CALLS) ----
-
-def write_calls_after_assignment():
-    positions = client.get_all_positions()
-    for pos in positions:
-        # If we hold assigned stock and no open call, sell covered call at 10% higher strike
-        if pos.asset_class == "us_equity" and int(float(pos.qty)) > 0:
-            symbol = pos.symbol
-            cost_basis = float(pos.avg_entry_price)
-            call_strike = round(cost_basis * 1.1, 2)
-            call_option_symbol = find_call_contract(symbol, call_strike)
-            if not call_option_symbol:
-                print(f"[CALL] No call found for {symbol} at strike >= {call_strike}")
-                continue
-
-            if open_option_positions(symbol, "call") or pending_option_orders(symbol, "call"):
-                print(f"[CALL] Already have call position or open order for {symbol}, skipping.")
-                continue
-
-            print(f"[CALL] Selling call for {symbol} at strike >= {call_strike}")
-            call_order_data = {
-                "symbol": call_option_symbol,
-                "qty": 1,
-                "side": "sell",
-                "type": "market",
-                "time_in_force": "day",
-                "asset_class": "option"
-            }
-            response = client.submit_order(call_order_data)
-            print(response)
-
-# To run call-writing logic, uncomment the following:
-# write_calls_after_assignment()
+    if option_symbol:
+        print("Found contract:", option_symbol)
+        order_response = place_put_order(option_symbol, qty=1)
+        print("Order submitted:", order_response)
+    else:
+        print("No contract found")
