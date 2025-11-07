@@ -7,8 +7,8 @@ from alpaca.trading.requests import OptionOrderRequest, OptionSymbolParams
 from alpaca.trading.enums import OptionOrderSide, TimeInForce, OrderClass, OptionOrderType
 
 # Load secrets from environment for github actions
-ALPACA_PAPER_API_KEY = os.environ['APCA_PAPER_API_KEY_ID']
-ALPACA_PAPER_API_SECRET = os.environ['APCA_PAPER_API_SECRET_KEY']
+ALPACA_PAPER_API_KEY = os.environ['ALPACA_PAPER_API_KEY_ID']
+ALPACA_PAPER_API_SECRET = os.environ['ALPACA_PAPER_API_SECRET_KEY']
 client = TradingClient(ALPACA_PAPER_API_KEY, ALPACA_PAPER_API_SECRET, paper=True)
 
 # 1. Load buy signals from signals.json
