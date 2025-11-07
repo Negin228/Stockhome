@@ -101,3 +101,7 @@ Do NOT sell new puts on this symbol until all shares are sold (via call or marke
 _______
 To Do: sell the option if premium is minus X% of what the signal suggested. premium is min. higher is ok. 
 To Do: retries if it cannot buy first time or gives errors
+Move Policy and Terms of use to the bottomn of the page
+Contact button in contact page to be green
+Signals: Link to delta + premium
+Create multiple accounts in ALCAPA --- try different signals (chatgpt one)
