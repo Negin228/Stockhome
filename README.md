@@ -77,5 +77,25 @@ Place a paper trade put order as per your signal's recommendation, but only acco
 Signal and Order Mapping:
 Use the signal output from your code to determine strike, expiry, and ticker for puts.
 
+-------
+High-Level Structure for alpaca_options_trader.py
+1. Load Buy Signals
+Read buy signal recommendations and option strikes/expiries from your existing JSON (or other structured output) file.
+
+2. For Each Buy Signal:
+Check if you have an open put position or pending put order for the symbol via Alpaca's API.
+
+If no open position and no pending order, submit a sell put for the signal’s strike/expiry.
+
+If a pending put order exists but does not match the new signal, cancel the pending order and submit the signal’s new recommendation.
+
+Do nothing if the signal matches the already-pending or executed put.
+
+3. Assignment/Expiration Logic:
+After puts are exercised and result in assigned shares:
+
+Place a sell call with nearest expiry & strike 10% above assigned put’s strike.
+
+Do NOT sell new puts on this symbol until all shares are sold (via call or market).
 
 
