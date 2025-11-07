@@ -3,8 +3,8 @@ import os
 from alpaca.trading.client import TradingClient
 
 # ---- CONFIG ----
-API_KEY = os.environ["ALPACA_PAPER_API_KEY_ID"]
-API_SECRET = os.environ["ALPACA_PAPER_API_SECRET_KEY"]
+API_KEY = os.environ["APCA_API_KEY_ID"]
+API_SECRET = os.environ["APCA_API_SECRET_KEY"]
 client = TradingClient(API_KEY, API_SECRET, paper=True)
 
 # ---- UTILITY FUNCTIONS ----
