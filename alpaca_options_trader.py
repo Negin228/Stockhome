@@ -1,64 +1,96 @@
 import json
 import os
-from datetime import datetime, timedelta
-from alpaca.data.options import OptionChainClient
 from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import OptionOrderRequest, OptionSymbolParams
-from alpaca.trading.enums import OptionOrderSide, TimeInForce, OrderClass, OptionOrderType
+from alpaca.trading.requests import OptionOrderRequest, GetOptionContractsRequest
+from alpaca.trading.enums import OptionOrderSide, OptionOrderType, TimeInForce
 
-# Load secrets from environment for github actions
-ALPACA_PAPER_API_KEY = os.environ['ALPACA_PAPER_API_KEY_ID']
-ALPACA_PAPER_API_SECRET = os.environ['ALPACA_PAPER_API_SECRET_KEY']
-client = TradingClient(ALPACA_PAPER_API_KEY, ALPACA_PAPER_API_SECRET, paper=True)
+# Load Alpaca credentials from environment
+API_KEY = os.environ['ALPACA_PAPER_API_KEY_ID']
+API_SECRET = os.environ['ALPACA_PAPER_API_SECRET_KEY']
+client = TradingClient(API_KEY, API_SECRET, paper=True)
 
-# 1. Load buy signals from signals.json
+# --- Utility functions ---
+
+def get_option_contract(client, symbol, strike, expiry, opt_type):
+    """Finds an options contract with given parameters."""
+    req = GetOptionContractsRequest(
+        underlying_symbol=symbol,
+        expiration_date=expiry,
+        type=opt_type
+    )
+    contracts = client.get_option_contracts(req)
+    for c in contracts:
+        # strike_price is string, convert for comparison
+        if float(c.strike_price) == float(strike):
+            return c
+    return None
+
+def get_open_option_positions(symbol, opt_type):
+    """Returns list of open (filled) short option positions for symbol/type."""
+    return [
+        p for p in client.get_all_positions()
+        if p.symbol.startswith(symbol)
+        and p.asset_class == "option"
+        and p.side == "short"
+        and (opt_type in p.symbol.lower())
+    ]
+
+def get_pending_option_orders(symbol, opt_type):
+    """Returns list of open (not yet filled) option orders for symbol/type."""
+    pending = []
+    # get_orders returns both equities and options orders, we want leg[0] info!
+    for o in client.get_orders(status='open'):
+        if hasattr(o, 'legs') and o.legs:  # option order
+            opt = o.legs[0]
+            if (
+                symbol.upper() in opt['symbol'].upper()
+                and opt['side'] == 'sell_to_open'
+                and opt_type in opt['symbol'].lower()
+            ):
+                pending.append(o)
+    return pending
+
+# --- Main action loop for PUT writing ---
+
 with open('artifacts/data/signals.json', 'r') as f:
-    signal_data = json.load(f)
+    signals = json.load(f)
 
-# Helper: fetch open option positions and pending option orders
-def get_active_puts(symbol):
-    positions = client.get_all_positions()
-    puts = [p for p in positions if p.asset_id == symbol and p.asset_class == "option" and p.side == "short"]
-    return puts
-
-def get_pending_put_orders(symbol):
-    orders = client.get_orders(status='open', symbols=[symbol])
-    puts = [o for o in orders if o.order_class == OrderClass.SIMPLE and o.legs[0]['side'] == OptionOrderSide.SELL_TO_OPEN]
-    return puts
-
-# Main logic loop: For each buy signal
-for buy in signal_data.get('buys', []):
+for buy in signals.get('buys', []):
     symbol = buy['ticker']
     strike = float(buy['strike'])
-    expiry = buy['expiration']  # Expecting 'YYYY-MM-DD'
-    option_symbol = OptionSymbolParams(
-        symbol=symbol, 
-        expiry=expiry, 
-        strike=strike,
-        type='put'
-    ).to_option_symbol()
-    
-    # Check for existing open/pending puts
-    open_puts = get_active_puts(symbol)
-    pending_puts = get_pending_put_orders(symbol)
-    
-    # If put already sold/assigned, skip
-    if open_puts:
-        print(f"Already have sold put on {symbol}. Skipping.")
+    expiry = buy['expiration']
+
+    # Look up the Alpaca option contract for this put
+    contract = get_option_contract(client, symbol, strike, expiry, 'put')
+    if not contract:
+        print(f"[Put] No contract found for {symbol} {strike} {expiry}")
+        continue
+    option_symbol = contract.symbol
+
+    filled_puts = get_open_option_positions(symbol, 'put')
+    pending_puts = get_pending_option_orders(symbol, 'put')
+
+    # 1. If already have a short put position, do nothing
+    if filled_puts:
+        print(f"[Put] Active position already exists for {symbol}, skipping.")
         continue
 
-    # Pending put: If pending order matches this, do nothing.
-    current_pending = [o for o in pending_puts if o.symbol == option_symbol and o.legs[0]['strike'] == strike and o.legs[0]['expiry'] == expiry]
-    if current_pending:
-        print(f"Pending put already exists for {symbol} at {strike} exp {expiry}. Skipping order.")
+    # 2. If pending order matches signal, do nothing
+    pending_match = [
+        o for o in pending_puts
+        if o.legs[0]['symbol'] == option_symbol and float(o.legs[0]['strike_price']) == strike and o.legs[0]['expiration_date'] == expiry
+    ]
+    if pending_match:
+        print(f"[Put] Pending matching order already exists for {symbol}, skipping.")
         continue
-    # If a different pending put exists, cancel it and place new:
-    if pending_puts:
-        print(f"Cancelling previous pending put for {symbol}.")
-        for o in pending_puts:
-            client.cancel_order(o.id)
-    
-    print(f"Placing new sell put option order for {symbol}, {strike} exp {expiry}")
+
+    # 3. If a non-matching pending order exists (old signal), cancel and submit new one
+    for o in pending_puts:
+        print(f"[Put] Cancelling old pending put order for {symbol}: {o.id}")
+        client.cancel_order(o.id)
+
+    # 4. Submit new put order for signal
+    print(f"[Put] Placing sell-to-open put order for {symbol} {expiry} ${strike}")
     put_order = OptionOrderRequest(
         symbol=option_symbol,
         qty=1,
@@ -66,39 +98,50 @@ for buy in signal_data.get('buys', []):
         type=OptionOrderType.MARKET,
         time_in_force=TimeInForce.DAY
     )
-    order_response = client.submit_option_order(put_order)
-    print(order_response)
+    put_submit = client.submit_option_order(put_order)
+    print(put_submit)
 
-# Assignment handler (simplified): If assigned, sell covered call
-# You would want to run this logic after options expiration
-def handle_assignment_and_sell_call():
+# --- Assignment logic (covered call writing, e.g. after expiry/assignment days) ---
+
+def write_covered_calls_after_assignment():
     positions = client.get_all_positions()
     for pos in positions:
-        if pos.asset_class == "us_equity" and int(pos.qty) > 0:
-            # Find the assigned put's strike, then generate call 10% higher for nearest expiry using OptionChainClient
-            call_strike = round(float(pos.avg_entry_price) * 1.1, 2)
-            occ = OptionChainClient()
-            chain = occ.get_option_chain(symbol=pos.symbol)
-            upcoming_expiries = sorted({opt.expiry for opt in chain.calls})
-            if not upcoming_expiries:
-                print(f"No expiry found for {pos.symbol} call.")
+        # Only if assigned shares, and not already have a pending/filled call
+        if pos.asset_class == "us_equity" and int(float(pos.qty)) > 0:
+            symbol = pos.symbol
+            cost = float(pos.avg_entry_price)
+            call_strike = round(cost * 1.1, 2)
+
+            # Find nearest expiry and available call option at/above strike
+            req = GetOptionContractsRequest(underlying_symbol=symbol, type='call')
+            contracts = client.get_option_contracts(req)
+            eligible_contracts = [
+                c for c in contracts
+                if float(c.strike_price) >= call_strike
+            ]
+            if not eligible_contracts:
+                print(f"[Call] No call contract >= {call_strike} for {symbol}.")
                 continue
-            # Pick earliest expiry and closest strike >= call_strike
-            valid_calls = [opt for opt in chain.calls if opt.expiry == upcoming_expiries[0] and opt.strike >= call_strike]
-            if not valid_calls:
-                print(f"No valid calls for {pos.symbol} at strike {call_strike}")
+            # Choose one with the nearest expiry
+            eligible_contracts.sort(key=lambda c: (c.expiration_date, float(c.strike_price)))
+            contract = eligible_contracts[0]
+            option_symbol = contract.symbol
+
+            # Check if call position or pending call order exists
+            if get_open_option_positions(symbol, 'call') or get_pending_option_orders(symbol, 'call'):
+                print(f"[Call] Existing call position/order for {symbol}, skipping.")
                 continue
-            call = min(valid_calls, key=lambda x: x.strike)
+
+            print(f"[Call] Placing covered call for {symbol} {contract.expiration_date} ${contract.strike_price}")
             call_order = OptionOrderRequest(
-                symbol=call.option_symbol,
+                symbol=option_symbol,
                 qty=1,
                 side=OptionOrderSide.SELL_TO_OPEN,
                 type=OptionOrderType.MARKET,
                 time_in_force=TimeInForce.DAY
             )
-            print(f"Placing covered call order for {pos.symbol} at strike {call.strike}, expiry {call.expiry}")
-            order_response = client.submit_option_order(call_order)
-            print(order_response)
+            call_submit = client.submit_option_order(call_order)
+            print(call_submit)
 
-# Run assignment handler as needed
-# handle_assignment_and_sell_call()
+# Uncomment to run
+# write_covered_calls_after_assignment()
