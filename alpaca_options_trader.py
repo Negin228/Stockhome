@@ -68,8 +68,8 @@ with open("artifacts/data/signals.json", "r") as f:
 
 for buy in signals.get("buys", []):
     symbol = buy['ticker']
-    strike = float(buy['strike'])
-    expiry = buy['expiration']
+    strike = float(buy['put']['strike'])
+    expiry = buy['put']['expiration']
     option_symbol = find_put_contract(symbol, strike, expiry)
     if not option_symbol:
         print(f"[PUT] No contract found for {symbol} {strike} {expiry}")
