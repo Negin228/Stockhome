@@ -1,11 +1,11 @@
+import os
 from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import GetOptionContractsRequest, MarketOrderRequest
 from alpaca.trading.enums import OrderSide, AssetStatus, ContractType
 
 # Enter your Alpaca keys
-API_KEY = 'YOUR_API_KEY'
-API_SECRET = 'YOUR_SECRET_KEY'
-PAPER_TRADING = True  # Set False for live trading
+API_KEY = os.environ["APCA_API_KEY_ID"]
+API_SECRET = os.environ["APCA_API_SECRET_KEY"]
 
 client = TradingClient(API_KEY, API_SECRET, paper=True)
 
