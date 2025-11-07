@@ -502,19 +502,21 @@ input[type=range]::-ms-fill-upper {
   box-shadow: 0 0 0 4px rgba(14,165,233,.15);
 }
 
-/* grid fix (if labels stacked oddly) */
-.contact-form{ display:grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
-.form-field{ display:flex; flex-direction:column; gap:.5rem; }
-.form-field--full{ grid-column: 1 / -1; }
-.actions{ grid-column: 1 / -1; display:flex; justify-content:flex-end; }
+.contact-form{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+  grid-template-areas:
+    "intro   intro"
+    "name    email"
+    "message message"
+    "actions actions";
+}
+.form-intro{ grid-area:intro; }
+.form-name{ grid-area:name; }
+.form-email{ grid-area:email; }
+.form-message{ grid-area:message; }
+.actions{ grid-area:actions; display:flex; justify-content:flex-end; }
 @media (max-width: 680px){ .contact-form{ grid-template-columns: 1fr; } }
 
-/* button */
-.contact-card .btn-primary{
-  appearance: none; border:0; border-radius:12px;
-  padding:.9rem 1.2rem; background:#0ea5e9; color:#fff; font-weight:600;
-  cursor:pointer; transition: transform .04s ease, filter .2s ease;
-}
-.contact-card .btn-primary:hover{ filter: brightness(1.05); }
-.contact-card .btn-primary:active{ transform: translateY(1px); }
 
