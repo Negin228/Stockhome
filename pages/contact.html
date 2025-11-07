@@ -26,19 +26,29 @@
 
   <main class="section contact-section">
 
-    <section class="contact-item">
-        <h2>Contact Us</h2>
-        <form action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="9609e8bd-19e6-489f-85b0-acff550d7fe0">
-          <label for="name">Name</label>
-          <input type="text" name="name" required>
-          <label for="email">Email</label>
-          <input type="email" name="email" required>
-          <label for="message">Message</label>
-          <textarea name="message" required></textarea>
-          <button type="submit">Send Message</button>
+    <section class="contact-wrap">
+      <div class="contact-card">
+        <p class="contact-sub">Questions, feedback, or partnership ideas? Send us a note.</p>
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+          <div class="form-field">
+            <input type="hidden" name="access_key" value="9609e8bd-19e6-489f-85b0-acff550d7fe0">
+          </div>
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" name="email" required>
+          </div> 
+          <div class="form-field">          
+            <label for="message">Message</label>
+            <textarea name="message" required></textarea>
+          </div>
+          <div class="actions">
+            <button class="btn-primary" type="submit">Send Message</button>
+          </div>
         </form>
-  
     </section>
   </main>
 
