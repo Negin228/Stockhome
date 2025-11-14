@@ -228,11 +228,7 @@ def main():
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
-        buys, buy_alerts_web, sells, fails, stock_data_list = job(to_process)
-        all_buy_alerts_web.extend(buy_alerts_web)
-        all_sell_alerts.extend(sells)
-        all_buy_symbols.extend(buys)
-        all_stock_data.extend(stock_data_list)  
+        fails, stock_data_list = job(to_process)
 
         for f in fails:
             retry_counts[f] += 1
