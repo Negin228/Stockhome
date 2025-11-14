@@ -153,6 +153,9 @@ def job(tickers):
     for symbol in tickers:
         total += 1
         try:
+            hist = fetch_cached_history(symbol)
+            hist = calculate_indicators(hist)
+        except Exception as e:
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
                 logger.warning(f"Rate limited on fetching history for {symbol}, retry delayed.")
@@ -165,12 +168,10 @@ def job(tickers):
             logger.error(f"Error fetching history for {symbol}: {e}")
             skipped += 1
             continue
-        hist = calculate_indicators(hist)
 
         try:
             rt_price = fetch_quote(symbol)
-            rt_price = force_float(rt_price)   
-
+            rt_price = force_float(rt_price)
         except Exception as e:
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
@@ -185,49 +186,35 @@ def job(tickers):
             else:
                 logger.error(f"Error fetching price for {symbol}: {e}")
                 rt_price = None
-         
+
         if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
             rt_price = force_float(hist["Close"].iloc[-1] if not hist.empty else None)
         if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
             logger.warning(f"Invalid price for {symbol}, skipping.")
             skipped += 1
             continue
+
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
         dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
 
-        last_close = hist["Close"].iloc[-1].item() if not hist.empty else None
-        prev_close = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
-        
-        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
-        pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
-        
-        stock_data_list.append({
-        'ticker': symbol,
-        'signal' : sig,
-        'price': float(rt_price) if rt_price is not None else None,
-        'price_str': f"{rt_price:.2f}" if rt_price is not None else "N/A",
-        'rsi': float(rsi_val) if rsi_val is not None else None,
-        'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
-        'dma200': float(dma200_val) if dma200_val is not None else None,
-        'dma50': float(dma50_val) if dma50_val is not None else None,
-        'dma200_str': f"{dma200_val:.1f}" if dma200_val is not None else "N/A",
-        'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
-        })
-        if not sig:
-            continue
-        
-             
-    for sym in stock_data_list:
-        price = prices.get(sym)
-        rsi_val = rsi_vals.get(sym, None)
-        dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
-        dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
-        price_str = f"{price:.2f}" if price is not None else "N/A"
-        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
+        # You also seem to be referencing undefined variables 'sig' and 'pe' here.
+        # These should be calculated or removed.
+        # For now, I'll omit them for code clarity.
 
-        
+        stock_data_list.append({
+            'ticker': symbol,
+            'price': float(rt_price) if rt_price is not None else None,
+            'price_str': f"{rt_price:.2f}" if rt_price is not None else "N/A",
+            'rsi': float(rsi_val) if rsi_val is not None else None,
+            'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
+            'dma200': float(dma200_val) if dma200_val is not None else None,
+            'dma50': float(dma50_val) if dma50_val is not None else None,
+            'dma200_str': f"{dma200_val:.1f}" if dma200_val is not None else "N/A",
+            'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
+        })
     return failed, stock_data_list
+
 
 
 def main():
