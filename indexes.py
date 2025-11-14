@@ -35,7 +35,7 @@ if not logger.hasHandlers():
     logger.addHandler(console_handler)
 
 API_KEY = os.getenv("API_KEY")
-tickers = ['NDX','SPXU','SPY','SQQQ','TQQQ','UPRO']
+tickers = ['NDX','SPXU','SPY','SQQQ','TQQQ','UPRO','QQQ','UDOW','DJI,'SDOW']
 finnhub_client = finnhub.Client(api_key=API_KEY)
 
 MAX_API_RETRIES = 5
