@@ -15,7 +15,6 @@ from dateutil.parser import parse
 import config
 import re
 
-
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -75,16 +74,11 @@ def force_float(val):
 
 
 @retry_on_rate_limit
-def fetch_cached_history(symbol, period="2y", interval="1d"):
+def fetch_cached_history(symbol, period="40y", interval="1d"):
     path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
     df = None
     force_full = False
     if os.path.exists(path):
-        age_days = (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(path))).days
-        if age_days > config.MAX_CACHE_DAYS:
-            force_full = True
-            logger.info(f"Cache for {symbol} is stale ({age_days} days), refreshing")
-        else:
             try:
                 cols = ['Date', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
                 df = pd.read_csv(path, skiprows=3, names=cols)
@@ -98,7 +92,7 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
                 df = None
     if df is None or df.empty or force_full:
         logger.info(f"Downloading full history for {symbol}")
-        df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
+        df = yf.download(symbol, period="max", interval=interval, auto_adjust=False)
         if df is None or df.empty:
             return pd.DataFrame()
         df.to_csv(path)
@@ -143,24 +137,6 @@ def fetch_fundamentals_safe(symbol):
         return None, None
 
 
-def calculate_custom_metrics(puts, price):
-    if price is None or price <= 0 or np.isnan(price):
-        return puts
-    for p in puts:
-        strike = p.get("strike")
-        premium = p.get("premium") or 0.0
-        try:
-            premium_val = float(premium)
-            p["custom_metric"] = ((price - strike) + premium_val / 100) / price * 100 if strike else None
-            p["delta_percent"] = ((price - strike) / price) * 100 if strike else None
-            p["premium_percent"] = premium_val / price * 100 if premium_val else None
-        except Exception as e:
-            logger.warning(f"Error computing metrics for put {p}: {e}")
-            p["custom_metric"] = p["delta_percent"] = p["premium_percent"] = None
-    return puts
-
-
-
 def log_alert(alert):
     csv_path = config.ALERTS_CSV
     exists = os.path.exists(csv_path)
@@ -169,10 +145,6 @@ def log_alert(alert):
 
 
 def job(tickers):
-    sell_alerts = []
-    all_sell_alerts = []
-    buy_symbols = []
-    buy_alerts_web = []
     prices = {}
     rsi_vals = {}
     failed = []
@@ -182,12 +154,6 @@ def job(tickers):
     for symbol in tickers:
         total += 1
         try:
-            hist = fetch_cached_history(symbol)
-            if hist.empty or "Close" not in hist.columns:
-                logger.info(f"No historical data for {symbol}, skipping.")
-                skipped += 1
-                continue
-        except Exception as e:
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
                 logger.warning(f"Rate limited on fetching history for {symbol}, retry delayed.")
@@ -201,7 +167,6 @@ def job(tickers):
             skipped += 1
             continue
         hist = calculate_indicators(hist)
-        sig, reason = generate_signal(hist)
 
         try:
             rt_price = fetch_quote(symbol)
@@ -235,14 +200,6 @@ def job(tickers):
 
         last_close = hist["Close"].iloc[-1].item() if not hist.empty else None
         prev_close = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
-
-        if prev_close is not None and rt_price is not None and prev_close != 0:
-            pct_drop = (-(rt_price - prev_close) / prev_close * 100)
-            pct_drop_str = f"{pct_drop:+.1f}%"
-        else:
-            pct_drop = None
-            pct_drop_str = "N/A"
-
         
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
         pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
@@ -262,44 +219,23 @@ def job(tickers):
         if not sig:
             continue
         
- 
-            
-    # Options section (only for BUY signals)
-    for sym in buy_symbols:
+             
+    for sym in stock_data_list:
         price = prices.get(sym)
         rsi_val = rsi_vals.get(sym, None)
         dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
         dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
 
-        put_obj = {
-            "metric_sum": (
-                    float(best_put['delta_percent'] or 0) + float(best_put['premium_percent'] or 0)
-                    if best_put.get('delta_percent') is not None and best_put.get('premium_percent') is not None
-                    else None),}
         for s in stock_data_list:
             if s['ticker'] == sym:
                 s['put'] = put_obj
-                break
-
-
-        for s in stock_data_list:
-            if s['ticker'] == sym:
-                s['news_summary'] = summary_sentence
-                s['news'] = news_items
                 break
 
         price_str = f"{price:.2f}" if price is not None else "N/A"
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
 
         
-        puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
-        try:
-            with open(puts_json_path, "w") as fp:
-                json.dump([best_put], fp, indent=2)
-            logger.info(f"Saved puts data for {sym}")
-        except Exception as e:
-            logger.error(f"Failed to save puts json for {sym}: {e}")
-    return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list
+    return failed, stock_data_list
 
 
 def main():
@@ -309,9 +245,6 @@ def main():
     selected = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
     retry_counts = defaultdict(int)
     to_process = selected[:]
-    all_buy_symbols = []
-    all_buy_alerts_web = []
-    all_sell_alerts = []
     all_stock_data = []
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
@@ -328,30 +261,6 @@ def main():
         if to_process:
             logger.info(f"Rate limited. Waiting {TICKER_RETRY_WAIT} seconds before retrying {len(to_process)} tickers...")
             time.sleep(TICKER_RETRY_WAIT)
-
-    seen = set()
-    unique_buy_alerts_web = []
-    for alert in all_buy_alerts_web:
-        if alert not in seen:
-            unique_buy_alerts_web.append(alert)
-            seen.add(alert)
-    all_buy_alerts_web = unique_buy_alerts_web
-
-    seen = set()
-    unique_sell_alerts = []
-    for alert in all_sell_alerts:
-        if alert not in seen:
-            unique_sell_alerts.append(alert)
-            seen.add(alert)
-    all_sell_alerts = unique_sell_alerts
-
-    seen = set()
-    unique_stock_data = []
-    for stock in all_stock_data:
-        if stock['ticker'] not in seen:
-            unique_stock_data.append(stock)
-            seen.add(stock['ticker'])
-    all_stock_data = unique_stock_data
 
 
 if __name__ == "__main__":
