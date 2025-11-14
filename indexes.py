@@ -1,6 +1,5 @@
 import os
 import datetime
-import json
 import yfinance as yf
 import finnhub
 import pandas as pd
@@ -196,7 +195,6 @@ def job(tickers):
         rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
         dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
         dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
-        
 
         last_close = hist["Close"].iloc[-1].item() if not hist.empty else None
         prev_close = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
@@ -225,12 +223,6 @@ def job(tickers):
         rsi_val = rsi_vals.get(sym, None)
         dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
         dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
-
-        for s in stock_data_list:
-            if s['ticker'] == sym:
-                s['put'] = put_obj
-                break
-
         price_str = f"{price:.2f}" if price is not None else "N/A"
         rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
 
