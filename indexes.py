@@ -20,12 +20,6 @@ os.makedirs(puts_dir, exist_ok=True)
 os.makedirs("data", exist_ok=True)
 os.makedirs("artifacts/data", exist_ok=True)
 
-# Technical indicator thresholds
-RSI_OVERSOLD = 30
-RSI_OVERBOUGHT = 70
-MA_SHORT = 50
-MA_LONG = 200
-
 # Data storage & cache settings
 DATA_DIR = "data"
 MAX_CACHE_DAYS = 30   # force full refresh if cache older than this
