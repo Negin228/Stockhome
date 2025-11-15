@@ -11,7 +11,6 @@ import argparse
 import time
 import numpy as np
 from dateutil.parser import parse
-import config
 import re
 
 puts_dir = "puts_data"
@@ -20,6 +19,24 @@ os.makedirs(config.LOG_DIR, exist_ok=True)
 os.makedirs(puts_dir, exist_ok=True)
 os.makedirs("data", exist_ok=True)
 os.makedirs("artifacts/data", exist_ok=True)
+
+# Technical indicator thresholds
+RSI_OVERSOLD = 30
+RSI_OVERBOUGHT = 70
+MA_SHORT = 50
+MA_LONG = 200
+
+# Data storage & cache settings
+DATA_DIR = "data"
+MAX_CACHE_DAYS = 30   # force full refresh if cache older than this
+
+# Logging settings
+LOG_DIR = "logs"
+LOG_FILE = "signal.log"
+LOG_MAX_BYTES = 1_000_000   # 1 MB per log file
+LOG_BACKUP_COUNT = 5        # keep up to 5 rotated log files
+ALERTS_CSV = os.path.join(LOG_DIR, "alerts_history.csv")
+
 
 
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
