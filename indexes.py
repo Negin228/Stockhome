@@ -128,6 +128,13 @@ def calculate_indicators(df):
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
+    high = df["High"]
+    if isinstance(High, pd.DataFrame):
+        high = high.squeeze()
+    low = df["Low"]
+    if isinstance(low, pd.DataFrame):
+        low = low.squeeze()
+    
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
