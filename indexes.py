@@ -129,7 +129,7 @@ def calculate_indicators(df):
     if isinstance(close, pd.DataFrame):
         close = close.squeeze()
     high = df["High"]
-    if isinstance(High, pd.DataFrame):
+    if isinstance(high, pd.DataFrame):
         high = high.squeeze()
     low = df["Low"]
     if isinstance(low, pd.DataFrame):
