@@ -80,7 +80,7 @@ def force_float(val):
 
 @retry_on_rate_limit
 def fetch_cached_history(symbol, period="40y", interval="1d"):
-    path = os.path.join(data, f"{symbol}.csv")
+    path = os.path.join(DATA_DIR, f"{symbol}.csv")
     df = None
     force_full = False
     if os.path.exists(path):
@@ -162,7 +162,7 @@ def job(tickers):
             hist = fetch_cached_history(symbol)
             hist = calculate_indicators(hist)
             # Save price and indicator DataFrame to CSV
-            hist.to_csv(os.path.join(data, f"{symbol}_indicators.csv"))
+            hist.to_csv(os.path.join(DATA_DIR, f"{symbol}_indicators.csv"))
 
         except Exception as e:
             msg = str(e).lower()
