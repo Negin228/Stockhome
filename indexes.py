@@ -142,26 +142,26 @@ def calculate_indicators(df):
     lookbacks = [30, 21, 14, 7]
     for window in lookbacks:
         # Rate of Change (ROC)
-        df[f'roc_{window}'] = ta.momentum.ROCIndicator(df['Close'], window=window).roc()
+        df[f'roc_{window}'] = ta.momentum.ROCIndicator(close, window=window).roc()
         # RSI
-        df[f'rsi_{window}'] = ta.momentum.RSIIndicator(df['Close'], window=window).rsi()
+        df[f'rsi_{window}'] = ta.momentum.RSIIndicator(close, window=window).rsi()
         # ADX (Average Directional Index)
-        df[f'adx_{window}'] = ta.trend.ADXIndicator(df['High'], df['Low'], df['Close'], window=window).adx()
+        df[f'adx_{window}'] = ta.trend.ADXIndicator(high, low, close, window=window).adx()
         # ATR (Average True Range)
-        df[f'atr_{window}'] = ta.volatility.AverageTrueRange(df['High'], df['Low'], df['Close'], window=window).average_true_range()
+        df[f'atr_{window}'] = ta.volatility.AverageTrueRange(high, low, close, window=window).average_true_range()
         # ATR % (as % of close price)
-        df[f'atr_pct_{window}'] = df[f'atr_{window}'] / df['Close'] * 100
+        df[f'atr_pct_{window}'] = df[f'atr_{window}'] / close * 100
         # Simple Moving Average (SMA)
-        df[f'sma_{window}'] = ta.trend.sma_indicator(df['Close'], window=window)
+        df[f'sma_{window}'] = ta.trend.sma_indicator(close, window=window)
         # Exponential Moving Average (EMA)
-        df[f'ema_{window}'] = ta.trend.ema_indicator(df['Close'], window=window)
+        df[f'ema_{window}'] = ta.trend.ema_indicator(close, window=window)
         # Bollinger Bands (use close price)
-        bb = ta.volatility.BollingerBands(df['Close'], window=window)
+        bb = ta.volatility.BollingerBands(close, window=window)
         df[f'bb_hband_{window}'] = bb.bollinger_hband()
         df[f'bb_lband_{window}'] = bb.bollinger_lband()
         # Historic Volatility (HV): rolling std of log returns, annualized
         df[f'hv_{window}'] = (
-            np.log(df['Close'] / df['Close'].shift(1))
+            np.log(close / close.shift(1))
             .rolling(window=window)
             .std(ddof=0) * np.sqrt(252)
         )
