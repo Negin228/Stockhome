@@ -14,8 +14,8 @@ from dateutil.parser import parse
 import re
 
 puts_dir = "puts_data"
-os.makedirs(config.DATA_DIR, exist_ok=True)
-os.makedirs(config.LOG_DIR, exist_ok=True)
+os.makedirs(data, exist_ok=True)
+os.makedirs(logs, exist_ok=True)
 os.makedirs(puts_dir, exist_ok=True)
 os.makedirs("data", exist_ok=True)
 os.makedirs("artifacts/data", exist_ok=True)
@@ -33,10 +33,10 @@ ALERTS_CSV = os.path.join(LOG_DIR, "alerts_history.csv")
 
 
 
-log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
+log_path = os.path.join(logs, LOG_FILE)
 logger = logging.getLogger("StockHome")
 logger.setLevel(logging.INFO)
-file_handler = RotatingFileHandler(log_path, maxBytes=config.LOG_MAX_BYTES, backupCount=config.LOG_BACKUP_COUNT, encoding='utf-8')
+file_handler = RotatingFileHandler(log_path, maxBytes=LOG_MAX_BYTES, backupCount=LOG_BACKUP_COUNT, encoding='utf-8')
 console_handler = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 file_handler.setFormatter(formatter)
@@ -85,7 +85,7 @@ def force_float(val):
 
 @retry_on_rate_limit
 def fetch_cached_history(symbol, period="40y", interval="1d"):
-    path = os.path.join(config.DATA_DIR, f"{symbol}.csv")
+    path = os.path.join(data, f"{symbol}.csv")
     df = None
     force_full = False
     if os.path.exists(path):
@@ -148,7 +148,7 @@ def fetch_fundamentals_safe(symbol):
 
 
 def log_alert(alert):
-    csv_path = config.ALERTS_CSV
+    csv_path = ALERTS_CSV
     exists = os.path.exists(csv_path)
     df_new = pd.DataFrame([alert])
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
@@ -167,7 +167,7 @@ def job(tickers):
             hist = fetch_cached_history(symbol)
             hist = calculate_indicators(hist)
             # Save price and indicator DataFrame to CSV
-            hist.to_csv(os.path.join(config.DATA_DIR, f"{symbol}_indicators.csv"))
+            hist.to_csv(os.path.join(data, f"{symbol}_indicators.csv"))
 
         except Exception as e:
             msg = str(e).lower()
