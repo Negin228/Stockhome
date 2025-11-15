@@ -13,13 +13,6 @@ import numpy as np
 from dateutil.parser import parse
 import re
 
-puts_dir = "puts_data"
-os.makedirs(data, exist_ok=True)
-os.makedirs(logs, exist_ok=True)
-os.makedirs(puts_dir, exist_ok=True)
-os.makedirs("data", exist_ok=True)
-os.makedirs("artifacts/data", exist_ok=True)
-
 # Data storage & cache settings
 DATA_DIR = "data"
 MAX_CACHE_DAYS = 30   # force full refresh if cache older than this
@@ -31,10 +24,8 @@ LOG_MAX_BYTES = 1_000_000   # 1 MB per log file
 LOG_BACKUP_COUNT = 5        # keep up to 5 rotated log files
 ALERTS_CSV = os.path.join(LOG_DIR, "alerts_history.csv")
 
-
-
-log_path = os.path.join(logs, LOG_FILE)
-logger = logging.getLogger("StockHome")
+log_path = os.path.join(LOG_DIR, LOG_FILE)
+logger = logging.getLogger("Systemic")
 logger.setLevel(logging.INFO)
 file_handler = RotatingFileHandler(log_path, maxBytes=LOG_MAX_BYTES, backupCount=LOG_BACKUP_COUNT, encoding='utf-8')
 console_handler = logging.StreamHandler()
@@ -48,6 +39,10 @@ if not logger.hasHandlers():
 API_KEY = os.getenv("API_KEY")
 tickers = ['NDX','SPXU','SPY','SQQQ','TQQQ','UPRO','QQQ','UDOW','DJI','SDOW']
 finnhub_client = finnhub.Client(api_key=API_KEY)
+
+os.makedirs(DATA_DIR, exist_ok=True)
+os.makedirs(LOG_DIR, exist_ok=True)
+os.makedirs("artifacts/data", exist_ok=True)
 
 MAX_API_RETRIES = 5
 API_RETRY_INITIAL_WAIT = 60
