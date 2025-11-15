@@ -155,6 +155,9 @@ def job(tickers):
         try:
             hist = fetch_cached_history(symbol)
             hist = calculate_indicators(hist)
+            # Save price and indicator DataFrame to CSV
+            hist.to_csv(os.path.join(config.DATA_DIR, f"{symbol}_indicators.csv"))
+
         except Exception as e:
             msg = str(e).lower()
             if any(k in msg for k in ["rate limit", "too many requests", "429"]):
