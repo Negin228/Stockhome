@@ -139,10 +139,12 @@ def calculate_indicators(df):
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
 
-    lookbacks = [30, 21, 14, 7]
+    lookbacks = [252, 200, 50, 30, 21, 14, 7]
     for window in lookbacks:
         # Rate of Change (ROC)
         df[f'roc_{window}'] = ta.momentum.ROCIndicator(close, window=window).roc()
+        # Daily Moving Average (DMA)
+        df[f'dma_{window}'] = close.rolling(window=window).mean()        
         # RSI
         df[f'rsi_{window}'] = ta.momentum.RSIIndicator(close, window=window).rsi()
         # ADX (Average Directional Index)
