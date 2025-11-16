@@ -134,10 +134,6 @@ def calculate_indicators(df):
     low = df["Low"]
     if isinstance(low, pd.DataFrame):
         low = low.squeeze()
-    
-    df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
-    df["dma200"] = close.rolling(200).mean()
-    df["dma50"] = close.rolling(50).mean()
 
     lookbacks = [252, 200, 50, 30, 21, 14, 7]
     for window in lookbacks:
