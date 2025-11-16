@@ -135,7 +135,7 @@ def calculate_indicators(df):
     if isinstance(low, pd.DataFrame):
         low = low.squeeze()
 
-    lookbacks = [252, 200, 50, 30, 21, 14, 7]
+    lookbacks = [252, 200, 100, 50, 30, 21, 20, 14, 7]
     for window in lookbacks:
         # Rate of Change (ROC)
         df[f'roc_{window}'] = ta.momentum.ROCIndicator(close, window=window).roc()
