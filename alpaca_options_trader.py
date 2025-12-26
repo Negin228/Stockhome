@@ -1,107 +1,106 @@
 import os
 import json
-from datetime import datetime
-
+import datetime
 from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import GetOptionContractsRequest
-from alpaca.trading.enums import AssetStatus, ContractType
+from alpaca.trading.requests import MarketOrderRequest
+from alpaca.trading.enums import OrderSide, TimeInForce
 
-API_KEY = os.environ["APCA_API_KEY_ID"]
-API_SECRET = os.environ["APCA_API_SECRET_KEY"]
-client = TradingClient(API_KEY, API_SECRET, paper=True)
+# 1. SETUP ALPACA
+API_KEY = os.getenv("APCA_API_KEY_ID")
+SECRET_KEY = os.getenv("APCA_API_SECRET_KEY")
+PAPER = True  # Always True for safety/testing
 
-def get_put_contract_symbol(symbol, strike, expiry):
-    expiry_formatted = datetime.strptime(expiry, '%b %d, %Y').strftime('%Y-%m-%d')
-    req = GetOptionContractsRequest(
-        underlying_symbols=[symbol],
-        status=AssetStatus.ACTIVE,
-        contract_type=ContractType.PUT,
-        expiration_date=expiry_formatted
-    )
-    response = client.get_option_contracts(req)
-    for contract in response.option_contracts:
-        if float(contract.strike_price) == float(strike) and contract.expiration_date == expiry_formatted:
-            return contract.symbol
-    return None
+client = TradingClient(API_KEY, SECRET_KEY, paper=PAPER)
 
-def has_active_put_position(symbol):
-    positions = client.get_all_positions()
-    for p in positions:
-        # Short position; match symbol (partial if contract symbols are longer)
-        if symbol.upper() in p.symbol.split()[0] and p.asset_class == "option" and p.side == "short" and "p" in p.symbol.lower():
-            return True
-    return False
+def get_occ_symbol(ticker, expiration_str, strike, option_type='P'):
+    """
+    Converts readable data into OCC Option Symbol format.
+    Example: AAPL, 2025-01-17, 150 -> AAPL250117P00150000
+    """
+    # Parse date (Assuming YYYY-MM-DD from your JSON)
+    try:
+        exp_date = datetime.datetime.strptime(expiration_str, "%Y-%m-%d")
+    except ValueError:
+        print(f"Skipping {ticker}: Invalid date format {expiration_str}")
+        return None
 
-def get_pending_put_orders(symbol):
-    pending = []
-    for o in client.get_orders(status='open'):
-        if hasattr(o, 'legs') and o.legs:
-            option_sym = o.legs[0]['symbol']
-            if symbol.upper() in option_sym and o.legs[0]['side'] == 'sell_to_open' and "p" in option_sym.lower():
-                pending.append(o)
-    return pending
+    # Format Date: YYMMDD
+    yymmdd = exp_date.strftime("%y%m%d")
 
-def pending_order_matches(pending, target_symbol, target_strike, target_expiry):
-    for o in pending:
-        leg = o.legs[0]
-        # check symbol, strike, expiry—these field names may differ, adjust if needed
-        if (
-            leg['symbol'] == target_symbol
-            and float(leg['strike_price']) == float(target_strike)
-            and leg['expiration_date'] == target_expiry
-        ):
-            return True
-    return False
+    # Format Strike: Multiply by 1000 and pad with zeros to 8 digits
+    strike_int = int(float(strike) * 1000)
+    strike_str = f"{strike_int:08d}"
 
-def cancel_all_pending_orders(pending):
-    for o in pending:
-        print(f"[Put] Cancelling pending order {o.id}")
-        client.cancel_order(o.id)
+    # Combine: ROOT + YYMMDD + TYPE + STRIKE
+    # Ticker must be padded to 6 chars if needed, but modern API often handles raw ticker
+    # Standard OCC is Ticker (upto 6 chars)
+    return f"{ticker:<6}{yymmdd}{option_type}{strike_str}".replace(" ", "")
 
-def place_put_sell_order(option_symbol):
-    order_data = {
-        'symbol': option_symbol,
-        'qty': 1,
-        'side': 'sell',  # SELL to OPEN (short put)
-        'type': 'market',
-        'time_in_force': 'day',
-        'asset_class': 'option'
-    }
-    resp = client.submit_order(order_data)
-    print(f"[Put] Sell order submitted: {resp}")
+def run_trader():
+    # 2. LOAD SIGNALS
+    # The workflow copies the new signal to data/signals.json before this runs
+    signal_path = "data/signals.json" 
+    
+    if not os.path.exists(signal_path):
+        print("No signals.json found. Exiting.")
+        return
 
-# --- MAIN LOGIC ---
+    with open(signal_path, "r") as f:
+        data = json.load(f)
 
-with open("artifacts/data/signals.json", "r") as f:
-    signals = json.load(f)
+    # 3. GET CURRENT POSITIONS
+    # We want to check if we already have this position to avoid duplicates
+    try:
+        positions = client.get_all_positions()
+        current_symbols = {p.symbol for p in positions}
+    except Exception as e:
+        print(f"Error fetching positions: {e}")
+        return
 
-for buy in signals.get("buys", []):
-    symbol = buy["ticker"]
-    strike = float(buy["put"]["strike"])
-    expiry = buy["put"]["expiration"]
+    # 4. PROCESS SIGNALS
+    # Your app.js "renderBuyCard" renders data from the "buys" array.
+    # Those cards say "Sell a ... put option".
+    # So we look at 'buys' to find Puts to Sell (Short Put Strategy).
+    
+    if "buys" not in data:
+        print("No 'buys' key in signals.json")
+        return
 
-    print(f"\nProcessing {symbol} {strike} {expiry}")
+    for signal in data["buys"]:
+        ticker = signal.get("ticker")
+        put_info = signal.get("put", {})
+        
+        strike = put_info.get("strike")
+        expiration = put_info.get("expiration")
+        
+        if not ticker or not strike or not expiration:
+            continue
 
-    # Find options contract symbol
-    option_symbol = get_put_contract_symbol(symbol, strike, expiry)
-    if not option_symbol:
-        print(f"[Put] Contract not found, skipping.")
-        continue
+        # Generate the specific Option Symbol (e.g. AAPL230616P00150000)
+        symbol = get_occ_symbol(ticker, expiration, strike, 'P')
+        if not symbol:
+            continue
 
-    # Check for active short put position
-    if has_active_put_position(symbol):
-        print(f"[Put] Already have an active short put for {symbol}. Skipping.")
-        continue
+        print(f"Checking Signal: Sell Put {symbol}...")
 
-    # Check pending orders
-    pending = get_pending_put_orders(symbol)
-    if pending_order_matches(pending, option_symbol, strike, expiry):
-        print(f"[Put] Matching pending order already exists. Skipping.")
-        continue
+        # 5. EXECUTE TRADE
+        # Check if we already hold this specific option symbol
+        if symbol in current_symbols:
+            print(f" -> SKIP: Already in portfolio ({symbol})")
+        else:
+            print(f" -> EXECUTING: Selling to Open {symbol}")
+            try:
+                # 'qty=1' sells 1 contract. Adjust as needed.
+                req = MarketOrderRequest(
+                    symbol=symbol,
+                    qty=1,
+                    side=OrderSide.SELL,  # Selling to Open (Short Put)
+                    time_in_force=TimeInForce.DAY
+                )
+                client.submit_order(req)
+                print(f" -> SUCCESS: Order submitted.")
+            except Exception as e:
+                print(f" -> ERROR submitting order: {e}")
 
-    if pending:
-        print(f"[Put] Old pending put orders found; cancelling all before submitting new order.")
-        cancel_all_pending_orders(pending)
-
-    print(f"[Put] Placing new sell-to-open put option for {symbol} {strike} {expiry}")
-    place_put_sell_order(option_symbol)
+if __name__ == "__main__":
+    run_trader()
