@@ -19,10 +19,15 @@ def get_occ_symbol(ticker, expiration_str, strike, option_type='P'):
     """
     # Parse date (Assuming YYYY-MM-DD from your JSON)
     try:
-        exp_date = datetime.datetime.strptime(expiration_str, "%Y-%m-%d")
+        exp_date = datetime.datetime.strptime(expiration_str, "%b %d, %Y")
     except ValueError:
-        print(f"Skipping {ticker}: Invalid date format {expiration_str}")
-        return None
+        try:
+            # Fallback for "YYYY-MM-DD" if some signals use that format
+            exp_date = datetime.datetime.strptime(expiration_str, "%Y-%m-%d")
+        except ValueError:
+            print(f"Skipping {ticker}: Invalid date format {expiration_str}")
+            return None
+        
 
     # Format Date: YYMMDD
     yymmdd = exp_date.strftime("%y%m%d")
