@@ -168,16 +168,13 @@ body {
   margin: 0 0 12px;
   color: var(--text);
 }
-.signal-card .monthly {
-  font-weight: 600;
-  opacity: 0.7;
-}
+
 
 .monthly {
   font-weight: 600;
   opacity: 0.7;
   font-size: 0.95em;
-  font-color: #ff0000;
+  color: #ff0000;
 }
 
 
@@ -350,7 +347,6 @@ body {
   .filter-controls { flex-direction: column; }
 }
 
-.options-availability { font-weight: 600; opacity: 0.9; }
 
 .slider-row {
   display: flex;
