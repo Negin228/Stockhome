@@ -6,6 +6,10 @@ function fmt(n, d = 1) {
 
 function renderBuyCard(b) {
   const put = b.put || {};
+  const weeklyAvail = put.weekly_available === true;
+  const monthlyAvail = put.monthly_available === true;
+  const availText = `Options: ${weeklyAvail ? "Weekly ✅" : "Weekly —"} | ${monthlyAvail ? "Monthly ✅" : "Monthly —"}`;
+
   return `
     <li class="signal-card buy-card">
       <div class="main-info">
