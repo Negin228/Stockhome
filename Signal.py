@@ -80,6 +80,12 @@ def has_weekly_options(expirations):
     types = [option_expiration_type(e) for e in expirations]
     return any(t == "WEEKLY" for t in types)
 
+def option_availability(expiration_list):
+    types = [option_expiration_type(e) for e in expiration_list]
+    return {
+        "weekly_available": any(t == "WEEKLY" for t in types),
+        "monthly_available": any(t == "MONTHLY" for t in types),
+    }
 
 
 def force_float(val):
@@ -225,6 +231,8 @@ def fetch_puts(symbol):
         today = datetime.datetime.now()
         valid_dates = [d for d in getattr(ticker, 'options', []) if (parse(d) - today).days <= 49]
         weekly_available = has_weekly_options(valid_dates)
+        avail = option_availability(valid_dates)
+
 
         for exp in valid_dates:
             exp_type = option_expiration_type(exp)
@@ -243,7 +251,8 @@ def fetch_puts(symbol):
                     "exp_type": exp_type,
                     "dte": dte,
                     "premium": premium,
-                    "weekly_available": weekly_available,
+                    "weekly_available": avail["weekly_available"],
+                    "monthly_available": avail["monthly_available"],
                     "stock_price": under_price
                 })
     except Exception as e:
