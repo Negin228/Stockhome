@@ -1,4 +1,3 @@
-scripts/app.js
 
 function fmt(n, d = 1) {
   return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
