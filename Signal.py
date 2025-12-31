@@ -506,7 +506,6 @@ def job(tickers):
             "expiration": expiration_fmt if expiration_fmt else "N/A",
             "exp_type": exp_type,
             "weekly_available": bool(best_put.get("weekly_available")),
-            "monthly_available": bool(best_put.get("monthly_available")),
 
             "premium": float(best_put['premium']) if best_put.get('premium') is not None else None,
             "delta_percent": float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else None,
