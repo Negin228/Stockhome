@@ -84,6 +84,23 @@ def force_float(val):
         return float(val.values[-1][0])
     return float(val) if val is not None else None
 
+def option_expiration_type(expiration_str: str) -> str:
+    """
+    Classify an expiration date as MONTHLY vs WEEKLY.
+    MONTHLY = 3rd Friday of the month (day 15-21 and weekday=Friday).
+    """
+    try:
+        d = parse(expiration_str).date()
+        # Some feeds can have Saturday dates; treat Saturday as the prior Friday
+        if d.weekday() == 5:  # Saturday
+            d = d - datetime.timedelta(days=1)
+
+        if d.weekday() == 4 and 15 <= d.day <= 21:  # Friday and 3rd-week window
+            return "MONTHLY"
+        return "WEEKLY"
+    except Exception:
+        return "UNKNOWN"
+
 
 def extend_to_next_period(text):
     if not text or not text.strip():
@@ -203,6 +220,8 @@ def fetch_puts(symbol):
         today = datetime.datetime.now()
         valid_dates = [d for d in getattr(ticker, 'options', []) if (parse(d) - today).days <= 49]
         for exp in valid_dates:
+            exp_type = option_expiration_type(exp)
+            dte = (parse(exp).date() - today.date()).days
             chain = ticker.option_chain(exp)
             if chain.puts.empty:
                 continue
@@ -214,6 +233,8 @@ def fetch_puts(symbol):
                 puts_data.append({
                     "expiration": exp,
                     "strike": strike,
+                    "exp_type": exp_type,
+                    "dte": dte,
                     "premium": premium,
                     "stock_price": under_price
                 })
@@ -456,6 +477,7 @@ def job(tickers):
         if not filtered_puts:
             continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
+        exp_type = best_put.get("exp_type", "UNKNOWN")  
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
         company_name = fetch_company_name(sym)
         dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
@@ -464,6 +486,7 @@ def job(tickers):
         put_obj = {
             "strike": float(best_put['strike']) if best_put.get('strike') is not None else None,
             "expiration": expiration_fmt if expiration_fmt else "N/A",
+            "exp_type": exp_type,
             "premium": float(best_put['premium']) if best_put.get('premium') is not None else None,
             "delta_percent": float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else None,
             "premium_percent": float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else None,
