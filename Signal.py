@@ -224,6 +224,18 @@ def fetch_fundamentals_safe(symbol):
         logger.warning(f"Failed to fetch fundamentals for {symbol}: {e}")
         return None, None
 
+def default_put_obj():
+    return {
+        "strike": None,
+        "expiration": None,
+        "premium": None,
+        "delta_percent": None,
+        "premium_percent": None,
+        "metric_sum": None,
+        "weekly_available": True,  # default assumption (do NOT show Monthly)
+    }
+
+
 def fetch_puts(symbol):
     puts_data = []
     try:
@@ -455,6 +467,12 @@ def job(tickers):
             buy_symbols.append(symbol)
             prices[symbol] = rt_price
             rsi_vals[symbol] = rsi_val
+            # ensure BUY tickers always have a put object (even if no options found later)
+            for s in stock_data_list:
+                if s["ticker"] == symbol:
+                    s["put"] = default_put_obj()
+                    break
+
         else:
             sell_alert_line = format_sell_alert_line(
                 ticker=symbol,
