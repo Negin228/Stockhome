@@ -338,6 +338,7 @@ body {
   .filter-controls { flex-direction: column; }
 }
 
+.options-availability { font-weight: 600; opacity: 0.9; }
 
 .slider-row {
   display: flex;
