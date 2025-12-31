@@ -1,11 +1,11 @@
-
 function fmt(n, d = 1) {
   return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
 }
+
 function renderBuyCard(b) {
   const put = b.put || {};
 
-  // If missing, treat weekly as available (default), so we DON'T mark monthly by accident
+  // If missing, treat weekly as available (default)
   const weeklyAvailable = (put.weekly_available !== false);
 
   // Mark only when weekly is NOT available (monthly-only)
@@ -34,7 +34,6 @@ function renderBuyCard(b) {
       ${renderNews(b.news_summary, b.news)}
     </li>`;
 }
-
 
 function renderSellCard(s) {
   return `
@@ -65,15 +64,10 @@ function renderNews(summary, items) {
 (async function () {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-  else console.warn("⚠️ #year element not found.");
 
   const buyList = document.getElementById("buy-list");
   const sellList = document.getElementById("sell-list");
   const lastUpdated = document.getElementById("last-updated");
-
-  if (!buyList || !sellList) {
-    console.warn("⚠️ Signal lists missing at load. app.js will wait for overlay.js to rebuild them.");
-  }
 
   try {
     const res = await fetch("data/signals.json", { cache: "no-store" });
@@ -81,21 +75,24 @@ function renderNews(summary, items) {
     const data = await res.json();
 
     if (lastUpdated) lastUpdated.textContent = data.generated_at_pt || "—";
-    else console.warn("⚠️ #last-updated element missing.");
 
+    // Populate Buy List (Critical)
     if (buyList) {
       buyList.innerHTML = (data.buys && data.buys.length)
         ? data.buys.map(renderBuyCard).join("")
         : `<li class="signal-card">No buy signals.</li>`;
     }
+
+    // Populate Sell List (Only if element exists in HTML)
     if (sellList) {
       sellList.innerHTML = (data.sells && data.sells.length)
         ? data.sells.map(renderSellCard).join("")
         : `<li class="signal-card">No sell signals.</li>`;
     }
+
   } catch (e) {
     console.error("❌ Failed to load or render signals:", e);
-    if (buyList) buyList.innerHTML = `<li class="signal-card">⚠️ Could not load signals.</li>`;
-    if (sellList) sellList.innerHTML = "";
+    // Print the specific error to the screen so you know why it failed
+    if (buyList) buyList.innerHTML = `<li class="signal-card">⚠️ Could not load signals: ${e.message}</li>`;
   }
 })();
