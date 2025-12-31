@@ -263,7 +263,7 @@ def format_buy_alert_line(ticker, company_name, price, rsi, pe, mcap, strike, ex
         f"Market Cap=${mcap}<br>"
         f"DMA 200={dma200_str} "
         f"DMA 50={dma50_str}<br>"
-        f"Sell a ${strike_str} put option with {expiration} ({exp_type}) expiration for a premium of ${premium_str}<br>"
+        f"Sell a ${strike_str} put option with {expiration} expiration for a premium of ${premium_str}<br>"
         f"[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}"
     )
 
@@ -480,8 +480,9 @@ def job(tickers):
         exp_type = best_put.get("exp_type", "UNKNOWN")  
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
         company_name = fetch_company_name(sym)
-        dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
-        dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
+        stock_row = next((s for s in stock_data_list if s["ticker"] == sym), None)
+        dma200_val = stock_row.get("dma200") if stock_row else None
+        dma50_val  = stock_row.get("dma50") if stock_row else None
 
         put_obj = {
             "strike": float(best_put['strike']) if best_put.get('strike') is not None else None,
