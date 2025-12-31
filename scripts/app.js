@@ -77,7 +77,7 @@ function renderNews(summary, items) {
   }
 
   try {
-    const res = await fetch("/data/signals.json", { cache: "no-store" });
+    const res = await fetch("data/signals.json", { cache: "no-store" });
     if (!res.ok) throw new Error(`signals.json fetch failed (${res.status})`);
     const data = await res.json();
 
