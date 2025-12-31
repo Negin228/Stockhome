@@ -74,6 +74,11 @@ def retry_on_rate_limit(func):
         raise
     return wrapper
 
+def has_weekly_options(expirations):
+    # If there exists any expiration that is NOT the standard monthly (3rd Friday),
+    # then the symbol effectively has weeklies.
+    types = [option_expiration_type(e) for e in expirations]
+    return any(t == "WEEKLY" for t in types)
 
 
 
@@ -219,6 +224,8 @@ def fetch_puts(symbol):
         ticker = yf.Ticker(symbol)
         today = datetime.datetime.now()
         valid_dates = [d for d in getattr(ticker, 'options', []) if (parse(d) - today).days <= 49]
+        weekly_available = has_weekly_options(valid_dates)
+
         for exp in valid_dates:
             exp_type = option_expiration_type(exp)
             dte = (parse(exp).date() - today.date()).days
@@ -236,6 +243,7 @@ def fetch_puts(symbol):
                     "exp_type": exp_type,
                     "dte": dte,
                     "premium": premium,
+                    "weekly_available": weekly_available,
                     "stock_price": under_price
                 })
     except Exception as e:
