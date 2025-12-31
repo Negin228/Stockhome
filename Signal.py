@@ -232,7 +232,8 @@ def default_put_obj():
         "delta_percent": None,
         "premium_percent": None,
         "metric_sum": None,
-        "weekly_available": True,  # default assumption (do NOT show Monthly)
+        "weekly_available": True,
+        "monthly_available": True,
     }
 
 
