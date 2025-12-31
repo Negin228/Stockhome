@@ -1,4 +1,4 @@
-// scripts/app.js
+scripts/app.js
 
 function fmt(n, d = 1) {
   return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
@@ -22,8 +22,8 @@ function renderBuyCard(b) {
         RSI=${fmt(b.rsi_str)}&nbsp;&nbsp;P/E=${fmt(b.pe_str)}&nbsp;&nbsp;
         DMA 50=${fmt(b.dma50_str)}&nbsp;&nbsp;DMA 200=${fmt(b.dma200_str)}&nbsp;&nbsp;Market Cap=$${b.market_cap_str || "N/A"}
         <br><span class="options-availability">${availText}</span>
-        <br>Sell a $${fmt(put.strike, 1)} put option expiring ${put.expiration || "N/A"} ${put.weekly_available === false ? " (Monthly)" : ""} for $${fmt(put.premium, 2)}
-
+        <br>
+          Sell a $${fmt(put.strike, 1)} put option expiring ${put.expiration || "N/A"}${put.weekly_available === false ? ' <span class="monthly">(Monthly)</span>' : ''} for $${fmt(put.premium, 2)}
         <br>[𝚫 ${fmt(put.delta_percent, 1)}% + 💎 ${fmt(put.premium_percent, 1)}%] = ${fmt(put.metric_sum, 1)}%
       </p>
       ${renderNews(b.news_summary, b.news)}
