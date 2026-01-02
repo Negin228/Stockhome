@@ -3,7 +3,7 @@
 let allStocks = [];
 
 // Fetch stock data and initialize filtering
-fetch('data/signals.json')
+fetch('../data/signals.json')
   .then(response => response.json())
   .then(data => {
     allStocks = data.all || [];
