@@ -2,17 +2,37 @@
 
 let allStocks = [];
 
-// Fetch stock data and initialize filtering
-fetch('../data/signals.json')
-  .then(response => response.json())
+// FIX 1: Add "../" to the path so it finds the file
+fetch('../data/signals.json') 
+  .then(response => {
+    if (!response.ok) {
+        throw new Error("HTTP error " + response.status); // specific error handling
+    }
+    return response.json();
+  })
   .then(data => {
     allStocks = data.all || [];
+    
+    // Initialize the list
     filterStocks();
+
+    // FIX 2: Check if the element exists before writing to it to prevent crashing
     if (data.generated_at_pt) {
-      document.getElementById("last-updated").textContent = data.generated_at_pt || "—";
+      const dateElement = document.getElementById("last-updated");
+      if (dateElement) {
+        dateElement.textContent = data.generated_at_pt;
+      }
     }
+  })
+  .catch(err => {
+      console.error("Error loading data:", err); // logs error to console
+      document.getElementById('filtered-stocks').innerHTML = "<p>Error loading data. Check console (F12).</p>";
   });
 
+// ... keep the rest of your functions (filterStocks, setupSliderHandlers, etc.) the same ...
+
+// FIX 3: Ensure this is at the bottom of your file
+setupSliderHandlers();
 
 
 function filterStocks() {
