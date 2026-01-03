@@ -62,13 +62,16 @@ function filterStocks() {
                     <span style="background-color: ${color}; color: white; padding: 5px 10px; border-radius: 6px; font-weight: bold; margin-right: 12px; font-size: 1.1em;">
                         ${stock.score.toFixed(0)}
                     </span>
-                    <strong style="font-size: 1.4em; margin-right: 10px;">${stock.ticker}</strong>
-                    <span style="color: #666; font-size: 1em;">${stock.company}</span>
+                    
+                    <strong style="font-size: 1.5em; margin-right: 10px; color: #000;">${stock.ticker}</strong>
+                    
+                    <strong style="font-size: 1.5em; margin-right: 15px; color: #333;">$${stock.price_str}</strong>
+                    
+                    <span style="color: #666; font-size: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${stock.company}</span>
                 </div>
 
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.9em; color: #444; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0;">
-                    <span><strong>Price:</strong> $${stock.price_str}</span>
-                    <span><strong>Cap:</strong> $${stock.market_cap_str}</span>
+                    <span><strong>Cap:</strong> ${stock.market_cap_str}</span>
                     <span><strong>RSI:</strong> ${stock.rsi_str}</span>
                     <span><strong>P/E:</strong> ${stock.pe_str}</span>
                     <span><strong>Drop:</strong> ${dropText}</span>
@@ -107,7 +110,7 @@ function setupSliderHandlers() {
     document.getElementById('cap-value').innerText = this.value;
     filterStocks();
   };
-  // Initial run is handled by processData calling filterStocks
+  // Initial run handled by processData
 }
 
 function resetFilters() {
