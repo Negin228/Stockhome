@@ -52,8 +52,8 @@ function filterStocks() {
             <li style="margin-bottom: 15px; padding: 20px; border: 1px solid #eee; border-radius: 8px; list-style: none; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                 <div style="display: flex; align-items: center; margin-bottom: 8px;">
                     <span style="background-color: ${color}; color: white; padding: 5px 10px; border-radius: 6px; font-weight: bold; margin-right: 12px; font-size: 1.1em;">${stock.score.toFixed(0)}</span>
-                    <strong style="font-size: 1.5em; margin-right: 10px; color: #000;">${stock.ticker}</strong>
-                    <strong style="font-size: 1.5em; margin-right: 15px; color: #333;">$${stock.price_str}</strong>
+                    <strong style="font-size: 1.4em; margin-right: 10px; color: #000;">${stock.ticker}</strong>
+                    <strong style="font-size: 1.4em; margin-right: 15px; color: #333;">$${stock.price_str}</strong>
                     <span style="color: #666; font-size: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${stock.company}</span>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.9em; color: #444; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0;">
