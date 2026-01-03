@@ -2,7 +2,7 @@
 
 let allStocks = [];
 
-fetch('data/signals.json')  // If this fails, use 'signals.json' based on previous fix
+fetch('../data/signals.json')  // If this fails, use 'signals.json' based on previous fix
   .then(response => {
     if (!response.ok) throw new Error("HTTP error " + response.status);
     return response.json();
