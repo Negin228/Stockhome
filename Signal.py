@@ -367,30 +367,7 @@ def log_alert(alert):
     exists = os.path.exists(csv_path)
     df_new = pd.DataFrame([alert])
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
-def fetch_batch_history(ticker_list, period="2y", interval="1d"):
-    """
-    Downloads historical data for all tickers in a single request.
-    Returns a MultiIndex DataFrame.
-    """
-    if not ticker_list:
-        return pd.DataFrame()
-    
-    logger.info(f"Batch downloading history for {len(ticker_list)} tickers...")
-    try:
-        # group_by='ticker' ensures we can access data via df[symbol]
-        batch_df = yf.download(
-            ticker_list, 
-            period=period, 
-            interval=interval, 
-            group_by='ticker', 
-            auto_adjust=False, 
-            progress=False,
-            threads=True # Use threading for speed
-        )
-        return batch_df
-    except Exception as e:
-        logger.error(f"Batch download failed: {e}")
-        return pd.DataFrame()
+
 def job(tickers):
     sell_alerts = []
     all_sell_alerts = []
@@ -402,52 +379,18 @@ def job(tickers):
     total = skipped = 0
     stock_data_list = []
 
-    # --- BATCH FETCH START ---
-    # We attempt to fetch all history at once to save time/API calls
-    batch_data = fetch_batch_history(tickers)
-    # --- BATCH FETCH END ---
-
     for symbol in tickers:
         total += 1
-        hist = None
-        
-        # 1. Try to get data from Batch
         try:
-            # Handle MultiIndex logic from yfinance
-            if not batch_data.empty:
-                if len(tickers) == 1:
-                    # If only 1 ticker, yf doesn't return MultiIndex
-                    hist = batch_data.copy()
-                elif symbol in batch_data.columns.levels[0]:
-                    hist = batch_data[symbol].copy()
-            
-            # Drop rows where all columns are NaN (common in batch downloads)
-            if hist is not None:
-                hist.dropna(how='all', inplace=True)
-
-            # Validation: If batch failed or returned empty for this specific ticker,
-            # fall back to the individual cached fetcher
-            if hist is None or hist.empty or "Close" not in hist.columns:
-                # Fallback logic
-                hist = fetch_cached_history(symbol)
-        except Exception as e:
-            # Fallback logic on error
             hist = fetch_cached_history(symbol)
-
-        if hist is None or hist.empty or "Close" not in hist.columns:
-            logger.info(f"No historical data for {symbol}, skipping.")
-            skipped += 1
-            continue
-
-        # --- EXISTING LOGIC RESUMES HERE ---
-        
-        # 1. Indicators
-        try:
-            hist = calculate_indicators(hist)
+            if hist.empty or "Close" not in hist.columns:
+                logger.info(f"No historical data for {symbol}, skipping.")
+                skipped += 1; continue
         except Exception as e:
-            logger.error(f"Error calc indicators for {symbol}: {e}")
-            failed.append(symbol)
-            continue
+            failed.append(symbol); continue
+            
+        # 1. Indicators
+        hist = calculate_indicators(hist)
         
         # 2. Basic Signal (Buy/Sell) for Puts logic
         sig, reason = generate_signal(hist)
@@ -513,8 +456,8 @@ def job(tickers):
             'ticker': symbol,
             'company': company_name,
             'signal' : sig,
-            'score': final_score,   
-            'why': why_str,         
+            'score': final_score,   # <--- NEW FIELD
+            'why': why_str,         # <--- NEW FIELD
             'price': float(rt_price) if rt_price is not None else None,
             'price_str': f"{rt_price:.2f}" if rt_price is not None else "N/A",
             'rsi': float(rsi_val) if rsi_val is not None else None,
@@ -552,7 +495,6 @@ def job(tickers):
             all_sell_alerts.append(f"""<div class="main-info"><div><span class="ticker-alert">{symbol}</span></div><div class="price-details"><div class="current-price price-down">{rt_price:.2f}</div></div></div><p class="news-summary">{sell_alert_line}</p>""")
 
     # Options section (only for BUY signals)
-    # This must remain a loop because yfinance options do not support batching
     for sym in buy_symbols:
         price = prices.get(sym)
         pe, mcap = fetch_fundamentals_safe(sym)
@@ -613,7 +555,7 @@ def job(tickers):
         except Exception: pass
 
     return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list
-    
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
