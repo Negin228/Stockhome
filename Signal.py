@@ -367,7 +367,30 @@ def log_alert(alert):
     exists = os.path.exists(csv_path)
     df_new = pd.DataFrame([alert])
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
-
+def fetch_batch_history(ticker_list, period="2y", interval="1d"):
+    """
+    Downloads historical data for all tickers in a single request.
+    Returns a MultiIndex DataFrame.
+    """
+    if not ticker_list:
+        return pd.DataFrame()
+    
+    logger.info(f"Batch downloading history for {len(ticker_list)} tickers...")
+    try:
+        # group_by='ticker' ensures we can access data via df[symbol]
+        batch_df = yf.download(
+            ticker_list, 
+            period=period, 
+            interval=interval, 
+            group_by='ticker', 
+            auto_adjust=False, 
+            progress=False,
+            threads=True # Use threading for speed
+        )
+        return batch_df
+    except Exception as e:
+        logger.error(f"Batch download failed: {e}")
+        return pd.DataFrame()
 def job(tickers):
     sell_alerts = []
     all_sell_alerts = []
@@ -590,6 +613,7 @@ def job(tickers):
         except Exception: pass
 
     return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list
+    
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
