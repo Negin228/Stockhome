@@ -2,38 +2,24 @@
 
 let allStocks = [];
 
-// FIX 1: Add "../" to the path so it finds the file
-fetch('../data/signals.json') 
+fetch('data/signals.json')  // If this fails, use 'signals.json' based on previous fix
   .then(response => {
-    if (!response.ok) {
-        throw new Error("HTTP error " + response.status); // specific error handling
-    }
+    if (!response.ok) throw new Error("HTTP error " + response.status);
     return response.json();
   })
   .then(data => {
     allStocks = data.all || [];
     
-    // Initialize the list
-    filterStocks();
+    // Sort by Score descending (High to Low) by default
+    allStocks.sort((a, b) => b.score - a.score);
 
-    // FIX 2: Check if the element exists before writing to it to prevent crashing
+    filterStocks();
     if (data.generated_at_pt) {
-      const dateElement = document.getElementById("last-updated");
-      if (dateElement) {
-        dateElement.textContent = data.generated_at_pt;
-      }
+      const dateEl = document.getElementById("last-updated");
+      if (dateEl) dateEl.textContent = data.generated_at_pt;
     }
   })
-  .catch(err => {
-      console.error("Error loading data:", err); // logs error to console
-      document.getElementById('filtered-stocks').innerHTML = "<p>Error loading data. Check console (F12).</p>";
-  });
-
-// ... keep the rest of your functions (filterStocks, setupSliderHandlers, etc.) the same ...
-
-// FIX 3: Ensure this is at the bottom of your file
-setupSliderHandlers();
-
+  .catch(err => console.error("Error loading data:", err));
 
 function filterStocks() {
     var rsi = parseFloat(document.getElementById('rsi-slider').value);
@@ -47,12 +33,36 @@ function filterStocks() {
     });
   
     var div = document.getElementById('filtered-stocks');
-    div.innerHTML = filtered.length ? "<ul>" + filtered.map(function(stock) {
-        return `<li>${stock.ticker} (RSI=${stock.rsi_str}, P/E=${stock.pe_str}, Cap=${stock.market_cap_str}, drop=${(typeof stock.pct_drop === "number" ? stock.pct_drop.toFixed(1) + "%" : "N/A")}, DMA200=${stock.dma200_str}, DMA50=${stock.dma50_str})</li>`;
-    }).join("") + "</ul>" : "<p>No stocks match.</p>";
+    
+    if (filtered.length) {
+        div.innerHTML = "<ul class='stock-list'>" + filtered.map(function(stock) {
+            // Determine color for score
+            let color = stock.score >= 70 ? "#4caf50" : (stock.score >= 40 ? "#ff9800" : "#f44336");
+            
+            return `
+            <li style="margin-bottom: 15px; padding: 15px; border: 1px solid #eee; border-radius: 8px; list-style: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="background-color: ${color}; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; margin-right: 10px;">
+                            ${stock.score.toFixed(0)}
+                        </span>
+                        <strong style="font-size: 1.2em;">${stock.ticker}</strong>
+                        <span style="color: #666; font-size: 0.9em; margin-left: 10px;">
+                            RSI: ${stock.rsi_str} | P/E: ${stock.pe_str}
+                        </span>
+                    </div>
+                </div>
+                <div style="margin-top: 8px; color: #555; font-size: 0.95em;">
+                    <em>${stock.why}</em>
+                </div>
+            </li>`;
+        }).join("") + "</ul>";
+    } else {
+        div.innerHTML = "<p>No stocks match your filters.</p>";
+    }
 }
 
-
+// ... Keep your setupSliderHandlers() and resetFilters() the same ...
 
 function setupSliderHandlers() {
   var rsiSlider = document.getElementById('rsi-slider');
@@ -78,19 +88,16 @@ function setupSliderHandlers() {
   filterStocks();
 }
 
-
 function resetFilters() {
-    document.getElementById('cap-slider').value = 0;     // Minimum market cap
+    document.getElementById('cap-slider').value = 0;
     document.getElementById('drop-slider').value = 0;
-    document.getElementById('rsi-slider').value = 100;   // Or slider's max
-    document.getElementById('pe-slider').value = 100;    // Or slider's max
+    document.getElementById('rsi-slider').value = 100;
+    document.getElementById('pe-slider').value = 100;
     document.getElementById('rsi-value').innerText = 100;
     document.getElementById('pe-value').innerText = 100;
     document.getElementById('cap-value').innerText = 0;
     document.getElementById('drop-value').innerText = "0%";
-
-
-
     filterStocks();
 }
+
 setupSliderHandlers();
