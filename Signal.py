@@ -14,15 +14,22 @@ import numpy as np
 from dateutil.parser import parse
 import config
 from news_fetcher import fetch_news_ticker
-from newspaper import Article
-#import openai
-#from transformers import pipeline
 import re
 import pytz
 
+# ---------------------------------------------------------
+# SCORING CONFIGURATION
+# ---------------------------------------------------------
+W_TREND = 40
+W_RSI = 25
+W_MACD = 25
+W_DISTANCE = 10
+
+# ---------------------------------------------------------
+# SETUP & LOGGING
+# ---------------------------------------------------------
 pacific = pytz.timezone('US/Pacific')
 dt_pacific = datetime.datetime.now(pacific)
-
 
 puts_dir = "puts_data"
 os.makedirs(config.DATA_DIR, exist_ok=True)
@@ -30,8 +37,6 @@ os.makedirs(config.LOG_DIR, exist_ok=True)
 os.makedirs(puts_dir, exist_ok=True)
 os.makedirs("data", exist_ok=True)
 os.makedirs("artifacts/data", exist_ok=True)
-
-
 
 log_path = os.path.join(config.LOG_DIR, config.LOG_FILE)
 logger = logging.getLogger("StockHome")
@@ -54,6 +59,103 @@ API_RETRY_INITIAL_WAIT = 60
 MAX_TICKER_RETRIES = 100
 TICKER_RETRY_WAIT = 60
 
+# ---------------------------------------------------------
+# HELPER FUNCTIONS (MATH & SCORING)
+# ---------------------------------------------------------
+def clamp(x, lo, hi):
+    return max(lo, min(hi, x))
+
+def pct(a, b):
+    if b == 0 or pd.isna(b) or pd.isna(a):
+        return np.nan
+    return (a - b) / b
+
+def slope(series, lookback=10):
+    s = series.dropna()
+    if len(s) < lookback:
+        return 0.0
+    y = s.iloc[-lookback:].values
+    x = np.arange(lookback)
+    m = np.polyfit(x, y, 1)[0]
+    return m
+
+def scalar(x):
+    if hasattr(x, "iloc"):
+        return float(x.iloc[0])
+    return float(x)
+
+# --- SCORING LOGIC ---
+def score_trend(last_close, sma_fast_v, sma_slow_v, sma_slow_slope):
+    reasons = []
+    score = 0.0
+    # Above Slow SMA
+    if last_close > sma_slow_v:
+        score += 0.55; reasons.append("Above slow SMA")
+    else: 
+        reasons.append("Below slow SMA")
+    
+    # Above Fast SMA
+    if last_close > sma_fast_v:
+        score += 0.25; reasons.append("Above fast SMA")
+    
+    # Slope
+    if sma_slow_slope > 0:
+        score += 0.20; reasons.append("Uptrending")
+    
+    return clamp(score, 0, 1), reasons
+
+def score_rsi(last_rsi):
+    reasons = []
+    score = 0.0
+    if last_rsi >= 50: 
+        score += 0.60
+    else: 
+        score += 0.35
+    
+    if last_rsi >= config.RSI_OVERBOUGHT:
+        score -= 0.15; reasons.append("Overbought")
+    elif last_rsi <= config.RSI_OVERSOLD:
+        score += 0.15; reasons.append("Oversold")
+    else:
+        reasons.append(f"RSI {last_rsi:.0f}")
+        
+    return clamp(score, 0, 1), reasons
+
+def score_macd(macd_val, signal_val, hist):
+    reasons = []
+    score = 0.0
+    if macd_val > signal_val:
+        score += 0.60; reasons.append("Bullish MACD")
+    else:
+        score += 0.35; reasons.append("Bearish MACD")
+        
+    h = hist.dropna()
+    if len(h) >= 3:
+        h0, h1, h2 = h.iloc[-1], h.iloc[-2], h.iloc[-3]
+        if h0 > h1 > h2: 
+            score += 0.15; reasons.append("Mom. Rising")
+        elif h0 < h1 < h2: 
+            score -= 0.10; reasons.append("Mom. Falling")
+        
+    return clamp(score, 0, 1), reasons
+
+def score_distance(last_close, sma_slow_v):
+    reasons = []
+    d = pct(last_close, sma_slow_v)
+    if pd.isna(d): return 0.5, []
+    
+    if -0.03 <= d <= 0.05:
+        score = 0.85; reasons.append("Near Support")
+    elif d > 0.05:
+        score = 0.60; reasons.append(f"Extended (+{d*100:.0f}%)")
+    else:
+        score = 0.45
+        
+    return score, reasons
+
+# ---------------------------------------------------------
+# CORE FUNCTIONS
+# ---------------------------------------------------------
 
 def retry_on_rate_limit(func):
     def wrapper(*args, **kwargs):
@@ -75,8 +177,6 @@ def retry_on_rate_limit(func):
     return wrapper
 
 def has_weekly_options(expirations):
-    # If there exists any expiration that is NOT the standard monthly (3rd Friday),
-    # then the symbol effectively has weeklies.
     types = [option_expiration_type(e) for e in expirations]
     return any(t == "WEEKLY" for t in types)
 
@@ -87,7 +187,6 @@ def option_availability(expiration_list):
         "monthly_available": any(t == "MONTHLY" for t in types),
     }
 
-
 def force_float(val):
     if isinstance(val, (pd.Series, np.ndarray)):
         return float(val.iloc[-1]) if hasattr(val, "iloc") and not val.empty else None
@@ -96,42 +195,19 @@ def force_float(val):
     return float(val) if val is not None else None
 
 def option_expiration_type(expiration_str: str) -> str:
-    """
-    Classify an expiration date as MONTHLY vs WEEKLY.
-    MONTHLY = 3rd Friday of the month (day 15-21 and weekday=Friday).
-    """
     try:
         d = parse(expiration_str).date()
-        # Some feeds can have Saturday dates; treat Saturday as the prior Friday
-        if d.weekday() == 5:  # Saturday
-            d = d - datetime.timedelta(days=1)
-
-        if d.weekday() == 4 and 15 <= d.day <= 21:  # Friday and 3rd-week window
-            return "MONTHLY"
+        if d.weekday() == 5: d = d - datetime.timedelta(days=1)
+        if d.weekday() == 4 and 15 <= d.day <= 21: return "MONTHLY"
         return "WEEKLY"
     except Exception:
         return "UNKNOWN"
 
-
-def extend_to_next_period(text):
-    if not text or not text.strip():
-        return ""
-    idx = text.find('.')
-    if idx == -1:
-        return text.strip()
-    return text[:idx+1].strip()
-
-    
 def ensure_sentence_completion(text):
     text = text.strip()
-    if not text:
-        return ""
-    if not re.search(r'[.!?]$', text):
-        text += "."
+    if not text: return ""
+    if not re.search(r'[.!?]$', text): text += "."
     return text
-
-
-
 
 @retry_on_rate_limit
 def fetch_cached_history(symbol, period="2y", interval="1d"):
@@ -146,29 +222,22 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
         else:
             try:
                 cols = ['Date', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
-                #cols = ['Date', 'Price', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']
                 df = pd.read_csv(path, skiprows=3, names=cols)
                 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
                 df.set_index('Date', inplace=True)
-                if df.index.hasnans:
-                    logger.warning(f"Cache date parsing failed for {symbol}, refreshing cache")
-                    force_full = True
+                if df.index.hasnans: force_full = True
             except Exception as e:
-                logger.warning(f"Failed reading cache for {symbol}: {e}")
                 df = None
+    
     if df is None or df.empty or force_full:
         logger.info(f"Downloading full history for {symbol}")
         df = yf.download(symbol, period=period, interval=interval, auto_adjust=False)
-        if df is None or df.empty:
-            return pd.DataFrame()
+        if df is None or df.empty: return pd.DataFrame()
         df.to_csv(path)
     else:
         try:
-            last = df.index[-1]
-            if not isinstance(last, pd.Timestamp):
-                last = pd.to_datetime(last)
+            last = pd.to_datetime(df.index[-1])
             start_date = (last - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-            logger.info(f"Updating {symbol} from {start_date}")
             new_df = yf.download(symbol, start=start_date, interval=interval, auto_adjust=False)
             if not new_df.empty:
                 df = pd.concat([df, new_df]).groupby(level=0).last().sort_index()
@@ -176,40 +245,43 @@ def fetch_cached_history(symbol, period="2y", interval="1d"):
         except Exception as e:
             logger.warning(f"Incremental update failed for {symbol}: {e}")
     return df
+
 @retry_on_rate_limit
 def fetch_quote(symbol):
     quote = finnhub_client.quote(symbol)
     price = quote.get("c", None)
-    if price is None or (isinstance(price, float) and np.isnan(price)):
-        return None
+    if price is None or (isinstance(price, float) and np.isnan(price)): return None
     return price
 
 def fetch_company_name(symbol):
     try:
         info = yf.Ticker(symbol).info
         return info.get("shortName") or info.get("longName") or ""
-    except Exception as e:
-        logger.warning(f"Failed to fetch company name for {symbol}: {e}")
-        return ""
-
+    except Exception: return ""
 
 def calculate_indicators(df):
     close = df["Close"]
-    if isinstance(close, pd.DataFrame):
-        close = close.squeeze()
+    if isinstance(close, pd.DataFrame): close = close.squeeze()
+    
+    # RSI & DMA
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
-
+    
+    # MACD
+    ema_fast = close.ewm(span=12, adjust=False).mean()
+    ema_slow = close.ewm(span=26, adjust=False).mean()
+    df["macd"] = ema_fast - ema_slow
+    df["signal_line"] = df["macd"].ewm(span=9, adjust=False).mean()
+    df["hist"] = df["macd"] - df["signal_line"]
+    
     return df
 
 def generate_signal(df):
-    if df.empty or "rsi" not in df.columns:
-        return None, ""
+    if df.empty or "rsi" not in df.columns: return None, ""
     rsi = df["rsi"].iloc[-1]
-    if pd.isna(rsi):
-        return None, ""
-    price = df["Close"].iloc[-1] if "Close" in df.columns else np.nan
+    if pd.isna(rsi): return None, ""
+    
     if rsi < config.RSI_OVERSOLD:
         return "BUY", f"RSI={rsi:.1f} < {config.RSI_OVERSOLD}"
     if rsi > config.RSI_OVERBOUGHT:
@@ -220,22 +292,10 @@ def fetch_fundamentals_safe(symbol):
     try:
         info = yf.Ticker(symbol).info
         return info.get("trailingPE", None), info.get("marketCap", None)
-    except Exception as e:
-        logger.warning(f"Failed to fetch fundamentals for {symbol}: {e}")
-        return None, None
+    except Exception: return None, None
 
 def default_put_obj():
-    return {
-        "strike": None,
-        "expiration": None,
-        "premium": None,
-        "delta_percent": None,
-        "premium_percent": None,
-        "metric_sum": None,
-        "weekly_available": True,
-        "monthly_available": True,
-    }
-
+    return { "strike": None, "expiration": None, "premium": None, "delta_percent": None, "premium_percent": None, "metric_sum": None, "weekly_available": True, "monthly_available": True }
 
 def fetch_puts(symbol):
     puts_data = []
@@ -243,29 +303,21 @@ def fetch_puts(symbol):
         ticker = yf.Ticker(symbol)
         today = datetime.datetime.now()
         valid_dates = [d for d in getattr(ticker, 'options', []) if (parse(d) - today).days <= 49]
-        weekly_available = has_weekly_options(valid_dates)
         avail = option_availability(valid_dates)
-
 
         for exp in valid_dates:
             exp_type = option_expiration_type(exp)
             dte = (parse(exp).date() - today.date()).days
             chain = ticker.option_chain(exp)
-            if chain.puts.empty:
-                continue
+            if chain.puts.empty: continue
             under_price = ticker.history(period="1d")["Close"].iloc[-1]
             chain.puts["distance"] = abs(chain.puts["strike"] - under_price)
             for _, put in chain.puts.iterrows():
                 strike = put["strike"]
-                premium = put.get("lastPrice") or ((put.get("bid") + put.get("ask")) / 2 if (put.get("bid") is not None and put.get("ask") is not None) else None)
+                premium = put.get("lastPrice") or ((put.get("bid") + put.get("ask")) / 2)
                 puts_data.append({
-                    "expiration": exp,
-                    "strike": strike,
-                    "exp_type": exp_type,
-                    "dte": dte,
-                    "premium": premium,
-                    "weekly_available": avail["weekly_available"],
-                    "monthly_available": avail["monthly_available"],
+                    "expiration": exp, "strike": strike, "exp_type": exp_type, "dte": dte, "premium": premium,
+                    "weekly_available": avail["weekly_available"], "monthly_available": avail["monthly_available"],
                     "stock_price": under_price
                 })
     except Exception as e:
@@ -282,61 +334,39 @@ def format_buy_alert_line(ticker, company_name, price, rsi, pe, mcap, strike, ex
     premium_str = f"{premium:.2f}" if premium is not None else "N/A"
     dp = f"{delta_percent:.1f}%" if delta_percent is not None else "N/A"
     pp = f"{premium_percent:.1f}%" if premium_percent is not None else "N/A"
-    metric_sum = None
-    if (delta_percent is not None) and (premium_percent is not None):
-        metric_sum = delta_percent + premium_percent
-    metric_sum_str = f"{metric_sum:.1f}%" if metric_sum is not None else "N/A"
-    return (
-        f"{ticker} ({company_name}) (${price_str}) | "
-        f"RSI={rsi_str} "
-        f"P/E={pe_str} "
-        f"Market Cap=${mcap}<br>"
-        f"DMA 200={dma200_str} "
-        f"DMA 50={dma50_str}<br>"
-        f"Sell a ${strike_str} put option with {expiration} expiration for a premium of ${premium_str}<br>"
-        f"[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}"
-    )
+    metric_sum = (delta_percent + premium_percent) if (delta_percent and premium_percent) else None
+    metric_sum_str = f"{metric_sum:.1f}%" if metric_sum else "N/A"
+    return f"{ticker} ({company_name}) (${price_str}) | RSI={rsi_str} P/E={pe_str} Market Cap=${mcap}<br>DMA 200={dma200_str} DMA 50={dma50_str}<br>Sell a ${strike_str} put option with {expiration} expiration for a premium of ${premium_str}<br>[𝚫 {dp} + 💎 {pp}] = {metric_sum_str}"
 
 def format_sell_alert_line(ticker, price, rsi, pe, mcap):
-    #price_str = f"{price:.2f}" if price is not None else "N/A"
     rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
     pe_str = f"{pe:.1f}" if pe is not None else "N/A"
-    #return f"{ticker} (${price_str}) | RSI={rsi_str}, P/E={pe_str}, Market Cap=${mcap}"
     return f"RSI={rsi_str}, P/E={pe_str}, Market Cap=${mcap}"
 
 def calculate_custom_metrics(puts, price):
-    if price is None or price <= 0 or np.isnan(price):
-        return puts
+    if not price or price <= 0: return puts
     for p in puts:
         strike = p.get("strike")
         premium = p.get("premium") or 0.0
         try:
-            premium_val = float(premium)
-            p["custom_metric"] = ((price - strike) + premium_val / 100) / price * 100 if strike else None
+            p["custom_metric"] = ((price - strike) + premium / 100) / price * 100 if strike else None
             p["delta_percent"] = ((price - strike) / price) * 100 if strike else None
-            p["premium_percent"] = premium_val / price * 100 if premium_val else None
-        except Exception as e:
-            logger.warning(f"Error computing metrics for put {p}: {e}")
-            p["custom_metric"] = p["delta_percent"] = p["premium_percent"] = None
+            p["premium_percent"] = premium / price * 100 if premium else None
+        except Exception:
+            p["custom_metric"] = None
     return puts
 
 def format_market_cap(mcap):
-    if not mcap:
-        return "N/A"
-    if mcap >= 1e9:
-        return f"{mcap / 1e9:.1f}B"
-    if mcap >= 1e6:
-        return f"{mcap / 1e6:.1f}M"
+    if not mcap: return "N/A"
+    if mcap >= 1e9: return f"{mcap / 1e9:.1f}B"
+    if mcap >= 1e6: return f"{mcap / 1e6:.1f}M"
     return str(mcap)
-
 
 def log_alert(alert):
     csv_path = config.ALERTS_CSV
     exists = os.path.exists(csv_path)
     df_new = pd.DataFrame([alert])
     df_new.to_csv(csv_path, mode='a', header=not exists, index=False)
-
-
 
 def job(tickers):
     sell_alerts = []
@@ -355,147 +385,115 @@ def job(tickers):
             hist = fetch_cached_history(symbol)
             if hist.empty or "Close" not in hist.columns:
                 logger.info(f"No historical data for {symbol}, skipping.")
-                skipped += 1
-                continue
+                skipped += 1; continue
         except Exception as e:
-            msg = str(e).lower()
-            if any(k in msg for k in ["rate limit", "too many requests", "429"]):
-                logger.warning(f"Rate limited on fetching history for {symbol}, retry delayed.")
-                failed.append(symbol)
-                continue
-            if any(k in msg for k in ["delisted", "no data", "not found"]):
-                logger.info(f"{symbol} delisted or no data, skipping.")
-                skipped += 1
-                continue
-            logger.error(f"Error fetching history for {symbol}: {e}")
-            skipped += 1
-            continue
+            failed.append(symbol); continue
+            
+        # 1. Indicators
         hist = calculate_indicators(hist)
+        
+        # 2. Basic Signal (Buy/Sell) for Puts logic
         sig, reason = generate_signal(hist)
 
+        # 3. ADVANCED SCORING
+        try:
+            # Extract scalar values for scoring
+            last_close = scalar(hist["Close"].iloc[-1])
+            last_rsi = scalar(hist["rsi"].iloc[-1])
+            last_sma_slow = scalar(hist["dma200"].iloc[-1]) if "dma200" in hist.columns else np.nan
+            last_sma_fast = scalar(hist["dma50"].iloc[-1]) if "dma50" in hist.columns else np.nan
+            last_macd = scalar(hist["macd"].iloc[-1]) if "macd" in hist.columns else 0
+            last_sig = scalar(hist["signal_line"].iloc[-1]) if "signal_line" in hist.columns else 0
+            
+            # Slope
+            sma_slope = slope(hist["dma200"], lookback=10)
+            
+            # Sub-scores
+            s_trend, r_trend = score_trend(last_close, last_sma_fast, last_sma_slow, sma_slope)
+            s_rsi, r_rsi = score_rsi(last_rsi)
+            s_macd, r_macd = score_macd(last_macd, last_sig, hist["hist"])
+            s_dist, r_dist = score_distance(last_close, last_sma_slow)
+            
+            # Final Score (0-100)
+            final_score = (W_TREND * s_trend) + (W_RSI * s_rsi) + (W_MACD * s_macd) + (W_DISTANCE * s_dist)
+            final_score = clamp(final_score, 0, 100)
+            
+            # Why String
+            reasons = r_trend[:1] + r_rsi[:1] + r_macd[:1] + r_dist[:1]
+            why_str = " • ".join(reasons)
+        except Exception as e:
+            logger.error(f"Scoring error for {symbol}: {e}")
+            final_score = 0.0
+            why_str = "Error in scoring"
+
+        # 4. Price & Fundamentals
         try:
             rt_price = fetch_quote(symbol)
-            rt_price = force_float(rt_price)   
+            rt_price = force_float(rt_price)
+        except Exception: 
+            rt_price = None
 
-        except Exception as e:
-            msg = str(e).lower()
-            if any(k in msg for k in ["rate limit", "too many requests", "429"]):
-                logger.warning(f"Rate limit on price for {symbol}, waiting then retrying.")
-                time.sleep(TICKER_RETRY_WAIT)
-                try:
-                    rt_price = fetch_quote(symbol)
-                    rt_price = force_float(rt_price)
-                except Exception as e2:
-                    logger.error(f"Failed second price fetch for {symbol}: {e2}")
-                    rt_price = None
-            else:
-                logger.error(f"Error fetching price for {symbol}: {e}")
-                rt_price = None
-         
         if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
-            rt_price = force_float(hist["Close"].iloc[-1] if not hist.empty else None)
-        if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
-            logger.warning(f"Invalid price for {symbol}, skipping.")
-            skipped += 1
-            continue
+            rt_price = force_float(hist["Close"].iloc[-1])
+
         pe, mcap = fetch_fundamentals_safe(symbol)
         company_name = fetch_company_name(symbol)
         cap_str = format_market_cap(mcap)
-        rsi_val = hist["rsi"].iloc[-1] if "rsi" in hist.columns else None
-        pe_str = f"{pe:.1f}" if pe else "N/A"
-        dma200_val = hist["dma200"].iloc[-1] if "dma200" in hist.columns else None
-        dma50_val = hist["dma50"].iloc[-1] if "dma50" in hist.columns else None
+        rsi_val = hist["rsi"].iloc[-1]
         
+        dma200_val = hist["dma200"].iloc[-1]
+        dma50_val = hist["dma50"].iloc[-1]
 
-        last_close = hist["Close"].iloc[-1].item() if not hist.empty else None
-        prev_close = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
-
-        if prev_close is not None and rt_price is not None and prev_close != 0:
-            pct_drop = (-(rt_price - prev_close) / prev_close * 100)
-            pct_drop_str = f"{pct_drop:+.1f}%"
-        else:
-            pct_drop = None
-            pct_drop_str = "N/A"
-
+        last_close_val = hist["Close"].iloc[-1].item() if not hist.empty else None
+        prev_close_val = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
         
-        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
-        pe_str_filter = f"{pe:.1f}" if pe is not None else "N/A"
-        
+        pct_drop = None
+        if prev_close_val and rt_price:
+            pct_drop = (-(rt_price - prev_close_val) / prev_close_val * 100)
+
+        # 5. Build Stock Object
         stock_data_list.append({
-        'ticker': symbol,
-        'company': company_name,
-        'signal' : sig,
-        'price': float(rt_price) if rt_price is not None else None,
-        'price_str': f"{rt_price:.2f}" if rt_price is not None else "N/A",
-        'rsi': float(rsi_val) if rsi_val is not None else None,
-        'pe': float(pe) if pe is not None else None,
-        'market_cap': float(mcap) if mcap is not None else None,
-        'pct_drop': float(pct_drop) if pct_drop is not None else None,
-        'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
-        'pe_str': f"{pe:.1f}" if pe is not None else "N/A",
-        'market_cap_str': format_market_cap(mcap),
-        'dma200': float(dma200_val) if dma200_val is not None else None,
-        'dma50': float(dma50_val) if dma50_val is not None else None,
-        'dma200_str': f"{dma200_val:.1f}" if dma200_val is not None else "N/A",
-        'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
+            'ticker': symbol,
+            'company': company_name,
+            'signal' : sig,
+            'score': final_score,   # <--- NEW FIELD
+            'why': why_str,         # <--- NEW FIELD
+            'price': float(rt_price) if rt_price is not None else None,
+            'price_str': f"{rt_price:.2f}" if rt_price is not None else "N/A",
+            'rsi': float(rsi_val) if rsi_val is not None else None,
+            'pe': float(pe) if pe is not None else None,
+            'market_cap': float(mcap) if mcap is not None else None,
+            'pct_drop': float(pct_drop) if pct_drop is not None else None,
+            'rsi_str': f"{rsi_val:.1f}" if rsi_val is not None else "N/A",
+            'pe_str': f"{pe:.1f}" if pe is not None else "N/A",
+            'market_cap_str': cap_str,
+            'dma200': float(dma200_val) if dma200_val is not None else None,
+            'dma50': float(dma50_val) if dma50_val is not None else None,
+            'dma200_str': f"{dma200_val:.1f}" if dma200_val is not None else "N/A",
+            'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
         })
-        if not sig:
-            continue
 
-        
-        parts = [
-            f"{symbol}: {sig} at ${rt_price:.2f}",
-            reason,
-            f"PE={pe_str}",
-            f"Market Cap={cap_str}",
-        ]
-        alert_line = ", ".join(parts)
-        alert_data = {
+        if not sig: continue
+
+        # Alert Logic (Logging & Web Alert Lines)
+        parts = [f"{symbol}: {sig} at ${rt_price:.2f}", reason, f"PE={pe}", f"Market Cap={cap_str}"]
+        log_alert({
             "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "ticker": symbol,
-            "signal": sig,
-            "company": company_name,
-            "price": rt_price,
-            "rsi": rsi_val,
-            "pe_ratio": pe,
-            "market_cap": mcap,
-        }
-        log_alert(alert_data)
+            "ticker": symbol, "signal": sig, "company": company_name, "price": rt_price,
+            "rsi": rsi_val, "pe_ratio": pe, "market_cap": mcap
+        })
 
-
-        
         if sig == "BUY":
             buy_symbols.append(symbol)
             prices[symbol] = rt_price
             rsi_vals[symbol] = rsi_val
-            # ensure BUY tickers always have a put object (even if no options found later)
+            # ensure BUY tickers always have a put object
             for s in stock_data_list:
-                if s["ticker"] == symbol:
-                    s["put"] = default_put_obj()
-                    break
-
+                if s["ticker"] == symbol: s["put"] = default_put_obj(); break
         else:
-            sell_alert_line = format_sell_alert_line(
-                ticker=symbol,
-                price=rt_price,
-                rsi=rsi_val,
-                pe=pe,
-                mcap=cap_str)
-            sell_alert_html = f"""
-                <div class="main-info">
-                    <div>
-                        <span class="ticker-alert">{symbol}</span>
-                    </div>
-                    <div class="price-details">
-                        <div class="current-price price-down">{rt_price:.2f}</div>
-                    </div>
-                </div>
-                <p class="news-summary">
-                    {sell_alert_line}
-                </p>
-            """
-            all_sell_alerts.append(sell_alert_html)
-            
+            sell_alert_line = format_sell_alert_line(ticker=symbol, price=rt_price, rsi=rsi_val, pe=pe, mcap=cap_str)
+            all_sell_alerts.append(f"""<div class="main-info"><div><span class="ticker-alert">{symbol}</span></div><div class="price-details"><div class="current-price price-down">{rt_price:.2f}</div></div></div><p class="news-summary">{sell_alert_line}</p>""")
+
     # Options section (only for BUY signals)
     for sym in buy_symbols:
         price = prices.get(sym)
@@ -504,16 +502,12 @@ def job(tickers):
         rsi_val = rsi_vals.get(sym, None)
         puts_list = fetch_puts(sym)
         puts_list = calculate_custom_metrics(puts_list, price)
-        filtered_puts = [
-            p for p in puts_list
-            if p.get("strike") is not None and price
-            and p["strike"] < price
-            and p.get("custom_metric") and p["custom_metric"] >= 10
-        ]
-        if not filtered_puts:
-            continue
+        filtered_puts = [p for p in puts_list if p.get("strike") and price and p["strike"] < price and p.get("custom_metric",0) >= 10]
+        
+        if not filtered_puts: continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
-        exp_type = best_put.get("exp_type", "UNKNOWN")  
+        
+        exp_type = best_put.get("exp_type", "UNKNOWN")
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
         company_name = fetch_company_name(sym)
         stock_row = next((s for s in stock_data_list if s["ticker"] == sym), None)
@@ -521,151 +515,46 @@ def job(tickers):
         dma50_val  = stock_row.get("dma50") if stock_row else None
 
         put_obj = {
-            "strike": float(best_put['strike']) if best_put.get('strike') is not None else None,
-            "expiration": expiration_fmt if expiration_fmt else "N/A",
+            "strike": float(best_put['strike']),
+            "expiration": expiration_fmt,
             "exp_type": exp_type,
             "weekly_available": bool(best_put.get("weekly_available")),
             "monthly_available": bool(best_put.get("monthly_available")),
-            
-
-            "premium": float(best_put['premium']) if best_put.get('premium') is not None else None,
-            "delta_percent": float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else None,
-            "premium_percent": float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else None,
-            "metric_sum": (
-                    float(best_put['delta_percent'] or 0) + float(best_put['premium_percent'] or 0)
-                    if best_put.get('delta_percent') is not None and best_put.get('premium_percent') is not None
-                    else None),}
-        # Insert the put metrics into the correct stock_data_list object:
+            "premium": float(best_put['premium']),
+            "delta_percent": float(best_put['delta_percent']),
+            "premium_percent": float(best_put['premium_percent']),
+            "metric_sum": (float(best_put['delta_percent'] or 0) + float(best_put['premium_percent'] or 0))
+        }
         for s in stock_data_list:
-            if s['ticker'] == sym:
-                s['put'] = put_obj
-                break
+            if s['ticker'] == sym: s['put'] = put_obj; break
 
-
-
-        
         buy_alert_line = format_buy_alert_line(
-            ticker=sym,
-            company_name=company_name,
-            price=price if price is not None else 0.0,
-            rsi=rsi_val if rsi_val is not None else 0.0,
-            pe=pe if pe is not None else 0.0,
-            mcap=cap_str if cap_str is not None else "N/A",    
-            dma200=dma200_val,
-            dma50=dma50_val,
-            strike=float(best_put['strike']) if best_put.get('strike') is not None else 0.0,
-            expiration=expiration_fmt if expiration_fmt else "N/A",
-            premium=float(best_put['premium']) if best_put.get('premium') is not None else 0.0,
-            delta_percent=float(best_put['delta_percent']) if best_put.get('delta_percent') is not None else 0.0,
-            premium_percent=float(best_put['premium_percent']) if best_put.get('premium_percent') is not None else 0.0
+            ticker=sym, company_name=company_name, price=price, rsi=rsi_val, pe=pe, mcap=cap_str,
+            dma200=dma200_val, dma50=dma50_val, strike=float(best_put['strike']), expiration=expiration_fmt,
+            premium=float(best_put['premium']), delta_percent=float(best_put['delta_percent']),
+            premium_percent=float(best_put['premium_percent'])
         )
         
         news_items = fetch_news_ticker(sym)
-        summary_sentence = f"No recent reason found for {sym}."
-        if (news_items and isinstance(news_items[0], dict) and 'error' in news_items[0]):
-            # Optionally include error: summary_sentence = f"No news available for {sym} ({news_items[0]['error']})"
-            pass  # Keep default summary_sentence, do not use below logic
-        elif news_items:
-            negative_news = [news for news in news_items if float(news.get('sentiment', 0)) < 0]
-            use_news = None
-            if negative_news:
-                use_news = negative_news[0]
-            else:
-                use_news = news_items[0]
-            if use_news is not None:
-                article_text = use_news.get('article_text')
-                reason_sentence = use_news.get('summary') or use_news.get('headline') or use_news.get('title')
-                if not reason_sentence and article_text:
-                    try:
-                        summary = summarizer(article_text)
-                    except Exception as e:
-                        logger.error(f"Error during summarization: {e}")
-                        summary = "No summary available."
-                    reason_sentence = summary
-                if reason_sentence:
-                        summary_sentence = ensure_sentence_completion(reason_sentence)
+        summary_sentence = "No recent reason found."
+        if news_items and 'error' not in news_items[0]:
+            use_news = next((n for n in news_items if float(n.get('sentiment',0)) < 0), news_items[0])
+            summary_sentence = ensure_sentence_completion(use_news.get('summary') or use_news.get('headline') or "No summary.")
 
-        print(f"news_items for {sym}:", news_items)
-
-        
-
-
-        
-        filtered_news = [
-            news for news in news_items 
-            if 'sentiment' in news 
-            and news['sentiment'] is not None
-            and (float(news['sentiment']) > 0.2 or float(news['sentiment']) < -0.2)
-        ]
-        sorted_news = sorted(filtered_news, key=lambda n: -float(n['sentiment']))
-        top_news = sorted_news[:4]
-
-        def sentiment_emoji(sent):
-            s = float(sent)
-            if s > 0.2:
-                return "🟢"
-            elif s < -0.2:
-                return "🔴"
-            else:
-                return "⚪"
-        news_html = '<ul class="news-list">'
-        for news in top_news:
-            emoji = sentiment_emoji(news['sentiment'])
-            fval = f"{float(news['sentiment']):.1f}"
-            #news_html += f"<li><a href='{news['url']}'>{news['headline']}</a> - {emoji} {fval}</li>"
-            news_html += f"<li>{emoji} <a href='{news['url']}'>{news['headline']}</a></li>"
-        news_html += '</ul>'
+        top_news = sorted([n for n in news_items if 'sentiment' in n and abs(float(n['sentiment'])) > 0.2], key=lambda x: -float(x['sentiment']))[:4]
+        news_html = '<ul class="news-list">' + "".join([f"<li>{'🟢' if float(n['sentiment'])>0.2 else '🔴'} <a href='{n['url']}'>{n['headline']}</a></li>" for n in top_news]) + '</ul>'
 
         for s in stock_data_list:
-            if s['ticker'] == sym:
-                s['news_summary'] = summary_sentence
-                s['news'] = news_items
-                break
+            if s['ticker'] == sym: s['news_summary'] = summary_sentence; s['news'] = news_items; break
 
-        price_str = f"{price:.2f}" if price is not None else "N/A"
-        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
-        pe_str = f"{pe:.1f}" if pe is not None else "N/A"
-        mcap_str = cap_str  # Already formatted above
-        strike_str = f"{best_put['strike']:.1f}" if best_put.get('strike') is not None else "N/A"
-        premium_str = f"{best_put['premium']:.2f}" if best_put.get('premium') is not None else "N/A"
-        dp = f"{best_put['delta_percent']:.1f}%" if best_put.get('delta_percent') is not None else "N/A"
-        pp = f"{best_put['premium_percent']:.1f}%" if best_put.get('premium_percent') is not None else "N/A"
-        metric_sum = (best_put.get('delta_percent', 0) or 0) + (best_put.get('premium_percent', 0) or 0)
-        metric_sum_str = f"{metric_sum:.1f}%" if (best_put.get('delta_percent') is not None and best_put.get('premium_percent') is not None) else "N/A"
+        buy_alerts_web.append(f"""<div class="main-info"><div><span class="ticker-alert">{sym}</span></div><div class="price-details"><div class="current-price price-up">{price:.2f}</div></div></div><p class="news-summary">{buy_alert_line}</p><p class="news-summary">{summary_sentence}..</p>{news_html}""")
         
-        
-
-        
-        buy_alert_html = f"""
-            <div class="main-info">
-                <div>
-                    <span class="ticker-alert">{sym}</span>
-                </div>
-                <div class="price-details">
-                        <div class="current-price price-up">{price:.2f}</div>
-                </div>                    
-            </div>
-            <p class="news-summary">
-                    {buy_alert_line}
-            </p>
-            <p class="news-summary">{summary_sentence}..</p>
-                {news_html}
-        """
-        buy_alerts_web.append(buy_alert_html)
-
-
-
-
-        
-        puts_json_path = os.path.join(puts_dir, f"{sym}_puts_7weeks.json")
         try:
-            with open(puts_json_path, "w") as fp:
+            with open(os.path.join(puts_dir, f"{sym}_puts_7weeks.json"), "w") as fp:
                 json.dump([best_put], fp, indent=2)
-            logger.info(f"Saved puts data for {sym}")
-        except Exception as e:
-            logger.error(f"Failed to save puts json for {sym}: {e}")
-    return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list
+        except Exception: pass
 
+    return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list
 
 def main():
     parser = argparse.ArgumentParser()
@@ -674,62 +563,45 @@ def main():
     selected = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
     retry_counts = defaultdict(int)
     to_process = selected[:]
-    all_buy_symbols = []
-    all_buy_alerts_web = []
-    all_sell_alerts = []
-    all_stock_data = []
+    
+    all_buy_symbols, all_buy_alerts_web, all_sell_alerts, all_stock_data = [], [], [], []
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
         buys, buy_alerts_web, sells, fails, stock_data_list = job(to_process)
+        
         all_buy_alerts_web.extend(buy_alerts_web)
         all_sell_alerts.extend(sells)
         all_buy_symbols.extend(buys)
-        all_stock_data.extend(stock_data_list)  
-
-        for f in fails:
-            retry_counts[f] += 1
+        all_stock_data.extend(stock_data_list)
+        
+        for f in fails: retry_counts[f] += 1
         to_process = [f for f in fails if retry_counts[f] < MAX_TICKER_RETRIES]
         if to_process:
-            logger.info(f"Rate limited. Waiting {TICKER_RETRY_WAIT} seconds before retrying {len(to_process)} tickers...")
+            logger.info(f"Rate limited. Waiting {TICKER_RETRY_WAIT} seconds...")
             time.sleep(TICKER_RETRY_WAIT)
 
-    seen = set()
-    unique_buy_alerts_web = []
-    for alert in all_buy_alerts_web:
-        if alert not in seen:
-            unique_buy_alerts_web.append(alert)
-            seen.add(alert)
-    all_buy_alerts_web = unique_buy_alerts_web
+    # Dedup logic
+    all_buy_alerts_web = list(set(all_buy_alerts_web))
+    all_sell_alerts = list(set(all_sell_alerts))
+    unique_stock_data = list({s['ticker']: s for s in all_stock_data}.values())
 
-    seen = set()
-    unique_sell_alerts = []
-    for alert in all_sell_alerts:
-        if alert not in seen:
-            unique_sell_alerts.append(alert)
-            seen.add(alert)
-    all_sell_alerts = unique_sell_alerts
-
-    seen = set()
-    unique_stock_data = []
-    for stock in all_stock_data:
-        if stock['ticker'] not in seen:
-            unique_stock_data.append(stock)
-            seen.add(stock['ticker'])
-    all_stock_data = unique_stock_data
-
-
-
-    logger.info("Writing HTML to index.html")
     payload = {
         "generated_at_pt": dt_pacific.strftime("%m-%d-%Y %H:%M"),
-        "buys": [s for s in all_stock_data if s.get('signal') == 'BUY'],
-        "sells": [s for s in all_stock_data if s.get('signal') == 'SELL'],
-        "all": all_stock_data}
+        "buys": [s for s in unique_stock_data if s.get('signal') == 'BUY'],
+        "sells": [s for s in unique_stock_data if s.get('signal') == 'SELL'],
+        "all": unique_stock_data
+    }
+    
+    # Save to both locations to be safe
     with open("artifacts/data/signals.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
+    
+    # Also save to data/signals.json where your frontend likely looks
+    with open("data/signals.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    logger.info("Written index.html")
+    logger.info("Written signals.json to data/ and artifacts/data/")
 
 if __name__ == "__main__":
     main()
