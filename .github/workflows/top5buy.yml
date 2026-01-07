@@ -1,0 +1,38 @@
+name: Top 5 Buy Based on Scores
+on:
+  schedule:
+    # Runs Monday-Friday at 21:00 UTC
+    # Winter (PST): 1:00 PM | Summer (PDT): 2:00 PM
+    - cron: '0 21 * * 1-5'
+  
+  # Manual Trigger Button
+  workflow_dispatch:
+
+jobs:
+  run-trader:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Checkout Code (Pulls your repo AND data/signals.json)
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 2. Setup Python
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # 3. Install ONLY Trading Dependencies
+      # Removed pandas/yfinance since we are not running analysis
+      - name: Install Dependencies
+        run: |
+          pip install alpaca-trade-api
+
+      # 4. Run Execution
+      # Assumes data/signals.json is already inside the repo
+      - name: Execute Trades
+        env:
+          ALPACA_SCORE_API_KEY: ${{ secrets.ALPACA_SCORE_API_KEY }}
+          ALPACA_SCORE_SECRET_KEY: ${{ secrets.ALPACA_SCORE_SECRET_KEY }}
+        run: python top5buy.py
