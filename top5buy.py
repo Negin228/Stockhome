@@ -8,14 +8,13 @@ import alpaca_trade_api as tradeapi
 # ---------------------------------------------------------
 ALPACA_API_KEY = os.getenv("ALPACA_SCORE_API_KEY")
 ALPACA_SECRET_KEY = os.getenv("ALPACA_SCORE_SECRET_KEY")
-# Switch to "https://api.alpaca.markets" for real money.
 BASE_URL = "https://paper-api.alpaca.markets"
 
 # Trading Parameters
-POSITION_SIZE_USD = 500   # USD to invest per ticker
-TAKE_PROFIT_PCT = 0.03    # Target: +3%
-STOP_LOSS_PCT = 0.10      # Stop Loss: -10%
-MAX_POSITIONS = 5         # Top 5 tickers
+POSITION_PCT = 0.05       # <--- CHANGED: 5% of equity per ticker
+TAKE_PROFIT_PCT = 0.03    
+STOP_LOSS_PCT = 0.10      
+MAX_POSITIONS = 5         
 SIGNALS_FILE = "data/signals.json"
 
 def main():
@@ -25,6 +24,15 @@ def main():
         return
 
     api = tradeapi.REST(ALPACA_API_KEY, ALPACA_SECRET_KEY, BASE_URL, api_version='v2')
+
+    # <--- NEW: Get Account Equity
+    try:
+        account = api.get_account()
+        equity = float(account.equity)
+        print(f"Account Equity: ${equity:.2f}")
+    except Exception as e:
+        print(f"Error fetching account info: {e}")
+        return
 
     # 2. Load Signals
     if not os.path.exists(SIGNALS_FILE):
@@ -63,10 +71,12 @@ def main():
             quote = api.get_latest_trade(symbol)
             current_price = float(quote.price)
 
-            # C. Calculate Shares
-            qty = math.floor(POSITION_SIZE_USD / current_price)
+            # C. Calculate Shares (Based on Equity %)
+            target_position_size = equity * POSITION_PCT # <--- CHANGED: Calculate dynamic size
+            qty = math.floor(target_position_size / current_price)
+            
             if qty < 1:
-                print(f"Skipping {symbol}: Price ${current_price} > Position Size ${POSITION_SIZE_USD}")
+                print(f"Skipping {symbol}: Price ${current_price} > Position Size ${target_position_size:.2f}")
                 continue
 
             # D. Calculate Prices
@@ -76,16 +86,14 @@ def main():
             print(f"Placing Bracket: {symbol} | Buy @ ${current_price} | TP: ${take_profit_price} | SL: ${stop_loss_price}")
 
             # E. Submit Bracket Order
-            # - Parent (Buy): Limit order, expires at End of Day.
-            # - Legs (TP/SL): GTC (Good Till Cancelled) automatically.
             api.submit_order(
                 symbol=symbol,
                 qty=qty,
                 side='buy',
                 type='limit',
                 limit_price=current_price,
-                time_in_force='day',       # Buy order is valid for TODAY only
-                order_class='bracket',     # Creates a bracket (Entry + TP + SL)
+                time_in_force='day',       
+                order_class='bracket',     
                 take_profit={
                     'limit_price': take_profit_price
                 },
