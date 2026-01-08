@@ -71,9 +71,9 @@ def main():
             quote = api.get_latest_trade(symbol)
             current_price = float(quote.price)
 
-            # C. Calculate Shares (Based on Equity %)
+            # C. Calculate Shares (Based on Equity %, but rounds it UP.
             target_position_size = equity * POSITION_PCT # <--- CHANGED: Calculate dynamic size
-            qty = math.floor(target_position_size / current_price)
+            qty = math.ceil(target_position_size / current_price)
             
             if qty < 1:
                 print(f"Skipping {symbol}: Price ${current_price} > Position Size ${target_position_size:.2f}")
