@@ -73,8 +73,8 @@ def main():
 
             # C. Calculate Shares (Based on Equity %, but rounds it UP.
             target_position_size = equity * POSITION_PCT # <--- CHANGED: Calculate dynamic size
-            qty = math.ceil(target_position_size / current_price)
-            
+
+            qty = int(math.ceil(target_position_size / current_price)) # Explicitly cast to int
             if qty < 1:
                 print(f"Skipping {symbol}: Price ${current_price} > Position Size ${target_position_size:.2f}")
                 continue
