@@ -55,9 +55,19 @@ def run_trader():
         print(f"Error fetching portfolio: {e}")
         return
 
-    # --- STEP 3: PROCESS BUY SIGNALS ---
-    for signal in data.get("buys", []):
+    # --- STEP 3: PREPARE AND SORT BUY SIGNALS ---
+    buy_signals = data.get("buys", [])
+
+    # Sort the signals by 'score' in descending order (Highest Score First)
+    # We use .get('score', 0) to handle cases where score might be missing safely
+    buy_signals.sort(key=lambda x: x.get("score", 0), reverse=True)
+
+    print(f"Loaded {len(buy_signals)} buy signals. Processing in order of highest score...")
+
+    # --- STEP 4: PROCESS BUY SIGNALS ---
+    for signal in buy_signals:
         ticker = signal.get("ticker")
+        score = signal.get("score", 0) # visual logging
         put_info = signal.get("put", {})
         
         strike = put_info.get("strike")
@@ -71,13 +81,13 @@ def run_trader():
         
         # --- CRITICAL CHECK: ONLY TRADE IF NOT IN PORTFOLIO ---
         if symbol in existing_commitments:
-            print(f" >> SKIP: {symbol} is already in portfolio or has an open order.")
+            print(f" >> SKIP (Score: {score:.1f}): {symbol} is already in portfolio or has an open order.")
             continue
 
         # Apply a 5% haircut to the premium to improve fill probability
         limit_price = round(float(raw_premium) * 0.95, 2)
 
-        print(f" >> EXECUTING: Selling {symbol} at Limit ${limit_price}")
+        print(f" >> EXECUTING (Score: {score:.1f}): Selling {symbol} at Limit ${limit_price}")
         try:
             req = LimitOrderRequest(
                 symbol=symbol,
