@@ -18,7 +18,7 @@ function renderBuyCard(b) {
       <div class="main-info">
         <div class="ticker-block">
           <span class="ticker-alert">
-            <a href="filter.html?ticker=${b.ticker}" style="color: inherit; text-decoration: none; border-bottom: 1px dashed opacity: 0.5;">
+            <a href="pages/filter.html?ticker=${b.ticker}" style="color: inherit; text-decoration: none; border-bottom: 1px dashed opacity: 0.5;">
               ${b.ticker}
             </a>
           </span>
