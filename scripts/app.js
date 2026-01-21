@@ -77,6 +77,8 @@ function renderNews(summary, items) {
     const res = await fetch("../data/signals.json", { cache: "no-store" });
     if (!res.ok) throw new Error(`signals.json fetch failed (${res.status})`);
     const data = await res.json();
+    if (data.buys) data.buys.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
+    if (data.sells) data.sells.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
 
     if (lastUpdated) lastUpdated.textContent = data.generated_at_pt || "—";
 
