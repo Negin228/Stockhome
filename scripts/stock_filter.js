@@ -2,7 +2,7 @@
 
 let allStocks = [];
 
-// 1. Data Loading (Same as before)
+// 1. Data Loading
 if (window.STOCK_DATA) {
     processData(window.STOCK_DATA);
 } else {
@@ -16,7 +16,6 @@ function processData(data) {
     allStocks = data.all || [];
     allStocks.sort((a, b) => b.score - a.score);
     
-    // Check if a ticker was passed in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const targetTicker = urlParams.get('ticker');
 
@@ -33,67 +32,13 @@ function processData(data) {
 }
 
 function showSpecificTicker(ticker) {
-    // 1. Reset sliders to widest possible range so the stock isn't hidden by defaults
-    resetFilters(); 
-    
-    // 2. Filter the list to ONLY show this ticker
+    resetFilters(); // Sets sliders to default ranges
     var filtered = allStocks.filter(s => s.ticker.toUpperCase() === ticker.toUpperCase());
-    
     renderStockList(filtered);
 }
 
-// Move your rendering logic into a standalone function to reuse it
+// SINGLE source of truth for rendering
 function renderStockList(filtered) {
-    var div = document.getElementById('filtered-stocks');
-    if (filtered.length) {
-        div.innerHTML = "<ul class='stock-list' style='padding: 0;'>" + filtered.map(function(stock) {
-            let color = stock.score >= 70 ? "#4caf50" : (stock.score >= 40 ? "#ff9800" : "#f44336");
-            let dropText = (typeof stock.pct_drop === "number") ? stock.pct_drop.toFixed(1) + "%" : "0%";
-
-            return `
-            <li style="margin-bottom: 15px; padding: 20px; border: 1px solid #eee; border-radius: 8px; list-style: none; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                    <span style="background-color: ${color}; color: white; padding: 5px 10px; border-radius: 6px; font-weight: bold; margin-right: 12px; font-size: 1.1em;">${stock.score.toFixed(0)}</span>
-                    <strong style="font-size: 1.4em; margin-right: 10px; color: #000;">${stock.ticker}</strong>
-                    <strong style="font-size: 1.4em; margin-right: 15px; color: #333;">$${stock.price_str}</strong>
-                    <span style="color: #666; font-size: 1.1em;">${stock.company}</span>
-                </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.9em; color: #444; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0;">
-                    <span><strong>Cap:</strong> ${stock.market_cap_str}</span>
-                    <span><strong>RSI:</strong> ${stock.rsi_str}</span>
-                    <span><strong>P/E:</strong> ${stock.pe_str}</span>
-                    <span><strong>Drop:</strong> ${dropText}</span>
-                    <span><strong>DMA50:</strong> $${stock.dma50_str}</span>
-                    <span><strong>DMA200:</strong> $${stock.dma200_str}</span>
-                </div>
-                <div style="color: #666; font-style: italic; font-size: 0.95em;"><strong>Trend:</strong> ${stock.why}</div>
-            </li>`;
-        }).join("") + "</ul>";
-    } else {
-        div.innerHTML = "<p style='text-align:center; margin-top: 20px; color: #666;'>Ticker not found.</p>";
-    }
-}
-
-// 2. Updated Filter Logic
-function filterStocks() {
-    var rsi = parseFloat(document.getElementById('rsi-slider').value);
-    
-    // --- P/E LOGIC CHANGE ---
-    var peInput = parseFloat(document.getElementById('pe-slider').value);
-    // If slider is at 100, treat it as Infinity (No Limit). Otherwise, use the number.
-    var peLimit = (peInput >= 100) ? Infinity : peInput; 
-
-    var cap = parseFloat(document.getElementById('cap-slider').value) * 1e9;
-    var drop = parseFloat(document.getElementById('drop-slider').value);
-
-    var filtered = allStocks.filter(function(stock) {
-        var dropOk = (drop === 0) ? true : (typeof stock.pct_drop === "number" ? stock.pct_drop >= drop : false);
-        
-        // Use peLimit here instead of the raw input
-        return stock.rsi <= rsi && stock.pe <= peLimit && stock.market_cap >= cap && dropOk;
-    });
-  
-    // Render the list (Same layout as before)
     var div = document.getElementById('filtered-stocks');
     if (filtered.length) {
         div.innerHTML = "<ul class='stock-list' style='padding: 0;'>" + filtered.map(function(stock) {
@@ -116,13 +61,31 @@ function filterStocks() {
                     <span><strong>DMA50:</strong> $${stock.dma50_str}</span>
                     <span><strong>DMA200:</strong> $${stock.dma200_str}</span>
                 </div>
-                <div style="color: #666; font-style: italic; font-size: 0.95em;">${stock.why}</div>
+                <div style="color: #666; font-style: italic; font-size: 0.95em;"><strong>Trend Analysis:</strong> ${stock.why}</div>
             </li>`;
         }).join("") + "</ul>";
     } else {
-        div.innerHTML = "<p style='text-align:center; margin-top: 20px; color: #666;'>No stocks match your filters.</p>";
+        div.innerHTML = "<p style='text-align:center; margin-top: 20px; color: #666;'>Ticker not found / No matches.</p>";
     }
 }
+
+function filterStocks() {
+    var rsi = parseFloat(document.getElementById('rsi-slider').value);
+    var peInput = parseFloat(document.getElementById('pe-slider').value);
+    var peLimit = (peInput >= 100) ? Infinity : peInput; 
+    var cap = parseFloat(document.getElementById('cap-slider').value) * 1e9;
+    var drop = parseFloat(document.getElementById('drop-slider').value);
+
+    var filtered = allStocks.filter(function(stock) {
+        var dropOk = (drop === 0) ? true : (typeof stock.pct_drop === "number" ? stock.pct_drop >= drop : false);
+        return stock.rsi <= rsi && stock.pe <= peLimit && stock.market_cap >= cap && dropOk;
+    });
+    
+    // Simply call the render function here
+    renderStockList(filtered);
+}
+
+
 
 // 3. Updated Slider Handlers
 function setupSliderHandlers() {
