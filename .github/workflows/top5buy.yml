@@ -2,8 +2,7 @@ name: Top 5 Buy Based on Scores
 on:
   schedule:
     # Runs Monday-Friday at 21:00 UTC
-    # Winter (PST): 1:00 PM | Summer (PDT): 2:00 PM
-    - cron: '0 21 * * 1-5'
+    - cron: '50 * * * 1-5'
   
   # Manual Trigger Button
   workflow_dispatch:
