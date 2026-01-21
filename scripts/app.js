@@ -17,7 +17,7 @@ function renderBuyCard(b) {
     <li class="signal-card buy-card">
       <div class="main-info">
         <div class="ticker-block">
-          <span class="ticker-alert">${b.ticker}</span>
+          <a href="filter.html?ticker=${b.ticker}" style="color: inherit; text-decoration: underline;">${b.ticker}</a>
           <span class="company-name">${b.company || ""}</span>
         </div>
         <div class="price-details">
