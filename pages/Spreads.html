@@ -36,6 +36,13 @@
                             {{ signal.strategy }}
                         </span>
                     </td>
+                    <td>
+                      {% if signal.is_squeeze %}
+                        <span class="text-warning">⚠️ Squeeze (Avoid)</span>
+                      {% else %}
+                        <span class="text-success">✅ Volatility OK</span>
+                      {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
