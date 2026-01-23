@@ -1,4 +1,4 @@
-name: Update signals + spreads (debug + commit) + deploy
+name: Update signals + spreads (proof + fix) + deploy
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write    # REQUIRED to commit/push to main
+  contents: write
   pages: write
   id-token: write
 
@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Set up Python
+      - name: Setz up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
@@ -45,52 +45,83 @@ jobs:
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
-      # -------------------------
-      # DEBUG: prove what changed
-      # -------------------------
-      - name: Debug generated files and git diffs
+      # ------------------------------------------------------------
+      # PRE-COMMIT PROOFS (before we do any “fix” copy)
+      # ------------------------------------------------------------
+      - name: Pre-commit proof (signals + spreads)
         run: |
+          echo "=== PWD ==="
+          pwd
+
           echo "=== LIST data/ ==="
           ls -la data || true
-
-          echo "=== FILE SIZES ==="
-          ls -la data/signals.json data/spreads.json || true
-
-          echo "=== SHA256 ==="
-          sha256sum data/signals.json data/spreads.json || true
 
           echo "=== LIST artifacts/data/ ==="
           ls -la artifacts/data || true
 
-          echo "=== SHA256 artifacts ==="
-          sha256sum artifacts/data/signals.json artifacts/data/spreads.json || true
+          echo "=== SHA256 (data) ==="
+          sha256sum data/signals.json data/spreads.json 2>/dev/null || true
+
+          echo "=== SHA256 (artifacts) ==="
+          sha256sum artifacts/data/signals.json artifacts/data/spreads.json 2>/dev/null || true
 
           echo "=== GIT STATUS (porcelain) ==="
           git status --porcelain
 
-          echo "=== GIT DIFF: spreads.json ==="
-          git diff -- data/spreads.json || true
-
-          echo "=== GIT DIFF: signals.json ==="
+          echo "=== GIT DIFF (signals) ==="
           git diff -- data/signals.json || true
 
-      # -------------------------
-      # OPTION 1: commit both JSON
-      # -------------------------
-      - name: Commit & push updated JSON to main
+          echo "=== GIT DIFF (spreads) ==="
+          git diff -- data/spreads.json || true
+
+      # ------------------------------------------------------------
+      # FIX: Force-copy the file you KNOW is updating (artifacts)
+      # into the repo’s data/ folder before staging/commit.
+      # This guarantees data/spreads.json updates in the repo.
+      # ------------------------------------------------------------
+      - name: Fix spreads in repo data/ (copy from artifacts)
+        run: |
+          if [ ! -f artifacts/data/spreads.json ]; then
+            echo "ERROR: artifacts/data/spreads.json not found. Cannot fix."
+            exit 1
+          fi
+
+          mkdir -p data
+          cp -f artifacts/data/spreads.json data/spreads.json
+
+          echo "=== After fix: data/spreads.json ==="
+          ls -la data/spreads.json
+          sha256sum data/spreads.json
+
+      # ------------------------------------------------------------
+      # STAGE PROOFS (prove spreads is now staged)
+      # ------------------------------------------------------------
+      - name: Stage proof (signals + spreads)
+        run: |
+          git add data/signals.json data/spreads.json
+
+          echo "=== STAGED DIFF (signals) ==="
+          git diff --staged -- data/signals.json || true
+
+          echo "=== STAGED DIFF (spreads) ==="
+          git diff --staged -- data/spreads.json || true
+
+      # ------------------------------------------------------------
+      # COMMIT & PUSH
+      # ------------------------------------------------------------
+      - name: Commit & push updated JSON
         run: |
           git config user.name "actions-user"
           git config user.email "actions-user@users.noreply.github.com"
 
-          # IMPORTANT: add BOTH
+          # (files already staged above, but this is safe)
           git add data/signals.json data/spreads.json
 
-          # If nothing changed, don't fail the workflow
           git commit -m "Update signals.json and spreads.json from workflow" || echo "No changes to commit"
           git push
 
-      # Optional: upload raw JSON for inspection
-      - name: Upload debug artifact (raw JSON outputs)
+      # Optional: upload debug artifact so you can inspect outputs anytime
+      - name: Upload debug artifact (raw JSON)
         uses: actions/upload-artifact@v4
         with:
           name: raw-json-debug
@@ -101,3 +132,43 @@ jobs:
             artifacts/data/spreads.json
           if-no-files-found: warn
           retention-days: 7
+
+      # ------------------------------------------------------------
+      # Build a Pages publish folder that includes /data/
+      # ------------------------------------------------------------
+      - name: Build publish folder for GitHub Pages
+        run: |
+          rm -rf publish
+          mkdir -p publish
+          mkdir -p publish/data
+
+          # Copy static site files (adjust if your site is structured differently)
+          # Many repos keep HTML under /pages. This handles that.
+          if [ -d pages ]; then
+            cp -r pages/* publish/ || true
+          fi
+
+          for d in assets scripts styles; do
+            if [ -d "$d" ]; then
+              cp -r "$d" publish/
+            fi
+          done
+
+          # Include updated JSON in the published root /data/
+          cp -f data/signals.json publish/data/signals.json
+          cp -f data/spreads.json publish/data/spreads.json
+
+          echo "=== publish/data ==="
+          ls -la publish/data
+          sha256sum publish/data/signals.json publish/data/spreads.json
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: publish
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
