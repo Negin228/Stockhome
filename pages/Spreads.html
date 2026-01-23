@@ -1,15 +1,17 @@
-#Spread Candidates
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Stockhome - Options Spreads</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mean Reversion Spread Candidates</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
+<body>
+
 <body>
     <div id="header"></div> <div class="container">
         <h1>Mean Reversion Spread Candidates</h1>
-        
         <table class="signals-table">
             <thead>
                 <tr>
@@ -39,8 +41,15 @@
             </tbody>
         </table>
     </div>
-
-    <div id="footer"></div>
+      <!-- Footer -->
+    <div id="footer-include"></div>
+        <script>
+          fetch('../pages/footer.html')
+            .then(res => res.text())
+            .then(html => {
+              document.getElementById('footer-include').innerHTML = html;
+            });
+        </script>
 
     <script>
         // Use your existing JS to load header/footer
