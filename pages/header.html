@@ -7,22 +7,12 @@
   </button>
   <nav class="nav">
     <a href="/" class="nav-link active cta">Home</a>
-    <a href="/pages/how-it-works.html" class="nav-link" data-spa>How It Works</a>
+    <a href="/pages/how-it-works.html" class="nav-link">How It Works</a>
     <a href="/pages/filters.html" class="nav-link">Filters</a>
-    <a href="/pages/spreads.html" class="nav-link" data-spa>Spreads</a>
-    <a href="/pages/faq.html" class="nav-link" data-spa>FAQ</a>
-    <a href="/pages/policy.html" class="nav-link" data-spa>Privacy Policy</a>
-    <a href="/pages/terms.html" class="nav-link" data-spa>Terms of Use</a>
-    <a href="/pages/contact.html" class="nav-link" data-spa>Contact</a>
+    <a href="/pages/spreads.html" class="nav-link">Spreads</a>
+    <a href="/pages/faq.html" class="nav-link">FAQ</a>
+    <a href="/pages/policy.html" class="nav-link">Privacy Policy</a>
+    <a href="/pages/terms.html" class="nav-link">Terms of Use</a>
+    <a href="/pages/contact.html" class="nav-link">Contact</a>
   </nav>
 </header>
-
-<script>
-document.querySelector('.nav-toggle').addEventListener('click', function() {
-  var nav = document.querySelector('.nav');
-  nav.classList.toggle('open');
-  var expanded = this.getAttribute('aria-expanded') === 'true';
-  this.setAttribute('aria-expanded', !expanded);
-});
-</script>
-
