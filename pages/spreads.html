@@ -8,10 +8,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
-  <!-- HEADER -->
   <div id="header-include"></div>
-  <div id="footer-include"></div>
-  <script src="/scripts/loader.js"></script>
 
   <section class="hero sub-hero">
       <h1>Mean Reversion Spread Candidates</h1>
@@ -31,19 +28,14 @@
             </tr>
         </thead>
         <tbody id="spreads-body">
-        </tbody>
+            </tbody>
     </table>
   </section>
 
   <div id="footer-include"></div>
-  <script>
-    fetch('../pages/footer.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('footer-include').innerHTML = html;
-      });
-  </script>
 
   <script src="../scripts/spreads.js"></script>
+  
+  <script src="/scripts/loader.js"></script>
 </body>
 </html>
