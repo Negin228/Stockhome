@@ -108,7 +108,7 @@ function renderNews(summary, items) {
 from config import TICKERS  # Import the list from your config file
 @app.route('/spreads')
 def spreads():
-    ticker_objects = yf.Tickers(" ".join(tickers_list))
+    ticker_objects = yf.Tickers(" ".join(TICKERS))
     results = []
 
     for ticker in TICKERS:
