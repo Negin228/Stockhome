@@ -53,13 +53,15 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           
-          # Pull latest to avoid conflicts
-          git pull --rebase origin main
-
-          # Stage the files that Signal.py wrote directly to the data/ folder
+          # 1. Stage and Commit your changes FIRST
           git add data/signals.json data/spreads.json
-          
           git commit -m "Update signals and spreads data" || echo "No changes to commit"
+          
+          # 2. Pull latest changes from remote and apply your commit on top (Rebase)
+          # This fixes the "rejected" error by syncing with the remote
+          git pull --rebase origin main
+          
+          # 3. Now push
           git push
           
 
