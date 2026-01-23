@@ -297,11 +297,16 @@ def calculate_spread_indicators(df):
 
 def get_spread_strategy(row):
     """Determines the strategy and rationale based on Nishant Pant's rules."""
-    p, r, a = row['Close'], row['rsi'], row['adx']
-    bl, bu = row['bb_low'], row['bb_high']
-    kl, ku = row['kc_low'], row['kc_high']
+    # Ensure we are using scalar (single) values to avoid the 'ambiguous Series' error
+    p = scalar(row['Close'])
+    r = scalar(row['rsi'])
+    a = scalar(row['adx'])
+    bl = scalar(row['bb_low'])
+    bu = scalar(row['bb_high'])
+    kl = scalar(row['kc_low'])
+    ku = scalar(row['kc_high'])
     
-    # Squeeze: Bollinger Bands are inside Keltner Channels
+    # Squeeze Check: Bollinger Bands are inside Keltner Channels
     is_sqz = not (bl < kl or bu > ku)
     
     # Conditions: Price touch, RSI exhaustion, and Weak Trend (ADX < 35)
