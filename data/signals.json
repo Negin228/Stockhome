@@ -1,28 +1,7 @@
 {
-  "generated_at_pt": "01-23-2026 13:27",
+  "generated_at_pt": "01-23-2026 13:32",
   "buys": [],
-  "sells": [
-    {
-      "ticker": "AMD",
-      "company": "Advanced Micro Devices, Inc.",
-      "signal": "SELL",
-      "score": 76.0,
-      "why": "Above slow SMA • Overbought • Bullish MACD • Extended (+51%)",
-      "price": 259.68,
-      "price_str": "259.68",
-      "rsi": 75.50065285297116,
-      "pe": 136.67368,
-      "market_cap": 422769819648.0,
-      "pct_drop": -2.345014138119559,
-      "rsi_str": "75.5",
-      "pe_str": "136.7",
-      "market_cap_str": "422.8B",
-      "dma200": 171.83579975128174,
-      "dma50": 220.9890002441406,
-      "dma200_str": "171.8",
-      "dma50_str": "221.0"
-    }
-  ],
+  "sells": [],
   "all": [
     {
       "ticker": "NFLX",
@@ -43,26 +22,6 @@
       "dma50": 97.707080078125,
       "dma200_str": "113.0",
       "dma50_str": "97.7"
-    },
-    {
-      "ticker": "AMD",
-      "company": "Advanced Micro Devices, Inc.",
-      "signal": "SELL",
-      "score": 76.0,
-      "why": "Above slow SMA • Overbought • Bullish MACD • Extended (+51%)",
-      "price": 259.68,
-      "price_str": "259.68",
-      "rsi": 75.50065285297116,
-      "pe": 136.67368,
-      "market_cap": 422769819648.0,
-      "pct_drop": -2.345014138119559,
-      "rsi_str": "75.5",
-      "pe_str": "136.7",
-      "market_cap_str": "422.8B",
-      "dma200": 171.83579975128174,
-      "dma50": 220.9890002441406,
-      "dma200_str": "171.8",
-      "dma50_str": "221.0"
     }
   ]
 }
