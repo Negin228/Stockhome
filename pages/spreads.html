@@ -42,8 +42,15 @@
         </table>
     </section>
 
-    <div id="footer-include"></div>
-
+  <!-- Footer -->
+  <div id="footer-include"></div>
+        <script>
+          fetch('../pages/footer.html')
+            .then(res => res.text())
+            .then(html => {
+              document.getElementById('footer-include').innerHTML = html;
+            });
+        </script>
     <script>
         // Consolidated Script: Load Header/Footer using your standard routes
         window.onload = function() {
