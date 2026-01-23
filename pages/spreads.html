@@ -4,64 +4,50 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stockhome - Mean Reversion Spreads</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  <link rel="icon" href="{{ url_for('static', filename='assets/favicon.svg') }}" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
-  <!-- HEADER -->
-      <div id="header-include"></div>
-        <script>
-          fetch('../pages/header.html')
-            .then(res => res.text())
-            .then(html => {
-              document.getElementById('header-include').innerHTML = html;
-            });
-        </script>
+  <div id="header-include"></div>
+  <script>
+    fetch('../pages/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-include').innerHTML = html;
+      });
+  </script>
 
-  <!-- HERO SUBSECTION -->
-      <section class="hero sub-hero">
-          <h1>Mean Reversion Spread Candidates</h1>
-      </section>
+  <section class="hero sub-hero">
+      <h1>Mean Reversion Spread Candidates</h1>
+  </section>
   
-      <section class="section"> 
-        <table class="signals-table">
-            <thead>
-                <tr>
-                    <th>Ticker</th>
-                    <th>Market Cap ($B)</th>
-                    <th>Price</th>
-                    <th>RSI</th>
-                    <th>ADX</th>
-                    <th>Recommended Spread</th>
-                    <th>Volatility Status</th> 
-                </tr>
-            </thead>
-            <tbody>
+  <section class="section"> 
+    <table class="signals-table">
+        <thead>
+            <tr>
+                <th>Ticker</th>
+                <th>Market Cap ($B)</th>
+                <th>Price</th>
+                <th>RSI</th>
+                <th>ADX</th>
+                <th>Recommended Spread</th>
+                <th>Volatility Status</th> 
+            </tr>
+        </thead>
+        <tbody>
             </tbody>
-          ``<script src="../scripts/spreads.js"></script>
-        </table>
-    </section>
+    </table>
+  </section>
 
-  <!-- Footer -->
   <div id="footer-include"></div>
-        <script>
-          fetch('../pages/footer.html')
-            .then(res => res.text())
-            .then(html => {
-              document.getElementById('footer-include').innerHTML = html;
-            });
-        </script>
-    <script>
-        // Consolidated Script: Load Header/Footer using your standard routes
-        window.onload = function() {
-            fetch('/header')
-                .then(res => res.text())
-                .then(html => document.getElementById('header-include').innerHTML = html);
-            
-            fetch('/footer')
-                .then(res => res.text())
-                .then(html => document.getElementById('footer-include').innerHTML = html);
-        };
-    </script>
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-include').innerHTML = html;
+      });
+  </script>
+
+  <script src="../scripts/spreads.js"></script>
 </body>
 </html>
