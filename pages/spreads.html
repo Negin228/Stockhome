@@ -25,28 +25,8 @@
                 </tr>
             </thead>
             <tbody>
-                {% for signal in signals %}
-                <tr class="{{ signal.type }}">
-                    <td><strong>{{ signal.ticker }}</strong></td>
-                    <td>{{ signal.mcap }}</td>
-                    <td>${{ signal.price }}</td>
-                    <td>{{ signal.rsi }}</td>
-                    <td>{{ signal.adx }}</td>
-                    <td>
-                        <span class="badge {{ 'debit' if 'Debit' in signal.strategy else 'credit' }}">
-                            {{ signal.strategy }}
-                        </span>
-                    </td>
-                    <td>
-                      {% if signal.is_squeeze %}
-                        <span class="text-warning">⚠️ Squeeze (Avoid)</span>
-                      {% else %}
-                        <span class="text-success">✅ Volatility OK</span>
-                      {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
             </tbody>
+          ``<script src="../scripts/spreads.js"></script>
         </table>
     </div>
 
