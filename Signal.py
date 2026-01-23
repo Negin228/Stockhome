@@ -508,7 +508,8 @@ def job(tickers):
                     'strategy': spread_data['strategy'],
                     'price': round(float(rt_price), 2),
                     'rsi': round(float(rsi_val), 1),
-                    'adx': round(float(current_row['adx']), 1),
+                    # FIX: Use scalar() to convert the Series element to a float
+                    'adx': round(float(scalar(current_row['adx'])), 1),
                     'type': spread_data['type'],
                     'is_squeeze': spread_data['is_squeeze']
                 })
