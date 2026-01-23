@@ -8,33 +8,10 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
-
   <!-- HEADER -->
-<div id="header-include"></div>
-
-<script>
-  // Detect prefix for local vs production pathing
-  const prefix = window.location.pathname.includes('/pages/') ? '../' : '';
-
-  fetch(prefix + 'pages/header.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('header-include').innerHTML = html;
-
-      // Load navbar.js dynamically from the root
-      // Use the leading slash to ensure it loads from the domain root
-      const script = document.createElement('script');
-      script.src = '/scripts/navbar.js'; 
-      
-      script.onload = function () {
-        // Force initialization after HTML is definitely in the DOM
-        if (window.initNavbar) {
-          window.initNavbar();
-        }
-      };
-      document.body.appendChild(script);
-    });
-</script>
+  <div id="header-include"></div>
+  <div id="footer-include"></div>
+  <script src="/scripts/loader.js"></script>
 
   <!-- HERO SUBSECTION -->
   <section class="hero sub-hero">
