@@ -8,7 +8,16 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
-    <div id="header"></div> <div class="container">
+  <!-- HEADER -->
+      <div id="header-include"></div>
+        <script>
+          fetch('../pages/header.html')
+            .then(res => res.text())
+            .then(html => {
+              document.getElementById('header-include').innerHTML = html;
+            });
+        </script>
+
         <h1>Mean Reversion Spread Candidates</h1>
         <table class="signals-table">
             <thead>
