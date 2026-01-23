@@ -624,11 +624,15 @@ def main():
     retry_counts = defaultdict(int)
     to_process = selected[:]
     
-    all_buy_symbols, all_buy_alerts_web, all_sell_alerts, all_stock_data = [], [], [], [], [], all_spreads = [], [], [], [], []
+    all_buy_symbols = []
+    all_buy_alerts_web = []
+    all_sell_alerts = []
+    all_stock_data = []
+    all_spreads = []
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
-        buys, buy_alerts_web, sells, fails, stock_data_list = job(to_process),spread_results = job(to_process)
+        buys, buy_alerts_web, sells, fails, stock_data_list, spread_results = job(to_process)
         
         all_buy_alerts_web.extend(buy_alerts_web)
         all_sell_alerts.extend(sells)
@@ -662,8 +666,9 @@ def main():
     with open("data/signals.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
+    all_spreads.sort(key=lambda x: x['mcap'], reverse=True)
     with open('data/spreads.json', 'w') as f:
-        json.dump(results, f)
+        json.dump(all_spreads, f, indent=2)
 
     logger.info("Written signals.json to data/ and artifacts/data/")
 
