@@ -1,1 +1,51 @@
 #Spread Candidates
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stockhome - Options Spreads</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="header"></div> <div class="container">
+        <h1>Mean Reversion Spread Candidates</h1>
+        
+        <table class="signals-table">
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Market Cap ($B)</th>
+                    <th>Price</th>
+                    <th>RSI</th>
+                    <th>ADX</th>
+                    <th>Recommended Spread</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for signal in signals %}
+                <tr class="{{ signal.type }}">
+                    <td><strong>{{ signal.ticker }}</strong></td>
+                    <td>{{ signal.mcap }}</td>
+                    <td>${{ signal.price }}</td>
+                    <td>{{ signal.rsi }}</td>
+                    <td>{{ signal.adx }}</td>
+                    <td>
+                        <span class="badge {{ 'debit' if 'Debit' in signal.strategy else 'credit' }}">
+                            {{ signal.strategy }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // Use your existing JS to load header/footer
+        fetch('/header').then(response => response.text()).then(data => document.getElementById('header').innerHTML = data);
+        fetch('/footer').then(response => response.text()).then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+</body>
+</html>
