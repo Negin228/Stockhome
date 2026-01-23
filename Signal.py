@@ -601,6 +601,11 @@ def main():
     with open("data/signals.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
+    with open('data/spreads.json', 'w') as f:
+        json.dump(results, f)
+
+    
+
     logger.info("Written signals.json to data/ and artifacts/data/")
 
 if __name__ == "__main__":
