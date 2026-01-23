@@ -440,26 +440,6 @@ def job(tickers):
         # 2. Basic Signal (Buy/Sell) for Puts logic
         sig, reason = generate_signal(hist)
 
-        try:
-            current_row = hist.iloc[-1]
-            spread_data = get_spread_strategy(current_row)
-            
-            if spread_data:
-                # Reuse the mcap and price logic already calculated in your loop
-                spread_results.append({
-                    'ticker': symbol,
-                    'mcap': round((mcap / 1e9), 2) if mcap else 0,
-                    'strategy': spread_data['strategy'],
-                    'price': round(float(rt_price), 2),
-                    'rsi': round(float(rsi_val), 1),
-                    'adx': round(float(current_row['adx']), 1),
-                    'type': spread_data['type'],
-                    'is_squeeze': spread_data['is_squeeze']
-                })
-        except Exception as e:
-            logger.error(f"Spread calculation error for {symbol}: {e}")
-            
-
         # 3. ADVANCED SCORING
         try:
             # Extract scalar values for scoring
@@ -515,6 +495,26 @@ def job(tickers):
         pct_drop = None
         if prev_close_val and rt_price:
             pct_drop = (-(rt_price - prev_close_val) / prev_close_val * 100)
+
+        try:
+            current_row = hist.iloc[-1]
+            spread_data = get_spread_strategy(current_row)
+            
+            if spread_data:
+                # Reuse the mcap and price logic already calculated in your loop
+                spread_results.append({
+                    'ticker': symbol,
+                    'mcap': round((mcap / 1e9), 2) if mcap else 0,
+                    'strategy': spread_data['strategy'],
+                    'price': round(float(rt_price), 2),
+                    'rsi': round(float(rsi_val), 1),
+                    'adx': round(float(current_row['adx']), 1),
+                    'type': spread_data['type'],
+                    'is_squeeze': spread_data['is_squeeze']
+                })
+        except Exception as e:
+            logger.error(f"Spread calculation error for {symbol}: {e}")
+            
 
         # 5. Build Stock Object
         stock_data_list.append({
