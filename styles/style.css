@@ -45,7 +45,18 @@ body {
   text-decoration: none;
 }
 
-#filters-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; }
+.badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.debit { background-color: #d1ecf1; color: #0c5460; } /* Blue for Debit */
+.credit { background-color: #d4edda; color: #155724; } /* Green for Credit */
+
+.bullish { border-left: 5px solid #28a745; }
+.bearish { border-left: 5px solid #dc3545; }
 
 
 
