@@ -1,8 +1,8 @@
-name: Deploy StockHome Site (signals + spreads)
+name: Deploy StockHome (signals + spreads)
 
 on:
   schedule:
-    - cron: "30 * * * *"   # every hour at :30
+    - cron: "30 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,71 +32,71 @@ jobs:
           python -m pip install --upgrade pip
           pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml_html_clean transformers torch huggingface_hub
 
-      - name: Ensure folders exist
+      # Clean & recreate ONLY ONCE
+      - name: Prepare artifacts directory
         run: |
-          mkdir -p data
-          mkdir -p artifacts/data
-          mkdir -p publish
+          rm -rf artifacts
+          mkdir -p artifacts/pages
+          mkdir -p artifacts/pages/data
 
-      - name: Run signal script (generates JSON)
+      - name: Run signal script (generates data/*.json and artifacts/data/*.json)
         run: python Signal.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
-      - name: Debug generated JSON
+      - name: Verify JSON was generated
         run: |
-          echo "=== data/spreads.json ==="
+          echo "---- data folder ----"
           ls -la data || true
-          ls -l data/spreads.json || (echo "spreads.json missing in data/" && exit 1)
-          head -n 5 data/spreads.json || true
-          echo "=== artifacts/data/spreads.json ==="
-          ls -l artifacts/data/spreads.json || echo "spreads.json missing in artifacts/data (this is OK if you don't use it)"
+          test -f data/signals.json || (echo "Missing data/signals.json" && exit 1)
+          test -f data/spreads.json || (echo "Missing data/spreads.json" && exit 1)
 
-      # ---- Build the folder that GitHub Pages will actually publish ----
-      # IMPORTANT: your JS fetches "/data/spreads.json" so "data/" MUST be in the published root. :contentReference[oaicite:2]{index=2}
-      - name: Build publish folder for Pages
+          echo "---- artifacts/data folder ----"
+          ls -la artifacts/data || true
+          test -f artifacts/data/signals.json || echo "Note: artifacts/data/signals.json missing"
+          test -f artifacts/data/spreads.json || echo "Note: artifacts/data/spreads.json missing"
+
+      # Build the folder that Pages will SERVE
+      - name: Build GitHub Pages bundle (artifacts/pages)
         run: |
-          rm -rf publish
-          mkdir -p publish
-
-          # Copy the whole repo into publish (excluding heavy stuff)
-          # Adjust these excludes if needed.
+          # Copy your site content into artifacts/pages
+          # (adjust if your site files live in a subfolder)
           rsync -av \
             --exclude ".git" \
             --exclude ".github" \
             --exclude "artifacts" \
-            --exclude "publish" \
-            --exclude "__pycache__" \
-            --exclude "*.pyc" \
-            ./ publish/
+            ./ artifacts/pages/
 
-          # Ensure the freshly generated JSON is what gets published
-          mkdir -p publish/data
-          cp -f data/spreads.json publish/data/spreads.json
-          cp -f data/signals.json publish/data/signals.json || true
+          # Force the latest JSON into the published root /data/
+          mkdir -p artifacts/pages/data
+          cp -f data/signals.json artifacts/pages/data/signals.json
+          cp -f data/spreads.json artifacts/pages/data/spreads.json
 
-      # Optional: upload JSON artifact for debugging
-      - name: Upload JSON artifact
+          echo "---- published data folder ----"
+          ls -la artifacts/pages/data
+          echo "Published spreads.json size:"
+          wc -c artifacts/pages/data/spreads.json
+
+      # Optional debug artifact (NOT Pages) so you can download the raw outputs
+      - name: Upload debug artifact (raw JSON)
         uses: actions/upload-artifact@v4
         with:
-          name: generated-json
+          name: raw-json
           path: |
-            data/spreads.json
             data/signals.json
-            artifacts/data/spreads.json
+            data/spreads.json
             artifacts/data/signals.json
+            artifacts/data/spreads.json
           if-no-files-found: warn
           retention-days: 7
 
-      # ---- Deploy to GitHub Pages ----
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: publish
+          path: artifacts/pages
 
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
