@@ -674,18 +674,13 @@ def main():
 
     all_spreads.sort(key=lambda x: x['mcap'], reverse=True)
     
-    # Wrap in a dictionary to include a timestamp
-    spreads_payload = {
-        "generated_at": dt_pacific.strftime("%m-%d-%Y %H:%M"),
-        "data": all_spreads
-    }
+    with open("artifacts/data/spreads.json", "w", encoding="utf-8") as f:
+        json.dump(all_spreads, f, ensure_ascii=False, indent=2)
 
-    with open('data/spreads.json', 'w') as f:
-        json.dump(spreads_payload, f, indent=2)
-        
-    # Also save to artifacts/data/ to be safe
-    with open('artifacts/data/spreads.json', 'w') as f:
-        json.dump(spreads_payload, f, indent=2)
+    with open("data/spreads.json", "w", encoding="utf-8") as f:
+        json.dump(all_spreads, f, ensure_ascii=False, indent=2)
+
+    logger.info(f"Successfully updated spreads.json in data/ and artifacts/ with {len(all_spreads)} signals.")
 
     logger.info("Written signals.json to data/ and artifacts/data/")
 
