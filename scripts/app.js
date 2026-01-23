@@ -105,14 +105,13 @@ function renderNews(summary, items) {
 
 
 ##############
+from config import TICKERS  # Import the list from your config file
 @app.route('/spreads')
 def spreads():
-    # Use the logic from our scanner
-    tickers_list = ['AAPL', 'NFLX', 'META', 'AMZN', 'MSFT', 'NVDA', 'TSLA', 'PLTR']
     ticker_objects = yf.Tickers(" ".join(tickers_list))
     results = []
 
-    for ticker in tickers_list:
+    for ticker in TICKERS:
         try:
             # Fetch Market Cap and Technical Data
             mcap = ticker_objects.tickers[ticker].info.get('marketCap', 0)
