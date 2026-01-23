@@ -31,13 +31,11 @@ jobs:
           mkdir -p artifacts
           mkdir -p artifacts/pages
 
-
       - name: Run Signal script and generate artifacts
         run: python Signal.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
-    
       - name: Bundle and Sanitize Artifacts
         run: |
           # 1. Clean and Create Directory
@@ -50,8 +48,6 @@ jobs:
           cp data/spreads.json artifacts/data/
 
           # 3. Copy Site Content using Tar to BREAK links
-          # 'tar -chf -' packages files to stdout, following all symlinks (-h)
-          # '(cd artifacts; tar -xf -)' unpacks them as fresh, regular files
           tar -chf - index.html scripts styles assets | (cd artifacts; tar -xf -)
           
           # 4. Copy Pages (using loop to be safe)
@@ -64,8 +60,6 @@ jobs:
           echo "Verifying clean filesystem..."
           find artifacts -type f -links +1 -ls || echo "No hard links found (Good!)"
 
-          
-
       - name: Commit and Push All Updates to Repo
         run: |
           git config --global user.email "actions@github.com"
@@ -76,30 +70,25 @@ jobs:
           git commit -m "Update signals and spreads data" || echo "No changes to commit"
           
           # 2. Pull latest changes from remote and apply your commit on top (Rebase)
-          # This fixes the "rejected" error by syncing with the remote
           git pull --rebase origin main
           
           # 3. Now push
           git push
-          
-
 
       - name: Debug output
         run: |
           echo "==== FILES ===="
           find artifacts/
-          echo "==== SIGNAL JSON ===="
-          cat artifacts/data/signals.json || echo "No signal.json found"
-          echo "==== INDEX HTML ===="
-          cat artifacts/index.html || echo "No index.html found"
-          echo "==== SYMLINKS ===="
-          find artifacts/ -type l
-          echo "==== HARD LINKS ===="
-          find artifacts/ -type f -links +1
           echo "==== SIZE ===="
           du -sh artifacts/
-      
 
+      # FIXED INDENTATION HERE
+      - name: Upload github-pages artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: artifacts/
+          if-no-files-found: error
 
   deploy:
     needs: run-signal
