@@ -1,18 +1,23 @@
-name: Deploy StockHome Site (app.js)
+name: Deploy StockHome Site (signals + spreads)
 
 on:
   schedule:
-    - cron: '30 * * * *'
+    - cron: "30 * * * *"   # every hour at :30
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  run-signal:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,25 +32,71 @@ jobs:
           python -m pip install --upgrade pip
           pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml_html_clean transformers torch huggingface_hub
 
-      - name: Prepare artifacts directory
+      - name: Ensure folders exist
         run: |
-          rm -rf artifacts
+          mkdir -p data
           mkdir -p artifacts/data
-          mkdir -p artifacts/pages
+          mkdir -p publish
 
-      - name: Run signal script and generate data
+      - name: Run signal script (generates JSON)
         run: python Signal.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
-      - name: Debug generated spreads.json
+      - name: Debug generated JSON
         run: |
-          echo "=== spreads.json (after signal.py) ==="
-          ls -l data/spreads.json || echo "spreads.json missing"
-          tail -n 40 data/spreads.json || cat data/spreads.json
+          echo "=== data/spreads.json ==="
+          ls -la data || true
+          ls -l data/spreads.json || (echo "spreads.json missing in data/" && exit 1)
+          head -n 5 data/spreads.json || true
+          echo "=== artifacts/data/spreads.json ==="
+          ls -l artifacts/data/spreads.json || echo "spreads.json missing in artifacts/data (this is OK if you don't use it)"
 
-      - name: Bundle and Sanitize Artifacts
+      # ---- Build the folder that GitHub Pages will actually publish ----
+      # IMPORTANT: your JS fetches "/data/spreads.json" so "data/" MUST be in the published root. :contentReference[oaicite:2]{index=2}
+      - name: Build publish folder for Pages
         run: |
-          # Clean artifacts layout
-          rm -rf artifacts
-          m
+          rm -rf publish
+          mkdir -p publish
+
+          # Copy the whole repo into publish (excluding heavy stuff)
+          # Adjust these excludes if needed.
+          rsync -av \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "artifacts" \
+            --exclude "publish" \
+            --exclude "__pycache__" \
+            --exclude "*.pyc" \
+            ./ publish/
+
+          # Ensure the freshly generated JSON is what gets published
+          mkdir -p publish/data
+          cp -f data/spreads.json publish/data/spreads.json
+          cp -f data/signals.json publish/data/signals.json || true
+
+      # Optional: upload JSON artifact for debugging
+      - name: Upload JSON artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-json
+          path: |
+            data/spreads.json
+            data/signals.json
+            artifacts/data/spreads.json
+            artifacts/data/signals.json
+          if-no-files-found: warn
+          retention-days: 7
+
+      # ---- Deploy to GitHub Pages ----
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: publish
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
