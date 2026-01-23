@@ -30,24 +30,45 @@ jobs:
           rm -rf artifacts
           mkdir -p artifacts
           mkdir -p artifacts/pages
-
+          mkdir -p artifacts/data
+          mkdir -p data
 
       - name: Run Signal script and generate artifacts
         run: python Signal.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
-      - name: Copy updated signals to repo data/
+      # --- DEBUG + FIX (minimal change): force spreads.json from artifacts into repo data/ ---
+      - name: Pre-commit proof + copy updated JSONs to repo data/
         run: |
-          cp artifacts/data/signals.json data/signals.json
+          echo "=== LIST artifacts/data ==="
+          ls -la artifacts/data || true
+          echo "=== LIST repo data ==="
+          ls -la data || true
 
+          echo "=== SHA artifacts ==="
+          sha256sum artifacts/data/signals.json artifacts/data/spreads.json 2>/dev/null || true
+          echo "=== SHA repo (before copy) ==="
+          sha256sum data/signals.json data/spreads.json 2>/dev/null || true
 
-      - name: Commit updated signals.json
+          # Copy BOTH files (signals + spreads) from artifacts into repo data/
+          cp -f artifacts/data/signals.json data/signals.json
+          cp -f artifacts/data/spreads.json data/spreads.json
+
+          echo "=== SHA repo (after copy) ==="
+          sha256sum data/signals.json data/spreads.json 2>/dev/null || true
+
+          echo "=== GIT STATUS ==="
+          git status --porcelain
+          echo "=== DIFF spreads ==="
+          git diff -- data/spreads.json || true
+
+      - name: Commit updated signals.json and spreads.json
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git add data/signals.json
-          git commit -m "Update signals.json from workflow" || echo "No changes to commit"
+          git add data/signals.json data/spreads.json
+          git commit -m "Update signals.json and spreads.json from workflow" || echo "No changes to commit"
           git push
 
       - name: Install alpaca-py and related Python libraries
@@ -61,13 +82,14 @@ jobs:
           APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
           APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
 
-
       - name: Debug output
         run: |
           echo "==== FILES ===="
           find artifacts/
           echo "==== SIGNAL JSON ===="
           cat artifacts/data/signals.json || echo "No signal.json found"
+          echo "==== SPREADS JSON ===="
+          cat artifacts/data/spreads.json || echo "No spreads.json found"
           echo "==== INDEX HTML ===="
           cat artifacts/index.html || echo "No index.html found"
           echo "==== SYMLINKS ===="
@@ -76,13 +98,11 @@ jobs:
           find artifacts/ -type f -links +1
           echo "==== SIZE ===="
           du -sh artifacts/
-      
-     
+
       - name: Copy static files to artifacts (dereference symlinks)
         run: |
             cp -rL index.html scripts styles assets artifacts/
             cp pages/header.html pages/hero.html pages/faq.html pages/filters.html pages/how-it-works.html artifacts/pages/ || echo "file missing"
-
 
       # Remove any remaining symlinks (guaranteed Pages compliance)
       - name: Remove all symlinks from artifacts
