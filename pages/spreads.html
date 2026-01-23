@@ -3,22 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mean Reversion Spread Candidates</title>
-  <link rel="stylesheet" href="../styles/style.css" />
-  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Stockhome - Mean Reversion Spreads</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='assets/favicon.svg') }}" type="image/svg+xml" />
 </head>
 <body>
-  <!-- HEADER -->
-      <div id="header-include"></div>
-        <script>
-          fetch('../pages/header.html')
-            .then(res => res.text())
-            .then(html => {
-              document.getElementById('header-include').innerHTML = html;
-            });
-        </script>
+    <div id="header-include"></div>
 
-        <h1>Mean Reversion Spread Candidates</h1>
+    <div class="container"> <h1>Mean Reversion Spread Candidates</h1>
+        
         <table class="signals-table">
             <thead>
                 <tr>
@@ -28,7 +21,8 @@
                     <th>RSI</th>
                     <th>ADX</th>
                     <th>Recommended Spread</th>
-                    <th>Volatility Status</th> </tr>
+                    <th>Volatility Status</th> 
+                </tr>
             </thead>
             <tbody>
                 {% for signal in signals %}
@@ -55,20 +49,20 @@
             </tbody>
         </table>
     </div>
-      <!-- Footer -->
+
     <div id="footer-include"></div>
-        <script>
-          fetch('../pages/footer.html')
-            .then(res => res.text())
-            .then(html => {
-              document.getElementById('footer-include').innerHTML = html;
-            });
-        </script>
 
     <script>
-        // Use your existing JS to load header/footer
-        fetch('/header').then(response => response.text()).then(data => document.getElementById('header').innerHTML = data);
-        fetch('/footer').then(response => response.text()).then(data => document.getElementById('footer').innerHTML = data);
+        // Consolidated Script: Load Header/Footer using your standard routes
+        window.onload = function() {
+            fetch('/header')
+                .then(res => res.text())
+                .then(html => document.getElementById('header-include').innerHTML = html);
+            
+            fetch('/footer')
+                .then(res => res.text())
+                .then(html => document.getElementById('footer-include').innerHTML = html);
+        };
     </script>
 </body>
 </html>
