@@ -267,6 +267,7 @@ def calculate_indicators(df):
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
+    df["adx"] = ta.trend.ADXIndicator(df["High"].squeeze(), df["Low"].squeeze(), close, window=14).adx()
     
     # MACD
     ema_fast = close.ewm(span=12, adjust=False).mean()
@@ -276,6 +277,43 @@ def calculate_indicators(df):
     df["hist"] = df["macd"] - df["signal_line"]
     
     return df
+    
+def calculate_spread_indicators(df):
+    """Calculates Bollinger Bands and Keltner Channels for Mean Reversion."""
+    close = df["Close"].squeeze()
+    
+    # Bollinger Bands (20, 2)
+    indicator_bb = ta.volatility.BollingerBands(close=close, window=20, window_dev=2)
+    df["bb_high"] = indicator_bb.bollinger_hband()
+    df["bb_low"] = indicator_bb.bollinger_lband()
+    df["bb_mid"] = indicator_bb.bollinger_mavg()
+    
+    # Keltner Channels (20, 2) - Using ATR for the bands
+    indicator_kc = ta.volatility.KeltnerChannel(high=df["High"].squeeze(), low=df["Low"].squeeze(), close=close, window=20)
+    df["kc_high"] = indicator_kc.keltner_channel_hband()
+    df["kc_low"] = indicator_kc.keltner_channel_lband()
+    
+    return df
+
+def get_spread_strategy(row):
+    """Determines the strategy and rationale based on Nishant Pant's rules."""
+    p, r, a = row['Close'], row['rsi'], row['adx']
+    bl, bu = row['bb_low'], row['bb_high']
+    kl, ku = row['kc_low'], row['kc_high']
+    
+    # Squeeze: Bollinger Bands are inside Keltner Channels
+    is_sqz = not (bl < kl or bu > ku)
+    
+    # Conditions: Price touch, RSI exhaustion, and Weak Trend (ADX < 35)
+    if p <= bl and r < 40 and a < 35:
+        strat = "Bull Call (Debit)" if r < 30 else "Bull Put (Credit)"
+        return {"strategy": strat, "type": "bullish", "is_squeeze": is_sqz}
+    
+    elif p >= bu and r > 60 and a < 35:
+        strat = "Bear Put (Debit)" if r > 70 else "Bear Call (Credit)"
+        return {"strategy": strat, "type": "bearish", "is_squeeze": is_sqz}
+    
+    return None
 
 def generate_signal(df):
     if df.empty or "rsi" not in df.columns: return None, ""
@@ -378,6 +416,7 @@ def job(tickers):
     failed = []
     total = skipped = 0
     stock_data_list = []
+    spread_results = []
 
     for symbol in tickers:
         total += 1
@@ -391,9 +430,30 @@ def job(tickers):
             
         # 1. Indicators
         hist = calculate_indicators(hist)
+        hist = calculate_spread_indicators(hist) 
         
         # 2. Basic Signal (Buy/Sell) for Puts logic
         sig, reason = generate_signal(hist)
+
+        try:
+            current_row = hist.iloc[-1]
+            spread_data = get_spread_strategy(current_row)
+            
+            if spread_data:
+                # Reuse the mcap and price logic already calculated in your loop
+                spread_results.append({
+                    'ticker': symbol,
+                    'mcap': round((mcap / 1e9), 2) if mcap else 0,
+                    'strategy': spread_data['strategy'],
+                    'price': round(float(rt_price), 2),
+                    'rsi': round(float(rsi_val), 1),
+                    'adx': round(float(current_row['adx']), 1),
+                    'type': spread_data['type'],
+                    'is_squeeze': spread_data['is_squeeze']
+                })
+        except Exception as e:
+            logger.error(f"Spread calculation error for {symbol}: {e}")
+            
 
         # 3. ADVANCED SCORING
         try:
@@ -554,7 +614,7 @@ def job(tickers):
                 json.dump([best_put], fp, indent=2)
         except Exception: pass
 
-    return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list
+    return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list, spread_results
 
 def main():
     parser = argparse.ArgumentParser()
@@ -564,16 +624,17 @@ def main():
     retry_counts = defaultdict(int)
     to_process = selected[:]
     
-    all_buy_symbols, all_buy_alerts_web, all_sell_alerts, all_stock_data = [], [], [], []
+    all_buy_symbols, all_buy_alerts_web, all_sell_alerts, all_stock_data = [], [], [], [], [], all_spreads = [], [], [], [], []
 
     while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
         logger.info(f"Processing {len(to_process)} tickers...")
-        buys, buy_alerts_web, sells, fails, stock_data_list = job(to_process)
+        buys, buy_alerts_web, sells, fails, stock_data_list = job(to_process),spread_results = job(to_process)
         
         all_buy_alerts_web.extend(buy_alerts_web)
         all_sell_alerts.extend(sells)
         all_buy_symbols.extend(buys)
         all_stock_data.extend(stock_data_list)
+        all_spreads.extend(spread_results)
         
         for f in fails: retry_counts[f] += 1
         to_process = [f for f in fails if retry_counts[f] < MAX_TICKER_RETRIES]
@@ -603,8 +664,6 @@ def main():
 
     with open('data/spreads.json', 'w') as f:
         json.dump(results, f)
-
-    
 
     logger.info("Written signals.json to data/ and artifacts/data/")
 
