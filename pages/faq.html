@@ -11,8 +11,6 @@
 
   <!-- HEADER -->
   <div id="header-include"></div>
-  <div id="footer-include"></div>
-  <script src="/scripts/loader.js"></script>
 
   <!-- HERO SUBSECTION -->
   <section class="hero sub-hero">
@@ -70,13 +68,7 @@
 
     <!-- Footer -->
   <div id="footer-include"></div>
-  <script>
-    fetch('../pages/footer.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('footer-include').innerHTML = html;
-      });
-  </script>
+  <script src="/scripts/loader.js"></script>
 
 </body>
 </html>
