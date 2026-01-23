@@ -1,6 +1,76 @@
 {
-  "generated_at_pt": "01-23-2026 13:32",
-  "buys": [],
+  "generated_at_pt": "01-23-2026 13:40",
+  "buys": [
+    {
+      "ticker": "SHOP",
+      "company": "Shopify Inc.",
+      "signal": "BUY",
+      "score": 57.25,
+      "why": "Above slow SMA • Oversold • Bearish MACD • Near Support",
+      "price": 137.89,
+      "price_str": "137.89",
+      "rsi": 28.678359054102955,
+      "pe": 101.3897,
+      "market_cap": 179511115776.0,
+      "pct_drop": -0.18163369039534505,
+      "rsi_str": "28.7",
+      "pe_str": "101.4",
+      "market_cap_str": "179.5B",
+      "dma200": 135.36949989318848,
+      "dma50": 158.2447994995117,
+      "dma200_str": "135.4",
+      "dma50_str": "158.2",
+      "put": {
+        "strike": 120.0,
+        "expiration": "Feb 27, 2026",
+        "exp_type": "WEEKLY",
+        "weekly_available": true,
+        "monthly_available": true,
+        "premium": 3.43,
+        "delta_percent": 12.974109797664795,
+        "premium_percent": 2.4874900282834145,
+        "metric_sum": 15.461599825948209
+      },
+      "news_summary": "Wall Street has set ambitious price targets for the stocks in this article. While this suggests attractive upside potential, it’s important to remain skeptical because analysts face institutional pressures that can sometimes lead to overly optimistic forecasts. We created StockStory to provide independent analysis that helps you determine which companies.",
+      "news": [
+        {
+          "headline": "2 of Wall Street’s Favorite Stocks with Promising Prospects and 1 We Question",
+          "url": "https://finance.yahoo.com/news/2-wall-street-favorite-stocks-043208824.html",
+          "sentiment": 0.35,
+          "summary": "Wall Street has set ambitious price targets for the stocks in this article. While this suggests attractive upside potential, it’s important to remain skeptical because analysts face institutional pressures that can sometimes lead to overly optimistic forecasts. We created StockStory to provide independent analysis that helps you determine which companies",
+          "article_text": "Wall Street has set ambitious price targets for the stocks in this article. While this suggests attractive upside potential, it’s important to remain skeptical because analysts face institutional pressures that can sometimes lead to overly optimistic forecasts.\n\nUnlike the investment banks, we created StockStory to provide independent analysis that helps you determine which companies are truly worth following. That said, here are two stocks where Wall Street’s excitement appears well-founded and"
+        },
+        {
+          "headline": "Can PayPal’s Latest AI Bet Spark a Stock Revival?",
+          "url": "https://247wallst.com/investing/2026/01/22/can-paypals-latest-ai-bet-spark-a-stock-revival/",
+          "sentiment": 0.5,
+          "summary": "PayPal ( PYPL ) stock declined 39% over the past year. The stock trades around $57 per share near 2017 levels. PayPal faces intense competition from Stripe and Shopify in agentic commerce.",
+          "article_text": "PayPal faces intense competition from Stripe and Shopify in agentic commerce despite advantages in fraud prevention and identity verification.\n\nPayPal ( PYPL ) stock declined 39% over the past year. The stock trades around $57 per share near 2017 levels.\n\nThis post may contain links from our sponsors and affiliates, and Flywheel Publishing may receive compensation for actions taken through them.\n\nPayPal (NASDAQ:PYPL) stock has declined 39% over the past year, reflecting investor worries about it"
+        },
+        {
+          "headline": "U.S. fintech could gain as Trump pushes affordability agenda, Citi says",
+          "url": "https://finance.yahoo.com/news/u-fintech-could-gain-trump-150245418.html",
+          "sentiment": 0.0,
+          "summary": "U.S. fintech stocks could gain an edge as Washington leans into a more populist, affordability-driven agenda. President Donald Trump's latest policy push is prompting investors to reassess parts of the financial sector. Buy-now, pay-later providers Affirm and Klarna",
+          "article_text": "By Kanishka Ajmera and Rashika Singh\n\nJan 22 (Reuters) - U.S. fintech stocks could gain an edge as Washington leans into a more populist, affordability-driven agenda ahead of ​the November 2026 midterm elections, analysts at Citigroup said in a ‌note.\n\nPresident Donald Trump's latest policy push is prompting investors to reassess parts of the financial ‌sector, with his emphasis on affordability potentially opening the door for fintech challengers instead of traditional lenders, the brokerage sa"
+        },
+        {
+          "headline": "Assessing Shopify (SHOP) Valuation After Recent Share Price Weakness And Rich Earnings Multiple",
+          "url": "https://finance.yahoo.com/news/assessing-shopify-shop-valuation-recent-021402277.html",
+          "sentiment": 0.125,
+          "summary": "Shopify (SHOP) has drawn investor attention after recent price weakness. The share price closing at $144.50 and negative returns over the past week, month, past 3 months, and year to date. Analysts have a consensus price target of $161.109 for Shop",
+          "article_text": "Find your next quality investment with Simply Wall St's easy and powerful screener, trusted by over 7 million individual investors worldwide.\n\nShopify stock performance snapshot\n\nShopify (SHOP) has drawn investor attention after recent price weakness, with the share price closing at $144.50 and negative returns over the past week, month, past 3 months, and year to date.\n\nSee our latest analysis for Shopify.\n\nThe recent 7 day share price return of 13.7% and 30 day share price return of 14.78% dec"
+        },
+        {
+          "headline": "Shopify (SHOP) Falls More Steeply Than Broader Market: What Investors Need to Know",
+          "url": "https://finance.yahoo.com/news/shopify-shop-falls-more-steeply-225502006.html",
+          "sentiment": 0.5,
+          "summary": "Shares of the cloud-based commerce company witnessed a loss of 8.17% over the previous month. In the latest close session, Shopify (SHOP) was down 7.26% at $144.50. This change lagged the S&P 500's daily loss",
+          "article_text": "In the latest close session, Shopify (SHOP) was down 7.26% at $144.50. This change lagged the S&P 500's daily loss of 2.06%. Meanwhile, the Dow experienced a drop of 1.76%, and the technology-dominated Nasdaq saw a decrease of 2.39%.\n\nShares of the cloud-based commerce company witnessed a loss of 8.17% over the previous month, trailing the performance of the Computer and Technology sector with its gain of 1.71%, and the S&P 500's gain of 1.63%.\n\nThe investment community will be closely monitorin"
+        }
+      ]
+    }
+  ],
   "sells": [],
   "all": [
     {
@@ -22,6 +92,95 @@
       "dma50": 97.707080078125,
       "dma200_str": "113.0",
       "dma50_str": "97.7"
+    },
+    {
+      "ticker": "ORLY",
+      "company": "O'Reilly Automotive, Inc.",
+      "signal": null,
+      "score": 82.25,
+      "why": "Above slow SMA • RSI 68 • Bullish MACD • Near Support",
+      "price": 99.23,
+      "price_str": "99.23",
+      "rsi": 67.89312077612743,
+      "pe": 34.45486,
+      "market_cap": 83951788032.0,
+      "pct_drop": -0.353967188818805,
+      "rsi_str": "67.9",
+      "pe_str": "34.5",
+      "market_cap_str": "84.0B",
+      "dma200": 96.42478336334229,
+      "dma50": 95.72299942016602,
+      "dma200_str": "96.4",
+      "dma50_str": "95.7"
+    },
+    {
+      "ticker": "SHOP",
+      "company": "Shopify Inc.",
+      "signal": "BUY",
+      "score": 57.25,
+      "why": "Above slow SMA • Oversold • Bearish MACD • Near Support",
+      "price": 137.89,
+      "price_str": "137.89",
+      "rsi": 28.678359054102955,
+      "pe": 101.3897,
+      "market_cap": 179511115776.0,
+      "pct_drop": -0.18163369039534505,
+      "rsi_str": "28.7",
+      "pe_str": "101.4",
+      "market_cap_str": "179.5B",
+      "dma200": 135.36949989318848,
+      "dma50": 158.2447994995117,
+      "dma200_str": "135.4",
+      "dma50_str": "158.2",
+      "put": {
+        "strike": 120.0,
+        "expiration": "Feb 27, 2026",
+        "exp_type": "WEEKLY",
+        "weekly_available": true,
+        "monthly_available": true,
+        "premium": 3.43,
+        "delta_percent": 12.974109797664795,
+        "premium_percent": 2.4874900282834145,
+        "metric_sum": 15.461599825948209
+      },
+      "news_summary": "Wall Street has set ambitious price targets for the stocks in this article. While this suggests attractive upside potential, it’s important to remain skeptical because analysts face institutional pressures that can sometimes lead to overly optimistic forecasts. We created StockStory to provide independent analysis that helps you determine which companies.",
+      "news": [
+        {
+          "headline": "2 of Wall Street’s Favorite Stocks with Promising Prospects and 1 We Question",
+          "url": "https://finance.yahoo.com/news/2-wall-street-favorite-stocks-043208824.html",
+          "sentiment": 0.35,
+          "summary": "Wall Street has set ambitious price targets for the stocks in this article. While this suggests attractive upside potential, it’s important to remain skeptical because analysts face institutional pressures that can sometimes lead to overly optimistic forecasts. We created StockStory to provide independent analysis that helps you determine which companies",
+          "article_text": "Wall Street has set ambitious price targets for the stocks in this article. While this suggests attractive upside potential, it’s important to remain skeptical because analysts face institutional pressures that can sometimes lead to overly optimistic forecasts.\n\nUnlike the investment banks, we created StockStory to provide independent analysis that helps you determine which companies are truly worth following. That said, here are two stocks where Wall Street’s excitement appears well-founded and"
+        },
+        {
+          "headline": "Can PayPal’s Latest AI Bet Spark a Stock Revival?",
+          "url": "https://247wallst.com/investing/2026/01/22/can-paypals-latest-ai-bet-spark-a-stock-revival/",
+          "sentiment": 0.5,
+          "summary": "PayPal ( PYPL ) stock declined 39% over the past year. The stock trades around $57 per share near 2017 levels. PayPal faces intense competition from Stripe and Shopify in agentic commerce.",
+          "article_text": "PayPal faces intense competition from Stripe and Shopify in agentic commerce despite advantages in fraud prevention and identity verification.\n\nPayPal ( PYPL ) stock declined 39% over the past year. The stock trades around $57 per share near 2017 levels.\n\nThis post may contain links from our sponsors and affiliates, and Flywheel Publishing may receive compensation for actions taken through them.\n\nPayPal (NASDAQ:PYPL) stock has declined 39% over the past year, reflecting investor worries about it"
+        },
+        {
+          "headline": "U.S. fintech could gain as Trump pushes affordability agenda, Citi says",
+          "url": "https://finance.yahoo.com/news/u-fintech-could-gain-trump-150245418.html",
+          "sentiment": 0.0,
+          "summary": "U.S. fintech stocks could gain an edge as Washington leans into a more populist, affordability-driven agenda. President Donald Trump's latest policy push is prompting investors to reassess parts of the financial sector. Buy-now, pay-later providers Affirm and Klarna",
+          "article_text": "By Kanishka Ajmera and Rashika Singh\n\nJan 22 (Reuters) - U.S. fintech stocks could gain an edge as Washington leans into a more populist, affordability-driven agenda ahead of ​the November 2026 midterm elections, analysts at Citigroup said in a ‌note.\n\nPresident Donald Trump's latest policy push is prompting investors to reassess parts of the financial ‌sector, with his emphasis on affordability potentially opening the door for fintech challengers instead of traditional lenders, the brokerage sa"
+        },
+        {
+          "headline": "Assessing Shopify (SHOP) Valuation After Recent Share Price Weakness And Rich Earnings Multiple",
+          "url": "https://finance.yahoo.com/news/assessing-shopify-shop-valuation-recent-021402277.html",
+          "sentiment": 0.125,
+          "summary": "Shopify (SHOP) has drawn investor attention after recent price weakness. The share price closing at $144.50 and negative returns over the past week, month, past 3 months, and year to date. Analysts have a consensus price target of $161.109 for Shop",
+          "article_text": "Find your next quality investment with Simply Wall St's easy and powerful screener, trusted by over 7 million individual investors worldwide.\n\nShopify stock performance snapshot\n\nShopify (SHOP) has drawn investor attention after recent price weakness, with the share price closing at $144.50 and negative returns over the past week, month, past 3 months, and year to date.\n\nSee our latest analysis for Shopify.\n\nThe recent 7 day share price return of 13.7% and 30 day share price return of 14.78% dec"
+        },
+        {
+          "headline": "Shopify (SHOP) Falls More Steeply Than Broader Market: What Investors Need to Know",
+          "url": "https://finance.yahoo.com/news/shopify-shop-falls-more-steeply-225502006.html",
+          "sentiment": 0.5,
+          "summary": "Shares of the cloud-based commerce company witnessed a loss of 8.17% over the previous month. In the latest close session, Shopify (SHOP) was down 7.26% at $144.50. This change lagged the S&P 500's daily loss",
+          "article_text": "In the latest close session, Shopify (SHOP) was down 7.26% at $144.50. This change lagged the S&P 500's daily loss of 2.06%. Meanwhile, the Dow experienced a drop of 1.76%, and the technology-dominated Nasdaq saw a decrease of 2.39%.\n\nShares of the cloud-based commerce company witnessed a loss of 8.17% over the previous month, trailing the performance of the Computer and Technology sector with its gain of 1.71%, and the S&P 500's gain of 1.63%.\n\nThe investment community will be closely monitorin"
+        }
+      ]
     }
   ]
 }
