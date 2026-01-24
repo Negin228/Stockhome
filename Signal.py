@@ -519,7 +519,7 @@ def job(tickers):
                     # FIX: Use scalar() to convert the Series element to a float
                     'adx': round(float(scalar(current_row['adx'])), 1),
                     'type': spread_data['type'],
-                    'is_squeeze': spread_data['is_squeeze']
+                    'is_squeeze': spread_data['is_squeeze'],
                     'reasoning': full_reasoning
                 })
         except Exception as e:
