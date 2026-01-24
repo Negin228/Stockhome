@@ -503,7 +503,7 @@ def job(tickers):
             if spread_data:
                 band_type = "BBL" if spread_data['type'] == 'bullish' else "BBU"
                 band_val = bl if spread_data['type'] == 'bullish' else bu
-            if spread_data['strategy'].endswith("(Debit)"):
+                if spread_data['strategy'].endswith("(Debit)"):
                     rationale = "Extreme: Buying Delta for sharp snap-back." if spread_data['type'] == 'bullish' else "Extreme: Expecting sharp downward mean reversion."
                 else:
                     rationale = "Moderate: Selling Theta; high probability of stability." if spread_data['type'] == 'bullish' else "Moderate: Collecting premium as move exhausts."
