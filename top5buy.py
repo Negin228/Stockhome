@@ -13,7 +13,7 @@ BASE_URL = "https://paper-api.alpaca.markets"
 # Trading Parameters
 POSITION_PCT = 0.05       # 5% of equity per ticker
 TAKE_PROFIT_PCT = 0.03    
-STOP_LOSS_PCT = 0.10      
+STOP_LOSS_PCT = 0.03      
 MAX_POSITIONS = 5         
 SIGNALS_FILE = "data/signals.json"
 
@@ -50,11 +50,7 @@ def main():
     # 3. Get Account Equity
     try:
         account = api.get_account()
-        equity = float(account.equity)
-        print(f"Account Equity: ${equity:.2f}")
-    except Exception as e:
-        print(f"Error fetching account info: {e}")
-        return
+        buying_power = float(account.buying_power)
 
     # 4. Load Signals
     if not os.path.exists(SIGNALS_FILE):
@@ -67,15 +63,29 @@ def main():
 
     # 5. Filter & Sort Buys
     buy_signals = data.get("buys", [])
+    valid_signals = [x for x in buy_signals if x.get("score", 0) > 50]
+
+    if not valid_signals:
+        print("No signals found above score threshold (50).")
+        return
+        
     if not buy_signals:
         print("No BUY signals found.")
         return
 
     # Sort by score (descending) and take top 5
-    top_picks = sorted(buy_signals, key=lambda x: x.get("score", 0), reverse=True)[:MAX_POSITIONS]
-    print(f"Top {len(top_picks)} Picks: {[p['ticker'] for p in top_picks]}")
+    top_picks = sorted(valid_signals, key=lambda x: x.get("score", 0), reverse=True)[:MAX_POSITIONS]
+    print(f"Top {len(top_picks)} Picks (>50 score): {[p['ticker'] for p in top_picks]}")
 
     # 6. Execute Orders
+    account = api.get_account()
+    buying_power = float(account.buying_power)
+    target_position_size = equity * POSITION_PCT
+
+    # If we don't have enough cash for this trade, stop everything
+    if buying_power < target_position_size:
+        print(f"⚠️ Insufficient Cash! Need ${target_position_size:.2f}, have ${buying_power:.2f}")
+        break  # Stops the loop completely for the day
     for stock in top_picks:
         symbol = stock["ticker"]
 
@@ -94,7 +104,7 @@ def main():
             current_price = float(quote.price)
 
             # C. Calculate Shares (Forced integer cast)
-            target_position_size = equity * POSITION_PCT 
+            target_position_size = buying_power * POSITION_PCT 
             qty = int(math.ceil(target_position_size / current_price)) # <--- FIXED: Explicit int()
             
             if qty < 1:
