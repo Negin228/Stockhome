@@ -1,22 +1,12 @@
 [
   {
-    "ticker": "NFLX",
-    "mcap": 365.4,
-    "strategy": "Bull Call (Debit)",
-    "price": 83.54,
-    "rsi": 19.6,
-    "adx": 29.9,
-    "type": "bullish",
-    "is_squeeze": false
-  },
-  {
-    "ticker": "AMD",
-    "mcap": 413.1,
-    "strategy": "Bear Put (Debit)",
-    "price": 253.73,
-    "rsi": 73.3,
-    "adx": 24.5,
+    "ticker": "ORLY",
+    "mcap": 83.95,
+    "strategy": "Bear Call (Credit)",
+    "price": 99.23,
+    "rsi": 67.9,
+    "adx": 27.4,
     "type": "bearish",
-    "is_squeeze": true
+    "is_squeeze": false
   }
 ]
