@@ -501,7 +501,15 @@ def job(tickers):
             spread_data = get_spread_strategy(current_row)
             
             if spread_data:
-                # Reuse the mcap and price logic already calculated in your loop
+                band_type = "BBL" if spread_data['type'] == 'bullish' else "BBU"
+                band_val = bl if spread_data['type'] == 'bullish' else bu
+            if spread_data['strategy'].endswith("(Debit)"):
+                    rationale = "Extreme: Buying Delta for sharp snap-back." if spread_data['type'] == 'bullish' else "Extreme: Expecting sharp downward mean reversion."
+                else:
+                    rationale = "Moderate: Selling Theta; high probability of stability." if spread_data['type'] == 'bullish' else "Moderate: Collecting premium as move exhausts."
+
+                full_reasoning = f"Det: Price {'<' if spread_data['type'] == 'bullish' else '>'} {band_type}({band_val:.2f}) | ADX: {a:.1f} | RSI {r:.1f} ({rationale})"
+            
                 spread_results.append({
                     'ticker': symbol,
                     'mcap': round((mcap / 1e9), 2) if mcap else 0,
@@ -512,6 +520,7 @@ def job(tickers):
                     'adx': round(float(scalar(current_row['adx'])), 1),
                     'type': spread_data['type'],
                     'is_squeeze': spread_data['is_squeeze']
+                    'reasoning': full_reasoning
                 })
         except Exception as e:
             logger.error(f"Spread calculation error for {symbol}: {e}")
