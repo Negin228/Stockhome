@@ -501,6 +501,10 @@ def job(tickers):
             spread_data = get_spread_strategy(current_row)
             
             if spread_data:
+                r = scalar(current_row['rsi'])
+                a = scalar(current_row['adx'])
+                bl = scalar(current_row['bb_low'])
+                bu = scalar(current_row['bb_high'])
                 band_type = "BBL" if spread_data['type'] == 'bullish' else "BBU"
                 band_val = bl if spread_data['type'] == 'bullish' else bu
                 if spread_data['strategy'].endswith("(Debit)"):
