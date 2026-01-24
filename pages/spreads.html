@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stockhome - Mean Reversion Spreads</title>
+  <title>Stockhome - Mean Reversion Spread Candidates</title>
   <link rel="stylesheet" href="../styles/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
@@ -13,26 +13,37 @@
   <section class="hero sub-hero">
       <h1>Mean Reversion Spread Candidates</h1>
   </section>
-  
-  <section class="section"> 
-    <table class="signals-table">
-        <thead>
-            <tr>
-                <th>Ticker</th>
-                <th>Market Cap ($B)</th>
-                <th>Price</th>
-                <th>RSI</th>
-                <th>ADX</th>
-                <th>Recommended Spread</th>
-                <th>Volatility Status</th>
-                <th>Reasoning & Rationale</th>
-            </tr>
-        </thead>
-        <tbody id="spreads-body">
+  <main>
+    <section class="section intro-text">
+      <div class="card-grid"> <p><b>Call Debit Spread (Bullish):</b> Buy a call at a lower strike, sell a call at a higher strike. Risk limited to net debit.</p>
+        <p><b>Call Credit Spread (Bearish):</b> Sell a call at a lower strike, buy a call at a higher strike. Risk limited to strike width minus credit.</p>
+        <p><b>Put Debit Spread (Bearish):</b> Buy a put at a higher strike, sell a put at a lower strike. Risk limited to net debit.</p>
+        <p><b>Put Credit Spread (Bullish):</b> Sell a put at a higher strike, buy a put at a lower strike. Risk limited to strike width minus credit.</p>
+      </div>
+    </section>
+    
+    <section class="section"> 
+      <div class="table-container" style="overflow-x: auto;">
+        <table class="signals-table">
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Market Cap ($B)</th>
+                    <th>Price</th>
+                    <th>RSI</th>
+                    <th>ADX</th>
+                    <th>Recommended Spread</th>
+                    <th>Volatility Status</th>
+                    <th>Reasoning & Rationale</th>
+                </tr>
+            </thead>
+            <tbody id="spreads-body">
+                <tr><td colspan="8" style="text-align:center;">Loading candidates...</td></tr>
             </tbody>
-    </table>
-  </section>
-
+        </table>
+      </div>
+    </section>
+  </main>
   <div id="footer-include"></div>
 
   <script src="../scripts/spreads.js"></script>
