@@ -11,9 +11,9 @@ ALPACA_SECRET_KEY = os.getenv("ALPACA_SCORE_SECRET_KEY")
 BASE_URL = "https://paper-api.alpaca.markets"
 
 # Trading Parameters
-POSITION_PCT = 0.05       # 5% of equity per ticker
+POSITION_PCT = 0.1       # 5% of equity per ticker
 TAKE_PROFIT_PCT = 0.03    
-STOP_LOSS_PCT = 0.10      # Kept at 10% (0.10) per your swing trade preference
+STOP_LOSS_PCT = 0.03      # Kept at 10% (0.10) per your swing trade preference
 MAX_POSITIONS = 5         
 SIGNALS_FILE = "data/signals.json"
 
