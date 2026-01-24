@@ -96,4 +96,56 @@ def main():
             # Check if we have enough cash
             if current_buying_power < target_position_size:
                 print(f"⚠️ Insufficient Cash for {symbol}! Need ${target_position_size:.2f}, have ${current_buying_power:.2f}")
-                print("Stopping order
+                print("Stopping order execution for today.")
+                break # Stop the loop completely
+            # --- CASH CHECK END ---
+
+            # A. Check Existing Position
+            try:
+                pos = api.get_position(symbol)
+                if float(pos.qty) != 0:
+                    print(f"Skipping {symbol}: Position already exists.")
+                    continue
+            except Exception:
+                pass # No position found
+
+            # B. Get Real-Time Price
+            quote = api.get_latest_trade(symbol)
+            current_price = float(quote.price)
+
+            # C. Calculate Shares
+            qty = int(math.ceil(target_position_size / current_price))
+            
+            if qty < 1:
+                print(f"Skipping {symbol}: Price ${current_price} > Position Size ${target_position_size:.2f}")
+                continue
+
+            # D. Calculate Prices
+            take_profit_price = round(current_price * (1 + TAKE_PROFIT_PCT), 2)
+            stop_loss_price = round(current_price * (1 - STOP_LOSS_PCT), 2)
+
+            print(f"Placing Bracket: {symbol} | Buy @ ${current_price} | TP: ${take_profit_price} | SL: ${stop_loss_price}")
+
+            # E. Submit Bracket Order
+            api.submit_order(
+                symbol=symbol,
+                qty=qty,
+                side='buy',
+                type='limit',
+                limit_price=current_price,
+                time_in_force='gtc',
+                order_class='bracket',     
+                take_profit={
+                    'limit_price': take_profit_price
+                },
+                stop_loss={
+                    'stop_price': stop_loss_price
+                }
+            )
+            print(f"✅ SUCCESS: Bracket order sent for {symbol}")
+
+        except Exception as e:
+            print(f"❌ ERROR processing {symbol}: {e}")
+
+if __name__ == "__main__":
+    main()
