@@ -56,6 +56,9 @@ body {
 .text-warning { color: #ffc107; font-weight: bold; }
 .text-success { color: #28a745; }
 
+tr.bullish { border-left: 4px solid #00c48c; }
+tr.bearish { border-left: 4px solid #ff4d4d; }
+
 .debit { background-color: #d1ecf1; color: #0c5460; } /* Blue for Debit */
 .credit { background-color: #d4edda; color: #155724; } /* Green for Credit */
 
