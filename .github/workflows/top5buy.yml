@@ -1,7 +1,6 @@
 name: Top 5 Buy Based on Scores
 on:
   schedule:
-    # Runs Monday-Friday at 21:00 UTC
     - cron: '50 * * * 1-5'
   
   # Manual Trigger Button
