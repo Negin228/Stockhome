@@ -23,7 +23,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml_html_clean transformers torch huggingface_hub
+          pip install transformers==4.47.0 torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml_html_clean huggingface_hub
+
 
       - name: Prepare and clean artifacts directory
         run: |
