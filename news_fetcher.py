@@ -5,8 +5,8 @@ from newspaper import Article
 from transformers import pipeline
 
 API_KEY = os.getenv("API_KEY")
-summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-
+#summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+summarizer = pipeline("text2text-generation", model="facebook/bart-large-cnn")
 def get_article_text(url):
     try:
         article = Article(url)
