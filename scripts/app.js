@@ -12,7 +12,9 @@ function renderBuyCard(b) {
   const monthlyTag = (!weeklyAvailable)
     ? ' <span class="monthly">(Monthly)</span>'
     : '';
-  const trendClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
+
+  const strengthClass = b.adx > 25 ? 'trend-strong' : 'trend-weak';
+  const dirClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
 
   return `
     <li class="signal-card buy-card">
@@ -29,9 +31,12 @@ function renderBuyCard(b) {
           <div class="current-price price-up">${fmt(b.price, 2)}</div>
         </div>
       </div>
-      <div class="trend-line ${trendClass}">
+      <div class="trend-line ${dirClass}">
         <strong>Trend:</strong> ${b.trend_rationale || "Calculating..."}
       </div>
+      <div class="trend-badge ${strengthClass} ${dirClass}">
+          ${b.trend_rationale}
+        </div>
       <p class="news-summary">
         RSI=${fmt(b.rsi_str)}&nbsp;&nbsp;P/E=${fmt(b.pe_str)}&nbsp;&nbsp;
         DMA 50=${fmt(b.dma50_str)}&nbsp;&nbsp;DMA 200=${fmt(b.dma200_str)}&nbsp;&nbsp;Market Cap=$${b.market_cap_str || "N/A"}
