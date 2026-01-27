@@ -268,12 +268,14 @@ def calculate_indicators(df):
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
 
+    # ADX Indicator provides ADX, +DI, and -DI
     dmi_orig = ta.trend.ADXIndicator(df["High"].squeeze(), df["Low"].squeeze(), close, window=14)
     df["adx"] = dmi_orig.adx()
-    df["plus_di"] = dmi_orig.plus_di()
-    df["minus_di"] = dmi_orig.minus_di()
+    # FIX: Use adx_pos() for +DI and adx_neg() for -DI
+    df["plus_di"] = dmi_orig.adx_pos()
+    df["minus_di"] = dmi_orig.adx_neg()
     
-    # MACD
+    # MACD logic remains the same...
     ema_fast = close.ewm(span=12, adjust=False).mean()
     ema_slow = close.ewm(span=26, adjust=False).mean()
     df["macd"] = ema_fast - ema_slow
