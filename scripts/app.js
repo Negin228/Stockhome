@@ -4,15 +4,10 @@ function fmt(n, d = 1) {
 
 function renderBuyCard(b) {
   const put = b.put || {};
-
-  // If missing, treat weekly as available (default)
   const weeklyAvailable = (put.weekly_available !== false);
+  const monthlyTag = (!weeklyAvailable) ? ' <span class="monthly">(Monthly)</span>' : '';
 
-  // Mark only when weekly is NOT available (monthly-only)
-  const monthlyTag = (!weeklyAvailable)
-    ? ' <span class="monthly">(Monthly)</span>'
-    : '';
-
+  // 1. Determine classes based on your existing CSS logic
   const strengthClass = b.adx > 25 ? 'trend-strong' : 'trend-weak';
   const dirClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
 
@@ -21,7 +16,7 @@ function renderBuyCard(b) {
       <div class="main-info">
         <div class="ticker-block">
           <span class="ticker-alert">
-            <a href="pages/filters.html?ticker=${b.ticker}" style="color: inherit; text-decoration: none; border-bottom: 1px dashed opacity: 0.5;">
+            <a href="pages/filters.html?ticker=${b.ticker}" style="color: inherit; text-decoration: none;">
               ${b.ticker}
             </a>
           </span>
@@ -31,12 +26,11 @@ function renderBuyCard(b) {
           <div class="current-price price-up">${fmt(b.price, 2)}</div>
         </div>
       </div>
-      <div class="trend-line ${dirClass}">
-        <strong>Trend:</strong> ${b.trend_rationale || "Calculating..."}
-      </div>
+
       <div class="trend-badge ${strengthClass} ${dirClass}">
-          ${b.trend_rationale}
-        </div>
+        ${b.trend_rationale || "Calculating..."}
+      </div>
+
       <p class="news-summary">
         RSI=${fmt(b.rsi_str)}&nbsp;&nbsp;P/E=${fmt(b.pe_str)}&nbsp;&nbsp;
         DMA 50=${fmt(b.dma50_str)}&nbsp;&nbsp;DMA 200=${fmt(b.dma200_str)}&nbsp;&nbsp;Market Cap=$${b.market_cap_str || "N/A"}
@@ -47,7 +41,6 @@ function renderBuyCard(b) {
       ${renderNews(b.news_summary, b.news)}
     </li>`;
 }
-
 function renderSellCard(s) {
   return `
     <li class="signal-card sell-card">
