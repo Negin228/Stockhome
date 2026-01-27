@@ -449,10 +449,20 @@ def job(tickers):
             last_sma_fast = scalar(hist["dma50"].iloc[-1]) if "dma50" in hist.columns else np.nan
             last_macd = scalar(hist["macd"].iloc[-1]) if "macd" in hist.columns else 0
             last_sig = scalar(hist["signal_line"].iloc[-1]) if "signal_line" in hist.columns else 0
-            
+            last_adx = scalar(hist["adx"].iloc[-1]) if "adx" in hist.columns else 0
             # Slope
             sma_slope = slope(hist["dma200"], lookback=10)
-            
+
+            plus_di = scalar(ta.trend.DMIIndicator(hist["High"].squeeze(), hist["Low"].squeeze(), hist["Close"].squeeze()).plus_di().iloc[-1])
+            minus_di = scalar(ta.trend.DMIIndicator(hist["High"].squeeze(), hist["Low"].squeeze(), hist["Close"].squeeze()).minus_di().iloc[-1])
+    
+            trend_dir = "Bullish" if plus_di > minus_di else "Bearish"
+            trend_strength = "Strong" if last_adx > 25 else "Weak/Sideways"
+    
+            trend_rationale = f"{trend_strength} {trend_dir} Trend (ADX: {last_adx:.1f})"
+        except Exception as e:
+            trend_rationale = "Trend data unavailable"
+            trend_dir = "Neutral"
             # Sub-scores
             s_trend, r_trend = score_trend(last_close, last_sma_fast, last_sma_slow, sma_slope)
             s_rsi, r_rsi = score_rsi(last_rsi)
@@ -550,6 +560,8 @@ def job(tickers):
             'dma50': float(dma50_val) if dma50_val is not None else None,
             'dma200_str': f"{dma200_val:.1f}" if dma200_val is not None else "N/A",
             'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
+            'trend_rationale': trend_rationale, 
+            'trend_dir': trend_dir.lower(),
         })
 
         if not sig: continue
