@@ -14,12 +14,14 @@ function renderBuyCard(b) {
     const weeklyAvailable = (put.weekly_available !== false);
     const monthlyTag = (!weeklyAvailable) ? ' <span class="monthly">(Monthly)</span>' : '';
 
-    // 1. Determine Strength: Strong if ADX > 25 (matches Signal.py logic)
-    // We parse the ADX from the rationale or use a raw value if available
-    const adxValue = b.adx || 0; 
-    const strengthClass = adxValue > 25 ? 'trend-strong' : 'trend-weak';
+    // 1. Determine Strength Class
+    // Checks if the rationale contains the word "Strong"
+    const strengthClass = (b.trend_rationale && b.trend_rationale.includes("Strong")) 
+        ? 'trend-strong' 
+        : 'trend-weak';
 
-    // 2. Map Trend Direction: Python "bullish" -> CSS "trend-up"
+    // 2. Map Trend Direction Class
+    // Maps Python "bullish"/"bearish" to CSS "trend-up"/"trend-down"
     const dirClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
 
     return `
