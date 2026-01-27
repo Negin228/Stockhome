@@ -268,7 +268,7 @@ def calculate_indicators(df):
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
 
-    dmi_orig = ta.trend.DMIIndicator(high, low, close, window=14)
+    dmi_orig = ta.trend.ADXIndicator(df["High"].squeeze(), df["Low"].squeeze(), close, window=14)
     df["adx"] = dmi_orig.adx()
     df["plus_di"] = dmi_orig.plus_di()
     df["minus_di"] = dmi_orig.minus_di()
@@ -445,7 +445,6 @@ def job(tickers):
         sig, reason = generate_signal(hist)
 
         # 3. ADVANCED SCORING & TREND (Consolidated Logic)
-        # Initialize defaults to prevent "Variable Not Found" errors
         trend_rationale = "Trend data unavailable"
         trend_dir_val = "neutral"
         final_score = 0.0
@@ -462,10 +461,9 @@ def job(tickers):
             last_adx = scalar(hist["adx"].iloc[-1]) if "adx" in hist.columns else 0
             sma_slope = slope(hist["dma200"], lookback=10)
 
-            # Trend Direction and Strength logic (DMI & ADX)
-            dmi_obj = ta.trend.DMIIndicator(hist["High"].squeeze(), hist["Low"].squeeze(), hist["Close"].squeeze())
-            plus_di = scalar(dmi_obj.plus_di().iloc[-1])
-            minus_di = scalar(dmi_obj.minus_di().iloc[-1])
+            # Trend Direction and Strength logic using pre-calculated DI lines
+            plus_di = scalar(hist["plus_di"].iloc[-1])
+            minus_di = scalar(hist["minus_di"].iloc[-1])
     
             trend_direction = "Bullish" if plus_di > minus_di else "Bearish"
             trend_strength = "Strong" if last_adx > 25 else "Weak/Sideways"
@@ -505,7 +503,6 @@ def job(tickers):
         
         dma200_val = hist["dma200"].iloc[-1]
         dma50_val = hist["dma50"].iloc[-1]
-
         prev_close_val = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
         
         pct_drop = None
@@ -515,7 +512,6 @@ def job(tickers):
         try:
             current_row = hist.iloc[-1]
             spread_data = get_spread_strategy(current_row)
-            
             if spread_data:
                 r = scalar(current_row['rsi'])
                 a = scalar(current_row['adx'])
@@ -524,9 +520,7 @@ def job(tickers):
                 band_type = "BBL" if spread_data['type'] == 'bullish' else "BBU"
                 band_val = bl if spread_data['type'] == 'bullish' else bu
                 rationale = "Extreme: Buying Delta for sharp snap-back." if spread_data['strategy'].endswith("(Debit)") else "Moderate: Selling Theta."
-
                 full_reasoning = f"Det: Price {'<' if spread_data['type'] == 'bullish' else '>'} {band_type}({band_val:.2f}) | ADX: {a:.1f} | RSI {r:.1f} ({rationale})"
-            
                 spread_results.append({
                     'ticker': symbol, 'mcap': round((mcap / 1e9), 2) if mcap else 0,
                     'strategy': spread_data['strategy'], 'price': round(float(rt_price), 2),
@@ -588,7 +582,6 @@ def job(tickers):
         
         if not filtered_puts: continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
-        
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
         stock_row = next((s for s in stock_data_list if s["ticker"] == sym), None)
 
@@ -631,7 +624,6 @@ def job(tickers):
         except Exception: pass
 
     return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list, spread_results
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
