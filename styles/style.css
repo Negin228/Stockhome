@@ -25,39 +25,44 @@ body {
   padding: 0;
 }
 
-.trend-line {
-  font-size: 0.85rem;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin: 8px 0;
+/* --- UPDATED TREND UTILITIES --- */
+
+/* Base style for all trend indicators */
+.trend-badge {
   display: inline-block;
-  font-weight: 600;
-}
-
-.trend-up {
-  background-color: rgba(0, 255, 0, 0.1);
-  color: #00c853;
-  border: 1px solid #00c853;
-}
-
-.trend-down {
-  background-color: rgba(255, 0, 0, 0.1);
-  color: #ff1744;
-  border: 1px solid #ff1744;
-}
-/* Strong Trend - Solid Background */
-.trend-strong {
-  font-weight: bold;
   padding: 4px 12px;
-  border-radius: 20px;
+  border-radius: 20px; /* Rounded pill shape */
+  font-size: 0.85rem;
+  margin: 8px 0;
+  border: 1px solid transparent; /* Prevents layout shift */
 }
 
-/* Weak Trend - Ghost/Outline Style */
-.trend-weak {
+/* STRONG: Solid backgrounds */
+.trend-strong.trend-up {
+  background-color: #00c853;
+  color: #fff;
+  font-weight: bold;
+}
+
+.trend-strong.trend-down {
+  background-color: #ff1744;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* WEAK: Ghost/Outline style */
+.trend-weak.trend-up {
+  background-color: rgba(0, 200, 83, 0.05);
+  color: #00c853;
+  border-color: #00c853;
   font-style: italic;
-  border: 1px solid;
-  background: transparent;
-  padding: 3px 11px;
+}
+
+.trend-weak.trend-down {
+  background-color: rgba(255, 23, 68, 0.05);
+  color: #ff1744;
+  border-color: #ff1744;
+  font-style: italic;
 }
 .site-header {
   position: sticky;
