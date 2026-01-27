@@ -45,7 +45,20 @@ body {
   color: #ff1744;
   border: 1px solid #ff1744;
 }
+/* Strong Trend - Solid Background */
+.trend-strong {
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
 
+/* Weak Trend - Ghost/Outline Style */
+.trend-weak {
+  font-style: italic;
+  border: 1px solid;
+  background: transparent;
+  padding: 3px 11px;
+}
 .site-header {
   position: sticky;
   top: 0;
