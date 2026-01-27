@@ -1,17 +1,28 @@
+/**
+ * Formatting helper for numbers
+ */
 function fmt(n, d = 1) {
-  return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
+    return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
 }
 
+/**
+ * Renders a Buy Signal Card
+ * Matches classes to CSS: .trend-strong, .trend-weak, .trend-up, .trend-down
+ */
 function renderBuyCard(b) {
-  const put = b.put || {};
-  const weeklyAvailable = (put.weekly_available !== false);
-  const monthlyTag = (!weeklyAvailable) ? ' <span class="monthly">(Monthly)</span>' : '';
+    const put = b.put || {};
+    const weeklyAvailable = (put.weekly_available !== false);
+    const monthlyTag = (!weeklyAvailable) ? ' <span class="monthly">(Monthly)</span>' : '';
 
-  // 1. Determine classes based on your existing CSS logic
-  const strengthClass = b.adx > 25 ? 'trend-strong' : 'trend-weak';
-  const dirClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
+    // 1. Determine Strength: Strong if ADX > 25 (matches Signal.py logic)
+    // We parse the ADX from the rationale or use a raw value if available
+    const adxValue = b.adx || 0; 
+    const strengthClass = adxValue > 25 ? 'trend-strong' : 'trend-weak';
 
-  return `
+    // 2. Map Trend Direction: Python "bullish" -> CSS "trend-up"
+    const dirClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
+
+    return `
     <li class="signal-card buy-card">
       <div class="main-info">
         <div class="ticker-block">
@@ -32,8 +43,8 @@ function renderBuyCard(b) {
       </div>
 
       <p class="news-summary">
-        RSI=${fmt(b.rsi_str)}&nbsp;&nbsp;P/E=${fmt(b.pe_str)}&nbsp;&nbsp;
-        DMA 50=${fmt(b.dma50_str)}&nbsp;&nbsp;DMA 200=${fmt(b.dma200_str)}&nbsp;&nbsp;Market Cap=$${b.market_cap_str || "N/A"}
+        RSI=${fmt(b.rsi, 1)}&nbsp;&nbsp;P/E=${fmt(b.pe, 1)}&nbsp;&nbsp;
+        DMA 50=${fmt(b.dma50, 1)}&nbsp;&nbsp;DMA 200=${fmt(b.dma200, 1)}&nbsp;&nbsp;Market Cap=$${b.market_cap_str || "N/A"}
         <br>
         Sell a $${fmt(put.strike, 1)} put option expiring ${put.expiration || "N/A"}${monthlyTag} for $${fmt(put.premium, 2)}
         <br>[𝚫 ${fmt(put.delta_percent, 1)}% + 💎 ${fmt(put.premium_percent, 1)}%] = ${fmt(put.metric_sum, 1)}%
@@ -41,8 +52,12 @@ function renderBuyCard(b) {
       ${renderNews(b.news_summary, b.news)}
     </li>`;
 }
+
+/**
+ * Renders a Sell Signal Card
+ */
 function renderSellCard(s) {
-  return `
+    return `
     <li class="signal-card sell-card">
       <div class="main-info">
         <span class="ticker-alert">${s.ticker}</span>
@@ -56,52 +71,59 @@ function renderSellCard(s) {
     </li>`;
 }
 
+/**
+ * Helper to render News section
+ */
 function renderNews(summary, items) {
-  const safeSummary = summary ? `<p class="news-summary">${summary}..</p>` : "";
-  if (!items || !items.length) return safeSummary;
+    const safeSummary = summary ? `<p class="news-summary">${summary}..</p>` : "";
+    if (!items || !items.length) return safeSummary;
 
-  const list = items.slice(0, 4).map(n => {
-    return `<li><a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a></li>`;
-  }).join("");
+    const list = items.slice(0, 4).map(n => {
+        return `<li><a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a></li>`;
+    }).join("");
 
-  return `${safeSummary}<ul class="news-list">${list}</ul>`;
+    return `${safeSummary}<ul class="news-list">${list}</ul>`;
 }
 
+/**
+ * Main Initialization
+ */
 (async function () {
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  const buyList = document.getElementById("buy-list");
-  const sellList = document.getElementById("sell-list");
-  const lastUpdated = document.getElementById("last-updated");
+    const buyList = document.getElementById("buy-list");
+    const sellList = document.getElementById("sell-list");
+    const lastUpdated = document.getElementById("last-updated");
 
-  try {
-    const res = await fetch("../data/signals.json", { cache: "no-store" });
-    if (!res.ok) throw new Error(`signals.json fetch failed (${res.status})`);
-    const data = await res.json();
-    if (data.buys) data.buys.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
-    if (data.sells) data.sells.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
+    try {
+        const res = await fetch("../data/signals.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(`signals.json fetch failed (${res.status})`);
+        
+        const data = await res.json();
+        
+        // Sorting by Market Cap
+        if (data.buys) data.buys.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
+        if (data.sells) data.sells.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
 
-    if (lastUpdated) lastUpdated.textContent = data.generated_at_pt || "—";
+        if (lastUpdated) lastUpdated.textContent = data.generated_at_pt || "—";
 
-    // Populate Buy List (Critical)
-    if (buyList) {
-      buyList.innerHTML = (data.buys && data.buys.length)
-        ? data.buys.map(renderBuyCard).join("")
-        : `<li class="signal-card">No buy signals.</li>`;
+        // Populate Buy List
+        if (buyList) {
+            buyList.innerHTML = (data.buys && data.buys.length)
+                ? data.buys.map(renderBuyCard).join("")
+                : `<li class="signal-card">No buy signals.</li>`;
+        }
+
+        // Populate Sell List
+        if (sellList) {
+            sellList.innerHTML = (data.sells && data.sells.length)
+                ? data.sells.map(renderSellCard).join("")
+                : `<li class="signal-card">No sell signals.</li>`;
+        }
+
+    } catch (e) {
+        console.error("❌ Failed to load or render signals:", e);
+        if (buyList) buyList.innerHTML = `<li class="signal-card">⚠️ Could not load signals: ${e.message}</li>`;
     }
-
-    // Populate Sell List (Only if element exists in HTML)
-    if (sellList) {
-      sellList.innerHTML = (data.sells && data.sells.length)
-        ? data.sells.map(renderSellCard).join("")
-        : `<li class="signal-card">No sell signals.</li>`;
-    }
-
-  } catch (e) {
-    console.error("❌ Failed to load or render signals:", e);
-    // Print the specific error to the screen so you know why it failed
-    if (buyList) buyList.innerHTML = `<li class="signal-card">⚠️ Could not load signals: ${e.message}</li>`;
-  }
 })();
-
