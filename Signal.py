@@ -444,8 +444,9 @@ def job(tickers):
         total += 1
         try:
             hist = fetch_cached_history(symbol)
-            if hist.empty or "Close" not in hist.columns:
-                logger.info(f"No historical data for {symbol}, skipping.")
+            # Ensure we have at least 200 rows to calculate the DMA 200 accurately
+            if hist.empty or "Close" not in hist.columns or len(hist) < 200:
+                logger.info(f"Insufficient history for {symbol} (need 200+ days), skipping.")
                 skipped += 1; continue
         except Exception as e:
             failed.append(symbol); continue
