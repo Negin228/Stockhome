@@ -267,7 +267,11 @@ def calculate_indicators(df):
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
-    df["adx"] = ta.trend.ADXIndicator(df["High"].squeeze(), df["Low"].squeeze(), close, window=14).adx()
+
+    dmi_orig = ta.trend.DMIIndicator(high, low, close, window=14)
+    df["adx"] = dmi_orig.adx()
+    df["plus_di"] = dmi_orig.plus_di()
+    df["minus_di"] = dmi_orig.minus_di()
     
     # MACD
     ema_fast = close.ewm(span=12, adjust=False).mean()
@@ -440,7 +444,13 @@ def job(tickers):
         # 2. Basic Signal (Buy/Sell) for Puts logic
         sig, reason = generate_signal(hist)
 
-        # 3. ADVANCED SCORING
+        # 3. ADVANCED SCORING & TREND (Consolidated Logic)
+        # Initialize defaults to prevent "Variable Not Found" errors
+        trend_rationale = "Trend data unavailable"
+        trend_dir_val = "neutral"
+        final_score = 0.0
+        why_str = "N/A"
+
         try:
             # Extract scalar values for scoring
             last_close = scalar(hist["Close"].iloc[-1])
@@ -450,19 +460,18 @@ def job(tickers):
             last_macd = scalar(hist["macd"].iloc[-1]) if "macd" in hist.columns else 0
             last_sig = scalar(hist["signal_line"].iloc[-1]) if "signal_line" in hist.columns else 0
             last_adx = scalar(hist["adx"].iloc[-1]) if "adx" in hist.columns else 0
-            # Slope
             sma_slope = slope(hist["dma200"], lookback=10)
 
-            plus_di = scalar(ta.trend.DMIIndicator(hist["High"].squeeze(), hist["Low"].squeeze(), hist["Close"].squeeze()).plus_di().iloc[-1])
-            minus_di = scalar(ta.trend.DMIIndicator(hist["High"].squeeze(), hist["Low"].squeeze(), hist["Close"].squeeze()).minus_di().iloc[-1])
+            # Trend Direction and Strength logic (DMI & ADX)
+            dmi_obj = ta.trend.DMIIndicator(hist["High"].squeeze(), hist["Low"].squeeze(), hist["Close"].squeeze())
+            plus_di = scalar(dmi_obj.plus_di().iloc[-1])
+            minus_di = scalar(dmi_obj.minus_di().iloc[-1])
     
-            trend_dir = "Bullish" if plus_di > minus_di else "Bearish"
+            trend_direction = "Bullish" if plus_di > minus_di else "Bearish"
             trend_strength = "Strong" if last_adx > 25 else "Weak/Sideways"
-    
-            trend_rationale = f"{trend_strength} {trend_dir} Trend (ADX: {last_adx:.1f})"
-        except Exception as e:
-            trend_rationale = "Trend data unavailable"
-            trend_dir = "Neutral"
+            trend_rationale = f"{trend_strength} {trend_direction} Trend (ADX: {last_adx:.1f})"
+            trend_dir_val = trend_direction.lower()
+
             # Sub-scores
             s_trend, r_trend = score_trend(last_close, last_sma_fast, last_sma_slow, sma_slope)
             s_rsi, r_rsi = score_rsi(last_rsi)
@@ -477,9 +486,7 @@ def job(tickers):
             reasons = r_trend[:1] + r_rsi[:1] + r_macd[:1] + r_dist[:1]
             why_str = " • ".join(reasons)
         except Exception as e:
-            logger.error(f"Scoring error for {symbol}: {e}")
-            final_score = 0.0
-            why_str = "Error in scoring"
+            logger.error(f"Scoring/Trend error for {symbol}: {e}")
 
         # 4. Price & Fundamentals
         try:
@@ -499,7 +506,6 @@ def job(tickers):
         dma200_val = hist["dma200"].iloc[-1]
         dma50_val = hist["dma50"].iloc[-1]
 
-        last_close_val = hist["Close"].iloc[-1].item() if not hist.empty else None
         prev_close_val = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
         
         pct_drop = None
@@ -517,36 +523,24 @@ def job(tickers):
                 bu = scalar(current_row['bb_high'])
                 band_type = "BBL" if spread_data['type'] == 'bullish' else "BBU"
                 band_val = bl if spread_data['type'] == 'bullish' else bu
-                if spread_data['strategy'].endswith("(Debit)"):
-                    rationale = "Extreme: Buying Delta for sharp snap-back." if spread_data['type'] == 'bullish' else "Extreme: Expecting sharp downward mean reversion."
-                else:
-                    rationale = "Moderate: Selling Theta; high probability of stability." if spread_data['type'] == 'bullish' else "Moderate: Collecting premium as move exhausts."
+                rationale = "Extreme: Buying Delta for sharp snap-back." if spread_data['strategy'].endswith("(Debit)") else "Moderate: Selling Theta."
 
                 full_reasoning = f"Det: Price {'<' if spread_data['type'] == 'bullish' else '>'} {band_type}({band_val:.2f}) | ADX: {a:.1f} | RSI {r:.1f} ({rationale})"
             
                 spread_results.append({
-                    'ticker': symbol,
-                    'mcap': round((mcap / 1e9), 2) if mcap else 0,
-                    'strategy': spread_data['strategy'],
-                    'price': round(float(rt_price), 2),
-                    'rsi': round(float(rsi_val), 1),
-                    # FIX: Use scalar() to convert the Series element to a float
-                    'adx': round(float(scalar(current_row['adx'])), 1),
-                    'type': spread_data['type'],
-                    'is_squeeze': spread_data['is_squeeze'],
+                    'ticker': symbol, 'mcap': round((mcap / 1e9), 2) if mcap else 0,
+                    'strategy': spread_data['strategy'], 'price': round(float(rt_price), 2),
+                    'rsi': round(float(rsi_val), 1), 'adx': round(float(a), 1),
+                    'type': spread_data['type'], 'is_squeeze': spread_data['is_squeeze'],
                     'reasoning': full_reasoning
                 })
         except Exception as e:
             logger.error(f"Spread calculation error for {symbol}: {e}")
-            
 
         # 5. Build Stock Object
         stock_data_list.append({
-            'ticker': symbol,
-            'company': company_name,
-            'signal' : sig,
-            'score': final_score,   # <--- NEW FIELD
-            'why': why_str,         # <--- NEW FIELD
+            'ticker': symbol, 'company': company_name, 'signal' : sig,
+            'score': final_score, 'why': why_str,
             'price': float(rt_price) if rt_price is not None else None,
             'price_str': f"{rt_price:.2f}" if rt_price is not None else "N/A",
             'rsi': float(rsi_val) if rsi_val is not None else None,
@@ -561,13 +555,11 @@ def job(tickers):
             'dma200_str': f"{dma200_val:.1f}" if dma200_val is not None else "N/A",
             'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
             'trend_rationale': trend_rationale, 
-            'trend_dir': trend_dir.lower(),
+            'trend_dir': trend_dir_val,
         })
 
         if not sig: continue
 
-        # Alert Logic (Logging & Web Alert Lines)
-        parts = [f"{symbol}: {sig} at ${rt_price:.2f}", reason, f"PE={pe}", f"Market Cap={cap_str}"]
         log_alert({
             "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "ticker": symbol, "signal": sig, "company": company_name, "price": rt_price,
@@ -578,7 +570,6 @@ def job(tickers):
             buy_symbols.append(symbol)
             prices[symbol] = rt_price
             rsi_vals[symbol] = rsi_val
-            # ensure BUY tickers always have a put object
             for s in stock_data_list:
                 if s["ticker"] == symbol: s["put"] = default_put_obj(); break
         else:
@@ -598,21 +589,15 @@ def job(tickers):
         if not filtered_puts: continue
         best_put = max(filtered_puts, key=lambda x: x.get('premium_percent', 0) or x.get('premium', 0))
         
-        exp_type = best_put.get("exp_type", "UNKNOWN")
         expiration_fmt = datetime.datetime.strptime(best_put['expiration'], "%Y-%m-%d").strftime("%b %d, %Y") if best_put.get('expiration') else "N/A"
-        company_name = fetch_company_name(sym)
         stock_row = next((s for s in stock_data_list if s["ticker"] == sym), None)
-        dma200_val = stock_row.get("dma200") if stock_row else None
-        dma50_val  = stock_row.get("dma50") if stock_row else None
 
         put_obj = {
-            "strike": float(best_put['strike']),
-            "expiration": expiration_fmt,
-            "exp_type": exp_type,
+            "strike": float(best_put['strike']), "expiration": expiration_fmt,
+            "exp_type": best_put.get("exp_type", "UNKNOWN"),
             "weekly_available": bool(best_put.get("weekly_available")),
             "monthly_available": bool(best_put.get("monthly_available")),
-            "premium": float(best_put['premium']),
-            "delta_percent": float(best_put['delta_percent']),
+            "premium": float(best_put['premium']), "delta_percent": float(best_put['delta_percent']),
             "premium_percent": float(best_put['premium_percent']),
             "metric_sum": (float(best_put['delta_percent'] or 0) + float(best_put['premium_percent'] or 0))
         }
@@ -620,10 +605,10 @@ def job(tickers):
             if s['ticker'] == sym: s['put'] = put_obj; break
 
         buy_alert_line = format_buy_alert_line(
-            ticker=sym, company_name=company_name, price=price, rsi=rsi_val, pe=pe, mcap=cap_str,
-            dma200=dma200_val, dma50=dma50_val, strike=float(best_put['strike']), expiration=expiration_fmt,
-            premium=float(best_put['premium']), delta_percent=float(best_put['delta_percent']),
-            premium_percent=float(best_put['premium_percent'])
+            ticker=sym, company_name=fetch_company_name(sym), price=price, rsi=rsi_val, pe=pe, mcap=cap_str,
+            dma200=stock_row.get("dma200"), dma50=stock_row.get("dma50"), strike=float(best_put['strike']), 
+            expiration=expiration_fmt, premium=float(best_put['premium']), 
+            delta_percent=float(best_put['delta_percent']), premium_percent=float(best_put['premium_percent'])
         )
         
         news_items = fetch_news_ticker(sym)
