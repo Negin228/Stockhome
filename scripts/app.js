@@ -12,6 +12,7 @@ function renderBuyCard(b) {
   const monthlyTag = (!weeklyAvailable)
     ? ' <span class="monthly">(Monthly)</span>'
     : '';
+  const trendClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
 
   return `
     <li class="signal-card buy-card">
@@ -27,6 +28,9 @@ function renderBuyCard(b) {
         <div class="price-details">
           <div class="current-price price-up">${fmt(b.price, 2)}</div>
         </div>
+      </div>
+      <div class="trend-line ${trendClass}">
+        <strong>Trend:</strong> ${b.trend_rationale || "Calculating..."}
       </div>
       <p class="news-summary">
         RSI=${fmt(b.rsi_str)}&nbsp;&nbsp;P/E=${fmt(b.pe_str)}&nbsp;&nbsp;
