@@ -12,13 +12,18 @@
 
   <section class="hero sub-hero">
       <h1>Mean Reversion Spread Candidates</h1>
+      <p style="color: rgba(255,255,255,0.8); font-size: 0.9em; margin-top: 10px;">
+        Last updated: <span id="last-updated">Loading...</span> PT
+      </p>
   </section>
+
   <main>
     <section class="section intro-text">
-      <div class="card-grid"> <p><b>Call Debit Spread (Bullish):</b> Buy a call at a lower strike, sell a call at a higher strike. Profit if price &gt; lower strike at expiration (max at or above the higher strike). Risk limited to net debit.</p>
-        <p><b>Call Credit Spread (Bearish):</b> Sell a call at a lower strike, buy a call at a higher strike. Profit if price &lt; short strike at expiration. Risk limited to strike width minus credit.</p>
-        <p><b>Put Debit Spread (Bearish):</b> Buy a put at a higher strike, sell a put at a lower strike. Profit if price &lt; higher strike at expiration (max at or below the lower strike). Risk limited to net debit.</p>
-        <p><b>Put Credit Spread (Bullish):</b> Sell a put at a higher strike, buy a put at a lower strike. Profit if price &gt; short strike at expiration. Risk limited to strike width minus credit.</p>
+      <div class="card-grid"> 
+        <p><b>Call Debit Spread (Bullish):</b> Buy a call at a lower strike, sell a call at a higher strike. Profit if price > lower strike. Risk limited to net debit.</p>
+        <p><b>Call Credit Spread (Bearish):</b> Sell a call at a lower strike, buy a call at a higher strike. Profit if price < short strike. Risk limited to strike width minus credit.</p>
+        <p><b>Put Debit Spread (Bearish):</b> Buy a put at a higher strike, sell a put at a lower strike. Profit if price < higher strike. Risk limited to net debit.</p>
+        <p><b>Put Credit Spread (Bullish):</b> Sell a put at a higher strike, buy a put at a lower strike. Profit if price > short strike. Risk limited to strike width minus credit.</p>
       </div>
     </section>
     
@@ -33,6 +38,7 @@
                     <th>RSI</th>
                     <th>ADX</th>
                     <th>Recommended Spread</th>
+                    <th>Volatility Status</th>
                     <th>Reasoning</th>
                 </tr>
             </thead>
@@ -42,20 +48,15 @@
         </table>
       </div>
     </section>
-    <section class="section"> 
-      <div class="table-container" style="overflow-x: auto;">
-        <table class="signals-table">
-            </table>
-      </div>
-    </section>
-    <section class="meta">
-      <div>Last updated: <time id="last-updated">—</time></div>
+
+    <section class="meta" style="text-align: center; padding: 20px; color: #666; font-size: 0.85em;">
+      <div>Data refreshed every market hour. Last update confirmed: <time id="last-updated-footer">—</time></div>
     </section>
   </main>  
+
   <div id="footer-include"></div>
 
   <script src="../scripts/spreads.js"></script>
-
   <script src="/scripts/loader.js"></script>
 </body>
 </html>
