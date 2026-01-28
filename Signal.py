@@ -505,11 +505,13 @@ def job(tickers):
         try:
             rt_price = fetch_quote(symbol)
             rt_price = force_float(rt_price)
-        except Exception: 
-            rt_price = None
+            
+            if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
+                rt_price = yf.Ticker(symbol).fast_info['lastPrice']
+            except Exception: 
+                rt_price = force_float(hist["Close"].iloc[-1])
 
-        if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
-            rt_price = force_float(hist["Close"].iloc[-1])
+ 
 
         pe, mcap = fetch_fundamentals_safe(symbol)
         company_name = fetch_company_name(symbol)
