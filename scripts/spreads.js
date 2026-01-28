@@ -47,8 +47,6 @@
           <td><strong>${s.ticker}</strong></td>
           <td>${fmt(s.mcap, 1)}B</td>
           <td>$${fmt(s.price, 2)}</td>
-          <td>${fmt(s.rsi, 1)}</td>
-          <td>${fmt(s.adx, 1)}</td>
           <td>
             <span class="${badgeClass}">
               ${s.strategy}
