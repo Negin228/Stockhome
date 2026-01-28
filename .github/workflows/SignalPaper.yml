@@ -43,8 +43,8 @@ jobs:
         run: python NishantMean.py
         env:
           # Note: Ensure these secret names match your GitHub Secrets exactly
-          API_KEY: ${{ secrets.ALPACA_NISHANTMEAN_KEY }}
-          SECRET_KEY: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
+          ALPACA_NISHANTMEAN_KEY: ${{ secrets.ALPACA_NISHANTMEAN_KEY }}
+          ALPACA_NISHANTMEAN_SECRET: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
           # The Python script uses these variable names internally
 
       - name: Commit and Sync Data (JSONs and Portfolio State)
