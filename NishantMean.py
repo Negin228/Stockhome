@@ -73,19 +73,19 @@ def find_leg_symbols(ticker_sym, current_price, strategy):
             buy_s, sell_s = current_price - 2.5, current_price + 2.5
             chain = opts.calls
             side1, side2 = OrderSide.BUY, OrderSide.SELL
-        elif "PUT" in strat_upper and "CREDIT" in strat_upper:
+    elif "PUT" in strat_upper and "CREDIT" in strat_upper:
             sell_s, buy_s = current_price + 2.5, current_price - 2.5
             chain = opts.puts
             side1, side2 = OrderSide.SELL, OrderSide.BUY
-        elif "CALL" in strat_upper and "CREDIT" in strat_upper:
+    elif "CALL" in strat_upper and "CREDIT" in strat_upper:
             sell_s, buy_s = current_price + 2.5, current_price + 7.5
             chain = opts.calls
             side1, side2 = OrderSide.SELL, OrderSide.BUY
-        elif "PUT" in strat_upper and "DEBIT" in strat_upper:
+    elif "PUT" in strat_upper and "DEBIT" in strat_upper:
             buy_s, sell_s = current_price - 2.5, current_price - 7.5
             chain = opts.puts
             side1, side2 = OrderSide.BUY, OrderSide.SELL
-        else:
+    else:
             log_event(f"DEBUG: Strategy string '{strategy}' not recognized for leg matching.")
             return None
 
