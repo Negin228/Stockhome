@@ -526,7 +526,7 @@ def job(tickers):
         try:
             current_row = hist.iloc[-1]
             spread_data = get_spread_strategy(current_row)
-            if spread_data:
+            if spread_data and not spread_data['is_squeeze']::
                 r = scalar(current_row['rsi'])
                 a = scalar(current_row['adx'])
                 bl = scalar(current_row['bb_low'])
@@ -536,12 +536,17 @@ def job(tickers):
                 rationale = "Extreme: Buying Delta for sharp snap-back." if spread_data['strategy'].endswith("(Debit)") else "Moderate: Selling Theta."
                 full_reasoning = f"Det: Price {'<' if spread_data['type'] == 'bullish' else '>'} {band_type}({band_val:.2f}) | ADX: {a:.1f} | RSI {r:.1f} ({rationale})"
                 spread_results.append({
-                    'ticker': symbol, 'mcap': round((mcap / 1e9), 2) if mcap else 0,
-                    'strategy': spread_data['strategy'], 'price': round(float(rt_price), 2),
-                    'rsi': round(float(rsi_val), 1), 'adx': round(float(a), 1),
-                    'type': spread_data['type'], 'is_squeeze': spread_data['is_squeeze'],
-                    'reasoning': full_reasoning
-                })
+                    'ticker': symbol, 
+                    'mcap': round((mcap / 1e9), 2) if mcap else 0,
+                    'strategy': spread_data['strategy'], 
+                    'price': round(float(rt_price), 2),
+                    'rsi': round(float(rsi_val), 1), 
+                    'adx': round(float(a), 1),
+                    'type': spread_data['type'], 
+                    'is_squeeze': spread_data['is_squeeze'],
+                    'reasoning': full_reasoning})
+            elif spread_data and spread_data['is_squeeze']:
+                    logger.info(f"Skipping {symbol}: Bollinger Bands squeezed inside Keltner Channels.")
         except Exception as e:
             logger.error(f"Spread calculation error for {symbol}: {e}")
 
