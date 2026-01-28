@@ -260,13 +260,10 @@ def fetch_company_name(symbol):
     except Exception: return ""
 
 def calculate_indicators(df):
-    # Ensure df is a DataFrame and not empty
     if df is None or df.empty or len(df) < 14:
         logger.warning("Not enough data to calculate indicators.")
         return pd.DataFrame()
 
-    # If yfinance returns a MultiIndex (common with single tickers), 
-    # select the 'Close' column specifically
     if isinstance(df.columns, pd.MultiIndex):
         close = df["Close"].iloc[:, 0]
         high = df["High"].iloc[:, 0]
@@ -276,23 +273,27 @@ def calculate_indicators(df):
         high = df["High"]
         low = df["Low"]
 
-    # Ensure these are Series objects, not scalars or DataFrames
     close = pd.Series(close).dropna()
     high = pd.Series(high).dropna()
     low = pd.Series(low).dropna()
 
-    # RSI & DMA
+    # RSI & Moving Averages
     df["rsi"] = ta.momentum.RSIIndicator(close, window=14).rsi()
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
 
-    # ADX Indicator (using the cleaned high/low/close Series)
+    # ADX
     dmi_orig = ta.trend.ADXIndicator(high, low, close, window=14)
     df["adx"] = dmi_orig.adx()
     df["plus_di"] = dmi_orig.adx_pos()
     df["minus_di"] = dmi_orig.adx_neg()
-    
-    # ... rest of your MACD logic
+
+    # --- MACD CALCULATION (Missing Piece) ---
+    macd_ind = ta.trend.MACD(close=close, window_slow=26, window_fast=12, window_sign=9)
+    df["macd"] = macd_ind.macd()
+    df["signal_line"] = macd_ind.macd_signal()
+    df["hist"] = macd_ind.macd_diff()  # This creates the missing 'hist' column
+
     return df
     
 def calculate_spread_indicators(df):
