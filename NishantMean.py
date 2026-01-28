@@ -138,7 +138,7 @@ def submit_spread_order(ticker, strategy, legs):
     ]
     
     order_data = LimitOrderRequest(
-        symbol=ticker,
+        symbol=None,
         limit_price=ENTRY_LIMIT,
         qty=1,
         side=OrderSide.BUY if "DEBIT" in strategy.upper() else OrderSide.SELL,
