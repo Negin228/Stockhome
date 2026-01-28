@@ -37,9 +37,9 @@
 
     if (validSignals.length > 0) {
       tableBody.innerHTML = validSignals.map(s => {
-        // IMPROVED LOGIC: Check for "Bullish" keyword specifically
-        const strategyText = s.strategy || "";
-        const isBullish = strategyText.toLowerCase().includes("bullish");
+        // NECESSARY CHANGE: Expanded check to include "bull" for "Bull Put" or "Bull Call"
+        const strategyText = (s.strategy || "").toLowerCase();
+        const isBullish = strategyText.includes("bullish") || strategyText.includes("bull");
         const badgeClass = isBullish ? "badge-bullish" : "badge-bearish";
 
         return `
@@ -48,7 +48,7 @@
           <td>${fmt(s.mcap, 1)}B</td>
           <td>$${fmt(s.price, 2)}</td>
           <td>
-            <span class="${badgeClass}">
+            <span class="badge ${badgeClass}">
               ${s.strategy}
             </span>
           </td>
@@ -59,13 +59,15 @@
       `;
       }).join("");
     } else {
-      tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;">No candidates found with healthy volatility.</td></tr>`;
+      // NECESSARY CHANGE: Corrected colspan to 5 to match your HTML columns
+      tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No candidates found with healthy volatility.</td></tr>`;
     }
 
   } catch (e) {
     console.error("Spread loading error:", e);
     if (tableBody) {
-      tableBody.innerHTML = `<tr><td colspan="7">Error loading spread data.</td></tr>`;
+      // NECESSARY CHANGE: Corrected colspan to 5
+      tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Error loading spread data.</td></tr>`;
     }
   }
 })();
