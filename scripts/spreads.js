@@ -2,7 +2,6 @@
   const tableBody = document.getElementById("spreads-body");
   const lastUpdatedEl = document.getElementById("last-updated");
 
-  // Ensure the formatting helper is defined
   function fmt(n, d = 1) {
     return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
   }
@@ -11,15 +10,14 @@
     const res = await fetch("../data/spreads.json", { cache: "no-store" });
     const payload = await res.json();
 
-    // 1. Update the timestamp
+    // MATCHING THE FILTERS.HTML LOGIC
     if (payload.generated_at_pt && lastUpdatedEl) {
+        // Appending " PT" manually to match your other pages
         lastUpdatedEl.textContent = payload.generated_at_pt + " PT";
     }
 
-    // 2. Extract signals safely
     let signals = Array.isArray(payload) ? payload : (payload.data || payload.all || []);
     
-    // Sort by Market Cap
     signals.sort((a, b) => (b.mcap || 0) - (a.mcap || 0));
 
     if (signals.length === 0) {
@@ -27,7 +25,6 @@
       return;
     }
 
-    // 3. Render Table
     tableBody.innerHTML = signals.map(s => {
       const sentimentClass = s.type === 'bullish' ? 'badge-bullish' : 'badge-bearish';
       return `
