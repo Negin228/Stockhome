@@ -704,6 +704,9 @@ def main():
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
     all_spreads.sort(key=lambda x: x['mcap'], reverse=True)
+    logger.info(f"DEBUG: Generated {len(all_spreads)} total spread signals for JSON.")
+    for spread in all_spreads[:3]: # Log the first 3 for confirmation
+        logger.info(f"DEBUG: Sample Signal -> {spread['ticker']}: {spread['strategy']}")
     
     with open("artifacts/data/spreads.json", "w", encoding="utf-8") as f:
         json.dump(all_spreads, f, ensure_ascii=False, indent=2)
