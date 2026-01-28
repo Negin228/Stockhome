@@ -1,72 +1,77 @@
 (async function () {
   const tableBody = document.getElementById("spreads-body");
-  const lastUpdatedEl = document.getElementById("last-updated");
 
-  // Helper to format numbers safely
   function fmt(n, d = 1) {
     return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
   }
 
   try {
-    // 1. FETCH TIMESTAMP from signals.json (where the date lives)
+    // 1. FETCH TIMESTAMP
     fetch("../data/signals.json", { cache: "no-store" })
       .then(res => res.json())
       .then(data => {
         if (data.generated_at_pt) {
           const timestamp = data.generated_at_pt + " PT";
-          const heroDate = document.getElementById("Last-updated");
-          if (heroDate) heroDate.textContent = timestamp;
-          const footerDate = document.getElementById("Last-updated");
-          if (footerDate) footerDate.textContent = timestamp;
+          // Targets both potential ID casings found in your HTML
+          const elements = ["last-updated", "Last-updated"];
+          elements.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = timestamp;
+          });
         }
       })
-      .catch(err => console.warn("Could not load timestamp from signals.json", err));
+      .catch(err => console.warn("Could not load timestamp", err));
 
-    // 2. FETCH SPREAD DATA from spreads.json
+    // 2. FETCH AND FILTER SPREAD DATA
     const res = await fetch("../data/spreads.json", { cache: "no-store" });
     let signals = await res.json();
 
-    console.log("Spreads loaded:", signals);
-
-    // Ensure signals is an array (handling potential object wrappers)
     if (!Array.isArray(signals) && signals.data) {
         signals = signals.data;
     }
 
-    // Sort by Market Cap (Highest first) as per your original logic
-    signals.sort((a, b) => (b.mcap || 0) - (a.mcap || 0));
+    // Filter: Remove squeezes (Keep only volatility OK)
+    const validSignals = signals.filter(s => !s.is_squeeze);
 
-    if (signals && signals.length > 0) {
-      tableBody.innerHTML = signals.map(s => `
-        <tr class="${s.type}">
+    // Sort by Market Cap
+    validSignals.sort((a, b) => (b.mcap || 0) - (a.mcap || 0));
+
+    if (validSignals.length > 0) {
+      tableBody.innerHTML = validSignals.map(s => {
+        // Determine color logic
+        const strategyText = s.strategy || "";
+        const isBullish = strategyText.includes("Bullish") || 
+                          strategyText.includes("Put Credit") || 
+                          strategyText.includes("Call Debit");
+        
+        const badgeClass = isBullish ? "badge-bullish" : "badge-bearish";
+
+        return `
+        <tr>
           <td><strong>${s.ticker}</strong></td>
           <td>${fmt(s.mcap, 1)}B</td>
           <td>$${fmt(s.price, 2)}</td>
           <td>${fmt(s.rsi, 1)}</td>
           <td>${fmt(s.adx, 1)}</td>
           <td>
-            <span class="badge ${s.strategy.includes('Debit') ? 'debit' : 'credit'}">
+            <span class="${badgeClass}">
               ${s.strategy}
             </span>
-          </td>
-          <td>
-            ${s.is_squeeze 
-              ? '<span class="text-warning">⚠️ Squeeze (Avoid)</span>' 
-              : '<span class="text-success">✅ Volatility OK</span>'}
           </td>
           <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
             ${s.reasoning || "No detailed reasoning available."}
           </td>
         </tr>
-      `).join("");
+      `;
+      }).join("");
     } else {
-      tableBody.innerHTML = `<tr><td colspan="8">No spread candidates found. (Coiling markets are being ignored).</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;">No candidates found with healthy volatility.</td></tr>`;
     }
 
   } catch (e) {
     console.error("Spread loading error:", e);
     if (tableBody) {
-      tableBody.innerHTML = `<tr><td colspan="8">Error loading spread data. Check console for details.</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="7">Error loading spread data.</td></tr>`;
     }
   }
 })();
