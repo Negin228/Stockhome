@@ -12,7 +12,6 @@
       .then(data => {
         if (data.generated_at_pt) {
           const timestamp = data.generated_at_pt + " PT";
-          // Targets both potential ID casings found in your HTML
           const elements = ["last-updated", "Last-updated"];
           elements.forEach(id => {
             const el = document.getElementById(id);
@@ -22,7 +21,7 @@
       })
       .catch(err => console.warn("Could not load timestamp", err));
 
-    // 2. FETCH AND FILTER SPREAD DATA
+    // 2. FETCH AND FILTER DATA
     const res = await fetch("../data/spreads.json", { cache: "no-store" });
     let signals = await res.json();
 
@@ -30,7 +29,7 @@
         signals = signals.data;
     }
 
-    // Filter: Remove squeezes (Keep only volatility OK)
+    // Filter: Show only if NOT a squeeze (Volatility OK)
     const validSignals = signals.filter(s => !s.is_squeeze);
 
     // Sort by Market Cap
@@ -38,12 +37,9 @@
 
     if (validSignals.length > 0) {
       tableBody.innerHTML = validSignals.map(s => {
-        // Determine color logic
+        // IMPROVED LOGIC: Check for "Bullish" keyword specifically
         const strategyText = s.strategy || "";
-        const isBullish = strategyText.includes("Bullish") || 
-                          strategyText.includes("Put Credit") || 
-                          strategyText.includes("Call Debit");
-        
+        const isBullish = strategyText.toLowerCase().includes("bullish");
         const badgeClass = isBullish ? "badge-bullish" : "badge-bearish";
 
         return `
