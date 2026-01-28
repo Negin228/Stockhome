@@ -526,15 +526,20 @@ def job(tickers):
         try:
             current_row = hist.iloc[-1]
             spread_data = get_spread_strategy(current_row)
-            if spread_data and not spread_data['is_squeeze']::
+            
+            # 1. Only proceed if we have a strategy AND it's not a squeeze
+            if spread_data and not spread_data['is_squeeze']:
                 r = scalar(current_row['rsi'])
                 a = scalar(current_row['adx'])
                 bl = scalar(current_row['bb_low'])
                 bu = scalar(current_row['bb_high'])
+                
                 band_type = "BBL" if spread_data['type'] == 'bullish' else "BBU"
                 band_val = bl if spread_data['type'] == 'bullish' else bu
                 rationale = "Extreme: Buying Delta for sharp snap-back." if spread_data['strategy'].endswith("(Debit)") else "Moderate: Selling Theta."
+                
                 full_reasoning = f"Det: Price {'<' if spread_data['type'] == 'bullish' else '>'} {band_type}({band_val:.2f}) | ADX: {a:.1f} | RSI {r:.1f} ({rationale})"
+                
                 spread_results.append({
                     'ticker': symbol, 
                     'mcap': round((mcap / 1e9), 2) if mcap else 0,
@@ -544,9 +549,13 @@ def job(tickers):
                     'adx': round(float(a), 1),
                     'type': spread_data['type'], 
                     'is_squeeze': spread_data['is_squeeze'],
-                    'reasoning': full_reasoning})
+                    'reasoning': full_reasoning
+                })
+            
+            # 2. Log the ignored tickers so you know the script is working
             elif spread_data and spread_data['is_squeeze']:
-                    logger.info(f"Skipping {symbol}: Bollinger Bands squeezed inside Keltner Channels.")
+                logger.info(f"Skipping {symbol}: Bollinger Bands squeezed inside Keltner Channels.")
+                
         except Exception as e:
             logger.error(f"Spread calculation error for {symbol}: {e}")
 
