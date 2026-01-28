@@ -47,15 +47,13 @@ jobs:
 
       - name: Commit and Sync changes
         run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add data/signals.json data/spreads.json
-          git commit -m "Update signals.json and spreads.json from workflow" || echo "No changes to commit"
-          
-          # SYNC: Pull any manual edits from the user and put the bot data on top
-          git pull --rebase origin main
-          
-          git push
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub 
+            git add data/signals.json data/spreads.json
+            git commit -m "Update signals.json and spreads.json from workflow" || echo "No changes to commit"
+            git pull --rebase --autostash origin main
+            git push
+     
 
       - name: Install alpaca-py and related Python libraries
         run: pip install alpaca-py
