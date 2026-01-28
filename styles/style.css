@@ -90,19 +90,22 @@ body {
     font-weight: bold;
     font-size: 0.9em;
 }
-.bullish { color: var(--price-up-color, #28a745); }
-.bearish { color: var(--price-down-color, #dc3545); }
-.text-warning { color: #ffc107; font-weight: bold; }
-.text-success { color: #28a745; }
+/* Color-coded sentiment badges */
+.badge-bullish {
+    background-color: #d4edda; /* Light green */
+    color: #155724;            /* Dark green text */
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
 
-tr.bullish { border-left: 4px solid #00c48c; }
-tr.bearish { border-left: 4px solid #ff4d4d; }
-
-.debit { background-color: #d1ecf1; color: #0c5460; } /* Blue for Debit */
-.credit { background-color: #d4edda; color: #155724; } /* Green for Credit */
-
-.bullish { border-left: 5px solid #28a745; }
-.bearish { border-left: 5px solid #dc3545; }
+.badge-bearish {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24;            /* Dark red text */
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
 
 
 
