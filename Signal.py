@@ -503,15 +503,23 @@ def job(tickers):
 
         # 4. Price & Fundamentals
         try:
+            # Try the primary Live API
             rt_price = fetch_quote(symbol)
             rt_price = force_float(rt_price)
             
+            # Fallback 1: Use yfinance fast_info (Live market data)
             if rt_price is None or (isinstance(rt_price, float) and (np.isnan(rt_price) or rt_price <= 0)):
                 rt_price = yf.Ticker(symbol).fast_info['lastPrice']
-            except Exception: 
-                rt_price = force_float(hist["Close"].iloc[-1])
+        except Exception as e:
+            # Fallback 2: Final safety check using the last close from your history CSV
+            logger.warning(f"Live price failed for {symbol}, using CSV fallback: {e}")
+            rt_price = force_float(hist["Close"].iloc[-1])
 
- 
+        # Final Critical Safety Check: If still None, skip this ticker to avoid math errors
+        if rt_price is None or rt_price <= 0:
+            logger.error(f"Skipping {symbol}: No valid price found after all fallbacks.")
+            failed.append(symbol)
+            continue
 
         pe, mcap = fetch_fundamentals_safe(symbol)
         company_name = fetch_company_name(symbol)
