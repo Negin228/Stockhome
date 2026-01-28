@@ -13,10 +13,10 @@ from alpaca.trading.requests import (
 )
 
 # Read secrets from environment variables
-API_KEY = os.getenv("ALPACA_NISHANTMEAN_KEY")
-SECRET_KEY = os.getenv("ALPACA_NISHANTMEAN_SECRET")
+ALPACA_NISHANTMEAN_KEY = os.getenv("ALPACA_NISHANTMEAN_KEY")
+ALPACA_NISHANTMEAN_SECRET = os.getenv("ALPACA_NISHANTMEAN_SECRET")
 
-if not API_KEY or not SECRET_KEY:
+if not ALPACA_NISHANTMEAN_KEY or not ALPACA_NISHANTMEAN_SECRET:
     raise ValueError("Alpaca API keys not found in environment variables.")
   
 JSON_PATH = "data/spreads.json"
@@ -25,7 +25,7 @@ MIN_STOCK_PRICE = 100.0
 ENTRY_LIMIT = 2.50 # $250 cost/credit
 MIN_DAYS_OUT = 30
 
-client = TradingClient(API_KEY, SECRET_KEY, paper=True)
+client = TradingClient(ALPACA_NISHANTMEAN_KEY , ALPACA_NISHANTMEAN_SECRET , paper=True)
 
 def log_event(message):
     """Timestamped reporting for your trades."""
