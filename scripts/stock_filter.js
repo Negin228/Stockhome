@@ -27,7 +27,7 @@ function processData(data) {
 
     if (data.generated_at_pt) {
         const dateEl = document.getElementById("last-updated");
-        if (dateEl) dateEl.textContent = data.generated_at_pt;
+        if (dateEl) dateEl.textContent = data.generated_at_pt+ " PT";
     }
 }
 
