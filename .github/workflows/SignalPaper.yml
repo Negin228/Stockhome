@@ -92,7 +92,7 @@ jobs:
         run: python NishantMean.py
         env:
           # Mapping your GitHub Secrets to the script's environment variables
-          ALPACA_NISHANTMEAN_KEY: ${{ secrets.ALAPCA_NISHANTMEAN_KEY }}
+          ALPACA_NISHANTMEAN_KEY: ${{ secrets.ALPACA_NISHANTMEAN_KEY }}
           ALPACA_NISHANTMEAN_SECRET: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
 
       - name: Debug output
