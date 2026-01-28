@@ -180,7 +180,8 @@ def reset_and_trade():
 
         if price < MIN_STOCK_PRICE:
             continue
-        if ticker in portfolio:
+        
+        if any(ticker in pos for pos in portfolio):
             log_event(f"DEBUG: Skipping {ticker}, already in portfolio.")
             continue
         
