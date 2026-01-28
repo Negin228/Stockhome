@@ -94,19 +94,18 @@ body {
 .badge-bullish {
     background-color: #d4edda; /* Light green */
     color: #155724;            /* Dark green text */
-    padding: 5px 12px;
-    border-radius: 20px;
-    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
 }
 
 .badge-bearish {
     background-color: #f8d7da; /* Light red */
     color: #721c24;            /* Dark red text */
-    padding: 5px 12px;
-    border-radius: 20px;
-    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
 }
-
 
 
 /* Hide nav links and show hamburger by default on mobile */
