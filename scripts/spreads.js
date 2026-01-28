@@ -1,22 +1,25 @@
 (async function () {
   const tableBody = document.getElementById("spreads-body");
-  const lastUpdatedEl = document.getElementById("last-updated"); // NEW: Get the time element
+  const lastUpdatedEl = document.getElementById("last-updated");
+
+  // Ensure the formatting helper is defined
+  function fmt(n, d = 1) {
+    return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
+  }
 
   try {
-    // 1. Fetch your spreads.json file
     const res = await fetch("../data/spreads.json", { cache: "no-store" });
     const payload = await res.json();
 
-    // 2. Display the timestamp from JSON
+    // 1. Update the timestamp
     if (payload.generated_at_pt && lastUpdatedEl) {
-        // This adds the time string and the " PT" suffix you see in your other pages
         lastUpdatedEl.textContent = payload.generated_at_pt + " PT";
     }
 
-    // 3. Extract the signals array (check if it's wrapped or a direct list)
+    // 2. Extract signals safely
     let signals = Array.isArray(payload) ? payload : (payload.data || payload.all || []);
     
-    // Sort and Render Table
+    // Sort by Market Cap
     signals.sort((a, b) => (b.mcap || 0) - (a.mcap || 0));
 
     if (signals.length === 0) {
@@ -24,6 +27,7 @@
       return;
     }
 
+    // 3. Render Table
     tableBody.innerHTML = signals.map(s => {
       const sentimentClass = s.type === 'bullish' ? 'badge-bullish' : 'badge-bearish';
       return `
@@ -43,6 +47,8 @@
 
   } catch (e) {
       console.error("Failed to load spreads:", e);
-      tableBody.innerHTML = `<tr><td colspan="7">Error loading data.</td></tr>`;
+      if (tableBody) {
+          tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;">Error loading data.</td></tr>`;
+      }
     }
-  })();
+})();
