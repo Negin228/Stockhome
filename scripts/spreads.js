@@ -1,21 +1,19 @@
 (async function () {
   const tableBody = document.getElementById("spreads-body");
-  const lastUpdatedEl = document.getElementById("last-updated"); // ADD THIS
-
-  function fmt(n, d = 1) {
-    return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
-  }
+  const lastUpdatedEl = document.getElementById("last-updated"); // NEW: Get the time element
 
   try {
-    const res = await fetch("/data/spreads.json", { cache: "no-store" });
-    const payload = await res.json(); // Rename 'signals' to 'payload'
+    // 1. Fetch your spreads.json file
+    const res = await fetch("../data/spreads.json", { cache: "no-store" });
+    const payload = await res.json();
 
-    // 1. UPDATE THE TIMESTAMP
+    // 2. Display the timestamp from JSON
     if (payload.generated_at_pt && lastUpdatedEl) {
-        lastUpdatedEl.textContent = payload.generated_at_pt;
+        // This adds the time string and the " PT" suffix you see in your other pages
+        lastUpdatedEl.textContent = payload.generated_at_pt + " PT";
     }
 
-    // 2. EXTRACT SIGNALS (Handles cases where JSON is a list or a wrapped object)
+    // 3. Extract the signals array (check if it's wrapped or a direct list)
     let signals = Array.isArray(payload) ? payload : (payload.data || payload.all || []);
     
     // Sort and Render Table
@@ -44,7 +42,7 @@
     }).join("");
 
   } catch (e) {
-    console.error("Failed to load spreads:", e);
-    tableBody.innerHTML = `<tr><td colspan="7">Error loading data.</td></tr>`;
-  }
-})();
+      console.error("Failed to load spreads:", e);
+      tableBody.innerHTML = `<tr><td colspan="7">Error loading data.</td></tr>`;
+    }
+  })();
