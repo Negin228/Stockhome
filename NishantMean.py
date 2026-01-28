@@ -145,7 +145,7 @@ def submit_spread_order(ticker, strategy, legs):
         time_in_force=TimeInForce.DAY,
         order_class=OrderClass.MLEG,
         legs=leg_reqs,
-        asset_class=AssetClass.OTPS
+        asset_class=AssetClass.US_OPTION # Corrected from OTPS
     )
     
     try:
@@ -155,7 +155,7 @@ def submit_spread_order(ticker, strategy, legs):
     except Exception as e:
         log_event(f"ORDER ERROR {ticker}: {e}")
         return False
-
+        
 def reset_and_trade():
     log_event("--- STARTING TRADE CYCLE ---")
     client.cancel_orders()
