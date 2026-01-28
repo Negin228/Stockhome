@@ -44,15 +44,31 @@ def check_buying_power():
 
 def find_leg_symbols(ticker_sym, current_price, strategy):
     """Uses yfinance to find the two legs for the spread."""
+    log_event(f"DEBUG: Searching legs for {ticker_sym} using strategy: {strategy}")
     tk = yf.Ticker(ticker_sym)
     today = datetime.date.today()
     
-    valid_exps = [e for e in tk.options if (datetime.datetime.strptime(e, '%Y-%m-%d').date() - today).days >= MIN_DAYS_OUT]
-    if not valid_exps: return None
+    # 1. Check Expirations
+    options = tk.options
+    if not options:
+        log_event(f"DEBUG: {ticker_sym} has no options available.")
+        return None
+
+    valid_exps = [e for e in options if (datetime.datetime.strptime(e, '%Y-%m-%d').date() - today).days >= MIN_DAYS_OUT]
+    if not valid_exps:
+        log_event(f"DEBUG: No expirations >= {MIN_DAYS_OUT} days found for {ticker_sym}.")
+        return None
     
     target_exp = valid_exps[0]
-    opts = tk.option_chain(target_exp)
+    log_event(f"DEBUG: Using expiration {target_exp} for {ticker_sym}")
     
+    try:
+        opts = tk.option_chain(target_exp)
+    except Exception as e:
+        log_event(f"DEBUG: Failed to fetch option chain for {ticker_sym}: {e}")
+        return None
+    
+    # 2. Match Strategy Strings
     if "Call Debit" in strategy:
         buy_s, sell_s = current_price - 2.5, current_price + 2.5
         chain = opts.calls
@@ -61,16 +77,33 @@ def find_leg_symbols(ticker_sym, current_price, strategy):
         sell_s, buy_s = current_price + 2.5, current_price - 2.5
         chain = opts.puts
         side1, side2 = OrderSide.SELL, OrderSide.BUY
-    else: return None
+    # ADDED: Support for Credit/Debit variations from Signal.py
+    elif "Bear Call (Credit)" in strategy:
+        sell_s, buy_s = current_price + 2.5, current_price + 7.5
+        chain = opts.calls
+        side1, side2 = OrderSide.SELL, OrderSide.BUY
+    elif "Bull Put (Credit)" in strategy:
+        sell_s, buy_s = current_price - 2.5, current_price - 7.5
+        chain = opts.puts
+        side1, side2 = OrderSide.SELL, OrderSide.BUY
+    else:
+        log_event(f"DEBUG: Strategy string '{strategy}' not recognized for leg matching.")
+        return None
 
+    if chain.empty:
+        log_event(f"DEBUG: Option chain for {ticker_sym} is empty.")
+        return None
+
+    # 3. Find Strikes
     l1 = chain.iloc[(chain['strike'] - buy_s).abs().argsort()[:1]].iloc[0]
     l2 = chain.iloc[(chain['strike'] - sell_s).abs().argsort()[:1]].iloc[0]
+
+    log_event(f"DEBUG: Found legs for {ticker_sym}: BUY {l1['contractSymbol']}, SELL {l2['contractSymbol']}")
 
     return [
         {"symbol": l1['contractSymbol'], "side": side1},
         {"symbol": l2['contractSymbol'], "side": side2}
     ]
-
 def submit_spread_order(ticker, strategy, legs):
     """Submits a multi-leg limit order using OptionLegRequest."""
     # Multi-leg orders use ratio_qty to define the contract balance
