@@ -14,9 +14,9 @@
       .then(data => {
         if (data.generated_at_pt) {
           const timestamp = data.generated_at_pt + " PT";
-          const heroDate = document.getElementById("last-updated");
+          const heroDate = document.getElementById("Last-updated");
           if (heroDate) heroDate.textContent = timestamp;
-          const footerDate = document.getElementById("last-updated-footer");
+          const footerDate = document.getElementById("Last-updated");
           if (footerDate) footerDate.textContent = timestamp;
         }
       })
