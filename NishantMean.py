@@ -175,6 +175,8 @@ def reset_and_trade():
         ticker = s['ticker']
         price = s['price']
         strategy = s['strategy']
+        if not (("CALL" in strategy.upper() and "DEBIT" in strategy.upper()) or ("PUT" in strategy.upper() and "CREDIT" in strategy.upper())):
+            continue
 
         if price < MIN_STOCK_PRICE:
             continue
