@@ -47,18 +47,18 @@ jobs:
           ALPACA_NISHANTMEAN_SECRET: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
           # The Python script uses these variable names internally
 
-      - name: Commit and Sync Data (JSONs and Portfolio State)
+      - name: Commit and Sync Data
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "github-actions[bot]"
-          # Move artifacts to data folder for committing
-          cp -f artifacts/data/signals.json data/signals.json || echo "signals.json missing"
-          cp -f artifacts/data/spreads.json data/spreads.json || echo "spreads.json missing"
           
-          # CRITICAL: Add the tracker CSV so the bot remembers trade dates!
-          git add data/signals.json data/spreads.json portfolio_tracker.csv || echo "Tracker not found"
+          # Stage EVERYTHING in the data folder
+          git add data/*.json portfolio_tracker.csv || echo "No data files found"
           
-          git commit -m "Update signals and portfolio state" || echo "No changes to commit"
+          # Commit only if there are actually changes
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update signals: $(date)"
+          
+          # Push changes back to the repo
           git pull --rebase --autostash origin main
           git push
 
