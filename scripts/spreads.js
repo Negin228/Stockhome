@@ -12,8 +12,12 @@
     fetch("../data/signals.json", { cache: "no-store" })
       .then(res => res.json())
       .then(data => {
-        if (data.generated_at_pt && lastUpdatedEl) {
-          lastUpdatedEl.textContent = data.generated_at_pt + " PT";
+        if (data.generated_at_pt) {
+          const timestamp = data.generated_at_pt + " PT";
+          const heroDate = document.getElementById("last-updated");
+          if (heroDate) heroDate.textContent = timestamp;
+          const footerDate = document.getElementById("last-updated-footer");
+          if (footerDate) footerDate.textContent = timestamp;
         }
       })
       .catch(err => console.warn("Could not load timestamp from signals.json", err));
