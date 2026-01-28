@@ -19,30 +19,35 @@
     // Sort by Market Cap (Highest first)
     signals.sort((a, b) => (b.mcap || 0) - (a.mcap || 0));
 
-    tableBody.innerHTML = signals.map(s => `
-      <tr class="${s.type}">
-        <td><strong>${s.ticker}</strong></td>
-        <td>${fmt(s.mcap, 1)}B</td>
-        <td>$${fmt(s.price, 2)}</td>
-        <td>${fmt(s.rsi, 1)}</td>
-        <td>${fmt(s.adx, 1)}</td>
-        <td>
-          <span class="badge ${s.strategy.includes('Debit') ? 'debit' : 'credit'}">
-            ${s.strategy}
-          </span>
-        </td>
-        <td>
-          ${s.is_squeeze 
-            ? '<span class="text-warning">⚠️ Squeeze (Avoid)</span>' 
-            : '<span class="text-success">✅ Volatility OK</span>'}
-        </td>
-        <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
-          ${s.reasoning || "No detailed reasoning available."}
-        </td>
-      </tr>
-    `).join("");
-  } catch (e) {
-    console.error("Failed to load spreads:", e);
-    tableBody.innerHTML = `<tr><td colspan="7">No candidates found or error loading data.</td></tr>`;
-  }
-})();
+
+    tableBody.innerHTML = signals.map(s => {
+      const sentimentClass = s.type === 'bullish' ? 'badge-bullish' : 'badge-bearish';
+
+      return `
+        <tr class="${s.type}">
+          <td><strong>${s.ticker}</strong></td>
+          <td>${fmt(s.mcap, 1)}B</td>
+          <td>$${fmt(s.price, 2)}</td>
+          <td>${fmt(s.rsi, 1)}</td>
+          <td>${fmt(s.adx, 1)}</td>
+          <td>
+            <span class="${sentimentClass}">
+              ${s.strategy}
+            </span>
+          </td>
+          <td>
+            ${s.is_squeeze 
+              ? '<span class="text-warning">⚠️ Squeeze (Avoid)</span>' 
+              : '<span class="text-success">✅ Volatility OK</span>'}
+          </td>
+          <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
+            ${s.reasoning || "No detailed reasoning available."}
+          </td>
+        </tr>
+      `;
+    }).join("");
+      } catch (e) {
+        console.error("Failed to load spreads:", e);
+        tableBody.innerHTML = `<tr><td colspan="7">No candidates found or error loading data.</td></tr>`;
+      }
+    })();
