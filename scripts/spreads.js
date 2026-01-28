@@ -34,17 +34,12 @@
             <span class="${sentimentClass}">
               ${s.strategy}
             </span>
-          </td>
-          <td>
-            ${s.is_squeeze 
-              ? '<span class="text-warning">⚠️ Squeeze (Avoid)</span>' 
-              : '<span class="text-success">✅ Volatility OK</span>'}
-          </td>
-          <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
-            ${s.reasoning || "No detailed reasoning available."}
-          </td>
-        </tr>
-      `;
+                </td>
+                <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
+                  ${s.reasoning || "No detailed reasoning available."}
+                </td>
+              </tr>
+            `;
     }).join("");
       } catch (e) {
         console.error("Failed to load spreads:", e);
