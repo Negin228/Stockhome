@@ -79,10 +79,21 @@ jobs:
           pip install alpaca-py
 
       - name: Run Alpaca Options Trader
+        # This prevents a failure here from stopping the deployment steps
+        continue-on-error: true 
         run: python alpaca_options_trader.py
         env:
           APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
           APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
+
+      - name: Run Nishant Mean Trading Logic
+        # This prevents a failure here from stopping the deployment steps
+        continue-on-error: true 
+        run: python NishantMean.py
+        env:
+          # Mapping your GitHub Secrets to the script's environment variables
+          ALPACA_NISHANTMEAN_KEY: ${{ secrets.ALAPCA_NISHANTMEAN_KEY }}
+          ALPACA_NISHANTMEAN_SECRET: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
 
       - name: Debug output
         run: |
