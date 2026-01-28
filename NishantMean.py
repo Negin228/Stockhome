@@ -1,14 +1,18 @@
+import os
 import json
 import datetime
 import time
 import yfinance as yf
-from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import (
-    OrderLegRequest, LimitOrderRequest, MarketOrderRequest, 
-    OrderSide, TimeInForce
-)
-from alpaca.trading.enums import AssetClass, OrderStatus
 
+from alpaca.trading.client import TradingClient
+from alpaca.trading.enums import OrderSide, TimeInForce, OrderClass, AssetClass, OrderStatus 
+from alpaca.trading.requests import (
+    OptionLegRequest, # Corrected from OrderLegRequest
+    LimitOrderRequest, 
+    MarketOrderRequest
+)
+
+# Read secrets from environment variables
 API_KEY = os.getenv("ALPACA_NISHANTMEAN_KEY")
 SECRET_KEY = os.getenv("ALPACA_NISHANTMEAN_SECRET")
 
@@ -34,10 +38,68 @@ def log_event(message):
 def check_buying_power():
     """Ensures we have at least $250 available to place the trade."""
     account = client.get_account()
-    # For options, we look at non_marginable_buying_power or equity
     bp = float(account.options_buying_power)
     log_event(f"Current Options Buying Power: ${bp:,.2f}")
     return bp
+
+def find_leg_symbols(ticker_sym, current_price, strategy):
+    """Uses yfinance to find the two legs for the spread."""
+    tk = yf.Ticker(ticker_sym)
+    today = datetime.date.today()
+    
+    valid_exps = [e for e in tk.options if (datetime.datetime.strptime(e, '%Y-%m-%d').date() - today).days >= MIN_DAYS_OUT]
+    if not valid_exps: return None
+    
+    target_exp = valid_exps[0]
+    opts = tk.option_chain(target_exp)
+    
+    if "Call Debit" in strategy:
+        buy_s, sell_s = current_price - 2.5, current_price + 2.5
+        chain = opts.calls
+        side1, side2 = OrderSide.BUY, OrderSide.SELL
+    elif "Put Credit" in strategy:
+        sell_s, buy_s = current_price + 2.5, current_price - 2.5
+        chain = opts.puts
+        side1, side2 = OrderSide.SELL, OrderSide.BUY
+    else: return None
+
+    l1 = chain.iloc[(chain['strike'] - buy_s).abs().argsort()[:1]].iloc[0]
+    l2 = chain.iloc[(chain['strike'] - sell_s).abs().argsort()[:1]].iloc[0]
+
+    return [
+        {"symbol": l1['contractSymbol'], "side": side1},
+        {"symbol": l2['contractSymbol'], "side": side2}
+    ]
+
+def submit_spread_order(ticker, strategy, legs):
+    """Submits a multi-leg limit order using OptionLegRequest."""
+    # Multi-leg orders use ratio_qty to define the contract balance
+    leg_reqs = [
+        OptionLegRequest(
+            symbol=l['symbol'], 
+            ratio_qty=1, 
+            side=l['side']
+        ) for l in legs
+    ]
+    
+    order_data = LimitOrderRequest(
+        symbol=ticker,
+        limit_price=ENTRY_LIMIT,
+        qty=1,
+        side=OrderSide.BUY if "Debit" in strategy else OrderSide.SELL,
+        time_in_force=TimeInForce.DAY,
+        order_class=OrderClass.MLEG, # Required for multi-leg spreads
+        legs=leg_reqs,               # Correct parameter name is 'legs'
+        asset_class=AssetClass.OTPS
+    )
+    
+    try:
+        client.submit_order(order_data)
+        log_event(f"ORDER PLACED: {strategy} {ticker} | Legs: {[l['symbol'] for l in legs]}")
+        return True
+    except Exception as e:
+        log_event(f"ORDER ERROR {ticker}: {e}")
+        return False
 
 def reset_and_trade():
     log_event("--- STARTING TRADE CYCLE ---")
@@ -57,11 +119,9 @@ def reset_and_trade():
     for s in signals:
         ticker, price, strategy = s['ticker'], s['price'], s['strategy']
 
-        # 1. THE FILTERS
         if price < MIN_STOCK_PRICE: continue
         if ticker in portfolio: continue
         
-        # 2. THE BUYING POWER GATEKEEPER
         if bp < 250:
             log_event(f"SKIPPED {ticker}: Insufficient Buying Power (${bp:.2f})")
             continue
@@ -72,34 +132,10 @@ def reset_and_trade():
         if legs:
             success = submit_spread_order(ticker, strategy, legs)
             if success:
-                bp -= 250 # Optimistically decrement bp for the next loop check
-
-def submit_spread_order(ticker, strategy, legs):
-    leg_reqs = [OrderLegRequest(symbol=l['symbol'], qty=1, side=l['side']) for l in legs]
-    
-    order_data = LimitOrderRequest(
-        symbol=ticker,
-        limit_price=ENTRY_LIMIT,
-        qty=1,
-        side=OrderSide.BUY if "Debit" in strategy else OrderSide.SELL,
-        time_in_force=TimeInForce.DAY,
-        order_legs=leg_reqs,
-        asset_class=AssetClass.OTPS
-    )
-    
-    try:
-        client.submit_order(order_data)
-        log_event(f"ORDER PLACED: {strategy} {ticker} | Legs: {[l['symbol'] for l in legs]}")
-        return True
-    except Exception as e:
-        log_event(f"ORDER ERROR {ticker}: {e}")
-        return False
-
-# ... (find_leg_symbols and monitor_stop_loss from previous steps) ...
+                bp -= 250
 
 if __name__ == "__main__":
     reset_and_trade()
     log_event("Entering Monitor Mode (Stop-Loss Protection)...")
-    while True:
-        # monitor_stop_loss() code goes here
-        time.sleep(300)
+    # Monitor loop placeholder
+    # time.sleep(300)
