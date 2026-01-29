@@ -89,7 +89,7 @@
   },
   {
     "ticker": "DHR",
-    "mcap": 160.78,
+    "mcap": 158.73,
     "strategy": "Bull Put (Credit)",
     "price": 224.54,
     "rsi": 39.2,
@@ -111,7 +111,7 @@
   },
   {
     "ticker": "ADP",
-    "mcap": 101.55,
+    "mcap": 101.39,
     "strategy": "Bull Put (Credit)",
     "price": 250.69,
     "rsi": 37.9,
@@ -209,17 +209,6 @@
     "reasoning": "Det: Price < BBL(82.30) | ADX: 12.5 | RSI 39.8 (Moderate: Selling Theta.)"
   },
   {
-    "ticker": "MSCI",
-    "mcap": 47.57,
-    "strategy": "Bear Call (Credit)",
-    "price": 614.87,
-    "rsi": 65.5,
-    "adx": 19.5,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(608.00) | ADX: 19.5 | RSI 65.5 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "FANG",
     "mcap": 46.4,
     "strategy": "Bear Call (Credit)",
@@ -229,6 +218,17 @@
     "type": "bearish",
     "is_squeeze": false,
     "reasoning": "Det: Price > BBU(159.66) | ADX: 21.8 | RSI 63.6 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "MSCI",
+    "mcap": 46.2,
+    "strategy": "Bear Call (Credit)",
+    "price": 614.87,
+    "rsi": 65.5,
+    "adx": 19.5,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(608.00) | ADX: 19.5 | RSI 65.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "AXON",
