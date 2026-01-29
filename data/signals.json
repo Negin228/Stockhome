@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "01-28-2026 15:39",
+  "generated_at_pt": "01-28-2026 16:52",
   "buys": [
     {
       "ticker": "ABT",
@@ -23,15 +23,15 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 27.8)",
       "trend_dir": "bearish",
       "put": {
-        "strike": 70.0,
-        "expiration": "Feb 20, 2026",
+        "strike": 95.0,
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.38,
-        "delta_percent": 33.993399339933994,
-        "premium_percent": 0.35832154644035835,
-        "metric_sum": 34.35172088637435
+        "premium": 0.49,
+        "delta_percent": 10.419613389910417,
+        "premium_percent": 0.46204620462046203,
+        "metric_sum": 10.881659594530879
       },
       "news_summary": "Medtech M&A took off in the second half of 2025: report.",
       "news": [
@@ -104,8 +104,15 @@
         "premium_percent": 0.3189085302751906,
         "metric_sum": 17.951804684365037
       },
-      "news_summary": "Top Lessons from Rich 95-Year-Old Stock Investors.",
+      "news_summary": "Reassessing Berkshire Hathaway (BRK.B) After Recent Share Price Weakness.",
       "news": [
+        {
+          "headline": "Reassessing Berkshire Hathaway (BRK.B) After Recent Share Price Weakness",
+          "url": "https://finance.yahoo.com/news/reassessing-berkshire-hathaway-brk-b-002227629.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "Our Excess Returns analysis suggests Berkshire Hathaway is undervalued by 40.0%. Track this in your watchlist or portfolio , or discover 877 more undervalued stocks based on cash flows .\n\nCombining these inputs, the Excess Returns model produces an estimated intrinsic value of about US$789.53 per share. Compared with the recent share price of US$473.49, this suggests roughly a 40.0% discount, which screens as undervalued on this approach.\n\nFor Berkshire Hathaway, the model uses a Book Value of U"
+        },
         {
           "headline": "Top Lessons from Rich 95-Year-Old Stock Investors",
           "url": "https://finance.yahoo.com/news/top-lessons-rich-95-old-180000668.html",
@@ -133,13 +140,6 @@
           "sentiment": 0.0,
           "summary": "The mutual-fund industry will lose its biggest fan of  Berkshire Hathaway  with the retirement of Fidelity Contrafund manager Will Danoff at the end of 2026 after 35 years at its helm.  Danoff’s $176 billion fund probably was the single largest holder of Berkshire among actively managed mutual funds.  Contrafund’s stake in Berkshire is now worth about $10 billion, Barron’s calculates.",
           "article_text": ""
-        },
-        {
-          "headline": "Greg Abel Signals Shift as Berkshire Weighs Kraft Heinz Exit?",
-          "url": "https://finance.yahoo.com/news/greg-abel-signals-shift-berkshire-160000641.html",
-          "sentiment": 0.0,
-          "summary": "",
-          "article_text": "Berkshire Hathaway Inc. BRK.B might exit its position in Kraft Heinz. In that case, this will be Greg Abel’s first strategic move after he became the new CEO. If this happens, it would mark an end to Buffett's investment in the entity. Buffett and 3G Capital had joined forces to craft the high-profile merger of Kraft Foods and H.J. Heinz, creating Kraft Heinz back in 2015.\n\n\n\nBRK.B currently has a 27.5% stake in Kraft Heinz, making it the company’s largest shareholder. BRK.B’s earnings from non-"
         }
       ]
     },
@@ -165,15 +165,54 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 46.6)",
       "trend_dir": "bearish",
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
-        "weekly_available": true,
-        "monthly_available": true
-      }
+        "strike": 180.0,
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
+        "weekly_available": false,
+        "monthly_available": true,
+        "premium": 1.35,
+        "delta_percent": 12.147981843916241,
+        "premium_percent": 0.6588901361706282,
+        "metric_sum": 12.80687198008687
+      },
+      "news_summary": "Broadridge Set to Report Q2 Earnings: What's in the Cards?",
+      "news": [
+        {
+          "headline": "Broadridge Set to Report Q2 Earnings: What's in the Cards?",
+          "url": "https://finance.yahoo.com/news/broadridge-set-report-q2-earnings-141000351.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "Broadridge Financial Solutions, Inc. BR is set to report its second-quarter fiscal 2026 results on Feb. 3, before the bell.\n\nThe Zacks Consensus Estimate for earnings in the to-be-reported quarter is pegged at $1.34, indicating 14% year-over-year decline. The Zacks Consensus Estimate for revenues is pinned at $1.59 billion, calling for a slight increase from the fiscal second-quarter 2025 actuals.\n\nThe company has an impressive earnings surprise history. Its earnings surpassed the Zacks Consensu"
+        },
+        {
+          "headline": "Wells Fargo Cuts Proxy Adviser Ties in Latest Blow to Industry",
+          "url": "https://www.wsj.com/finance/banking/wells-fargo-proxy-adviser-iss-cc4851d6",
+          "sentiment": 0.5,
+          "summary": "The bank will make voting decisions on shareholder proposals without the help of proxy advisers like ISS and instead rely on a new internal system.",
+          "article_text": ""
+        },
+        {
+          "headline": "Broadridge price target lowered to $228 from $240 at DA Davidson",
+          "url": "https://finance.yahoo.com/news/broadridge-price-target-lowered-228-140114561.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "DA Davidson lowered the firm’s price target on Broadridge (BR) to $228 from $240 and keeps a Neutral rating on the shares ahead of its Q2 results. The firm has fine-tuned its forecasts for several items, including modestly reducing its Q2 forecasts for Event-driven proxy distribution activity and Distribution revenue, the analyst tells investors in a research note.\n\nPublished first on TheFly – the ultimate source for real-time, market-moving breaking financial news. Try Now>>\n\nSee Insiders’ Hot "
+        },
+        {
+          "headline": "1 Oversold Stock Ready to Bounce Back and 2 We Ignore",
+          "url": "https://finance.yahoo.com/news/1-oversold-stock-ready-bounce-043753378.html",
+          "sentiment": 0.1,
+          "summary": "",
+          "article_text": "Hitting a new 52-week low can be a pivotal moment for any stock. These floors often mark either the beginning of a turnaround story or confirmation that a company faces serious headwinds.\n\nAt StockStory, we dig beneath the surface of price movements to uncover whether a company's fundamentals justify its current valuation or suggest hidden potential. Keeping that in mind, here is one stock where the poor sentiment is creating a buying opportunity and two where the outlook is warranted.\n\nTwo Stoc"
+        },
+        {
+          "headline": "Assessing Broadridge Financial Solutions (BR) Valuation After Repo Blockchain Milestone And New AI Partnership",
+          "url": "https://finance.yahoo.com/news/assessing-broadridge-financial-solutions-br-220624456.html",
+          "sentiment": 0.06818181818181818,
+          "summary": "",
+          "article_text": "Get insights on thousands of stocks from the global community of over 7 million individual investors at Simply Wall St.\n\nWhy Broadridge’s AI and Blockchain Push Is Back in Focus\n\nBroadridge Financial Solutions (BR) has grabbed fresh attention after reporting very large repo volumes on its Distributed Ledger Repo platform in December 2025, alongside a new AI focused partnership with DeepSee.\n\nFor you as an investor, those two developments sit at the intersection of Broadridge’s core strengths in "
+        }
+      ]
     },
     {
       "ticker": "BRO",
@@ -197,15 +236,54 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 30.8)",
       "trend_dir": "bearish",
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
-        "weekly_available": true,
-        "monthly_available": true
-      }
+        "strike": 60.0,
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
+        "weekly_available": false,
+        "monthly_available": true,
+        "premium": 0.33,
+        "delta_percent": 16.782246879334252,
+        "premium_percent": 0.4576976421636616,
+        "metric_sum": 17.239944521497915
+      },
+      "news_summary": "Why Arthur J. Gallagher (AJG) Stock Is Down Today.",
+      "news": [
+        {
+          "headline": "Brown & Brown Legal Leadership Shift Raises Governance And Risk Questions",
+          "url": "https://finance.yahoo.com/news/brown-brown-legal-leadership-shift-221054862.html",
+          "sentiment": 0.2,
+          "summary": "",
+          "article_text": "Make better investment decisions with Simply Wall St's easy, visual tools that give you a competitive edge.\n\nBrown & Brown (NYSE:BRO) announced the passing of Chief Legal Officer Robert Mathis.\n\nThe company has appointed an interim Chief Legal Officer to oversee legal and compliance functions during the transition.\n\nThe announcement reflects a leadership change in a core corporate governance role.\n\nBrown & Brown, a large insurance brokerage and risk management firm, relies heavily on legal overs"
+        },
+        {
+          "headline": "Why Brown & Brown (BRO) Shares Are Falling Today",
+          "url": "https://finance.yahoo.com/news/why-brown-brown-bro-shares-201057906.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "What Happened?\n\nShares of insurance brokerage firm Brown & Brown (NYSE:BRO) fell 7.3% in the afternoon session after the company reported mixed fourth-quarter 2025 results, with an earnings beat failing to offset a shortfall in revenue.\n\nThe insurance brokerage firm posted adjusted earnings of $0.93 per share, which was 3.3% higher than the consensus estimate of $0.90. However, investors appeared more focused on the top-line performance. Total revenues for the quarter came in at $1.61 billion, a"
+        },
+        {
+          "headline": "W.R. Berkley Q4 Earnings Miss Estimate, Revenues Up Y/Y",
+          "url": "https://finance.yahoo.com/news/w-r-berkley-q4-earnings-190500344.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "W.R. Berkley Corporation’sWRB fourth-quarter 2025 operating income of $1.13 per share missed the Zacks Consensus Estimate by 0.9%. The bottom line remained flat year over year.\n\nThe insurer benefited from higher premiums and revenues from non-insurance businesses.\n\nW.R. Berkley Corporation Price, Consensus and EPS Surprise\n\nW.R. Berkley Corporation Price, Consensus and EPS Surprise\n\nW.R. Berkley Corporation price-consensus-eps-surprise-chart | W.R. Berkley Corporation Quote\n\nBehind the Headlines"
+        },
+        {
+          "headline": "Brown & Brown Inc (BRO) Q4 2025 Earnings Call Highlights: Strong Revenue Growth Amidst ...",
+          "url": "https://finance.yahoo.com/news/brown-brown-inc-bro-q4-190138661.html",
+          "sentiment": 0.4333333333333333,
+          "summary": "",
+          "article_text": "Story Continues\n\nQ & A Highlights\n\nQ: Have you changed your strategy about retaining your producers following the departure of 275 former teammates to a competitor? Can you discuss your legal defenses regarding your customers and company IP? A: We have not changed our strategy. Our compensation mix of cash and equity based on performance has been effective. This situation is unusual, similar to what other large brokers have faced. Regarding legal defenses, we typically have non-piracy and non-so"
+        },
+        {
+          "headline": "Why Arthur J. Gallagher (AJG) Stock Is Down Today",
+          "url": "https://finance.yahoo.com/news/why-arthur-j-gallagher-ajg-172044923.html",
+          "sentiment": -0.15555555555555559,
+          "summary": "",
+          "article_text": "What Happened?\n\nShares of insurance brokerage firm Arthur J. Gallagher (NYSE:AJG) fell 4.7% in the afternoon session after a U.S. government proposal for nearly flat Medicare payment rates in 2027 dragged down health insurer stocks.\n\nThe Centers for Medicare & Medicaid Services outlined a proposal to raise payment rates for private Medicare Advantage plans by only 0.09% for 2027. This figure fell far short of what Wall Street expected, triggering a broad sell-off across the industry. Major insur"
+        }
+      ]
     },
     {
       "ticker": "FIS",
@@ -230,14 +308,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 50.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.65,
+        "premium": 0.85,
         "delta_percent": 11.016195052500441,
-        "premium_percent": 1.1567894643174943,
-        "metric_sum": 12.172984516817936
+        "premium_percent": 1.5127246841074926,
+        "metric_sum": 12.528919736607934
       },
       "news_summary": "Why The Narrative Around Fidelity National Information Services (FIS) Is Shifting With New Price Targets.",
       "news": [
@@ -260,7 +338,7 @@
           "url": "https://www.fool.com/investing/2026/01/23/fidelity-national-information-services-stock-buy-/",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "The stock just hit a 52-week low. Buy low?\n\nFidelity National Information Services (FIS 3.24%) stock plummeted to a 52-week low on Tuesday, dropping some 4% on the day to around $60.60 per share.\n\nFor a company that is one of the few dominant players in its primary business -- providing the technology to help banks move money -- such a drop might be considered a buying opportunity.\n\nBut Fidelity National has been trending lower for several years now, with a three-year average annualized return o"
+          "article_text": "The stock just hit a 52-week low. Buy low?\n\nFidelity National Information Services (FIS 3.22%) stock plummeted to a 52-week low on Tuesday, dropping some 4% on the day to around $60.60 per share.\n\nFor a company that is one of the few dominant players in its primary business -- providing the technology to help banks move money -- such a drop might be considered a buying opportunity.\n\nBut Fidelity National has been trending lower for several years now, with a three-year average annualized return o"
         },
         {
           "headline": "GPN's Worldpay Expands Its Solutions Reach via Regions Bank Partnership",
@@ -300,15 +378,15 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 57.9)",
       "trend_dir": "bearish",
       "put": {
-        "strike": 85.0,
-        "expiration": "Feb 13, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 90.0,
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.23,
-        "delta_percent": 17.755200774068694,
-        "premium_percent": 1.1901306240928884,
-        "metric_sum": 18.94533139816158
+        "premium": 2.06,
+        "delta_percent": 12.917271407837442,
+        "premium_percent": 1.9932268988872766,
+        "metric_sum": 14.910498306724719
       },
       "news_summary": "GoDaddy (GDDY) Loses 18.4% in 4 Weeks, Here's Why a Trend Reversal May be Around the Corner.",
       "news": [
@@ -345,7 +423,7 @@
           "url": "https://finance.yahoo.com/news/1-p-500-stock-promising-043500553.html",
           "sentiment": 0.2,
           "summary": "",
-          "article_text": "While the S&P 500 (^GSPC) includes industry leaders, not every stock in the index is a winner. Some companies are past their prime, weighed down by poor execution, weak financials, or structural headwinds.\n\nPicking the right S&P 500 stocks requires more than just buying big names, and that’s where StockStory comes in. Keeping that in mind, here is one S&P 500 stock that is leading the market forward and two best left off your watchlist.\n\nTwo Stocks to Sell:\n\nGoDaddy (GDDY)\n\nMarket Cap: $15.88 bi"
+          "article_text": "While the S&P 500 (^GSPC) includes industry leaders, not every stock in the index is a winner. Some companies are past their prime, weighed down by poor execution, weak financials, or structural headwinds.\n\nPicking the right S&P 500 stocks requires more than just buying big names, and that’s where StockStory comes in. Keeping that in mind, here is one S&P 500 stock that is leading the market forward and two best left off your watchlist.\n\nMore from Yahoo Scout Why does StockStory recommend avoidi"
         }
       ]
     },
@@ -371,18 +449,25 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 59.6)",
       "trend_dir": "bearish",
       "put": {
-        "strike": 16.5,
-        "expiration": "Mar 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 17.0,
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.27,
-        "delta_percent": 13.385826771653548,
-        "premium_percent": 1.4173228346456692,
-        "metric_sum": 14.803149606299217
+        "premium": 0.54,
+        "delta_percent": 10.76115485564305,
+        "premium_percent": 2.8346456692913384,
+        "metric_sum": 13.595800524934388
       },
-      "news_summary": "HP Dividend Signals Confidence As AI PC And Printing Story Evolves.",
+      "news_summary": "HP (HPQ) Sees a More Significant Dip Than Broader Market: Some Facts to Know.",
       "news": [
+        {
+          "headline": "HP (HPQ) Sees a More Significant Dip Than Broader Market: Some Facts to Know",
+          "url": "https://finance.yahoo.com/news/hp-hpq-sees-more-significant-230003620.html",
+          "sentiment": 0.4375,
+          "summary": "",
+          "article_text": "HP (HPQ) ended the recent trading session at $19.05, demonstrating a -1.65% change from the preceding day's closing price. The stock's performance was behind the S&P 500's daily loss of 0.01%. Meanwhile, the Dow gained 0.03%, and the Nasdaq, a tech-heavy index, added 0.17%.\n\nShares of the personal computer and printer maker have depreciated by 15.42% over the course of the past month, underperforming the Computer and Technology sector's gain of 1.46%, and the S&P 500's gain of 0.78%.\n\nAnalysts a"
+        },
         {
           "headline": "HP Dividend Signals Confidence As AI PC And Printing Story Evolves",
           "url": "https://finance.yahoo.com/news/hp-dividend-signals-confidence-ai-161435618.html",
@@ -410,13 +495,6 @@
           "sentiment": 0.0,
           "summary": "",
           "article_text": "As the craze of earnings season draws to a close, here’s a look back at some of the most exciting (and some less so) results from Q3. Today, we are looking at hardware & infrastructure stocks, starting with HP (NYSE:HPQ).\n\nThe Hardware & Infrastructure sector will be buoyed by demand related to AI adoption, cloud computing expansion, and the need for more efficient data storage and processing solutions. Companies with tech offerings such as servers, switches, and storage solutions are well-posit"
-        },
-        {
-          "headline": "How The New Price Target Is Reshaping The Story For HP (HPQ)",
-          "url": "https://finance.yahoo.com/news/price-target-reshaping-story-hp-020708957.html",
-          "sentiment": 0.13636363636363635,
-          "summary": "",
-          "article_text": "Find winning stocks in any market cycle. Join 7 million investors using Simply Wall St's investing ideas for FREE.\n\nWhat the New Price Target Means for HP’s Story\n\nHP’s latest price target update reflects a fresh view on how the market is interpreting the company’s outlook, even though the specific figures behind that target shift are not provided here. This change is tied directly to new commentary around the stock, which is reshaping how some analysts frame HP’s potential and its risks. Stay w"
         }
       ]
     },
@@ -443,14 +521,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 170.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 3.1,
+        "premium": 5.75,
         "delta_percent": 12.375650739652592,
-        "premium_percent": 1.5978557806298648,
-        "metric_sum": 13.973506520282456
+        "premium_percent": 2.9637647543941035,
+        "metric_sum": 15.339415494046696
       },
       "news_summary": "Humana Faces Tight CMS Rates As At Home Cardiac Care Expands.",
       "news": [
@@ -472,8 +550,8 @@
           "headline": "Nine S&P 500 Stocks' Earnings Are About To Crash In A Big Way",
           "url": "https://www.investors.com/etfs-and-funds/sectors/sp-500-stocks-earnings-are-about-to-crash-in-a-big-way/?src=A00220&yptr=yahoo",
           "sentiment": 0.0,
-          "summary": "",
-          "article_text": "11 S&P 500 Stocks Expected To Post Jaw-Dropping Earnings Growth\n\n1/27/2026 A flurry of fourth-quarter earnings reports are due out this week. And a few in the S&P 500 will stand...\n\n1/27/2026 A flurry of fourth-quarter earnings reports are due out this..."
+          "summary": "Investors are gearing up for a generally positive fourth-quarter earnings season. But there are some glaring exceptions in the S&P 500.",
+          "article_text": ""
         },
         {
           "headline": "Investors Assumed Medicare Advantage Was Safe Under the GOP. They Were Wrong.",
@@ -514,14 +592,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 230.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 3.15,
+        "premium": 4.35,
         "delta_percent": 10.92176607281177,
-        "premium_percent": 1.2199845081332301,
-        "metric_sum": 12.141750580945
+        "premium_percent": 1.6847405112316034,
+        "metric_sum": 12.606506584043373
       },
       "news_summary": "Target upgraded, Stryker downgraded: Wall Street's top analyst calls.",
       "news": [
@@ -594,8 +672,15 @@
         "premium_percent": 1.2641776937618148,
         "metric_sum": 48.09782608695652
       },
-      "news_summary": "1 Beaten-Down Stock-Split Stock to Buy and Hold for 10 Years.",
+      "news_summary": "Top Stock Reports for Johnson & Johnson, Netflix & Arista Networks.",
       "news": [
+        {
+          "headline": "Top Stock Reports for Johnson & Johnson, Netflix & Arista Networks",
+          "url": "https://finance.yahoo.com/news/top-stock-reports-johnson-johnson-220200442.html",
+          "sentiment": 0.5,
+          "summary": "",
+          "article_text": "Wednesday, January 28, 2026\n\n\n\nThe Zacks Research Daily presents the best research output of our analyst team. Today's Research Daily features new research reports on 16 major stocks, including Johnson & Johnson (JNJ), Netflix, Inc. (NFLX) and Arista Networks, Inc. (ANET), as well as two micro-cap stocks Omega Flex, Inc. (OFLX) and AXIL Brands, Inc. (AXIL). The Zacks microcap research is unique as our research content on these small and under-the-radar companies is the only research of its type "
+        },
         {
           "headline": "1 Beaten-Down Stock-Split Stock to Buy and Hold for 10 Years",
           "url": "https://www.fool.com/investing/2026/01/28/1-beaten-down-stock-split-stock-to-buy-and-hold/",
@@ -623,13 +708,6 @@
           "sentiment": 0.0,
           "summary": "",
           "article_text": "Netflix, Inc. (NASDAQ:NFLX) is one of the stocks Jim Cramer discussed, along with market shortages. A club member mentioned that they invested in NFLX after the stock split, and asked Cramer if he thinks that the company will get back on track this year, or if they should “take a loss and sell it?” Cramer remarked:\n\nI have to tell you… I thought that the conference call this week was a, it was a show of force. It was so good. It made me think that Netflix completely is on its game, as always. Yo"
-        },
-        {
-          "headline": "Polen Focus Growth Strategy Exited Netflix (NFLX) Amid Rising Regulatory and Leverage Concerns",
-          "url": "https://finance.yahoo.com/news/netflix-nflx-exit-signals-caution-081658260.html",
-          "sentiment": 0.0,
-          "summary": "",
-          "article_text": "Polen Capital Management Llc released its \"Polen Focus Growth Strategy\" Q4 2025 investor letter. A copy of the letter can be downloaded here. In Q4 2025, the Polen Focus Growth strategy delivered a -1.37% gross return, underperforming the Russell 1000 Growth Index (+1.12%) and the S&P 500 (+2.66%), as concentrated mega‑cap leadership and AI valuation concerns drove market volatility. The fund faced headwinds from market rotation and valuation pressures but remained disciplined in its investment "
         }
       ]
     },
@@ -656,14 +734,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 10.0,
-        "expiration": "Feb 27, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.17,
+        "premium": 0.32,
         "delta_percent": 11.816578483245149,
-        "premium_percent": 1.4991181657848325,
-        "metric_sum": 13.31569664902998
+        "premium_percent": 2.8218694885361555,
+        "metric_sum": 14.638447971781304
       },
       "news_summary": "Netflix's Greg Peters Says Paramount's Warner Bros Bid Has No Chance Without Larry Ellison, Calls Debt Plan 'Pretty Crazy'.",
       "news": [
@@ -727,14 +805,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 90.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.17,
+        "premium": 0.55,
         "delta_percent": 12.152269399707178,
-        "premium_percent": 0.16593460224499756,
-        "metric_sum": 12.318204001952175
+        "premium_percent": 0.5368472425573451,
+        "metric_sum": 12.689116642264523
       },
       "news_summary": "SaaS Demand and Client Retention Aid Paychex Amid Heavy Competition.",
       "news": [
@@ -750,7 +828,7 @@
           "url": "https://finance.yahoo.com/news/1-p-500-stock-watchlist-043531091.html",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "While the S&P 500 (^GSPC) includes industry leaders, not every stock in the index is a winner. Some companies are past their prime, weighed down by poor execution, weak financials, or structural headwinds.\n\nSome large-cap stocks are past their peak, and StockStory is here to help you separate the winners from the laggards. That said, here is one S&P 500 stock that could deliver good returns and two that could be in trouble.\n\nTwo Stocks to Sell:\n\nPaychex (PAYX)\n\nMarket Cap: $38.48 billion\n\nOnce k"
+          "article_text": "While the S&P 500 (^GSPC) includes industry leaders, not every stock in the index is a winner. Some companies are past their prime, weighed down by poor execution, weak financials, or structural headwinds.\n\nSome large-cap stocks are past their peak, and StockStory is here to help you separate the winners from the laggards. That said, here is one S&P 500 stock that could deliver good returns and two that could be in trouble.\n\nMore from Yahoo Scout How has Corpay achieved above-market revenue grow"
         },
         {
           "headline": "SaaS Demand and Client Retention Aid Paychex Amid Heavy Competition",
@@ -771,7 +849,7 @@
           "url": "https://finance.yahoo.com/news/paychex-payx-buy-sell-hold-040544081.html",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "Paychex has gotten torched over the last six months - since July 2025, its stock price has dropped 25.9% to $107.19 per share. This might have investors contemplating their next move.\n\nIs there a buying opportunity in Paychex, or does it present a risk to your portfolio? Check out our in-depth research report to see what our analysts have to say, it’s free.\n\nWhy Is Paychex Not Exciting?\n\nEven with the cheaper entry price, we're sitting this one out for now. Here are three reasons there are bette"
+          "article_text": "Paychex has gotten torched over the last six months - since July 2025, its stock price has dropped 25.9% to $107.19 per share. This might have investors contemplating their next move.\n\nIs there a buying opportunity in Paychex, or does it present a risk to your portfolio? Check out our in-depth research report to see what our analysts have to say, it’s free.\n\nMore from Yahoo Scout What is Paychex's current valuation and investment outlook? What are the main concerns about Paychex's financial perf"
         }
       ]
     },
@@ -798,14 +876,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 125.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 2.5,
+        "premium": 4.0,
         "delta_percent": 10.490511994271397,
-        "premium_percent": 1.790189760114572,
-        "metric_sum": 12.28070175438597
+        "premium_percent": 2.8643036161833155,
+        "metric_sum": 13.354815610454713
       },
       "news_summary": "Does Paycom (PAYC) Rehiring Former Sales Chief Reveal a Deeper Bet on Execution Consistency?",
       "news": [
@@ -821,7 +899,7 @@
           "url": "https://www.fool.com/coverage/filings/2026/01/26/sather-loads-up-payc-with-18000-shares-bought-last-quarter/",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "Paycom Software delivers cloud-based HR and payroll solutions to small and mid-sized U.S. businesses through a unified SaaS platform.\n\nSather Financial Group Inc increased its stake in Paycom Software,(PAYC 1.79%) according to a January 26, 2026, SEC filing.\n\nWhat happened\n\nSather Financial Group Inc disclosed in a Securities and Exchange Commission (SEC) filing dated January 26, 2026, that it bought an additional 18,035 shares of Paycom Software during the fourth quarter. The estimated value of"
+          "article_text": "Paycom Software delivers cloud-based HR and payroll solutions to small and mid-sized U.S. businesses through a unified SaaS platform.\n\nSather Financial Group Inc increased its stake in Paycom Software,(PAYC 1.85%) according to a January 26, 2026, SEC filing.\n\nWhat happened\n\nSather Financial Group Inc disclosed in a Securities and Exchange Commission (SEC) filing dated January 26, 2026, that it bought an additional 18,035 shares of Paycom Software during the fourth quarter. The estimated value of"
         },
         {
           "headline": "Paycom Software (PAYC): BMO Capital Highlights Contraction in Broader Software Multiples",
@@ -869,14 +947,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 135.0,
-        "expiration": "Feb 27, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.25,
+        "premium": 2.42,
         "delta_percent": 11.591355599214138,
-        "premium_percent": 0.8185985592665358,
-        "metric_sum": 12.409954158480673
+        "premium_percent": 1.584806810740013,
+        "metric_sum": 13.17616240995415
       },
       "news_summary": "Earnings Preview: Qualcomm (QCOM) Q1 Earnings Expected to Decline.",
       "news": [
@@ -983,8 +1061,8 @@
           "headline": "Assessing Roper Technologies (ROP) After A 24% One-Year Share Price Decline",
           "url": "https://finance.yahoo.com/news/assessing-roper-technologies-rop-24-160746216.html",
           "sentiment": 0.0,
-          "summary": "",
-          "article_text": "For a profitable business like Roper Technologies, the P/E ratio is a straightforward way to gauge what you are paying for each dollar of current earnings. It reflects how the market balances expectations for future growth and the risks around those earnings. Higher expected growth and lower perceived risk usually support a higher, or “richer,” P/E, while slower growth or higher risk tend to point to a lower, or “cheaper,” multiple.\n\nOur Discounted Cash Flow (DCF) analysis suggests Roper Technol"
+          "summary": "If you are wondering whether Roper Technologies is attractively priced today, this article will walk through what the current share price might be implying about its value. The stock last closed at US$408.67, with returns of a 1.8% decline over 7 days, a 9.4% decline over 30 days and a 6.0% decline year to date, alongside a 24.0% decline over the past year, a 1.7% decline over 3 years and a 7.5% gain over 5 years. Recent price moves have come alongside ongoing investor focus on software and...",
+          "article_text": ""
         }
       ]
     },
@@ -1034,7 +1112,7 @@
           "url": "https://finance.yahoo.com/news/stocks-making-big-moves-yesterday-130038469.html",
           "sentiment": 0.02500000000000001,
           "summary": "",
-          "article_text": "Check out the companies making headlines yesterday:\n\nGeneral Motors (NYSE:GM): Automotive manufacturer General Motors (NYSE:GM) rose by 9% on Tuesday after the company reported fourth-quarter earnings that beat Wall Street's expectations and provided an upbeat profit forecast for the upcoming year. See our full article here.\n\nIs now the time to buy General Motors? Access our full analysis report here, it's free.\n\nSysco (NYSE:SYY): Food distribution giant Sysco (NYSE:SYY) rose by 9.4% on Tuesday "
+          "article_text": "Check out the companies making headlines yesterday:\n\nGeneral Motors (NYSE:GM): Automotive manufacturer General Motors (NYSE:GM) rose by 9% on Tuesday after the company reported fourth-quarter earnings that beat Wall Street's expectations and provided an upbeat profit forecast for the upcoming year. See our full article here.\n\nMore from Yahoo Scout What drove Centene's 10.7% stock decline Tuesday? What caused Sysco's 9.4% stock price jump? Why did The Trade Desk shares fall 4.5%? Why did General "
         },
         {
           "headline": "Optimism for Trade Desk (TTD) Following Solid Results Preview",
@@ -1153,14 +1231,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 210.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 3.5,
+        "premium": 5.19,
         "delta_percent": 10.975454661070833,
-        "premium_percent": 1.483742422315486,
-        "metric_sum": 12.459197083386318
+        "premium_percent": 2.2001780490906784,
+        "metric_sum": 13.175632710161512
       },
       "news_summary": "COO vs. WST: Which Stock Should Value Investors Buy Now?",
       "news": [
@@ -2200,15 +2278,15 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 27.8)",
       "trend_dir": "bearish",
       "put": {
-        "strike": 70.0,
-        "expiration": "Feb 20, 2026",
+        "strike": 95.0,
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.38,
-        "delta_percent": 33.993399339933994,
-        "premium_percent": 0.35832154644035835,
-        "metric_sum": 34.35172088637435
+        "premium": 0.49,
+        "delta_percent": 10.419613389910417,
+        "premium_percent": 0.46204620462046203,
+        "metric_sum": 10.881659594530879
       },
       "news_summary": "Medtech M&A took off in the second half of 2025: report.",
       "news": [
@@ -3513,8 +3591,15 @@
         "premium_percent": 0.3189085302751906,
         "metric_sum": 17.951804684365037
       },
-      "news_summary": "Top Lessons from Rich 95-Year-Old Stock Investors.",
+      "news_summary": "Reassessing Berkshire Hathaway (BRK.B) After Recent Share Price Weakness.",
       "news": [
+        {
+          "headline": "Reassessing Berkshire Hathaway (BRK.B) After Recent Share Price Weakness",
+          "url": "https://finance.yahoo.com/news/reassessing-berkshire-hathaway-brk-b-002227629.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "Our Excess Returns analysis suggests Berkshire Hathaway is undervalued by 40.0%. Track this in your watchlist or portfolio , or discover 877 more undervalued stocks based on cash flows .\n\nCombining these inputs, the Excess Returns model produces an estimated intrinsic value of about US$789.53 per share. Compared with the recent share price of US$473.49, this suggests roughly a 40.0% discount, which screens as undervalued on this approach.\n\nFor Berkshire Hathaway, the model uses a Book Value of U"
+        },
         {
           "headline": "Top Lessons from Rich 95-Year-Old Stock Investors",
           "url": "https://finance.yahoo.com/news/top-lessons-rich-95-old-180000668.html",
@@ -3542,13 +3627,6 @@
           "sentiment": 0.0,
           "summary": "The mutual-fund industry will lose its biggest fan of  Berkshire Hathaway  with the retirement of Fidelity Contrafund manager Will Danoff at the end of 2026 after 35 years at its helm.  Danoff’s $176 billion fund probably was the single largest holder of Berkshire among actively managed mutual funds.  Contrafund’s stake in Berkshire is now worth about $10 billion, Barron’s calculates.",
           "article_text": ""
-        },
-        {
-          "headline": "Greg Abel Signals Shift as Berkshire Weighs Kraft Heinz Exit?",
-          "url": "https://finance.yahoo.com/news/greg-abel-signals-shift-berkshire-160000641.html",
-          "sentiment": 0.0,
-          "summary": "",
-          "article_text": "Berkshire Hathaway Inc. BRK.B might exit its position in Kraft Heinz. In that case, this will be Greg Abel’s first strategic move after he became the new CEO. If this happens, it would mark an end to Buffett's investment in the entity. Buffett and 3G Capital had joined forces to craft the high-profile merger of Kraft Foods and H.J. Heinz, creating Kraft Heinz back in 2015.\n\n\n\nBRK.B currently has a 27.5% stake in Kraft Heinz, making it the company’s largest shareholder. BRK.B’s earnings from non-"
         }
       ]
     },
@@ -3838,15 +3916,54 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 46.6)",
       "trend_dir": "bearish",
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
-        "weekly_available": true,
-        "monthly_available": true
-      }
+        "strike": 180.0,
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
+        "weekly_available": false,
+        "monthly_available": true,
+        "premium": 1.35,
+        "delta_percent": 12.147981843916241,
+        "premium_percent": 0.6588901361706282,
+        "metric_sum": 12.80687198008687
+      },
+      "news_summary": "Broadridge Set to Report Q2 Earnings: What's in the Cards?",
+      "news": [
+        {
+          "headline": "Broadridge Set to Report Q2 Earnings: What's in the Cards?",
+          "url": "https://finance.yahoo.com/news/broadridge-set-report-q2-earnings-141000351.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "Broadridge Financial Solutions, Inc. BR is set to report its second-quarter fiscal 2026 results on Feb. 3, before the bell.\n\nThe Zacks Consensus Estimate for earnings in the to-be-reported quarter is pegged at $1.34, indicating 14% year-over-year decline. The Zacks Consensus Estimate for revenues is pinned at $1.59 billion, calling for a slight increase from the fiscal second-quarter 2025 actuals.\n\nThe company has an impressive earnings surprise history. Its earnings surpassed the Zacks Consensu"
+        },
+        {
+          "headline": "Wells Fargo Cuts Proxy Adviser Ties in Latest Blow to Industry",
+          "url": "https://www.wsj.com/finance/banking/wells-fargo-proxy-adviser-iss-cc4851d6",
+          "sentiment": 0.5,
+          "summary": "The bank will make voting decisions on shareholder proposals without the help of proxy advisers like ISS and instead rely on a new internal system.",
+          "article_text": ""
+        },
+        {
+          "headline": "Broadridge price target lowered to $228 from $240 at DA Davidson",
+          "url": "https://finance.yahoo.com/news/broadridge-price-target-lowered-228-140114561.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "DA Davidson lowered the firm’s price target on Broadridge (BR) to $228 from $240 and keeps a Neutral rating on the shares ahead of its Q2 results. The firm has fine-tuned its forecasts for several items, including modestly reducing its Q2 forecasts for Event-driven proxy distribution activity and Distribution revenue, the analyst tells investors in a research note.\n\nPublished first on TheFly – the ultimate source for real-time, market-moving breaking financial news. Try Now>>\n\nSee Insiders’ Hot "
+        },
+        {
+          "headline": "1 Oversold Stock Ready to Bounce Back and 2 We Ignore",
+          "url": "https://finance.yahoo.com/news/1-oversold-stock-ready-bounce-043753378.html",
+          "sentiment": 0.1,
+          "summary": "",
+          "article_text": "Hitting a new 52-week low can be a pivotal moment for any stock. These floors often mark either the beginning of a turnaround story or confirmation that a company faces serious headwinds.\n\nAt StockStory, we dig beneath the surface of price movements to uncover whether a company's fundamentals justify its current valuation or suggest hidden potential. Keeping that in mind, here is one stock where the poor sentiment is creating a buying opportunity and two where the outlook is warranted.\n\nTwo Stoc"
+        },
+        {
+          "headline": "Assessing Broadridge Financial Solutions (BR) Valuation After Repo Blockchain Milestone And New AI Partnership",
+          "url": "https://finance.yahoo.com/news/assessing-broadridge-financial-solutions-br-220624456.html",
+          "sentiment": 0.06818181818181818,
+          "summary": "",
+          "article_text": "Get insights on thousands of stocks from the global community of over 7 million individual investors at Simply Wall St.\n\nWhy Broadridge’s AI and Blockchain Push Is Back in Focus\n\nBroadridge Financial Solutions (BR) has grabbed fresh attention after reporting very large repo volumes on its Distributed Ledger Repo platform in December 2025, alongside a new AI focused partnership with DeepSee.\n\nFor you as an investor, those two developments sit at the intersection of Broadridge’s core strengths in "
+        }
+      ]
     },
     {
       "ticker": "BRO",
@@ -3870,15 +3987,54 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 30.8)",
       "trend_dir": "bearish",
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
-        "weekly_available": true,
-        "monthly_available": true
-      }
+        "strike": 60.0,
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
+        "weekly_available": false,
+        "monthly_available": true,
+        "premium": 0.33,
+        "delta_percent": 16.782246879334252,
+        "premium_percent": 0.4576976421636616,
+        "metric_sum": 17.239944521497915
+      },
+      "news_summary": "Why Arthur J. Gallagher (AJG) Stock Is Down Today.",
+      "news": [
+        {
+          "headline": "Brown & Brown Legal Leadership Shift Raises Governance And Risk Questions",
+          "url": "https://finance.yahoo.com/news/brown-brown-legal-leadership-shift-221054862.html",
+          "sentiment": 0.2,
+          "summary": "",
+          "article_text": "Make better investment decisions with Simply Wall St's easy, visual tools that give you a competitive edge.\n\nBrown & Brown (NYSE:BRO) announced the passing of Chief Legal Officer Robert Mathis.\n\nThe company has appointed an interim Chief Legal Officer to oversee legal and compliance functions during the transition.\n\nThe announcement reflects a leadership change in a core corporate governance role.\n\nBrown & Brown, a large insurance brokerage and risk management firm, relies heavily on legal overs"
+        },
+        {
+          "headline": "Why Brown & Brown (BRO) Shares Are Falling Today",
+          "url": "https://finance.yahoo.com/news/why-brown-brown-bro-shares-201057906.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "What Happened?\n\nShares of insurance brokerage firm Brown & Brown (NYSE:BRO) fell 7.3% in the afternoon session after the company reported mixed fourth-quarter 2025 results, with an earnings beat failing to offset a shortfall in revenue.\n\nThe insurance brokerage firm posted adjusted earnings of $0.93 per share, which was 3.3% higher than the consensus estimate of $0.90. However, investors appeared more focused on the top-line performance. Total revenues for the quarter came in at $1.61 billion, a"
+        },
+        {
+          "headline": "W.R. Berkley Q4 Earnings Miss Estimate, Revenues Up Y/Y",
+          "url": "https://finance.yahoo.com/news/w-r-berkley-q4-earnings-190500344.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "W.R. Berkley Corporation’sWRB fourth-quarter 2025 operating income of $1.13 per share missed the Zacks Consensus Estimate by 0.9%. The bottom line remained flat year over year.\n\nThe insurer benefited from higher premiums and revenues from non-insurance businesses.\n\nW.R. Berkley Corporation Price, Consensus and EPS Surprise\n\nW.R. Berkley Corporation Price, Consensus and EPS Surprise\n\nW.R. Berkley Corporation price-consensus-eps-surprise-chart | W.R. Berkley Corporation Quote\n\nBehind the Headlines"
+        },
+        {
+          "headline": "Brown & Brown Inc (BRO) Q4 2025 Earnings Call Highlights: Strong Revenue Growth Amidst ...",
+          "url": "https://finance.yahoo.com/news/brown-brown-inc-bro-q4-190138661.html",
+          "sentiment": 0.4333333333333333,
+          "summary": "",
+          "article_text": "Story Continues\n\nQ & A Highlights\n\nQ: Have you changed your strategy about retaining your producers following the departure of 275 former teammates to a competitor? Can you discuss your legal defenses regarding your customers and company IP? A: We have not changed our strategy. Our compensation mix of cash and equity based on performance has been effective. This situation is unusual, similar to what other large brokers have faced. Regarding legal defenses, we typically have non-piracy and non-so"
+        },
+        {
+          "headline": "Why Arthur J. Gallagher (AJG) Stock Is Down Today",
+          "url": "https://finance.yahoo.com/news/why-arthur-j-gallagher-ajg-172044923.html",
+          "sentiment": -0.15555555555555559,
+          "summary": "",
+          "article_text": "What Happened?\n\nShares of insurance brokerage firm Arthur J. Gallagher (NYSE:AJG) fell 4.7% in the afternoon session after a U.S. government proposal for nearly flat Medicare payment rates in 2027 dragged down health insurer stocks.\n\nThe Centers for Medicare & Medicaid Services outlined a proposal to raise payment rates for private Medicare Advantage plans by only 0.09% for 2027. This figure fell far short of what Wall Street expected, triggering a broad sell-off across the industry. Major insur"
+        }
+      ]
     },
     {
       "ticker": "BF-B",
@@ -6543,14 +6699,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 50.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.65,
+        "premium": 0.85,
         "delta_percent": 11.016195052500441,
-        "premium_percent": 1.1567894643174943,
-        "metric_sum": 12.172984516817936
+        "premium_percent": 1.5127246841074926,
+        "metric_sum": 12.528919736607934
       },
       "news_summary": "Why The Narrative Around Fidelity National Information Services (FIS) Is Shifting With New Price Targets.",
       "news": [
@@ -6573,7 +6729,7 @@
           "url": "https://www.fool.com/investing/2026/01/23/fidelity-national-information-services-stock-buy-/",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "The stock just hit a 52-week low. Buy low?\n\nFidelity National Information Services (FIS 3.24%) stock plummeted to a 52-week low on Tuesday, dropping some 4% on the day to around $60.60 per share.\n\nFor a company that is one of the few dominant players in its primary business -- providing the technology to help banks move money -- such a drop might be considered a buying opportunity.\n\nBut Fidelity National has been trending lower for several years now, with a three-year average annualized return o"
+          "article_text": "The stock just hit a 52-week low. Buy low?\n\nFidelity National Information Services (FIS 3.22%) stock plummeted to a 52-week low on Tuesday, dropping some 4% on the day to around $60.60 per share.\n\nFor a company that is one of the few dominant players in its primary business -- providing the technology to help banks move money -- such a drop might be considered a buying opportunity.\n\nBut Fidelity National has been trending lower for several years now, with a three-year average annualized return o"
         },
         {
           "headline": "GPN's Worldpay Expands Its Solutions Reach via Regions Bank Partnership",
@@ -7163,15 +7319,15 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 57.9)",
       "trend_dir": "bearish",
       "put": {
-        "strike": 85.0,
-        "expiration": "Feb 13, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 90.0,
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.23,
-        "delta_percent": 17.755200774068694,
-        "premium_percent": 1.1901306240928884,
-        "metric_sum": 18.94533139816158
+        "premium": 2.06,
+        "delta_percent": 12.917271407837442,
+        "premium_percent": 1.9932268988872766,
+        "metric_sum": 14.910498306724719
       },
       "news_summary": "GoDaddy (GDDY) Loses 18.4% in 4 Weeks, Here's Why a Trend Reversal May be Around the Corner.",
       "news": [
@@ -7208,7 +7364,7 @@
           "url": "https://finance.yahoo.com/news/1-p-500-stock-promising-043500553.html",
           "sentiment": 0.2,
           "summary": "",
-          "article_text": "While the S&P 500 (^GSPC) includes industry leaders, not every stock in the index is a winner. Some companies are past their prime, weighed down by poor execution, weak financials, or structural headwinds.\n\nPicking the right S&P 500 stocks requires more than just buying big names, and that’s where StockStory comes in. Keeping that in mind, here is one S&P 500 stock that is leading the market forward and two best left off your watchlist.\n\nTwo Stocks to Sell:\n\nGoDaddy (GDDY)\n\nMarket Cap: $15.88 bi"
+          "article_text": "While the S&P 500 (^GSPC) includes industry leaders, not every stock in the index is a winner. Some companies are past their prime, weighed down by poor execution, weak financials, or structural headwinds.\n\nPicking the right S&P 500 stocks requires more than just buying big names, and that’s where StockStory comes in. Keeping that in mind, here is one S&P 500 stock that is leading the market forward and two best left off your watchlist.\n\nMore from Yahoo Scout Why does StockStory recommend avoidi"
         }
       ]
     },
@@ -7586,18 +7742,25 @@
       "trend_rationale": "Strong Bearish Trend (ADX: 59.6)",
       "trend_dir": "bearish",
       "put": {
-        "strike": 16.5,
-        "expiration": "Mar 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 17.0,
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.27,
-        "delta_percent": 13.385826771653548,
-        "premium_percent": 1.4173228346456692,
-        "metric_sum": 14.803149606299217
+        "premium": 0.54,
+        "delta_percent": 10.76115485564305,
+        "premium_percent": 2.8346456692913384,
+        "metric_sum": 13.595800524934388
       },
-      "news_summary": "HP Dividend Signals Confidence As AI PC And Printing Story Evolves.",
+      "news_summary": "HP (HPQ) Sees a More Significant Dip Than Broader Market: Some Facts to Know.",
       "news": [
+        {
+          "headline": "HP (HPQ) Sees a More Significant Dip Than Broader Market: Some Facts to Know",
+          "url": "https://finance.yahoo.com/news/hp-hpq-sees-more-significant-230003620.html",
+          "sentiment": 0.4375,
+          "summary": "",
+          "article_text": "HP (HPQ) ended the recent trading session at $19.05, demonstrating a -1.65% change from the preceding day's closing price. The stock's performance was behind the S&P 500's daily loss of 0.01%. Meanwhile, the Dow gained 0.03%, and the Nasdaq, a tech-heavy index, added 0.17%.\n\nShares of the personal computer and printer maker have depreciated by 15.42% over the course of the past month, underperforming the Computer and Technology sector's gain of 1.46%, and the S&P 500's gain of 0.78%.\n\nAnalysts a"
+        },
         {
           "headline": "HP Dividend Signals Confidence As AI PC And Printing Story Evolves",
           "url": "https://finance.yahoo.com/news/hp-dividend-signals-confidence-ai-161435618.html",
@@ -7625,13 +7788,6 @@
           "sentiment": 0.0,
           "summary": "",
           "article_text": "As the craze of earnings season draws to a close, here’s a look back at some of the most exciting (and some less so) results from Q3. Today, we are looking at hardware & infrastructure stocks, starting with HP (NYSE:HPQ).\n\nThe Hardware & Infrastructure sector will be buoyed by demand related to AI adoption, cloud computing expansion, and the need for more efficient data storage and processing solutions. Companies with tech offerings such as servers, switches, and storage solutions are well-posit"
-        },
-        {
-          "headline": "How The New Price Target Is Reshaping The Story For HP (HPQ)",
-          "url": "https://finance.yahoo.com/news/price-target-reshaping-story-hp-020708957.html",
-          "sentiment": 0.13636363636363635,
-          "summary": "",
-          "article_text": "Find winning stocks in any market cycle. Join 7 million investors using Simply Wall St's investing ideas for FREE.\n\nWhat the New Price Target Means for HP’s Story\n\nHP’s latest price target update reflects a fresh view on how the market is interpreting the company’s outlook, even though the specific figures behind that target shift are not provided here. This change is tied directly to new commentary around the stock, which is reshaping how some analysts frame HP’s potential and its risks. Stay w"
         }
       ]
     },
@@ -7680,14 +7836,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 170.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 3.1,
+        "premium": 5.75,
         "delta_percent": 12.375650739652592,
-        "premium_percent": 1.5978557806298648,
-        "metric_sum": 13.973506520282456
+        "premium_percent": 2.9637647543941035,
+        "metric_sum": 15.339415494046696
       },
       "news_summary": "Humana Faces Tight CMS Rates As At Home Cardiac Care Expands.",
       "news": [
@@ -7709,8 +7865,8 @@
           "headline": "Nine S&P 500 Stocks' Earnings Are About To Crash In A Big Way",
           "url": "https://www.investors.com/etfs-and-funds/sectors/sp-500-stocks-earnings-are-about-to-crash-in-a-big-way/?src=A00220&yptr=yahoo",
           "sentiment": 0.0,
-          "summary": "",
-          "article_text": "11 S&P 500 Stocks Expected To Post Jaw-Dropping Earnings Growth\n\n1/27/2026 A flurry of fourth-quarter earnings reports are due out this week. And a few in the S&P 500 will stand...\n\n1/27/2026 A flurry of fourth-quarter earnings reports are due out this..."
+          "summary": "Investors are gearing up for a generally positive fourth-quarter earnings season. But there are some glaring exceptions in the S&P 500.",
+          "article_text": ""
         },
         {
           "headline": "Investors Assumed Medicare Advantage Was Safe Under the GOP. They Were Wrong.",
@@ -7927,14 +8083,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 230.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 3.15,
+        "premium": 4.35,
         "delta_percent": 10.92176607281177,
-        "premium_percent": 1.2199845081332301,
-        "metric_sum": 12.141750580945
+        "premium_percent": 1.6847405112316034,
+        "metric_sum": 12.606506584043373
       },
       "news_summary": "Target upgraded, Stryker downgraded: Wall Street's top analyst calls.",
       "news": [
@@ -9101,22 +9257,22 @@
       "ticker": "MMC",
       "company": "Marsh & McLennan Companies, Inc",
       "signal": null,
-      "score": 22.0,
-      "why": "Below slow SMA • RSI 40 • Bearish MACD",
+      "score": 19.5,
+      "why": "Below slow SMA • RSI 38 • Bearish MACD",
       "price": 179.18,
       "price_str": "179.18",
-      "rsi": 40.20976224937773,
+      "rsi": 38.41909186161271,
       "pe": 21.932774,
       "market_cap": 89819709440.0,
-      "pct_drop": 2.439291937700005,
-      "rsi_str": "40.2",
+      "pct_drop": -4.087632021547227e-06,
+      "rsi_str": "38.4",
       "pe_str": "21.9",
       "market_cap_str": "89.8B",
-      "dma200": 203.00660011291504,
-      "dma50": 183.4957989501953,
-      "dma200_str": "203.0",
-      "dma50_str": "183.5",
-      "trend_rationale": "Weak/Sideways Bearish Trend (ADX: 19.9)",
+      "dma200": 202.75365005493165,
+      "dma50": 183.38239868164064,
+      "dma200_str": "202.8",
+      "dma50_str": "183.4",
+      "trend_rationale": "Weak/Sideways Bearish Trend (ADX: 20.8)",
       "trend_dir": "bearish"
     },
     {
@@ -9833,8 +9989,15 @@
         "premium_percent": 1.2641776937618148,
         "metric_sum": 48.09782608695652
       },
-      "news_summary": "1 Beaten-Down Stock-Split Stock to Buy and Hold for 10 Years.",
+      "news_summary": "Top Stock Reports for Johnson & Johnson, Netflix & Arista Networks.",
       "news": [
+        {
+          "headline": "Top Stock Reports for Johnson & Johnson, Netflix & Arista Networks",
+          "url": "https://finance.yahoo.com/news/top-stock-reports-johnson-johnson-220200442.html",
+          "sentiment": 0.5,
+          "summary": "",
+          "article_text": "Wednesday, January 28, 2026\n\n\n\nThe Zacks Research Daily presents the best research output of our analyst team. Today's Research Daily features new research reports on 16 major stocks, including Johnson & Johnson (JNJ), Netflix, Inc. (NFLX) and Arista Networks, Inc. (ANET), as well as two micro-cap stocks Omega Flex, Inc. (OFLX) and AXIL Brands, Inc. (AXIL). The Zacks microcap research is unique as our research content on these small and under-the-radar companies is the only research of its type "
+        },
         {
           "headline": "1 Beaten-Down Stock-Split Stock to Buy and Hold for 10 Years",
           "url": "https://www.fool.com/investing/2026/01/28/1-beaten-down-stock-split-stock-to-buy-and-hold/",
@@ -9862,13 +10025,6 @@
           "sentiment": 0.0,
           "summary": "",
           "article_text": "Netflix, Inc. (NASDAQ:NFLX) is one of the stocks Jim Cramer discussed, along with market shortages. A club member mentioned that they invested in NFLX after the stock split, and asked Cramer if he thinks that the company will get back on track this year, or if they should “take a loss and sell it?” Cramer remarked:\n\nI have to tell you… I thought that the conference call this week was a, it was a show of force. It was so good. It made me think that Netflix completely is on its game, as always. Yo"
-        },
-        {
-          "headline": "Polen Focus Growth Strategy Exited Netflix (NFLX) Amid Rising Regulatory and Leverage Concerns",
-          "url": "https://finance.yahoo.com/news/netflix-nflx-exit-signals-caution-081658260.html",
-          "sentiment": 0.0,
-          "summary": "",
-          "article_text": "Polen Capital Management Llc released its \"Polen Focus Growth Strategy\" Q4 2025 investor letter. A copy of the letter can be downloaded here. In Q4 2025, the Polen Focus Growth strategy delivered a -1.37% gross return, underperforming the Russell 1000 Growth Index (+1.12%) and the S&P 500 (+2.66%), as concentrated mega‑cap leadership and AI valuation concerns drove market volatility. The fund faced headwinds from market rotation and valuation pressures but remained disciplined in its investment "
         }
       ]
     },
@@ -10511,14 +10667,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 10.0,
-        "expiration": "Feb 27, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.17,
+        "premium": 0.32,
         "delta_percent": 11.816578483245149,
-        "premium_percent": 1.4991181657848325,
-        "metric_sum": 13.31569664902998
+        "premium_percent": 2.8218694885361555,
+        "metric_sum": 14.638447971781304
       },
       "news_summary": "Netflix's Greg Peters Says Paramount's Warner Bros Bid Has No Chance Without Larry Ellison, Calls Debt Plan 'Pretty Crazy'.",
       "news": [
@@ -10604,14 +10760,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 90.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.17,
+        "premium": 0.55,
         "delta_percent": 12.152269399707178,
-        "premium_percent": 0.16593460224499756,
-        "metric_sum": 12.318204001952175
+        "premium_percent": 0.5368472425573451,
+        "metric_sum": 12.689116642264523
       },
       "news_summary": "SaaS Demand and Client Retention Aid Paychex Amid Heavy Competition.",
       "news": [
@@ -10627,7 +10783,7 @@
           "url": "https://finance.yahoo.com/news/1-p-500-stock-watchlist-043531091.html",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "While the S&P 500 (^GSPC) includes industry leaders, not every stock in the index is a winner. Some companies are past their prime, weighed down by poor execution, weak financials, or structural headwinds.\n\nSome large-cap stocks are past their peak, and StockStory is here to help you separate the winners from the laggards. That said, here is one S&P 500 stock that could deliver good returns and two that could be in trouble.\n\nTwo Stocks to Sell:\n\nPaychex (PAYX)\n\nMarket Cap: $38.48 billion\n\nOnce k"
+          "article_text": "While the S&P 500 (^GSPC) includes industry leaders, not every stock in the index is a winner. Some companies are past their prime, weighed down by poor execution, weak financials, or structural headwinds.\n\nSome large-cap stocks are past their peak, and StockStory is here to help you separate the winners from the laggards. That said, here is one S&P 500 stock that could deliver good returns and two that could be in trouble.\n\nMore from Yahoo Scout How has Corpay achieved above-market revenue grow"
         },
         {
           "headline": "SaaS Demand and Client Retention Aid Paychex Amid Heavy Competition",
@@ -10648,7 +10804,7 @@
           "url": "https://finance.yahoo.com/news/paychex-payx-buy-sell-hold-040544081.html",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "Paychex has gotten torched over the last six months - since July 2025, its stock price has dropped 25.9% to $107.19 per share. This might have investors contemplating their next move.\n\nIs there a buying opportunity in Paychex, or does it present a risk to your portfolio? Check out our in-depth research report to see what our analysts have to say, it’s free.\n\nWhy Is Paychex Not Exciting?\n\nEven with the cheaper entry price, we're sitting this one out for now. Here are three reasons there are bette"
+          "article_text": "Paychex has gotten torched over the last six months - since July 2025, its stock price has dropped 25.9% to $107.19 per share. This might have investors contemplating their next move.\n\nIs there a buying opportunity in Paychex, or does it present a risk to your portfolio? Check out our in-depth research report to see what our analysts have to say, it’s free.\n\nMore from Yahoo Scout What is Paychex's current valuation and investment outlook? What are the main concerns about Paychex's financial perf"
         }
       ]
     },
@@ -10675,14 +10831,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 125.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 2.5,
+        "premium": 4.0,
         "delta_percent": 10.490511994271397,
-        "premium_percent": 1.790189760114572,
-        "metric_sum": 12.28070175438597
+        "premium_percent": 2.8643036161833155,
+        "metric_sum": 13.354815610454713
       },
       "news_summary": "Does Paycom (PAYC) Rehiring Former Sales Chief Reveal a Deeper Bet on Execution Consistency?",
       "news": [
@@ -10698,7 +10854,7 @@
           "url": "https://www.fool.com/coverage/filings/2026/01/26/sather-loads-up-payc-with-18000-shares-bought-last-quarter/",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "Paycom Software delivers cloud-based HR and payroll solutions to small and mid-sized U.S. businesses through a unified SaaS platform.\n\nSather Financial Group Inc increased its stake in Paycom Software,(PAYC 1.79%) according to a January 26, 2026, SEC filing.\n\nWhat happened\n\nSather Financial Group Inc disclosed in a Securities and Exchange Commission (SEC) filing dated January 26, 2026, that it bought an additional 18,035 shares of Paycom Software during the fourth quarter. The estimated value of"
+          "article_text": "Paycom Software delivers cloud-based HR and payroll solutions to small and mid-sized U.S. businesses through a unified SaaS platform.\n\nSather Financial Group Inc increased its stake in Paycom Software,(PAYC 1.85%) according to a January 26, 2026, SEC filing.\n\nWhat happened\n\nSather Financial Group Inc disclosed in a Securities and Exchange Commission (SEC) filing dated January 26, 2026, that it bought an additional 18,035 shares of Paycom Software during the fourth quarter. The estimated value of"
         },
         {
           "headline": "Paycom Software (PAYC): BMO Capital Highlights Contraction in Broader Software Multiples",
@@ -11230,14 +11386,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 135.0,
-        "expiration": "Feb 27, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Mar 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.25,
+        "premium": 2.42,
         "delta_percent": 11.591355599214138,
-        "premium_percent": 0.8185985592665358,
-        "metric_sum": 12.409954158480673
+        "premium_percent": 1.584806810740013,
+        "metric_sum": 13.17616240995415
       },
       "news_summary": "Earnings Preview: Qualcomm (QCOM) Q1 Earnings Expected to Decline.",
       "news": [
@@ -11630,8 +11786,8 @@
           "headline": "Assessing Roper Technologies (ROP) After A 24% One-Year Share Price Decline",
           "url": "https://finance.yahoo.com/news/assessing-roper-technologies-rop-24-160746216.html",
           "sentiment": 0.0,
-          "summary": "",
-          "article_text": "For a profitable business like Roper Technologies, the P/E ratio is a straightforward way to gauge what you are paying for each dollar of current earnings. It reflects how the market balances expectations for future growth and the risks around those earnings. Higher expected growth and lower perceived risk usually support a higher, or “richer,” P/E, while slower growth or higher risk tend to point to a lower, or “cheaper,” multiple.\n\nOur Discounted Cash Flow (DCF) analysis suggests Roper Technol"
+          "summary": "If you are wondering whether Roper Technologies is attractively priced today, this article will walk through what the current share price might be implying about its value. The stock last closed at US$408.67, with returns of a 1.8% decline over 7 days, a 9.4% decline over 30 days and a 6.0% decline year to date, alongside a 24.0% decline over the past year, a 1.7% decline over 3 years and a 7.5% gain over 5 years. Recent price moves have come alongside ongoing investor focus on software and...",
+          "article_text": ""
         }
       ]
     },
@@ -12649,7 +12805,7 @@
           "url": "https://finance.yahoo.com/news/stocks-making-big-moves-yesterday-130038469.html",
           "sentiment": 0.02500000000000001,
           "summary": "",
-          "article_text": "Check out the companies making headlines yesterday:\n\nGeneral Motors (NYSE:GM): Automotive manufacturer General Motors (NYSE:GM) rose by 9% on Tuesday after the company reported fourth-quarter earnings that beat Wall Street's expectations and provided an upbeat profit forecast for the upcoming year. See our full article here.\n\nIs now the time to buy General Motors? Access our full analysis report here, it's free.\n\nSysco (NYSE:SYY): Food distribution giant Sysco (NYSE:SYY) rose by 9.4% on Tuesday "
+          "article_text": "Check out the companies making headlines yesterday:\n\nGeneral Motors (NYSE:GM): Automotive manufacturer General Motors (NYSE:GM) rose by 9% on Tuesday after the company reported fourth-quarter earnings that beat Wall Street's expectations and provided an upbeat profit forecast for the upcoming year. See our full article here.\n\nMore from Yahoo Scout What drove Centene's 10.7% stock decline Tuesday? What caused Sysco's 9.4% stock price jump? Why did The Trade Desk shares fall 4.5%? Why did General "
         },
         {
           "headline": "Optimism for Trade Desk (TTD) Following Solid Results Preview",
@@ -13648,14 +13804,14 @@
       "trend_dir": "bearish",
       "put": {
         "strike": 210.0,
-        "expiration": "Feb 20, 2026",
+        "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 3.5,
+        "premium": 5.19,
         "delta_percent": 10.975454661070833,
-        "premium_percent": 1.483742422315486,
-        "metric_sum": 12.459197083386318
+        "premium_percent": 2.2001780490906784,
+        "metric_sum": 13.175632710161512
       },
       "news_summary": "COO vs. WST: Which Stock Should Value Investors Buy Now?",
       "news": [
