@@ -1,7 +1,7 @@
 [
   {
     "ticker": "MSFT",
-    "mcap": 3222.28,
+    "mcap": 3219.01,
     "strategy": "Bull Put (Credit)",
     "price": 433.5,
     "rsi": 33.6,
@@ -56,7 +56,7 @@
   },
   {
     "ticker": "GEV",
-    "mcap": 195.29,
+    "mcap": 194.64,
     "strategy": "Bear Call (Credit)",
     "price": 717.39,
     "rsi": 64.6,
@@ -64,6 +64,17 @@
     "type": "bearish",
     "is_squeeze": false,
     "reasoning": "Det: Price > BBU(716.31) | ADX: 17.4 | RSI 64.6 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "BX",
+    "mcap": 180.7,
+    "strategy": "Bull Put (Credit)",
+    "price": 142.94,
+    "rsi": 34.2,
+    "adx": 19.6,
+    "type": "bullish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price < BBL(144.54) | ADX: 19.6 | RSI 34.2 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "T",
@@ -75,17 +86,6 @@
     "type": "bearish",
     "is_squeeze": false,
     "reasoning": "Det: Price > BBU(25.01) | ADX: 28.9 | RSI 63.1 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "BX",
-    "mcap": 175.4,
-    "strategy": "Bull Put (Credit)",
-    "price": 142.94,
-    "rsi": 34.2,
-    "adx": 19.6,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(144.54) | ADX: 19.6 | RSI 34.2 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "TJX",
@@ -170,10 +170,10 @@
     "strategy": "Bear Call (Credit)",
     "price": 426.07,
     "rsi": 70.0,
-    "adx": 25.2,
+    "adx": 25.3,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(409.89) | ADX: 25.2 | RSI 70.0 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(409.89) | ADX: 25.3 | RSI 70.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "RCL",
@@ -320,7 +320,7 @@
   },
   {
     "ticker": "AMP",
-    "mcap": 49.15,
+    "mcap": 48.44,
     "strategy": "Bear Call (Credit)",
     "price": 521.36,
     "rsi": 62.2,
