@@ -33,17 +33,6 @@
     "reasoning": "Det: Price > BBU(123.14) | ADX: 20.8 | RSI 72.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
-    "ticker": "AZN",
-    "mcap": 584.18,
-    "strategy": "Bear Put (Debit)",
-    "price": 188.41,
-    "rsi": 93.2,
-    "adx": 20.5,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(139.74) | ADX: 20.5 | RSI 93.2 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
     "ticker": "PLTR",
     "mcap": 352.18,
     "strategy": "Bull Call (Debit)",
