@@ -143,17 +143,6 @@
     "reasoning": "Det: Price > BBU(43.24) | ADX: 25.3 | RSI 77.7 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
-    "ticker": "DIS",
-    "mcap": 186.47,
-    "strategy": "Bull Put (Credit)",
-    "price": 104.45,
-    "rsi": 34.9,
-    "adx": 17.0,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(107.48) | ADX: 17.0 | RSI 34.9 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "T",
     "mcap": 186.45,
     "strategy": "Bear Put (Debit)",
@@ -163,6 +152,17 @@
     "type": "bearish",
     "is_squeeze": false,
     "reasoning": "Det: Price > BBU(25.81) | ADX: 30.7 | RSI 71.4 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "DIS",
+    "mcap": 185.23,
+    "strategy": "Bull Put (Credit)",
+    "price": 104.45,
+    "rsi": 34.9,
+    "adx": 17.0,
+    "type": "bullish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price < BBL(107.48) | ADX: 17.0 | RSI 34.9 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "PFE",
