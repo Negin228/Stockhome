@@ -67,7 +67,7 @@
   },
   {
     "ticker": "PG",
-    "mcap": 367.15,
+    "mcap": 366.56,
     "strategy": "Bear Put (Debit)",
     "price": 156.87,
     "rsi": 72.5,
@@ -166,7 +166,7 @@
   },
   {
     "ticker": "AMGN",
-    "mcap": 197.19,
+    "mcap": 197.38,
     "strategy": "Bear Call (Credit)",
     "price": 366.2,
     "rsi": 69.0,
@@ -275,17 +275,6 @@
     "reasoning": "Det: Price > BBU(106.22) | ADX: 32.4 | RSI 68.4 (Moderate: Selling Theta.)"
   },
   {
-    "ticker": "CB",
-    "mcap": 131.35,
-    "strategy": "Bear Put (Debit)",
-    "price": 329.45,
-    "rsi": 77.6,
-    "adx": 18.3,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(319.64) | ADX: 18.3 | RSI 77.6 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
     "ticker": "APP",
     "mcap": 131.02,
     "strategy": "Bull Call (Debit)",
@@ -295,6 +284,17 @@
     "type": "bullish",
     "is_squeeze": false,
     "reasoning": "Det: Price < BBL(415.80) | ADX: 32.8 | RSI 23.7 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "CB",
+    "mcap": 129.66,
+    "strategy": "Bear Put (Debit)",
+    "price": 329.45,
+    "rsi": 77.6,
+    "adx": 18.3,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(319.64) | ADX: 18.3 | RSI 77.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "PLD",
@@ -319,17 +319,6 @@
     "reasoning": "Det: Price > BBU(967.31) | ADX: 31.9 | RSI 65.4 (Moderate: Selling Theta.)"
   },
   {
-    "ticker": "CMCSA",
-    "mcap": 120.21,
-    "strategy": "Bear Call (Credit)",
-    "price": 30.5,
-    "rsi": 67.7,
-    "adx": 28.4,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(30.27) | ADX: 28.4 | RSI 67.7 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "BMY",
     "mcap": 117.3,
     "strategy": "Bear Call (Credit)",
@@ -342,7 +331,7 @@
   },
   {
     "ticker": "PANW",
-    "mcap": 114.03,
+    "mcap": 116.2,
     "strategy": "Bull Call (Debit)",
     "price": 166.72,
     "rsi": 27.6,
@@ -361,6 +350,17 @@
     "type": "bullish",
     "is_squeeze": false,
     "reasoning": "Det: Price < BBL(83.08) | ADX: 18.8 | RSI 19.6 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "CMCSA",
+    "mcap": 111.14,
+    "strategy": "Bear Call (Credit)",
+    "price": 30.5,
+    "rsi": 67.7,
+    "adx": 28.4,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(30.27) | ADX: 28.4 | RSI 67.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CRWD",
@@ -484,17 +484,6 @@
     "reasoning": "Det: Price > BBU(125.63) | ADX: 24.9 | RSI 75.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
-    "ticker": "NSC",
-    "mcap": 75.1,
-    "strategy": "Bear Call (Credit)",
-    "price": 306.84,
-    "rsi": 68.5,
-    "adx": 19.7,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(300.06) | ADX: 19.7 | RSI 68.5 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "CSX",
     "mcap": 74.29,
     "strategy": "Bear Put (Debit)",
@@ -551,7 +540,7 @@
   },
   {
     "ticker": "TDG",
-    "mcap": 71.27,
+    "mcap": 71.43,
     "strategy": "Bull Call (Debit)",
     "price": 1264.79,
     "rsi": 28.9,
@@ -570,6 +559,17 @@
     "type": "bearish",
     "is_squeeze": false,
     "reasoning": "Det: Price > BBU(53.77) | ADX: 23.8 | RSI 75.6 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "NSC",
+    "mcap": 68.86,
+    "strategy": "Bear Call (Credit)",
+    "price": 306.84,
+    "rsi": 68.5,
+    "adx": 19.7,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(300.06) | ADX: 19.7 | RSI 68.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "WBD",
@@ -595,7 +595,7 @@
   },
   {
     "ticker": "COR",
-    "mcap": 64.01,
+    "mcap": 64.19,
     "strategy": "Bull Put (Credit)",
     "price": 329.97,
     "rsi": 35.1,
@@ -738,7 +738,7 @@
   },
   {
     "ticker": "EA",
-    "mcap": 49.23,
+    "mcap": 49.26,
     "strategy": "Bull Call (Debit)",
     "price": 196.84,
     "rsi": 12.1,
@@ -936,7 +936,7 @@
   },
   {
     "ticker": "TTWO",
-    "mcap": 37.1,
+    "mcap": 37.16,
     "strategy": "Bull Call (Debit)",
     "price": 200.76,
     "rsi": 17.8,
@@ -1464,7 +1464,7 @@
   },
   {
     "ticker": "NWSA",
-    "mcap": 14.42,
+    "mcap": 14.41,
     "strategy": "Bull Put (Credit)",
     "price": 24.69,
     "rsi": 30.3,
