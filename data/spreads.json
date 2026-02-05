@@ -1,218 +1,229 @@
 [
   {
     "ticker": "NVDA",
-    "mcap": 4172.1,
+    "mcap": 4184.76,
     "strategy": "Bull Put (Credit)",
-    "price": 171.2,
-    "rsi": 33.9,
+    "price": 171.88,
+    "rsi": 34.3,
     "adx": 14.4,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(174.23) | ADX: 14.4 | RSI 33.9 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(174.38) | ADX: 14.4 | RSI 34.3 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "AAPL",
+    "mcap": 4055.3,
+    "strategy": "Bear Call (Credit)",
+    "price": 275.91,
+    "rsi": 67.1,
+    "adx": 25.9,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(275.79) | ADX: 25.9 | RSI 67.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "MSFT",
-    "mcap": 2923.15,
+    "mcap": 2925.9,
     "strategy": "Bull Call (Debit)",
-    "price": 392.82,
-    "rsi": 24.5,
+    "price": 393.67,
+    "rsi": 24.6,
     "adx": 32.0,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(400.71) | ADX: 32.0 | RSI 24.5 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(400.85) | ADX: 32.0 | RSI 24.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "AMZN",
-    "mcap": 2376.57,
+    "mcap": 2380.6,
     "strategy": "Bull Put (Credit)",
-    "price": 222.32,
-    "rsi": 35.7,
+    "price": 222.69,
+    "rsi": 36.0,
     "adx": 11.6,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(226.75) | ADX: 11.6 | RSI 35.7 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(226.87) | ADX: 11.6 | RSI 36.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "TSLA",
-    "mcap": 1489.45,
+    "mcap": 1490.5,
     "strategy": "Bull Put (Credit)",
-    "price": 396.42,
+    "price": 397.21,
     "rsi": 34.3,
     "adx": 26.4,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(403.61) | ADX: 26.4 | RSI 34.3 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(403.63) | ADX: 26.4 | RSI 34.3 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "ORCL",
-    "mcap": 389.5,
+    "mcap": 392.26,
     "strategy": "Bull Call (Debit)",
-    "price": 135.33,
-    "rsi": 19.9,
+    "price": 136.48,
+    "rsi": 20.2,
     "adx": 32.1,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(141.26) | ADX: 32.1 | RSI 19.9 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(141.51) | ADX: 32.1 | RSI 20.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "PG",
-    "mcap": 371.07,
+    "mcap": 371.22,
     "strategy": "Bear Put (Debit)",
-    "price": 158.89,
-    "rsi": 74.9,
+    "price": 158.61,
+    "rsi": 74.7,
     "adx": 27.4,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(157.96) | ADX: 27.4 | RSI 74.9 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(157.91) | ADX: 27.4 | RSI 74.7 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "PLTR",
-    "mcap": 308.54,
+    "mcap": 309.87,
     "strategy": "Bull Call (Debit)",
-    "price": 129.05,
-    "rsi": 25.8,
+    "price": 130.01,
+    "rsi": 26.0,
     "adx": 29.1,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(135.72) | ADX: 29.1 | RSI 25.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(135.87) | ADX: 29.1 | RSI 26.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "MRK",
-    "mcap": 298.5,
+    "mcap": 299.11,
     "strategy": "Bear Put (Debit)",
-    "price": 119.65,
-    "rsi": 75.4,
+    "price": 119.75,
+    "rsi": 75.6,
     "adx": 34.0,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(117.57) | ADX: 34.0 | RSI 75.4 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(117.64) | ADX: 34.0 | RSI 75.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
-    "ticker": "MS",
-    "mcap": 277.84,
-    "strategy": "Bull Put (Credit)",
-    "price": 175.08,
-    "rsi": 39.5,
-    "adx": 14.7,
-    "type": "bullish",
+    "ticker": "MCD",
+    "mcap": 230.84,
+    "strategy": "Bear Call (Credit)",
+    "price": 323.48,
+    "rsi": 69.0,
+    "adx": 23.6,
+    "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(176.35) | ADX: 14.7 | RSI 39.5 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(323.40) | ADX: 23.6 | RSI 69.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "PEP",
-    "mcap": 228.62,
+    "mcap": 229.07,
     "strategy": "Bear Put (Debit)",
-    "price": 167.34,
-    "rsi": 83.1,
+    "price": 167.53,
+    "rsi": 83.4,
     "adx": 28.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(164.79) | ADX: 28.9 | RSI 83.1 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(164.89) | ADX: 28.9 | RSI 83.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "TMO",
-    "mcap": 203.75,
+    "mcap": 203.77,
     "strategy": "Bull Call (Debit)",
-    "price": 542.08,
+    "price": 542.36,
     "rsi": 27.7,
     "adx": 26.8,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(555.31) | ADX: 26.8 | RSI 27.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(555.33) | ADX: 26.8 | RSI 27.7 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "VZ",
-    "mcap": 198.41,
+    "mcap": 198.62,
     "strategy": "Bear Put (Debit)",
-    "price": 47.07,
-    "rsi": 83.3,
+    "price": 47.1,
+    "rsi": 83.4,
     "adx": 33.4,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(46.79) | ADX: 33.4 | RSI 83.3 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(46.81) | ADX: 33.4 | RSI 83.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "AMGN",
-    "mcap": 196.97,
+    "mcap": 198.24,
     "strategy": "Bear Call (Credit)",
-    "price": 365.29,
-    "rsi": 68.2,
+    "price": 367.8,
+    "rsi": 69.6,
     "adx": 18.6,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(364.00) | ADX: 18.6 | RSI 68.2 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "APH",
-    "mcap": 156.38,
-    "strategy": "Bull Put (Credit)",
-    "price": 127.6,
-    "rsi": 36.9,
-    "adx": 17.5,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(129.88) | ADX: 17.5 | RSI 36.9 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(364.63) | ADX: 18.6 | RSI 69.6 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "UBER",
-    "mcap": 156.07,
+    "mcap": 156.84,
     "strategy": "Bull Put (Credit)",
-    "price": 74.93,
-    "rsi": 31.7,
+    "price": 75.21,
+    "rsi": 33.0,
     "adx": 22.4,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(75.25) | ADX: 22.4 | RSI 31.7 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(75.35) | ADX: 22.4 | RSI 33.0 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "APH",
+    "mcap": 156.23,
+    "strategy": "Bull Put (Credit)",
+    "price": 127.63,
+    "rsi": 36.8,
+    "adx": 17.5,
+    "type": "bullish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price < BBL(129.85) | ADX: 17.5 | RSI 36.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "BX",
-    "mcap": 154.75,
+    "mcap": 155.96,
     "strategy": "Bull Call (Debit)",
-    "price": 125.95,
-    "rsi": 21.6,
+    "price": 126.83,
+    "rsi": 22.1,
     "adx": 29.9,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(130.07) | ADX: 29.9 | RSI 21.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(130.36) | ADX: 29.9 | RSI 22.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "UNP",
-    "mcap": 148.7,
+    "mcap": 149.15,
     "strategy": "Bear Put (Debit)",
-    "price": 251.07,
-    "rsi": 70.3,
+    "price": 251.45,
+    "rsi": 70.8,
     "adx": 23.3,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(246.60) | ADX: 23.3 | RSI 70.3 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(246.83) | ADX: 23.3 | RSI 70.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "QCOM",
-    "mcap": 145.51,
+    "mcap": 145.98,
     "strategy": "Bull Call (Debit)",
-    "price": 135.63,
-    "rsi": 20.8,
+    "price": 136.3,
+    "rsi": 21.0,
     "adx": 33.0,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(137.24) | ADX: 33.0 | RSI 20.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(137.35) | ADX: 33.0 | RSI 21.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "ACN",
-    "mcap": 144.63,
+    "mcap": 144.85,
     "strategy": "Bull Call (Debit)",
-    "price": 233.4,
-    "rsi": 28.0,
+    "price": 233.58,
+    "rsi": 28.1,
     "adx": 28.3,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(240.20) | ADX: 28.3 | RSI 28.0 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(240.31) | ADX: 28.3 | RSI 28.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "BKNG",
     "mcap": 144.01,
     "strategy": "Bull Call (Debit)",
-    "price": 4442.06,
+    "price": 4443.42,
     "rsi": 24.3,
     "adx": 22.3,
     "type": "bullish",
@@ -221,295 +232,306 @@
   },
   {
     "ticker": "SPGI",
-    "mcap": 138.25,
+    "mcap": 137.91,
     "strategy": "Bull Call (Debit)",
-    "price": 452.49,
-    "rsi": 21.9,
+    "price": 451.71,
+    "rsi": 21.7,
     "adx": 29.2,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(469.81) | ADX: 29.2 | RSI 21.9 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(469.46) | ADX: 29.2 | RSI 21.7 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "CB",
-    "mcap": 130.44,
+    "mcap": 130.38,
     "strategy": "Bear Put (Debit)",
-    "price": 331.38,
-    "rsi": 78.6,
+    "price": 331.28,
+    "rsi": 78.5,
     "adx": 21.0,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(324.83) | ADX: 21.0 | RSI 78.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(324.78) | ADX: 21.0 | RSI 78.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "PLD",
-    "mcap": 126.47,
+    "mcap": 126.46,
     "strategy": "Bear Call (Credit)",
-    "price": 136.24,
+    "price": 136.14,
     "rsi": 66.1,
     "adx": 17.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(135.51) | ADX: 17.9 | RSI 66.1 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(135.50) | ADX: 17.9 | RSI 66.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "BMY",
-    "mcap": 120.66,
+    "mcap": 121.17,
     "strategy": "Bear Put (Debit)",
-    "price": 59.36,
-    "rsi": 71.4,
+    "price": 59.52,
+    "rsi": 72.0,
     "adx": 31.1,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(58.11) | ADX: 31.1 | RSI 71.4 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(58.20) | ADX: 31.1 | RSI 72.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "HCA",
-    "mcap": 120.31,
+    "mcap": 120.22,
     "strategy": "Bear Call (Credit)",
-    "price": 513.8,
-    "rsi": 64.5,
+    "price": 513.76,
+    "rsi": 64.4,
     "adx": 23.3,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(509.86) | ADX: 23.3 | RSI 64.5 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(509.74) | ADX: 23.3 | RSI 64.4 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "MCK",
-    "mcap": 119.03,
+    "mcap": 119.14,
     "strategy": "Bear Put (Debit)",
-    "price": 956.72,
-    "rsi": 76.1,
+    "price": 957.8,
+    "rsi": 76.2,
     "adx": 15.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(894.43) | ADX: 15.9 | RSI 76.1 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(894.83) | ADX: 15.9 | RSI 76.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "BSX",
-    "mcap": 115.73,
+    "mcap": 115.14,
     "strategy": "Bull Call (Debit)",
-    "price": 78.27,
-    "rsi": 26.3,
+    "price": 77.64,
+    "rsi": 25.3,
     "adx": 21.7,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(80.59) | ADX: 21.7 | RSI 26.3 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(80.47) | ADX: 21.7 | RSI 25.3 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "CMCSA",
-    "mcap": 112.58,
+    "mcap": 112.41,
     "strategy": "Bear Call (Credit)",
-    "price": 30.91,
-    "rsi": 70.0,
+    "price": 30.85,
+    "rsi": 69.7,
     "adx": 29.4,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(30.60) | ADX: 29.4 | RSI 70.0 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(30.58) | ADX: 29.4 | RSI 69.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "PANW",
-    "mcap": 107.6,
+    "mcap": 105.86,
     "strategy": "Bull Call (Debit)",
-    "price": 154.11,
-    "rsi": 20.4,
+    "price": 154.77,
+    "rsi": 20.5,
     "adx": 24.9,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(162.38) | ADX: 24.9 | RSI 20.4 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(162.51) | ADX: 24.9 | RSI 20.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "SO",
-    "mcap": 100.42,
+    "mcap": 100.29,
     "strategy": "Bear Call (Credit)",
-    "price": 91.24,
-    "rsi": 65.0,
+    "price": 91.08,
+    "rsi": 64.5,
     "adx": 12.8,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(90.80) | ADX: 12.8 | RSI 65.0 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(90.76) | ADX: 12.8 | RSI 64.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "DUK",
-    "mcap": 95.99,
+    "mcap": 95.97,
     "strategy": "Bear Call (Credit)",
-    "price": 123.52,
-    "rsi": 66.6,
+    "price": 123.41,
+    "rsi": 66.5,
     "adx": 17.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(123.04) | ADX: 17.9 | RSI 66.6 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(123.03) | ADX: 17.9 | RSI 66.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CRWD",
-    "mcap": 95.04,
+    "mcap": 95.08,
     "strategy": "Bull Call (Debit)",
-    "price": 376.49,
+    "price": 377.16,
     "rsi": 22.1,
-    "adx": 25.0,
+    "adx": 25.1,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(403.67) | ADX: 25.0 | RSI 22.1 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(403.72) | ADX: 25.1 | RSI 22.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "ADP",
-    "mcap": 94.7,
+    "mcap": 94.64,
     "strategy": "Bull Call (Debit)",
-    "price": 234.24,
-    "rsi": 25.2,
+    "price": 233.99,
+    "rsi": 25.1,
     "adx": 25.3,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(234.26) | ADX: 25.3 | RSI 25.2 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(234.23) | ADX: 25.3 | RSI 25.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "FDX",
-    "mcap": 85.67,
+    "mcap": 85.88,
     "strategy": "Bear Put (Debit)",
-    "price": 363.64,
-    "rsi": 84.7,
+    "price": 363.96,
+    "rsi": 84.9,
     "adx": 32.7,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(356.29) | ADX: 32.7 | RSI 84.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(356.54) | ADX: 32.7 | RSI 84.9 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "ITW",
-    "mcap": 84.4,
+    "mcap": 84.04,
     "strategy": "Bear Put (Debit)",
-    "price": 289.22,
-    "rsi": 78.7,
+    "price": 288.29,
+    "rsi": 77.6,
     "adx": 20.6,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(283.29) | ADX: 20.6 | RSI 78.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(282.91) | ADX: 20.6 | RSI 77.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "MCO",
-    "mcap": 81.73,
+    "mcap": 82.09,
     "strategy": "Bull Call (Debit)",
-    "price": 456.17,
-    "rsi": 22.6,
+    "price": 457.7,
+    "rsi": 23.1,
     "adx": 27.4,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(468.52) | ADX: 27.4 | RSI 22.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(469.13) | ADX: 27.4 | RSI 23.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "JCI",
-    "mcap": 80.77,
+    "mcap": 81.11,
     "strategy": "Bear Put (Debit)",
-    "price": 131.87,
-    "rsi": 77.9,
+    "price": 132.52,
+    "rsi": 78.4,
     "adx": 27.4,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(128.69) | ADX: 27.4 | RSI 77.9 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(128.86) | ADX: 27.4 | RSI 78.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "DASH",
-    "mcap": 79.25,
+    "mcap": 79.24,
     "strategy": "Bull Call (Debit)",
-    "price": 184.03,
+    "price": 183.86,
     "rsi": 24.0,
     "adx": 28.4,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(191.65) | ADX: 28.4 | RSI 24.0 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(191.64) | ADX: 28.4 | RSI 24.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "SNPS",
-    "mcap": 78.55,
+    "mcap": 78.52,
     "strategy": "Bull Call (Debit)",
-    "price": 410.24,
-    "rsi": 26.5,
+    "price": 410.44,
+    "rsi": 26.4,
     "adx": 34.9,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(418.83) | ADX: 34.9 | RSI 26.5 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(418.80) | ADX: 34.9 | RSI 26.4 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "NSC",
+    "mcap": 75.11,
+    "strategy": "Bear Call (Credit)",
+    "price": 306.91,
+    "rsi": 68.6,
+    "adx": 21.1,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(303.32) | ADX: 21.1 | RSI 68.6 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "SPG",
-    "mcap": 74.63,
+    "mcap": 74.4,
     "strategy": "Bear Put (Debit)",
-    "price": 197.79,
-    "rsi": 72.9,
+    "price": 197.26,
+    "rsi": 72.2,
     "adx": 17.1,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(195.12) | ADX: 17.1 | RSI 72.9 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(194.93) | ADX: 17.1 | RSI 72.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "ABNB",
-    "mcap": 74.16,
+    "mcap": 74.25,
     "strategy": "Bull Put (Credit)",
     "price": 121.27,
-    "rsi": 33.3,
+    "rsi": 33.4,
     "adx": 26.4,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(122.05) | ADX: 26.4 | RSI 33.3 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(122.09) | ADX: 26.4 | RSI 33.4 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CDNS",
-    "mcap": 73.55,
+    "mcap": 73.61,
     "strategy": "Bull Call (Debit)",
-    "price": 270.5,
+    "price": 270.14,
     "rsi": 27.6,
     "adx": 21.6,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(271.05) | ADX: 21.6 | RSI 27.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(271.10) | ADX: 21.6 | RSI 27.6 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "HLT",
+    "mcap": 72.61,
+    "strategy": "Bear Call (Credit)",
+    "price": 308.72,
+    "rsi": 67.7,
+    "adx": 18.9,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(308.29) | ADX: 18.9 | RSI 67.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "TDG",
-    "mcap": 71.32,
+    "mcap": 71.34,
     "strategy": "Bull Call (Debit)",
-    "price": 1260.58,
-    "rsi": 28.7,
+    "price": 1263.26,
+    "rsi": 28.8,
     "adx": 23.2,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(1287.05) | ADX: 23.2 | RSI 28.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(1287.17) | ADX: 23.2 | RSI 28.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "TFC",
-    "mcap": 70.6,
+    "mcap": 70.54,
     "strategy": "Bear Put (Debit)",
-    "price": 55.21,
-    "rsi": 75.8,
+    "price": 55.14,
+    "rsi": 75.7,
     "adx": 24.8,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(54.55) | ADX: 24.8 | RSI 75.8 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "NSC",
-    "mcap": 68.78,
-    "strategy": "Bear Call (Credit)",
-    "price": 306.48,
-    "rsi": 68.0,
-    "adx": 21.1,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(303.19) | ADX: 21.1 | RSI 68.0 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(54.54) | ADX: 24.8 | RSI 75.7 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "TRV",
-    "mcap": 66.94,
+    "mcap": 66.99,
     "strategy": "Bear Put (Debit)",
-    "price": 299.99,
-    "rsi": 73.7,
+    "price": 300.31,
+    "rsi": 73.9,
     "adx": 22.6,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(296.65) | ADX: 22.6 | RSI 73.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(296.72) | ADX: 22.6 | RSI 73.9 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "WBD",
-    "mcap": 66.36,
+    "mcap": 66.35,
     "strategy": "Bull Put (Credit)",
-    "price": 26.8,
+    "price": 26.76,
     "rsi": 34.8,
     "adx": 25.2,
     "type": "bullish",
@@ -518,245 +540,256 @@
   },
   {
     "ticker": "Hood",
-    "mcap": 65.32,
+    "mcap": 65.35,
     "strategy": "Bull Call (Debit)",
-    "price": 72.65,
+    "price": 72.68,
     "rsi": 14.8,
     "adx": 33.2,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(79.09) | ADX: 33.2 | RSI 14.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(79.10) | ADX: 33.2 | RSI 14.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "MRVL",
-    "mcap": 63.93,
+    "mcap": 63.98,
     "strategy": "Bull Put (Credit)",
-    "price": 74.15,
-    "rsi": 32.5,
+    "price": 74.21,
+    "rsi": 32.7,
     "adx": 18.3,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(74.64) | ADX: 18.3 | RSI 32.5 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(74.65) | ADX: 18.3 | RSI 32.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "APD",
-    "mcap": 63.22,
+    "mcap": 63.12,
     "strategy": "Bear Call (Credit)",
-    "price": 284.1,
-    "rsi": 68.6,
+    "price": 283.5,
+    "rsi": 68.1,
     "adx": 19.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(282.92) | ADX: 19.9 | RSI 68.6 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(282.81) | ADX: 19.9 | RSI 68.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "AFL",
-    "mcap": 62.85,
+    "mcap": 62.83,
     "strategy": "Bear Put (Debit)",
-    "price": 117.76,
-    "rsi": 75.1,
+    "price": 117.47,
+    "rsi": 75.0,
     "adx": 18.0,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(114.65) | ADX: 18.0 | RSI 75.1 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(114.63) | ADX: 18.0 | RSI 75.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "PSX",
-    "mcap": 62.09,
+    "mcap": 62.41,
     "strategy": "Bear Put (Debit)",
-    "price": 153.67,
-    "rsi": 70.3,
+    "price": 154.43,
+    "rsi": 72.1,
     "adx": 31.0,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(151.70) | ADX: 31.0 | RSI 70.3 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(151.93) | ADX: 31.0 | RSI 72.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "TEL",
-    "mcap": 61.31,
+    "mcap": 61.26,
     "strategy": "Bull Put (Credit)",
-    "price": 208.86,
-    "rsi": 32.8,
+    "price": 208.69,
+    "rsi": 32.7,
     "adx": 21.9,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(213.05) | ADX: 21.9 | RSI 32.8 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(213.00) | ADX: 21.9 | RSI 32.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "MPC",
-    "mcap": 58.69,
+    "mcap": 58.87,
     "strategy": "Bear Put (Debit)",
-    "price": 194.72,
-    "rsi": 72.0,
+    "price": 195.83,
+    "rsi": 73.0,
     "adx": 22.2,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(191.54) | ADX: 22.2 | RSI 72.0 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(191.72) | ADX: 22.2 | RSI 73.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "ALL",
-    "mcap": 56.6,
+    "mcap": 56.7,
     "strategy": "Bear Call (Credit)",
-    "price": 214.89,
-    "rsi": 69.6,
+    "price": 215.19,
+    "rsi": 69.9,
     "adx": 21.7,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(213.54) | ADX: 21.7 | RSI 69.6 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "CARR",
-    "mcap": 54.08,
-    "strategy": "Bear Put (Debit)",
-    "price": 63.53,
-    "rsi": 78.9,
-    "adx": 19.4,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(63.14) | ADX: 19.4 | RSI 78.9 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(213.65) | ADX: 21.7 | RSI 69.9 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CAH",
-    "mcap": 53.9,
+    "mcap": 53.98,
     "strategy": "Bear Call (Credit)",
-    "price": 227.11,
-    "rsi": 65.5,
+    "price": 227.18,
+    "rsi": 65.7,
     "adx": 20.3,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(222.83) | ADX: 20.3 | RSI 65.5 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(222.94) | ADX: 20.3 | RSI 65.7 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "CARR",
+    "mcap": 53.7,
+    "strategy": "Bear Put (Debit)",
+    "price": 63.1,
+    "rsi": 75.8,
+    "adx": 19.4,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(63.02) | ADX: 19.4 | RSI 75.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "EA",
-    "mcap": 49.55,
+    "mcap": 49.53,
     "strategy": "Bull Call (Debit)",
-    "price": 198.15,
-    "rsi": 22.8,
+    "price": 197.93,
+    "rsi": 22.2,
     "adx": 34.9,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(199.18) | ADX: 34.9 | RSI 22.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(199.16) | ADX: 34.9 | RSI 22.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "NDAQ",
-    "mcap": 48.91,
+    "mcap": 49.07,
     "strategy": "Bull Call (Debit)",
-    "price": 85.32,
-    "rsi": 24.0,
+    "price": 85.51,
+    "rsi": 24.3,
     "adx": 25.8,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(88.41) | ADX: 25.8 | RSI 24.0 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(88.49) | ADX: 25.8 | RSI 24.3 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "EW",
-    "mcap": 45.84,
+    "mcap": 45.85,
     "strategy": "Bull Put (Credit)",
-    "price": 78.19,
-    "rsi": 30.8,
+    "price": 78.1,
+    "rsi": 30.9,
     "adx": 18.9,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(79.47) | ADX: 18.9 | RSI 30.8 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(79.48) | ADX: 18.9 | RSI 30.9 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "HSY",
-    "mcap": 45.42,
+    "mcap": 45.5,
     "strategy": "Bear Put (Debit)",
-    "price": 224.17,
-    "rsi": 81.0,
+    "price": 224.38,
+    "rsi": 81.2,
     "adx": 24.5,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(212.31) | ADX: 24.5 | RSI 81.0 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(212.51) | ADX: 24.5 | RSI 81.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "KR",
-    "mcap": 44.05,
+    "mcap": 44.18,
     "strategy": "Bear Call (Credit)",
-    "price": 66.42,
-    "rsi": 64.5,
+    "price": 66.67,
+    "rsi": 65.7,
     "adx": 21.1,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(66.39) | ADX: 21.1 | RSI 64.5 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(66.44) | ADX: 21.1 | RSI 65.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CCEP",
-    "mcap": 42.98,
+    "mcap": 43.03,
     "strategy": "Bear Put (Debit)",
-    "price": 95.89,
-    "rsi": 74.7,
+    "price": 95.92,
+    "rsi": 75.0,
     "adx": 22.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(94.55) | ADX: 22.9 | RSI 74.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(94.59) | ADX: 22.9 | RSI 75.0 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "WAB",
+    "mcap": 41.05,
+    "strategy": "Bear Call (Credit)",
+    "price": 240.12,
+    "rsi": 68.6,
+    "adx": 34.4,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(239.98) | ADX: 34.4 | RSI 68.6 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "HIG",
-    "mcap": 39.72,
+    "mcap": 39.69,
     "strategy": "Bear Put (Debit)",
-    "price": 142.36,
-    "rsi": 71.8,
+    "price": 142.3,
+    "rsi": 71.6,
     "adx": 28.2,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(141.58) | ADX: 28.2 | RSI 71.8 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "COIN",
-    "mcap": 39.58,
-    "strategy": "Bull Call (Debit)",
-    "price": 147.05,
-    "rsi": 14.5,
-    "adx": 34.2,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(158.58) | ADX: 34.2 | RSI 14.5 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(141.55) | ADX: 28.2 | RSI 71.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "EBAY",
-    "mcap": 39.32,
+    "mcap": 39.54,
     "strategy": "Bull Put (Credit)",
-    "price": 85.91,
-    "rsi": 38.6,
+    "price": 86.52,
+    "rsi": 40.0,
     "adx": 27.3,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(87.26) | ADX: 27.3 | RSI 38.6 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(87.41) | ADX: 27.3 | RSI 40.0 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "COIN",
+    "mcap": 39.4,
+    "strategy": "Bull Call (Debit)",
+    "price": 146.12,
+    "rsi": 14.4,
+    "adx": 34.2,
+    "type": "bullish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price < BBL(158.38) | ADX: 34.2 | RSI 14.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "RMD",
-    "mcap": 38.92,
+    "mcap": 38.98,
     "strategy": "Bear Call (Credit)",
-    "price": 266.46,
-    "rsi": 63.6,
+    "price": 267.05,
+    "rsi": 63.9,
     "adx": 19.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(264.44) | ADX: 19.9 | RSI 63.6 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(264.58) | ADX: 19.9 | RSI 63.9 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "IR",
-    "mcap": 38.19,
+    "mcap": 38.16,
     "strategy": "Bear Call (Credit)",
-    "price": 96.07,
-    "rsi": 67.7,
+    "price": 96.0,
+    "rsi": 67.5,
     "adx": 32.7,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(95.17) | ADX: 32.7 | RSI 67.7 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(95.14) | ADX: 32.7 | RSI 67.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "ACGL",
-    "mcap": 38.1,
+    "mcap": 38.06,
     "strategy": "Bear Put (Debit)",
-    "price": 102.16,
-    "rsi": 77.5,
+    "price": 101.98,
+    "rsi": 77.3,
     "adx": 24.6,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(100.35) | ADX: 24.6 | RSI 77.5 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(100.32) | ADX: 24.6 | RSI 77.3 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "VTR",
@@ -767,508 +800,519 @@
     "adx": 15.4,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(79.29) | ADX: 15.4 | RSI 65.0 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(79.30) | ADX: 15.4 | RSI 65.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "DDOG",
-    "mcap": 37.25,
+    "mcap": 37.43,
     "strategy": "Bull Call (Debit)",
-    "price": 106.21,
-    "rsi": 28.8,
+    "price": 106.73,
+    "rsi": 29.0,
     "adx": 25.3,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(109.81) | ADX: 25.3 | RSI 28.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(109.95) | ADX: 25.3 | RSI 29.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "MTB",
-    "mcap": 36.5,
+    "mcap": 36.56,
     "strategy": "Bear Put (Debit)",
-    "price": 233.49,
-    "rsi": 78.7,
+    "price": 233.94,
+    "rsi": 79.0,
     "adx": 34.3,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(231.90) | ADX: 34.3 | RSI 78.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(232.01) | ADX: 34.3 | RSI 79.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "PCG",
-    "mcap": 35.8,
+    "mcap": 35.78,
     "strategy": "Bear Call (Credit)",
-    "price": 16.29,
-    "rsi": 62.7,
+    "price": 16.28,
+    "rsi": 62.5,
     "adx": 22.2,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(16.25) | ADX: 22.2 | RSI 62.7 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(16.24) | ADX: 22.2 | RSI 62.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "PRU",
-    "mcap": 35.01,
+    "mcap": 35.13,
     "strategy": "Bull Call (Debit)",
-    "price": 99.49,
-    "rsi": 27.6,
+    "price": 99.82,
+    "rsi": 28.0,
     "adx": 29.3,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(100.44) | ADX: 29.3 | RSI 27.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(100.53) | ADX: 29.3 | RSI 28.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "EL",
-    "mcap": 34.99,
+    "mcap": 34.83,
     "strategy": "Bull Put (Credit)",
-    "price": 96.25,
-    "rsi": 32.2,
+    "price": 96.66,
+    "rsi": 31.8,
     "adx": 34.5,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(105.69) | ADX: 34.5 | RSI 32.2 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(105.50) | ADX: 34.5 | RSI 31.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "KMB",
-    "mcap": 34.54,
+    "mcap": 34.6,
     "strategy": "Bear Call (Credit)",
-    "price": 104.02,
-    "rsi": 60.9,
+    "price": 104.26,
+    "rsi": 61.5,
     "adx": 17.4,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(103.56) | ADX: 17.4 | RSI 60.9 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(103.62) | ADX: 17.4 | RSI 61.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CCI",
-    "mcap": 34.08,
+    "mcap": 34.13,
     "strategy": "Bull Put (Credit)",
-    "price": 78.54,
-    "rsi": 30.7,
+    "price": 78.37,
+    "rsi": 30.8,
     "adx": 23.0,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(81.06) | ADX: 23.0 | RSI 30.7 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(81.10) | ADX: 23.0 | RSI 30.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "XYZ",
-    "mcap": 32.62,
+    "mcap": 32.54,
     "strategy": "Bull Call (Debit)",
-    "price": 53.63,
-    "rsi": 26.0,
+    "price": 53.38,
+    "rsi": 25.8,
     "adx": 22.6,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(55.23) | ADX: 22.6 | RSI 26.0 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "LYV",
-    "mcap": 32.03,
-    "strategy": "Bull Put (Credit)",
-    "price": 137.73,
-    "rsi": 39.4,
-    "adx": 16.0,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(138.00) | ADX: 16.0 | RSI 39.4 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(55.19) | ADX: 22.6 | RSI 25.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "FISV",
-    "mcap": 31.83,
+    "mcap": 31.77,
     "strategy": "Bull Call (Debit)",
-    "price": 58.58,
-    "rsi": 29.7,
+    "price": 58.44,
+    "rsi": 29.5,
     "adx": 34.5,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(58.74) | ADX: 34.5 | RSI 29.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(58.71) | ADX: 34.5 | RSI 29.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "AXON",
-    "mcap": 31.76,
+    "mcap": 31.75,
     "strategy": "Bull Call (Debit)",
-    "price": 399.46,
+    "price": 399.65,
     "rsi": 16.6,
-    "adx": 34.4,
+    "adx": 34.5,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(411.54) | ADX: 34.4 | RSI 16.6 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "IQV",
-    "mcap": 30.87,
-    "strategy": "Bull Call (Debit)",
-    "price": 181.4,
-    "rsi": 18.3,
-    "adx": 26.6,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(199.84) | ADX: 26.6 | RSI 18.3 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(411.51) | ADX: 34.5 | RSI 16.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "MSTR",
-    "mcap": 30.81,
+    "mcap": 30.96,
     "strategy": "Bull Call (Debit)",
-    "price": 106.25,
-    "rsi": 24.1,
+    "price": 106.99,
+    "rsi": 24.3,
     "adx": 24.6,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(121.31) | ADX: 24.6 | RSI 24.1 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(121.48) | ADX: 24.6 | RSI 24.3 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "IQV",
+    "mcap": 30.82,
+    "strategy": "Bull Call (Debit)",
+    "price": 180.96,
+    "rsi": 18.2,
+    "adx": 26.6,
+    "type": "bullish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price < BBL(199.73) | ADX: 26.6 | RSI 18.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "DOV",
-    "mcap": 29.73,
+    "mcap": 29.84,
     "strategy": "Bear Call (Credit)",
-    "price": 217.0,
-    "rsi": 65.5,
+    "price": 217.55,
+    "rsi": 66.8,
     "adx": 24.0,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(216.33) | ADX: 24.0 | RSI 65.5 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(216.54) | ADX: 24.0 | RSI 66.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "TPR",
-    "mcap": 29.43,
-    "strategy": "Bear Call (Credit)",
-    "price": 142.38,
-    "rsi": 69.5,
+    "mcap": 29.64,
+    "strategy": "Bear Put (Debit)",
+    "price": 143.19,
+    "rsi": 70.3,
     "adx": 24.4,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(138.41) | ADX: 24.4 | RSI 69.5 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(138.76) | ADX: 24.4 | RSI 70.3 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "FOXA",
-    "mcap": 29.16,
+    "mcap": 29.26,
     "strategy": "Bull Call (Debit)",
-    "price": 65.66,
-    "rsi": 26.8,
+    "price": 65.92,
+    "rsi": 27.3,
     "adx": 26.0,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(67.84) | ADX: 26.0 | RSI 26.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(67.92) | ADX: 26.0 | RSI 27.3 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "EXPE",
-    "mcap": 28.52,
+    "mcap": 28.62,
     "strategy": "Bull Put (Credit)",
-    "price": 230.57,
-    "rsi": 30.9,
+    "price": 231.3,
+    "rsi": 31.1,
     "adx": 29.4,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(233.12) | ADX: 29.4 | RSI 30.9 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(233.33) | ADX: 29.4 | RSI 31.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "FOX",
-    "mcap": 27.78,
+    "mcap": 27.85,
     "strategy": "Bull Call (Debit)",
-    "price": 59.02,
-    "rsi": 25.4,
+    "price": 59.15,
+    "rsi": 25.8,
     "adx": 25.7,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(61.08) | ADX: 25.7 | RSI 25.4 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(61.13) | ADX: 25.7 | RSI 25.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "WRB",
-    "mcap": 27.07,
+    "mcap": 27.09,
     "strategy": "Bear Call (Credit)",
-    "price": 71.25,
-    "rsi": 62.1,
+    "price": 71.29,
+    "rsi": 62.3,
     "adx": 18.8,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(70.63) | ADX: 18.8 | RSI 62.1 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(70.65) | ADX: 18.8 | RSI 62.3 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "DVN",
+    "mcap": 27.08,
+    "strategy": "Bear Put (Debit)",
+    "price": 43.17,
+    "rsi": 75.4,
+    "adx": 32.5,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(43.10) | ADX: 32.5 | RSI 75.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "CINF",
-    "mcap": 26.81,
+    "mcap": 26.82,
     "strategy": "Bear Put (Debit)",
-    "price": 171.48,
+    "price": 171.5,
     "rsi": 70.6,
     "adx": 21.2,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(169.26) | ADX: 21.2 | RSI 70.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(169.27) | ADX: 21.2 | RSI 70.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "RF",
-    "mcap": 26.71,
+    "mcap": 26.74,
     "strategy": "Bear Put (Debit)",
-    "price": 30.43,
-    "rsi": 71.1,
+    "price": 30.5,
+    "rsi": 71.4,
     "adx": 22.4,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(30.20) | ADX: 22.4 | RSI 71.1 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "TEAM",
-    "mcap": 25.86,
-    "strategy": "Bull Call (Debit)",
-    "price": 98.37,
-    "rsi": 23.2,
-    "adx": 34.4,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(98.36) | ADX: 34.4 | RSI 23.2 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(30.21) | ADX: 22.4 | RSI 71.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "GIS",
     "mcap": 25.81,
     "strategy": "Bear Call (Credit)",
-    "price": 48.29,
-    "rsi": 65.9,
+    "price": 48.37,
+    "rsi": 65.8,
     "adx": 21.3,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(47.80) | ADX: 21.3 | RSI 65.9 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(47.80) | ADX: 21.3 | RSI 65.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "VRSK",
-    "mcap": 25.81,
+    "mcap": 25.8,
     "strategy": "Bull Call (Debit)",
-    "price": 184.7,
+    "price": 184.68,
     "rsi": 18.0,
     "adx": 33.9,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(192.23) | ADX: 33.9 | RSI 18.0 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(192.21) | ADX: 33.9 | RSI 18.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "KEY",
-    "mcap": 25.01,
+    "mcap": 25.02,
     "strategy": "Bear Put (Debit)",
-    "price": 22.69,
-    "rsi": 71.2,
+    "price": 22.7,
+    "rsi": 71.3,
     "adx": 25.1,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(22.55) | ADX: 25.1 | RSI 71.2 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(22.55) | ADX: 25.1 | RSI 71.3 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "EIX",
+    "mcap": 24.52,
+    "strategy": "Bear Call (Credit)",
+    "price": 63.71,
+    "rsi": 62.7,
+    "adx": 15.7,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(63.67) | ADX: 15.7 | RSI 62.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "AVB",
-    "mcap": 24.18,
+    "mcap": 24.16,
     "strategy": "Bull Put (Credit)",
-    "price": 169.82,
-    "rsi": 38.2,
+    "price": 169.7,
+    "rsi": 38.1,
     "adx": 17.5,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(171.24) | ADX: 17.5 | RSI 38.2 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(171.21) | ADX: 17.5 | RSI 38.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "STE",
-    "mcap": 24.08,
+    "mcap": 24.01,
     "strategy": "Bull Put (Credit)",
-    "price": 246.97,
-    "rsi": 33.7,
+    "price": 243.81,
+    "rsi": 33.1,
     "adx": 17.8,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(251.75) | ADX: 17.8 | RSI 33.7 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(251.41) | ADX: 17.8 | RSI 33.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "L",
-    "mcap": 22.98,
+    "mcap": 23.0,
     "strategy": "Bear Put (Debit)",
-    "price": 110.84,
-    "rsi": 75.7,
+    "price": 110.89,
+    "rsi": 75.8,
     "adx": 23.2,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(109.19) | ADX: 23.2 | RSI 75.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(109.22) | ADX: 23.2 | RSI 75.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "VLTO",
-    "mcap": 22.44,
+    "mcap": 22.54,
     "strategy": "Bull Call (Debit)",
-    "price": 90.4,
-    "rsi": 26.2,
+    "price": 90.79,
+    "rsi": 26.8,
     "adx": 17.9,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(93.27) | ADX: 17.9 | RSI 26.2 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(93.41) | ADX: 17.9 | RSI 26.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "CMS",
-    "mcap": 22.21,
+    "mcap": 22.17,
     "strategy": "Bear Call (Credit)",
-    "price": 73.03,
-    "rsi": 60.8,
+    "price": 72.86,
+    "rsi": 60.2,
     "adx": 15.5,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(72.72) | ADX: 15.5 | RSI 60.8 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "OMC",
-    "mcap": 21.96,
-    "strategy": "Bull Put (Credit)",
-    "price": 69.22,
-    "rsi": 31.2,
-    "adx": 24.8,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(69.60) | ADX: 24.8 | RSI 31.2 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(72.68) | ADX: 15.5 | RSI 60.2 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "NVR",
-    "mcap": 21.95,
+    "mcap": 21.98,
     "strategy": "Bear Call (Credit)",
-    "price": 8040.78,
-    "rsi": 68.3,
+    "price": 8044.79,
+    "rsi": 68.7,
     "adx": 16.0,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(7971.11) | ADX: 16.0 | RSI 68.3 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(7975.15) | ADX: 16.0 | RSI 68.7 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "OMC",
+    "mcap": 21.93,
+    "strategy": "Bull Put (Credit)",
+    "price": 69.12,
+    "rsi": 31.0,
+    "adx": 24.8,
+    "type": "bullish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price < BBL(69.58) | ADX: 24.8 | RSI 31.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CSGP",
-    "mcap": 21.7,
+    "mcap": 21.61,
     "strategy": "Bull Call (Debit)",
-    "price": 51.2,
-    "rsi": 24.7,
+    "price": 50.99,
+    "rsi": 24.5,
     "adx": 26.6,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(52.23) | ADX: 26.6 | RSI 24.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(52.19) | ADX: 26.6 | RSI 24.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "JBHT",
-    "mcap": 21.48,
+    "mcap": 21.45,
     "strategy": "Bear Put (Debit)",
-    "price": 225.54,
-    "rsi": 72.0,
+    "price": 225.25,
+    "rsi": 71.7,
     "adx": 29.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(223.19) | ADX: 29.9 | RSI 72.0 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(223.13) | ADX: 29.9 | RSI 71.7 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "PKG",
-    "mcap": 20.72,
+    "mcap": 20.87,
     "strategy": "Bear Call (Credit)",
-    "price": 230.09,
-    "rsi": 64.9,
+    "price": 231.91,
+    "rsi": 67.7,
     "adx": 29.6,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(230.10) | ADX: 29.6 | RSI 64.9 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(230.54) | ADX: 29.6 | RSI 67.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "RL",
-    "mcap": 20.53,
+    "mcap": 20.54,
     "strategy": "Bull Put (Credit)",
-    "price": 338.48,
-    "rsi": 34.7,
+    "price": 338.66,
+    "rsi": 34.8,
     "adx": 14.2,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(345.45) | ADX: 14.2 | RSI 34.7 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(345.47) | ADX: 14.2 | RSI 34.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "TROW",
     "mcap": 20.22,
     "strategy": "Bull Call (Debit)",
-    "price": 91.96,
+    "price": 92.02,
     "rsi": 26.8,
     "adx": 17.5,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(97.22) | ADX: 17.5 | RSI 26.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(97.21) | ADX: 17.5 | RSI 26.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "CNC",
-    "mcap": 19.67,
+    "mcap": 19.62,
     "strategy": "Bull Put (Credit)",
-    "price": 40.07,
-    "rsi": 36.9,
+    "price": 39.92,
+    "rsi": 36.6,
     "adx": 20.5,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(40.19) | ADX: 20.5 | RSI 36.9 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(40.17) | ADX: 20.5 | RSI 36.6 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "J",
+    "mcap": 16.97,
+    "strategy": "Bear Call (Credit)",
+    "price": 143.73,
+    "rsi": 60.6,
+    "adx": 16.1,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(143.60) | ADX: 16.1 | RSI 60.6 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "PNR",
-    "mcap": 15.6,
+    "mcap": 15.57,
     "strategy": "Bull Put (Credit)",
-    "price": 95.13,
-    "rsi": 32.7,
+    "price": 94.97,
+    "rsi": 32.5,
     "adx": 19.7,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(96.28) | ADX: 19.7 | RSI 32.7 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(96.23) | ADX: 19.7 | RSI 32.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "NWS",
-    "mcap": 15.18,
+    "mcap": 15.21,
     "strategy": "Bull Call (Debit)",
-    "price": 27.33,
-    "rsi": 24.4,
+    "price": 27.39,
+    "rsi": 24.7,
     "adx": 24.5,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(28.28) | ADX: 24.5 | RSI 24.4 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(28.30) | ADX: 24.5 | RSI 24.7 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "ALLE",
     "mcap": 15.13,
     "strategy": "Bear Put (Debit)",
-    "price": 175.87,
+    "price": 175.83,
     "rsi": 74.6,
     "adx": 23.3,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(172.67) | ADX: 23.3 | RSI 74.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(172.66) | ADX: 23.3 | RSI 74.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "AVY",
-    "mcap": 14.94,
+    "mcap": 14.91,
     "strategy": "Bear Call (Credit)",
-    "price": 193.58,
-    "rsi": 67.4,
+    "price": 192.88,
+    "rsi": 66.4,
     "adx": 18.5,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(192.43) | ADX: 18.5 | RSI 67.4 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(192.30) | ADX: 18.5 | RSI 66.4 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "KIM",
-    "mcap": 14.67,
+    "mcap": 14.69,
     "strategy": "Bear Call (Credit)",
     "price": 21.69,
-    "rsi": 65.8,
+    "rsi": 66.1,
     "adx": 21.2,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(21.47) | ADX: 21.2 | RSI 65.8 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(21.48) | ADX: 21.2 | RSI 66.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "HII",
-    "mcap": 14.37,
+    "mcap": 14.5,
     "strategy": "Bull Put (Credit)",
-    "price": 366.6,
-    "rsi": 38.3,
+    "price": 369.38,
+    "rsi": 39.2,
     "adx": 33.6,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(379.38) | ADX: 33.6 | RSI 38.3 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(380.37) | ADX: 33.6 | RSI 39.2 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "NWSA",
-    "mcap": 14.08,
+    "mcap": 14.13,
     "strategy": "Bull Call (Debit)",
-    "price": 24.15,
-    "rsi": 26.6,
+    "price": 24.21,
+    "rsi": 27.1,
     "adx": 16.2,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(24.76) | ADX: 16.2 | RSI 26.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(24.79) | ADX: 16.2 | RSI 27.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "REG",
     "mcap": 13.89,
     "strategy": "Bear Put (Debit)",
-    "price": 75.46,
+    "price": 75.48,
     "rsi": 72.4,
     "adx": 24.1,
     "type": "bearish",
@@ -1276,43 +1320,32 @@
     "reasoning": "Det: Price > BBU(74.28) | ADX: 24.1 | RSI 72.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
-    "ticker": "ALGN",
-    "mcap": 12.81,
-    "strategy": "Bear Call (Credit)",
-    "price": 176.94,
-    "rsi": 64.8,
-    "adx": 22.0,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(176.74) | ADX: 22.0 | RSI 64.8 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "GL",
-    "mcap": 11.92,
+    "mcap": 11.9,
     "strategy": "Bear Call (Credit)",
-    "price": 147.54,
-    "rsi": 69.3,
+    "price": 146.95,
+    "rsi": 69.0,
     "adx": 19.9,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(146.31) | ADX: 19.9 | RSI 69.3 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(146.25) | ADX: 19.9 | RSI 69.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "SJM",
-    "mcap": 11.65,
+    "mcap": 11.66,
     "strategy": "Bear Call (Credit)",
-    "price": 109.24,
-    "rsi": 69.4,
+    "price": 109.28,
+    "rsi": 69.5,
     "adx": 22.7,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(108.71) | ADX: 22.7 | RSI 69.4 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(108.73) | ADX: 22.7 | RSI 69.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "IVZ",
     "mcap": 11.47,
     "strategy": "Bull Put (Credit)",
-    "price": 25.84,
+    "price": 25.77,
     "rsi": 38.6,
     "adx": 27.7,
     "type": "bullish",
@@ -1321,14 +1354,14 @@
   },
   {
     "ticker": "BAX",
-    "mcap": 11.22,
+    "mcap": 11.19,
     "strategy": "Bear Call (Credit)",
-    "price": 21.8,
-    "rsi": 69.5,
-    "adx": 12.4,
+    "price": 21.77,
+    "rsi": 69.2,
+    "adx": 12.5,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(21.30) | ADX: 12.4 | RSI 69.5 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(21.29) | ADX: 12.5 | RSI 69.2 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "DAY",
@@ -1345,99 +1378,88 @@
     "ticker": "AOS",
     "mcap": 10.95,
     "strategy": "Bear Put (Debit)",
-    "price": 78.24,
-    "rsi": 71.8,
+    "price": 78.11,
+    "rsi": 71.6,
     "adx": 29.0,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(77.54) | ADX: 29.0 | RSI 71.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(77.53) | ADX: 29.0 | RSI 71.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "DVA",
-    "mcap": 10.0,
+    "mcap": 9.98,
     "strategy": "Bear Put (Debit)",
-    "price": 149.66,
-    "rsi": 84.7,
+    "price": 149.22,
+    "rsi": 84.6,
     "adx": 34.7,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(138.36) | ADX: 34.7 | RSI 84.7 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price > BBU(138.22) | ADX: 34.7 | RSI 84.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "EPAM",
-    "mcap": 9.82,
+    "mcap": 9.88,
     "strategy": "Bull Call (Debit)",
-    "price": 176.99,
-    "rsi": 28.4,
+    "price": 177.47,
+    "rsi": 28.9,
     "adx": 26.1,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(184.35) | ADX: 26.1 | RSI 28.4 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "CAG",
-    "mcap": 9.36,
-    "strategy": "Bear Call (Credit)",
-    "price": 19.57,
-    "rsi": 70.0,
-    "adx": 31.9,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(19.57) | ADX: 31.9 | RSI 70.0 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price < BBL(184.73) | ADX: 26.1 | RSI 28.9 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "FRT",
-    "mcap": 9.08,
+    "mcap": 9.1,
     "strategy": "Bear Call (Credit)",
-    "price": 104.65,
-    "rsi": 64.3,
-    "adx": 16.1,
+    "price": 104.85,
+    "rsi": 65.0,
+    "adx": 16.2,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(104.22) | ADX: 16.1 | RSI 64.3 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(104.28) | ADX: 16.2 | RSI 65.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CRL",
-    "mcap": 9.06,
+    "mcap": 9.04,
     "strategy": "Bull Call (Debit)",
-    "price": 184.16,
-    "rsi": 29.2,
+    "price": 183.7,
+    "rsi": 29.0,
     "adx": 28.0,
     "type": "bullish",
     "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(195.97) | ADX: 28.0 | RSI 29.2 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(195.83) | ADX: 28.0 | RSI 29.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "CPB",
-    "mcap": 8.55,
+    "mcap": 8.56,
     "strategy": "Bear Call (Credit)",
-    "price": 28.7,
-    "rsi": 60.0,
+    "price": 28.71,
+    "rsi": 60.3,
     "adx": 23.8,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(28.38) | ADX: 23.8 | RSI 60.0 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(28.39) | ADX: 23.8 | RSI 60.3 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "MHK",
-    "mcap": 8.09,
-    "strategy": "Bear Call (Credit)",
-    "price": 130.27,
-    "rsi": 69.3,
+    "mcap": 8.14,
+    "strategy": "Bear Put (Debit)",
+    "price": 131.01,
+    "rsi": 70.5,
     "adx": 23.2,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(129.16) | ADX: 23.2 | RSI 69.3 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(129.40) | ADX: 23.2 | RSI 70.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "ENPH",
-    "mcap": 6.17,
+    "mcap": 6.19,
     "strategy": "Bear Call (Credit)",
-    "price": 47.35,
-    "rsi": 67.1,
+    "price": 47.27,
+    "rsi": 67.4,
     "adx": 34.8,
     "type": "bearish",
     "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(46.73) | ADX: 34.8 | RSI 67.1 (Moderate: Selling Theta.)"
+    "reasoning": "Det: Price > BBU(46.76) | ADX: 34.8 | RSI 67.4 (Moderate: Selling Theta.)"
   }
 ]
