@@ -122,7 +122,7 @@
   },
   {
     "ticker": "PEP",
-    "mcap": 227.51,
+    "mcap": 227.22,
     "strategy": "Bear Put (Debit)",
     "price": 166.18,
     "rsi": 82.5,
@@ -188,7 +188,7 @@
   },
   {
     "ticker": "BX",
-    "mcap": 170.08,
+    "mcap": 165.44,
     "strategy": "Bull Call (Debit)",
     "price": 134.54,
     "rsi": 27.4,
@@ -518,7 +518,7 @@
   },
   {
     "ticker": "SPG",
-    "mcap": 73.78,
+    "mcap": 73.77,
     "strategy": "Bear Put (Debit)",
     "price": 195.59,
     "rsi": 70.1,
@@ -672,7 +672,7 @@
   },
   {
     "ticker": "MPC",
-    "mcap": 59.56,
+    "mcap": 58.89,
     "strategy": "Bear Put (Debit)",
     "price": 195.92,
     "rsi": 73.2,
@@ -1464,7 +1464,7 @@
   },
   {
     "ticker": "NWSA",
-    "mcap": 14.4,
+    "mcap": 14.42,
     "strategy": "Bull Put (Credit)",
     "price": 24.69,
     "rsi": 30.3,
@@ -1584,17 +1584,6 @@
     "reasoning": "Det: Price < BBL(191.38) | ADX: 24.7 | RSI 32.2 (Moderate: Selling Theta.)"
   },
   {
-    "ticker": "DVA",
-    "mcap": 10.16,
-    "strategy": "Bear Put (Debit)",
-    "price": 142.06,
-    "rsi": 82.1,
-    "adx": 32.0,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(130.03) | ADX: 32.0 | RSI 82.1 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
     "ticker": "MGM",
     "mcap": 10.1,
     "strategy": "Bear Call (Credit)",
@@ -1615,6 +1604,17 @@
     "type": "bearish",
     "is_squeeze": false,
     "reasoning": "Det: Price > BBU(27.38) | ADX: 17.2 | RSI 62.1 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "DVA",
+    "mcap": 9.5,
+    "strategy": "Bear Put (Debit)",
+    "price": 142.06,
+    "rsi": 82.1,
+    "adx": 32.0,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(130.03) | ADX: 32.0 | RSI 82.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "CAG",
