@@ -11,7 +11,7 @@ from collections import defaultdict
 import argparse
 import time
 import numpy as np
-from dateutil.parser import parsef
+from dateutil.parser import parse
 import config
 from news_fetcher import fetch_news_ticker
 import re
