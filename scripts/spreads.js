@@ -16,6 +16,14 @@
     const signalData = await signalRes.json();
     
     if (signalData.generated_at_pt) {
+      const timestamp = signalData.generated_at_pt + " PT";
+      
+      // Update ALL elements on the page with this class
+      const dateElements = document.querySelectorAll(".last-updated-text");
+      dateElements.forEach(el => {
+        el.textContent = timestamp;
+      });
+    }
       const el = document.getElementById("last-updated") || document.getElementById("Last-updated");
       if (el) el.textContent = signalData.generated_at_pt + " PT";
     }
