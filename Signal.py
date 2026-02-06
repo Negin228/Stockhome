@@ -598,6 +598,22 @@ def job(tickers):
         except Exception as e:
             logger.error(f"Spread calculation error for {symbol}: {e}")
 
+        funds = fetch_fundamentals_extended(symbol)
+        if funds:
+            # 1. P/E Comparison (Using Forward PE as a proxy for 'Historical/Future' improvement)
+            pe_pass = False
+            if funds['trailing_pe'] and funds['forward_pe']:
+                pe_pass = funds['trailing_pe'] > funds['forward_pe'] # Price is becoming more attractive
+
+            # 2. Earnings Growth (Checking for positive YoY growth)
+            growth_pass = (funds['earnings_growth'] or 0) > 0
+
+            # 3. Debt-to-Equity (Using your < 1% or 100 threshold)
+            # Note: info.get("debtToEquity") returns values like 50.0 for 50%. 
+            # For < 1%, the value would be < 1.0.
+            debt_pass = (funds['debt_to_equity'] or 999) < 1.0
+    
+
         # 5. Build Stock Object
         stock_data_list.append({
             'ticker': symbol, 'company': company_name, 'signal' : sig,
@@ -617,6 +633,12 @@ def job(tickers):
             'dma50_str': f"{dma50_val:.1f}" if dma50_val is not None else "N/A",
             'trend_rationale': trend_rationale, 
             'trend_dir': trend_dir_val,
+            'pe_check': pe_pass,
+            'growth_check': growth_pass,
+            'debt_check': debt_pass,
+            'trailing_pe': funds['trailing_pe'],
+            'earnings_growth': f"{(funds['earnings_growth'] or 0)*100:.1f}%",
+            'debt_to_equity': funds['debt_to_equity']
         })
 
         if not sig: continue
