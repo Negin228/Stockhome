@@ -18,14 +18,13 @@
     if (signalData.generated_at_pt) {
       const timestamp = signalData.generated_at_pt + " PT";
       
-      // Update ALL elements on the page with this class
       const dateElements = document.querySelectorAll(".last-updated-text");
       dateElements.forEach(el => {
         el.textContent = timestamp;
       });
-    }
+
       const el = document.getElementById("last-updated") || document.getElementById("Last-updated");
-      if (el) el.textContent = signalData.generated_at_pt + " PT";
+      if (el) el.textContent = timestamp;
     }
 
     // 2. FETCH SPREADS DATA
@@ -33,10 +32,10 @@
     let rawSpreads = await res.json();
     if (!Array.isArray(rawSpreads) && rawSpreads.data) rawSpreads = rawSpreads.data;
 
-    // --- MINIMAL CHANGE: Enrich spreads with checks from signals.json ---
+    // Enrich spreads with masterInfo from signals.json
     const signals = rawSpreads.map(spread => {
       const masterInfo = (signalData.all || []).find(s => s.ticker === spread.ticker);
-      return { ...spread, ...masterInfo }; // Combines strategy data with checkmark data
+      return { ...spread, ...masterInfo }; 
     });
 
     const validSignals = signals.filter(s => !s.is_squeeze);
@@ -79,7 +78,7 @@
     }
     render("all"); 
 
-  } catch (e) {
+  } catch (e) { // This catch now correctly pairs with the try above
     console.error("Spread loading error:", e);
     if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Error loading data.</td></tr>`;
   }
