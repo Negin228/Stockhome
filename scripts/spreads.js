@@ -18,13 +18,15 @@
     if (signalData.generated_at_pt) {
       const timestamp = signalData.generated_at_pt + " PT";
       
+      // Update ALL elements with the class (better for multiple spots)
       const dateElements = document.querySelectorAll(".last-updated-text");
       dateElements.forEach(el => {
         el.textContent = timestamp;
       });
 
-      const el = document.getElementById("last-updated") || document.getElementById("Last-updated");
-      if (el) el.textContent = timestamp;
+      // Also update by ID as a fallback for your Hero section
+      const dateEl = document.getElementById("last-updated");
+      if (dateEl) dateEl.textContent = timestamp;
     }
 
     // 2. FETCH SPREADS DATA
