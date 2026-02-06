@@ -55,8 +55,6 @@ jobs:
           # 1. Add files individually or with wildcards safely
           # Using "|| true" ensures the script continues even if a file is missing
           git add data/*.json || true
-          git add portfolio_tracker.csv || true
-          git add trading_report.txt || true
           
           # 2. Check if anything was actually staged before committing
           if [ -n "$(git status --porcelain)" ]; then
