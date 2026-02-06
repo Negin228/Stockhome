@@ -38,21 +38,25 @@
       
       <div class="table-container" style="overflow-x: auto;">
         <table class="signals-table">
-            <thead>
-                <tr>
-                    <th>Ticker</th>
-                    <th>Market Cap ($B)</th>
-                    <th>Price</th>
-                    <th>Recommended Spread</th>
-                    <th>Reasoning</th>
+          <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Price</th>
+                <th title="Trailing PE > Forward PE">Value (PE)</th>
+                <th title="Quarterly Earnings Growth > 0">Growth (EPS)</th>
+                <th title="Debt-to-Equity < 100%">Health (D/E)</th>
+                <th>Market Cap ($B)</th>
+                <th>Recommended Spread</th>
+                <th>Reasoning</th>
                 </tr>
-            </thead>
-            <tbody id="spreads-body">
-                <tr><td colspan="5" style="text-align:center;">Loading candidates...</td></tr>
-            </tbody>
+          </thead>
+          <tbody id="spreads-body">
+              <tr><td colspan="8" style="text-align:center;">Loading candidates...</td></tr>
+          </tbody>
         </table>
       </div>
     </section>
+
           
     <section class="section">
       <p style="margin-top: 20px; color: #666;">
