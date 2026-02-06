@@ -199,7 +199,7 @@
   },
   {
     "ticker": "QCOM",
-    "mcap": 145.98,
+    "mcap": 145.57,
     "strategy": "Bull Call (Debit)",
     "price": 136.3,
     "rsi": 21.0,
@@ -287,7 +287,7 @@
   },
   {
     "ticker": "MCK",
-    "mcap": 119.14,
+    "mcap": 118.22,
     "strategy": "Bear Put (Debit)",
     "price": 957.8,
     "rsi": 76.2,
@@ -572,17 +572,6 @@
     "reasoning": "Det: Price > BBU(282.81) | ADX: 19.9 | RSI 68.1 (Moderate: Selling Theta.)"
   },
   {
-    "ticker": "AFL",
-    "mcap": 62.83,
-    "strategy": "Bear Put (Debit)",
-    "price": 117.47,
-    "rsi": 75.0,
-    "adx": 18.0,
-    "type": "bearish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price > BBU(114.63) | ADX: 18.0 | RSI 75.0 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
     "ticker": "PSX",
     "mcap": 62.41,
     "strategy": "Bear Put (Debit)",
@@ -592,6 +581,17 @@
     "type": "bearish",
     "is_squeeze": false,
     "reasoning": "Det: Price > BBU(151.93) | ADX: 31.0 | RSI 72.1 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "AFL",
+    "mcap": 61.57,
+    "strategy": "Bear Put (Debit)",
+    "price": 117.47,
+    "rsi": 75.0,
+    "adx": 18.0,
+    "type": "bearish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price > BBU(114.63) | ADX: 18.0 | RSI 75.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "TEL",
@@ -617,7 +617,7 @@
   },
   {
     "ticker": "ALL",
-    "mcap": 56.7,
+    "mcap": 56.31,
     "strategy": "Bear Call (Credit)",
     "price": 215.19,
     "rsi": 69.9,
@@ -639,7 +639,7 @@
   },
   {
     "ticker": "CARR",
-    "mcap": 53.7,
+    "mcap": 53.14,
     "strategy": "Bear Put (Debit)",
     "price": 63.1,
     "rsi": 75.8,
@@ -947,7 +947,7 @@
   },
   {
     "ticker": "TPR",
-    "mcap": 29.64,
+    "mcap": 29.3,
     "strategy": "Bear Put (Debit)",
     "price": 143.19,
     "rsi": 70.3,
@@ -955,17 +955,6 @@
     "type": "bearish",
     "is_squeeze": false,
     "reasoning": "Det: Price > BBU(138.76) | ADX: 24.4 | RSI 70.3 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "FOXA",
-    "mcap": 29.26,
-    "strategy": "Bull Call (Debit)",
-    "price": 65.92,
-    "rsi": 27.3,
-    "adx": 26.0,
-    "type": "bullish",
-    "is_squeeze": false,
-    "reasoning": "Det: Price < BBL(67.92) | ADX: 26.0 | RSI 27.3 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "EXPE",
@@ -979,8 +968,19 @@
     "reasoning": "Det: Price < BBL(233.33) | ADX: 29.4 | RSI 31.1 (Moderate: Selling Theta.)"
   },
   {
+    "ticker": "FOXA",
+    "mcap": 28.04,
+    "strategy": "Bull Call (Debit)",
+    "price": 65.92,
+    "rsi": 27.3,
+    "adx": 26.0,
+    "type": "bullish",
+    "is_squeeze": false,
+    "reasoning": "Det: Price < BBL(67.92) | ADX: 26.0 | RSI 27.3 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
     "ticker": "FOX",
-    "mcap": 27.85,
+    "mcap": 27.61,
     "strategy": "Bull Call (Debit)",
     "price": 59.15,
     "rsi": 25.8,
@@ -1079,7 +1079,7 @@
   },
   {
     "ticker": "AVB",
-    "mcap": 24.16,
+    "mcap": 24.03,
     "strategy": "Bull Put (Credit)",
     "price": 169.7,
     "rsi": 38.1,
@@ -1200,7 +1200,7 @@
   },
   {
     "ticker": "TROW",
-    "mcap": 20.22,
+    "mcap": 20.12,
     "strategy": "Bull Call (Debit)",
     "price": 92.02,
     "rsi": 26.8,
@@ -1244,7 +1244,7 @@
   },
   {
     "ticker": "NWS",
-    "mcap": 15.21,
+    "mcap": 15.2,
     "strategy": "Bull Call (Debit)",
     "price": 27.39,
     "rsi": 24.7,
@@ -1299,7 +1299,7 @@
   },
   {
     "ticker": "NWSA",
-    "mcap": 14.13,
+    "mcap": 14.06,
     "strategy": "Bull Call (Debit)",
     "price": 24.21,
     "rsi": 27.1,
