@@ -11,7 +11,7 @@ from collections import defaultdict
 import argparse
 import time
 import numpy as np
-from dateutil.parser import parse
+from dateutil.parser import parsef
 import config
 from news_fetcher import fetch_news_ticker
 import re
@@ -354,6 +354,34 @@ def fetch_fundamentals_safe(symbol):
         info = yf.Ticker(symbol).info
         return info.get("trailingPE", None), info.get("marketCap", None)
     except Exception: return None, None
+
+def fetch_fundamentals_extended(symbol):
+    try:
+        ticker = yf.Ticker(symbol)
+        info = ticker.info
+        
+        # 1. P/E vs Historical: We get Trailing P/E and estimate the 5y Avg
+        trailing_pe = info.get("trailingPE", None)
+        # Note: yfinance doesn't provide 5y avg directly; common proxy is price / 5y avg EPS
+        # For simplicity in a dashboard, comparing Trailing vs Forward P/E is often used.
+        forward_pe = info.get("forwardPE", None)
+
+        # 2. Earnings Growth (Quarterly yoy)
+        earnings_growth = info.get("earningsQuarterlyGrowth", None) # Expressed as a decimal (e.g., 0.15 = 15%)
+
+        # 3. Debt-to-Equity Ratio
+        debt_to_equity = info.get("debtToEquity", None) # Expressed as a percentage (e.g., 50.0 = 50%)
+
+        return {
+            "trailing_pe": trailing_pe,
+            "forward_pe": forward_pe,
+            "earnings_growth": earnings_growth,
+            "debt_to_equity": debt_to_equity,
+            "market_cap": info.get("marketCap", None)
+        }
+    except Exception as e:
+        logger.error(f"Error fetching extended fundamentals for {symbol}: {e}")
+        return None
 
 def default_put_obj():
     return { "strike": None, "expiration": None, "premium": None, "delta_percent": None, "premium_percent": None, "metric_sum": None, "weekly_available": True, "monthly_available": True }
