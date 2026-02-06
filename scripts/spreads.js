@@ -44,10 +44,10 @@
           return `
             <tr>
               <td><strong>${s.ticker}</strong></td>
+              <td>$${fmt(s.price, 2)}</td>
               <td style="text-align:center;">${getCheck(s.pe_check)}</td>      
               <td style="text-align:center;">${getCheck(s.growth_check)}</td>  
               <td style="text-align:center;">${getCheck(s.debt_check)}</td>
-              <td>$${fmt(s.price, 2)}</td>
               <td>${fmt(s.mcap, 1)}B</td>
               <td><span class="badge ${badgeClass}">${s.strategy}</span></td>
               <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
