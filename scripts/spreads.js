@@ -2,7 +2,6 @@
   const tableBody = document.getElementById("spreads-body");
   const filterEl = document.getElementById("strategy-filter");
 
-  // Logic for green checkmarks
   const getCheck = (isPass) => isPass 
     ? '<span style="color: #28a745; font-weight: bold;">✅</span>' 
     : '<span style="color: #6c757d;">-</span>';
@@ -12,9 +11,10 @@
   }
 
   try {
-    // 1. FETCH TIMESTAMP (using await for consistency)
+    // 1. FETCH TIMESTAMP & MASTER DATA from signals.json
     const signalRes = await fetch("../data/signals.json", { cache: "no-store" });
     const signalData = await signalRes.json();
+    
     if (signalData.generated_at_pt) {
       const el = document.getElementById("last-updated") || document.getElementById("Last-updated");
       if (el) el.textContent = signalData.generated_at_pt + " PT";
@@ -22,8 +22,14 @@
 
     // 2. FETCH SPREADS DATA
     const res = await fetch("../data/spreads.json", { cache: "no-store" });
-    let signals = await res.json();
-    if (!Array.isArray(signals) && signals.data) signals = signals.data;
+    let rawSpreads = await res.json();
+    if (!Array.isArray(rawSpreads) && rawSpreads.data) rawSpreads = rawSpreads.data;
+
+    // --- MINIMAL CHANGE: Enrich spreads with checks from signals.json ---
+    const signals = rawSpreads.map(spread => {
+      const masterInfo = (signalData.all || []).find(s => s.ticker === spread.ticker);
+      return { ...spread, ...masterInfo }; // Combines strategy data with checkmark data
+    });
 
     const validSignals = signals.filter(s => !s.is_squeeze);
     validSignals.sort((a, b) => (b.mcap || 0) - (a.mcap || 0));
@@ -40,7 +46,6 @@
           const isBullish = strategyText.includes("bullish") || strategyText.includes("bull");
           const badgeClass = isBullish ? "badge-bullish" : "badge-bearish";
 
-          // CLEAN SINGLE-ROW RETURN (Exactly 8 Columns)
           return `
             <tr>
               <td><strong>${s.ticker}</strong></td>
@@ -61,7 +66,9 @@
     }
 
     // 4. EVENTS
-    filterEl.addEventListener("change", (e) => render(e.target.value));
+    if (filterEl) {
+        filterEl.addEventListener("change", (e) => render(e.target.value));
+    }
     render("all"); 
 
   } catch (e) {
