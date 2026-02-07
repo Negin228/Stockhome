@@ -101,6 +101,34 @@ def get_live_price(symbol, fallback_close, retries=2, wait=1):
 # ---------------------------------------------------------
 # FUNDAMENTALS (CACHED)
 # ---------------------------------------------------------
+COMPANY_CACHE_DIR = "data/company_names"
+os.makedirs(COMPANY_CACHE_DIR, exist_ok=True)
+
+def fetch_company_name_cached(symbol):
+    path = os.path.join(COMPANY_CACHE_DIR, f"{symbol}.json")
+
+    # Use cached value if < 24h old
+    if os.path.exists(path):
+        age = time.time() - os.path.getmtime(path)
+        if age < 24 * 3600:
+            with open(path, "r") as f:
+                return json.load(f).get("name", "")
+
+    try:
+        info = yf.Ticker(symbol).info
+        name = (
+            info.get("shortName")
+            or info.get("longName")
+            or info.get("displayName")
+            or ""
+        )
+        with open(path, "w") as f:
+            json.dump({"name": name}, f)
+        return name
+    except Exception:
+        return ""
+
+
 def fetch_fundamentals_cached(symbol):
     path = os.path.join(FUND_DIR, f"{symbol}.json")
 
@@ -229,6 +257,8 @@ def job(tickers):
         if not spread or spread["is_squeeze"]:
             continue
 
+        company_name = fetch_company_name_cached(symbol)
+
         close_price = scalar(row["Close"])
         price = get_live_price(symbol, close_price)
 
@@ -240,6 +270,7 @@ def job(tickers):
 
         stock_data.append({
             "ticker": symbol,
+            "company": company_name,
             "price": round(price, 2),
             "strategy": spread["strategy"],
             "pe_check": pe_pass,
@@ -249,6 +280,7 @@ def job(tickers):
 
         spreads.append({
             "ticker": symbol,
+            "company": company_name,
             "strategy": spread["strategy"],
             "price": round(price, 2),
             "mcap": funds.get("market_cap"),
