@@ -508,8 +508,6 @@ def job(tickers):
             }
 
 
-        "put": put_pick,
-
         # --- FUNDAMENTALS ---
         funds = fetch_fundamentals_cached(symbol) or {}
         trailing_pe = funds.get("trailing_pe")
@@ -562,6 +560,7 @@ def job(tickers):
             "ticker": symbol,
             "company": company_name,
 
+
             "score": float(final_score),
             "why": why_str,
 
@@ -580,16 +579,7 @@ def job(tickers):
             "trend_dir": "bullish" if macd_val > sig_val else "bearish",
             "trend_rationale": f"{'Strong' if scalar(row['adx']) > 25 else 'Weak/Sideways'} "
                                f"{'Bullish' if macd_val > sig_val else 'Bearish'} Trend (ADX: {scalar(row['adx']):.1f})",
-
-                "put": {
-                    "strike": None,
-                    "expiration": None,
-                    "premium": None,
-                    "delta_percent": None,
-                    "premium_percent": None,
-                    "metric_sum": None,
-                    "weekly_available": True,
-                    "monthly_available": True,},
+            "put": put_pick,
 
 
             # JS filter uses pe <= peLimit, so avoid null by defaulting high when missing
