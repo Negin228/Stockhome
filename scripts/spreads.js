@@ -45,7 +45,11 @@
     });
 
     const validSignals = signals.filter(s => !s.is_squeeze);
-    validSignals.sort((a, b) => (b.mcap || 0) - (a.mcap || 0));
+    validSignals.sort((a, b) => {
+      if (a.is_new && !b.is_new) return -1;
+      if (!a.is_new && b.is_new) return 1;
+      return (b.mcap || 0) - (a.mcap || 0);
+    });
 
     // 3. RENDER FUNCTION
     function render(filterValue) {
@@ -61,11 +65,12 @@
 
           const company = (s.company || "").trim();
           const isMonthlyOnly = (s.monthly_available === true && s.weekly_available === false);
+          const newBadge = s.is_new ? '<span style="background-color: #28a745; color: white; padding: 2px 5px; border-radius: 4px; font-size: 0.7em; margin-left: 5px; vertical-align: middle;">NEW</span>' : '';
 
           return `
             <tr>
               <td>
-                <strong>${s.ticker}</strong>
+                <strong>${s.ticker}</strong> ${newBadge}
                 <div style="font-size:0.85em; color:#666; margin-top:2px;">
                   ${company || "—"}
                 </div>
