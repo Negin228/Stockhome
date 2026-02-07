@@ -549,7 +549,17 @@ def job(tickers):
             failed.append(symbol)
             continue
 
-        pe, mcap = fetch_fundamentals_safe(symbol)
+
+        funds = fetch_fundamentals_extended(symbol)
+        if not funds:
+             funds = {
+                 "trailing_pe": None, "forward_pe": None, 
+                 "earnings_growth": None, "debt_to_equity": None, 
+                 "market_cap": None
+             }
+        pe = funds['trailing_pe']
+        mcap = funds['market_cap']
+
         company_name = fetch_company_name(symbol)
         cap_str = format_market_cap(mcap)
         rsi_val = hist["rsi"].iloc[-1]
@@ -557,6 +567,8 @@ def job(tickers):
         dma200_val = hist["dma200"].iloc[-1]
         dma50_val = hist["dma50"].iloc[-1]
         prev_close_val = hist["Close"].iloc[-2].item() if len(hist) > 1 else None
+
+
         
         pct_drop = None
         if prev_close_val and rt_price:
@@ -586,6 +598,7 @@ def job(tickers):
                     'price': round(float(rt_price), 2),
                     'rsi': round(float(rsi_val), 1), 
                     'adx': round(float(a), 1),
+                    'health': funds['debt_to_equity'],                    
                     'type': spread_data['type'], 
                     'is_squeeze': spread_data['is_squeeze'],
                     'reasoning': full_reasoning
@@ -598,12 +611,9 @@ def job(tickers):
         except Exception as e:
             logger.error(f"Spread calculation error for {symbol}: {e}")
 
-        funds = fetch_fundamentals_extended(symbol)
-        if funds:
-            # 1. P/E Comparison (Using Forward PE as a proxy for 'Historical/Future' improvement)
-            pe_pass = False
-            if funds['trailing_pe'] and funds['forward_pe']:
-                pe_pass = funds['trailing_pe'] > funds['forward_pe'] # Price is becoming more attractive
+        pe_pass = False
+        if funds['trailing_pe'] and funds['forward_pe']:
+            pe_pass = funds['trailing_pe'] > funds['forward_pe'] # Price is becoming more attractive
 
             # 2. Earnings Growth (Checking for positive YoY growth)
             growth_pass = (funds['earnings_growth'] or 0) > 0
