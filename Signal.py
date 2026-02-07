@@ -412,6 +412,23 @@ def job(tickers):
             # UI currently uses *_str for DMA values
             "dma50_str": f"{dma50_val:.1f}",
             "dma200_str": f"{dma200_val:.1f}",
+            "dma50": float(dma50_val) if dma50_val is not None else None,
+            "dma200": float(dma200_val) if dma200_val is not None else None,
+
+            "trend_dir": "bullish" if macd_val > sig_val else "bearish",
+            "trend_rationale": f"{'Strong' if scalar(row['adx']) > 25 else 'Weak/Sideways'} "
+                               f"{'Bullish' if macd_val > sig_val else 'Bearish'} Trend (ADX: {scalar(row['adx']):.1f})",
+
+                "put": {
+                    "strike": None,
+                    "expiration": None,
+                    "premium": None,
+                    "delta_percent": None,
+                    "premium_percent": None,
+                    "metric_sum": None,
+                    "weekly_available": True,
+                    "monthly_available": True,},
+
 
             # JS filter uses pe <= peLimit, so avoid null by defaulting high when missing
             "pe": float(trailing_pe) if trailing_pe is not None else 9999,
@@ -465,6 +482,7 @@ def main():
 
     payload = {
         "generated_at_pt": dt_pacific.strftime("%m-%d-%Y %H:%M"),
+        "buys": stock_data,
         "all": stock_data,
     }
 
