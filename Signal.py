@@ -12,10 +12,8 @@ import logging
 from logging.handlers import RotatingFileHandler
 from dateutil.parser import parse
 import argparse
-import re
-import math
 import config
-from news_fetcher import fetch_news_ticker
+
 
 # ---------------------------------------------------------
 # CONFIG
