@@ -269,14 +269,32 @@ def job(tickers):
         debt_pass = (funds.get("debt_to_equity") or 999) < 100
 
         stock_data.append({
-            "ticker": symbol,
-            "company": company_name,
-            "price": round(price, 2),
-            "strategy": spread["strategy"],
-            "pe_check": pe_pass,
-            "growth_check": growth_pass,
-            "debt_check": debt_pass,
-        })
+       "ticker": symbol,
+        "company": company_name,
+
+        "score": round(70, 1),  # or real score if you want
+        "why": "Bullish mean-reversion setup",
+
+        "price": round(price, 2),
+        "price_str": f"{price:.2f}",
+
+        "rsi": round(float(row["rsi"]), 1),
+        "rsi_str": f"{float(row['rsi']):.1f}",
+
+        "pe": funds.get("trailing_pe"),
+        "pe_str": f"{funds.get('trailing_pe'):.1f}" if funds.get("trailing_pe") else "N/A",
+
+        "market_cap": funds.get("market_cap"),
+        "market_cap_str": (
+            f"{funds['market_cap']/1e9:.1f}B"
+            if funds.get("market_cap") else "N/A"),
+
+        "dma50_str": f"{row['dma50']:.1f}",
+        "dma200_str": f"{row['dma200']:.1f}",
+
+        "pct_drop": None,
+        "strategy": spread["strategy"]})
+
 
         spreads.append({
             "ticker": symbol,
