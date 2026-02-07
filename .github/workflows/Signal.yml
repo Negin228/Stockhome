@@ -27,8 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install torch==2.5.1 --extra-index-url https://download.pytorch.org/whl/cpu
-          pip install transformers==4.47.1 yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml_html_clean huggingface_hub alpaca-py pytz requests
+          pip install yfinance finnhub-python pandas ta numpy pytz requests
 
       - name: Prepare directories
         run: mkdir -p artifacts/pages artifacts/data data
