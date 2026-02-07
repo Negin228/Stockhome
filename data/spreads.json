@@ -11,9 +11,9 @@
     "type": "bullish",
     "is_squeeze": false,
     "reasoning": "Det: Price < BBL(458.08) | ADX: 30.2 | RSI 21.9 (Extreme: Buying Delta for sharp snap-back.)",
-    "weekly_available": null,
-    "monthly_available": null,
-    "exp_type": null
+    "weekly_available": false,
+    "monthly_available": true,
+    "exp_type": "MONTHLY"
   },
   {
     "ticker": "DASH",
@@ -27,8 +27,8 @@
     "type": "bullish",
     "is_squeeze": false,
     "reasoning": "Det: Price < BBL(187.92) | ADX: 30.2 | RSI 23.3 (Extreme: Buying Delta for sharp snap-back.)",
-    "weekly_available": null,
-    "monthly_available": null,
-    "exp_type": null
+    "weekly_available": true,
+    "monthly_available": true,
+    "exp_type": "MONTHLY"
   }
 ]
