@@ -603,7 +603,7 @@ def job(tickers):
                     'health': funds['debt_to_equity'],                    
                     'type': spread_data['type'], 
                     'is_squeeze': spread_data['is_squeeze'],
-                    'reasoning': full_reasoning
+                    'reasoning': full_reasoning,
                     'weekly_available': bool(stock_row.get('put', {}).get('weekly_available')) if stock_row else None,
                     'monthly_available': bool(stock_row.get('put', {}).get('monthly_available')) if stock_row else None,
                     'exp_type': stock_row.get('put', {}).get('exp_type') if stock_row else None,
