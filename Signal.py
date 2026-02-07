@@ -70,8 +70,9 @@ def clamp(x, lo, hi): return max(lo, min(hi, x))
 
 def scalar(x):
     if hasattr(x, "iloc"):
-        return float(x.iloc[0])
+        return float(x.iloc[-1])
     return float(x)
+
 
 
 # ---------------------------------------------------------
