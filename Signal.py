@@ -232,7 +232,7 @@ def fetch_fundamentals_cached(symbol):
 # ---------------------------------------------------------
 # HISTORY CACHE
 # ---------------------------------------------------------
-def fetch_cached_history(symbol, period="1y"):
+def fetch_cached_history(symbol, period="2y"):
     path = os.path.join(DATA_DIR, f"{symbol}.csv")
 
     if os.path.exists(path):
