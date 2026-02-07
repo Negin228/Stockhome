@@ -1,18 +1,12 @@
 {
-  "generated_at_pt": "02-07-2026 11:25",
+  "generated_at_pt": "02-07-2026 11:37",
   "all": [
     {
       "ticker": "MCO",
       "company": "Moody's Corporation",
-      "score": [
-        70,
-        1
-      ],
-      "why": "Bullish mean-reversion setup",
-      "price": [
-        452.5,
-        2
-      ],
+      "score": 31.25,
+      "why": "Below slow SMA \u2022 Oversold \u2022 Bearish MACD",
+      "price": 452.5,
       "price_str": "452.50",
       "rsi": 21.9,
       "rsi_str": "21.9",
@@ -20,23 +14,26 @@
       "dma200_str": "492.1",
       "pe": 36.373795,
       "pe_str": "36.4",
-      "market_cap": 81157988352,
+      "market_cap": 81157988352.0,
       "market_cap_str": "81.2B",
-      "pct_drop": null,
-      "strategy": "Call Debit Spread (Bullish)"
+      "pct_drop": 1.1361179961426635,
+      "strategy": "Call Debit Spread (Bullish)",
+      "pe_check": true,
+      "growth_check": true,
+      "debt_check": false,
+      "trailing_pe": 36.373795,
+      "forward_pe": 27.463568,
+      "earnings_growth": 0.21,
+      "earnings_growth_str": "21.0%",
+      "debt_to_equity": 181.347,
+      "debt_to_equity_str": "181.347"
     },
     {
       "ticker": "BKNG",
       "company": "Booking Holdings Inc. Common St",
-      "score": [
-        70,
-        1
-      ],
-      "why": "Bullish mean-reversion setup",
-      "price": [
-        4457.18,
-        2
-      ],
+      "score": 31.25,
+      "why": "Below slow SMA \u2022 Oversold \u2022 Bearish MACD",
+      "price": 4457.18,
       "price_str": "4457.18",
       "rsi": 25.2,
       "rsi_str": "25.2",
@@ -44,34 +41,46 @@
       "dma200_str": "5306.9",
       "pe": 28.985952,
       "pe_str": "29.0",
-      "market_cap": 144456368128,
+      "market_cap": 144456368128.0,
       "market_cap_str": "144.5B",
-      "pct_drop": null,
-      "strategy": "Call Debit Spread (Bullish)"
+      "pct_drop": -0.30967314291542175,
+      "strategy": "Call Debit Spread (Bullish)",
+      "pe_check": true,
+      "growth_check": true,
+      "debt_check": false,
+      "trailing_pe": 28.985952,
+      "forward_pe": 16.676144,
+      "earnings_growth": 0.092,
+      "earnings_growth_str": "9.2%",
+      "debt_to_equity": null,
+      "debt_to_equity_str": "N/A"
     },
     {
       "ticker": "SDOW",
       "company": "UltraPro Short Dow30",
-      "score": [
-        70,
-        1
-      ],
-      "why": "Bullish mean-reversion setup",
-      "price": [
-        28.26,
-        2
-      ],
+      "score": 22.0,
+      "why": "Below slow SMA \u2022 RSI 39 \u2022 Bearish MACD",
+      "price": 28.26,
       "price_str": "28.26",
       "rsi": 39.0,
       "rsi_str": "39.0",
       "dma50_str": "30.9",
       "dma200_str": "37.7",
-      "pe": null,
+      "pe": 9999,
       "pe_str": "N/A",
-      "market_cap": null,
+      "market_cap": 0,
       "market_cap_str": "N/A",
-      "pct_drop": null,
-      "strategy": "Call Debit Spread (Bullish)"
+      "pct_drop": 7.253033682826127,
+      "strategy": "Call Debit Spread (Bullish)",
+      "pe_check": false,
+      "growth_check": false,
+      "debt_check": false,
+      "trailing_pe": null,
+      "forward_pe": null,
+      "earnings_growth": null,
+      "earnings_growth_str": "0.0%",
+      "debt_to_equity": null,
+      "debt_to_equity_str": "N/A"
     }
   ]
 }
