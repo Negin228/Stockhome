@@ -730,6 +730,7 @@ def job(tickers):
         except Exception: pass
 
     return buy_symbols, buy_alerts_web, all_sell_alerts, failed, stock_data_list, spread_results
+    
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
@@ -737,6 +738,22 @@ def main():
     selected = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
     retry_counts = defaultdict(int)
     to_process = selected[:]
+
+    prev_tickers = set()
+    spreads_path = "data/spreads.json"
+    if os.path.exists(spreads_path):
+        try:
+            with open(spreads_path, "r", encoding="utf-8") as f:
+                old_data = json.load(f)
+                # Handle cases where data might be a list or a dict with a "data" key
+                if isinstance(old_data, dict):
+                    old_data = old_data.get("data", [])
+                if isinstance(old_data, list):
+                    prev_tickers = {item.get('ticker') for item in old_data if item.get('ticker')}
+            logger.info(f"Loaded {len(prev_tickers)} previous tickers for 'Newness' check.")
+        except Exception as e:
+            logger.warning(f"Could not load previous spreads for comparison: {e}")
+            
     
     all_buy_symbols = []
     all_buy_alerts_web = []
@@ -778,6 +795,7 @@ def main():
         sp["weekly_available"] = p.get("weekly_available", None)
         sp["monthly_available"] = p.get("monthly_available", None)
         sp["exp_type"] = p.get("exp_type", None)
+        sp["is_new"] = sp["ticker"] not in prev_tickers
     
     # Save to both locations to be safe
     with open("artifacts/data/signals.json", "w", encoding="utf-8") as f:
@@ -787,7 +805,7 @@ def main():
     with open("data/signals.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    all_spreads.sort(key=lambda x: x['mcap'], reverse=True)
+    all_spreads.sort(key=lambda x: (not x.get('is_new', False), -1 * (x.get('mcap') or 0)))
     logger.info(f"DEBUG: Generated {len(all_spreads)} total spread signals for JSON.")
     for spread in all_spreads[:3]: # Log the first 3 for confirmation
         logger.info(f"DEBUG: Sample Signal -> {spread['ticker']}: {spread['strategy']}")
@@ -799,7 +817,6 @@ def main():
         json.dump(all_spreads, f, ensure_ascii=False, indent=2)
 
     logger.info(f"Successfully updated spreads.json in data/ and artifacts/ with {len(all_spreads)} signals.")
-
     logger.info("Written signals.json to data/ and artifacts/data/")
 
 if __name__ == "__main__":
