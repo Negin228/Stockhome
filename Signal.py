@@ -360,15 +360,20 @@ def fetch_fundamentals_cached(symbol):
 def fetch_cached_history(symbol, period="2y"):
     path = os.path.join(DATA_DIR, f"{symbol}.csv")
 
+    # 1) Try cache
     if os.path.exists(path):
-        df = pd.read_csv(path, index_col=0, parse_dates=True)
+        try:
+            df = pd.read_csv(path, index_col=0, parse_dates=True)
+            for c in ["Open","High","Low","Close","Adj Close","Volume"]:
+                if c in df.columns:
+                    df[c] = pd.to_numeric(df[c], errors="coerce")
+            # Use cache if it looks usable
+            if not df.empty and len(df) >= 200:
+                return df
+        except Exception as e:
+            logger.warning(f"Cache read failed for {symbol}: {e}")
 
-        df = pd.read_csv(path, index_col=0, parse_dates=True)
-        for c in ["Open","High","Low","Close","Adj Close","Volume"]:
-            if c in df.columns:
-                df[c] = pd.to_numeric(df[c], errors="coerce")
-
-
+    # 2) Download fallback
     df = yf.download(symbol, period=period, progress=False)
     if not df.empty:
         df.to_csv(path)
