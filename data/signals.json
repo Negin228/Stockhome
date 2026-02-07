@@ -1,32 +1,77 @@
 {
-  "generated_at_pt": "02-07-2026 00:18",
+  "generated_at_pt": "02-07-2026 00:38",
   "all": [
     {
       "ticker": "MCO",
       "company": "Moody's Corporation",
-      "price": 452.49,
-      "strategy": "Call Debit Spread (Bullish)",
-      "pe_check": true,
-      "growth_check": true,
-      "debt_check": false
+      "score": [
+        70,
+        1
+      ],
+      "why": "Bullish mean-reversion setup",
+      "price": [
+        452.49,
+        2
+      ],
+      "price_str": "452.49",
+      "rsi": 21.9,
+      "rsi_str": "21.9",
+      "dma50_str": "506.3",
+      "dma200_str": "492.1",
+      "pe": 36.373795,
+      "pe_str": "36.4",
+      "market_cap": 81157988352,
+      "market_cap_str": "81.2B",
+      "pct_drop": null,
+      "strategy": "Call Debit Spread (Bullish)"
     },
     {
       "ticker": "BKNG",
       "company": "Booking Holdings Inc. Common St",
-      "price": 4457.17,
-      "strategy": "Call Debit Spread (Bullish)",
-      "pe_check": true,
-      "growth_check": true,
-      "debt_check": false
+      "score": [
+        70,
+        1
+      ],
+      "why": "Bullish mean-reversion setup",
+      "price": [
+        4457.17,
+        2
+      ],
+      "price_str": "4457.17",
+      "rsi": 25.2,
+      "rsi_str": "25.2",
+      "dma50_str": "5178.6",
+      "dma200_str": "5306.9",
+      "pe": 28.985952,
+      "pe_str": "29.0",
+      "market_cap": 144456368128,
+      "market_cap_str": "144.5B",
+      "pct_drop": null,
+      "strategy": "Call Debit Spread (Bullish)"
     },
     {
       "ticker": "SDOW",
       "company": "UltraPro Short Dow30",
-      "price": 28.25,
-      "strategy": "Call Debit Spread (Bullish)",
-      "pe_check": null,
-      "growth_check": false,
-      "debt_check": false
+      "score": [
+        70,
+        1
+      ],
+      "why": "Bullish mean-reversion setup",
+      "price": [
+        28.25,
+        2
+      ],
+      "price_str": "28.25",
+      "rsi": 39.0,
+      "rsi_str": "39.0",
+      "dma50_str": "30.9",
+      "dma200_str": "37.7",
+      "pe": null,
+      "pe_str": "N/A",
+      "market_cap": null,
+      "market_cap_str": "N/A",
+      "pct_drop": null,
+      "strategy": "Call Debit Spread (Bullish)"
     }
   ]
 }
