@@ -814,9 +814,11 @@ def main():
     logger.info(f"Finished. Generated {len(all_spreads)} spread signals.")
 
 if __name__ == "__main__":
+    # Crucial for Windows and some CI environments to prevent infinite loops
     try:
         main()
-        # Explicitly exit to ensure GitHub Actions registers the step as complete
+        logger.info("Main logic completed successfully. Forcing exit.")
+        # os._exit(0) is a "hard" exit that tells GitHub Actions the process is definitely done
         os._exit(0) 
     except Exception as e:
         logger.error(f"Critical workflow error: {e}")
