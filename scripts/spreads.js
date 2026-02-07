@@ -20,7 +20,7 @@
     console.log("signals.json raw text (first 300):", signalText.slice(0, 300));
 
 
-    const signalData = await signalRes.json();
+    const signalData = JSON.parse(signalText);
     console.log("signals.json payload:", signalData);
     console.log("generated_at_pt:", signalData.generated_at_pt);
     console.log("found .last-updated elements:", document.querySelectorAll(".last-updated").length);
