@@ -3,8 +3,13 @@
   const filterEl = document.getElementById("strategy-filter");
 
   const getCheck = (isPass) => isPass 
-    ? '<span style="color: #28a745; font-weight: bold;">✅</span>' 
-    : '<span style="color: #6c757d;">-</span>';
+  ? `<span class="check-circle">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" fill="#28a745"/>
+        <path d="M8 12L11 15L16 9" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+     </span>` 
+  : '<span style="color: #ccc;">-</span>';
 
   function fmt(n, d = 1) {
     return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
