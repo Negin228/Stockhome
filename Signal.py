@@ -283,14 +283,22 @@ def job(tickers):
        "ticker": symbol,
         "company": company_name,
 
-        "score": round(70, 1),  # or real score if you want
+        "score": (70, 1),  # or real score if you want
         "why": "Bullish mean-reversion setup",
 
-        "price": round(price, 2),
+        "price": (price, 2),
         "price_str": f"{price:.2f}",
+        rsi_val = scalar(row["rsi"])
+        dma50_val = scalar(row["dma50"])
+        dma200_val = scalar(row["dma200"])
 
-        "rsi": round(float(row["rsi"]), 1),
-        "rsi_str": f"{float(row['rsi']):.1f}",
+        "rsi": round(rsi_val, 1),
+        "rsi_str": f"{rsi_val:.1f}",
+
+        "dma50_str": f"{dma50_val:.1f}",
+        "dma200_str": f"{dma200_val:.1f}",
+
+        
 
         "pe": funds.get("trailing_pe"),
         "pe_str": f"{funds.get('trailing_pe'):.1f}" if funds.get("trailing_pe") else "N/A",
@@ -298,9 +306,6 @@ def job(tickers):
         "market_cap": funds["market_cap"],
         "market_cap_str": format_market_cap(funds["market_cap"]),
 
-
-        "dma50_str": f"{row['dma50']:.1f}",
-        "dma200_str": f"{row['dma200']:.1f}",
 
         "pct_drop": None,
         "strategy": spread["strategy"]})
