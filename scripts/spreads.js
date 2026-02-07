@@ -12,29 +12,26 @@
 
   try {
     // 1. FETCH TIMESTAMP & MASTER DATA from signals.json
-    const signalRes = await fetch("../data/signals.json", { cache: "no-store" });
+    // Adding a cache-buster (?v=) ensures you always see the freshest time from GitHub
+    const signalRes = await fetch("../data/signals.json?v=" + Date.now(), { cache: "no-store" });
     const signalData = await signalRes.json();
     
     if (signalData.generated_at_pt) {
       const timestamp = signalData.generated_at_pt + " PT";
       
-      // Update ALL elements with the class (better for multiple spots)
+      // Update ALL elements on the page with the class "last-updated-text"
       const dateElements = document.querySelectorAll(".last-updated-text");
       dateElements.forEach(el => {
         el.textContent = timestamp;
       });
-
-      // Also update by ID as a fallback for your Hero section
-      const dateEl = document.getElementById("last-updated");
-      if (dateEl) dateEl.textContent = timestamp;
     }
 
     // 2. FETCH SPREADS DATA
-    const res = await fetch("../data/spreads.json", { cache: "no-store" });
+    const res = await fetch("../data/spreads.json?v=" + Date.now(), { cache: "no-store" });
     let rawSpreads = await res.json();
     if (!Array.isArray(rawSpreads) && rawSpreads.data) rawSpreads = rawSpreads.data;
 
-    // Enrich spreads with masterInfo from signals.json
+    // Enrich spreads with fundamental info (Value, Growth, Health) from signals.json
     const signals = rawSpreads.map(spread => {
       const masterInfo = (signalData.all || []).find(s => s.ticker === spread.ticker);
       return { ...spread, ...masterInfo }; 
@@ -80,7 +77,7 @@
     }
     render("all"); 
 
-  } catch (e) { // This catch now correctly pairs with the try above
+  } catch (e) {
     console.error("Spread loading error:", e);
     if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Error loading data.</td></tr>`;
   }
