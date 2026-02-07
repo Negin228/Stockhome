@@ -814,4 +814,10 @@ def main():
     logger.info(f"Finished. Generated {len(all_spreads)} spread signals.")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+        # Explicitly exit to ensure GitHub Actions registers the step as complete
+        os._exit(0) 
+    except Exception as e:
+        logger.error(f"Critical workflow error: {e}")
+        os._exit(1)
