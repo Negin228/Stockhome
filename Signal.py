@@ -13,7 +13,7 @@ from logging.handlers import RotatingFileHandler
 from dateutil.parser import parse
 import argparse
 import re
-
+import math
 import config
 from news_fetcher import fetch_news_ticker
 
@@ -322,6 +322,151 @@ def get_spread_strategy(row):
         return {"strategy": "Call Debit Spread (Bullish)", "type": "bullish", "is_squeeze": is_squeeze}
 
     return None
+def norm_cdf(x: float) -> float:
+    return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
+
+def bs_put_delta(S: float, K: float, T: float, r: float, sigma: float) -> float:
+    """
+    Black-Scholes put delta (no dividends). Returns negative number (e.g., -0.25).
+    """
+    if S <= 0 or K <= 0 or T <= 0 or sigma <= 0:
+        return float("nan")
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * math.sqrt(T))
+    return norm_cdf(d1) - 1.0
+
+def pick_expiration(expirations, min_dte=7, max_dte=45):
+    """
+    Choose the nearest expiration within [min_dte, max_dte] days.
+    Falls back to the nearest future expiration if none in range.
+    """
+    if not expirations:
+        return None
+
+    today = dt_pacific.date()
+    parsed = []
+    for e in expirations:
+        try:
+            d = datetime.date.fromisoformat(e)
+            dte = (d - today).days
+            if dte > 0:
+                parsed.append((dte, e))
+        except Exception:
+            continue
+
+    if not parsed:
+        return None
+
+    # prefer within window
+    in_window = [x for x in parsed if min_dte <= x[0] <= max_dte]
+    if in_window:
+        return sorted(in_window, key=lambda x: x[0])[0][1]
+
+    # else nearest future
+    return sorted(parsed, key=lambda x: x[0])[0][1]
+
+def fetch_best_put_to_sell(symbol: str, spot: float,
+                           target_delta_abs=0.25,
+                           min_otm_pct=0.03,
+                           r=0.05):
+    """
+    Returns a dict with strike/expiration/premium/delta%/premium%/metric_sum.
+    Picks an OTM put below spot, near target delta, maximizing metric_sum.
+    """
+    try:
+        t = yf.Ticker(symbol)
+        exps = getattr(t, "options", None) or []
+        exp = pick_expiration(exps, min_dte=7, max_dte=45)
+        if not exp:
+            return None
+
+        chain = t.option_chain(exp)
+        puts = chain.puts.copy()
+        if puts.empty:
+            return None
+
+        # filter: OTM puts at least min_otm_pct below spot
+        max_strike = spot * (1.0 - min_otm_pct)
+        puts = puts[puts["strike"] <= max_strike].copy()
+        if puts.empty:
+            return None
+
+        # premium: use mid if possible, else lastPrice
+        bid = puts.get("bid")
+        ask = puts.get("ask")
+        if bid is not None and ask is not None:
+            puts["premium"] = (puts["bid"].fillna(0) + puts["ask"].fillna(0)) / 2.0
+            # if mid is 0 (missing bid/ask), fall back to lastPrice
+            puts.loc[puts["premium"] <= 0, "premium"] = puts.loc[puts["premium"] <= 0, "lastPrice"].fillna(0)
+        else:
+            puts["premium"] = puts["lastPrice"].fillna(0)
+
+        puts = puts[puts["premium"] > 0].copy()
+        if puts.empty:
+            return None
+
+        # IV
+        puts["iv"] = puts.get("impliedVolatility", np.nan).astype(float)
+
+        # time to expiry in years
+        exp_date = datetime.date.fromisoformat(exp)
+        dte = (exp_date - dt_pacific.date()).days
+        T = max(dte, 1) / 365.0
+
+        # approximate delta
+        deltas = []
+        for _, row in puts.iterrows():
+            K = float(row["strike"])
+            sigma = float(row["iv"]) if not pd.isna(row["iv"]) else float("nan")
+            d = bs_put_delta(spot, K, T, r, sigma) if not pd.isna(sigma) else float("nan")
+            deltas.append(d)
+        puts["delta"] = deltas
+
+        # delta_abs: if delta is nan, drop it
+        puts = puts.dropna(subset=["delta"]).copy()
+        if puts.empty:
+            return None
+
+        puts["delta_abs"] = puts["delta"].abs()
+
+        # metrics
+        puts["delta_percent"] = puts["delta_abs"] * 100.0
+        puts["premium_percent"] = (puts["premium"] / puts["strike"]) * 100.0
+
+        # score: closer to target delta + higher premium%
+        puts["delta_closeness"] = 1.0 - (puts["delta_abs"] - target_delta_abs).abs() / max(target_delta_abs, 1e-6)
+        puts["delta_closeness"] = puts["delta_closeness"].clip(lower=0)
+
+        puts["metric_sum"] = puts["premium_percent"] + puts["delta_percent"]
+
+        # pick best: prioritize delta closeness then metric_sum
+        puts = puts.sort_values(["delta_closeness", "metric_sum"], ascending=[False, False])
+
+        best = puts.iloc[0]
+        strike = float(best["strike"])
+        premium = float(best["premium"])
+        delta_percent = float(best["delta_percent"])
+        premium_percent = float(best["premium_percent"])
+        metric_sum = float(best["metric_sum"])
+
+        # crude weekly/monthly flags (you can refine later)
+        weekly_available = (dte <= 9)
+        monthly_available = True
+
+        return {
+            "strike": round(strike, 2),
+            "expiration": exp,
+            "premium": round(premium, 2),
+            "delta_percent": round(delta_percent, 1),
+            "premium_percent": round(premium_percent, 1),
+            "metric_sum": round(metric_sum, 1),
+            "weekly_available": weekly_available,
+            "monthly_available": monthly_available,
+        }
+
+    except Exception as e:
+        logger.warning(f"Options fetch failed for {symbol}: {e}")
+        return None
+
 
 # ---------------------------------------------------------
 # MAIN JOB LOOP (SEQUENTIAL)
@@ -348,6 +493,22 @@ def job(tickers):
 
         close_price = scalar(row["Close"])
         price = get_live_price(symbol, close_price)
+
+        put_pick = fetch_best_put_to_sell(symbol, float(price))
+        if put_pick is None:
+            put_pick = {
+                "strike": None,
+                "expiration": None,
+                "premium": None,
+                "delta_percent": None,
+                "premium_percent": None,
+                "metric_sum": None,
+                "weekly_available": True,
+                "monthly_available": True,
+            }
+
+
+        "put": put_pick,
 
         # --- FUNDAMENTALS ---
         funds = fetch_fundamentals_cached(symbol) or {}
