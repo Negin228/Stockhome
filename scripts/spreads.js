@@ -73,7 +73,7 @@
 
               <td>
                 $${fmt(s.price, 2)}
-                ${isMonthlyOnly ? '<sup title="Monthly options only" style="font-size:0.75em; color:#666; margin-left:2px;">m</sup>' : ''}
+                ${isMonthlyOnly ? '<sup title="Monthly options only" style="font-size:0.75em; color: red; margin-left:2px;">m</sup>' : ''}
               </td>
 
               <td style="text-align:center;">${getCheck(s.pe_check)}</td>
