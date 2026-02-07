@@ -114,7 +114,7 @@ function renderNews(summary, items) {
         if (buyList) {
             buyList.innerHTML = (data.buys && data.buys.length)
                 ? data.buys.map(renderBuyCard).join("")
-                : `<li class="signal-card">No buy signals.</li>`;
+                : `<li class="signal-card">No signals.</li>`;
         }
 
         // Populate Sell List
