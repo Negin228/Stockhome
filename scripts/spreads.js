@@ -19,8 +19,7 @@
     if (signalData.generated_at_pt) {
       const timestamp = signalData.generated_at_pt + " PT";
       
-      // Update ALL elements on the page with the class "last-updated-text"
-      const dateElements = document.querySelectorAll(".last-updated-text");
+      const dateElements = document.querySelectorAll(".last-updated");
       dateElements.forEach(el => {
         el.textContent = timestamp;
       });
