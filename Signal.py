@@ -63,6 +63,128 @@ if not logger.handlers:
 FINNHUB_KEY = os.getenv("API_KEY")
 finnhub_client = finnhub.Client(api_key=FINNHUB_KEY)
 
+def option_expiration_type(expiration_str: str) -> str:
+    try:
+        d = parse(expiration_str).date()
+        # If Saturday, treat as Friday
+        if d.weekday() == 5:
+            d = d - datetime.timedelta(days=1)
+        # Monthly: 3rd Friday (15-21)
+        if d.weekday() == 4 and 15 <= d.day <= 21:
+            return "MONTHLY"
+        return "WEEKLY"
+    except Exception:
+        return "UNKNOWN"
+
+def option_availability(expiration_list):
+    types = [option_expiration_type(e) for e in expiration_list]
+    return {
+        "weekly_available": any(t == "WEEKLY" for t in types),
+        "monthly_available": any(t == "MONTHLY" for t in types),
+    }
+
+def generate_signal(df):
+    if df.empty or "rsi" not in df.columns:
+        return None, ""
+    rsi = df["rsi"].iloc[-1]
+    if pd.isna(rsi):
+        return None, ""
+    if rsi < config.RSI_OVERSOLD:
+        return "BUY", f"RSI={rsi:.1f} < {config.RSI_OVERSOLD}"
+    if rsi > config.RSI_OVERBOUGHT:
+        return "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
+    return None, ""
+
+def fetch_puts(symbol):
+    puts_data = []
+    try:
+        ticker = yf.Ticker(symbol)
+        today = dt_pacific.replace(tzinfo=None)  # match old behavior
+        all_exps = getattr(ticker, "options", []) or []
+        valid_dates = []
+        for d in all_exps:
+            try:
+                if (parse(d) - today).days <= 49 and (parse(d) - today).days > 0:
+                    valid_dates.append(d)
+            except Exception:
+                continue
+
+        if not valid_dates:
+            return []
+
+        avail = option_availability(valid_dates)
+
+        for exp in valid_dates:
+            exp_type = option_expiration_type(exp)
+            dte = (parse(exp).date() - today.date()).days
+
+            chain = ticker.option_chain(exp)
+            if chain.puts.empty:
+                continue
+
+            # underlying close (same idea as old)
+            under_price = ticker.history(period="1d")["Close"].iloc[-1]
+            puts = chain.puts.copy()
+
+            # distance to spot (old logic)
+            puts["distance"] = (puts["strike"] - under_price).abs()
+
+            for _, put in puts.iterrows():
+                strike = put.get("strike")
+                bid = put.get("bid")
+                ask = put.get("ask")
+                last = put.get("lastPrice")
+
+                premium = None
+                try:
+                    if pd.notna(bid) and pd.notna(ask) and (bid + ask) > 0:
+                        premium = (bid + ask) / 2
+                    else:
+                        premium = last
+                except Exception:
+                    premium = last
+
+                puts_data.append({
+                    "expiration": exp,
+                    "strike": float(strike) if pd.notna(strike) else None,
+                    "exp_type": exp_type,
+                    "dte": dte,
+                    "premium": float(premium) if premium is not None and pd.notna(premium) else None,
+                    "weekly_available": avail["weekly_available"],
+                    "monthly_available": avail["monthly_available"],
+                    "stock_price": float(under_price) if pd.notna(under_price) else None
+                })
+    except Exception as e:
+        logger.warning(f"Failed to fetch puts for {symbol}: {e}")
+    return puts_data
+
+def calculate_custom_metrics(puts, price):
+    if not price or price <= 0:
+        return puts
+    for p in puts:
+        strike = p.get("strike")
+        premium = p.get("premium") or 0.0
+        try:
+            # exactly like old
+            p["custom_metric"] = ((price - strike) + premium / 100) / price * 100 if strike else None
+            p["delta_percent"] = ((price - strike) / price) * 100 if strike else None
+            p["premium_percent"] = premium / price * 100 if premium else None
+        except Exception:
+            p["custom_metric"] = None
+    return puts
+
+def default_put_obj():
+    return {
+        "strike": None,
+        "expiration": None,
+        "premium": None,
+        "delta_percent": None,
+        "premium_percent": None,
+        "metric_sum": None,
+        "weekly_available": True,
+        "monthly_available": True
+    }
+
 # ---------------------------------------------------------
 # UTILITIES
 # ---------------------------------------------------------
@@ -261,44 +383,44 @@ def format_market_cap(mcap):
 # INDICATORS
 # ---------------------------------------------------------
 def calculate_indicators(df):
-    # --- Normalize columns to 1D Series ---
     if isinstance(df.columns, pd.MultiIndex):
         close = df["Close"].iloc[:, 0]
         high = df["High"].iloc[:, 0]
-        low = df["Low"].iloc[:, 0]
+        low  = df["Low"].iloc[:, 0]
     else:
         close = df["Close"]
-        high = df["High"]
-        low = df["Low"]
+        high  = df["High"]
+        low   = df["Low"]
 
     close = close.astype(float)
-    high = high.astype(float)
-    low = low.astype(float)
+    high  = high.astype(float)
+    low   = low.astype(float)
 
     # RSI
     df["rsi"] = ta.momentum.RSIIndicator(close=close, window=14).rsi()
 
-    # Moving averages
+    # MAs
     df["dma200"] = close.rolling(200).mean()
-    df["dma50"] = close.rolling(50).mean()
+    df["dma50"]  = close.rolling(50).mean()
 
-    # MACD
-    macd = ta.trend.MACD(close=close)
+    # MACD (same)
+    macd = ta.trend.MACD(close=close, window_slow=26, window_fast=12, window_sign=9)
     df["macd"] = macd.macd()
     df["signal_line"] = macd.macd_signal()
     df["hist"] = macd.macd_diff()
 
-    # ADX
-    adx = ta.trend.ADXIndicator(high=high, low=low, close=close)
-    df["adx"] = adx.adx()
+    # ADX + DI (THIS is what you were missing vs old)
+    dmi = ta.trend.ADXIndicator(high=high, low=low, close=close, window=14)
+    df["adx"] = dmi.adx()
+    df["plus_di"] = dmi.adx_pos()
+    df["minus_di"] = dmi.adx_neg()
 
-    # Bollinger Bands
-    bb = ta.volatility.BollingerBands(close=close)
+    # Spread indicators (BB + KC)
+    bb = ta.volatility.BollingerBands(close=close, window=20, window_dev=2)
     df["bb_low"] = bb.bollinger_lband()
     df["bb_high"] = bb.bollinger_hband()
 
-    # Keltner Channels
-    kc = ta.volatility.KeltnerChannel(high=high, low=low, close=close)
+    kc = ta.volatility.KeltnerChannel(high=high, low=low, close=close, window=20)
     df["kc_low"] = kc.keltner_channel_lband()
     df["kc_high"] = kc.keltner_channel_hband()
 
@@ -309,19 +431,29 @@ def calculate_indicators(df):
 # SPREAD STRATEGY DETECTION
 # ---------------------------------------------------------
 def get_spread_strategy(row):
-    p = scalar(row["Close"])
-    r = scalar(row["rsi"])
-    a = scalar(row["adx"])
+    p  = scalar(row["Close"])
+    r  = scalar(row["rsi"])
+    a  = scalar(row["adx"])
+    bl = scalar(row["bb_low"])
+    bu = scalar(row["bb_high"])
+    kl = scalar(row["kc_low"])
+    ku = scalar(row["kc_high"])
 
-    bl, bu = scalar(row["bb_low"]), scalar(row["bb_high"])
-    kl, ku = scalar(row["kc_low"]), scalar(row["kc_high"])
+    # squeeze: BB inside KC
+    is_sqz = not (bl < kl or bu > ku)
 
-    is_squeeze = not (bl < kl or bu > ku)
-
+    # bullish mean reversion
     if p <= bl and r < 40 and a < 35:
-        return {"strategy": "Call Debit Spread (Bullish)", "type": "bullish", "is_squeeze": is_squeeze}
+        strat = "Bull Call (Debit)" if r < 30 else "Bull Put (Credit)"
+        return {"strategy": strat, "type": "bullish", "is_squeeze": is_sqz}
+
+    # bearish mean reversion
+    if p >= bu and r > 60 and a < 35:
+        strat = "Bear Put (Debit)" if r > 70 else "Bear Call (Credit)"
+        return {"strategy": strat, "type": "bearish", "is_squeeze": is_sqz}
 
     return None
+
 def norm_cdf(x: float) -> float:
     return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
 
@@ -472,18 +604,19 @@ def fetch_best_put_to_sell(symbol: str, spot: float,
 # MAIN JOB LOOP (SEQUENTIAL)
 # ---------------------------------------------------------
 def job(tickers):
-    stock_data = []
-    spreads = []
+    all_rows = []
+    buy_rows = []
+    spreads_rows = []
 
     for symbol in tickers:
-        logger.info(f"Processing {symbol}")
-
         df = fetch_cached_history(symbol)
         if df.empty or len(df) < 200:
             continue
 
         df = calculate_indicators(df)
         row = df.iloc[-1]
+
+        sig, sig_reason = generate_signal(df)
 
         spread = get_spread_strategy(row)
         strategy = spread["strategy"] if spread else None
@@ -494,129 +627,124 @@ def job(tickers):
         close_price = scalar(row["Close"])
         price = get_live_price(symbol, close_price)
 
-        put_pick = fetch_best_put_to_sell(symbol, float(price))
-        if put_pick is None:
-            put_pick = {
-                "strike": None,
-                "expiration": None,
-                "premium": None,
-                "delta_percent": None,
-                "premium_percent": None,
-                "metric_sum": None,
-                "weekly_available": True,
-                "monthly_available": True,
-            }
+        # trend label (DI-based)
+        plus_di  = scalar(df["plus_di"].iloc[-1])
+        minus_di = scalar(df["minus_di"].iloc[-1])
+        adx_val  = scalar(df["adx"].iloc[-1])
 
+        trend_direction = "Bullish" if plus_di > minus_di else "Bearish"
+        trend_strength  = "Strong" if adx_val > 25 else "Weak/Sideways"
+        trend_rationale = f"{trend_strength} {trend_direction} Trend (ADX: {adx_val:.1f})"
+        trend_dir_val   = trend_direction.lower()
 
-        # --- FUNDAMENTALS ---
-        funds = fetch_fundamentals_cached(symbol) or {}
-        trailing_pe = funds.get("trailing_pe")
-        forward_pe = funds.get("forward_pe")
-        earnings_growth = funds.get("earnings_growth")
-        debt_to_equity = funds.get("debt_to_equity")
-        market_cap = funds.get("market_cap")
-
-        pe_pass = bool(trailing_pe and forward_pe and trailing_pe > forward_pe)
-        growth_pass = bool((earnings_growth or 0) > 0)
-        debt_pass = bool((debt_to_equity or 999) < 100)
-
-        # --- INDICATOR SCALARS ---
+        # scoring stays same as you already have
         rsi_val = scalar(row["rsi"])
         dma50_val = scalar(row["dma50"])
         dma200_val = scalar(row["dma200"])
-
         macd_val = scalar(row["macd"])
-        sig_val = scalar(row["signal_line"])  # requires calculate_indicators to write signal_line
+        sig_val = scalar(row["signal_line"])
         sma_slope = slope(df["dma200"], lookback=10)
 
-        # --- SCORE (same logic as earlier code) ---
         s_trend, r_trend = score_trend(close_price, dma50_val, dma200_val, sma_slope)
         s_rsi, r_rsi = score_rsi(rsi_val)
         s_macd, r_macd = score_macd(macd_val, sig_val, df["hist"])
         s_dist, r_dist = score_distance(close_price, dma200_val)
 
-        final_score = (W_TREND * s_trend) + (W_RSI * s_rsi) + (W_MACD * s_macd) + (W_DISTANCE * s_dist)
-        final_score = clamp(final_score, 0, 100)
-        if pd.isna(final_score):
-            final_score = 0.0
-
-
+        final_score = clamp((W_TREND*s_trend) + (W_RSI*s_rsi) + (W_MACD*s_macd) + (W_DISTANCE*s_dist), 0, 100)
         reasons = r_trend[:1] + r_rsi[:1] + r_macd[:1] + r_dist[:1]
         why_str = " • ".join(reasons) if reasons else "N/A"
 
-        # --- PCT DROP (same idea as earlier code) ---
-        prev_close = scalar(df.iloc[-2]["Close"]) if len(df) > 1 else None
-        pct_drop = None
-        if prev_close and price:
-            pct_drop = (-(price - prev_close) / prev_close * 100)
+        # fundamentals
+        funds = fetch_fundamentals_cached(symbol) or {}
+        trailing_pe = funds.get("trailing_pe")
+        forward_pe  = funds.get("forward_pe")
+        earnings_growth = funds.get("earnings_growth")
+        debt_to_equity  = funds.get("debt_to_equity")
+        market_cap      = funds.get("market_cap")
 
-        if pct_drop is not None and (pd.isna(pct_drop) or np.isinf(pct_drop)):
-            pct_drop = None
+        pe_pass = bool(trailing_pe and forward_pe and trailing_pe > forward_pe)
+        growth_pass = bool((earnings_growth or 0) > 0)
+        debt_pass = bool((debt_to_equity or 999) < 100)
 
-
-        # IMPORTANT for filters.html:
-        # score and price must be numeric (NOT tuples), and pe/market_cap should be numeric-safe for JS comparisons
-        stock_data.append({
+        base_obj = {
             "ticker": symbol,
             "company": company_name,
-
-
+            "signal": sig,  # IMPORTANT: restore
             "score": float(final_score),
             "why": why_str,
-
             "price": round(float(price), 2),
             "price_str": f"{price:.2f}",
-
             "rsi": round(float(rsi_val), 1),
             "rsi_str": f"{rsi_val:.1f}",
-
-            # UI currently uses *_str for DMA values
+            "dma50": float(dma50_val),
+            "dma200": float(dma200_val),
             "dma50_str": f"{dma50_val:.1f}",
             "dma200_str": f"{dma200_val:.1f}",
-            "dma50": float(dma50_val) if dma50_val is not None else None,
-            "dma200": float(dma200_val) if dma200_val is not None else None,
-
-            "trend_dir": "bullish" if macd_val > sig_val else "bearish",
-            "trend_rationale": f"{'Strong' if scalar(row['adx']) > 25 else 'Weak/Sideways'} "
-                               f"{'Bullish' if macd_val > sig_val else 'Bearish'} Trend (ADX: {scalar(row['adx']):.1f})",
-            "put": put_pick,
-
-
-            # JS filter uses pe <= peLimit, so avoid null by defaulting high when missing
-            "pe": float(trailing_pe) if trailing_pe is not None else 9999,
+            "trend_dir": trend_dir_val,
+            "trend_rationale": trend_rationale,
+            "pe": float(trailing_pe) if trailing_pe is not None else None,
             "pe_str": f"{trailing_pe:.1f}" if trailing_pe is not None else "N/A",
-
-            # JS filter uses market_cap >= cap, so avoid null by defaulting 0 when missing
-            "market_cap": float(market_cap) if market_cap is not None else 0,
+            "market_cap": float(market_cap) if market_cap is not None else None,
             "market_cap_str": format_market_cap(market_cap),
-
-            "pct_drop": float(pct_drop) if pct_drop is not None else None,
-
-            "strategy": strategy, 
-
-            # replicate earlier extra fields
+            "strategy": strategy,
             "pe_check": bool(pe_pass),
             "growth_check": bool(growth_pass),
             "debt_check": bool(debt_pass),
-
             "trailing_pe": trailing_pe,
             "forward_pe": forward_pe,
             "earnings_growth": earnings_growth,
             "earnings_growth_str": f"{(earnings_growth or 0) * 100:.1f}%",
             "debt_to_equity": debt_to_equity,
             "debt_to_equity_str": str(debt_to_equity) if debt_to_equity is not None else "N/A",
-        })
+        }
 
+        all_rows.append(base_obj)
+
+        # ONLY BUY rows get options (old behavior)
+        if sig == "BUY":
+            puts_list = fetch_puts(symbol)
+            puts_list = calculate_custom_metrics(puts_list, float(price))
+
+            filtered = [
+                p for p in puts_list
+                if p.get("strike") and price and p["strike"] < price and (p.get("custom_metric") or 0) >= 10
+            ]
+
+            if filtered:
+                best_put = max(filtered, key=lambda x: (x.get("premium_percent") or 0, x.get("premium") or 0))
+                expiration_fmt = datetime.datetime.strptime(best_put["expiration"], "%Y-%m-%d").strftime("%b %d, %Y")
+
+                put_obj = {
+                    "strike": float(best_put["strike"]),
+                    "expiration": expiration_fmt,
+                    "exp_type": best_put.get("exp_type", "UNKNOWN"),
+                    "weekly_available": bool(best_put.get("weekly_available")),
+                    "monthly_available": bool(best_put.get("monthly_available")),
+                    "premium": float(best_put["premium"]),
+                    "delta_percent": float(best_put["delta_percent"]),
+                    "premium_percent": float(best_put["premium_percent"]),
+                    "metric_sum": float(best_put["delta_percent"] or 0) + float(best_put["premium_percent"] or 0),
+                }
+            else:
+                put_obj = default_put_obj()
+
+            buy_obj = dict(base_obj)
+            buy_obj["put"] = put_obj
+            buy_rows.append(buy_obj)
+
+        # spreads.json should exclude squeeze (you wanted this only for spreads.html)
         if spread and not is_squeeze:
-            spreads.append({
+            spreads_rows.append({
                 "ticker": symbol,
                 "company": company_name,
                 "strategy": spread["strategy"],
+                "type": spread["type"],
+                "is_squeeze": is_squeeze,
                 "price": round(float(price), 2),
                 "mcap": market_cap,
             })
 
-    return stock_data, spreads
+    return buy_rows, all_rows, spreads_rows
 
 
 # ---------------------------------------------------------
@@ -631,13 +759,17 @@ def main():
 
     logger.info(f"Starting run for {len(tickers)} tickers")
 
-    stock_data, spreads = job(tickers)
+    buy_rows, all_rows, spreads_rows = job(tickers)
 
     payload = {
         "generated_at_pt": dt_pacific.strftime("%m-%d-%Y %H:%M"),
-        "buys": stock_data,
-        "all": stock_data,
+        "buys": buy_rows,          # ✅ only RSI < oversold
+        "sells": [],               # optional: keep for app.js safety
+        "all": all_rows,
     }
+
+# write signals.json + spreads.json like before
+
 
     for path in ["data/signals.json", "artifacts/data/signals.json"]:
         with open(path, "w") as f:
