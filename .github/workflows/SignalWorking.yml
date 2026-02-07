@@ -1,0 +1,87 @@
+name: Website update and ALPACA Trading (Old with News)
+
+on:
+  schedule:
+    - cron: '30 * * * *' # Runs at XX:30 every hour
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  run-signal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch==2.5.1 --extra-index-url https://download.pytorch.org/whl/cpu
+          pip install transformers==4.47.1 yfinance finnhub-python pandas ta numpy textblob newspaper3k lxml_html_clean huggingface_hub alpaca-py pytz requests
+
+      - name: Prepare directories
+        run: mkdir -p artifacts/pages artifacts/data data
+
+      - name: Run Signal script
+        run: python Signal.py
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+      - name: Run Nishant Mean Trading Logic
+        continue-on-error: true 
+        run: python NishantMean.py
+        env:
+          # Note: Ensure these secret names match your GitHub Secrets exactly
+          ALPACA_NISHANTMEAN_KEY: ${{ secrets.ALPACA_NISHANTMEAN_KEY }}
+          ALPACA_NISHANTMEAN_SECRET: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
+          # The Python script uses these variable names internally
+
+      - name: Commit and Sync Data
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          
+          # 1. Add files individually or with wildcards safely
+          # Using "|| true" ensures the script continues even if a file is missing
+          git add data/*.json || true
+          
+          # 2. Check if anything was actually staged before committing
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Update signals and logs: $(date)"
+            git pull --rebase --autostash origin main
+            git push
+          else
+            echo "No changes detected, skipping commit."
+          fi
+
+      - name: Prepare GitHub Pages Artifacts
+        run: |
+          cp -r index.html scripts styles assets artifacts/
+          cp pages/*.html artifacts/pages/ || echo "some pages missing"
+          find artifacts/ -type l -exec rm -v {} +
+
+      - name: Upload github-pages artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: artifacts/
+
+  deploy:
+    needs: run-signal
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
