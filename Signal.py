@@ -341,8 +341,8 @@ def job(tickers):
         row = df.iloc[-1]
 
         spread = get_spread_strategy(row)
-        if not spread or spread["is_squeeze"]:
-            continue
+        strategy = spread["strategy"] if spread else None
+        is_squeeze = spread["is_squeeze"] if spread else False
 
         company_name = fetch_company_name_cached(symbol)
 
@@ -441,7 +441,7 @@ def job(tickers):
 
             "pct_drop": float(pct_drop) if pct_drop is not None else None,
 
-            "strategy": spread["strategy"],
+            "strategy": strategy, 
 
             # replicate earlier extra fields
             "pe_check": bool(pe_pass),
@@ -456,13 +456,14 @@ def job(tickers):
             "debt_to_equity_str": str(debt_to_equity) if debt_to_equity is not None else "N/A",
         })
 
-        spreads.append({
-            "ticker": symbol,
-            "company": company_name,
-            "strategy": spread["strategy"],
-            "price": round(float(price), 2),
-            "mcap": market_cap,
-        })
+        if spread and not is_squeeze:
+            spreads.append({
+                "ticker": symbol,
+                "company": company_name,
+                "strategy": spread["strategy"],
+                "price": round(float(price), 2),
+                "mcap": market_cap,
+            })
 
     return stock_data, spreads
 
