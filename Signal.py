@@ -621,7 +621,7 @@ def job(tickers):
             # 3. Debt-to-Equity (Using your < 1% or 100 threshold)
             # Note: info.get("debtToEquity") returns values like 50.0 for 50%. 
             # For < 1%, the value would be < 1.0.
-            debt_pass = (funds['debt_to_equity'] or 999) < 1.0
+            debt_pass = (funds['debt_to_equity'] or 999) < 100
     
 
         # 5. Build Stock Object
