@@ -128,6 +128,79 @@ def fetch_company_name_cached(symbol):
     except Exception:
         return ""
 
+def pct(a, b):
+    if b == 0 or pd.isna(b) or pd.isna(a):
+        return np.nan
+    return (a - b) / b
+
+def slope(series, lookback=10):
+    s = series.dropna()
+    if len(s) < lookback:
+        return 0.0
+    y = s.iloc[-lookback:].values
+    x = np.arange(lookback)
+    m = np.polyfit(x, y, 1)[0]
+    return m
+
+def score_trend(last_close, sma_fast_v, sma_slow_v, sma_slow_slope):
+    reasons = []
+    score = 0.0
+    if last_close > sma_slow_v:
+        score += 0.55; reasons.append("Above slow SMA")
+    else:
+        reasons.append("Below slow SMA")
+    if last_close > sma_fast_v:
+        score += 0.25; reasons.append("Above fast SMA")
+    if sma_slow_slope > 0:
+        score += 0.20; reasons.append("Uptrending")
+    return clamp(score, 0, 1), reasons
+
+def score_rsi(last_rsi):
+    reasons = []
+    score = 0.0
+    if last_rsi >= 50:
+        score += 0.60
+    else:
+        score += 0.35
+
+    if last_rsi >= config.RSI_OVERBOUGHT:
+        score -= 0.15; reasons.append("Overbought")
+    elif last_rsi <= config.RSI_OVERSOLD:
+        score += 0.15; reasons.append("Oversold")
+    else:
+        reasons.append(f"RSI {last_rsi:.0f}")
+    return clamp(score, 0, 1), reasons
+
+def score_macd(macd_val, signal_val, hist_series):
+    reasons = []
+    score = 0.0
+    if macd_val > signal_val:
+        score += 0.60; reasons.append("Bullish MACD")
+    else:
+        score += 0.35; reasons.append("Bearish MACD")
+
+    h = hist_series.dropna()
+    if len(h) >= 3:
+        h0, h1, h2 = h.iloc[-1], h.iloc[-2], h.iloc[-3]
+        if h0 > h1 > h2:
+            score += 0.15; reasons.append("Mom. Rising")
+        elif h0 < h1 < h2:
+            score -= 0.10; reasons.append("Mom. Falling")
+    return clamp(score, 0, 1), reasons
+
+def score_distance(last_close, sma_slow_v):
+    reasons = []
+    d = pct(last_close, sma_slow_v)
+    if pd.isna(d):
+        return 0.5, []
+
+    if -0.03 <= d <= 0.05:
+        score = 0.85; reasons.append("Near Support")
+    elif d > 0.05:
+        score = 0.60; reasons.append(f"Extended (+{d*100:.0f}%)")
+    else:
+        score = 0.45
+    return score, reasons
 
 def fetch_fundamentals_cached(symbol):
     path = os.path.join(FUND_DIR, f"{symbol}.json")
@@ -209,7 +282,7 @@ def calculate_indicators(df):
     # MACD
     macd = ta.trend.MACD(close=close)
     df["macd"] = macd.macd()
-    df["signal"] = macd.macd_signal()
+    df["signal_line"] = macd.macd_signal()
     df["hist"] = macd.macd_diff()
 
     # ADX
@@ -273,54 +346,99 @@ def job(tickers):
         close_price = scalar(row["Close"])
         price = get_live_price(symbol, close_price)
 
-        funds = fetch_fundamentals_cached(symbol)
+        # --- FUNDAMENTALS ---
+        funds = fetch_fundamentals_cached(symbol) or {}
+        trailing_pe = funds.get("trailing_pe")
+        forward_pe = funds.get("forward_pe")
+        earnings_growth = funds.get("earnings_growth")
+        debt_to_equity = funds.get("debt_to_equity")
+        market_cap = funds.get("market_cap")
+
+        pe_pass = bool(trailing_pe and forward_pe and trailing_pe > forward_pe)
+        growth_pass = bool((earnings_growth or 0) > 0)
+        debt_pass = bool((debt_to_equity or 999) < 100)
+
+        # --- INDICATOR SCALARS ---
         rsi_val = scalar(row["rsi"])
         dma50_val = scalar(row["dma50"])
         dma200_val = scalar(row["dma200"])
 
-        pe_pass = funds.get("trailing_pe") and funds.get("forward_pe") and funds["trailing_pe"] > funds["forward_pe"]
-        growth_pass = (funds.get("earnings_growth") or 0) > 0
-        debt_pass = (funds.get("debt_to_equity") or 999) < 100
+        macd_val = scalar(row["macd"])
+        sig_val = scalar(row["signal_line"])  # requires calculate_indicators to write signal_line
+        sma_slope = slope(df["dma200"], lookback=10)
 
+        # --- SCORE (same logic as earlier code) ---
+        s_trend, r_trend = score_trend(close_price, dma50_val, dma200_val, sma_slope)
+        s_rsi, r_rsi = score_rsi(rsi_val)
+        s_macd, r_macd = score_macd(macd_val, sig_val, df["hist"])
+        s_dist, r_dist = score_distance(close_price, dma200_val)
+
+        final_score = (W_TREND * s_trend) + (W_RSI * s_rsi) + (W_MACD * s_macd) + (W_DISTANCE * s_dist)
+        final_score = clamp(final_score, 0, 100)
+
+        reasons = r_trend[:1] + r_rsi[:1] + r_macd[:1] + r_dist[:1]
+        why_str = " • ".join(reasons) if reasons else "N/A"
+
+        # --- PCT DROP (same idea as earlier code) ---
+        prev_close = scalar(df.iloc[-2]["Close"]) if len(df) > 1 else None
+        pct_drop = None
+        if prev_close and price:
+            pct_drop = (-(price - prev_close) / prev_close * 100)
+
+        # IMPORTANT for filters.html:
+        # score and price must be numeric (NOT tuples), and pe/market_cap should be numeric-safe for JS comparisons
         stock_data.append({
-       "ticker": symbol,
-        "company": company_name,
+            "ticker": symbol,
+            "company": company_name,
 
-        "score": (70, 1),  # or real score if you want
-        "why": "Bullish mean-reversion setup",
+            "score": float(final_score),
+            "why": why_str,
 
-        "price": (price, 2),
-        "price_str": f"{price:.2f}",
+            "price": round(float(price), 2),
+            "price_str": f"{price:.2f}",
 
+            "rsi": round(float(rsi_val), 1),
+            "rsi_str": f"{rsi_val:.1f}",
 
-        "rsi": round(rsi_val, 1),
-        "rsi_str": f"{rsi_val:.1f}",
+            # UI currently uses *_str for DMA values
+            "dma50_str": f"{dma50_val:.1f}",
+            "dma200_str": f"{dma200_val:.1f}",
 
-        "dma50_str": f"{dma50_val:.1f}",
-        "dma200_str": f"{dma200_val:.1f}",
+            # JS filter uses pe <= peLimit, so avoid null by defaulting high when missing
+            "pe": float(trailing_pe) if trailing_pe is not None else 9999,
+            "pe_str": f"{trailing_pe:.1f}" if trailing_pe is not None else "N/A",
 
-        
+            # JS filter uses market_cap >= cap, so avoid null by defaulting 0 when missing
+            "market_cap": float(market_cap) if market_cap is not None else 0,
+            "market_cap_str": format_market_cap(market_cap),
 
-        "pe": funds.get("trailing_pe"),
-        "pe_str": f"{funds.get('trailing_pe'):.1f}" if funds.get("trailing_pe") else "N/A",
+            "pct_drop": float(pct_drop) if pct_drop is not None else None,
 
-        "market_cap": funds["market_cap"],
-        "market_cap_str": format_market_cap(funds["market_cap"]),
+            "strategy": spread["strategy"],
 
+            # replicate earlier extra fields
+            "pe_check": bool(pe_pass),
+            "growth_check": bool(growth_pass),
+            "debt_check": bool(debt_pass),
 
-        "pct_drop": None,
-        "strategy": spread["strategy"]})
-
+            "trailing_pe": trailing_pe,
+            "forward_pe": forward_pe,
+            "earnings_growth": earnings_growth,
+            "earnings_growth_str": f"{(earnings_growth or 0) * 100:.1f}%",
+            "debt_to_equity": debt_to_equity,
+            "debt_to_equity_str": str(debt_to_equity) if debt_to_equity is not None else "N/A",
+        })
 
         spreads.append({
             "ticker": symbol,
             "company": company_name,
             "strategy": spread["strategy"],
-            "price": round(price, 2),
-            "mcap": funds.get("market_cap"),
+            "price": round(float(price), 2),
+            "mcap": market_cap,
         })
 
     return stock_data, spreads
+
 
 # ---------------------------------------------------------
 # ENTRY POINT
