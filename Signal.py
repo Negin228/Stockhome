@@ -593,6 +593,7 @@ def job(tickers):
                 
                 spread_results.append({
                     'ticker': symbol, 
+                    'company': company_name,
                     'mcap': round((mcap / 1e9), 2) if mcap else 0,
                     'strategy': spread_data['strategy'], 
                     'price': round(float(rt_price), 2),
