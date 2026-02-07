@@ -16,7 +16,6 @@ import config
 from news_fetcher import fetch_news_ticker
 import re
 import pytz
-from concurrent.futures import ProcessPoolExecutor
 
 # ---------------------------------------------------------
 # SCORING CONFIGURATION
@@ -736,50 +735,49 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tickers", type=str, default=None, help="Comma-separated tickers")
     args = parser.parse_args()
-    
-    # Define tickers to process
-    selected_tickers = [t.strip() for t in args.tickers.split(",")] if args.tickers else config.tickers
-    
-    # Load previous tickers for "Newness" check
+    selected = [t.strip() for t in args.tickers.split(",")] if args.tickers else tickers
+    retry_counts = defaultdict(int)
+    to_process = selected[:]
+
     prev_tickers = set()
     spreads_path = "data/spreads.json"
     if os.path.exists(spreads_path):
         try:
             with open(spreads_path, "r", encoding="utf-8") as f:
                 old_data = json.load(f)
-                if isinstance(old_data, dict): old_data = old_data.get("data", [])
+                # Handle cases where data might be a list or a dict with a "data" key
+                if isinstance(old_data, dict):
+                    old_data = old_data.get("data", [])
                 if isinstance(old_data, list):
                     prev_tickers = {item.get('ticker') for item in old_data if item.get('ticker')}
+            logger.info(f"Loaded {len(prev_tickers)} previous tickers for 'Newness' check.")
         except Exception as e:
-            logger.warning(f"Could not load previous spreads: {e}")
-
-    # --- MULTIPROCESSING CORE ---
-    num_workers = 4  # Set based on your environment
-    chunk_size = max(1, len(selected_tickers) // num_workers)
-    chunks = [selected_tickers[i:i + chunk_size] for i in range(0, len(selected_tickers), chunk_size)]
-
+            logger.warning(f"Could not load previous spreads for comparison: {e}")
+            
+    
     all_buy_symbols = []
     all_buy_alerts_web = []
     all_sell_alerts = []
     all_stock_data = []
     all_spreads = []
 
-    logger.info(f"Starting parallel processing with {num_workers} workers...")
-    
-    with ProcessPoolExecutor(max_workers=num_workers) as executor:
-        # map() returns the results in the order the chunks were submitted
-        results = list(executor.map(job, chunks))
-
-    # Combine results from all parallel workers
-    for buys, buy_alerts, sells, fails, stock_data, spread_results in results:
-        all_buy_symbols.extend(buys)
-        all_buy_alerts_web.extend(buy_alerts)
+    while to_process and any(retry_counts[t] < MAX_TICKER_RETRIES for t in to_process):
+        logger.info(f"Processing {len(to_process)} tickers...")
+        buys, buy_alerts_web, sells, fails, stock_data_list, spread_results = job(to_process)
+        
+        all_buy_alerts_web.extend(buy_alerts_web)
         all_sell_alerts.extend(sells)
-        all_stock_data.extend(stock_data)
+        all_buy_symbols.extend(buys)
+        all_stock_data.extend(stock_data_list)
         all_spreads.extend(spread_results)
+        
+        for f in fails: retry_counts[f] += 1
+        to_process = [f for f in fails if retry_counts[f] < MAX_TICKER_RETRIES]
+        if to_process:
+            logger.info(f"Rate limited. Waiting {TICKER_RETRY_WAIT} seconds...")
+            time.sleep(TICKER_RETRY_WAIT)
 
-    # --- POST-PROCESSING ---
-    # Dedup logic for alerts
+    # Dedup logic
     all_buy_alerts_web = list(set(all_buy_alerts_web))
     all_sell_alerts = list(set(all_sell_alerts))
     unique_stock_data = list({s['ticker']: s for s in all_stock_data}.values())
@@ -790,36 +788,36 @@ def main():
         "sells": [s for s in unique_stock_data if s.get('signal') == 'SELL'],
         "all": unique_stock_data
     }
-
-    # Map put info for spreads
     put_map = {s["ticker"]: s.get("put", {}) for s in unique_stock_data}
+
     for sp in all_spreads:
-        p = put_map.get(sp["ticker"], {})
+        p = put_map.get(sp["ticker"], {}) or {}
         sp["weekly_available"] = p.get("weekly_available", None)
         sp["monthly_available"] = p.get("monthly_available", None)
         sp["exp_type"] = p.get("exp_type", None)
         sp["is_new"] = sp["ticker"] not in prev_tickers
-
-    # Save outputs
-    for path in ["data/signals.json", "artifacts/data/signals.json"]:
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(payload, f, ensure_ascii=False, indent=2)
+    
+    # Save to both locations to be safe
+    with open("artifacts/data/signals.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+    
+    # Also save to data/signals.json where your frontend likely looks
+    with open("data/signals.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
 
     all_spreads.sort(key=lambda x: (not x.get('is_new', False), -1 * (x.get('mcap') or 0)))
+    logger.info(f"DEBUG: Generated {len(all_spreads)} total spread signals for JSON.")
+    for spread in all_spreads[:3]: # Log the first 3 for confirmation
+        logger.info(f"DEBUG: Sample Signal -> {spread['ticker']}: {spread['strategy']}")
     
-    for path in ["data/spreads.json", "artifacts/data/spreads.json"]:
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(all_spreads, f, ensure_ascii=False, indent=2)
+    with open("artifacts/data/spreads.json", "w", encoding="utf-8") as f:
+        json.dump(all_spreads, f, ensure_ascii=False, indent=2)
 
-    logger.info(f"Finished. Generated {len(all_spreads)} spread signals.")
+    with open("data/spreads.json", "w", encoding="utf-8") as f:
+        json.dump(all_spreads, f, ensure_ascii=False, indent=2)
+
+    logger.info(f"Successfully updated spreads.json in data/ and artifacts/ with {len(all_spreads)} signals.")
+    logger.info("Written signals.json to data/ and artifacts/data/")
 
 if __name__ == "__main__":
-    # Crucial for Windows and some CI environments to prevent infinite loops
-    try:
-        main()
-        logger.info("Main logic completed successfully. Forcing exit.")
-        # os._exit(0) is a "hard" exit that tells GitHub Actions the process is definitely done
-        os._exit(0) 
-    except Exception as e:
-        logger.error(f"Critical workflow error: {e}")
-        os._exit(1)
+    main()
