@@ -604,9 +604,6 @@ def job(tickers):
                     'type': spread_data['type'], 
                     'is_squeeze': spread_data['is_squeeze'],
                     'reasoning': full_reasoning,
-                    'weekly_available': bool(stock_row.get('put', {}).get('weekly_available')) if stock_row else None,
-                    'monthly_available': bool(stock_row.get('put', {}).get('monthly_available')) if stock_row else None,
-                    'exp_type': stock_row.get('put', {}).get('exp_type') if stock_row else None,
 
                 })
             
@@ -618,8 +615,12 @@ def job(tickers):
             logger.error(f"Spread calculation error for {symbol}: {e}")
 
         pe_pass = False
-        if funds['trailing_pe'] and funds['forward_pe']:
-            pe_pass = funds['trailing_pe'] > funds['forward_pe'] # Price is becoming more attractive
+        growth_pass = False
+        debt_pass = False
+        if funds.get('trailing_pe') and funds.get('forward_pe'):
+            pe_pass = funds['trailing_pe'] > funds['forward_pe']
+            growth_pass = (funds.get('earnings_growth') or 0) > 0
+            debt_pass = (funds.get('debt_to_equity') or 999) < 100
 
             # 2. Earnings Growth (Checking for positive YoY growth)
             growth_pass = (funds['earnings_growth'] or 0) > 0
@@ -770,6 +771,13 @@ def main():
         "sells": [s for s in unique_stock_data if s.get('signal') == 'SELL'],
         "all": unique_stock_data
     }
+    put_map = {s["ticker"]: s.get("put", {}) for s in unique_stock_data}
+
+    for sp in all_spreads:
+        p = put_map.get(sp["ticker"], {}) or {}
+        sp["weekly_available"] = p.get("weekly_available", None)
+        sp["monthly_available"] = p.get("monthly_available", None)
+        sp["exp_type"] = p.get("exp_type", None)
     
     # Save to both locations to be safe
     with open("artifacts/data/signals.json", "w", encoding="utf-8") as f:
