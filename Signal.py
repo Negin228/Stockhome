@@ -274,6 +274,9 @@ def job(tickers):
         price = get_live_price(symbol, close_price)
 
         funds = fetch_fundamentals_cached(symbol)
+        rsi_val = scalar(row["rsi"])
+        dma50_val = scalar(row["dma50"])
+        dma200_val = scalar(row["dma200"])
 
         pe_pass = funds.get("trailing_pe") and funds.get("forward_pe") and funds["trailing_pe"] > funds["forward_pe"]
         growth_pass = (funds.get("earnings_growth") or 0) > 0
@@ -288,9 +291,7 @@ def job(tickers):
 
         "price": (price, 2),
         "price_str": f"{price:.2f}",
-        rsi_val = scalar(row["rsi"])
-        dma50_val = scalar(row["dma50"])
-        dma200_val = scalar(row["dma200"])
+
 
         "rsi": round(rsi_val, 1),
         "rsi_str": f"{rsi_val:.1f}",
