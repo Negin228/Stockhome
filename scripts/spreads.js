@@ -72,7 +72,7 @@
               </td>
 
               <td>
-                $${fmt(s.price, 2)}
+                $${fmt(s.price, 1)}
                 ${isMonthlyOnly ? '<sup title="Monthly options only" style="font-size:0.75em; color: red; margin-left:2px;">m</sup>' : ''}
               </td>
 
