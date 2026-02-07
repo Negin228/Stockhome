@@ -62,6 +62,9 @@
           return `
             <tr>
               <td><strong>${s.ticker}</strong></td>
+                <div style="font-size:0.85em; color:#666; margin-top:2px;">
+                  ${(s.company || "").trim() || "—"}
+                </div>
               <td>$${fmt(s.price, 2)}</td>
               <td style="text-align:center;">${getCheck(s.pe_check)}</td>      
               <td style="text-align:center;">${getCheck(s.growth_check)}</td>  
