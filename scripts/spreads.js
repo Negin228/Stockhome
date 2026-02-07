@@ -59,23 +59,36 @@
           const isBullish = strategyText.includes("bullish") || strategyText.includes("bull");
           const badgeClass = isBullish ? "badge-bullish" : "badge-bearish";
 
+          const company = (s.company || "").trim();
+          const isMonthlyOnly = (s.monthly_available === true && s.weekly_available === false);
+
           return `
             <tr>
-              <td><strong>${s.ticker}</strong></td>
+              <td>
+                <strong>${s.ticker}</strong>
                 <div style="font-size:0.85em; color:#666; margin-top:2px;">
-                  ${(s.company || "").trim() || "—"}
+                  ${company || "—"}
                 </div>
-              <td>$${fmt(s.price, 2)}</td>
-              <td style="text-align:center;">${getCheck(s.pe_check)}</td>      
-              <td style="text-align:center;">${getCheck(s.growth_check)}</td>  
+              </td>
+
+              <td>
+                $${fmt(s.price, 2)}
+                ${isMonthlyOnly ? '<sup title="Monthly options only" style="font-size:0.75em; color:#666; margin-left:2px;">m</sup>' : ''}
+              </td>
+
+              <td style="text-align:center;">${getCheck(s.pe_check)}</td>
+              <td style="text-align:center;">${getCheck(s.growth_check)}</td>
               <td style="text-align:center;">${getCheck((s.health ?? 999) < 100)}</td>
+
               <td>${fmt(s.mcap, 1)}B</td>
               <td><span class="badge ${badgeClass}">${s.strategy}</span></td>
+
               <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
                 ${s.reasoning || "No detailed reasoning available."}
               </td>
             </tr>`;
         }).join("");
+
       } else {
         tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center;">No candidates found for this filter.</td></tr>`;
       }
