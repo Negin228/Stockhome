@@ -69,8 +69,10 @@ finnhub_client = finnhub.Client(api_key=FINNHUB_KEY)
 def clamp(x, lo, hi): return max(lo, min(hi, x))
 
 def scalar(x):
-    if hasattr(x, "iloc"): return float(x.iloc[-1])
+    if hasattr(x, "iloc"):
+        return float(x.iloc[0])
     return float(x)
+
 
 # ---------------------------------------------------------
 # PRICE FETCH (PRIORITY ORDER)
@@ -375,6 +377,9 @@ def job(tickers):
 
         final_score = (W_TREND * s_trend) + (W_RSI * s_rsi) + (W_MACD * s_macd) + (W_DISTANCE * s_dist)
         final_score = clamp(final_score, 0, 100)
+        if pd.isna(final_score):
+            final_score = 0.0
+
 
         reasons = r_trend[:1] + r_rsi[:1] + r_macd[:1] + r_dist[:1]
         why_str = " • ".join(reasons) if reasons else "N/A"
@@ -384,6 +389,10 @@ def job(tickers):
         pct_drop = None
         if prev_close and price:
             pct_drop = (-(price - prev_close) / prev_close * 100)
+
+        if pct_drop is not None and (pd.isna(pct_drop) or np.isinf(pct_drop)):
+            pct_drop = None
+
 
         # IMPORTANT for filters.html:
         # score and price must be numeric (NOT tuples), and pe/market_cap should be numeric-safe for JS comparisons
