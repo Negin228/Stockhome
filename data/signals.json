@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "02-06-2026 22:03",
+  "generated_at_pt": "02-06-2026 22:22",
   "buys": [
     {
       "ticker": "MCO",
@@ -79,79 +79,79 @@
       ]
     },
     {
-      "ticker": "DASH",
-      "company": "DoorDash, Inc.",
+      "ticker": "BKNG",
+      "company": "Booking Holdings Inc. Common St",
       "signal": "BUY",
       "score": 31.25,
       "why": "Below slow SMA • Oversold • Bearish MACD",
-      "price": 182.47,
-      "price_str": "182.47",
-      "rsi": 23.319894805280953,
-      "pe": 91.69347,
-      "market_cap": 78644305920.0,
-      "pct_drop": 0.7560103370701853,
-      "rsi_str": "23.3",
-      "pe_str": "91.7",
-      "market_cap_str": "78.6B",
-      "dma200": 230.40709968566895,
-      "dma50": 216.2183996582031,
-      "dma200_str": "230.4",
-      "dma50_str": "216.2",
-      "trend_rationale": "Strong Bearish Trend (ADX: 30.2)",
+      "price": 4457.17,
+      "price_str": "4457.17",
+      "rsi": 25.168747053016688,
+      "pe": 28.985952,
+      "market_cap": 144456368128.0,
+      "pct_drop": -0.3094480910370029,
+      "rsi_str": "25.2",
+      "pe_str": "29.0",
+      "market_cap_str": "144.5B",
+      "dma200": 5320.663400878906,
+      "dma50": 5179.880439453125,
+      "dma200_str": "5320.7",
+      "dma50_str": "5179.9",
+      "trend_rationale": "Weak/Sideways Bearish Trend (ADX: 24.2)",
       "trend_dir": "bearish",
       "pe_check": true,
       "growth_check": true,
-      "debt_check": true,
-      "trailing_pe": 91.69347,
-      "earnings_growth": "50.6%",
-      "debt_to_equity": 34.255,
+      "debt_check": false,
+      "trailing_pe": 28.985952,
+      "earnings_growth": "9.2%",
+      "debt_to_equity": null,
       "put": {
-        "strike": 160.0,
+        "strike": 3880.0,
         "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 6.5,
-        "delta_percent": 12.314353044336054,
-        "premium_percent": 3.562229407573848,
-        "metric_sum": 15.8765824519099
+        "premium": 260.0,
+        "delta_percent": 12.949248065476526,
+        "premium_percent": 5.833297810045387,
+        "metric_sum": 18.78254587552191
       },
-      "news_summary": "Growth fears rattled Wall Street on Thursday, with signs of weakening in the labor market sparking another day of steep stock-market declines.  Stocks fell widely after a trio of reports from both government and private sources showed unexpectedly low job openings for December, surprisingly high claims for unemployment insurance last week and a sharp uptick in corporate job cuts last month.  Declines were particularly acute in stocks tied to consumer discretionary spending.",
+      "news_summary": "Down 18.4% in 4 Weeks, Here's Why You Should You Buy the Dip in Booking Holdings (BKNG).",
       "news": [
         {
-          "headline": "DoorDash Taps 50 Cent And Dining Rewards As Shares Lag Targets",
-          "url": "https://finance.yahoo.com/news/doordash-taps-50-cent-dining-041854171.html",
-          "sentiment": 0.0,
-          "summary": "",
-          "article_text": "Make better investment decisions with Simply Wall St's easy, visual tools that give you a competitive edge.\n\nDoorDash has partnered with Curtis \"50 Cent\" Jackson for \"The Big Beef\" cultural campaign around the Big Game.\n\nThe company is promoting its delivery offerings through content tied to the event and 50 Cent's brand.\n\nDoorDash is also expanding its Going Out rewards program ahead of Valentine’s Day.\n\nThe updated program includes special perks and in app reservations at a range of restaurant"
-        },
-        {
-          "headline": "A Key Takeaway From Earnings Season: Signs of Consumer Weakness",
-          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-02-06-2026/card/a-key-takeaway-from-earnings-season-signs-of-consumer-weakness-t0UvsHrCqRSRPhAkvJS4?siteid=yhoof2&yptr=yahoo",
-          "sentiment": 0.0,
-          "summary": "Earnings season is more than halfway over, and a clear laggard is emerging: companies that sell non-essential items to consumers.  A high ratio of companies—38%—have also missed consensus earnings forecasts.  The sector covers a broad swathe of the economy, encompassing a range of companies from Amazon and DoorDash to Tractor Supply and Marriott.",
+          "headline": "Stock Market Survives AI Panic, Even as Tech Collapses. It’s a Monster of Our Own Making.",
+          "url": "https://www.barrons.com/articles/stock-market-survives-ai-panic-even-as-tech-collapses-its-a-monster-of-our-own-making-35f7eb8e?siteid=yhoof2&yptr=yahoo",
+          "sentiment": 0.6,
+          "summary": "A sharp selloff in software and data analytics stocks reveals growing fears that AI tools could cannibalize established industries.",
           "article_text": ""
         },
         {
-          "headline": "Growth Scare Hits Markets Edgy From Tech Selloff",
-          "url": "https://www.wsj.com/finance/stocks/growth-scare-hits-markets-edgy-from-tech-selloff-9a5a0da8?siteid=yhoof2&yptr=yahoo",
-          "sentiment": -0.3,
-          "summary": "Growth fears rattled Wall Street on Thursday, with signs of weakening in the labor market sparking another day of steep stock-market declines.  Stocks fell widely after a trio of reports from both government and private sources showed unexpectedly low job openings for December, surprisingly high claims for unemployment insurance last week and a sharp uptick in corporate job cuts last month.  Declines were particularly acute in stocks tied to consumer discretionary spending.",
+          "headline": "AI Fears Slam Booking and Expedia Stock. Why They Can Bounce Back.",
+          "url": "https://www.barrons.com/articles/booking-expedia-stock-travel-ai-fe421427?siteid=yhoof2&yptr=yahoo",
+          "sentiment": 0.0,
+          "summary": "Online travel agencies, or OTAs, like Priceline owner  Booking.com  and  Expedia  have been hit hard, with their shares both down around 13% this week.  After all, it’s not the first time that AI fears have clobbered the stocks, and they’ve always rebounded, as travel demand remains robust.  Baird analyst Michael Bellisario added both companies to his firm’s fresh bullish picks on Friday, reiterating Outperform ratings on both.",
           "article_text": ""
         },
         {
-          "headline": "DoorDash, Inc. (DASH)’s Buy Rating Upheld as Investments Signal Long-Term Growth Potential",
-          "url": "https://finance.yahoo.com/news/doordash-inc-dash-buy-rating-154017559.html",
-          "sentiment": 0.0,
+          "headline": "Down 18.4% in 4 Weeks, Here's Why You Should You Buy the Dip in Booking Holdings (BKNG)",
+          "url": "https://finance.yahoo.com/news/down-18-4-4-weeks-143501221.html",
+          "sentiment": -0.15555555555555559,
           "summary": "",
-          "article_text": "We recently published an article titled 12 High Growth E-commerce Stocks To Buy.\n\nOn January 29, Guggenheim lowered its price target on DoorDash, Inc. (NASDAQ:DASH) to $275 from $280 while reiterating a Buy rating ahead of the company’s Q4 earnings report scheduled for February 18. The modest reduction reflects expectations that elevated investment spending will continue to weigh on margins into 2027. However, the maintained Buy rating underscores confidence that these investments are strategic "
+          "article_text": "Booking Holdings (BKNG) has been on a downward spiral lately with significant selling pressure. After declining 18.4% over the past four weeks, the stock looks well positioned for a trend reversal as it is now in oversold territory and there is strong agreement among Wall Street analysts that the company will report better earnings than they predicted earlier.\n\nWe use Relative Strength Index (RSI), one of the most commonly used technical indicators, for spotting whether a stock is oversold. This"
         },
         {
-          "headline": "Stock Market Today, Feb. 4: Uber Falls After Profit Outlook Misses Expectations",
-          "url": "https://www.fool.com/coverage/stock-market-today/2026/02/04/stock-market-today-feb-4-uber-falls-after-profit-outlook-misses-expectations/",
+          "headline": "Booking Holdings Inc. (BKNG): A Bull Case Theory",
+          "url": "https://finance.yahoo.com/news/booking-holdings-inc-bkng-bull-190330670.html",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "On Feb. 4, 2026, investors weighed booming revenue against weaker profit guidance and rising robotaxi investment at this mobility giant.\n\nExpand NYSE : UBER Uber Technologies Today's Change ( -0.51 %) $ -0.38 Current Price $ 74.83 Key Data Points Market Cap $155B Day's Range $ 72.68 - $ 75.67 52wk Range $ 60.63 - $ 101.99 Volume 915K Avg Vol 20M Gross Margin 32.89 %\n\nUber Technologies (UBER 0.51%), a global ride-hailing and delivery platform, closed Wednesday at $73.92, down 5.15%. The stock mov"
+          "article_text": "We came across a bullish thesis on Booking Holdings Inc. on Nikhs’s Substack. In this article, we will summarize the bulls’ thesis on BKNG. Booking Holdings Inc.'s share was trading at $5,085.22 as of January 28th. BKNG’s trailing and forward P/E were 33.54 and 19.12, respectively according to Yahoo Finance.\n\nThe Most Romantic City in the United States in 2024\n\nLucky Business/Shutterstock.com\n\nBooking Holdings Inc. (BKNG) is undergoing a transformative shift from a traditional online travel agen"
+        },
+        {
+          "headline": "Booking Holdings Refocuses KAYAK Leadership As AI Becomes Core To Travel",
+          "url": "https://finance.yahoo.com/news/booking-holdings-refocuses-kayak-leadership-181059946.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "Track your investments for FREE with Simply Wall St, the portfolio command center trusted by over 7 million individual investors worldwide.\n\nBooking Holdings (NasdaqGS:BKNG) announced a leadership change at KAYAK, with Co Founder and long time CEO Steve Hafner stepping down.\n\nPeer Bueller has been appointed as the new CEO of KAYAK, taking over operational leadership of the metasearch brand.\n\nHafner is moving into a new executive role at Booking Holdings focused on advancing AI, with an emphasis "
         }
       ]
     }
@@ -236,79 +236,79 @@
       ]
     },
     {
-      "ticker": "DASH",
-      "company": "DoorDash, Inc.",
+      "ticker": "BKNG",
+      "company": "Booking Holdings Inc. Common St",
       "signal": "BUY",
       "score": 31.25,
       "why": "Below slow SMA • Oversold • Bearish MACD",
-      "price": 182.47,
-      "price_str": "182.47",
-      "rsi": 23.319894805280953,
-      "pe": 91.69347,
-      "market_cap": 78644305920.0,
-      "pct_drop": 0.7560103370701853,
-      "rsi_str": "23.3",
-      "pe_str": "91.7",
-      "market_cap_str": "78.6B",
-      "dma200": 230.40709968566895,
-      "dma50": 216.2183996582031,
-      "dma200_str": "230.4",
-      "dma50_str": "216.2",
-      "trend_rationale": "Strong Bearish Trend (ADX: 30.2)",
+      "price": 4457.17,
+      "price_str": "4457.17",
+      "rsi": 25.168747053016688,
+      "pe": 28.985952,
+      "market_cap": 144456368128.0,
+      "pct_drop": -0.3094480910370029,
+      "rsi_str": "25.2",
+      "pe_str": "29.0",
+      "market_cap_str": "144.5B",
+      "dma200": 5320.663400878906,
+      "dma50": 5179.880439453125,
+      "dma200_str": "5320.7",
+      "dma50_str": "5179.9",
+      "trend_rationale": "Weak/Sideways Bearish Trend (ADX: 24.2)",
       "trend_dir": "bearish",
       "pe_check": true,
       "growth_check": true,
-      "debt_check": true,
-      "trailing_pe": 91.69347,
-      "earnings_growth": "50.6%",
-      "debt_to_equity": 34.255,
+      "debt_check": false,
+      "trailing_pe": 28.985952,
+      "earnings_growth": "9.2%",
+      "debt_to_equity": null,
       "put": {
-        "strike": 160.0,
+        "strike": 3880.0,
         "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 6.5,
-        "delta_percent": 12.314353044336054,
-        "premium_percent": 3.562229407573848,
-        "metric_sum": 15.8765824519099
+        "premium": 260.0,
+        "delta_percent": 12.949248065476526,
+        "premium_percent": 5.833297810045387,
+        "metric_sum": 18.78254587552191
       },
-      "news_summary": "Growth fears rattled Wall Street on Thursday, with signs of weakening in the labor market sparking another day of steep stock-market declines.  Stocks fell widely after a trio of reports from both government and private sources showed unexpectedly low job openings for December, surprisingly high claims for unemployment insurance last week and a sharp uptick in corporate job cuts last month.  Declines were particularly acute in stocks tied to consumer discretionary spending.",
+      "news_summary": "Down 18.4% in 4 Weeks, Here's Why You Should You Buy the Dip in Booking Holdings (BKNG).",
       "news": [
         {
-          "headline": "DoorDash Taps 50 Cent And Dining Rewards As Shares Lag Targets",
-          "url": "https://finance.yahoo.com/news/doordash-taps-50-cent-dining-041854171.html",
-          "sentiment": 0.0,
-          "summary": "",
-          "article_text": "Make better investment decisions with Simply Wall St's easy, visual tools that give you a competitive edge.\n\nDoorDash has partnered with Curtis \"50 Cent\" Jackson for \"The Big Beef\" cultural campaign around the Big Game.\n\nThe company is promoting its delivery offerings through content tied to the event and 50 Cent's brand.\n\nDoorDash is also expanding its Going Out rewards program ahead of Valentine’s Day.\n\nThe updated program includes special perks and in app reservations at a range of restaurant"
-        },
-        {
-          "headline": "A Key Takeaway From Earnings Season: Signs of Consumer Weakness",
-          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-02-06-2026/card/a-key-takeaway-from-earnings-season-signs-of-consumer-weakness-t0UvsHrCqRSRPhAkvJS4?siteid=yhoof2&yptr=yahoo",
-          "sentiment": 0.0,
-          "summary": "Earnings season is more than halfway over, and a clear laggard is emerging: companies that sell non-essential items to consumers.  A high ratio of companies—38%—have also missed consensus earnings forecasts.  The sector covers a broad swathe of the economy, encompassing a range of companies from Amazon and DoorDash to Tractor Supply and Marriott.",
+          "headline": "Stock Market Survives AI Panic, Even as Tech Collapses. It’s a Monster of Our Own Making.",
+          "url": "https://www.barrons.com/articles/stock-market-survives-ai-panic-even-as-tech-collapses-its-a-monster-of-our-own-making-35f7eb8e?siteid=yhoof2&yptr=yahoo",
+          "sentiment": 0.6,
+          "summary": "A sharp selloff in software and data analytics stocks reveals growing fears that AI tools could cannibalize established industries.",
           "article_text": ""
         },
         {
-          "headline": "Growth Scare Hits Markets Edgy From Tech Selloff",
-          "url": "https://www.wsj.com/finance/stocks/growth-scare-hits-markets-edgy-from-tech-selloff-9a5a0da8?siteid=yhoof2&yptr=yahoo",
-          "sentiment": -0.3,
-          "summary": "Growth fears rattled Wall Street on Thursday, with signs of weakening in the labor market sparking another day of steep stock-market declines.  Stocks fell widely after a trio of reports from both government and private sources showed unexpectedly low job openings for December, surprisingly high claims for unemployment insurance last week and a sharp uptick in corporate job cuts last month.  Declines were particularly acute in stocks tied to consumer discretionary spending.",
+          "headline": "AI Fears Slam Booking and Expedia Stock. Why They Can Bounce Back.",
+          "url": "https://www.barrons.com/articles/booking-expedia-stock-travel-ai-fe421427?siteid=yhoof2&yptr=yahoo",
+          "sentiment": 0.0,
+          "summary": "Online travel agencies, or OTAs, like Priceline owner  Booking.com  and  Expedia  have been hit hard, with their shares both down around 13% this week.  After all, it’s not the first time that AI fears have clobbered the stocks, and they’ve always rebounded, as travel demand remains robust.  Baird analyst Michael Bellisario added both companies to his firm’s fresh bullish picks on Friday, reiterating Outperform ratings on both.",
           "article_text": ""
         },
         {
-          "headline": "DoorDash, Inc. (DASH)’s Buy Rating Upheld as Investments Signal Long-Term Growth Potential",
-          "url": "https://finance.yahoo.com/news/doordash-inc-dash-buy-rating-154017559.html",
-          "sentiment": 0.0,
+          "headline": "Down 18.4% in 4 Weeks, Here's Why You Should You Buy the Dip in Booking Holdings (BKNG)",
+          "url": "https://finance.yahoo.com/news/down-18-4-4-weeks-143501221.html",
+          "sentiment": -0.15555555555555559,
           "summary": "",
-          "article_text": "We recently published an article titled 12 High Growth E-commerce Stocks To Buy.\n\nOn January 29, Guggenheim lowered its price target on DoorDash, Inc. (NASDAQ:DASH) to $275 from $280 while reiterating a Buy rating ahead of the company’s Q4 earnings report scheduled for February 18. The modest reduction reflects expectations that elevated investment spending will continue to weigh on margins into 2027. However, the maintained Buy rating underscores confidence that these investments are strategic "
+          "article_text": "Booking Holdings (BKNG) has been on a downward spiral lately with significant selling pressure. After declining 18.4% over the past four weeks, the stock looks well positioned for a trend reversal as it is now in oversold territory and there is strong agreement among Wall Street analysts that the company will report better earnings than they predicted earlier.\n\nWe use Relative Strength Index (RSI), one of the most commonly used technical indicators, for spotting whether a stock is oversold. This"
         },
         {
-          "headline": "Stock Market Today, Feb. 4: Uber Falls After Profit Outlook Misses Expectations",
-          "url": "https://www.fool.com/coverage/stock-market-today/2026/02/04/stock-market-today-feb-4-uber-falls-after-profit-outlook-misses-expectations/",
+          "headline": "Booking Holdings Inc. (BKNG): A Bull Case Theory",
+          "url": "https://finance.yahoo.com/news/booking-holdings-inc-bkng-bull-190330670.html",
           "sentiment": 0.0,
           "summary": "",
-          "article_text": "On Feb. 4, 2026, investors weighed booming revenue against weaker profit guidance and rising robotaxi investment at this mobility giant.\n\nExpand NYSE : UBER Uber Technologies Today's Change ( -0.51 %) $ -0.38 Current Price $ 74.83 Key Data Points Market Cap $155B Day's Range $ 72.68 - $ 75.67 52wk Range $ 60.63 - $ 101.99 Volume 915K Avg Vol 20M Gross Margin 32.89 %\n\nUber Technologies (UBER 0.51%), a global ride-hailing and delivery platform, closed Wednesday at $73.92, down 5.15%. The stock mov"
+          "article_text": "We came across a bullish thesis on Booking Holdings Inc. on Nikhs’s Substack. In this article, we will summarize the bulls’ thesis on BKNG. Booking Holdings Inc.'s share was trading at $5,085.22 as of January 28th. BKNG’s trailing and forward P/E were 33.54 and 19.12, respectively according to Yahoo Finance.\n\nThe Most Romantic City in the United States in 2024\n\nLucky Business/Shutterstock.com\n\nBooking Holdings Inc. (BKNG) is undergoing a transformative shift from a traditional online travel agen"
+        },
+        {
+          "headline": "Booking Holdings Refocuses KAYAK Leadership As AI Becomes Core To Travel",
+          "url": "https://finance.yahoo.com/news/booking-holdings-refocuses-kayak-leadership-181059946.html",
+          "sentiment": 0.0,
+          "summary": "",
+          "article_text": "Track your investments for FREE with Simply Wall St, the portfolio command center trusted by over 7 million individual investors worldwide.\n\nBooking Holdings (NasdaqGS:BKNG) announced a leadership change at KAYAK, with Co Founder and long time CEO Steve Hafner stepping down.\n\nPeer Bueller has been appointed as the new CEO of KAYAK, taking over operational leadership of the metasearch brand.\n\nHafner is moving into a new executive role at Booking Holdings focused on advancing AI, with an emphasis "
         }
       ]
     }
