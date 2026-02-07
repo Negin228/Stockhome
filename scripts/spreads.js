@@ -80,8 +80,8 @@
               <td style="text-align:center;">${getCheck(s.growth_check)}</td>
               <td style="text-align:center;">${getCheck((s.health ?? 999) < 100)}</td>
 
-              <td>${fmt(s.mcap, 1)}B</td>
-              <td><span class="badge ${badgeClass}">${s.strategy}</span></td>
+              <td style="text-align:center;">${fmt(s.mcap, 1)}B</td>
+              <td style="text-align:center;"><span class="badge ${badgeClass}">${s.strategy}</span></td>
 
               <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
                 ${s.reasoning || "No detailed reasoning available."}
