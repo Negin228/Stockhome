@@ -170,6 +170,17 @@ def fetch_cached_history(symbol, period="1y"):
         df.to_csv(path)
     return df
 
+def format_market_cap(mcap):
+    if not mcap:
+        return "N/A"
+    if mcap >= 1e12:
+        return f"{mcap/1e12:.2f}T"
+    if mcap >= 1e9:
+        return f"{mcap/1e9:.1f}B"
+    if mcap >= 1e6:
+        return f"{mcap/1e6:.1f}M"
+    return str(mcap)
+
 # ---------------------------------------------------------
 # INDICATORS
 # ---------------------------------------------------------
@@ -284,10 +295,9 @@ def job(tickers):
         "pe": funds.get("trailing_pe"),
         "pe_str": f"{funds.get('trailing_pe'):.1f}" if funds.get("trailing_pe") else "N/A",
 
-        "market_cap": funds.get("market_cap"),
-        "market_cap_str": (
-            f"{funds['market_cap']/1e9:.1f}B"
-            if funds.get("market_cap") else "N/A"),
+        "market_cap": funds["market_cap"],
+        "market_cap_str": format_market_cap(funds["market_cap"]),
+
 
         "dma50_str": f"{row['dma50']:.1f}",
         "dma200_str": f"{row['dma200']:.1f}",
