@@ -64,6 +64,30 @@ body {
   border-color: #ff1744;
   font-style: italic;
 }
+
+/* Container for the SVG to ensure proper sizing */
+.check-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+
+/* Ensure the SVG scales to its container */
+.check-circle svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Adjust table cell alignment for the icons */
+.signals-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
 .site-header {
   position: sticky;
   top: 0;
