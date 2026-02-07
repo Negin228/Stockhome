@@ -1,29 +1,11 @@
 [
   {
-    "ticker": "MCO",
-    "company": "Moody's Corporation",
-    "strategy": "Bull Call (Debit)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 452.5,
-    "mcap": 81157988352
-  },
-  {
-    "ticker": "BKNG",
-    "company": "Booking Holdings Inc. Common St",
-    "strategy": "Bull Call (Debit)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 4457.18,
-    "mcap": 144456368128
-  },
-  {
     "ticker": "UDOW",
     "company": "ProShares UltraPro Dow30",
     "strategy": "Bear Call (Credit)",
     "type": "bearish",
     "is_squeeze": false,
-    "price": 64.57,
+    "price": 64.56,
     "mcap": null
   },
   {
@@ -32,7 +14,1150 @@
     "strategy": "Bull Put (Credit)",
     "type": "bullish",
     "is_squeeze": false,
-    "price": 28.26,
+    "price": 28.25,
     "mcap": null
+  },
+  {
+    "ticker": "AOS",
+    "company": "A.O. Smith Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 78.98,
+    "mcap": 11067435008
+  },
+  {
+    "ticker": "AFL",
+    "company": "AFLAC Incorporated",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 117.15,
+    "mcap": 61399945216
+  },
+  {
+    "ticker": "ALGN",
+    "company": "Align Technology, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 187.6,
+    "mcap": 13598443520
+  },
+  {
+    "ticker": "ALLE",
+    "company": "Allegion plc",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 179.77,
+    "mcap": 15465964544
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon.com, Inc.",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 210.32,
+    "mcap": 2257768677376
+  },
+  {
+    "ticker": "AMCR",
+    "company": "Amcor plc",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 48.17,
+    "mcap": 22256740352
+  },
+  {
+    "ticker": "AMGN",
+    "company": "Amgen Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 384.32,
+    "mcap": 207148482560
+  },
+  {
+    "ticker": "APA",
+    "company": "APA Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 27.46,
+    "mcap": 9824816128
+  },
+  {
+    "ticker": "BAC",
+    "company": "Bank of America Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 56.53,
+    "mcap": 412810084352
+  },
+  {
+    "ticker": "BAX",
+    "company": "Baxter International Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 21.73,
+    "mcap": 11170432000
+  },
+  {
+    "ticker": "BDX",
+    "company": "Becton, Dickinson and Company",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 210.02,
+    "mcap": 59836399616
+  },
+  {
+    "ticker": "BIIB",
+    "company": "Biogen Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 201.18,
+    "mcap": 29513562112
+  },
+  {
+    "ticker": "BK",
+    "company": "The Bank of New York Mellon Cor",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 124.32,
+    "mcap": 86694445056
+  },
+  {
+    "ticker": "BKNG",
+    "company": "Booking Holdings Inc. Common St",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 4457.17,
+    "mcap": 144456368128
+  },
+  {
+    "ticker": "BSX",
+    "company": "Boston Scientific Corporation",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 76.27,
+    "mcap": 113109909504
+  },
+  {
+    "ticker": "BF-B",
+    "company": "Brown Forman Inc",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 29.45,
+    "mcap": 13641518080
+  },
+  {
+    "ticker": "CPB",
+    "company": "The Campbell's Company",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 28.83,
+    "mcap": 8595210240
+  },
+  {
+    "ticker": "CAH",
+    "company": "Cardinal Health, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 226.32,
+    "mcap": 53256724480
+  },
+  {
+    "ticker": "CCL",
+    "company": "Carnival Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 33.99,
+    "mcap": 46984957952
+  },
+  {
+    "ticker": "CARR",
+    "company": "Carrier Global Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 63.92,
+    "mcap": 53427142656
+  },
+  {
+    "ticker": "CAT",
+    "company": "Caterpillar, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 726.2,
+    "mcap": 340209401856
+  },
+  {
+    "ticker": "CNC",
+    "company": "Centene Corporation",
+    "strategy": "Bull Put (Credit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 38.46,
+    "mcap": 18903783424
+  },
+  {
+    "ticker": "CRL",
+    "company": "Charles River Laboratories Inte",
+    "strategy": "Bull Put (Credit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 189.21,
+    "mcap": 9312059392
+  },
+  {
+    "ticker": "CHTR",
+    "company": "Charter Communications, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 231.14,
+    "mcap": 29911681024
+  },
+  {
+    "ticker": "CB",
+    "company": "Chubb Limited",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 330.97,
+    "mcap": 130253520896
+  },
+  {
+    "ticker": "CI",
+    "company": "The Cigna Group",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 292.05,
+    "mcap": 78014095360
+  },
+  {
+    "ticker": "CINF",
+    "company": "Cincinnati Financial Corporatio",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 172.65,
+    "mcap": 26998386688
+  },
+  {
+    "ticker": "CSCO",
+    "company": "Cisco Systems, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 84.82,
+    "mcap": 335131836416
+  },
+  {
+    "ticker": "C",
+    "company": "Citigroup, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 122.69,
+    "mcap": 219525070848
+  },
+  {
+    "ticker": "CLX",
+    "company": "Clorox Company (The)",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 119.36,
+    "mcap": 14559578112
+  },
+  {
+    "ticker": "CMCSA",
+    "company": "Comcast Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 31.37,
+    "mcap": 114308972544
+  },
+  {
+    "ticker": "CPAY",
+    "company": "Corpay, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 354.19,
+    "mcap": 25010909184
+  },
+  {
+    "ticker": "CSGP",
+    "company": "CoStar Group, Inc.",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 50.28,
+    "mcap": 21309808640
+  },
+  {
+    "ticker": "CSX",
+    "company": "CSX Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 40.61,
+    "mcap": 75708293120
+  },
+  {
+    "ticker": "DAY",
+    "company": "Dayforce, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 69.86,
+    "mcap": 11180042240
+  },
+  {
+    "ticker": "DAL",
+    "company": "Delta Air Lines, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 75.35,
+    "mcap": 49200742400
+  },
+  {
+    "ticker": "DLR",
+    "company": "Digital Realty Trust, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 171.62,
+    "mcap": 60025810944
+  },
+  {
+    "ticker": "DASH",
+    "company": "DoorDash, Inc.",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 182.47,
+    "mcap": 78644305920
+  },
+  {
+    "ticker": "DOV",
+    "company": "Dover Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 223.66,
+    "mcap": 30675689472
+  },
+  {
+    "ticker": "DOW",
+    "company": "Dow Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 31.78,
+    "mcap": 22803232768
+  },
+  {
+    "ticker": "ETN",
+    "company": "Eaton Corporation, PLC",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 373.82,
+    "mcap": 145528127488
+  },
+  {
+    "ticker": "EIX",
+    "company": "Edison International",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 64.01,
+    "mcap": 24633225216
+  },
+  {
+    "ticker": "EW",
+    "company": "Edwards Lifesciences Corporatio",
+    "strategy": "Bull Put (Credit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 78.71,
+    "mcap": 46210641920
+  },
+  {
+    "ticker": "EMR",
+    "company": "Emerson Electric Company",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 157.38,
+    "mcap": 88495104000
+  },
+  {
+    "ticker": "EQIX",
+    "company": "Equinix, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 848.12,
+    "mcap": 83273580544
+  },
+  {
+    "ticker": "EQR",
+    "company": "Equity Residential",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 63.89,
+    "mcap": 25144668160
+  },
+  {
+    "ticker": "EL",
+    "company": "Estee Lauder Companies, Inc. (T",
+    "strategy": "Bull Put (Credit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 99.47,
+    "mcap": 35980988416
+  },
+  {
+    "ticker": "FRT",
+    "company": "Federal Realty Investment Trust",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 105.76,
+    "mcap": 9179887616
+  },
+  {
+    "ticker": "FSLR",
+    "company": "First Solar, Inc.",
+    "strategy": "Bull Put (Credit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 218.73,
+    "mcap": 23471509504
+  },
+  {
+    "ticker": "FOXA",
+    "company": "Fox Corporation",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 64.78,
+    "mcap": 27557156864
+  },
+  {
+    "ticker": "FOX",
+    "company": "Fox Corporation",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 58.35,
+    "mcap": 27240925184
+  },
+  {
+    "ticker": "GNRC",
+    "company": "Generac Holdlings Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 183.53,
+    "mcap": 10770286592
+  },
+  {
+    "ticker": "HAL",
+    "company": "Halliburton Company",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 34.98,
+    "mcap": 29824020480
+  },
+  {
+    "ticker": "HIG",
+    "company": "The Hartford Insurance Group, I",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 142.56,
+    "mcap": 39760023552
+  },
+  {
+    "ticker": "HSY",
+    "company": "The Hershey Company",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 231.53,
+    "mcap": 46950838272
+  },
+  {
+    "ticker": "HPE",
+    "company": "Hewlett Packard Enterprise Comp",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 23.61,
+    "mcap": 31508328448
+  },
+  {
+    "ticker": "HLT",
+    "company": "Hilton Worldwide Holdings Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 314.38,
+    "mcap": 73940213760
+  },
+  {
+    "ticker": "HST",
+    "company": "Host Hotels & Resorts, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 19.35,
+    "mcap": 13478754304
+  },
+  {
+    "ticker": "HBAN",
+    "company": "Huntington Bancshares Incorpora",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 19.27,
+    "mcap": 39112945664
+  },
+  {
+    "ticker": "ITW",
+    "company": "Illinois Tool Works Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 293.57,
+    "mcap": 85575655424
+  },
+  {
+    "ticker": "INCY",
+    "company": "Incyte Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 108.39,
+    "mcap": 21279418368
+  },
+  {
+    "ticker": "IP",
+    "company": "International Paper Company",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 46.58,
+    "mcap": 24596025344
+  },
+  {
+    "ticker": "IQV",
+    "company": "IQVIA Holdings, Inc.",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 187.49,
+    "mcap": 31929548800
+  },
+  {
+    "ticker": "JBHT",
+    "company": "J.B. Hunt Transport Services, I",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 227.91,
+    "mcap": 21701212160
+  },
+  {
+    "ticker": "JBL",
+    "company": "Jabil Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 258.25,
+    "mcap": 27587028992
+  },
+  {
+    "ticker": "J",
+    "company": "Jacobs Solutions Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 148.81,
+    "mcap": 17572720640
+  },
+  {
+    "ticker": "JCI",
+    "company": "Johnson Controls International ",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 137.65,
+    "mcap": 84250902528
+  },
+  {
+    "ticker": "KEY",
+    "company": "KeyCorp",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 23.21,
+    "mcap": 25586726912
+  },
+  {
+    "ticker": "KEYS",
+    "company": "Keysight Technologies Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 230.95,
+    "mcap": 39681163264
+  },
+  {
+    "ticker": "KMB",
+    "company": "Kimberly-Clark Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 104.33,
+    "mcap": 34626408448
+  },
+  {
+    "ticker": "KIM",
+    "company": "Kimco Realty Corporation (HC)",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 21.83,
+    "mcap": 14783169536
+  },
+  {
+    "ticker": "KR",
+    "company": "Kroger Company (The)",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 67.5,
+    "mcap": 44730777600
+  },
+  {
+    "ticker": "LW",
+    "company": "Lamb Weston Holdings, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 50.12,
+    "mcap": 6984346112
+  },
+  {
+    "ticker": "L",
+    "company": "Loews Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 111.27,
+    "mcap": 23080335360
+  },
+  {
+    "ticker": "MPC",
+    "company": "Marathon Petroleum Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 203.0,
+    "mcap": 61022306304
+  },
+  {
+    "ticker": "MAR",
+    "company": "Marriott International",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 333.24,
+    "mcap": 90460602368
+  },
+  {
+    "ticker": "MLM",
+    "company": "Martin Marietta Materials, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 690.0,
+    "mcap": 41611927552
+  },
+  {
+    "ticker": "MAS",
+    "company": "Masco Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 72.87,
+    "mcap": 15256328192
+  },
+  {
+    "ticker": "MCD",
+    "company": "McDonald's Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 327.16,
+    "mcap": 233462824960
+  },
+  {
+    "ticker": "MCK",
+    "company": "McKesson Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 948.68,
+    "mcap": 117092392960
+  },
+  {
+    "ticker": "MGM",
+    "company": "MGM Resorts International",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 37.49,
+    "mcap": 10253756416
+  },
+  {
+    "ticker": "MHK",
+    "company": "Mohawk Industries, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 131.89,
+    "mcap": 8194577920
+  },
+  {
+    "ticker": "MOH",
+    "company": "Molina Healthcare Inc",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 131.72,
+    "mcap": 6770407936
+  },
+  {
+    "ticker": "MCO",
+    "company": "Moody's Corporation",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 452.49,
+    "mcap": 81157988352
+  },
+  {
+    "ticker": "MSCI",
+    "company": "MSCI Inc.",
+    "strategy": "Bull Put (Credit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 557.78,
+    "mcap": 41911332864
+  },
+  {
+    "ticker": "NDAQ",
+    "company": "Nasdaq, Inc.",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 84.83,
+    "mcap": 48675053568
+  },
+  {
+    "ticker": "NWSA",
+    "company": "News Corporation",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 22.5,
+    "mcap": 13036789760
+  },
+  {
+    "ticker": "NWS",
+    "company": "News Corporation",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 25.65,
+    "mcap": 14235413504
+  },
+  {
+    "ticker": "NSC",
+    "company": "Norfolk Southern Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 306.48,
+    "mcap": 75008368640
+  },
+  {
+    "ticker": "NUE",
+    "company": "Nucor Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 192.84,
+    "mcap": 44133101568
+  },
+  {
+    "ticker": "ON",
+    "company": "ON Semiconductor Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 65.2,
+    "mcap": 26665103360
+  },
+  {
+    "ticker": "PKG",
+    "company": "Packaging Corporation of Americ",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 238.86,
+    "mcap": 21492332544
+  },
+  {
+    "ticker": "PH",
+    "company": "Parker-Hannifin Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 976.49,
+    "mcap": 123249172480
+  },
+  {
+    "ticker": "PEP",
+    "company": "Pepsico, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 170.49,
+    "mcap": 233117827072
+  },
+  {
+    "ticker": "PFE",
+    "company": "Pfizer, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 27.22,
+    "mcap": 154764967936
+  },
+  {
+    "ticker": "PCG",
+    "company": "Pacific Gas & Electric Co.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 16.4,
+    "mcap": 36045729792
+  },
+  {
+    "ticker": "PSX",
+    "company": "Phillips 66",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 157.8,
+    "mcap": 63770808320
+  },
+  {
+    "ticker": "PLD",
+    "company": "Prologis, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 136.95,
+    "mcap": 127208333312
+  },
+  {
+    "ticker": "PWR",
+    "company": "Quanta Services, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 508.11,
+    "mcap": 75767275520
+  },
+  {
+    "ticker": "REG",
+    "company": "Regency Centers Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 75.22,
+    "mcap": 14046597120
+  },
+  {
+    "ticker": "RF",
+    "company": "Regions Financial Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 30.93,
+    "mcap": 27121788928
+  },
+  {
+    "ticker": "RMD",
+    "company": "ResMed Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 271.63,
+    "mcap": 39648825344
+  },
+  {
+    "ticker": "SPGI",
+    "company": "S&P Global Inc.",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 439.28,
+    "mcap": 134112182272
+  },
+  {
+    "ticker": "SPG",
+    "company": "Simon Property Group, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 199.6,
+    "mcap": 75285766144
+  },
+  {
+    "ticker": "SJM",
+    "company": "The J.M. Smucker Company",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 109.51,
+    "mcap": 11684096000
+  },
+  {
+    "ticker": "SWK",
+    "company": "Stanley Black & Decker, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 89.39,
+    "mcap": 13845166080
+  },
+  {
+    "ticker": "STLD",
+    "company": "Steel Dynamics, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 202.39,
+    "mcap": 29792737280
+  },
+  {
+    "ticker": "TROW",
+    "company": "T. Rowe Price Group, Inc.",
+    "strategy": "Bull Put (Credit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 94.58,
+    "mcap": 20675188736
+  },
+  {
+    "ticker": "TPR",
+    "company": "Tapestry, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 152.1,
+    "mcap": 31127230464
+  },
+  {
+    "ticker": "TGT",
+    "company": "Target Corporation",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 115.55,
+    "mcap": 52505821184
+  },
+  {
+    "ticker": "TMO",
+    "company": "Thermo Fisher Scientific Inc",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 542.83,
+    "mcap": 203945607168
+  },
+  {
+    "ticker": "TKO",
+    "company": "TKO Group Holdings, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 211.9,
+    "mcap": 17404805120
+  },
+  {
+    "ticker": "TT",
+    "company": "Trane Technologies plc",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 454.76,
+    "mcap": 100838031360
+  },
+  {
+    "ticker": "TRV",
+    "company": "The Travelers Companies, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 301.49,
+    "mcap": 67251388416
+  },
+  {
+    "ticker": "TFC",
+    "company": "Truist Financial Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 55.81,
+    "mcap": 71394738176
+  },
+  {
+    "ticker": "UNP",
+    "company": "Union Pacific Corporation",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 252.62,
+    "mcap": 149844295680
+  },
+  {
+    "ticker": "UHS",
+    "company": "Universal Health Services, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 218.56,
+    "mcap": 13908872192
+  },
+  {
+    "ticker": "VTR",
+    "company": "Ventas, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 82.55,
+    "mcap": 39205142528
+  },
+  {
+    "ticker": "VLTO",
+    "company": "Veralto Corp",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 90.57,
+    "mcap": 22488291328
+  },
+  {
+    "ticker": "VRSN",
+    "company": "VeriSign, Inc.",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 224.17,
+    "mcap": 20780558336
+  },
+  {
+    "ticker": "VMC",
+    "company": "Vulcan Materials Company (Holdi",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 323.72,
+    "mcap": 42773417984
+  },
+  {
+    "ticker": "WMT",
+    "company": "Walmart Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 131.18,
+    "mcap": 1045878538240
+  },
+  {
+    "ticker": "WELL",
+    "company": "Welltower Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 195.92,
+    "mcap": 134465396736
+  },
+  {
+    "ticker": "WSM",
+    "company": "Williams-Sonoma, Inc.",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 220.67,
+    "mcap": 26343741440
+  },
+  {
+    "ticker": "YUM",
+    "company": "Yum! Brands, Inc.",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 162.93,
+    "mcap": 45237972992
+  },
+  {
+    "ticker": "CCEP",
+    "company": "Coca-Cola Europacific Partners ",
+    "strategy": "Bear Put (Debit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 97.56,
+    "mcap": 43761565696
+  },
+  {
+    "ticker": "ARM",
+    "company": "Arm Holdings plc",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 123.7,
+    "mcap": 131369222144
   }
 ]
