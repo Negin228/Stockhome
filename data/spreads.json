@@ -2,21 +2,36 @@
   {
     "ticker": "MCO",
     "company": "Moody's Corporation",
-    "strategy": "Call Debit Spread (Bullish)",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
     "price": 452.5,
     "mcap": 81157988352
   },
   {
     "ticker": "BKNG",
     "company": "Booking Holdings Inc. Common St",
-    "strategy": "Call Debit Spread (Bullish)",
+    "strategy": "Bull Call (Debit)",
+    "type": "bullish",
+    "is_squeeze": false,
     "price": 4457.18,
     "mcap": 144456368128
   },
   {
+    "ticker": "UDOW",
+    "company": "ProShares UltraPro Dow30",
+    "strategy": "Bear Call (Credit)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 64.57,
+    "mcap": null
+  },
+  {
     "ticker": "SDOW",
     "company": "UltraPro Short Dow30",
-    "strategy": "Call Debit Spread (Bullish)",
+    "strategy": "Bull Put (Credit)",
+    "type": "bullish",
+    "is_squeeze": false,
     "price": 28.26,
     "mcap": null
   }
