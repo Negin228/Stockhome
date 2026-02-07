@@ -14,16 +14,24 @@
     // 1. FETCH TIMESTAMP & MASTER DATA from signals.json
     // Adding a cache-buster (?v=) ensures you always see the freshest time from GitHub
     const signalRes = await fetch("../data/signals.json?v=" + Date.now(), { cache: "no-store" });
+    console.log("signals.json fetch status:", signalRes.status, signalRes.url);
+
+    const signalText = await signalRes.text();
+    console.log("signals.json raw text (first 300):", signalText.slice(0, 300));
+
+
     const signalData = await signalRes.json();
+    console.log("signals.json payload:", signalData);
+    console.log("generated_at_pt:", signalData.generated_at_pt);
+    console.log("found .last-updated elements:", document.querySelectorAll(".last-updated").length);
     
     if (signalData.generated_at_pt) {
       const timestamp = signalData.generated_at_pt + " PT";
-      
-      const dateElements = document.querySelectorAll(".last-updated");
-      dateElements.forEach(el => {
-        el.textContent = timestamp;
-      });
+      document.querySelectorAll(".last-updated").forEach(el => el.textContent = timestamp);
+    } else {
+      console.warn("No generated_at_pt found in signals.json");
     }
+    
 
     // 2. FETCH SPREADS DATA
     const res = await fetch("../data/spreads.json?v=" + Date.now(), { cache: "no-store" });
