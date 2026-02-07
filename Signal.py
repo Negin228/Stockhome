@@ -142,31 +142,49 @@ def fetch_cached_history(symbol, period="1y"):
 # INDICATORS
 # ---------------------------------------------------------
 def calculate_indicators(df):
-    close = df["Close"]
-    high = df["High"]
-    low = df["Low"]
+    # --- Normalize columns to 1D Series ---
+    if isinstance(df.columns, pd.MultiIndex):
+        close = df["Close"].iloc[:, 0]
+        high = df["High"].iloc[:, 0]
+        low = df["Low"].iloc[:, 0]
+    else:
+        close = df["Close"]
+        high = df["High"]
+        low = df["Low"]
 
-    df["rsi"] = ta.momentum.RSIIndicator(close, 14).rsi()
+    close = close.astype(float)
+    high = high.astype(float)
+    low = low.astype(float)
+
+    # RSI
+    df["rsi"] = ta.momentum.RSIIndicator(close=close, window=14).rsi()
+
+    # Moving averages
     df["dma200"] = close.rolling(200).mean()
     df["dma50"] = close.rolling(50).mean()
 
-    macd = ta.trend.MACD(close)
+    # MACD
+    macd = ta.trend.MACD(close=close)
     df["macd"] = macd.macd()
     df["signal"] = macd.macd_signal()
     df["hist"] = macd.macd_diff()
 
-    adx = ta.trend.ADXIndicator(high, low, close)
+    # ADX
+    adx = ta.trend.ADXIndicator(high=high, low=low, close=close)
     df["adx"] = adx.adx()
 
-    bb = ta.volatility.BollingerBands(close)
+    # Bollinger Bands
+    bb = ta.volatility.BollingerBands(close=close)
     df["bb_low"] = bb.bollinger_lband()
     df["bb_high"] = bb.bollinger_hband()
 
-    kc = ta.volatility.KeltnerChannel(high, low, close)
+    # Keltner Channels
+    kc = ta.volatility.KeltnerChannel(high=high, low=low, close=close)
     df["kc_low"] = kc.keltner_channel_lband()
     df["kc_high"] = kc.keltner_channel_hband()
 
     return df
+
 
 # ---------------------------------------------------------
 # SPREAD STRATEGY DETECTION
