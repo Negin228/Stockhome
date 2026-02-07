@@ -575,6 +575,7 @@ def job(tickers):
             pct_drop = (-(rt_price - prev_close_val) / prev_close_val * 100)
 
         try:
+            stock_row = next((s for s in stock_data_list if s["ticker"] == symbol), None)
             current_row = hist.iloc[-1]
             spread_data = get_spread_strategy(current_row)
             
@@ -603,6 +604,10 @@ def job(tickers):
                     'type': spread_data['type'], 
                     'is_squeeze': spread_data['is_squeeze'],
                     'reasoning': full_reasoning
+                    'weekly_available': bool(stock_row.get('put', {}).get('weekly_available')) if stock_row else None,
+                    'monthly_available': bool(stock_row.get('put', {}).get('monthly_available')) if stock_row else None,
+                    'exp_type': stock_row.get('put', {}).get('exp_type') if stock_row else None,
+
                 })
             
             # 2. Log the ignored tickers so you know the script is working
