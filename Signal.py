@@ -75,16 +75,19 @@ def scalar(x):
 # ---------------------------------------------------------
 # PRICE FETCH (PRIORITY ORDER)
 # ---------------------------------------------------------
-def get_live_price(symbol, fallback_close):
-    """Finnhub → yfinance → CSV"""
-    try:
-        q = finnhub_client.quote(symbol)
-        price = q.get("c")
-        if price and price > 0:
-            return float(price)
-    except Exception:
-        pass
+def get_live_price(symbol, fallback_close, retries=2, wait=1):
+    for attempt in range(retries):
+        try:
+            q = finnhub_client.quote(symbol)
+            price = q.get("c")
+            if price and price > 0:
+                return float(price)
+        except Exception:
+            if attempt < retries - 1:
+                time.sleep(wait)
+                continue
 
+    # fallback
     try:
         price = yf.Ticker(symbol).fast_info.get("lastPrice")
         if price and price > 0:
@@ -93,6 +96,7 @@ def get_live_price(symbol, fallback_close):
         pass
 
     return fallback_close
+
 
 # ---------------------------------------------------------
 # FUNDAMENTALS (CACHED)
