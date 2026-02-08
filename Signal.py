@@ -118,6 +118,9 @@ def format_market_cap(mcap):
     """
     Clean, consistent formatting:
       2.35T, 812.40B, 153.2M, 980K, 532
+
+    FIX: If mcap is accidentally stored in "billions" units (e.g. 0.10 meaning $0.10B),
+    convert it back to dollars so it formats as 100M instead of 0B.
     """
     try:
         if mcap is None:
@@ -125,6 +128,11 @@ def format_market_cap(mcap):
         m = float(mcap)
         if np.isnan(m) or m <= 0:
             return "N/A"
+
+        # --- FIX: detect "billions-units" values like 0.10, 1.25, 55.3 ---
+        # Market caps in dollars are typically huge; if it's < 1000, it's almost certainly "billions".
+        if m < 1000:
+            m = m * 1e9
 
         units = [
             (1e12, "T", 2),
@@ -300,6 +308,15 @@ def fetch_fundamentals_cached(symbol):
         market_cap = info.get("marketCap")
     except Exception as e:
         logger.warning(f"Fundamentals error for {symbol}: {e}")
+
+    # FIX: If market_cap is mistakenly returned in "billions" units (e.g. 0.10), normalize to dollars
+    try:
+        if market_cap is not None:
+            mc = float(market_cap)
+            if mc > 0 and mc < 1000:
+                market_cap = mc * 1e9
+    except Exception:
+        pass
 
     # 2) Finnhub fallback for market cap (Finnhub returns market cap in MILLIONS)
     if (market_cap is None or market_cap == 0) and FINNHUB_KEY:
