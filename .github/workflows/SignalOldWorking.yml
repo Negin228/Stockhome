@@ -1,4 +1,4 @@
-name: Website update and ALPACA Trading (Old with News)
+name: Old Working Website update and ALPACA Trading (Old with News)
 
 on:
   schedule:
@@ -34,7 +34,7 @@ jobs:
         run: mkdir -p artifacts/pages artifacts/data data
 
       - name: Run Signal script
-        run: python Signal.py
+        run: python SignalOldWorking.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
