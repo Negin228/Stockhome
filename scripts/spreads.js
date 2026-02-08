@@ -46,14 +46,15 @@
     // Enrich spreads with fundamental info (Value, Growth, Health) from signals.json
     const signals = rawSpreads.map(spread => {
       const masterInfo = (signalData.all || []).find(s => s.ticker === spread.ticker);
-      return { ...spread, ...masterInfo }; 
-    });
+    // Merge but don't require masterInfo - spread already has all needed fields
+      return masterInfo ? { ...spread, ...masterInfo } : spread; });
 
     const validSignals = signals.filter(s => !s.is_squeeze);
     validSignals.sort((a, b) => {
       if (a.is_new && !b.is_new) return -1;
       if (!a.is_new && b.is_new) return 1;
-      return (b.mcap || 0) - (a.mcap || 0);
+      
+      return (b.market_cap || 0) - (a.market_cap || 0);
     });
 
     // 3. RENDER FUNCTION
