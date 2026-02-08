@@ -756,17 +756,15 @@ def job(tickers, prev_tickers=None):
             if spread and not is_squeeze:
                 if prev_tickers is None:
                     prev_tickers = set()
-                    r = scalar(row["rsi"])
-                    a = scalar(row["adx"])
-                    bl = scalar(row["bb_low"])
-                    bu = scalar(row["bb_high"])
-                    band_type = "BBL" if spread["type"] == "bullish" else "BBU"
-                    band_val = bl if spread["type"] == "bullish" else bu
-                    rationale = "Extreme: Buying Delta for sharp snap-back." if spread["strategy"].endswith("(Debit)") else "Moderate: Selling Theta."
-    
-                    full_reasoning = f"Det: Price {'<' if spread['type'] == 'bullish' else '>'} {band_type}({band_val:.2f}) | ADX: {a:.1f} | RSI {r:.1f} ({rationale})"
-    
-    
+                r = scalar(row["rsi"])
+                a = scalar(row["adx"])
+                bl = scalar(row["bb_low"])
+                bu = scalar(row["bb_high"])
+                band_type = "BBL" if spread["type"] == "bullish" else "BBU"
+                band_val = bl if spread["type"] == "bullish" else bu
+                rationale = "Extreme: Buying Delta for sharp snap-back." if spread["strategy"].endswith("(Debit)") else "Moderate: Selling Theta."
+                full_reasoning = f"Det: Price {'<' if spread['type'] == 'bullish' else '>'} {band_type}({band_val:.2f}) | ADX: {a:.1f} | RSI {r:.1f} ({rationale})"    
+                
                 spreads_rows.append({
                     "ticker": symbol,
                     "company": company_name,
@@ -789,20 +787,6 @@ def job(tickers, prev_tickers=None):
                     "monthly_available": monthly_avail,
                     "is_new": symbol not in prev_tickers,
                     "reasoning": full_reasoning,})
-                spreads_rows.append({
-                    "ticker": symbol,
-                    "company": company_name,
-                    "strategy": spread["strategy"],
-                    "type": spread["type"],
-                    "is_squeeze": is_squeeze,
-                    "price": round(float(price), 2),
-                    "market_cap": float(market_cap) if market_cap is not None else 0.0,
-                    "market_cap_str": (format_market_cap(market_cap) or "0"),
-
-                    # NEW: show options flags on spread stocks
-                    "weekly_available": weekly_avail,
-                    "monthly_available": monthly_avail,
-                })
 
         except Exception as e:
             logger.exception(f"Error processing {symbol}: {e}")
