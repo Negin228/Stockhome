@@ -23,7 +23,7 @@ W_MACD = 25
 W_DISTANCE = 10
 
 CACHE_FUNDAMENTALS_HOURS = 24
-FETCH_NEWS = True  # placeholder (not used in this script)
+CACHE_OPTIONS_AVAIL_HOURS = 24
 
 pacific = pytz.timezone("US/Pacific")
 dt_pacific = datetime.datetime.now(pacific)
@@ -31,10 +31,14 @@ dt_pacific = datetime.datetime.now(pacific)
 DATA_DIR = config.DATA_DIR
 LOG_DIR = config.LOG_DIR
 FUND_DIR = "data/fundamentals"
+COMPANY_CACHE_DIR = "data/company_names"
+OPTIONS_CACHE_DIR = "data/options_availability"
 
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(LOG_DIR, exist_ok=True)
 os.makedirs(FUND_DIR, exist_ok=True)
+os.makedirs(COMPANY_CACHE_DIR, exist_ok=True)
+os.makedirs(OPTIONS_CACHE_DIR, exist_ok=True)
 os.makedirs("data", exist_ok=True)
 os.makedirs("artifacts/data", exist_ok=True)
 
@@ -61,7 +65,7 @@ FINNHUB_KEY = os.getenv("API_KEY")
 finnhub_client = finnhub.Client(api_key=FINNHUB_KEY)
 
 # ---------------------------------------------------------
-# HELPERS
+# BASIC HELPERS
 # ---------------------------------------------------------
 def clamp(x, lo, hi):
     return max(lo, min(hi, x))
@@ -75,8 +79,8 @@ def scalar(x):
 
 def normalize_tickers(x):
     """
-    Accepts: list/tuple/set of tickers OR comma-separated string.
-    Returns: cleaned list of unique uppercase tickers.
+    Accepts: list/tuple/set tickers OR comma-separated string.
+    Returns: cleaned, unique, uppercase list.
     """
     if x is None:
         return []
@@ -111,17 +115,27 @@ def slope(series, lookback=10):
     return float(m)
 
 def format_market_cap(mcap):
+    """
+    Clean, consistent formatting:
+      2.35T, 812.40B, 153.2M, 980K, 532
+    """
     try:
-        if mcap is None or pd.isna(mcap) or float(mcap) <= 0:
+        if mcap is None:
             return "N/A"
-        mcap = float(mcap)
-        if mcap >= 1e12:
-            return f"{mcap/1e12:,.2f}T"
-        if mcap >= 1e9:
-            return f"{mcap/1e9:,.1f}B"
-        if mcap >= 1e6:
-            return f"{mcap/1e6:,.1f}M"
-        return f"{mcap:,.0f}"
+        m = float(mcap)
+        if np.isnan(m) or m <= 0:
+            return "N/A"
+
+        units = [
+            (1e12, "T", 2),
+            (1e9,  "B", 2),
+            (1e6,  "M", 1),
+            (1e3,  "K", 0),
+        ]
+        for div, suffix, decimals in units:
+            if m >= div:
+                return f"{m/div:,.{decimals}f}{suffix}"
+        return f"{m:,.0f}"
     except Exception:
         return "N/A"
 
@@ -131,7 +145,8 @@ def format_market_cap(mcap):
 def option_expiration_type(expiration_str: str) -> str:
     try:
         d = parse(expiration_str).date()
-        if d.weekday() == 5:  # Saturday -> treat as Friday
+        # If Saturday, treat as Friday
+        if d.weekday() == 5:
             d = d - datetime.timedelta(days=1)
         # Monthly: 3rd Friday (15-21)
         if d.weekday() == 4 and 15 <= d.day <= 21:
@@ -147,6 +162,46 @@ def option_availability(expiration_list):
         "monthly_available": any(t == "MONTHLY" for t in types),
     }
 
+def fetch_options_availability_cached(symbol):
+    """
+    Cheap "does it have weekly/monthly expirations?" check for ANY ticker (including spreads).
+    Cached for CACHE_OPTIONS_AVAIL_HOURS hours.
+    """
+    path = os.path.join(OPTIONS_CACHE_DIR, f"{symbol}.json")
+
+    if os.path.exists(path):
+        age = time.time() - os.path.getmtime(path)
+        if age < CACHE_OPTIONS_AVAIL_HOURS * 3600:
+            try:
+                with open(path, "r") as f:
+                    d = json.load(f)
+                    return {
+                        "weekly_available": bool(d.get("weekly_available", False)),
+                        "monthly_available": bool(d.get("monthly_available", False)),
+                    }
+            except Exception:
+                pass
+
+    out = {"weekly_available": False, "monthly_available": False}
+    try:
+        exps = yf.Ticker(symbol).options or []
+        if exps:
+            avail = option_availability(exps)
+            out = {
+                "weekly_available": bool(avail.get("weekly_available")),
+                "monthly_available": bool(avail.get("monthly_available")),
+            }
+    except Exception as e:
+        logger.warning(f"Options availability error for {symbol}: {e}")
+
+    try:
+        with open(path, "w") as f:
+            json.dump(out, f)
+    except Exception:
+        pass
+
+    return out
+
 def default_put_obj():
     return {
         "strike": None,
@@ -156,98 +211,15 @@ def default_put_obj():
         "premium_percent": None,
         "metric_sum": None,
         "weekly_available": True,
-        "monthly_available": True
+        "monthly_available": True,
+        "exp_type": None,
     }
-
-# ---------------------------------------------------------
-# SIGNAL + SCORING
-# ---------------------------------------------------------
-def generate_signal(df):
-    if df.empty or "rsi" not in df.columns:
-        return None, ""
-    rsi = df["rsi"].iloc[-1]
-    if pd.isna(rsi):
-        return None, ""
-    if rsi < config.RSI_OVERSOLD:
-        return "BUY", f"RSI={rsi:.1f} < {config.RSI_OVERSOLD}"
-    if rsi > config.RSI_OVERBOUGHT:
-        return "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
-    return None, ""
-
-def score_trend(last_close, sma_fast_v, sma_slow_v, sma_slow_slope):
-    reasons = []
-    score = 0.0
-    if last_close > sma_slow_v:
-        score += 0.55
-        reasons.append("Above slow SMA")
-    else:
-        reasons.append("Below slow SMA")
-    if last_close > sma_fast_v:
-        score += 0.25
-        reasons.append("Above fast SMA")
-    if sma_slow_slope > 0:
-        score += 0.20
-        reasons.append("Uptrending")
-    return clamp(score, 0, 1), reasons
-
-def score_rsi(last_rsi):
-    reasons = []
-    score = 0.0
-    if last_rsi >= 50:
-        score += 0.60
-    else:
-        score += 0.35
-
-    if last_rsi >= config.RSI_OVERBOUGHT:
-        score -= 0.15
-        reasons.append("Overbought")
-    elif last_rsi <= config.RSI_OVERSOLD:
-        score += 0.15
-        reasons.append("Oversold")
-    else:
-        reasons.append(f"RSI {last_rsi:.0f}")
-    return clamp(score, 0, 1), reasons
-
-def score_macd(macd_val, signal_val, hist_series):
-    reasons = []
-    score = 0.0
-    if macd_val > signal_val:
-        score += 0.60
-        reasons.append("Bullish MACD")
-    else:
-        score += 0.35
-        reasons.append("Bearish MACD")
-
-    h = hist_series.dropna()
-    if len(h) >= 3:
-        h0, h1, h2 = h.iloc[-1], h.iloc[-2], h.iloc[-3]
-        if h0 > h1 > h2:
-            score += 0.15
-            reasons.append("Mom. Rising")
-        elif h0 < h1 < h2:
-            score -= 0.10
-            reasons.append("Mom. Falling")
-    return clamp(score, 0, 1), reasons
-
-def score_distance(last_close, sma_slow_v):
-    reasons = []
-    d = pct(last_close, sma_slow_v)
-    if pd.isna(d):
-        return 0.5, []
-    if -0.03 <= d <= 0.05:
-        score = 0.85
-        reasons.append("Near Support")
-    elif d > 0.05:
-        score = 0.60
-        reasons.append(f"Extended (+{d*100:.0f}%)")
-    else:
-        score = 0.45
-    return score, reasons
 
 # ---------------------------------------------------------
 # PRICE FETCH (PRIORITY ORDER)
 # ---------------------------------------------------------
 def get_live_price(symbol, fallback_close, retries=2, wait=1):
+    # 1) Finnhub quote
     for attempt in range(retries):
         try:
             q = finnhub_client.quote(symbol)
@@ -257,8 +229,8 @@ def get_live_price(symbol, fallback_close, retries=2, wait=1):
         except Exception:
             if attempt < retries - 1:
                 time.sleep(wait)
-                continue
 
+    # 2) yfinance fast_info
     try:
         price = yf.Ticker(symbol).fast_info.get("lastPrice")
         if price and price > 0:
@@ -266,16 +238,18 @@ def get_live_price(symbol, fallback_close, retries=2, wait=1):
     except Exception:
         pass
 
-    return float(fallback_close) if fallback_close is not None else None
+    # 3) fallback close
+    try:
+        return float(fallback_close)
+    except Exception:
+        return None
 
 # ---------------------------------------------------------
-# FUNDAMENTALS (CACHED)
+# COMPANY NAME (CACHED)
 # ---------------------------------------------------------
-COMPANY_CACHE_DIR = "data/company_names"
-os.makedirs(COMPANY_CACHE_DIR, exist_ok=True)
-
 def fetch_company_name_cached(symbol):
     path = os.path.join(COMPANY_CACHE_DIR, f"{symbol}.json")
+
     if os.path.exists(path):
         age = time.time() - os.path.getmtime(path)
         if age < 24 * 3600:
@@ -294,6 +268,9 @@ def fetch_company_name_cached(symbol):
     except Exception:
         return ""
 
+# ---------------------------------------------------------
+# FUNDAMENTALS (CACHED)
+# ---------------------------------------------------------
 def fetch_fundamentals_cached(symbol):
     path = os.path.join(FUND_DIR, f"{symbol}.json")
 
@@ -328,6 +305,7 @@ def fetch_fundamentals_cached(symbol):
 def fetch_cached_history(symbol, period="2y"):
     path = os.path.join(DATA_DIR, f"{symbol}.csv")
 
+    # 1) cache
     if os.path.exists(path):
         try:
             df = pd.read_csv(path, index_col=0, parse_dates=True)
@@ -339,9 +317,13 @@ def fetch_cached_history(symbol, period="2y"):
         except Exception as e:
             logger.warning(f"Cache read failed for {symbol}: {e}")
 
+    # 2) download
     df = yf.download(symbol, period=period, progress=False)
     if not df.empty:
-        df.to_csv(path)
+        try:
+            df.to_csv(path)
+        except Exception:
+            pass
     return df
 
 # ---------------------------------------------------------
@@ -358,24 +340,29 @@ def calculate_indicators(df):
         low   = df["Low"]
 
     close = close.astype(float)
-    high = high.astype(float)
-    low = low.astype(float)
+    high  = high.astype(float)
+    low   = low.astype(float)
 
+    # RSI
     df["rsi"] = ta.momentum.RSIIndicator(close=close, window=14).rsi()
 
+    # MAs
     df["dma200"] = close.rolling(200).mean()
-    df["dma50"]  = close.rolling(50).mean()
+    df["dma50"] = close.rolling(50).mean()
 
+    # MACD
     macd = ta.trend.MACD(close=close, window_slow=26, window_fast=12, window_sign=9)
     df["macd"] = macd.macd()
     df["signal_line"] = macd.macd_signal()
     df["hist"] = macd.macd_diff()
 
+    # ADX + DI
     dmi = ta.trend.ADXIndicator(high=high, low=low, close=close, window=14)
     df["adx"] = dmi.adx()
     df["plus_di"] = dmi.adx_pos()
     df["minus_di"] = dmi.adx_neg()
 
+    # BB + KC (squeeze)
     bb = ta.volatility.BollingerBands(close=close, window=20, window_dev=2)
     df["bb_low"] = bb.bollinger_lband()
     df["bb_high"] = bb.bollinger_hband()
@@ -385,6 +372,77 @@ def calculate_indicators(df):
     df["kc_high"] = kc.keltner_channel_hband()
 
     return df
+
+# ---------------------------------------------------------
+# SIGNAL + SCORING
+# ---------------------------------------------------------
+def generate_signal(df):
+    if df.empty or "rsi" not in df.columns:
+        return None, ""
+    rsi = df["rsi"].iloc[-1]
+    if pd.isna(rsi):
+        return None, ""
+    if rsi < config.RSI_OVERSOLD:
+        return "BUY", f"RSI={rsi:.1f} < {config.RSI_OVERSOLD}"
+    if rsi > config.RSI_OVERBOUGHT:
+        return "SELL", f"RSI={rsi:.1f} > {config.RSI_OVERBOUGHT}"
+    return None, ""
+
+def score_trend(last_close, sma_fast_v, sma_slow_v, sma_slow_slope):
+    reasons = []
+    score = 0.0
+    if last_close > sma_slow_v:
+        score += 0.55; reasons.append("Above slow SMA")
+    else:
+        reasons.append("Below slow SMA")
+    if last_close > sma_fast_v:
+        score += 0.25; reasons.append("Above fast SMA")
+    if sma_slow_slope > 0:
+        score += 0.20; reasons.append("Uptrending")
+    return clamp(score, 0, 1), reasons
+
+def score_rsi(last_rsi):
+    reasons = []
+    score = 0.0
+    score += 0.60 if last_rsi >= 50 else 0.35
+
+    if last_rsi >= config.RSI_OVERBOUGHT:
+        score -= 0.15; reasons.append("Overbought")
+    elif last_rsi <= config.RSI_OVERSOLD:
+        score += 0.15; reasons.append("Oversold")
+    else:
+        reasons.append(f"RSI {last_rsi:.0f}")
+    return clamp(score, 0, 1), reasons
+
+def score_macd(macd_val, signal_val, hist_series):
+    reasons = []
+    score = 0.0
+    if macd_val > signal_val:
+        score += 0.60; reasons.append("Bullish MACD")
+    else:
+        score += 0.35; reasons.append("Bearish MACD")
+
+    h = hist_series.dropna()
+    if len(h) >= 3:
+        h0, h1, h2 = h.iloc[-1], h.iloc[-2], h.iloc[-3]
+        if h0 > h1 > h2:
+            score += 0.15; reasons.append("Mom. Rising")
+        elif h0 < h1 < h2:
+            score -= 0.10; reasons.append("Mom. Falling")
+    return clamp(score, 0, 1), reasons
+
+def score_distance(last_close, sma_slow_v):
+    reasons = []
+    d = pct(last_close, sma_slow_v)
+    if pd.isna(d):
+        return 0.5, []
+    if -0.03 <= d <= 0.05:
+        score = 0.85; reasons.append("Near Support")
+    elif d > 0.05:
+        score = 0.60; reasons.append(f"Extended (+{d*100:.0f}%)")
+    else:
+        score = 0.45
+    return score, reasons
 
 # ---------------------------------------------------------
 # SPREAD STRATEGY DETECTION
@@ -398,12 +456,15 @@ def get_spread_strategy(row):
     kl = scalar(row["kc_low"])
     ku = scalar(row["kc_high"])
 
+    # squeeze: BB inside KC
     is_sqz = not (bl < kl or bu > ku)
 
+    # bullish mean reversion
     if p <= bl and r < 40 and a < 35:
         strat = "Bull Call (Debit)" if r < 30 else "Bull Put (Credit)"
         return {"strategy": strat, "type": "bullish", "is_squeeze": is_sqz}
 
+    # bearish mean reversion
     if p >= bu and r > 60 and a < 35:
         strat = "Bear Put (Debit)" if r > 70 else "Bear Call (Credit)"
         return {"strategy": strat, "type": "bearish", "is_squeeze": is_sqz}
@@ -411,13 +472,13 @@ def get_spread_strategy(row):
     return None
 
 # ---------------------------------------------------------
-# PUTS FETCHING + METRICS
+# PUTS (ONLY FOR BUY SIGNALS)
 # ---------------------------------------------------------
 def fetch_puts(symbol):
     puts_data = []
     try:
         ticker = yf.Ticker(symbol)
-        today = dt_pacific.replace(tzinfo=None)
+        today = dt_pacific.replace(tzinfo=None)  # match old behavior
 
         all_exps = getattr(ticker, "options", []) or []
         valid_dates = []
@@ -434,7 +495,7 @@ def fetch_puts(symbol):
 
         avail = option_availability(valid_dates)
 
-        # One underlying price read per symbol (avoid repeating inside loop)
+        # underlying close once per symbol
         try:
             under_price = ticker.history(period="1d")["Close"].iloc[-1]
         except Exception:
@@ -450,7 +511,6 @@ def fetch_puts(symbol):
 
             puts = chain.puts.copy()
 
-            # distance to spot
             if under_price is not None and pd.notna(under_price):
                 puts["distance"] = (puts["strike"] - under_price).abs()
             else:
@@ -481,10 +541,8 @@ def fetch_puts(symbol):
                     "monthly_available": bool(avail["monthly_available"]),
                     "stock_price": float(under_price) if under_price is not None and pd.notna(under_price) else None
                 })
-
     except Exception as e:
         logger.warning(f"Failed to fetch puts for {symbol}: {e}")
-
     return puts_data
 
 def calculate_custom_metrics(puts, price):
@@ -504,7 +562,7 @@ def calculate_custom_metrics(puts, price):
     return puts
 
 # ---------------------------------------------------------
-# MAIN JOB LOOP (ROBUST PER-TICKER)
+# MAIN JOB LOOP
 # ---------------------------------------------------------
 def job(tickers):
     all_rows = []
@@ -527,7 +585,7 @@ def job(tickers):
             df = calculate_indicators(df)
             row = df.iloc[-1]
 
-            sig, sig_reason = generate_signal(df)
+            sig, _sig_reason = generate_signal(df)
 
             spread = get_spread_strategy(row)
             strategy = spread["strategy"] if spread else None
@@ -538,15 +596,22 @@ def job(tickers):
             close_price = scalar(row["Close"])
             price = get_live_price(symbol, close_price)
 
-            plus_di = scalar(df["plus_di"].iloc[-1])
+            # options availability (for ALL, including spreads)
+            opts_avail = fetch_options_availability_cached(symbol)
+            weekly_avail = bool(opts_avail.get("weekly_available"))
+            monthly_avail = bool(opts_avail.get("monthly_available"))
+
+            # DI-based trend label
+            plus_di  = scalar(df["plus_di"].iloc[-1])
             minus_di = scalar(df["minus_di"].iloc[-1])
-            adx_val = scalar(df["adx"].iloc[-1])
+            adx_val  = scalar(df["adx"].iloc[-1])
 
             trend_direction = "Bullish" if plus_di > minus_di else "Bearish"
-            trend_strength = "Strong" if adx_val > 25 else "Weak/Sideways"
+            trend_strength  = "Strong" if adx_val > 25 else "Weak/Sideways"
             trend_rationale = f"{trend_strength} {trend_direction} Trend (ADX: {adx_val:.1f})"
-            trend_dir_val = trend_direction.lower()
+            trend_dir_val   = trend_direction.lower()
 
+            # scoring
             rsi_val = scalar(row["rsi"])
             dma50_val = scalar(row["dma50"])
             dma200_val = scalar(row["dma200"])
@@ -559,20 +624,17 @@ def job(tickers):
             s_macd, r_macd = score_macd(macd_val, sig_val, df["hist"])
             s_dist, r_dist = score_distance(close_price, dma200_val)
 
-            final_score = clamp(
-                (W_TREND * s_trend) + (W_RSI * s_rsi) + (W_MACD * s_macd) + (W_DISTANCE * s_dist),
-                0,
-                100
-            )
+            final_score = clamp((W_TREND*s_trend) + (W_RSI*s_rsi) + (W_MACD*s_macd) + (W_DISTANCE*s_dist), 0, 100)
             reasons = r_trend[:1] + r_rsi[:1] + r_macd[:1] + r_dist[:1]
             why_str = " • ".join(reasons) if reasons else "N/A"
 
+            # fundamentals
             funds = fetch_fundamentals_cached(symbol) or {}
             trailing_pe = funds.get("trailing_pe")
-            forward_pe = funds.get("forward_pe")
+            forward_pe  = funds.get("forward_pe")
             earnings_growth = funds.get("earnings_growth")
-            debt_to_equity = funds.get("debt_to_equity")
-            market_cap = funds.get("market_cap")
+            debt_to_equity  = funds.get("debt_to_equity")
+            market_cap      = funds.get("market_cap")
 
             pe_pass = bool(trailing_pe and forward_pe and trailing_pe > forward_pe)
             growth_pass = bool((earnings_growth or 0) > 0)
@@ -585,7 +647,7 @@ def job(tickers):
                 "score": float(final_score),
                 "why": why_str,
                 "price": round(float(price), 2),
-                "price_str": f"{price:.2f}",
+                "price_str": f"{price:.2f}" if price is not None else "N/A",
                 "rsi": round(float(rsi_val), 1),
                 "rsi_str": f"{rsi_val:.1f}",
                 "dma50": float(dma50_val),
@@ -608,11 +670,14 @@ def job(tickers):
                 "earnings_growth_str": f"{(earnings_growth or 0) * 100:.1f}%",
                 "debt_to_equity": debt_to_equity,
                 "debt_to_equity_str": str(debt_to_equity) if debt_to_equity is not None else "N/A",
+                # NEW: options flags everywhere
+                "weekly_available": weekly_avail,
+                "monthly_available": monthly_avail,
             }
 
             all_rows.append(base_obj)
 
-            # Only BUY rows get options
+            # BUY: compute best put suggestion
             if sig == "BUY":
                 puts_list = fetch_puts(symbol)
                 puts_list = calculate_custom_metrics(puts_list, float(price))
@@ -625,7 +690,6 @@ def job(tickers):
                 if filtered:
                     best_put = max(filtered, key=lambda x: (x.get("premium_percent") or 0, x.get("premium") or 0))
                     expiration_fmt = datetime.datetime.strptime(best_put["expiration"], "%Y-%m-%d").strftime("%b %d, %Y")
-
                     put_obj = {
                         "strike": float(best_put["strike"]),
                         "expiration": expiration_fmt,
@@ -639,12 +703,14 @@ def job(tickers):
                     }
                 else:
                     put_obj = default_put_obj()
+                    put_obj["weekly_available"] = weekly_avail
+                    put_obj["monthly_available"] = monthly_avail
 
                 buy_obj = dict(base_obj)
                 buy_obj["put"] = put_obj
                 buy_rows.append(buy_obj)
 
-            # spreads.json should exclude squeeze
+            # spreads.json excludes squeeze (per your rule)
             if spread and not is_squeeze:
                 spreads_rows.append({
                     "ticker": symbol,
@@ -653,11 +719,14 @@ def job(tickers):
                     "type": spread["type"],
                     "is_squeeze": is_squeeze,
                     "price": round(float(price), 2),
-                    "mcap": market_cap,
+                    "market_cap": float(market_cap) if market_cap is not None else None,
+                    "market_cap_str": format_market_cap(market_cap),
+                    # NEW: show options flags on spread stocks
+                    "weekly_available": weekly_avail,
+                    "monthly_available": monthly_avail,
                 })
 
         except Exception as e:
-            # IMPORTANT: don't break the whole loop
             logger.exception(f"Error processing {symbol}: {e}")
             continue
 
