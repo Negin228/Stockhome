@@ -283,21 +283,49 @@ def fetch_fundamentals_cached(symbol):
             except Exception:
                 pass
 
+    # --- FIX: market cap fallback to Finnhub if yfinance doesn't provide it ---
+    trailing_pe = None
+    forward_pe = None
+    earnings_growth = None
+    debt_to_equity = None
+    market_cap = None
+
+    # 1) yfinance
     try:
-        info = yf.Ticker(symbol).info
-        data = {
-            "trailing_pe": info.get("trailingPE"),
-            "forward_pe": info.get("forwardPE"),
-            "earnings_growth": info.get("earningsQuarterlyGrowth"),
-            "debt_to_equity": info.get("debtToEquity"),
-            "market_cap": info.get("marketCap"),
-        }
-        with open(path, "w") as f:
-            json.dump(data, f)
-        return data
+        info = yf.Ticker(symbol).info or {}
+        trailing_pe = info.get("trailingPE")
+        forward_pe = info.get("forwardPE")
+        earnings_growth = info.get("earningsQuarterlyGrowth")
+        debt_to_equity = info.get("debtToEquity")
+        market_cap = info.get("marketCap")
     except Exception as e:
         logger.warning(f"Fundamentals error for {symbol}: {e}")
-        return {}
+
+    # 2) Finnhub fallback for market cap (Finnhub returns market cap in MILLIONS)
+    if (market_cap is None or market_cap == 0) and FINNHUB_KEY:
+        try:
+            prof = finnhub_client.company_profile2(symbol=symbol) or {}
+            mc_millions = prof.get("marketCapitalization")
+            if mc_millions and mc_millions > 0:
+                market_cap = float(mc_millions) * 1_000_000
+        except Exception as e:
+            logger.warning(f"Finnhub market cap fallback error for {symbol}: {e}")
+
+    data = {
+        "trailing_pe": trailing_pe,
+        "forward_pe": forward_pe,
+        "earnings_growth": earnings_growth,
+        "debt_to_equity": debt_to_equity,
+        "market_cap": market_cap,
+    }
+
+    try:
+        with open(path, "w") as f:
+            json.dump(data, f)
+    except Exception:
+        pass
+
+    return data
 
 # ---------------------------------------------------------
 # HISTORY CACHE
