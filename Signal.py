@@ -754,6 +754,28 @@ def job(tickers):
 
             # spreads.json excludes squeeze (per your rule)
             if spread and not is_squeeze:
+                # spreads.json excludes squeeze (per your rule)
+            if spread and not is_squeeze:
+                spreads_rows.append({
+                    "ticker": symbol,
+                    "company": company_name,
+                    "strategy": spread["strategy"],
+                    "type": spread["type"],
+                    "is_squeeze": is_squeeze,
+                    "price": round(float(price), 2),
+                    "market_cap": float(market_cap) if market_cap is not None else 0.0,
+                    "market_cap_str": (format_market_cap(market_cap) or "0"),
+        
+                    "pe_check": bool(pe_pass),
+                    "growth_check": bool(growth_pass),
+                    "debt_check": bool(debt_pass),
+                    "trailing_pe": trailing_pe,
+                    "forward_pe": forward_pe,
+                    "earnings_growth": earnings_growth,
+                    "debt_to_equity": debt_to_equity,
+
+                    "weekly_available": weekly_avail,
+                    "monthly_available": monthly_avail,})
                 spreads_rows.append({
                     "ticker": symbol,
                     "company": company_name,
