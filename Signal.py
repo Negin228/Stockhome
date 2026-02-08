@@ -606,7 +606,7 @@ def calculate_custom_metrics(puts, price):
 # ---------------------------------------------------------
 # MAIN JOB LOOP
 # ---------------------------------------------------------
-def job(tickers):
+def job(tickers, prev_tickers=None):
     all_rows = []
     buy_rows = []
     spreads_rows = []
@@ -754,7 +754,8 @@ def job(tickers):
 
             # spreads.json excludes squeeze (per your rule)
             if spread and not is_squeeze:
-                # spreads.json excludes squeeze (per your rule)
+                    if prev_tickers is None:
+                        prev_tickers = set()
                 spreads_rows.append({
                     "ticker": symbol,
                     "company": company_name,
@@ -774,7 +775,8 @@ def job(tickers):
                     "debt_to_equity": debt_to_equity,
 
                     "weekly_available": weekly_avail,
-                    "monthly_available": monthly_avail,})
+                    "monthly_available": monthly_avail,
+                    "is_new": symbol not in prev_tickers,})
                 spreads_rows.append({
                     "ticker": symbol,
                     "company": company_name,
@@ -807,11 +809,26 @@ def main():
 
     raw = args.tickers if args.tickers else config.tickers
     tickers = normalize_tickers(raw)
-
     logger.info(f"Starting run for {len(tickers)} tickers: {tickers[:10]}{'...' if len(tickers) > 10 else ''}")
+
+    prev_tickers = set()
+    spreads_path = "data/spreads.json"
+    if os.path.exists(spreads_path):
+        try:
+            with open(spreads_path, "r", encoding="utf-8") as f:
+                old_data = json.load(f)
+                if isinstance(old_data, list):
+                    prev_tickers = {item.get('ticker') for item in old_data if item.get('ticker')}
+            logger.info(f"Loaded {len(prev_tickers)} previous tickers for 'NEW' badge check.")
+        except Exception as e:
+            logger.warning(f"Could not load previous spreads for comparison: {e}")
 
     buy_rows, all_rows, spreads_rows = job(tickers)
 
+    logger.info(f"Starting run for {len(tickers)} tickers: {tickers[:10]}{'...' if len(tickers) > 10 else ''}")
+
+    buy_rows, all_rows, spreads_rows = job(tickers, prev_tickers)
+    
     payload = {
         "generated_at_pt": dt_pacific.strftime("%m-%d-%Y %H:%M"),
         "buys": buy_rows,
