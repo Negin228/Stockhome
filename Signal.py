@@ -754,8 +754,8 @@ def job(tickers, prev_tickers=None):
 
             # spreads.json excludes squeeze (per your rule)
             if spread and not is_squeeze:
-                    if prev_tickers is None:
-                        prev_tickers = set()
+                if prev_tickers is None:
+                    prev_tickers = set()
                 spreads_rows.append({
                     "ticker": symbol,
                     "company": company_name,
