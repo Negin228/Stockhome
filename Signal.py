@@ -822,7 +822,7 @@ def main():
         except Exception as e:
             logger.warning(f"Could not load previous spreads for comparison: {e}")
     buy_rows, all_rows, spreads_rows = job(tickers, prev_tickers)
-    
+    spreads_rows.sort(key=lambda x: x.get("is_new", False), reverse=True)
     payload = {
         "generated_at_pt": dt_pacific.strftime("%m-%d-%Y %H:%M"),
         "buys": buy_rows,
