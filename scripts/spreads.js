@@ -54,7 +54,7 @@
       if (a.is_new && !b.is_new) return -1;
       if (!a.is_new && b.is_new) return 1;
       
-      return (b.mcap || 0) - (a.mcap || 0);
+      return 0;
     });
 
     // 3. RENDER FUNCTION
