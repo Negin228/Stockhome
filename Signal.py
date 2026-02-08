@@ -684,7 +684,7 @@ def job(tickers):
                 "trend_rationale": trend_rationale,
                 "pe": float(trailing_pe) if trailing_pe is not None else None,
                 "pe_str": f"{trailing_pe:.1f}" if trailing_pe is not None else "N/A",
-                "market_cap": float(market_cap) if market_cap is not None else None,
+                "market_cap": float(market_cap) if market_cap is not None else 0.0,
                 "market_cap_str": (format_market_cap(market_cap) or "0"),
                 "strategy": strategy,
                 "pe_check": bool(pe_pass),
@@ -745,7 +745,7 @@ def job(tickers):
                     "type": spread["type"],
                     "is_squeeze": is_squeeze,
                     "price": round(float(price), 2),
-                    "market_cap": float(market_cap) if market_cap is not None else None,
+                    "market_cap": float(market_cap) if market_cap is not None else 0.0,
                     "market_cap_str": (format_market_cap(market_cap) or "0"),
 
                     # NEW: show options flags on spread stocks
