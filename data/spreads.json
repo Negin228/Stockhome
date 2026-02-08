@@ -6,7 +6,10 @@
     "type": "bullish",
     "is_squeeze": false,
     "price": 452.49,
-    "mcap": 81157988352
+    "market_cap": 81157988352.0,
+    "market_cap_str": "81.16B",
+    "weekly_available": false,
+    "monthly_available": true
   },
   {
     "ticker": "BKNG",
@@ -15,7 +18,10 @@
     "type": "bullish",
     "is_squeeze": false,
     "price": 4457.17,
-    "mcap": 144456368128
+    "market_cap": 144456368128.0,
+    "market_cap_str": "144.46B",
+    "weekly_available": true,
+    "monthly_available": true
   },
   {
     "ticker": "UDOW",
@@ -24,7 +30,10 @@
     "type": "bearish",
     "is_squeeze": false,
     "price": 64.56,
-    "mcap": null
+    "market_cap": null,
+    "market_cap_str": "N/A",
+    "weekly_available": true,
+    "monthly_available": true
   },
   {
     "ticker": "SDOW",
@@ -33,6 +42,9 @@
     "type": "bullish",
     "is_squeeze": false,
     "price": 28.25,
-    "mcap": null
+    "market_cap": null,
+    "market_cap_str": "N/A",
+    "weekly_available": true,
+    "monthly_available": true
   }
 ]

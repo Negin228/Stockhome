@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "02-07-2026 20:14",
+  "generated_at_pt": "02-07-2026 20:31",
   "buys": [
     {
       "ticker": "MCO",
@@ -20,7 +20,7 @@
       "pe": 36.373795,
       "pe_str": "36.4",
       "market_cap": 81157988352.0,
-      "market_cap_str": "81.2B",
+      "market_cap_str": "81.16B",
       "strategy": "Bull Call (Debit)",
       "pe_check": true,
       "growth_check": true,
@@ -31,6 +31,8 @@
       "earnings_growth_str": "21.0%",
       "debt_to_equity": 181.347,
       "debt_to_equity_str": "181.347",
+      "weekly_available": false,
+      "monthly_available": true,
       "put": {
         "strike": 400.0,
         "expiration": "Feb 20, 2026",
@@ -54,7 +56,7 @@
       "rsi": 25.2,
       "rsi_str": "25.2",
       "dma50": 5178.5500390625,
-      "dma200": 5306.891938476562,
+      "dma200": 5306.891931152344,
       "dma50_str": "5178.6",
       "dma200_str": "5306.9",
       "trend_dir": "bearish",
@@ -62,7 +64,7 @@
       "pe": 28.985952,
       "pe_str": "29.0",
       "market_cap": 144456368128.0,
-      "market_cap_str": "144.5B",
+      "market_cap_str": "144.46B",
       "strategy": "Bull Call (Debit)",
       "pe_check": true,
       "growth_check": true,
@@ -73,6 +75,8 @@
       "earnings_growth_str": "9.2%",
       "debt_to_equity": null,
       "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true,
       "put": {
         "strike": 3880.0,
         "expiration": "Mar 20, 2026",
@@ -107,7 +111,7 @@
       "pe": 36.373795,
       "pe_str": "36.4",
       "market_cap": 81157988352.0,
-      "market_cap_str": "81.2B",
+      "market_cap_str": "81.16B",
       "strategy": "Bull Call (Debit)",
       "pe_check": true,
       "growth_check": true,
@@ -117,7 +121,9 @@
       "earnings_growth": 0.21,
       "earnings_growth_str": "21.0%",
       "debt_to_equity": 181.347,
-      "debt_to_equity_str": "181.347"
+      "debt_to_equity_str": "181.347",
+      "weekly_available": false,
+      "monthly_available": true
     },
     {
       "ticker": "BKNG",
@@ -130,7 +136,7 @@
       "rsi": 25.2,
       "rsi_str": "25.2",
       "dma50": 5178.5500390625,
-      "dma200": 5306.891938476562,
+      "dma200": 5306.891931152344,
       "dma50_str": "5178.6",
       "dma200_str": "5306.9",
       "trend_dir": "bearish",
@@ -138,7 +144,7 @@
       "pe": 28.985952,
       "pe_str": "29.0",
       "market_cap": 144456368128.0,
-      "market_cap_str": "144.5B",
+      "market_cap_str": "144.46B",
       "strategy": "Bull Call (Debit)",
       "pe_check": true,
       "growth_check": true,
@@ -148,7 +154,9 @@
       "earnings_growth": 0.092,
       "earnings_growth_str": "9.2%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     },
     {
       "ticker": "TQQQ",
@@ -161,7 +169,7 @@
       "rsi": 42.9,
       "rsi_str": "42.9",
       "dma50": 53.96656707763672,
-      "dma200": 46.45040354728699,
+      "dma200": 46.45040351867676,
       "dma50_str": "54.0",
       "dma200_str": "46.5",
       "trend_dir": "bearish",
@@ -179,7 +187,9 @@
       "earnings_growth": null,
       "earnings_growth_str": "0.0%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     },
     {
       "ticker": "SQQQ",
@@ -192,7 +202,7 @@
       "rsi": 55.1,
       "rsi_str": "55.1",
       "dma50": 66.97985877990723,
-      "dma200": 85.70308355331422,
+      "dma200": 85.70308324813843,
       "dma50_str": "67.0",
       "dma200_str": "85.7",
       "trend_dir": "bullish",
@@ -210,7 +220,9 @@
       "earnings_growth": null,
       "earnings_growth_str": "0.0%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     },
     {
       "ticker": "UPRO",
@@ -241,7 +253,9 @@
       "earnings_growth": null,
       "earnings_growth_str": "0.0%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     },
     {
       "ticker": "SPXU",
@@ -254,7 +268,7 @@
       "rsi": 48.2,
       "rsi_str": "48.2",
       "dma50": 48.873633499145505,
-      "dma200": 59.43635341644287,
+      "dma200": 59.43635324478149,
       "dma50_str": "48.9",
       "dma200_str": "59.4",
       "trend_dir": "bullish",
@@ -272,7 +286,9 @@
       "earnings_growth": null,
       "earnings_growth_str": "0.0%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     },
     {
       "ticker": "UDOW",
@@ -285,7 +301,7 @@
       "rsi": 60.1,
       "rsi_str": "60.1",
       "dma50": 59.84495750427246,
-      "dma200": 51.02267911911011,
+      "dma200": 51.02267910003662,
       "dma50_str": "59.8",
       "dma200_str": "51.0",
       "trend_dir": "bullish",
@@ -303,7 +319,9 @@
       "earnings_growth": null,
       "earnings_growth_str": "0.0%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     },
     {
       "ticker": "SDOW",
@@ -316,7 +334,7 @@
       "rsi": 39.0,
       "rsi_str": "39.0",
       "dma50": 30.89304725646973,
-      "dma200": 37.66259556770325,
+      "dma200": 37.66259552955628,
       "dma50_str": "30.9",
       "dma200_str": "37.7",
       "trend_dir": "bearish",
@@ -334,7 +352,9 @@
       "earnings_growth": null,
       "earnings_growth_str": "0.0%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     },
     {
       "ticker": "SOXL",
@@ -347,7 +367,7 @@
       "rsi": 55.1,
       "rsi_str": "55.1",
       "dma50": 50.788199996948244,
-      "dma200": 33.739809341430664,
+      "dma200": 33.73980932712555,
       "dma50_str": "50.8",
       "dma200_str": "33.7",
       "trend_dir": "bullish",
@@ -365,7 +385,9 @@
       "earnings_growth": null,
       "earnings_growth_str": "0.0%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     },
     {
       "ticker": "SOXS",
@@ -378,7 +400,7 @@
       "rsi": 38.9,
       "rsi_str": "38.9",
       "dma50": 2.666018545627594,
-      "dma200": 6.502951887249947,
+      "dma200": 6.502951968312264,
       "dma50_str": "2.7",
       "dma200_str": "6.5",
       "trend_dir": "bearish",
@@ -396,7 +418,9 @@
       "earnings_growth": null,
       "earnings_growth_str": "0.0%",
       "debt_to_equity": null,
-      "debt_to_equity_str": "N/A"
+      "debt_to_equity_str": "N/A",
+      "weekly_available": true,
+      "monthly_available": true
     }
   ]
 }
