@@ -756,6 +756,17 @@ def job(tickers, prev_tickers=None):
             if spread and not is_squeeze:
                 if prev_tickers is None:
                     prev_tickers = set()
+                    r = scalar(row["rsi"])
+                    a = scalar(row["adx"])
+                    bl = scalar(row["bb_low"])
+                    bu = scalar(row["bb_high"])
+                    band_type = "BBL" if spread["type"] == "bullish" else "BBU"
+                    band_val = bl if spread["type"] == "bullish" else bu
+                    rationale = "Extreme: Buying Delta for sharp snap-back." if spread["strategy"].endswith("(Debit)") else "Moderate: Selling Theta."
+    
+                    full_reasoning = f"Det: Price {'<' if spread['type'] == 'bullish' else '>'} {band_type}({band_val:.2f}) | ADX: {a:.1f} | RSI {r:.1f} ({rationale})"
+    
+    
                 spreads_rows.append({
                     "ticker": symbol,
                     "company": company_name,
@@ -776,7 +787,8 @@ def job(tickers, prev_tickers=None):
 
                     "weekly_available": weekly_avail,
                     "monthly_available": monthly_avail,
-                    "is_new": symbol not in prev_tickers,})
+                    "is_new": symbol not in prev_tickers,
+                    "reasoning": full_reasoning,})
                 spreads_rows.append({
                     "ticker": symbol,
                     "company": company_name,
@@ -822,11 +834,6 @@ def main():
             logger.info(f"Loaded {len(prev_tickers)} previous tickers for 'NEW' badge check.")
         except Exception as e:
             logger.warning(f"Could not load previous spreads for comparison: {e}")
-
-    buy_rows, all_rows, spreads_rows = job(tickers)
-
-    logger.info(f"Starting run for {len(tickers)} tickers: {tickers[:10]}{'...' if len(tickers) > 10 else ''}")
-
     buy_rows, all_rows, spreads_rows = job(tickers, prev_tickers)
     
     payload = {
