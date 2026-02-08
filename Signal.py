@@ -61,6 +61,19 @@ if not logger.handlers:
 FINNHUB_KEY = os.getenv("API_KEY")
 finnhub_client = finnhub.Client(api_key=FINNHUB_KEY)
 
+
+def format_market_cap(mcap):
+    try:
+        if mcap is None or pd.isna(mcap) or mcap <= 0:
+            return "N/A"
+        mcap = float(mcap)
+        if mcap >= 1e12: return f"{mcap/1e12:,.2f}T"
+        if mcap >= 1e9:  return f"{mcap/1e9:,.1f}B"
+        if mcap >= 1e6:  return f"{mcap/1e6:,.1f}M"
+        return f"{mcap:,.0f}"
+    except Exception:
+        return "N/A"
+
 def option_expiration_type(expiration_str: str) -> str:
     try:
         d = parse(expiration_str).date()
