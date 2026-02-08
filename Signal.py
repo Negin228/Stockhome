@@ -685,7 +685,7 @@ def job(tickers):
                 "pe": float(trailing_pe) if trailing_pe is not None else None,
                 "pe_str": f"{trailing_pe:.1f}" if trailing_pe is not None else "N/A",
                 "market_cap": float(market_cap) if market_cap is not None else None,
-                "market_cap_str": format_market_cap(market_cap),
+                "market_cap_str": (format_market_cap(market_cap) or "0"),
                 "strategy": strategy,
                 "pe_check": bool(pe_pass),
                 "growth_check": bool(growth_pass),
