@@ -272,34 +272,49 @@ def fetch_company_name_cached(symbol):
 def fetch_fundamentals_cached(symbol):
     path = os.path.join(FUND_DIR, f"{symbol}.json")
 
+    # 1) Try to read cache
     if os.path.exists(path):
         age = time.time() - os.path.getmtime(path)
         if age < CACHE_FUNDAMENTALS_HOURS * 3600:
             try:
                 with open(path, "r") as f:
-                    return json.load(f)
+                    data = json.load(f)
+                    # VALIDATION: Only return cache if it actually has data.
+                    # If market_cap is missing/0, consider cache 'stale' and re-fetch.
+                    if data.get("market_cap"): 
+                        return data
             except Exception:
                 pass
 
-    # --- FIX: market cap fallback to Finnhub if yfinance doesn't provide it ---
+    # --- FETCH DATA ---
     trailing_pe = None
     forward_pe = None
     earnings_growth = None
     debt_to_equity = None
     market_cap = None
 
-    # 1) yfinance
+    # 1) yfinance (Try fast_info first for Market Cap - it is more reliable than .info)
     try:
-        info = yf.Ticker(symbol).info or {}
+        ticker = yf.Ticker(symbol)
+        
+        # Try fast_info for market cap (doesn't require full scrape)
+        if hasattr(ticker, 'fast_info'):
+            market_cap = ticker.fast_info.get('market_cap')
+        
+        # Try .info for the rest
+        info = ticker.info or {}
+        if not market_cap:
+             market_cap = info.get("marketCap")
+             
         trailing_pe = info.get("trailingPE")
         forward_pe = info.get("forwardPE")
         earnings_growth = info.get("earningsQuarterlyGrowth")
         debt_to_equity = info.get("debtToEquity")
-        market_cap = info.get("marketCap")
+        
     except Exception as e:
         logger.warning(f"Fundamentals error for {symbol}: {e}")
 
-    # 2) Finnhub fallback for market cap (Finnhub returns market cap in MILLIONS)
+    # 2) Finnhub fallback
     if (market_cap is None or market_cap == 0) and FINNHUB_KEY:
         try:
             prof = finnhub_client.company_profile2(symbol=symbol) or {}
@@ -307,7 +322,7 @@ def fetch_fundamentals_cached(symbol):
             if mc_millions and mc_millions > 0:
                 market_cap = float(mc_millions) * 1_000_000
         except Exception as e:
-            logger.warning(f"Finnhub market cap fallback error for {symbol}: {e}")
+            logger.warning(f"Finnhub fallback error for {symbol}: {e}")
 
     data = {
         "trailing_pe": trailing_pe,
@@ -317,14 +332,15 @@ def fetch_fundamentals_cached(symbol):
         "market_cap": market_cap,
     }
 
-    try:
-        with open(path, "w") as f:
-            json.dump(data, f)
-    except Exception:
-        pass
+    # Only save to cache if we actually got a market cap
+    if market_cap and market_cap > 0:
+        try:
+            with open(path, "w") as f:
+                json.dump(data, f)
+        except Exception:
+            pass
 
     return data
-
 # ---------------------------------------------------------
 # HISTORY CACHE
 # ---------------------------------------------------------
