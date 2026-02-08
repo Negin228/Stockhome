@@ -774,10 +774,13 @@ def job(tickers, prev_tickers=None):
                     "price": round(float(price), 2),
                     "market_cap": float(market_cap) if market_cap is not None else 0.0,
                     "market_cap_str": (format_market_cap(market_cap) or "0"),
+                    "mcap": float(market_cap) / 1e9 if market_cap else 0.0,  # ADD THIS LINE (in billions)
+
         
                     "pe_check": bool(pe_pass),
                     "growth_check": bool(growth_pass),
                     "debt_check": bool(debt_pass),
+                    "health": debt_to_equity,
                     "trailing_pe": trailing_pe,
                     "forward_pe": forward_pe,
                     "earnings_growth": earnings_growth,
