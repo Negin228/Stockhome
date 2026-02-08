@@ -115,16 +115,14 @@ def slope(series, lookback=10):
     return float(m)
 
 def format_market_cap(mcap):
-    """
-    Clean, consistent formatting:
-      2.35T, 812.40B, 153.2M, 980K, 532
-    """
     try:
         if mcap is None:
-            return "N/A"
-        m = float(mcap)
+            return ""
         if np.isnan(m) or m <= 0:
-            return "N/A"
+            return ""
+        except Exception:
+            return ""
+
 
         units = [
             (1e12, "T", 2),
@@ -243,29 +241,7 @@ def get_live_price(symbol, fallback_close, retries=2, wait=1):
         return float(fallback_close)
     except Exception:
         return None
-def format_market_cap(mcap):
-    try:
-        if mcap is None or (isinstance(mcap, float) and np.isnan(mcap)):
-            return "N/A"
 
-        m = float(mcap)
-        if m <= 0:
-            return "N/A"
-
-        units = [
-            (1e12, "T", 2),
-            (1e9,  "B", 2),
-            (1e6,  "M", 1),
-            (1e3,  "K", 0),
-        ]
-        for div, suffix, decimals in units:
-            if m >= div:
-                val = m / div
-                return f"{val:,.{decimals}f}{suffix}"
-
-        return f"{m:,.0f}"
-    except Exception:
-        return "N/A"
 
 # ---------------------------------------------------------
 # COMPANY NAME (CACHED)
