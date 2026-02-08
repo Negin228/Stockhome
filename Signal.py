@@ -746,7 +746,8 @@ def job(tickers):
                     "is_squeeze": is_squeeze,
                     "price": round(float(price), 2),
                     "market_cap": float(market_cap) if market_cap is not None else None,
-                    "market_cap_str": format_market_cap(market_cap),
+                    "market_cap_str": (format_market_cap(market_cap) or "0"),
+
                     # NEW: show options flags on spread stocks
                     "weekly_available": weekly_avail,
                     "monthly_available": monthly_avail,
