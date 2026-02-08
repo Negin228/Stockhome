@@ -118,11 +118,9 @@ def format_market_cap(mcap):
     try:
         if mcap is None:
             return ""
+        m = float(mcap)
         if np.isnan(m) or m <= 0:
             return ""
-        except Exception:
-            return ""
-
 
         units = [
             (1e12, "T", 2),
@@ -135,7 +133,8 @@ def format_market_cap(mcap):
                 return f"{m/div:,.{decimals}f}{suffix}"
         return f"{m:,.0f}"
     except Exception:
-        return "N/A"
+        return ""
+
 
 # ---------------------------------------------------------
 # OPTIONS HELPERS
