@@ -44,7 +44,14 @@ jobs:
           # Note: Ensure these secret names match your GitHub Secrets exactly
           ALPACA_NISHANTMEAN_KEY: ${{ secrets.ALPACA_NISHANTMEAN_KEY }}
           ALPACA_NISHANTMEAN_SECRET: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
-          # The Python script uses these variable names internally
+
+      - name: Send Telegram Notifications
+        continue-on-error: true
+        run: python BullishSpreadsTelegramNotifs.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
 
       - name: Commit and Sync Data
         run: |
