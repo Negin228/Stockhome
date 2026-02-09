@@ -19,19 +19,19 @@
       <div class="card-grid" id="strategy-cards"> 
         <div class="filter-card" data-strategy="bull call" style="border-left: 4px solid #28a745;">
           <button style="background-color: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;">Call Debit Spread (Bullish)</button>
-          <p style="margin: 0;">Buy a call at a lower strike, sell a call at a higher strike. Profit if price > lower strike. Risk limited to net debit.</p>
+          <p style="margin: 0;">Buy call at lower strike, sell call at higher strike. Profit if price > lower strike. Max risk: Net debit.</p>
         </div>
         <div class="filter-card" data-strategy="bear call" style="border-left: 4px solid #dc3545;">
           <button style="background-color: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;">Call Credit Spread (Bearish)</button>
-          <p style="margin: 0;">Sell a call at a lower strike, buy a call at a higher strike. Profit if price < short strike. Risk limited to strike width minus credit.</p>
+          <p style="margin: 0;">Sell call at lower strike, buy call at higher strike. Profit if price &lt; short strike. Max Risk: Strike width minus credit.</p>
         </div>
         <div class="filter-card" data-strategy="bear put" style="border-left: 4px solid #dc3545;">
           <button style="background-color: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;">Put Debit Spread (Bearish)</button>
-          <p style="margin: 0;">Buy a put at a higher strike, sell a put at a lower strike. Profit if price < higher strike. Risk limited to net debit.</p>
+          <p style="margin: 0;">Buy put at higher strike, sell put at lower strike. Profit if price &lt; higher strike. Max Risk: Net debit.</p>
         </div>
         <div class="filter-card" data-strategy="bull put" style="border-left: 4px solid #28a745;">
           <button style="background-color: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;">Put Credit Spread (Bullish)</button>
-          <p style="margin: 0;">Sell a put at a higher strike, buy a put at a lower strike. Profit if price > short strike. Risk limited to short strike.</p>
+          <p style="margin: 0;">Sell put at higher strike, buy put at lower strike. Profit if price > short strike. Max Risk: Strike width minus credit.</p>
         </div>
       </div>
     </section>
