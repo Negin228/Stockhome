@@ -15,53 +15,100 @@
     return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
   }
 
+  function showError(message) {
+    if (tableBody) {
+      tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; color: #d9534f; padding: 20px;">${message}</td></tr>`;
+    }
+    console.error(message);
+  }
+
   try {
-    // 1. FETCH TIMESTAMP & MASTER DATA from signals.json
-    // Adding a cache-buster (?v=) ensures you always see the freshest time from GitHub
-    const signalRes = await fetch("../data/signals.json?v=" + Date.now(), { cache: "no-store" });
-    console.log("signals.json fetch status:", signalRes.status, signalRes.url);
-
-    const signalText = await signalRes.text();
-    console.log("signals.json raw text (first 300):", signalText.slice(0, 300));
-
-
-    const signalData = JSON.parse(signalText);
-    console.log("signals.json payload:", signalData);
-    console.log("generated_at_pt:", signalData.generated_at_pt);
-    console.log("found .last-updated elements:", document.querySelectorAll(".last-updated").length);
+    console.log("Starting data fetch...");
+    console.log("Current page location:", window.location.href);
     
+    // Try different possible paths for your data files
+    const possiblePaths = [
+      "../data/signals.json",
+      "./data/signals.json",
+      "/data/signals.json",
+      "data/signals.json"
+    ];
+    
+    let signalData = null;
+    let signalPath = null;
+    
+    // Try each path until one works
+    for (const path of possiblePaths) {
+      try {
+        console.log(`Trying to fetch signals from: ${path}`);
+        const testRes = await fetch(path + "?v=" + Date.now(), { cache: "no-store" });
+        if (testRes.ok) {
+          signalPath = path;
+          const text = await testRes.text();
+          signalData = JSON.parse(text);
+          console.log(`✓ Successfully loaded signals from: ${path}`);
+          break;
+        }
+      } catch (e) {
+        console.log(`✗ Failed to load from ${path}:`, e.message);
+      }
+    }
+    
+    if (!signalData) {
+      showError("Could not find signals.json. Please check that your data files are in the correct location.");
+      return;
+    }
+
+    // Update timestamp
     if (signalData.generated_at_pt) {
       const timestamp = signalData.generated_at_pt + " PT";
       document.querySelectorAll(".last-updated").forEach(el => el.textContent = timestamp);
-    } else {
-      console.warn("No generated_at_pt found in signals.json");
+    }
+
+    // 2. FETCH SPREADS DATA using the same base path
+    const spreadsPath = signalPath.replace("signals.json", "spreads.json");
+    console.log(`Fetching spreads from: ${spreadsPath}`);
+    
+    const res = await fetch(spreadsPath + "?v=" + Date.now(), { cache: "no-store" });
+    
+    if (!res.ok) {
+      showError(`Failed to load spreads.json (HTTP ${res.status}). Check that the file exists at: ${spreadsPath}`);
+      return;
     }
     
-
-    // 2. FETCH SPREADS DATA
-    const res = await fetch("../data/spreads.json?v=" + Date.now(), { cache: "no-store" });
     let rawSpreads = await res.json();
+    console.log("Raw spreads data:", rawSpreads);
+    
     if (!Array.isArray(rawSpreads) && rawSpreads.data) rawSpreads = rawSpreads.data;
+    
+    if (!Array.isArray(rawSpreads)) {
+      showError("Spreads data is not in expected format. Expected an array.");
+      console.log("Spreads data structure:", rawSpreads);
+      return;
+    }
 
-    // Enrich spreads with fundamental info (Value, Growth, Health) from signals.json
+    // Enrich spreads with fundamental info
     const signals = rawSpreads.map(spread => {
       const masterInfo = (signalData.all || []).find(s => s.ticker === spread.ticker);
-    // Merge but don't require masterInfo - spread already has all needed fields
-      return masterInfo ? { ...spread, ...masterInfo } : spread; });
+      return masterInfo ? { ...spread, ...masterInfo } : spread;
+    });
 
     const validSignals = signals.filter(s => !s.is_squeeze);
     validSignals.sort((a, b) => {
       if (a.is_new && !b.is_new) return -1;
       if (!a.is_new && b.is_new) return 1;
-      
       return 0;
     });
+
+    console.log(`Found ${validSignals.length} valid spread candidates`);
 
     // 3. RENDER FUNCTION
     function render(filterValue) {
       const filtered = filterValue === 'all' 
         ? validSignals 
         : validSignals.filter(s => s.strategy.toLowerCase().includes(filterValue));
+
+      console.log(`Rendering ${filtered.length} spreads for filter: ${filterValue}`);
 
       if (filtered.length > 0) {
         tableBody.innerHTML = filtered.map(s => {
@@ -113,6 +160,7 @@
     cards.forEach(card => {
       card.addEventListener('click', () => {
         const strategy = card.getAttribute('data-strategy');
+        console.log(`Card clicked: ${strategy}`);
         
         // Visual toggle: highlight selected card
         cards.forEach(c => {
@@ -141,16 +189,17 @@
       });
     }
 
-    // Keep dropdown working as a backup (Optional)
+    // Keep dropdown working as a backup
     if (filterEl) {
       filterEl.addEventListener("change", (e) => render(e.target.value));
     }
 
     // Initial load
+    console.log("Performing initial render...");
     render("all"); 
 
   } catch (e) {
-    console.error("Spread loading error:", e);
-    if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Error loading data.</td></tr>`;
+    showError(`Error loading data: ${e.message}`);
+    console.error("Full error details:", e);
   }
-})(); // End of Async Function
+})();
