@@ -107,33 +107,50 @@
 
     // 4. EVENTS
     const cards = document.querySelectorAll('.filter-card');
-    
+    const clearBtn = document.getElementById('clear-filter');
+
+    // Handle Card Clicks
     cards.forEach(card => {
       card.addEventListener('click', () => {
         const strategy = card.getAttribute('data-strategy');
         
-        // Visual toggle: highlight the selected card
-        cards.forEach(c => c.style.border = "1px solid #ccc"); // Reset others
-        card.style.border = "2px solid #007bff";             // Highlight clicked
+        // Visual toggle: highlight selected card
+        cards.forEach(c => {
+            c.style.border = "1px solid #ddd";
+            c.style.backgroundColor = "transparent";
+        });
+        card.style.border = "2px solid #007bff";
+        card.style.backgroundColor = "#f0f7ff";
+
+        // Show the clear button
+        if (clearBtn) clearBtn.style.display = 'inline-block';
         
         render(strategy); 
       });
     });
 
-    render("all"); 
-
-  } catch (e) {
-    console.error("Spread loading error:", e);
-    if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Error loading data.</td></tr>`;
-  }
-})();
-    if (filterEl) {
-        filterEl.addEventListener("change", (e) => render(e.target.value));
+    // Handle Clear Button
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        cards.forEach(c => {
+            c.style.border = "1px solid #ddd";
+            c.style.backgroundColor = "transparent";
+        });
+        clearBtn.style.display = 'none';
+        render("all");
+      });
     }
+
+    // Keep dropdown working as a backup (Optional)
+    if (filterEl) {
+      filterEl.addEventListener("change", (e) => render(e.target.value));
+    }
+
+    // Initial load
     render("all"); 
 
   } catch (e) {
     console.error("Spread loading error:", e);
     if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Error loading data.</td></tr>`;
   }
-})();
+})(); // End of Async Function
