@@ -4,8 +4,8 @@ from datetime import datetime
 import os
 
 # Telegram Configuration
-TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"  # Get from @BotFather
-TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE"      # Get from @userinfobot
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")  # Get from @BotFather
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")      # Get from @userinfobot
 
 # File paths
 SPREADS_FILE = "data/spreads.json"
