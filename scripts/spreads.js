@@ -157,23 +157,31 @@
     const clearBtn = document.getElementById('clear-filter');
 
     // Handle Card Clicks
+    // Handle Card Clicks
     cards.forEach(card => {
       card.addEventListener('click', () => {
         const strategy = card.getAttribute('data-strategy');
+        const isCurrentlySelected = card.style.border === "2px solid rgb(0, 123, 255)";
+    
         console.log(`Card clicked: ${strategy}`);
-        
-        // Visual toggle: highlight selected card
-        cards.forEach(c => {
+    
+        if (isCurrentlySelected) {
+      // Unclick - deselect and show all
+          card.style.border = "1px solid #ddd";
+          card.style.backgroundColor = "transparent";
+          if (clearBtn) clearBtn.style.display = 'none';
+          render("all");
+        } else {
+          // Click - select this card
+          cards.forEach(c => {
             c.style.border = "1px solid #ddd";
             c.style.backgroundColor = "transparent";
-        });
-        card.style.border = "2px solid #007bff";
-        card.style.backgroundColor = "#f0f7ff";
-
-        // Show the clear button
-        if (clearBtn) clearBtn.style.display = 'inline-block';
-        
-        render(strategy); 
+          });
+          card.style.border = "2px solid #007bff";
+          card.style.backgroundColor = "#f0f7ff";
+          if (clearBtn) clearBtn.style.display = 'inline-block';
+          render(strategy);
+        }
       });
     });
 
