@@ -24,6 +24,26 @@ body {
   font: 16px/1.5 Inter, Roboto, Arial, sans-serif;
   padding: 0;
 }
+.filter-card {
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    border: 2px solid transparent;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f9f9f9; /* Match your site's card style */
+}
+
+.filter-card:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.filter-card.active {
+    border-color: #007bff; /* Highlight color when selected */
+    background-color: #eef6ff;
+}
+
+
 
 /* --- UPDATED TREND UTILITIES --- */
 
