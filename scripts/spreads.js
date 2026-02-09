@@ -106,6 +106,27 @@
     }
 
     // 4. EVENTS
+    const cards = document.querySelectorAll('.filter-card');
+    
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const strategy = card.getAttribute('data-strategy');
+        
+        // Visual toggle: highlight the selected card
+        cards.forEach(c => c.style.border = "1px solid #ccc"); // Reset others
+        card.style.border = "2px solid #007bff";             // Highlight clicked
+        
+        render(strategy); 
+      });
+    });
+
+    render("all"); 
+
+  } catch (e) {
+    console.error("Spread loading error:", e);
+    if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Error loading data.</td></tr>`;
+  }
+})();
     if (filterEl) {
         filterEl.addEventListener("change", (e) => render(e.target.value));
     }
