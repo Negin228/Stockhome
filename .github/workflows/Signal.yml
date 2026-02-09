@@ -2,7 +2,7 @@ name: Website update and ALPACA Trading
 
 on:
   schedule:
-    - cron: '30 * * * *' # Runs at XX:30 every hour
+    - cron: '*/15 * * * *' 
   workflow_dispatch:
 
 permissions:
