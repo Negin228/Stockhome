@@ -2,7 +2,7 @@
   {
     "ticker": "AMZN",
     "company": "Amazon.com, Inc.",
-    "strategy": "Bull Call (Debit)",
+    "strategy": "Call Debit (Bullish)",
     "type": "bullish",
     "is_squeeze": false,
     "price": 208.72,
@@ -20,12 +20,12 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "reasoning": "Det: Price < BBL(214.96) | ADX: 17.0 | RSI 27.8 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(214.96) | ADX: 17.0 | RSI 27.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "AON",
     "company": "Aon plc",
-    "strategy": "Bull Call (Debit)",
+    "strategy": "Call Debit (Bullish)",
     "type": "bullish",
     "is_squeeze": false,
     "price": 310.34,
@@ -43,12 +43,12 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "reasoning": "Det: Price < BBL(322.59) | ADX: 27.1 | RSI 27.6 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(322.59) | ADX: 27.1 | RSI 27.6 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "ADP",
     "company": "Automatic Data Processing, Inc.",
-    "strategy": "Bull Call (Debit)",
+    "strategy": "Call Debit (Bullish)",
     "type": "bullish",
     "is_squeeze": false,
     "price": 226.62,
@@ -66,6 +66,6 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "reasoning": "Det: Price < BBL(227.54) | ADX: 28.8 | RSI 20.9 (Extreme: Buying Delta for sharp snap-back.)"
+    "reasoning": "Det: Price < BBL(227.54) | ADX: 28.8 | RSI 20.9 (Moderate: Selling Theta.)"
   }
 ]
