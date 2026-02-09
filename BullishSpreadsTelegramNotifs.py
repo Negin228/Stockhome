@@ -2,17 +2,28 @@ import json
 import requests
 from datetime import datetime
 import os
+import html
 
-# Telegram Configuration
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")  # Get from @BotFather
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")      # Get from @userinfobot
+# Telegram Configuration - read from environment variables
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 # File paths
 SPREADS_FILE = "data/spreads.json"
 PREVIOUS_TICKERS_FILE = "data/previous_tickers.json"
 
+def escape_html(text):
+    """Escape HTML special characters for Telegram"""
+    if text is None:
+        return ""
+    return html.escape(str(text))
+
 def send_telegram_message(message):
     """Send a message via Telegram bot"""
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print("✗ Telegram credentials not configured")
+        return False
+        
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     
     payload = {
@@ -24,6 +35,9 @@ def send_telegram_message(message):
     
     try:
         response = requests.post(url, json=payload)
+        if not response.ok:
+            print(f"✗ Telegram API error: {response.status_code}")
+            print(f"Response: {response.text}")
         response.raise_for_status()
         print(f"✓ Message sent successfully")
         return True
@@ -33,16 +47,19 @@ def send_telegram_message(message):
 
 def format_spread_info(spread):
     """Format a single spread for display"""
-    ticker = spread.get('ticker', 'N/A')
-    strategy = spread.get('strategy', 'N/A')
+    ticker = escape_html(spread.get('ticker', 'N/A'))
+    strategy = escape_html(spread.get('strategy', 'N/A'))
     price = spread.get('price', 'N/A')
-    reasoning = spread.get('reasoning', 'No reasoning available')
+    reasoning = escape_html(spread.get('reasoning', 'No reasoning available'))
     
     # Truncate reasoning if too long
     if len(reasoning) > 200:
         reasoning = reasoning[:197] + "..."
     
-    return f"<b>{ticker}</b> (${price:.0f})\n{strategy}\n{reasoning}\n"
+    # Format price safely
+    price_str = f"${price:.0f}" if isinstance(price, (int, float)) else str(price)
+    
+    return f"<b>{ticker}</b> ({price_str})\n{strategy}\n{reasoning}\n"
 
 def load_spreads():
     """Load current spreads data"""
