@@ -106,27 +106,28 @@
     function render(filterValue) {
       const filtered = filterValue === 'all' 
         ? validSignals 
-        : validSignals.filter(s => s.strategy.toLowerCase().includes(filterValue));
-          const strategyLower = (s.strategy || "").toLowerCase();
-          const filterLower = filterValue.toLowerCase();
-        
+        : validSignals.filter(s => {
+            const strategyLower = (s.strategy || "").toLowerCase();
+            const filterLower = filterValue.toLowerCase();
+      
         // Match both "bull call" and "bullish call" or "call debit"
-          if (filterLower === 'bull call') {
-            return strategyLower.includes('bull') && strategyLower.includes('call') && strategyLower.includes('debit');
-          }
-          if (filterLower === 'bear call') {
-            return strategyLower.includes('bear') && strategyLower.includes('call') && strategyLower.includes('credit');
-          }
-          if (filterLower === 'bear put') {
-            return strategyLower.includes('bear') && strategyLower.includes('put') && strategyLower.includes('debit');
-          }
-          if (filterLower === 'bull put') {
-            return strategyLower.includes('bull') && strategyLower.includes('put') && strategyLower.includes('credit');
-          }
-        
-          return strategyLower.includes(filterLower);
-        });
-    console.log(`Rendering ${filtered.length} spreads for filter: ${filterValue}`);
+            if (filterLower === 'bull call') {
+              return strategyLower.includes('bull') && strategyLower.includes('call') && strategyLower.includes('debit');
+            }
+            if (filterLower === 'bear call') {
+              return strategyLower.includes('bear') && strategyLower.includes('call') && strategyLower.includes('credit');
+            }
+            if (filterLower === 'bear put') {
+              return strategyLower.includes('bear') && strategyLower.includes('put') && strategyLower.includes('debit');
+            }
+            if (filterLower === 'bull put') {
+              return strategyLower.includes('bull') && strategyLower.includes('put') && strategyLower.includes('credit');
+            }
+      
+            return strategyLower.includes(filterLower);
+          });
+
+      console.log(`Rendering ${filtered.length} spreads for filter: ${filterValue}`);
 
     
 
