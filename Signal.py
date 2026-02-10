@@ -789,6 +789,7 @@ def job(tickers, prev_tickers=None):
                     "weekly_available": weekly_avail,
                     "monthly_available": monthly_avail,
                     "is_new": symbol not in prev_tickers,
+                    "added_timestamp": datetime.datetime.now().isoformat(), 
                     "reasoning": full_reasoning,})
 
         except Exception as e:
