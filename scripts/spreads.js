@@ -93,6 +93,7 @@
     // STATE for filters
     let currentStrategyFilter = 'all';
     let fundamentalsFilterActive = false;
+    let sortByMarketCap = false; 
 
     // RENDER FUNCTION
     function render() {
@@ -128,6 +129,9 @@
           s.growth_check === true && 
           (s.health ?? 999) < 100
         );
+      }
+      if (sortByMarketCap) {
+        filtered = [...filtered].sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
       }
 
       console.log(`Rendering ${filtered.length} spreads`);
@@ -208,6 +212,18 @@
           fundamentalsBtn.style.border = '2px solid #007bff';
         }
         
+        render();
+      });
+    }
+    const marketCapHeader = document.querySelector('th[data-sort="mcap"]');
+    if (marketCapHeader) {
+      marketCapHeader.addEventListener('click', () => {
+        sortByMarketCap = !sortByMarketCap;
+        const arrow = marketCapHeader.querySelector('.sort-arrow');
+        if (arrow) {
+          arrow.textContent = sortByMarketCap ? ' ▼' : ' ▲';
+          arrow.style.color = sortByMarketCap ? '#007bff' : '#999';
+        }
         render();
       });
     }
