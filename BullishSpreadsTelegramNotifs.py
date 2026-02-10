@@ -11,6 +11,7 @@ TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 # File paths
 SPREADS_FILE = "data/spreads.json"
 PREVIOUS_TICKERS_FILE = "data/previous_tickers.json"
+LAST_SUMMARY_FILE = "data/last_summary_date.json"  # NEW
 
 def escape_html(text):
     """Escape HTML special characters for Telegram"""
@@ -86,11 +87,35 @@ def load_previous_tickers():
 
 def save_current_tickers(tickers):
     """Save current ticker list for next run"""
+    os.makedirs(os.path.dirname(PREVIOUS_TICKERS_FILE) if os.path.dirname(PREVIOUS_TICKERS_FILE) else ".", exist_ok=True)
     with open(PREVIOUS_TICKERS_FILE, 'w') as f:
         json.dump(list(tickers), f)
 
+def get_last_summary_date():
+    """Get the date of the last daily summary"""
+    try:
+        with open(LAST_SUMMARY_FILE, 'r') as f:
+            data = json.load(f)
+            return data.get('date')
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+
+def save_summary_date(date_str):
+    """Save the date of today's summary"""
+    os.makedirs(os.path.dirname(LAST_SUMMARY_FILE) if os.path.dirname(LAST_SUMMARY_FILE) else ".", exist_ok=True)
+    with open(LAST_SUMMARY_FILE, 'w') as f:
+        json.dump({'date': date_str}, f)
+
 def send_daily_bullish_summary():
-    """Send daily summary of all bullish spreads"""
+    """Send daily summary of all bullish spreads (once per day only)"""
+    today = datetime.now().strftime('%Y-%m-%d')
+    last_summary = get_last_summary_date()
+    
+    # Check if we already sent summary today
+    if last_summary == today:
+        print(f"Daily summary already sent today ({today}). Skipping.")
+        return
+    
     spreads = load_spreads()
     
     # Filter for bullish spreads only
@@ -102,7 +127,8 @@ def send_daily_bullish_summary():
     if not bullish_spreads:
         message = "📊 <b>Daily Bullish Spreads Summary</b>\n\n"
         message += "No bullish spread candidates today."
-        send_telegram_message(message)
+        if send_telegram_message(message):
+            save_summary_date(today)
         return
     
     # Split into chunks if too many (Telegram has 4096 char limit)
@@ -125,10 +151,9 @@ def send_daily_bullish_summary():
         count += 1
     
     # Send final message
-    if current_message:
-        send_telegram_message(current_message)
-    
-    print(f"✓ Sent daily summary with {count} bullish spreads")
+    if current_message and send_telegram_message(current_message):
+        save_summary_date(today)
+        print(f"✓ Sent daily summary with {count} bullish spreads")
 
 def send_new_ticker_alerts():
     """Send alert for any new tickers not in previous run"""
@@ -167,11 +192,11 @@ def main():
     print("Starting Telegram notifications...")
     print(f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
-    # Send daily bullish summary
+    # Send daily bullish summary (once per day)
     print("\n--- Sending Daily Summary ---")
     send_daily_bullish_summary()
     
-    # Send new ticker alerts
+    # Send new ticker alerts (every run)
     print("\n--- Checking for New Tickers ---")
     send_new_ticker_alerts()
     
