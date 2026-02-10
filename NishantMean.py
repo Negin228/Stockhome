@@ -199,34 +199,48 @@ def find_call_debit_legs_exact_width(ticker: str, stock_price: float, width: flo
         return None
 
     strikes = sorted(calls["strike"].dropna().unique().tolist())
+    
+    # DEBUG: Log available strikes
+    log_event(f"DEBUG: {ticker} stock_price={stock_price:.2f}, width={width}, exp={exp}")
+    log_event(f"DEBUG: Available strikes: {strikes}")
+    
     strike_set = set(strikes)
     buy_candidates = [s for s in strikes if s < stock_price]
+    
+    log_event(f"DEBUG: Buy candidates (< {stock_price:.2f}): {buy_candidates}")
 
     chosen_buy = None
     chosen_sell = None
 
     # Prefer LOWEST buy that yields sell above stock price
     for b in buy_candidates:
-        s = b + width
+        s = round(b + width, 2)  # ← FIX: Round to avoid floating point issues
+        log_event(f"DEBUG: Checking buy={b}, sell={s}, in_set={s in strike_set}, sell>price={s > stock_price}")
         if s in strike_set and s > stock_price:
             chosen_buy, chosen_sell = b, s
+            log_event(f"DEBUG: ✓ Found preferred pair: buy={chosen_buy}, sell={chosen_sell}")
             break
 
     # Fallback: any exact-width pair as long as buy < stock_price
     if chosen_buy is None:
+        log_event(f"DEBUG: Trying fallback (any exact-width pair)...")
         for b in buy_candidates:
-            s = b + width
+            s = round(b + width, 2)  # ← FIX: Round to avoid floating point issues
+            log_event(f"DEBUG: Fallback checking buy={b}, sell={s}, in_set={s in strike_set}")
             if s in strike_set:
                 chosen_buy, chosen_sell = b, s
+                log_event(f"DEBUG: ✓ Found fallback pair: buy={chosen_buy}, sell={chosen_sell}")
                 break
 
     if chosen_buy is None:
-        log_event(f"DEBUG: No exact ${width} call-debit strike pair found for {ticker} at {exp}")
+        log_event(f"DEBUG: ✗ No exact ${width} call-debit strike pair found for {ticker} at {exp}")
         return None
 
     l1 = calls.iloc[(calls["strike"] - chosen_buy).abs().argsort()[:1]].iloc[0]
     l2 = calls.iloc[(calls["strike"] - chosen_sell).abs().argsort()[:1]].iloc[0]
 
+    log_event(f"DEBUG: ✓ Final selection: {ticker} buy_strike={chosen_buy} sell_strike={chosen_sell}")
+    
     return {
         "ticker": ticker,
         "expiration": exp,
@@ -236,8 +250,6 @@ def find_call_debit_legs_exact_width(ticker: str, stock_price: float, width: flo
             {"symbol": str(l2["contractSymbol"]), "side": OrderSide.SELL, "strike": float(l2["strike"])},
         ],
     }
-
-
 def submit_call_debit_spread(ticker: str, width: float, legs: list):
     """
     Places a 2-leg MLEG limit order:
