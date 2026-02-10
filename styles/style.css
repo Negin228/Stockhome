@@ -134,16 +134,16 @@ body {
 }
 /* Update these in your style.css */
 .badge-bullish {
-    background-color: #d4edda !important; 
-    color: #155724 !important; 
+    background-color: #28a745 !important; 
+    color: white !important; 
     padding: 4px 10px;
     border-radius: 20px;
     font-weight: bold;
 }
 
 .badge-bearish {
-    background-color: #f8d7da !important; 
-    color: #721c24 !important; 
+    background-color: #dc3545 !important; 
+    color: white !important; 
     padding: 4px 10px;
     border-radius: 20px;
     font-weight: bold;
