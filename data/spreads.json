@@ -1,5 +1,28 @@
 [
   {
+    "ticker": "ETR",
+    "company": "Entergy Corporation",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 98.15,
+    "market_cap": 43833487360.0,
+    "market_cap_str": "43.83B",
+    "mcap": 43.83348736,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": 179.362,
+    "trailing_pe": 24.174877,
+    "forward_pe": 22.31326,
+    "earnings_growth": 0.076,
+    "debt_to_equity": 179.362,
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": true,
+    "reasoning": "Det: Price > BBU(98.01) | ADX: 17.7 | RSI 65.0 (Moderate: Selling Theta.)"
+  },
+  {
     "ticker": "UDOW",
     "company": "ProShares UltraPro Dow30",
     "strategy": "Call Credit (Bearish)",
