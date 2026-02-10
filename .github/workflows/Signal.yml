@@ -1,8 +1,20 @@
 name: Website update and ALPACA Trading
-
 on:
   schedule:
-    - cron: '*/15 * * * *' 
+    # Monday-Friday: Every 15 minutes from 13:30-22:00 UTC (5:30am-2pm PT)
+    - cron: '30,45 13 * * 1-5'
+    - cron: '0,15,30,45 14-21 * * 1-5'
+    - cron: '0 22 * * 1-5'
+    
+    # Monday-Friday: Every hour outside market hours (22:00-13:30 UTC next day)
+    - cron: '0 23 * * 1-5'
+    - cron: '0 0-13 * * 1-5'
+    
+    # Saturday: No runs (commented out)
+    
+    # Sunday: Every hour after 00:30 UTC Monday (4:30pm PT Sunday)
+    - cron: '30 0,1,2,3,4,5,6,7,8,9,10,11,12,13 * * 1'
+    
   workflow_dispatch:
 
 permissions:
@@ -18,51 +30,67 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-
+          
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install yfinance finnhub-python pandas ta numpy pytz requests alpaca-py
-
+          
       - name: Prepare directories
         run: mkdir -p artifacts/pages artifacts/data data
-
+        
       - name: Run Signal script
         run: python Signal.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
-
+          
+      - name: Check if trading hours (Mon-Fri 5:30am-2pm PT)
+        id: check_trading_hours
+        run: |
+          # Get current time in PT
+          current_hour=$(TZ=America/Los_Angeles date +%H)
+          current_minute=$(TZ=America/Los_Angeles date +%M)
+          day_of_week=$(TZ=America/Los_Angeles date +%u)  # 1=Mon, 7=Sun
+          
+          # Convert to minutes since midnight
+          current_minutes=$((current_hour * 60 + current_minute))
+          
+          # Trading hours: 5:30am (330 min) to 2:00pm (840 min), Mon-Fri (1-5)
+          if [ $day_of_week -ge 1 ] && [ $day_of_week -le 5 ] && [ $current_minutes -ge 330 ] && [ $current_minutes -le 840 ]; then
+            echo "is_trading_hours=true" >> $GITHUB_OUTPUT
+            echo "Trading hours detected: Running NishantMean.py"
+          else
+            echo "is_trading_hours=false" >> $GITHUB_OUTPUT
+            echo "Outside trading hours: Skipping NishantMean.py"
+          fi
+          
       - name: Run Nishant Mean Trading Logic
+        if: steps.check_trading_hours.outputs.is_trading_hours == 'true'
         continue-on-error: true 
         run: python NishantMean.py
         env:
-          # Note: Ensure these secret names match your GitHub Secrets exactly
           ALPACA_NISHANTMEAN_KEY: ${{ secrets.ALPACA_NISHANTMEAN_KEY }}
           ALPACA_NISHANTMEAN_SECRET: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
-
+          
       - name: Send Telegram Notifications
         continue-on-error: true
         run: python BullishSpreadsTelegramNotifs.py
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
-
+          
       - name: Commit and Sync Data
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "github-actions[bot]"
           
-          # 1. Add files individually or with wildcards safely
-          # Using "|| true" ensures the script continues even if a file is missing
           git add data/*.json || true
           
-          # 2. Check if anything was actually staged before committing
           if [ -n "$(git status --porcelain)" ]; then
             git commit -m "Update signals and logs: $(date)"
             git pull --rebase --autostash origin main
@@ -70,19 +98,19 @@ jobs:
           else
             echo "No changes detected, skipping commit."
           fi
-
+          
       - name: Prepare GitHub Pages Artifacts
         run: |
           cp -r index.html scripts styles assets artifacts/
           cp pages/*.html artifacts/pages/ || echo "some pages missing"
           find artifacts/ -type l -exec rm -v {} +
-
+          
       - name: Upload github-pages artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: artifacts/
-
+          
   deploy:
     needs: run-signal
     runs-on: ubuntu-latest
