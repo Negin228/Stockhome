@@ -48,7 +48,7 @@ MIN_DAYS_OUT = 30  # first expiration >= 30 days out
 REENTRY_DROP_PCT = 0.05  # 5% lower
 
 # Only trade this exact recommendation
-TARGET_STRATEGY = "Call Debit Spread (Bullish)"
+TARGET_STRATEGY = "Call Debit (Bullish)"
 
 client = TradingClient(ALPACA_KEY, ALPACA_SECRET, paper=True)
 
