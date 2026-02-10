@@ -221,8 +221,13 @@
         sortByMarketCap = !sortByMarketCap;
         const arrow = marketCapHeader.querySelector('.sort-arrow');
         if (arrow) {
-          arrow.textContent = sortByMarketCap ? ' ▼' : ' ▲';
-          arrow.style.color = sortByMarketCap ? '#007bff' : '#999';
+          if (sortByMarketCap) {
+            arrow.textContent = ' ▼';
+            arrow.style.color = '#007bff';  // Blue when active
+          } else {
+            arrow.textContent = ' ▼';
+            arrow.style.color = '#999';     // Gray when inactive
+          }
         }
         render();
       });
