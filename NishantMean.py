@@ -17,6 +17,7 @@ from alpaca.trading.requests import (
     GetOrdersRequest,
 )
 
+ORDER_QTY = 4
 # --- Alpaca market data (alpaca-py) ---
 # Options quotes for validation + stock latest trade for live-ish price
 try:
@@ -113,7 +114,7 @@ def half_width_limit(width: float) -> float:
 
 def est_cost_dollars(width: float) -> float:
     """Approx max debit per 1-lot spread (limit * 100)."""
-    return half_width_limit(width) * 100.0
+    return half_width_limit(width) * 100.0 * ORDER_QTY
 
 
 def get_live_stock_price_alpaca(ticker: str):
@@ -272,7 +273,7 @@ def submit_call_debit_spread(ticker: str, width: float, legs: list):
 
     order = LimitOrderRequest(
         symbol=None,
-        qty=1,
+        qty=ORDER_QTY,
         side=OrderSide.BUY,               # Call Debit Spread = BUY
         limit_price=limit_price,
         time_in_force=TimeInForce.DAY,    # expires end of day
@@ -284,7 +285,7 @@ def submit_call_debit_spread(ticker: str, width: float, legs: list):
     try:
         client.submit_order(order)
         log_event(
-            f"ORDER PLACED: {ticker} {TARGET_STRATEGY} | width=${width:.0f} limit=${limit_price:.2f} "
+            f"ORDER PLACED: {ticker} {TARGET_STRATEGY} | QTY={ORDER_QTY} | width=${width:.0f} limit=${limit_price:.2f} "
             f"| BUY K={legs[0]['strike']} ({legs[0]['symbol']}) "
             f"SELL K={legs[1]['strike']} ({legs[1]['symbol']}) "
             f"| L1 mid={mid1} (bid={bid1}, ask={ask1}) L2 mid={mid2} (bid={bid2}, ask={ask2})"
