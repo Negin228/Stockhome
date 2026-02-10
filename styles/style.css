@@ -59,30 +59,28 @@ body {
 
 /* STRONG: Solid backgrounds */
 .trend-strong.trend-up {
-  background-color: #00c853;
-  color: #fff;
+  background-color: #28a745;
+  color: white;
   font-weight: bold;
 }
 
 .trend-strong.trend-down {
-  background-color: #ff1744;
+  background-color: #dc3545;
   color: #fff;
   font-weight: bold;
 }
 
 /* WEAK: Ghost/Outline style */
 .trend-weak.trend-up {
-  background-color: rgba(0, 200, 83, 0.05);
-  color: #00c853;
-  border-color: #00c853;
-  font-style: italic;
+  background-color: #28a745;
+  color: #white;
+  font-weight: bold;
 }
 
 .trend-weak.trend-down {
-  background-color: rgba(255, 23, 68, 0.05);
-  color: #ff1744;
-  border-color: #ff1744;
-  font-style: italic;
+  background-color: #dc3545;
+  color: #fff;
+  font-weight: bold;
 }
 
 /* Container for the SVG to ensure proper sizing */
