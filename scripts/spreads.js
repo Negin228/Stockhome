@@ -85,7 +85,7 @@
     validSignals.sort((a, b) => {
       if (a.is_new && !b.is_new) return -1;
       if (!a.is_new && b.is_new) return 1;
-      return (b.mcap || 0) - (a.mcap || 0);
+      return new Date(b.added_timestamp || 0) - new Date(a.added_timestamp || 0);
     });
 
     console.log(`Found ${validSignals.length} valid spread candidates`);
