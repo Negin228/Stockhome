@@ -136,8 +136,16 @@ def send_new_ticker_alerts():
     previous_tickers = load_previous_tickers()
     current_tickers = {s.get('ticker') for s in spreads if s.get('ticker')}
     
+    # Save current state for next run FIRST
+    save_current_tickers(current_tickers)
+    
     # Find new tickers
     new_tickers = current_tickers - previous_tickers
+    
+    # Don't send alert if this is the first run (no previous data)
+    if not previous_tickers:
+        print(f"First run detected. Initialized with {len(current_tickers)} tickers. No alert sent.")
+        return
     
     if new_tickers:
         new_spreads = [s for s in spreads if s.get('ticker') in new_tickers]
@@ -153,9 +161,6 @@ def send_new_ticker_alerts():
         print(f"✓ Sent alert for {len(new_tickers)} new tickers: {new_tickers}")
     else:
         print("No new tickers to alert")
-    
-    # Save current tickers for next run
-    save_current_tickers(current_tickers)
 
 def main():
     """Main function to run both notifications"""
