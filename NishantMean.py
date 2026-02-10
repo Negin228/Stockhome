@@ -397,7 +397,7 @@ def reset_and_trade():
             continue
 
         strategy = (s.get("strategy") or "").strip()
-        if strategy != TARGET_STRATEGY:
+        if (s.get("type") or "").strip().lower() != "bullish":
             continue
 
         # Require all three checks to pass
