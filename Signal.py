@@ -719,6 +719,7 @@ def job(tickers, prev_tickers=None):
                 # NEW: options flags everywhere
                 "weekly_available": weekly_avail,
                 "monthly_available": monthly_avail,
+                "adx": float(adx_val),
             }
 
             all_rows.append(base_obj)
