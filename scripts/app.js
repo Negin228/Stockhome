@@ -16,7 +16,7 @@ function renderBuyCard(b) {
 
     // 1. Determine Strength Class
     // Checks if the rationale contains the word "Strong"
-    const strengthClass = (b.trend_rationale && b.trend_rationale.includes("Strong")) 
+    const strengthClass = b.adx > 25
         ? 'trend-strong' 
         : 'trend-weak';
 
