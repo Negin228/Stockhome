@@ -497,17 +497,21 @@ def get_spread_strategy(row):
     bu = scalar(row["bb_high"])
     kl = scalar(row["kc_low"])
     ku = scalar(row["kc_high"])
+    plus_di  = scalar(row["plus_di"])
+    minus_di = scalar(row["minus_di"])
+
 
     # squeeze: BB inside KC
     is_sqz = not (bl < kl or bu > ku)
 
     # bullish mean reversion
-    if p <= bl and r < 40 and a < 35:
+    if p <= bl and r < 40 and a < 35 and plus_di > minus_di:
+
         strat = "Call Debit (Bullish)" if r < 30 else "Put Credit (Bullish)"
         return {"strategy": strat, "type": "bullish", "is_squeeze": is_sqz}
 
     # bearish mean reversion
-    if p >= bu and r > 60 and a < 35:
+    if p >= bu and r > 60 and a < 35 and minus_di > plus_di:
         strat = "Put Debit (Bearish)" if r > 70 else "Call Credit (Bearish)"
         return {"strategy": strat, "type": "bearish", "is_squeeze": is_sqz}
 
