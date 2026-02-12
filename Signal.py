@@ -505,13 +505,13 @@ def get_spread_strategy(row):
     is_sqz = not (bl < kl or bu > ku)
 
     # bullish mean reversion
-    if p <= bl and r < 40 and a < 35 and plus_di > minus_di + 3:
+    if p <= bl and r < 40 and a < 35:
 
         strat = "Call Debit (Bullish)" if r < 30 else "Put Credit (Bullish)"
         return {"strategy": strat, "type": "bullish", "is_squeeze": is_sqz}
 
     # bearish mean reversion
-    if p >= bu and r > 60 and a < 35 and minus_di > plus_di + 3:
+    if p >= bu and r > 60 and a < 35 :
         strat = "Put Debit (Bearish)" if r > 70 else "Call Credit (Bearish)"
         return {"strategy": strat, "type": "bearish", "is_squeeze": is_sqz}
 
