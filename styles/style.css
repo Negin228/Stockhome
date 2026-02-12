@@ -71,17 +71,21 @@ body {
 }
 
 /* WEAK: Ghost/Outline style */
+/* WEAK: Ghost/Outline style */
 .trend-weak.trend-up {
-  background-color: #EB8B94;
-  color: #white;
-  font-weight: bold;
+  background-color: transparent;
+  color: #28a745;
+  border-color: #28a745;
+  font-weight: 700;
 }
 
 .trend-weak.trend-down {
-  background-color: #dc3545;
-  color: #fff;
-  font-weight: bold;
+  background-color: transparent;
+  color: #dc3545;
+  border-color: #dc3545;
+  font-weight: 700;
 }
+
 
 /* Container for the SVG to ensure proper sizing */
 .check-circle {
