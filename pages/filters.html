@@ -8,14 +8,18 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
-
   <!-- HEADER -->
   <div id="header-include"></div>
-
   <!-- HERO SUBSECTION -->
       <section class="hero sub-hero">
           <h1>Filters</h1>
       </section>
+      
+      <!-- TIMESTAMP -->
+      <div style="text-align: center; margin: 10px 0; color: #666; font-size: 14px;">
+        Last updated: <span id="last-updated">Loading...</span>
+      </div>
+      
       <section class="section">
             <div class="filter-controls">
               <label>RSI <input id="rsi-slider" type="range" min="0" max="100" value="100"></label>
@@ -29,12 +33,7 @@
               <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
             </div>
             <div id="filtered-stocks"></div>
-            <p style="margin-top: 20px; color: #666;">
-                Last Updated: <span id="last-updated">Loading...</span>
-            </p>
       </section>
-
-
       <!-- Footer -->
       <div id="footer-include"></div>
       <script src="../scripts/stock_filter.js"></script>
