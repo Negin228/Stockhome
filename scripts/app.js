@@ -53,6 +53,16 @@ function isEarningsWithin6Weeks(dateStr) {
 }
 
 /**
+ * Check if market cap is above $100B
+ * @param {number} marketCap - Market cap value
+ * @returns {boolean} True if market cap > 100B
+ */
+function isMarketCapAbove100B(marketCap) {
+    if (!marketCap || marketCap <= 0) return false;
+    return marketCap >= 100_000_000_000; // 100 billion
+}
+
+/**
  * Renders a Buy Signal Card
  * Matches classes to CSS: .trend-strong, .trend-weak, .trend-up, .trend-down
  */
@@ -71,7 +81,9 @@ function renderBuyCard(b) {
     const earningsDateFormatted = formatEarningsDate(b.earnings_date);
 
     return `
-    <li class="signal-card buy-card" data-earnings-within-6weeks="${isEarningsWithin6Weeks(b.earnings_date)}">
+    <li class="signal-card buy-card" 
+        data-earnings-within-6weeks="${isEarningsWithin6Weeks(b.earnings_date)}"
+        data-market-cap-above-100b="${isMarketCapAbove100B(b.market_cap)}">
       <div class="main-info">
         <div class="ticker-block">
           <span class="ticker-alert">
@@ -110,7 +122,9 @@ function renderSellCard(s) {
     const earningsDateFormatted = formatEarningsDate(s.earnings_date);
 
     return `
-    <li class="signal-card sell-card" data-earnings-within-6weeks="${isEarningsWithin6Weeks(s.earnings_date)}">
+    <li class="signal-card sell-card" 
+        data-earnings-within-6weeks="${isEarningsWithin6Weeks(s.earnings_date)}"
+        data-market-cap-above-100b="${isMarketCapAbove100B(s.market_cap)}">
       <div class="main-info">
         <span class="ticker-alert">${s.ticker}</span>
         <div class="price-details">
@@ -140,31 +154,71 @@ function renderNews(summary, items) {
 }
 
 /**
+ * Apply filters based on current button states
+ */
+function applyFilters() {
+    const earningsBtn = document.getElementById('earnings-filter-btn');
+    const marketCapBtn = document.getElementById('marketcap-filter-btn');
+    
+    const earningsActive = earningsBtn && earningsBtn.classList.contains('active');
+    const marketCapActive = marketCapBtn && marketCapBtn.classList.contains('active');
+    
+    const cards = document.querySelectorAll('.signal-card');
+
+    cards.forEach(card => {
+        const hasEarningsWithin6Weeks = card.getAttribute('data-earnings-within-6weeks') === 'true';
+        const hasMarketCapAbove100B = card.getAttribute('data-market-cap-above-100b') === 'true';
+        
+        let shouldShow = true;
+        
+        // If earnings filter is active, card must have earnings within 6 weeks
+        if (earningsActive && !hasEarningsWithin6Weeks) {
+            shouldShow = false;
+        }
+        
+        // If market cap filter is active, card must have market cap above 100B
+        if (marketCapActive && !hasMarketCapAbove100B) {
+            shouldShow = false;
+        }
+        
+        card.style.display = shouldShow ? '' : 'none';
+    });
+}
+
+/**
  * Toggle earnings filter
  */
 function toggleEarningsFilter() {
     const button = document.getElementById('earnings-filter-btn');
     if (!button) return;
 
-    const isActive = button.classList.contains('active');
-    const cards = document.querySelectorAll('.signal-card');
-
-    if (isActive) {
-        // Show all cards
-        cards.forEach(card => {
-            card.style.display = '';
-        });
+    if (button.classList.contains('active')) {
         button.classList.remove('active');
         button.textContent = 'Earnings in 6 Weeks';
     } else {
-        // Show only cards with earnings within 6 weeks
-        cards.forEach(card => {
-            const hasEarningsWithin6Weeks = card.getAttribute('data-earnings-within-6weeks') === 'true';
-            card.style.display = hasEarningsWithin6Weeks ? '' : 'none';
-        });
         button.classList.add('active');
-        button.textContent = 'Show All';
+        button.textContent = 'Show All Earnings';
     }
+    
+    applyFilters();
+}
+
+/**
+ * Toggle market cap filter
+ */
+function toggleMarketCapFilter() {
+    const button = document.getElementById('marketcap-filter-btn');
+    if (!button) return;
+
+    if (button.classList.contains('active')) {
+        button.classList.remove('active');
+        button.textContent = 'Market Cap > $100B';
+    } else {
+        button.classList.add('active');
+        button.textContent = 'Show All Market Caps';
+    }
+    
+    applyFilters();
 }
 
 /**
@@ -204,10 +258,15 @@ function toggleEarningsFilter() {
                 : `<li class="signal-card">No sell signals.</li>`;
         }
 
-        // Set up button event listener
+        // Set up button event listeners
         const earningsButton = document.getElementById('earnings-filter-btn');
         if (earningsButton) {
             earningsButton.addEventListener('click', toggleEarningsFilter);
+        }
+        
+        const marketCapButton = document.getElementById('marketcap-filter-btn');
+        if (marketCapButton) {
+            marketCapButton.addEventListener('click', toggleMarketCapFilter);
         }
 
     } catch (e) {
