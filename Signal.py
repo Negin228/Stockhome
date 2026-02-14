@@ -267,7 +267,7 @@ def fetch_company_name_cached(symbol):
         return ""
 
 # ---------------------------------------------------------
-# FUNDAMENTALS (CACHED)
+# FUNDAMENTALS (CACHED) - UPDATED WITH EARNINGS DATE
 # ---------------------------------------------------------
 def fetch_fundamentals_cached(symbol):
     path = os.path.join(FUND_DIR, f"{symbol}.json")
@@ -292,6 +292,7 @@ def fetch_fundamentals_cached(symbol):
     earnings_growth = None
     debt_to_equity = None
     market_cap = None
+    earnings_date = None
 
     # 1) yfinance (Try fast_info first for Market Cap - it is more reliable than .info)
     try:
@@ -310,6 +311,21 @@ def fetch_fundamentals_cached(symbol):
         forward_pe = info.get("forwardPE")
         earnings_growth = info.get("earningsQuarterlyGrowth")
         debt_to_equity = info.get("debtToEquity")
+        
+        # Fetch earnings date from calendar
+        try:
+            calendar = ticker.calendar
+            if calendar is not None and 'Earnings Date' in calendar:
+                earnings_dates = calendar['Earnings Date']
+                if isinstance(earnings_dates, pd.Series) and not earnings_dates.empty:
+                    # Get the first (earliest) date
+                    earnings_date = earnings_dates.iloc[0]
+                    if pd.notna(earnings_date):
+                        earnings_date = earnings_date.strftime('%Y-%m-%d')
+                elif isinstance(earnings_dates, (list, tuple)) and len(earnings_dates) > 0:
+                    earnings_date = pd.Timestamp(earnings_dates[0]).strftime('%Y-%m-%d')
+        except Exception as e:
+            logger.debug(f"Could not fetch earnings date for {symbol}: {e}")
         
     except Exception as e:
         logger.warning(f"Fundamentals error for {symbol}: {e}")
@@ -330,6 +346,7 @@ def fetch_fundamentals_cached(symbol):
         "earnings_growth": earnings_growth,
         "debt_to_equity": debt_to_equity,
         "market_cap": market_cap,
+        "earnings_date": earnings_date,
     }
 
     # Only save to cache if we actually got a market cap
@@ -341,6 +358,7 @@ def fetch_fundamentals_cached(symbol):
             pass
 
     return data
+
 # ---------------------------------------------------------
 # HISTORY CACHE
 # ---------------------------------------------------------
@@ -608,7 +626,7 @@ def calculate_custom_metrics(puts, price):
     return puts
 
 # ---------------------------------------------------------
-# MAIN JOB LOOP
+# MAIN JOB LOOP - UPDATED WITH EARNINGS DATE
 # ---------------------------------------------------------
 def job(tickers, prev_tickers=None):
     all_rows = []
@@ -674,13 +692,14 @@ def job(tickers, prev_tickers=None):
             reasons = r_trend[:1] + r_rsi[:1] + r_macd[:1] + r_dist[:1]
             why_str = " • ".join(reasons) if reasons else "N/A"
 
-            # fundamentals
+            # fundamentals (NOW INCLUDES EARNINGS DATE)
             funds = fetch_fundamentals_cached(symbol) or {}
             trailing_pe = funds.get("trailing_pe")
             forward_pe  = funds.get("forward_pe")
             earnings_growth = funds.get("earnings_growth")
             debt_to_equity  = funds.get("debt_to_equity")
             market_cap      = funds.get("market_cap")
+            earnings_date   = funds.get("earnings_date")
 
             pe_pass = bool(trailing_pe and forward_pe and trailing_pe > forward_pe)
             growth_pass = bool((earnings_growth or 0) > 0)
@@ -716,6 +735,7 @@ def job(tickers, prev_tickers=None):
                 "earnings_growth_str": f"{(earnings_growth or 0) * 100:.1f}%",
                 "debt_to_equity": debt_to_equity,
                 "debt_to_equity_str": str(debt_to_equity) if debt_to_equity is not None else "N/A",
+                "earnings_date": earnings_date,  # NEW: Add earnings date
                 # NEW: options flags everywhere
                 "weekly_available": weekly_avail,
                 "monthly_available": monthly_avail,
@@ -790,6 +810,7 @@ def job(tickers, prev_tickers=None):
                     "forward_pe": forward_pe,
                     "earnings_growth": earnings_growth,
                     "debt_to_equity": debt_to_equity,
+                    "earnings_date": earnings_date,  # NEW: Add earnings date
 
                     "weekly_available": weekly_avail,
                     "monthly_available": monthly_avail,
