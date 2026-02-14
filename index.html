@@ -18,7 +18,14 @@
       text-align: center;
     }
     
-    .earnings-filter-btn {
+    .filter-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
       padding: 12px 24px;
       font-size: 16px;
       font-weight: 600;
@@ -29,29 +36,35 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      min-width: 200px;
     }
     
-    .earnings-filter-btn:hover {
+    .filter-btn:hover {
       background: #1976D2;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
       transform: translateY(-1px);
     }
     
-    .earnings-filter-btn:active {
+    .filter-btn:active {
       transform: translateY(0);
       box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
     
-    .earnings-filter-btn.active {
+    .filter-btn.active {
       background: #4CAF50;
     }
     
-    .earnings-filter-btn.active:hover {
+    .filter-btn.active:hover {
       background: #45a049;
     }
     
     @media (max-width: 768px) {
-      .earnings-filter-btn {
+      .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
         width: 100%;
         max-width: 300px;
       }
@@ -97,11 +110,16 @@
   <!-- FILTERS CONTAINER (hidden by default) -->
   <div id="filters-container" style="display: none;"></div>
   
-  <!-- EARNINGS FILTER BUTTON -->
+  <!-- FILTER BUTTONS -->
   <div class="filters-section">
-    <button id="earnings-filter-btn" class="earnings-filter-btn">
-      Earnings in 6 Weeks
-    </button>
+    <div class="filter-buttons">
+      <button id="earnings-filter-btn" class="filter-btn">
+        Earnings in 6 Weeks
+      </button>
+      <button id="marketcap-filter-btn" class="filter-btn">
+        Market Cap &gt; $100B
+      </button>
+    </div>
   </div>
   
   <!-- SIGNALS (these lists will be filled by app.js using signals.json) -->
