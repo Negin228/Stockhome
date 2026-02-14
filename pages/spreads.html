@@ -6,6 +6,61 @@
   <title>Stockhome - Mean Reversion Spread Candidates</title>
   <link rel="stylesheet" href="../styles/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <style>
+    /* Filter Button Styles */
+    .filter-buttons-container {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    
+    .filter-btn {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      background: #2196F3;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      min-width: 200px;
+    }
+    
+    .filter-btn:hover {
+      background: #1976D2;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      transform: translateY(-1px);
+    }
+    
+    .filter-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .filter-btn.active {
+      background: #4CAF50;
+    }
+    
+    .filter-btn.active:hover {
+      background: #45a049;
+    }
+    
+    @media (max-width: 768px) {
+      .filter-buttons-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="header-include"></div>
@@ -37,7 +92,8 @@
     </section>
     
     <section class="section"> 
-      <div style="margin-bottom: 20px; text-align: center;">
+      <!-- FILTER BUTTONS -->
+      <div class="filter-buttons-container">
         <button id="fundamentals-filter-btn" 
                 style="padding: 12px 24px; 
                        border: 2px solid #007bff; 
@@ -47,8 +103,17 @@
                        font-size: 16px; 
                        font-weight: bold; 
                        cursor: pointer; 
-                       transition: all 0.3s ease;">
-          📊 Show Only Quality Fundamentals (Value + Growth + Health)
+                       transition: all 0.3s ease;
+                       min-width: 200px;">
+          📊 Quality Fundamentals
+        </button>
+        
+        <button id="earnings-filter-btn" class="filter-btn">
+          Earnings in 6 Weeks
+        </button>
+        
+        <button id="marketcap-filter-btn" class="filter-btn">
+          Market Cap &gt; $100B
         </button>
       </div>
         
@@ -64,12 +129,13 @@
                 <th data-sort="mcap" style="text-align:center; cursor: pointer; user-select: none;">
                   Market Cap<br>($)<span class="sort-arrow" style="color: #999;"> ▼</span>
                 </th>
+                <th style="text-align:center;">Earnings</th>
                 <th style="text-align:center;">Spread</th>
                 <th style="text-align:center;">Reasoning</th>
                 </tr>
           </thead>
           <tbody id="spreads-body">
-              <tr><td colspan="8" style="text-align:center;">Loading candidates...</td></tr>
+              <tr><td colspan="9" style="text-align:center;">Loading candidates...</td></tr>
           </tbody>
         </table>
       </div>
