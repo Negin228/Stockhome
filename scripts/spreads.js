@@ -15,9 +15,58 @@
     return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
   }
 
+  /**
+   * Format earnings date to human-readable format
+   */
+  function formatEarningsDate(dateStr) {
+    if (!dateStr) return "TBA";
+    try {
+      const date = new Date(dateStr);
+      const options = { month: 'short', day: 'numeric', year: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    } catch (e) {
+      return "TBA";
+    }
+  }
+
+  /**
+   * Calculate days until earnings date
+   */
+  function daysUntilEarnings(dateStr) {
+    if (!dateStr) return null;
+    try {
+      const earningsDate = new Date(dateStr);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      earningsDate.setHours(0, 0, 0, 0);
+      const diffTime = earningsDate - today;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /**
+   * Check if earnings is within 6 weeks (42 days)
+   */
+  function isEarningsWithin6Weeks(dateStr) {
+    const days = daysUntilEarnings(dateStr);
+    if (days === null) return false;
+    return days >= 0 && days <= 42; // 6 weeks = 42 days
+  }
+
+  /**
+   * Check if market cap is above $100B
+   */
+  function isMarketCapAbove100B(marketCap) {
+    if (!marketCap || marketCap <= 0) return false;
+    return marketCap >= 100_000_000_000; // 100 billion
+  }
+
   function showError(message) {
     if (tableBody) {
-      tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; color: #d9534f; padding: 20px;">${message}</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center; color: #d9534f; padding: 20px;">${message}</td></tr>`;
     }
     console.error(message);
   }
@@ -93,7 +142,9 @@
     // STATE for filters
     let currentStrategyFilter = 'all';
     let fundamentalsFilterActive = false;
-    let sortByMarketCap = false; 
+    let sortByMarketCap = false;
+    let earningsFilterActive = false;
+    let marketCapFilterActive = false;
 
     // RENDER FUNCTION
     function render() {
@@ -130,6 +181,17 @@
           (s.health ?? 999) < 100
         );
       }
+
+      // Apply earnings filter
+      if (earningsFilterActive) {
+        filtered = filtered.filter(s => isEarningsWithin6Weeks(s.earnings_date));
+      }
+
+      // Apply market cap filter
+      if (marketCapFilterActive) {
+        filtered = filtered.filter(s => isMarketCapAbove100B(s.market_cap));
+      }
+
       if (sortByMarketCap) {
         filtered = [...filtered].sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
       }
@@ -144,6 +206,7 @@
           const company = (s.company || "").trim();
           const isMonthlyOnly = (s.monthly_available === true && s.weekly_available === false);
           const newBadge = s.is_new ? '<span style="background-color: #28a745; color: white; padding: 2px 5px; border-radius: 4px; font-size: 0.7em; margin-left: 5px; vertical-align: middle;">NEW</span>' : '';
+          const earningsDateFormatted = formatEarningsDate(s.earnings_date);
 
           return `
             <tr>
@@ -161,6 +224,7 @@
               <td style="text-align:center;">${getCheck(s.growth_check)}</td>
               <td style="text-align:center;">${getCheck((s.health ?? 999) < 100)}</td>
               <td style="text-align:center;">${s.market_cap_str}</td>
+              <td style="text-align:center; font-size:0.9em;">${earningsDateFormatted}</td>
               <td style="text-align:center;"><span class="badge ${badgeClass}">${s.strategy}</span></td>
               <td class="reasoning-cell" style="font-size: 0.85em; color: #666; text-align: left;">
                 ${s.reasoning || "No detailed reasoning available."}
@@ -168,7 +232,7 @@
             </tr>`;
         }).join("");
       } else {
-        tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center;">No candidates found for this filter.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center;">No candidates found for this filter.</td></tr>`;
       }
     }
 
@@ -215,6 +279,44 @@
         render();
       });
     }
+
+    // EARNINGS FILTER BUTTON
+    const earningsBtn = document.getElementById('earnings-filter-btn');
+    if (earningsBtn) {
+      earningsBtn.addEventListener('click', () => {
+        earningsFilterActive = !earningsFilterActive;
+        
+        if (earningsFilterActive) {
+          earningsBtn.classList.add('active');
+          earningsBtn.textContent = 'Show All Earnings';
+        } else {
+          earningsBtn.classList.remove('active');
+          earningsBtn.textContent = 'Earnings in 6 Weeks';
+        }
+        
+        render();
+      });
+    }
+
+    // MARKET CAP FILTER BUTTON
+    const marketCapBtn = document.getElementById('marketcap-filter-btn');
+    if (marketCapBtn) {
+      marketCapBtn.addEventListener('click', () => {
+        marketCapFilterActive = !marketCapFilterActive;
+        
+        if (marketCapFilterActive) {
+          marketCapBtn.classList.add('active');
+          marketCapBtn.textContent = 'Show All Market Caps';
+        } else {
+          marketCapBtn.classList.remove('active');
+          marketCapBtn.textContent = 'Market Cap > $100B';
+        }
+        
+        render();
+      });
+    }
+
+    // MARKET CAP SORT
     const marketCapHeader = document.querySelector('th[data-sort="mcap"]');
     if (marketCapHeader) {
       marketCapHeader.addEventListener('click', () => {
