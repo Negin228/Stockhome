@@ -140,28 +140,31 @@ function renderNews(summary, items) {
 }
 
 /**
- * Apply filters to signal cards
+ * Toggle earnings filter
  */
-function applyFilters() {
-    const earningsFilter = document.getElementById('earnings-filter');
-    if (!earningsFilter) return;
+function toggleEarningsFilter() {
+    const button = document.getElementById('earnings-filter-btn');
+    if (!button) return;
 
-    const filterValue = earningsFilter.value;
+    const isActive = button.classList.contains('active');
     const cards = document.querySelectorAll('.signal-card');
 
-    cards.forEach(card => {
-        const hasEarningsWithin6Weeks = card.getAttribute('data-earnings-within-6weeks') === 'true';
-        
-        if (filterValue === 'all') {
+    if (isActive) {
+        // Show all cards
+        cards.forEach(card => {
             card.style.display = '';
-        } else if (filterValue === 'yes' && hasEarningsWithin6Weeks) {
-            card.style.display = '';
-        } else if (filterValue === 'no' && !hasEarningsWithin6Weeks) {
-            card.style.display = '';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+        });
+        button.classList.remove('active');
+        button.textContent = 'Earnings in 6 Weeks';
+    } else {
+        // Show only cards with earnings within 6 weeks
+        cards.forEach(card => {
+            const hasEarningsWithin6Weeks = card.getAttribute('data-earnings-within-6weeks') === 'true';
+            card.style.display = hasEarningsWithin6Weeks ? '' : 'none';
+        });
+        button.classList.add('active');
+        button.textContent = 'Show All';
+    }
 }
 
 /**
@@ -201,10 +204,10 @@ function applyFilters() {
                 : `<li class="signal-card">No sell signals.</li>`;
         }
 
-        // Set up filter event listener
-        const earningsFilter = document.getElementById('earnings-filter');
-        if (earningsFilter) {
-            earningsFilter.addEventListener('change', applyFilters);
+        // Set up button event listener
+        const earningsButton = document.getElementById('earnings-filter-btn');
+        if (earningsButton) {
+            earningsButton.addEventListener('click', toggleEarningsFilter);
         }
 
     } catch (e) {
