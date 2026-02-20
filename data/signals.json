@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "02-19-2026 19:54",
+  "generated_at_pt": "02-19-2026 20:35",
   "buys": [
     {
       "ticker": "ACN",
@@ -34,7 +34,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.470930110000914,
+      "adx": 41.47093010984894,
       "put": {
         "strike": 190.0,
         "expiration": "Mar 20, 2026",
@@ -94,52 +94,6 @@
       }
     },
     {
-      "ticker": "APO",
-      "company": "Apollo Global Management, Inc. ",
-      "signal": "BUY",
-      "score": 25.75,
-      "why": "Below slow SMA \u2022 Oversold \u2022 Bearish MACD",
-      "price": 118.34,
-      "price_str": "118.34",
-      "rsi": 30.0,
-      "rsi_str": "30.0",
-      "dma50": 139.66099975585936,
-      "dma200": 136.0978851699829,
-      "dma50_str": "139.7",
-      "dma200_str": "136.1",
-      "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 31.8)",
-      "pe": 18.290571,
-      "pe_str": "18.3",
-      "market_cap": 68687208448.0,
-      "market_cap_str": "68.69B",
-      "strategy": "Call Debit (Bullish)",
-      "pe_check": true,
-      "growth_check": false,
-      "debt_check": true,
-      "trailing_pe": 18.290571,
-      "forward_pe": 10.836579,
-      "earnings_growth": -0.54,
-      "earnings_growth_str": "-54.0%",
-      "debt_to_equity": 31.434,
-      "debt_to_equity_str": "31.434",
-      "earnings_date": "2026-05-01",
-      "weekly_available": true,
-      "monthly_available": true,
-      "adx": 31.77008396957208,
-      "put": {
-        "strike": 100.0,
-        "expiration": "Mar 27, 2026",
-        "exp_type": "WEEKLY",
-        "weekly_available": true,
-        "monthly_available": true,
-        "premium": 1.85,
-        "delta_percent": 15.49771843839784,
-        "premium_percent": 1.5632922088896402,
-        "metric_sum": 17.06101064728748
-      }
-    },
-    {
       "ticker": "ADP",
       "company": "Automatic Data Processing, Inc.",
       "signal": "BUY",
@@ -150,7 +104,7 @@
       "rsi": 26.2,
       "rsi_str": "26.2",
       "dma50": 249.83789031982423,
-      "dma200": 280.7498620605469,
+      "dma200": 280.7498611450195,
       "dma50_str": "249.8",
       "dma200_str": "280.7",
       "trend_dir": "bearish",
@@ -172,7 +126,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 42.19076748096097,
+      "adx": 42.19076735447794,
       "put": {
         "strike": 190.0,
         "expiration": "Apr 02, 2026",
@@ -196,7 +150,7 @@
       "rsi": 24.9,
       "rsi_str": "24.9",
       "dma50": 5050.2166357421875,
-      "dma200": 5277.688619384766,
+      "dma200": 5277.688621826172,
       "dma50_str": "5050.2",
       "dma200_str": "5277.7",
       "trend_dir": "bearish",
@@ -218,7 +172,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.088406794963575,
+      "adx": 38.08840679620851,
       "put": {
         "strike": 3600.0,
         "expiration": "Mar 27, 2026",
@@ -242,7 +196,7 @@
       "rsi": 26.7,
       "rsi_str": "26.7",
       "dma50": 80.52067260742187,
-      "dma200": 74.9558808517456,
+      "dma200": 74.95588142395019,
       "dma50_str": "80.5",
       "dma200_str": "75.0",
       "trend_dir": "bearish",
@@ -264,7 +218,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.00854615893159,
+      "adx": 45.00855073442869,
       "put": {
         "strike": 47.5,
         "expiration": "Mar 20, 2026",
@@ -356,7 +310,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.37253837692811,
+      "adx": 37.37253837706262,
       "put": {
         "strike": 175.0,
         "expiration": "Apr 02, 2026",
@@ -380,7 +334,7 @@
       "rsi": 29.7,
       "rsi_str": "29.7",
       "dma50": 266.3005996704102,
-      "dma200": 339.04018028259276,
+      "dma200": 339.0401804351807,
       "dma50_str": "266.3",
       "dma200_str": "339.0",
       "trend_dir": "bearish",
@@ -402,7 +356,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 58.331682590133745,
+      "adx": 58.33168258930027,
       "put": {
         "strike": 175.0,
         "expiration": "Mar 20, 2026",
@@ -410,9 +364,9 @@
         "weekly_available": false,
         "monthly_available": true,
         "premium": 5.55,
-        "delta_percent": 12.007240547063553,
-        "premium_percent": 2.7906275140788415,
-        "metric_sum": 14.797868061142395
+        "delta_percent": 12.00724270742224,
+        "premium_percent": 2.790627445564609,
+        "metric_sum": 14.79787015298685
       }
     },
     {
@@ -426,7 +380,7 @@
       "rsi": 29.7,
       "rsi_str": "29.7",
       "dma50": 60.590000228881834,
-      "dma200": 68.88050390243531,
+      "dma200": 68.88050382614136,
       "dma50_str": "60.6",
       "dma200_str": "68.9",
       "trend_dir": "bearish",
@@ -448,7 +402,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 57.03939434771418,
+      "adx": 57.03939434911246,
       "put": {
         "strike": 32.5,
         "expiration": "Mar 20, 2026",
@@ -494,7 +448,7 @@
       "earnings_date": "2026-05-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 49.54017568235306,
+      "adx": 49.54017568235305,
       "put": {
         "strike": 50.0,
         "expiration": "Mar 20, 2026",
@@ -610,7 +564,7 @@
       "rsi": 28.8,
       "rsi_str": "28.8",
       "dma50": 133.01120071411134,
-      "dma200": 129.51513607025146,
+      "dma200": 129.51513572692872,
       "dma50_str": "133.0",
       "dma200_str": "129.5",
       "trend_dir": "bearish",
@@ -632,7 +586,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 43.09971819978241,
+      "adx": 43.09971812647173,
       "put": {
         "strike": 70.0,
         "expiration": "Mar 20, 2026",
@@ -724,7 +678,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 60.90481703561751,
+      "adx": 60.904817035618564,
       "put": {
         "strike": 340.0,
         "expiration": "Apr 02, 2026",
@@ -778,9 +732,9 @@
         "weekly_available": false,
         "monthly_available": true,
         "premium": 1.725,
-        "delta_percent": 11.431270666036852,
-        "premium_percent": 1.0185403873405763,
-        "metric_sum": 12.449811053377427
+        "delta_percent": 11.431270985227103,
+        "premium_percent": 1.0185403836698883,
+        "metric_sum": 12.449811368896992
       }
     },
     {
@@ -840,7 +794,7 @@
       "rsi": 28.4,
       "rsi_str": "28.4",
       "dma50": 106.48640075683593,
-      "dma200": 126.42918533325195,
+      "dma200": 126.42918506622314,
       "dma50_str": "106.5",
       "dma200_str": "126.4",
       "trend_dir": "bearish",
@@ -862,7 +816,7 @@
       "earnings_date": "2026-03-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 46.99395153256994,
+      "adx": 46.99395610291464,
       "put": {
         "strike": 80.0,
         "expiration": "Mar 20, 2026",
@@ -932,7 +886,7 @@
       "rsi": 26.4,
       "rsi_str": "26.4",
       "dma50": 249.1988003540039,
-      "dma200": 283.2267481994629,
+      "dma200": 283.2267483520508,
       "dma50_str": "249.2",
       "dma200_str": "283.2",
       "trend_dir": "bearish",
@@ -954,7 +908,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.760568987163342,
+      "adx": 24.760568992547547,
       "put": {
         "strike": null,
         "expiration": null,
@@ -978,7 +932,7 @@
       "rsi": 28.5,
       "rsi_str": "28.5",
       "dma50": 234.21745849609374,
-      "dma200": 249.2332398223877,
+      "dma200": 249.233239364624,
       "dma50_str": "234.2",
       "dma200_str": "249.2",
       "trend_dir": "bearish",
@@ -1000,7 +954,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.29957904257601,
+      "adx": 44.2995789787016,
       "put": {
         "strike": 165.0,
         "expiration": "Apr 02, 2026",
@@ -1024,7 +978,7 @@
       "rsi": 29.4,
       "rsi_str": "29.4",
       "dma50": 580.4416778564453,
-      "dma200": 504.9747117614746,
+      "dma200": 504.97471145629885,
       "dma50_str": "580.4",
       "dma200_str": "505.0",
       "trend_dir": "bearish",
@@ -1046,7 +1000,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.84615371132679,
+      "adx": 41.8461537554409,
       "put": {
         "strike": 460.0,
         "expiration": "Apr 02, 2026",
@@ -1208,7 +1162,7 @@
       "rsi": 23.1,
       "rsi_str": "23.1",
       "dma50": 116.77006484985351,
-      "dma200": 158.35111042022706,
+      "dma200": 158.35111064910888,
       "dma50_str": "116.8",
       "dma200_str": "158.4",
       "trend_dir": "bearish",
@@ -1230,7 +1184,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 49.42407568322998,
+      "adx": 49.42407568411225,
       "put": {
         "strike": 75.0,
         "expiration": "Mar 20, 2026",
@@ -1303,7 +1257,7 @@
       "rsi": 41.2,
       "rsi_str": "41.2",
       "dma50": 53.19701919555664,
-      "dma200": 47.35890292167664,
+      "dma200": 47.35890295982361,
       "dma50_str": "53.2",
       "dma200_str": "47.4",
       "trend_dir": "bearish",
@@ -1325,7 +1279,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.66594580791224
+      "adx": 23.665945785297293
     },
     {
       "ticker": "SQQQ",
@@ -1338,7 +1292,7 @@
       "rsi": 57.1,
       "rsi_str": "57.1",
       "dma50": 67.65455513000488,
-      "dma200": 82.54550149917603,
+      "dma200": 82.54550134658814,
       "dma50_str": "67.7",
       "dma200_str": "82.5",
       "trend_dir": "bullish",
@@ -1360,7 +1314,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.26084790282697
+      "adx": 22.260847902655225
     },
     {
       "ticker": "UPRO",
@@ -1373,7 +1327,7 @@
       "rsi": 45.1,
       "rsi_str": "45.1",
       "dma50": 117.80130935668946,
-      "dma200": 103.70916286468506,
+      "dma200": 103.70916332244873,
       "dma50_str": "117.8",
       "dma200_str": "103.7",
       "trend_dir": "bearish",
@@ -1395,7 +1349,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.838803556389129
+      "adx": 15.838803507388251
     },
     {
       "ticker": "SPXU",
@@ -1408,7 +1362,7 @@
       "rsi": 53.6,
       "rsi_str": "53.6",
       "dma50": 48.75439476013184,
-      "dma200": 57.74950277328491,
+      "dma200": 57.749502944946286,
       "dma50_str": "48.8",
       "dma200_str": "57.7",
       "trend_dir": "bullish",
@@ -1430,7 +1384,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.283547577112586
+      "adx": 14.283547537231055
     },
     {
       "ticker": "UDOW",
@@ -1465,7 +1419,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.694876792481908
+      "adx": 10.69487679248948
     },
     {
       "ticker": "SDOW",
@@ -1478,7 +1432,7 @@
       "rsi": 48.8,
       "rsi_str": "48.8",
       "dma50": 30.26432346343994,
-      "dma200": 36.716216526031495,
+      "dma200": 36.71621664047241,
       "dma50_str": "30.3",
       "dma200_str": "36.7",
       "trend_dir": "bullish",
@@ -1500,7 +1454,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.59163847204776
+      "adx": 10.591638615908883
     },
     {
       "ticker": "SOXL",
@@ -1513,7 +1467,7 @@
       "rsi": 56.2,
       "rsi_str": "56.2",
       "dma50": 54.36840003967285,
-      "dma200": 35.85471650123596,
+      "dma200": 35.85471649169922,
       "dma50_str": "54.4",
       "dma200_str": "35.9",
       "trend_dir": "bullish",
@@ -1535,7 +1489,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.137700566598536
+      "adx": 18.13770056653887
     },
     {
       "ticker": "SOXS",
@@ -1548,7 +1502,7 @@
       "rsi": 39.2,
       "rsi_str": "39.2",
       "dma50": 2.4191102051734923,
-      "dma200": 5.827984160780907,
+      "dma200": 5.82798417031765,
       "dma50_str": "2.4",
       "dma200_str": "5.8",
       "trend_dir": "bearish",
@@ -1570,7 +1524,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.638314083718218
+      "adx": 19.63831408313709
     },
     {
       "ticker": "MMM",
@@ -1583,7 +1537,7 @@
       "rsi": 50.4,
       "rsi_str": "50.4",
       "dma50": 163.17980133056642,
-      "dma200": 155.99192764282228,
+      "dma200": 155.99192779541016,
       "dma50_str": "163.2",
       "dma200_str": "156.0",
       "trend_dir": "bullish",
@@ -1605,7 +1559,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.195528241881554
+      "adx": 20.195527633626774
     },
     {
       "ticker": "AOS",
@@ -1618,7 +1572,7 @@
       "rsi": 58.9,
       "rsi_str": "58.9",
       "dma50": 71.62424011230469,
-      "dma200": 68.90514001846313,
+      "dma200": 68.90513990402222,
       "dma50_str": "71.6",
       "dma200_str": "68.9",
       "trend_dir": "bullish",
@@ -1640,7 +1594,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 41.14745001318396
+      "adx": 41.14745072541429
     },
     {
       "ticker": "ABT",
@@ -1653,7 +1607,7 @@
       "rsi": 44.9,
       "rsi_str": "44.9",
       "dma50": 118.48822067260743,
-      "dma200": 126.86653564453125,
+      "dma200": 126.86653549194335,
       "dma50_str": "118.5",
       "dma200_str": "126.9",
       "trend_dir": "bearish",
@@ -1675,7 +1629,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.456440808369937
+      "adx": 24.456440755669725
     },
     {
       "ticker": "ABBV",
@@ -1688,7 +1642,7 @@
       "rsi": 50.7,
       "rsi_str": "50.7",
       "dma50": 222.84707916259765,
-      "dma200": 208.45738395690918,
+      "dma200": 208.45738410949707,
       "dma50_str": "222.8",
       "dma200_str": "208.5",
       "trend_dir": "bearish",
@@ -1710,7 +1664,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.8221827274954
+      "adx": 10.822182589320857
     },
     {
       "ticker": "ACN",
@@ -1745,7 +1699,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.470930110000914
+      "adx": 41.47093010984894
     },
     {
       "ticker": "ADBE",
@@ -1828,7 +1782,7 @@
       "rsi": 66.0,
       "rsi_str": "66.0",
       "dma50": 14.56498083114624,
-      "dma200": 12.97959081172943,
+      "dma200": 12.979590816497803,
       "dma50_str": "14.6",
       "dma200_str": "13.0",
       "trend_dir": "bullish",
@@ -1850,7 +1804,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.979372404842536
+      "adx": 39.97937240250992
     },
     {
       "ticker": "AFL",
@@ -1885,7 +1839,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.353151749077306
+      "adx": 19.353151870195735
     },
     {
       "ticker": "A",
@@ -1898,7 +1852,7 @@
       "rsi": 36.9,
       "rsi_str": "36.9",
       "dma50": 137.00579376220702,
-      "dma200": 128.95040340423583,
+      "dma200": 128.95040336608886,
       "dma50_str": "137.0",
       "dma200_str": "129.0",
       "trend_dir": "bearish",
@@ -1920,7 +1874,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.419551846015246
+      "adx": 33.41955184757339
     },
     {
       "ticker": "APD",
@@ -1933,7 +1887,7 @@
       "rsi": 56.6,
       "rsi_str": "56.6",
       "dma50": 260.49825469970705,
-      "dma200": 269.2775082397461,
+      "dma200": 269.2775080871582,
       "dma50_str": "260.5",
       "dma200_str": "269.3",
       "trend_dir": "bullish",
@@ -1955,7 +1909,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.593842246609274
+      "adx": 25.59384235918019
     },
     {
       "ticker": "ABNB",
@@ -2038,7 +1992,7 @@
       "rsi": 51.1,
       "rsi_str": "51.1",
       "dma50": 159.32164596557618,
-      "dma200": 100.25208805084229,
+      "dma200": 100.25208814620972,
       "dma50_str": "159.3",
       "dma200_str": "100.3",
       "trend_dir": "bearish",
@@ -2060,7 +2014,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.002742837955054
+      "adx": 20.002742837984535
     },
     {
       "ticker": "ARE",
@@ -2073,7 +2027,7 @@
       "rsi": 47.4,
       "rsi_str": "47.4",
       "dma50": 52.1456413269043,
-      "dma200": 65.83389923095703,
+      "dma200": 65.83389877319335,
       "dma50_str": "52.1",
       "dma200_str": "65.8",
       "trend_dir": "bearish",
@@ -2095,7 +2049,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.05750883969754
+      "adx": 20.057508723086556
     },
     {
       "ticker": "ALGN",
@@ -2165,7 +2119,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.448530871330185
+      "adx": 32.44853087132942
     },
     {
       "ticker": "LNT",
@@ -2200,7 +2154,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.272817118508595
+      "adx": 28.27281711857518
     },
     {
       "ticker": "ALL",
@@ -2235,7 +2189,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.876516691077693
+      "adx": 17.876516691085083
     },
     {
       "ticker": "GOOGL",
@@ -2248,7 +2202,7 @@
       "rsi": 31.5,
       "rsi_str": "31.5",
       "dma50": 320.2143994140625,
-      "dma200": 244.7722731781006,
+      "dma200": 244.77227333068848,
       "dma50_str": "320.2",
       "dma200_str": "244.8",
       "trend_dir": "bearish",
@@ -2270,7 +2224,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.32096735688582
+      "adx": 33.32096735551914
     },
     {
       "ticker": "GOOG",
@@ -2283,7 +2237,7 @@
       "rsi": 31.7,
       "rsi_str": "31.7",
       "dma50": 320.8863995361328,
-      "dma200": 245.55432594299316,
+      "dma200": 245.55432655334474,
       "dma50_str": "320.9",
       "dma200_str": "245.6",
       "trend_dir": "bearish",
@@ -2305,7 +2259,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.94183461160895
+      "adx": 32.94183456967576
     },
     {
       "ticker": "MO",
@@ -2318,7 +2272,7 @@
       "rsi": 70.9,
       "rsi_str": "70.9",
       "dma50": 60.58959884643555,
-      "dma200": 59.934780788421634,
+      "dma200": 59.93478088378906,
       "dma50_str": "60.6",
       "dma200_str": "59.9",
       "trend_dir": "bullish",
@@ -2340,7 +2294,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.170940094991817
+      "adx": 29.170940097449055
     },
     {
       "ticker": "AMZN",
@@ -2410,7 +2364,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.57641824799164
+      "adx": 37.57641824594375
     },
     {
       "ticker": "AEE",
@@ -2423,7 +2377,7 @@
       "rsi": 66.7,
       "rsi_str": "66.7",
       "dma50": 102.19259948730469,
-      "dma200": 99.76075710296631,
+      "dma200": 99.76075729370118,
       "dma50_str": "102.2",
       "dma200_str": "99.8",
       "trend_dir": "bullish",
@@ -2445,7 +2399,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.281831474285987
+      "adx": 30.28183147380964
     },
     {
       "ticker": "AEP",
@@ -2458,7 +2412,7 @@
       "rsi": 70.5,
       "rsi_str": "70.5",
       "dma50": 117.49605911254883,
-      "dma200": 110.92530033111572,
+      "dma200": 110.92530025482178,
       "dma50_str": "117.5",
       "dma200_str": "110.9",
       "trend_dir": "bullish",
@@ -2480,7 +2434,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.73278043741057
+      "adx": 37.73278253099478
     },
     {
       "ticker": "AXP",
@@ -2493,7 +2447,7 @@
       "rsi": 39.6,
       "rsi_str": "39.6",
       "dma50": 365.1036187744141,
-      "dma200": 332.16303298950197,
+      "dma200": 332.1630340576172,
       "dma50_str": "365.1",
       "dma200_str": "332.2",
       "trend_dir": "bearish",
@@ -2515,7 +2469,7 @@
       "earnings_date": "2026-04-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.425241447839642
+      "adx": 20.425241899586524
     },
     {
       "ticker": "AIG",
@@ -2585,7 +2539,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.76085075403836
+      "adx": 19.760850753932953
     },
     {
       "ticker": "AWK",
@@ -2598,7 +2552,7 @@
       "rsi": 56.5,
       "rsi_str": "56.5",
       "dma50": 128.97468017578126,
-      "dma200": 135.10184513092042,
+      "dma200": 135.1018447494507,
       "dma50_str": "129.0",
       "dma200_str": "135.1",
       "trend_dir": "bullish",
@@ -2620,7 +2574,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.124705061344052
+      "adx": 27.12470505731985
     },
     {
       "ticker": "AMP",
@@ -2633,7 +2587,7 @@
       "rsi": 39.1,
       "rsi_str": "39.1",
       "dma50": 499.606640625,
-      "dma200": 495.9015936279297,
+      "dma200": 495.901593170166,
       "dma50_str": "499.6",
       "dma200_str": "495.9",
       "trend_dir": "bearish",
@@ -2655,7 +2609,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.941565012775943
+      "adx": 29.94156585553325
     },
     {
       "ticker": "AME",
@@ -2668,7 +2622,7 @@
       "rsi": 63.8,
       "rsi_str": "63.8",
       "dma50": 215.80759887695314,
-      "dma200": 192.06307434082032,
+      "dma200": 192.06307426452636,
       "dma50_str": "215.8",
       "dma200_str": "192.1",
       "trend_dir": "bullish",
@@ -2690,7 +2644,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 47.15601203780274
+      "adx": 47.1560117570038
     },
     {
       "ticker": "AMGN",
@@ -2703,7 +2657,7 @@
       "rsi": 64.3,
       "rsi_str": "64.3",
       "dma50": 338.1357733154297,
-      "dma200": 302.01343284606935,
+      "dma200": 302.0134310913086,
       "dma50_str": "338.1",
       "dma200_str": "302.0",
       "trend_dir": "bullish",
@@ -2725,7 +2679,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.949442978794284
+      "adx": 29.949440206307184
     },
     {
       "ticker": "APH",
@@ -2738,7 +2692,7 @@
       "rsi": 56.6,
       "rsi_str": "56.6",
       "dma50": 142.0830078125,
-      "dma200": 119.2074691772461,
+      "dma200": 119.20746952056885,
       "dma50_str": "142.1",
       "dma200_str": "119.2",
       "trend_dir": "bearish",
@@ -2760,7 +2714,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.013228831812048
+      "adx": 11.013228860302887
     },
     {
       "ticker": "ADI",
@@ -2773,7 +2727,7 @@
       "rsi": 73.3,
       "rsi_str": "73.3",
       "dma50": 299.5718017578125,
-      "dma200": 250.91159523010253,
+      "dma200": 250.91159507751465,
       "dma50_str": "299.6",
       "dma200_str": "250.9",
       "trend_dir": "bullish",
@@ -2795,7 +2749,7 @@
       "earnings_date": "2026-02-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 49.68281600051744
+      "adx": 49.682815999882294
     },
     {
       "ticker": "AON",
@@ -2843,7 +2797,7 @@
       "rsi": 63.8,
       "rsi_str": "63.8",
       "dma50": 25.65931770324707,
-      "dma200": 21.962484197616575,
+      "dma200": 21.962484221458435,
       "dma50_str": "25.7",
       "dma200_str": "22.0",
       "trend_dir": "bullish",
@@ -2865,29 +2819,29 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.96834996422052
+      "adx": 17.968349959828114
     },
     {
       "ticker": "APO",
       "company": "Apollo Global Management, Inc. ",
-      "signal": "BUY",
-      "score": 25.75,
-      "why": "Below slow SMA \u2022 Oversold \u2022 Bearish MACD",
+      "signal": null,
+      "score": 22.0,
+      "why": "Below slow SMA \u2022 RSI 30 \u2022 Bearish MACD",
       "price": 118.34,
       "price_str": "118.34",
-      "rsi": 30.0,
-      "rsi_str": "30.0",
-      "dma50": 139.66099975585936,
-      "dma200": 136.0978851699829,
-      "dma50_str": "139.7",
-      "dma200_str": "136.1",
+      "rsi": 30.4,
+      "rsi_str": "30.4",
+      "dma50": 139.10245071411134,
+      "dma200": 135.54661182403564,
+      "dma50_str": "139.1",
+      "dma200_str": "135.5",
       "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 31.8)",
+      "trend_rationale": "Strong Bearish Trend (ADX: 31.7)",
       "pe": 18.290571,
       "pe_str": "18.3",
       "market_cap": 68687208448.0,
       "market_cap_str": "68.69B",
-      "strategy": "Call Debit (Bullish)",
+      "strategy": "Put Credit (Bullish)",
       "pe_check": true,
       "growth_check": false,
       "debt_check": true,
@@ -2900,7 +2854,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.77008396957208
+      "adx": 31.72114215119365
     },
     {
       "ticker": "AAPL",
@@ -2913,7 +2867,7 @@
       "rsi": 45.5,
       "rsi_str": "45.5",
       "dma50": 266.16960205078124,
-      "dma200": 240.404275970459,
+      "dma200": 240.40427604675293,
       "dma50_str": "266.2",
       "dma200_str": "240.4",
       "trend_dir": "bearish",
@@ -2935,7 +2889,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.176418992930788
+      "adx": 20.17641899296124
     },
     {
       "ticker": "AMAT",
@@ -2948,7 +2902,7 @@
       "rsi": 68.6,
       "rsi_str": "68.6",
       "dma50": 299.91058532714845,
-      "dma200": 219.5675771331787,
+      "dma200": 219.5675764465332,
       "dma50_str": "299.9",
       "dma200_str": "219.6",
       "trend_dir": "bullish",
@@ -2970,7 +2924,7 @@
       "earnings_date": "2026-05-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.03115056437133
+      "adx": 35.031150584586335
     },
     {
       "ticker": "APTV",
@@ -3053,7 +3007,7 @@
       "rsi": 63.0,
       "rsi_str": "63.0",
       "dma50": 62.84243316650391,
-      "dma200": 57.47320625305176,
+      "dma200": 57.473205909729,
       "dma50_str": "62.8",
       "dma200_str": "57.5",
       "trend_dir": "bearish",
@@ -3075,7 +3029,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.97087038532436
+      "adx": 18.97086869572876
     },
     {
       "ticker": "ANET",
@@ -3145,7 +3099,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.90812976066903
+      "adx": 35.90812976069554
     },
     {
       "ticker": "AIZ",
@@ -3158,7 +3112,7 @@
       "rsi": 41.1,
       "rsi_str": "41.1",
       "dma50": 233.54628204345704,
-      "dma200": 211.99119895935058,
+      "dma200": 211.99119918823243,
       "dma50_str": "233.5",
       "dma200_str": "212.0",
       "trend_dir": "bearish",
@@ -3180,7 +3134,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.768712030387682
+      "adx": 27.76871203054193
     },
     {
       "ticker": "T",
@@ -3193,7 +3147,7 @@
       "rsi": 67.4,
       "rsi_str": "67.4",
       "dma50": 24.98094898223877,
-      "dma200": 26.30434115409851,
+      "dma200": 26.304341144561768,
       "dma50_str": "25.0",
       "dma200_str": "26.3",
       "trend_dir": "bullish",
@@ -3215,7 +3169,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.9091665634964
+      "adx": 45.90916657150054
     },
     {
       "ticker": "ATO",
@@ -3228,7 +3182,7 @@
       "rsi": 69.0,
       "rsi_str": "69.0",
       "dma50": 169.4954000854492,
-      "dma200": 164.32978019714355,
+      "dma200": 164.3297802734375,
       "dma50_str": "169.5",
       "dma200_str": "164.3",
       "trend_dir": "bullish",
@@ -3250,7 +3204,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.496012585129535
+      "adx": 30.49601246075718
     },
     {
       "ticker": "ADSK",
@@ -3298,7 +3252,7 @@
       "rsi": 26.2,
       "rsi_str": "26.2",
       "dma50": 249.83789031982423,
-      "dma200": 280.7498620605469,
+      "dma200": 280.7498611450195,
       "dma50_str": "249.8",
       "dma200_str": "280.7",
       "trend_dir": "bearish",
@@ -3320,7 +3274,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 42.19076748096097
+      "adx": 42.19076735447794
     },
     {
       "ticker": "AZO",
@@ -3390,7 +3344,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.936660124377884
+      "adx": 12.936660173262245
     },
     {
       "ticker": "AVY",
@@ -3425,7 +3379,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.599994762821584
+      "adx": 24.599994762830885
     },
     {
       "ticker": "AXON",
@@ -3473,7 +3427,7 @@
       "rsi": 73.2,
       "rsi_str": "73.2",
       "dma50": 51.802461318969726,
-      "dma200": 45.371498374938966,
+      "dma200": 45.37149829864502,
       "dma50_str": "51.8",
       "dma200_str": "45.4",
       "trend_dir": "bullish",
@@ -3495,7 +3449,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 42.14629206656717
+      "adx": 42.146292065314
     },
     {
       "ticker": "BALL",
@@ -3508,7 +3462,7 @@
       "rsi": 72.8,
       "rsi_str": "72.8",
       "dma50": 56.70319984436035,
-      "dma200": 53.14941593170166,
+      "dma200": 53.14941598892212,
       "dma50_str": "56.7",
       "dma200_str": "53.1",
       "trend_dir": "bullish",
@@ -3530,7 +3484,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 49.36891936009265
+      "adx": 49.36891937550606
     },
     {
       "ticker": "BAC",
@@ -3543,7 +3497,7 @@
       "rsi": 43.9,
       "rsi_str": "43.9",
       "dma50": 54.328200073242186,
-      "dma200": 49.759210872650144,
+      "dma200": 49.759210929870605,
       "dma50_str": "54.3",
       "dma200_str": "49.8",
       "trend_dir": "bearish",
@@ -3565,7 +3519,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.581060657231344
+      "adx": 20.581060695060327
     },
     {
       "ticker": "BAX",
@@ -3600,7 +3554,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.998806398945371
+      "adx": 15.998806398945339
     },
     {
       "ticker": "BDX",
@@ -3613,7 +3567,7 @@
       "rsi": 72.5,
       "rsi_str": "72.5",
       "dma50": 160.7858514404297,
-      "dma200": 147.03206859588624,
+      "dma200": 147.03206871032714,
       "dma50_str": "160.8",
       "dma200_str": "147.0",
       "trend_dir": "bullish",
@@ -3635,7 +3589,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.537707036727685
+      "adx": 28.537707080371117
     },
     {
       "ticker": "BRK-B",
@@ -3705,7 +3659,7 @@
       "earnings_date": "2026-03-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.794506635309258
+      "adx": 14.794506635317628
     },
     {
       "ticker": "TECH",
@@ -3718,7 +3672,7 @@
       "rsi": 35.7,
       "rsi_str": "35.7",
       "dma50": 62.980615310668945,
-      "dma200": 56.873871097564695,
+      "dma200": 56.87387104034424,
       "dma50_str": "63.0",
       "dma200_str": "56.9",
       "trend_dir": "bearish",
@@ -3740,7 +3694,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.07551111628363
+      "adx": 24.075511125976423
     },
     {
       "ticker": "BIIB",
@@ -3788,7 +3742,7 @@
       "rsi": 48.0,
       "rsi_str": "48.0",
       "dma50": 1092.0556103515626,
-      "dma200": 1073.2084771728516,
+      "dma200": 1073.2084780883788,
       "dma50_str": "1092.1",
       "dma200_str": "1073.2",
       "trend_dir": "bearish",
@@ -3810,7 +3764,7 @@
       "earnings_date": "2026-04-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.012928417696198
+      "adx": 16.0129284564828
     },
     {
       "ticker": "BX",
@@ -3823,7 +3777,7 @@
       "rsi": 32.2,
       "rsi_str": "32.2",
       "dma50": 146.9737046813965,
-      "dma200": 152.11480876922607,
+      "dma200": 152.11480838775634,
       "dma50_str": "147.0",
       "dma200_str": "152.1",
       "trend_dir": "bearish",
@@ -3845,7 +3799,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.54431861050666
+      "adx": 34.54431811795139
     },
     {
       "ticker": "XYZ",
@@ -3893,7 +3847,7 @@
       "rsi": 46.8,
       "rsi_str": "46.8",
       "dma50": 118.89601684570313,
-      "dma200": 104.44411457061767,
+      "dma200": 104.44411472320557,
       "dma50_str": "118.9",
       "dma200_str": "104.4",
       "trend_dir": "bearish",
@@ -3915,7 +3869,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.624032932504605
+      "adx": 18.624032924245274
     },
     {
       "ticker": "BA",
@@ -3963,7 +3917,7 @@
       "rsi": 24.9,
       "rsi_str": "24.9",
       "dma50": 5050.2166357421875,
-      "dma200": 5277.688619384766,
+      "dma200": 5277.688621826172,
       "dma50_str": "5050.2",
       "dma200_str": "5277.7",
       "trend_dir": "bearish",
@@ -3985,7 +3939,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.088406794963575
+      "adx": 38.08840679620851
     },
     {
       "ticker": "BSX",
@@ -4033,7 +3987,7 @@
       "rsi": 63.5,
       "rsi_str": "63.5",
       "dma50": 55.45326568603516,
-      "dma200": 48.08228872299194,
+      "dma200": 48.082288913726806,
       "dma50_str": "55.5",
       "dma200_str": "48.1",
       "trend_dir": "bullish",
@@ -4055,7 +4009,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.78596743326118
+      "adx": 41.785967377651886
     },
     {
       "ticker": "AVGO",
@@ -4090,7 +4044,7 @@
       "earnings_date": "2026-03-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.24822177005231
+      "adx": 17.24822177005237
     },
     {
       "ticker": "BR",
@@ -4125,7 +4079,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 59.58090967201916
+      "adx": 59.58090967009456
     },
     {
       "ticker": "BRO",
@@ -4138,7 +4092,7 @@
       "rsi": 38.8,
       "rsi_str": "38.8",
       "dma50": 76.58577011108399,
-      "dma200": 91.31180515289307,
+      "dma200": 91.31180561065673,
       "dma50_str": "76.6",
       "dma200_str": "91.3",
       "trend_dir": "bearish",
@@ -4160,7 +4114,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.76443779729669
+      "adx": 33.7644403570884
     },
     {
       "ticker": "BF-B",
@@ -4173,7 +4127,7 @@
       "rsi": 57.2,
       "rsi_str": "57.2",
       "dma50": 28.019800071716308,
-      "dma200": 28.619621257781983,
+      "dma200": 28.619621133804323,
       "dma50_str": "28.0",
       "dma200_str": "28.6",
       "trend_dir": "bullish",
@@ -4195,7 +4149,7 @@
       "earnings_date": "2026-03-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.7199713400625
+      "adx": 24.719971318124408
     },
     {
       "ticker": "BLDR",
@@ -4243,7 +4197,7 @@
       "rsi": 78.5,
       "rsi_str": "78.5",
       "dma50": 103.71547256469727,
-      "dma200": 87.8085224533081,
+      "dma200": 87.80852222442627,
       "dma50_str": "103.7",
       "dma200_str": "87.8",
       "trend_dir": "bullish",
@@ -4265,7 +4219,7 @@
       "earnings_date": "2026-05-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 51.84919084525044
+      "adx": 51.84919109929933
     },
     {
       "ticker": "BXP",
@@ -4278,7 +4232,7 @@
       "rsi": 44.0,
       "rsi_str": "44.0",
       "dma50": 66.24710266113281,
-      "dma200": 68.30172788619996,
+      "dma200": 68.30172784805298,
       "dma50_str": "66.2",
       "dma200_str": "68.3",
       "trend_dir": "bearish",
@@ -4300,7 +4254,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.674798470129343
+      "adx": 31.674798167415965
     },
     {
       "ticker": "CHRW",
@@ -4313,7 +4267,7 @@
       "rsi": 51.8,
       "rsi_str": "51.8",
       "dma50": 174.55340057373047,
-      "dma200": 132.65592807769775,
+      "dma200": 132.6559278488159,
       "dma50_str": "174.6",
       "dma200_str": "132.7",
       "trend_dir": "bearish",
@@ -4335,7 +4289,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 45.884307124343515
+      "adx": 45.88430709330515
     },
     {
       "ticker": "CDNS",
@@ -4418,7 +4372,7 @@
       "rsi": 51.5,
       "rsi_str": "51.5",
       "dma50": 107.68917053222657,
-      "dma200": 107.46731639862061,
+      "dma200": 107.46731651306152,
       "dma50_str": "107.7",
       "dma200_str": "107.5",
       "trend_dir": "bearish",
@@ -4440,7 +4394,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 10.315536833909515
+      "adx": 10.315536749356031
     },
     {
       "ticker": "CPB",
@@ -4453,7 +4407,7 @@
       "rsi": 42.3,
       "rsi_str": "42.3",
       "dma50": 27.567478828430175,
-      "dma200": 30.381194219589233,
+      "dma200": 30.381194124221803,
       "dma50_str": "27.6",
       "dma200_str": "30.4",
       "trend_dir": "bearish",
@@ -4475,7 +4429,7 @@
       "earnings_date": "2026-03-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.717235362084306
+      "adx": 22.717235754448307
     },
     {
       "ticker": "COF",
@@ -4488,7 +4442,7 @@
       "rsi": 34.4,
       "rsi_str": "34.4",
       "dma50": 231.30504852294922,
-      "dma200": 215.41971641540528,
+      "dma200": 215.41971618652343,
       "dma50_str": "231.3",
       "dma200_str": "215.4",
       "trend_dir": "bearish",
@@ -4510,7 +4464,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.94174528250978
+      "adx": 30.941744893400084
     },
     {
       "ticker": "CAH",
@@ -4523,7 +4477,7 @@
       "rsi": 56.2,
       "rsi_str": "56.2",
       "dma50": 209.65659759521483,
-      "dma200": 174.67717231750487,
+      "dma200": 174.67717155456543,
       "dma50_str": "209.7",
       "dma200_str": "174.7",
       "trend_dir": "bearish",
@@ -4545,7 +4499,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.308389362865954
+      "adx": 14.308389380662922
     },
     {
       "ticker": "KMX",
@@ -4628,7 +4582,7 @@
       "rsi": 56.3,
       "rsi_str": "56.3",
       "dma50": 57.07949333190918,
-      "dma200": 62.885189380645755,
+      "dma200": 62.885189075469974,
       "dma50_str": "57.1",
       "dma200_str": "62.9",
       "trend_dir": "bearish",
@@ -4650,7 +4604,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.982071375110497
+      "adx": 22.9820714216877
     },
     {
       "ticker": "CAT",
@@ -4663,7 +4617,7 @@
       "rsi": 67.3,
       "rsi_str": "67.3",
       "dma50": 642.8398095703125,
-      "dma200": 492.2374430847168,
+      "dma200": 492.23744323730466,
       "dma50_str": "642.8",
       "dma200_str": "492.2",
       "trend_dir": "bullish",
@@ -4685,7 +4639,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 36.40145895839119
+      "adx": 36.40145896232003
     },
     {
       "ticker": "CBOE",
@@ -4720,7 +4674,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.37009536815312
+      "adx": 18.370095368147048
     },
     {
       "ticker": "CBRE",
@@ -4790,7 +4744,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.31940254245014
+      "adx": 38.3194025424383
     },
     {
       "ticker": "COR",
@@ -4803,7 +4757,7 @@
       "rsi": 53.4,
       "rsi_str": "53.4",
       "dma50": 347.8000695800781,
-      "dma200": 316.92502655029296,
+      "dma200": 316.92502670288087,
       "dma50_str": "347.8",
       "dma200_str": "316.9",
       "trend_dir": "bearish",
@@ -4825,7 +4779,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.700394570065335
+      "adx": 17.700394342426538
     },
     {
       "ticker": "CNC",
@@ -4895,7 +4849,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.54049091828623
+      "adx": 26.54049091828625
     },
     {
       "ticker": "CF",
@@ -4908,7 +4862,7 @@
       "rsi": 67.5,
       "rsi_str": "67.5",
       "dma50": 85.16253326416016,
-      "dma200": 86.30135112762451,
+      "dma200": 86.30135101318359,
       "dma50_str": "85.2",
       "dma200_str": "86.3",
       "trend_dir": "bullish",
@@ -4930,7 +4884,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.546628722466583
+      "adx": 30.546628753571326
     },
     {
       "ticker": "CRL",
@@ -5000,7 +4954,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.91436883751513
+      "adx": 26.91436883673183
     },
     {
       "ticker": "CHTR",
@@ -5070,7 +5024,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 57.54391961401037
+      "adx": 57.54391954164499
     },
     {
       "ticker": "CMG",
@@ -5140,7 +5094,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.8733471188626
+      "adx": 28.8733471188631
     },
     {
       "ticker": "CHD",
@@ -5153,7 +5107,7 @@
       "rsi": 73.4,
       "rsi_str": "73.4",
       "dma50": 90.26070175170898,
-      "dma200": 90.94542655944824,
+      "dma200": 90.94542667388916,
       "dma50_str": "90.3",
       "dma200_str": "90.9",
       "trend_dir": "bullish",
@@ -5175,7 +5129,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 49.16364882280958
+      "adx": 49.16365087251516
     },
     {
       "ticker": "CI",
@@ -5188,7 +5142,7 @@
       "rsi": 53.1,
       "rsi_str": "53.1",
       "dma50": 277.76020080566406,
-      "dma200": 290.5567058563232,
+      "dma200": 290.5567049407959,
       "dma50_str": "277.8",
       "dma200_str": "290.6",
       "trend_dir": "bullish",
@@ -5210,7 +5164,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.551618749046067
+      "adx": 18.551618737385446
     },
     {
       "ticker": "CINF",
@@ -5245,7 +5199,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.602170579469947
+      "adx": 15.602170581149034
     },
     {
       "ticker": "CTAS",
@@ -5258,7 +5212,7 @@
       "rsi": 59.9,
       "rsi_str": "59.9",
       "dma50": 190.9991082763672,
-      "dma200": 202.62620399475097,
+      "dma200": 202.6262042236328,
       "dma50_str": "191.0",
       "dma200_str": "202.6",
       "trend_dir": "bullish",
@@ -5280,7 +5234,7 @@
       "earnings_date": "2026-03-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.49131035238579
+      "adx": 18.491312888127812
     },
     {
       "ticker": "CSCO",
@@ -5315,7 +5269,7 @@
       "earnings_date": "2026-05-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.39045425549985
+      "adx": 31.390454255499208
     },
     {
       "ticker": "C",
@@ -5328,7 +5282,7 @@
       "rsi": 49.6,
       "rsi_str": "49.6",
       "dma50": 115.73049850463867,
-      "dma200": 96.8642797088623,
+      "dma200": 96.86427913665771,
       "dma50_str": "115.7",
       "dma200_str": "96.9",
       "trend_dir": "bearish",
@@ -5350,7 +5304,7 @@
       "earnings_date": "2026-04-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.72907427313781
+      "adx": 17.72907415636167
     },
     {
       "ticker": "CFG",
@@ -5363,7 +5317,7 @@
       "rsi": 54.0,
       "rsi_str": "54.0",
       "dma50": 61.39524032592774,
-      "dma200": 50.86957441329956,
+      "dma200": 50.86957426071167,
       "dma50_str": "61.4",
       "dma200_str": "50.9",
       "trend_dir": "bullish",
@@ -5385,7 +5339,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.309433119042424
+      "adx": 32.309432151026236
     },
     {
       "ticker": "CLX",
@@ -5420,7 +5374,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 42.1918741890041
+      "adx": 42.19187418869922
     },
     {
       "ticker": "CME",
@@ -5455,7 +5409,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.71528452322273
+      "adx": 35.71528452322302
     },
     {
       "ticker": "CMS",
@@ -5468,7 +5422,7 @@
       "rsi": 69.6,
       "rsi_str": "69.6",
       "dma50": 70.84839553833008,
-      "dma200": 70.79284744262695,
+      "dma200": 70.79284748077393,
       "dma50_str": "70.8",
       "dma200_str": "70.8",
       "trend_dir": "bullish",
@@ -5490,7 +5444,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.42972395311111
+      "adx": 28.4297239986683
     },
     {
       "ticker": "KO",
@@ -5503,7 +5457,7 @@
       "rsi": 67.2,
       "rsi_str": "67.2",
       "dma50": 72.62560028076172,
-      "dma200": 69.70425563812256,
+      "dma200": 69.70425529479981,
       "dma50_str": "72.6",
       "dma200_str": "69.7",
       "trend_dir": "bullish",
@@ -5525,7 +5479,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.56282431174027
+      "adx": 39.56282445013249
     },
     {
       "ticker": "CTSH",
@@ -5538,7 +5492,7 @@
       "rsi": 26.7,
       "rsi_str": "26.7",
       "dma50": 80.52067260742187,
-      "dma200": 74.9558808517456,
+      "dma200": 74.95588142395019,
       "dma50_str": "80.5",
       "dma200_str": "75.0",
       "trend_dir": "bearish",
@@ -5560,7 +5514,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.00854615893159
+      "adx": 45.00855073442869
     },
     {
       "ticker": "COIN",
@@ -5608,7 +5562,7 @@
       "rsi": 65.4,
       "rsi_str": "65.4",
       "dma50": 84.35147750854492,
-      "dma200": 83.56220966339112,
+      "dma200": 83.562209815979,
       "dma50_str": "84.4",
       "dma200_str": "83.6",
       "trend_dir": "bullish",
@@ -5630,7 +5584,7 @@
       "earnings_date": "2026-04-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 56.95290469772338
+      "adx": 56.95290445826866
     },
     {
       "ticker": "CMCSA",
@@ -5643,7 +5597,7 @@
       "rsi": 63.3,
       "rsi_str": "63.3",
       "dma50": 28.605515060424803,
-      "dma200": 29.32768277168274,
+      "dma200": 29.327682657241823,
       "dma50_str": "28.6",
       "dma200_str": "29.3",
       "trend_dir": "bullish",
@@ -5665,7 +5619,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 36.99548454481011
+      "adx": 36.99548447736724
     },
     {
       "ticker": "CAG",
@@ -5678,7 +5632,7 @@
       "rsi": 52.6,
       "rsi_str": "52.6",
       "dma50": 17.626790657043458,
-      "dma200": 18.45030502319336,
+      "dma200": 18.450304985046387,
       "dma50_str": "17.6",
       "dma200_str": "18.5",
       "trend_dir": "bullish",
@@ -5700,7 +5654,7 @@
       "earnings_date": "2026-04-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.376635386244985
+      "adx": 34.37663537526054
     },
     {
       "ticker": "COP",
@@ -5713,7 +5667,7 @@
       "rsi": 66.6,
       "rsi_str": "66.6",
       "dma50": 98.54825592041016,
-      "dma200": 91.9900048828125,
+      "dma200": 91.990005569458,
       "dma50_str": "98.5",
       "dma200_str": "92.0",
       "trend_dir": "bullish",
@@ -5735,7 +5689,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.495238024969204
+      "adx": 34.49523804420707
     },
     {
       "ticker": "ED",
@@ -5748,7 +5702,7 @@
       "rsi": 70.3,
       "rsi_str": "70.3",
       "dma50": 102.11191452026367,
-      "dma200": 99.66926971435547,
+      "dma200": 99.66926986694335,
       "dma50_str": "102.1",
       "dma200_str": "99.7",
       "trend_dir": "bullish",
@@ -5770,7 +5724,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.836327800351047
+      "adx": 31.836327782378667
     },
     {
       "ticker": "STZ",
@@ -5783,7 +5737,7 @@
       "rsi": 48.0,
       "rsi_str": "48.0",
       "dma50": 150.62146179199217,
-      "dma200": 153.07029346466064,
+      "dma200": 153.0702935409546,
       "dma50_str": "150.6",
       "dma200_str": "153.1",
       "trend_dir": "bearish",
@@ -5805,7 +5759,7 @@
       "earnings_date": "2026-04-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.78572993535563
+      "adx": 33.78572767421982
     },
     {
       "ticker": "CEG",
@@ -5818,7 +5772,7 @@
       "rsi": 49.1,
       "rsi_str": "49.1",
       "dma50": 319.960700378418,
-      "dma200": 326.63557640075686,
+      "dma200": 326.63557662963865,
       "dma50_str": "320.0",
       "dma200_str": "326.6",
       "trend_dir": "bullish",
@@ -5840,7 +5794,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.97249109047299
+      "adx": 27.972491090475046
     },
     {
       "ticker": "COO",
@@ -5945,7 +5899,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.49662115266326
+      "adx": 45.49662115266186
     },
     {
       "ticker": "CPAY",
@@ -5993,7 +5947,7 @@
       "rsi": 68.8,
       "rsi_str": "68.8",
       "dma50": 70.17779998779297,
-      "dma200": 69.28001077651977,
+      "dma200": 69.28001054763794,
       "dma50_str": "70.2",
       "dma200_str": "69.3",
       "trend_dir": "bullish",
@@ -6015,7 +5969,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 42.65764879856829
+      "adx": 42.65764888287396
     },
     {
       "ticker": "CSGP",
@@ -6063,7 +6017,7 @@
       "rsi": 56.0,
       "rsi_str": "56.0",
       "dma50": 927.9929028320313,
-      "dma200": 949.4152807617188,
+      "dma200": 949.4152816772461,
       "dma50_str": "928.0",
       "dma200_str": "949.4",
       "trend_dir": "bullish",
@@ -6085,7 +6039,7 @@
       "earnings_date": "2026-03-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.66173719302253
+      "adx": 30.661737186541387
     },
     {
       "ticker": "CTRA",
@@ -6098,7 +6052,7 @@
       "rsi": 70.4,
       "rsi_str": "70.4",
       "dma50": 27.36240001678467,
-      "dma200": 25.087686519622803,
+      "dma200": 25.087686491012573,
       "dma50_str": "27.4",
       "dma200_str": "25.1",
       "trend_dir": "bullish",
@@ -6120,7 +6074,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 52.21861797496525
+      "adx": 52.218617975056816
     },
     {
       "ticker": "CRWD",
@@ -6190,7 +6144,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.720288072218047
+      "adx": 18.720288072205033
     },
     {
       "ticker": "CSX",
@@ -6225,7 +6179,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.870658973323124
+      "adx": 41.87065897332208
     },
     {
       "ticker": "CMI",
@@ -6260,7 +6214,7 @@
       "earnings_date": "2026-05-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.406714250969053
+      "adx": 20.40671425096813
     },
     {
       "ticker": "CVS",
@@ -6273,7 +6227,7 @@
       "rsi": 49.1,
       "rsi_str": "49.1",
       "dma50": 78.18017547607423,
-      "dma200": 71.67603458404541,
+      "dma200": 71.67603485107422,
       "dma50_str": "78.2",
       "dma200_str": "71.7",
       "trend_dir": "bearish",
@@ -6295,7 +6249,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.807041226216366
+      "adx": 18.807041211283472
     },
     {
       "ticker": "DHR",
@@ -6308,7 +6262,7 @@
       "rsi": 37.9,
       "rsi_str": "37.9",
       "dma50": 227.14597351074218,
-      "dma200": 209.01983451843262,
+      "dma200": 209.01983444213866,
       "dma50_str": "227.1",
       "dma200_str": "209.0",
       "trend_dir": "bearish",
@@ -6330,7 +6284,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.22513035667959
+      "adx": 34.22513039270569
     },
     {
       "ticker": "DRI",
@@ -6343,7 +6297,7 @@
       "rsi": 57.1,
       "rsi_str": "57.1",
       "dma50": 198.82464416503908,
-      "dma200": 197.16133590698243,
+      "dma200": 197.16133605957032,
       "dma50_str": "198.8",
       "dma200_str": "197.2",
       "trend_dir": "bullish",
@@ -6365,7 +6319,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.2720652092355
+      "adx": 30.27206521109659
     },
     {
       "ticker": "DDOG",
@@ -6518,7 +6472,7 @@
       "rsi": 81.5,
       "rsi_str": "81.5",
       "dma50": 515.215054321289,
-      "dma200": 493.5010824584961,
+      "dma200": 493.5010832214355,
       "dma50_str": "515.2",
       "dma200_str": "493.5",
       "trend_dir": "bullish",
@@ -6540,7 +6494,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 56.286023299571795
+      "adx": 56.28602358796771
     },
     {
       "ticker": "DELL",
@@ -6553,7 +6507,7 @@
       "rsi": 49.5,
       "rsi_str": "49.5",
       "dma50": 122.53578231811524,
-      "dma200": 127.09880702972413,
+      "dma200": 127.09880710601807,
       "dma50_str": "122.5",
       "dma200_str": "127.1",
       "trend_dir": "bearish",
@@ -6575,7 +6529,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.048363559769193
+      "adx": 17.048363559646393
     },
     {
       "ticker": "DAL",
@@ -6588,7 +6542,7 @@
       "rsi": 43.7,
       "rsi_str": "43.7",
       "dma50": 69.98779953002929,
-      "dma200": 59.18846736907959,
+      "dma200": 59.18846738815308,
       "dma50_str": "70.0",
       "dma200_str": "59.2",
       "trend_dir": "bearish",
@@ -6610,7 +6564,7 @@
       "earnings_date": "2026-04-08",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.211951642504125
+      "adx": 17.211951649006036
     },
     {
       "ticker": "DVN",
@@ -6623,7 +6577,7 @@
       "rsi": 69.9,
       "rsi_str": "69.9",
       "dma50": 38.69849250793457,
-      "dma200": 34.66275221824646,
+      "dma200": 34.66275217056275,
       "dma50_str": "38.7",
       "dma200_str": "34.7",
       "trend_dir": "bullish",
@@ -6645,7 +6599,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.992012837493895
+      "adx": 40.99201271819404
     },
     {
       "ticker": "DXCM",
@@ -6693,7 +6647,7 @@
       "rsi": 68.3,
       "rsi_str": "68.3",
       "dma50": 155.98760070800782,
-      "dma200": 145.26702907562256,
+      "dma200": 145.2670285797119,
       "dma50_str": "156.0",
       "dma200_str": "145.3",
       "trend_dir": "bullish",
@@ -6715,7 +6669,7 @@
       "earnings_date": "2026-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.446772136514678
+      "adx": 31.446772116532337
     },
     {
       "ticker": "DLR",
@@ -6728,7 +6682,7 @@
       "rsi": 65.6,
       "rsi_str": "65.6",
       "dma50": 161.31357940673828,
-      "dma200": 166.21057807922364,
+      "dma200": 166.21057777404786,
       "dma50_str": "161.3",
       "dma200_str": "166.2",
       "trend_dir": "bullish",
@@ -6750,7 +6704,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.32783063877796
+      "adx": 34.327830543267005
     },
     {
       "ticker": "DG",
@@ -6763,7 +6717,7 @@
       "rsi": 59.7,
       "rsi_str": "59.7",
       "dma50": 142.10207885742187,
-      "dma200": 114.40776313781738,
+      "dma200": 114.40776329040527,
       "dma50_str": "142.1",
       "dma200_str": "114.4",
       "trend_dir": "bullish",
@@ -6785,7 +6739,7 @@
       "earnings_date": "2026-03-12",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.70090154871476
+      "adx": 32.70090154720905
     },
     {
       "ticker": "DLTR",
@@ -6833,7 +6787,7 @@
       "rsi": 67.0,
       "rsi_str": "67.0",
       "dma50": 60.438200302124024,
-      "dma200": 58.417478256225586,
+      "dma200": 58.417478485107424,
       "dma50_str": "60.4",
       "dma200_str": "58.4",
       "trend_dir": "bullish",
@@ -6855,7 +6809,7 @@
       "earnings_date": "2026-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.60365501271004
+      "adx": 30.603654922396817
     },
     {
       "ticker": "DPZ",
@@ -6868,7 +6822,7 @@
       "rsi": 40.4,
       "rsi_str": "40.4",
       "dma50": 409.4451220703125,
-      "dma200": 433.8418095397949,
+      "dma200": 433.84180770874025,
       "dma50_str": "409.4",
       "dma200_str": "433.8",
       "trend_dir": "bearish",
@@ -6890,7 +6844,7 @@
       "earnings_date": "2026-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.714283699022786
+      "adx": 27.71428360484191
     },
     {
       "ticker": "DASH",
@@ -6938,7 +6892,7 @@
       "rsi": 72.7,
       "rsi_str": "72.7",
       "dma50": 207.26380096435548,
-      "dma200": 185.1185273742676,
+      "dma200": 185.11852767944336,
       "dma50_str": "207.3",
       "dma200_str": "185.1",
       "trend_dir": "bullish",
@@ -6960,7 +6914,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.10595194604604
+      "adx": 34.105951923770455
     },
     {
       "ticker": "DOW",
@@ -6973,7 +6927,7 @@
       "rsi": 58.5,
       "rsi_str": "58.5",
       "dma50": 26.99300010681152,
-      "dma200": 25.231725645065307,
+      "dma200": 25.23172562599182,
       "dma50_str": "27.0",
       "dma200_str": "25.2",
       "trend_dir": "bullish",
@@ -6995,7 +6949,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.58135869124664
+      "adx": 32.58135869164039
     },
     {
       "ticker": "DHI",
@@ -7008,7 +6962,7 @@
       "rsi": 59.2,
       "rsi_str": "59.2",
       "dma50": 153.1819110107422,
-      "dma200": 147.8914651107788,
+      "dma200": 147.8914649963379,
       "dma50_str": "153.2",
       "dma200_str": "147.9",
       "trend_dir": "bullish",
@@ -7030,7 +6984,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.14106186046307
+      "adx": 16.141061601751385
     },
     {
       "ticker": "DTE",
@@ -7065,7 +7019,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.837551660729865
+      "adx": 30.837551661590123
     },
     {
       "ticker": "DUK",
@@ -7078,7 +7032,7 @@
       "rsi": 65.5,
       "rsi_str": "65.5",
       "dma50": 118.23547470092774,
-      "dma200": 118.47394519805908,
+      "dma200": 118.4739455795288,
       "dma50_str": "118.2",
       "dma200_str": "118.5",
       "trend_dir": "bullish",
@@ -7100,7 +7054,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.6251244815227
+      "adx": 25.625121707759487
     },
     {
       "ticker": "DD",
@@ -7113,7 +7067,7 @@
       "rsi": 64.5,
       "rsi_str": "64.5",
       "dma50": 43.86859992980957,
-      "dma200": 34.89301316261292,
+      "dma200": 34.8930132484436,
       "dma50_str": "43.9",
       "dma200_str": "34.9",
       "trend_dir": "bullish",
@@ -7135,7 +7089,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 47.038544059570256
+      "adx": 47.0385441012647
     },
     {
       "ticker": "EMN",
@@ -7148,7 +7102,7 @@
       "rsi": 61.1,
       "rsi_str": "61.1",
       "dma50": 69.1370792388916,
-      "dma200": 68.1015546798706,
+      "dma200": 68.10155471801758,
       "dma50_str": "69.1",
       "dma200_str": "68.1",
       "trend_dir": "bullish",
@@ -7170,7 +7124,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 46.775297177482564
+      "adx": 46.77529717842685
     },
     {
       "ticker": "ETN",
@@ -7205,7 +7159,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.968766865360294
+      "adx": 41.96876686536031
     },
     {
       "ticker": "EBAY",
@@ -7240,7 +7194,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.797989829344715
+      "adx": 30.79798981967133
     },
     {
       "ticker": "ECL",
@@ -7253,7 +7207,7 @@
       "rsi": 67.9,
       "rsi_str": "67.9",
       "dma50": 275.9731106567383,
-      "dma200": 269.00440002441405,
+      "dma200": 269.0043997955322,
       "dma50_str": "276.0",
       "dma200_str": "269.0",
       "trend_dir": "bullish",
@@ -7275,7 +7229,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.182589219462116
+      "adx": 38.18258945661711
     },
     {
       "ticker": "EIX",
@@ -7310,7 +7264,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.43752860466931
+      "adx": 38.43752860467055
     },
     {
       "ticker": "EW",
@@ -7358,7 +7312,7 @@
       "rsi": 41.0,
       "rsi_str": "41.0",
       "dma50": 203.18019958496095,
-      "dma200": 180.1728465270996,
+      "dma200": 180.17284683227538,
       "dma50_str": "203.2",
       "dma200_str": "180.2",
       "trend_dir": "bearish",
@@ -7380,7 +7334,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.47767187797343
+      "adx": 34.477671875696906
     },
     {
       "ticker": "ELV",
@@ -7393,7 +7347,7 @@
       "rsi": 51.4,
       "rsi_str": "51.4",
       "dma50": 351.68159851074216,
-      "dma200": 339.41340911865234,
+      "dma200": 339.4134063720703,
       "dma50_str": "351.7",
       "dma200_str": "339.4",
       "trend_dir": "bearish",
@@ -7415,7 +7369,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.823147594927256
+      "adx": 29.823147664190202
     },
     {
       "ticker": "EMR",
@@ -7428,7 +7382,7 @@
       "rsi": 53.0,
       "rsi_str": "53.0",
       "dma50": 143.73950561523438,
-      "dma200": 133.38002040863037,
+      "dma200": 133.38002067565918,
       "dma50_str": "143.7",
       "dma200_str": "133.4",
       "trend_dir": "bullish",
@@ -7450,7 +7404,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.924498686228855
+      "adx": 21.924498672927722
     },
     {
       "ticker": "ENPH",
@@ -7498,7 +7452,7 @@
       "rsi": 68.5,
       "rsi_str": "68.5",
       "dma50": 94.76026000976563,
-      "dma200": 89.36621040344238,
+      "dma200": 89.36620998382568,
       "dma50_str": "94.8",
       "dma200_str": "89.4",
       "trend_dir": "bullish",
@@ -7520,7 +7474,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.081591085723225
+      "adx": 31.081590261922475
     },
     {
       "ticker": "EOG",
@@ -7533,7 +7487,7 @@
       "rsi": 71.6,
       "rsi_str": "71.6",
       "dma50": 108.54791778564453,
-      "dma200": 111.51978790283204,
+      "dma200": 111.51978832244873,
       "dma50_str": "108.5",
       "dma200_str": "111.5",
       "trend_dir": "bullish",
@@ -7555,7 +7509,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.77742113660159
+      "adx": 33.77742115253749
     },
     {
       "ticker": "EPAM",
@@ -7603,7 +7557,7 @@
       "rsi": 64.5,
       "rsi_str": "64.5",
       "dma50": 54.723076171875,
-      "dma200": 54.59449495315552,
+      "dma200": 54.594495143890384,
       "dma50_str": "54.7",
       "dma200_str": "54.6",
       "trend_dir": "bullish",
@@ -7625,7 +7579,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.230839731240877
+      "adx": 21.230839644945025
     },
     {
       "ticker": "EFX",
@@ -7638,7 +7592,7 @@
       "rsi": 45.3,
       "rsi_str": "45.3",
       "dma50": 209.90480041503906,
-      "dma200": 235.49572799682616,
+      "dma200": 235.49572830200196,
       "dma50_str": "209.9",
       "dma200_str": "235.5",
       "trend_dir": "bearish",
@@ -7660,7 +7614,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.49196145325816
+      "adx": 27.491961453563313
     },
     {
       "ticker": "EQIX",
@@ -7673,7 +7627,7 @@
       "rsi": 68.7,
       "rsi_str": "68.7",
       "dma50": 802.0844006347656,
-      "dma200": 802.1960339355469,
+      "dma200": 802.1960348510743,
       "dma50_str": "802.1",
       "dma200_str": "802.2",
       "trend_dir": "bullish",
@@ -7695,7 +7649,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.20542696809558
+      "adx": 34.205426972174436
     },
     {
       "ticker": "EQR",
@@ -7708,7 +7662,7 @@
       "rsi": 51.7,
       "rsi_str": "51.7",
       "dma50": 61.8608519744873,
-      "dma200": 63.272582054138184,
+      "dma200": 63.272582092285155,
       "dma50_str": "61.9",
       "dma200_str": "63.3",
       "trend_dir": "bullish",
@@ -7730,7 +7684,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.197145960491454
+      "adx": 12.19714598185442
     },
     {
       "ticker": "ERIE",
@@ -7743,7 +7697,7 @@
       "rsi": 44.6,
       "rsi_str": "44.6",
       "dma50": 281.63121154785154,
-      "dma200": 319.5074737548828,
+      "dma200": 319.50747344970705,
       "dma50_str": "281.6",
       "dma200_str": "319.5",
       "trend_dir": "bearish",
@@ -7765,7 +7719,7 @@
       "earnings_date": "2026-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.37026303690993
+      "adx": 12.370263039470116
     },
     {
       "ticker": "ESS",
@@ -7778,7 +7732,7 @@
       "rsi": 50.2,
       "rsi_str": "50.2",
       "dma50": 254.58986938476562,
-      "dma200": 262.3520482635498,
+      "dma200": 262.3520490264893,
       "dma50_str": "254.6",
       "dma200_str": "262.4",
       "trend_dir": "bullish",
@@ -7800,7 +7754,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.254599891618097
+      "adx": 12.25459989266861
     },
     {
       "ticker": "EL",
@@ -7835,7 +7789,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.538477774240192
+      "adx": 24.53847777423606
     },
     {
       "ticker": "EG",
@@ -7870,7 +7824,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.8500047074021
+      "adx": 16.850004707420545
     },
     {
       "ticker": "EVRG",
@@ -7883,7 +7837,7 @@
       "rsi": 58.0,
       "rsi_str": "58.0",
       "dma50": 75.38100051879883,
-      "dma200": 72.02059230804443,
+      "dma200": 72.0205923461914,
       "dma50_str": "75.4",
       "dma200_str": "72.0",
       "trend_dir": "bullish",
@@ -7905,7 +7859,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.69911326711948
+      "adx": 37.69911326762648
     },
     {
       "ticker": "ES",
@@ -7940,7 +7894,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.094911200439633
+      "adx": 20.09491120071856
     },
     {
       "ticker": "EXC",
@@ -7975,7 +7929,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.164826628857774
+      "adx": 26.164826628862567
     },
     {
       "ticker": "EXE",
@@ -8010,7 +7964,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.195391941763674
+      "adx": 18.1953919417634
     },
     {
       "ticker": "EXPE",
@@ -8045,7 +7999,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.37253837692811
+      "adx": 37.37253837706262
     },
     {
       "ticker": "EXPD",
@@ -8115,7 +8069,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.06055471492967
+      "adx": 21.0605547556089
     },
     {
       "ticker": "XOM",
@@ -8128,7 +8082,7 @@
       "rsi": 67.5,
       "rsi_str": "67.5",
       "dma50": 130.0546142578125,
-      "dma200": 114.40380229949952,
+      "dma200": 114.4038024520874,
       "dma50_str": "130.1",
       "dma200_str": "114.4",
       "trend_dir": "bullish",
@@ -8150,7 +8104,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 55.336359890073695
+      "adx": 55.33636163063854
     },
     {
       "ticker": "FFIV",
@@ -8198,7 +8152,7 @@
       "rsi": 29.7,
       "rsi_str": "29.7",
       "dma50": 266.3005996704102,
-      "dma200": 339.04018028259276,
+      "dma200": 339.0401804351807,
       "dma50_str": "266.3",
       "dma200_str": "339.0",
       "trend_dir": "bearish",
@@ -8220,7 +8174,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 58.331682590133745
+      "adx": 58.33168258930027
     },
     {
       "ticker": "FICO",
@@ -8268,7 +8222,7 @@
       "rsi": 57.2,
       "rsi_str": "57.2",
       "dma50": 43.1612907409668,
-      "dma200": 43.49814687728882,
+      "dma200": 43.49814701080322,
       "dma50_str": "43.2",
       "dma200_str": "43.5",
       "trend_dir": "bullish",
@@ -8290,7 +8244,7 @@
       "earnings_date": "2026-04-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.513963879599686
+      "adx": 23.5139638689631
     },
     {
       "ticker": "FRT",
@@ -8325,7 +8279,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.680360302464777
+      "adx": 21.680360302487877
     },
     {
       "ticker": "FDX",
@@ -8338,7 +8292,7 @@
       "rsi": 85.0,
       "rsi_str": "85.0",
       "dma50": 316.442880859375,
-      "dma200": 254.2099752807617,
+      "dma200": 254.20997444152832,
       "dma50_str": "316.4",
       "dma200_str": "254.2",
       "trend_dir": "bullish",
@@ -8360,7 +8314,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 52.22865325863558
+      "adx": 52.228653378603
     },
     {
       "ticker": "FIS",
@@ -8373,7 +8327,7 @@
       "rsi": 29.7,
       "rsi_str": "29.7",
       "dma50": 60.590000228881834,
-      "dma200": 68.88050390243531,
+      "dma200": 68.88050382614136,
       "dma50_str": "60.6",
       "dma200_str": "68.9",
       "trend_dir": "bearish",
@@ -8395,7 +8349,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 57.03939434771418
+      "adx": 57.03939434911246
     },
     {
       "ticker": "FITB",
@@ -8408,7 +8362,7 @@
       "rsi": 56.2,
       "rsi_str": "56.2",
       "dma50": 49.83463668823242,
-      "dma200": 43.5674608039856,
+      "dma200": 43.56746088027954,
       "dma50_str": "49.8",
       "dma200_str": "43.6",
       "trend_dir": "bullish",
@@ -8430,7 +8384,7 @@
       "earnings_date": "2026-04-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.87484856571355
+      "adx": 38.87484865833125
     },
     {
       "ticker": "FSLR",
@@ -8478,7 +8432,7 @@
       "rsi": 69.4,
       "rsi_str": "69.4",
       "dma50": 45.73052459716797,
-      "dma200": 43.32495092391968,
+      "dma200": 43.32495111465454,
       "dma50_str": "45.7",
       "dma200_str": "43.3",
       "trend_dir": "bullish",
@@ -8500,7 +8454,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.84621318002722
+      "adx": 37.84621268794461
     },
     {
       "ticker": "FISV",
@@ -8548,7 +8502,7 @@
       "rsi": 52.8,
       "rsi_str": "52.8",
       "dma50": 13.522847061157227,
-      "dma200": 11.87038857936859,
+      "dma200": 11.870388550758362,
       "dma50_str": "13.5",
       "dma200_str": "11.9",
       "trend_dir": "bullish",
@@ -8570,7 +8524,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.180146091328837
+      "adx": 17.180551328397474
     },
     {
       "ticker": "FTNT",
@@ -8618,7 +8572,7 @@
       "rsi": 54.4,
       "rsi_str": "54.4",
       "dma50": 55.63559989929199,
-      "dma200": 51.945615463256836,
+      "dma200": 51.9456155204773,
       "dma50_str": "55.6",
       "dma200_str": "51.9",
       "trend_dir": "bullish",
@@ -8640,7 +8594,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.974738878747818
+      "adx": 25.974738913181685
     },
     {
       "ticker": "FOXA",
@@ -8675,7 +8629,7 @@
       "earnings_date": "2026-05-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 49.54017568235306
+      "adx": 49.54017568235305
     },
     {
       "ticker": "FOX",
@@ -8723,7 +8677,7 @@
       "rsi": 56.7,
       "rsi_str": "56.7",
       "dma50": 25.297947006225584,
-      "dma200": 23.394948196411132,
+      "dma200": 23.394948358535768,
       "dma50_str": "25.3",
       "dma200_str": "23.4",
       "trend_dir": "bullish",
@@ -8745,7 +8699,7 @@
       "earnings_date": "2026-05-08",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.93518122223362
+      "adx": 33.93518113866495
     },
     {
       "ticker": "FCX",
@@ -8780,7 +8734,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.937836023792084
+      "adx": 31.937836023791903
     },
     {
       "ticker": "GRMN",
@@ -8815,7 +8769,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.721452180176207
+      "adx": 24.72145218017612
     },
     {
       "ticker": "IT",
@@ -8863,7 +8817,7 @@
       "rsi": 66.4,
       "rsi_str": "66.4",
       "dma50": 310.25407958984374,
-      "dma200": 281.4920592498779,
+      "dma200": 281.49205894470214,
       "dma50_str": "310.3",
       "dma200_str": "281.5",
       "trend_dir": "bullish",
@@ -8885,7 +8839,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.8137584070439
+      "adx": 19.813758407761988
     },
     {
       "ticker": "GEHC",
@@ -8898,7 +8852,7 @@
       "rsi": 56.6,
       "rsi_str": "56.6",
       "dma50": 82.4373387145996,
-      "dma200": 76.25016120910645,
+      "dma200": 76.2501613998413,
       "dma50_str": "82.4",
       "dma200_str": "76.3",
       "trend_dir": "bullish",
@@ -8920,7 +8874,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.716755563757113
+      "adx": 14.71675558123763
     },
     {
       "ticker": "GEV",
@@ -8933,7 +8887,7 @@
       "rsi": 69.7,
       "rsi_str": "69.7",
       "dma50": 699.1569616699219,
-      "dma200": 597.6148011779785,
+      "dma200": 597.6147994995117,
       "dma50_str": "699.2",
       "dma200_str": "597.6",
       "trend_dir": "bullish",
@@ -8955,7 +8909,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.26967694631222
+      "adx": 34.269676974846845
     },
     {
       "ticker": "GEN",
@@ -8968,7 +8922,7 @@
       "rsi": 36.2,
       "rsi_str": "36.2",
       "dma50": 25.631839332580565,
-      "dma200": 27.600322351455688,
+      "dma200": 27.60032229423523,
       "dma50_str": "25.6",
       "dma200_str": "27.6",
       "trend_dir": "bearish",
@@ -8990,7 +8944,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.70456926573058
+      "adx": 33.704570036535316
     },
     {
       "ticker": "GNRC",
@@ -9038,7 +8992,7 @@
       "rsi": 51.7,
       "rsi_str": "51.7",
       "dma50": 349.6607635498047,
-      "dma200": 320.7778480529785,
+      "dma200": 320.7778483581543,
       "dma50_str": "349.7",
       "dma200_str": "320.8",
       "trend_dir": "bearish",
@@ -9060,7 +9014,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.763318718981974
+      "adx": 17.76331905856247
     },
     {
       "ticker": "GIS",
@@ -9073,7 +9027,7 @@
       "rsi": 42.0,
       "rsi_str": "42.0",
       "dma50": 45.77869125366211,
-      "dma200": 48.184890003204345,
+      "dma200": 48.18489013671875,
       "dma50_str": "45.8",
       "dma200_str": "48.2",
       "trend_dir": "bearish",
@@ -9095,7 +9049,7 @@
       "earnings_date": "2026-03-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.385152202700574
+      "adx": 22.385152324172886
     },
     {
       "ticker": "GM",
@@ -9108,7 +9062,7 @@
       "rsi": 48.7,
       "rsi_str": "48.7",
       "dma50": 81.98560028076172,
-      "dma200": 63.31350231170654,
+      "dma200": 63.31350217819214,
       "dma50_str": "82.0",
       "dma200_str": "63.3",
       "trend_dir": "bullish",
@@ -9130,7 +9084,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.842146947873868
+      "adx": 16.842146987451258
     },
     {
       "ticker": "GPC",
@@ -9143,7 +9097,7 @@
       "rsi": 28.8,
       "rsi_str": "28.8",
       "dma50": 133.01120071411134,
-      "dma200": 129.51513607025146,
+      "dma200": 129.51513572692872,
       "dma50_str": "133.0",
       "dma200_str": "129.5",
       "trend_dir": "bearish",
@@ -9165,7 +9119,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 43.09971819978241
+      "adx": 43.09971812647173
     },
     {
       "ticker": "GILD",
@@ -9178,7 +9132,7 @@
       "rsi": 62.6,
       "rsi_str": "62.6",
       "dma50": 131.89854049682617,
-      "dma200": 117.64293117523194,
+      "dma200": 117.64293094635009,
       "dma50_str": "131.9",
       "dma200_str": "117.6",
       "trend_dir": "bullish",
@@ -9200,7 +9154,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 48.4793301986914
+      "adx": 48.47933023467378
     },
     {
       "ticker": "GPN",
@@ -9213,7 +9167,7 @@
       "rsi": 61.6,
       "rsi_str": "61.6",
       "dma50": 76.32141128540039,
-      "dma200": 79.85715728759766,
+      "dma200": 79.85715724945068,
       "dma50_str": "76.3",
       "dma200_str": "79.9",
       "trend_dir": "bullish",
@@ -9235,7 +9189,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.86804814490554
+      "adx": 30.868047964077846
     },
     {
       "ticker": "GL",
@@ -9248,7 +9202,7 @@
       "rsi": 55.2,
       "rsi_str": "55.2",
       "dma50": 140.69548461914061,
-      "dma200": 133.26380424499513,
+      "dma200": 133.26380451202394,
       "dma50_str": "140.7",
       "dma200_str": "133.3",
       "trend_dir": "bullish",
@@ -9270,7 +9224,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.384553642478924
+      "adx": 19.38455354119763
     },
     {
       "ticker": "GDDY",
@@ -9318,7 +9272,7 @@
       "rsi": 48.0,
       "rsi_str": "48.0",
       "dma50": 919.6542004394531,
-      "dma200": 768.1636358642578,
+      "dma200": 768.1636386108398,
       "dma50_str": "919.7",
       "dma200_str": "768.2",
       "trend_dir": "bullish",
@@ -9340,7 +9294,7 @@
       "earnings_date": "2026-04-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.754881472763383
+      "adx": 16.754881536782914
     },
     {
       "ticker": "HAL",
@@ -9353,7 +9307,7 @@
       "rsi": 62.7,
       "rsi_str": "62.7",
       "dma50": 31.546600036621093,
-      "dma200": 24.883713455200194,
+      "dma200": 24.883713445663453,
       "dma50_str": "31.5",
       "dma200_str": "24.9",
       "trend_dir": "bullish",
@@ -9375,7 +9329,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.15395038741362
+      "adx": 23.15395038570178
     },
     {
       "ticker": "HIG",
@@ -9410,7 +9364,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.839021848047103
+      "adx": 27.839021848039913
     },
     {
       "ticker": "HAS",
@@ -9445,7 +9399,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.50674321726634
+      "adx": 40.50674245760187
     },
     {
       "ticker": "HCA",
@@ -9480,7 +9434,7 @@
       "earnings_date": "2026-04-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.712602505643126
+      "adx": 37.71260250565971
     },
     {
       "ticker": "DOC",
@@ -9492,8 +9446,8 @@
       "price_str": "17.06",
       "rsi": 52.7,
       "rsi_str": "52.7",
-      "dma50": 16.65139221191406,
-      "dma200": 17.043202528953554,
+      "dma50": 16.651392250061036,
+      "dma200": 17.04320251941681,
       "dma50_str": "16.7",
       "dma200_str": "17.0",
       "trend_dir": "bullish",
@@ -9515,7 +9469,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.303201536190546
+      "adx": 18.30320257670843
     },
     {
       "ticker": "HSIC",
@@ -9563,7 +9517,7 @@
       "rsi": 63.7,
       "rsi_str": "63.7",
       "dma50": 194.96604217529296,
-      "dma200": 179.54319107055665,
+      "dma200": 179.54319183349608,
       "dma50_str": "195.0",
       "dma200_str": "179.5",
       "trend_dir": "bullish",
@@ -9585,7 +9539,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.97086152315113
+      "adx": 35.970863576549455
     },
     {
       "ticker": "HPE",
@@ -9598,7 +9552,7 @@
       "rsi": 41.6,
       "rsi_str": "41.6",
       "dma50": 22.955864181518553,
-      "dma200": 21.5880659866333,
+      "dma200": 21.588065872192384,
       "dma50_str": "23.0",
       "dma200_str": "21.6",
       "trend_dir": "bearish",
@@ -9620,7 +9574,7 @@
       "earnings_date": "2026-03-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.212003871392373
+      "adx": 21.21200385723393
     },
     {
       "ticker": "HLT",
@@ -9633,7 +9587,7 @@
       "rsi": 56.8,
       "rsi_str": "56.8",
       "dma50": 297.51059997558593,
-      "dma200": 272.41626625061036,
+      "dma200": 272.4162664794922,
       "dma50_str": "297.5",
       "dma200_str": "272.4",
       "trend_dir": "bullish",
@@ -9655,7 +9609,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.22934818854357
+      "adx": 30.229348150916017
     },
     {
       "ticker": "HOLX",
@@ -9725,7 +9679,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.75870631562273
+      "adx": 17.758706315622707
     },
     {
       "ticker": "HON",
@@ -9738,7 +9692,7 @@
       "rsi": 70.2,
       "rsi_str": "70.2",
       "dma50": 213.97200073242186,
-      "dma200": 206.0309787750244,
+      "dma200": 206.0309789276123,
       "dma50_str": "214.0",
       "dma200_str": "206.0",
       "trend_dir": "bullish",
@@ -9760,7 +9714,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 53.492386113373264
+      "adx": 53.492386113289186
     },
     {
       "ticker": "HRL",
@@ -9795,7 +9749,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.99611681227005
+      "adx": 21.996116812281183
     },
     {
       "ticker": "HST",
@@ -9830,7 +9784,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.126447715638285
+      "adx": 30.12644771564522
     },
     {
       "ticker": "HWM",
@@ -9843,7 +9797,7 @@
       "rsi": 74.4,
       "rsi_str": "74.4",
       "dma50": 214.60832916259767,
-      "dma200": 191.24244453430177,
+      "dma200": 191.24244522094727,
       "dma50_str": "214.6",
       "dma200_str": "191.2",
       "trend_dir": "bullish",
@@ -9865,7 +9819,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.521841024300468
+      "adx": 28.521841351441317
     },
     {
       "ticker": "HPQ",
@@ -9878,7 +9832,7 @@
       "rsi": 35.0,
       "rsi_str": "35.0",
       "dma50": 21.300324821472167,
-      "dma200": 24.671081285476685,
+      "dma200": 24.671081209182738,
       "dma50_str": "21.3",
       "dma200_str": "24.7",
       "trend_dir": "bearish",
@@ -9900,7 +9854,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.12728841413824
+      "adx": 38.12728836404663
     },
     {
       "ticker": "HUBB",
@@ -9913,7 +9867,7 @@
       "rsi": 68.8,
       "rsi_str": "68.8",
       "dma50": 475.65920166015627,
-      "dma200": 432.8141424560547,
+      "dma200": 432.81414184570315,
       "dma50_str": "475.7",
       "dma200_str": "432.8",
       "trend_dir": "bullish",
@@ -9935,7 +9889,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.75307501954753
+      "adx": 32.75307502671131
     },
     {
       "ticker": "HUM",
@@ -9948,7 +9902,7 @@
       "rsi": 34.8,
       "rsi_str": "34.8",
       "dma50": 239.9680484008789,
-      "dma200": 251.08295455932617,
+      "dma200": 251.082954788208,
       "dma50_str": "240.0",
       "dma200_str": "251.1",
       "trend_dir": "bearish",
@@ -9970,7 +9924,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 46.98673862871497
+      "adx": 46.986738629746604
     },
     {
       "ticker": "HBAN",
@@ -9983,7 +9937,7 @@
       "rsi": 49.4,
       "rsi_str": "49.4",
       "dma50": 17.814289855957032,
-      "dma200": 16.56672540664673,
+      "dma200": 16.5667254114151,
       "dma50_str": "17.8",
       "dma200_str": "16.6",
       "trend_dir": "bearish",
@@ -10005,7 +9959,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.47715342825886
+      "adx": 17.47715334589382
     },
     {
       "ticker": "HII",
@@ -10040,7 +9994,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.788476926251473
+      "adx": 24.78847692625363
     },
     {
       "ticker": "IBM",
@@ -10053,7 +10007,7 @@
       "rsi": 32.6,
       "rsi_str": "32.6",
       "dma50": 295.1517004394531,
-      "dma200": 277.2313804626465,
+      "dma200": 277.231379699707,
       "dma50_str": "295.2",
       "dma200_str": "277.2",
       "trend_dir": "bearish",
@@ -10075,7 +10029,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.51791738052568
+      "adx": 19.517917373728867
     },
     {
       "ticker": "IEX",
@@ -10088,7 +10042,7 @@
       "rsi": 59.8,
       "rsi_str": "59.8",
       "dma50": 190.97206512451172,
-      "dma200": 175.63570823669434,
+      "dma200": 175.63570854187012,
       "dma50_str": "191.0",
       "dma200_str": "175.6",
       "trend_dir": "bullish",
@@ -10110,7 +10064,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 51.01215898586717
+      "adx": 51.01215899449369
     },
     {
       "ticker": "IDXX",
@@ -10158,7 +10112,7 @@
       "rsi": 69.4,
       "rsi_str": "69.4",
       "dma50": 263.5476748657227,
-      "dma200": 253.1269660949707,
+      "dma200": 253.1269665527344,
       "dma50_str": "263.5",
       "dma200_str": "253.1",
       "trend_dir": "bullish",
@@ -10180,7 +10134,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 42.17272882236394
+      "adx": 42.172728454002424
     },
     {
       "ticker": "INCY",
@@ -10228,7 +10182,7 @@
       "rsi": 59.0,
       "rsi_str": "59.0",
       "dma50": 86.65820037841797,
-      "dma200": 82.27049674987794,
+      "dma200": 82.27049686431884,
       "dma50_str": "86.7",
       "dma200_str": "82.3",
       "trend_dir": "bullish",
@@ -10250,7 +10204,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.90286494418525
+      "adx": 38.902864944379004
     },
     {
       "ticker": "PODD",
@@ -10333,7 +10287,7 @@
       "rsi": 37.2,
       "rsi_str": "37.2",
       "dma50": 164.48371368408203,
-      "dma200": 168.66977722167968,
+      "dma200": 168.66977729797364,
       "dma50_str": "164.5",
       "dma200_str": "168.7",
       "trend_dir": "bearish",
@@ -10355,7 +10309,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.723531784234694
+      "adx": 28.723531782933353
     },
     {
       "ticker": "IFF",
@@ -10390,7 +10344,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.46271666445386
+      "adx": 37.46271666444234
     },
     {
       "ticker": "IP",
@@ -10425,7 +10379,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.80052700562512
+      "adx": 27.80052700562703
     },
     {
       "ticker": "INTU",
@@ -10460,7 +10414,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 60.90481703561751
+      "adx": 60.904817035618564
     },
     {
       "ticker": "ISRG",
@@ -10508,7 +10462,7 @@
       "rsi": 46.1,
       "rsi_str": "46.1",
       "dma50": 27.078569831848146,
-      "dma200": 21.563855018615723,
+      "dma200": 21.56385507106781,
       "dma50_str": "27.1",
       "dma200_str": "21.6",
       "trend_dir": "bearish",
@@ -10530,7 +10484,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.20493185720898
+      "adx": 28.204931432579453
     },
     {
       "ticker": "INVH",
@@ -10543,7 +10497,7 @@
       "rsi": 38.2,
       "rsi_str": "38.2",
       "dma50": 26.844653091430665,
-      "dma200": 29.316655254364015,
+      "dma200": 29.31665524482727,
       "dma50_str": "26.8",
       "dma200_str": "29.3",
       "trend_dir": "bearish",
@@ -10565,7 +10519,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.898878064142645
+      "adx": 15.898878130563007
     },
     {
       "ticker": "IQV",
@@ -10635,7 +10589,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.60639899867292
+      "adx": 40.60639899866664
     },
     {
       "ticker": "JBHT",
@@ -10648,7 +10602,7 @@
       "rsi": 62.7,
       "rsi_str": "62.7",
       "dma50": 206.7217349243164,
-      "dma200": 162.81267234802246,
+      "dma200": 162.81267150878907,
       "dma50_str": "206.7",
       "dma200_str": "162.8",
       "trend_dir": "bullish",
@@ -10670,7 +10624,7 @@
       "earnings_date": "2026-04-14",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.877151219072882
+      "adx": 24.877151250312288
     },
     {
       "ticker": "JBL",
@@ -10683,7 +10637,7 @@
       "rsi": 61.1,
       "rsi_str": "61.1",
       "dma50": 238.58610992431642,
-      "dma200": 212.74985916137695,
+      "dma200": 212.74985946655272,
       "dma50_str": "238.6",
       "dma200_str": "212.7",
       "trend_dir": "bullish",
@@ -10705,7 +10659,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.356022716090997
+      "adx": 23.35602271586205
     },
     {
       "ticker": "JKHY",
@@ -10718,7 +10672,7 @@
       "rsi": 34.8,
       "rsi_str": "34.8",
       "dma50": 180.52180053710939,
-      "dma200": 170.22010681152344,
+      "dma200": 170.2201065826416,
       "dma50_str": "180.5",
       "dma200_str": "170.2",
       "trend_dir": "bearish",
@@ -10740,7 +10694,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.203923510893766
+      "adx": 32.20392357995714
     },
     {
       "ticker": "J",
@@ -10753,7 +10707,7 @@
       "rsi": 49.8,
       "rsi_str": "49.8",
       "dma50": 137.82240020751954,
-      "dma200": 140.17808025360108,
+      "dma200": 140.1780804824829,
       "dma50_str": "137.8",
       "dma200_str": "140.2",
       "trend_dir": "bearish",
@@ -10775,7 +10729,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.262870274947876
+      "adx": 20.26287028862902
     },
     {
       "ticker": "JNJ",
@@ -10788,7 +10742,7 @@
       "rsi": 84.0,
       "rsi_str": "84.0",
       "dma50": 219.25140075683595,
-      "dma200": 183.8540111541748,
+      "dma200": 183.85401107788087,
       "dma50_str": "219.3",
       "dma200_str": "183.9",
       "trend_dir": "bullish",
@@ -10810,7 +10764,7 @@
       "earnings_date": "2026-04-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 43.67189178196897
+      "adx": 43.67189182194535
     },
     {
       "ticker": "JCI",
@@ -10845,7 +10799,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.76019807152214
+      "adx": 45.760198071522574
     },
     {
       "ticker": "JPM",
@@ -10858,7 +10812,7 @@
       "rsi": 47.3,
       "rsi_str": "47.3",
       "dma50": 314.19018127441404,
-      "dma200": 295.7731338500977,
+      "dma200": 295.77313354492185,
       "dma50_str": "314.2",
       "dma200_str": "295.8",
       "trend_dir": "bearish",
@@ -10880,7 +10834,7 @@
       "earnings_date": "2026-04-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.159999097303103
+      "adx": 16.159999106643983
     },
     {
       "ticker": "KVUE",
@@ -10915,7 +10869,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.86758980152265
+      "adx": 34.867589788626674
     },
     {
       "ticker": "KDP",
@@ -10950,7 +10904,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.87568522382793
+      "adx": 18.875685223827652
     },
     {
       "ticker": "KEY",
@@ -10985,7 +10939,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.34485305619093
+      "adx": 20.344853056187436
     },
     {
       "ticker": "KEYS",
@@ -11033,7 +10987,7 @@
       "rsi": 64.6,
       "rsi_str": "64.6",
       "dma50": 101.95260025024415,
-      "dma200": 117.69854446411132,
+      "dma200": 117.6985438156128,
       "dma50_str": "102.0",
       "dma200_str": "117.7",
       "trend_dir": "bullish",
@@ -11055,7 +11009,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.23327070302198
+      "adx": 32.233270677752145
     },
     {
       "ticker": "KIM",
@@ -11068,7 +11022,7 @@
       "rsi": 65.0,
       "rsi_str": "65.0",
       "dma50": 20.85139995574951,
-      "dma200": 20.86659701347351,
+      "dma200": 20.866597023010254,
       "dma50_str": "20.9",
       "dma200_str": "20.9",
       "trend_dir": "bullish",
@@ -11090,7 +11044,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 41.73486830271527
+      "adx": 41.73481524617216
     },
     {
       "ticker": "KMI",
@@ -11103,7 +11057,7 @@
       "rsi": 79.0,
       "rsi_str": "79.0",
       "dma50": 28.404433937072753,
-      "dma200": 27.175747146606444,
+      "dma200": 27.17574709892273,
       "dma50_str": "28.4",
       "dma200_str": "27.2",
       "trend_dir": "bullish",
@@ -11125,7 +11079,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 52.475802394098785
+      "adx": 52.47284609208991
     },
     {
       "ticker": "KKR",
@@ -11138,7 +11092,7 @@
       "rsi": 33.4,
       "rsi_str": "33.4",
       "dma50": 122.6653370666504,
-      "dma200": 128.20532386779786,
+      "dma200": 128.20532417297363,
       "dma50_str": "122.7",
       "dma200_str": "128.2",
       "trend_dir": "bearish",
@@ -11160,7 +11114,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.07950732671632
+      "adx": 44.079507304205904
     },
     {
       "ticker": "KLAC",
@@ -11173,7 +11127,7 @@
       "rsi": 53.5,
       "rsi_str": "53.5",
       "dma50": 1378.375810546875,
-      "dma200": 1067.8622589111328,
+      "dma200": 1067.862258605957,
       "dma50_str": "1378.4",
       "dma200_str": "1067.9",
       "trend_dir": "bullish",
@@ -11195,7 +11149,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.240282612421042
+      "adx": 14.240282621892222
     },
     {
       "ticker": "KHC",
@@ -11230,7 +11184,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.843532048261055
+      "adx": 15.843532048116739
     },
     {
       "ticker": "KR",
@@ -11243,7 +11197,7 @@
       "rsi": 56.2,
       "rsi_str": "56.2",
       "dma50": 63.50593719482422,
-      "dma200": 66.5155033493042,
+      "dma200": 66.51550331115723,
       "dma50_str": "63.5",
       "dma200_str": "66.5",
       "trend_dir": "bullish",
@@ -11265,7 +11219,7 @@
       "earnings_date": "2026-03-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.219435558236434
+      "adx": 30.21943452156871
     },
     {
       "ticker": "LHX",
@@ -11278,7 +11232,7 @@
       "rsi": 63.7,
       "rsi_str": "63.7",
       "dma50": 324.08340026855467,
-      "dma200": 281.5843824005127,
+      "dma200": 281.58438148498533,
       "dma50_str": "324.1",
       "dma200_str": "281.6",
       "trend_dir": "bullish",
@@ -11300,7 +11254,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.648194661346544
+      "adx": 39.64819449078059
     },
     {
       "ticker": "LH",
@@ -11313,7 +11267,7 @@
       "rsi": 59.1,
       "rsi_str": "59.1",
       "dma50": 264.8270013427734,
-      "dma200": 263.5457290649414,
+      "dma200": 263.5457287597656,
       "dma50_str": "264.8",
       "dma200_str": "263.5",
       "trend_dir": "bullish",
@@ -11335,7 +11289,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.119393501299978
+      "adx": 28.11939352406501
     },
     {
       "ticker": "LRCX",
@@ -11370,7 +11324,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.857676670854794
+      "adx": 31.857676670854726
     },
     {
       "ticker": "LW",
@@ -11383,7 +11337,7 @@
       "rsi": 55.5,
       "rsi_str": "55.5",
       "dma50": 47.12884857177735,
-      "dma200": 53.49102519989014,
+      "dma200": 53.49102514266968,
       "dma50_str": "47.1",
       "dma200_str": "53.5",
       "trend_dir": "bullish",
@@ -11405,7 +11359,7 @@
       "earnings_date": "2026-04-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.09815530804195
+      "adx": 25.09815530252558
     },
     {
       "ticker": "LVS",
@@ -11418,7 +11372,7 @@
       "rsi": 48.4,
       "rsi_str": "48.4",
       "dma50": 61.205501861572266,
-      "dma200": 53.78347269058227,
+      "dma200": 53.78347240447998,
       "dma50_str": "61.2",
       "dma200_str": "53.8",
       "trend_dir": "bullish",
@@ -11440,7 +11394,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.306711228305932
+      "adx": 17.306711576868462
     },
     {
       "ticker": "LDOS",
@@ -11453,7 +11407,7 @@
       "rsi": 43.8,
       "rsi_str": "43.8",
       "dma50": 187.11663055419922,
-      "dma200": 176.41989219665527,
+      "dma200": 176.41989234924316,
       "dma50_str": "187.1",
       "dma200_str": "176.4",
       "trend_dir": "bearish",
@@ -11475,7 +11429,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.534077363229027
+      "adx": 22.534077378046664
     },
     {
       "ticker": "LEN",
@@ -11510,7 +11464,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.91683900201922
+      "adx": 17.916839002091837
     },
     {
       "ticker": "LII",
@@ -11545,7 +11499,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.796134246747332
+      "adx": 23.79613419071173
     },
     {
       "ticker": "LLY",
@@ -11558,7 +11512,7 @@
       "rsi": 46.8,
       "rsi_str": "46.8",
       "dma50": 1048.6688708496094,
-      "dma200": 863.6076489257813,
+      "dma200": 863.6076470947265,
       "dma50_str": "1048.7",
       "dma200_str": "863.6",
       "trend_dir": "bearish",
@@ -11580,7 +11534,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.759561857675783
+      "adx": 10.759561857179055
     },
     {
       "ticker": "LIN",
@@ -11593,7 +11547,7 @@
       "rsi": 73.5,
       "rsi_str": "73.5",
       "dma50": 440.79319946289064,
-      "dma200": 451.39989471435547,
+      "dma200": 451.39989379882815,
       "dma50_str": "440.8",
       "dma200_str": "451.4",
       "trend_dir": "bullish",
@@ -11615,7 +11569,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.97453308307426
+      "adx": 32.974533188445314
     },
     {
       "ticker": "LYV",
@@ -11663,7 +11617,7 @@
       "rsi": 52.0,
       "rsi_str": "52.0",
       "dma50": 32.17840003967285,
-      "dma200": 32.98552426338196,
+      "dma200": 32.98552417755127,
       "dma50_str": "32.2",
       "dma200_str": "33.0",
       "trend_dir": "bearish",
@@ -11685,7 +11639,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.38130233188111
+      "adx": 27.38130233965898
     },
     {
       "ticker": "LMT",
@@ -11720,7 +11674,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.19612945998925
+      "adx": 44.19612945998784
     },
     {
       "ticker": "L",
@@ -11755,7 +11709,7 @@
       "earnings_date": "2026-05-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.859729395826008
+      "adx": 31.85972935915159
     },
     {
       "ticker": "LOW",
@@ -11768,7 +11722,7 @@
       "rsi": 55.4,
       "rsi_str": "55.4",
       "dma50": 261.98217041015624,
-      "dma200": 242.04850547790528,
+      "dma200": 242.048505859375,
       "dma50_str": "262.0",
       "dma200_str": "242.0",
       "trend_dir": "bullish",
@@ -11790,7 +11744,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.74065937420152
+      "adx": 27.740659175010684
     },
     {
       "ticker": "LULU",
@@ -11838,7 +11792,7 @@
       "rsi": 57.0,
       "rsi_str": "57.0",
       "dma50": 48.91740005493164,
-      "dma200": 50.65447322845459,
+      "dma200": 50.654473247528074,
       "dma50_str": "48.9",
       "dma200_str": "50.7",
       "trend_dir": "bullish",
@@ -11860,7 +11814,7 @@
       "earnings_date": "2026-04-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.402828429054814
+      "adx": 26.402828427684007
     },
     {
       "ticker": "MTB",
@@ -11873,7 +11827,7 @@
       "rsi": 58.6,
       "rsi_str": "58.6",
       "dma50": 215.05600067138673,
-      "dma200": 194.3221656036377,
+      "dma200": 194.32216468811035,
       "dma50_str": "215.1",
       "dma200_str": "194.3",
       "trend_dir": "bullish",
@@ -11895,7 +11849,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.055458767238925
+      "adx": 37.05545883169872
     },
     {
       "ticker": "MPC",
@@ -11908,7 +11862,7 @@
       "rsi": 58.7,
       "rsi_str": "58.7",
       "dma50": 179.86450134277345,
-      "dma200": 175.9354113769531,
+      "dma200": 175.93541084289552,
       "dma50_str": "179.9",
       "dma200_str": "175.9",
       "trend_dir": "bullish",
@@ -11930,7 +11884,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.515374667231843
+      "adx": 31.51537357381103
     },
     {
       "ticker": "MKTX",
@@ -11943,7 +11897,7 @@
       "rsi": 63.6,
       "rsi_str": "63.6",
       "dma50": 173.93024749755858,
-      "dma200": 186.94139221191406,
+      "dma200": 186.9413928222656,
       "dma50_str": "173.9",
       "dma200_str": "186.9",
       "trend_dir": "bullish",
@@ -11965,7 +11919,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.107588262387605
+      "adx": 23.107586105471807
     },
     {
       "ticker": "MAR",
@@ -12000,7 +11954,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.02898413636374
+      "adx": 34.02898413636658
     },
     {
       "ticker": "MMC",
@@ -12013,7 +11967,7 @@
       "rsi": 47.6,
       "rsi_str": "47.6",
       "dma50": 182.52899780273438,
-      "dma200": 197.8250305175781,
+      "dma200": 197.82503036499023,
       "dma50_str": "182.5",
       "dma200_str": "197.8",
       "trend_dir": "bearish",
@@ -12035,7 +11989,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": false,
       "monthly_available": false,
-      "adx": 21.258049821877982
+      "adx": 21.258050217533263
     },
     {
       "ticker": "MLM",
@@ -12048,7 +12002,7 @@
       "rsi": 54.9,
       "rsi_str": "54.9",
       "dma50": 648.22740234375,
-      "dma200": 604.3094805908203,
+      "dma200": 604.3094802856446,
       "dma50_str": "648.2",
       "dma200_str": "604.3",
       "trend_dir": "bearish",
@@ -12070,7 +12024,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.657506427840653
+      "adx": 13.657506474249304
     },
     {
       "ticker": "MAS",
@@ -12105,7 +12059,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.651136491054615
+      "adx": 32.6511364910455
     },
     {
       "ticker": "MA",
@@ -12118,7 +12072,7 @@
       "rsi": 39.0,
       "rsi_str": "39.0",
       "dma50": 551.1108227539063,
-      "dma200": 562.357660522461,
+      "dma200": 562.3576599121094,
       "dma50_str": "551.1",
       "dma200_str": "562.4",
       "trend_dir": "bearish",
@@ -12140,7 +12094,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.72348865119972
+      "adx": 22.72348865677497
     },
     {
       "ticker": "MTCH",
@@ -12153,7 +12107,7 @@
       "rsi": 46.6,
       "rsi_str": "46.6",
       "dma50": 31.838131103515625,
-      "dma200": 32.70195953369141,
+      "dma200": 32.70195959091186,
       "dma50_str": "31.8",
       "dma200_str": "32.7",
       "trend_dir": "bearish",
@@ -12175,7 +12129,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.706022908532352
+      "adx": 13.70602342249852
     },
     {
       "ticker": "MKC",
@@ -12188,7 +12142,7 @@
       "rsi": 54.4,
       "rsi_str": "54.4",
       "dma50": 66.57478164672851,
-      "dma200": 68.31041584014892,
+      "dma200": 68.31041580200196,
       "dma50_str": "66.6",
       "dma200_str": "68.3",
       "trend_dir": "bullish",
@@ -12210,7 +12164,7 @@
       "earnings_date": "2026-03-31",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.515121491399377
+      "adx": 24.51512169512936
     },
     {
       "ticker": "MCD",
@@ -12223,7 +12177,7 @@
       "rsi": 62.4,
       "rsi_str": "62.4",
       "dma50": 314.1685998535156,
-      "dma200": 304.8984507751465,
+      "dma200": 304.8984506225586,
       "dma50_str": "314.2",
       "dma200_str": "304.9",
       "trend_dir": "bullish",
@@ -12245,7 +12199,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.97883641287728
+      "adx": 33.97883641119965
     },
     {
       "ticker": "MCK",
@@ -12258,7 +12212,7 @@
       "rsi": 61.3,
       "rsi_str": "61.3",
       "dma50": 847.2371984863281,
-      "dma200": 767.3076666259766,
+      "dma200": 767.3076663208008,
       "dma50_str": "847.2",
       "dma200_str": "767.3",
       "trend_dir": "bullish",
@@ -12280,7 +12234,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.442646167125467
+      "adx": 23.44264616731792
     },
     {
       "ticker": "MDT",
@@ -12315,7 +12269,7 @@
       "earnings_date": "2026-02-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.38041766776679
+      "adx": 18.380417667767002
     },
     {
       "ticker": "MRK",
@@ -12328,7 +12282,7 @@
       "rsi": 70.2,
       "rsi_str": "70.2",
       "dma50": 109.15908325195312,
-      "dma200": 89.30926834106445,
+      "dma200": 89.30926822662353,
       "dma50_str": "109.2",
       "dma200_str": "89.3",
       "trend_dir": "bullish",
@@ -12350,7 +12304,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.06190456138814
+      "adx": 39.06190456122531
     },
     {
       "ticker": "META",
@@ -12363,7 +12317,7 @@
       "rsi": 44.7,
       "rsi_str": "44.7",
       "dma50": 657.1884912109375,
-      "dma200": 689.1588150024414,
+      "dma200": 689.158815612793,
       "dma50_str": "657.2",
       "dma200_str": "689.2",
       "trend_dir": "bearish",
@@ -12385,7 +12339,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.32539847966275
+      "adx": 18.325398480967248
     },
     {
       "ticker": "MET",
@@ -12420,7 +12374,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.940365074166976
+      "adx": 22.940365074302992
     },
     {
       "ticker": "MTD",
@@ -12503,7 +12457,7 @@
       "rsi": 53.3,
       "rsi_str": "53.3",
       "dma50": 72.34160026550293,
-      "dma200": 65.4796656036377,
+      "dma200": 65.4796655845642,
       "dma50_str": "72.3",
       "dma200_str": "65.5",
       "trend_dir": "bullish",
@@ -12525,7 +12479,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.75937164664847
+      "adx": 32.759371646611264
     },
     {
       "ticker": "MU",
@@ -12538,7 +12492,7 @@
       "rsi": 59.4,
       "rsi_str": "59.4",
       "dma50": 340.979348449707,
-      "dma200": 197.58628662109376,
+      "dma200": 197.58628620147704,
       "dma50_str": "341.0",
       "dma200_str": "197.6",
       "trend_dir": "bullish",
@@ -12560,7 +12514,7 @@
       "earnings_date": "2026-03-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 36.57241604811118
+      "adx": 36.572415998016815
     },
     {
       "ticker": "MSFT",
@@ -12570,14 +12524,14 @@
       "why": "Below slow SMA \u2022 RSI 33 \u2022 Bearish MACD",
       "price": 398.46,
       "price_str": "398.46",
-      "rsi": 32.5,
-      "rsi_str": "32.5",
-      "dma50": 456.00680053710937,
-      "dma200": 486.0972738647461,
-      "dma50_str": "456.0",
-      "dma200_str": "486.1",
+      "rsi": 32.8,
+      "rsi_str": "32.8",
+      "dma50": 454.98650451660154,
+      "dma200": 484.9948426818848,
+      "dma50_str": "455.0",
+      "dma200_str": "485.0",
       "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 35.6)",
+      "trend_rationale": "Strong Bearish Trend (ADX: 35.5)",
       "pe": 24.99749,
       "pe_str": "25.0",
       "market_cap": 2961505255424.0,
@@ -12595,7 +12549,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.62364662655911
+      "adx": 35.526027125456416
     },
     {
       "ticker": "MAA",
@@ -12630,7 +12584,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.921633655946845
+      "adx": 10.92163365611823
     },
     {
       "ticker": "MRNA",
@@ -12748,7 +12702,7 @@
       "rsi": 43.1,
       "rsi_str": "43.1",
       "dma50": 48.666199951171876,
-      "dma200": 48.367343502044676,
+      "dma200": 48.367343521118165,
       "dma50_str": "48.7",
       "dma200_str": "48.4",
       "trend_dir": "bearish",
@@ -12770,7 +12724,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.180951645693767
+      "adx": 25.18095165033834
     },
     {
       "ticker": "MDLZ",
@@ -12783,7 +12737,7 @@
       "rsi": 48.8,
       "rsi_str": "48.8",
       "dma50": 56.49756301879883,
-      "dma200": 60.79906093597412,
+      "dma200": 60.79906055450439,
       "dma50_str": "56.5",
       "dma200_str": "60.8",
       "trend_dir": "bearish",
@@ -12805,7 +12759,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.33863297194643
+      "adx": 25.338632971069995
     },
     {
       "ticker": "MPWR",
@@ -12840,7 +12794,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.177649908961776
+      "adx": 27.177649886102966
     },
     {
       "ticker": "MNST",
@@ -12888,7 +12842,7 @@
       "rsi": 40.1,
       "rsi_str": "40.1",
       "dma50": 496.8939984130859,
-      "dma200": 491.6351203918457,
+      "dma200": 491.63511932373046,
       "dma50_str": "496.9",
       "dma200_str": "491.6",
       "trend_dir": "bearish",
@@ -12910,7 +12864,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 42.0411499400116
+      "adx": 42.04114994577798
     },
     {
       "ticker": "MS",
@@ -12923,7 +12877,7 @@
       "rsi": 45.3,
       "rsi_str": "45.3",
       "dma50": 179.62221923828125,
-      "dma200": 154.26338108062745,
+      "dma200": 154.26338047027588,
       "dma50_str": "179.6",
       "dma200_str": "154.3",
       "trend_dir": "bearish",
@@ -12945,7 +12899,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.541279949387004
+      "adx": 15.541279936417206
     },
     {
       "ticker": "MOS",
@@ -12958,7 +12912,7 @@
       "rsi": 61.2,
       "rsi_str": "61.2",
       "dma50": 26.604799919128418,
-      "dma200": 30.70646439552307,
+      "dma200": 30.706464405059815,
       "dma50_str": "26.6",
       "dma200_str": "30.7",
       "trend_dir": "bullish",
@@ -12980,7 +12934,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.423125553918577
+      "adx": 25.423125554234407
     },
     {
       "ticker": "MSI",
@@ -13015,7 +12969,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 53.909167408195025
+      "adx": 53.90916740819457
     },
     {
       "ticker": "MSCI",
@@ -13050,7 +13004,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.394562277397338
+      "adx": 17.394562256407553
     },
     {
       "ticker": "NDAQ",
@@ -13063,7 +13017,7 @@
       "rsi": 30.7,
       "rsi_str": "30.7",
       "dma50": 93.79900009155273,
-      "dma200": 89.76720024108887,
+      "dma200": 89.76719989776612,
       "dma50_str": "93.8",
       "dma200_str": "89.8",
       "trend_dir": "bearish",
@@ -13085,7 +13039,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.41228387410813
+      "adx": 39.412283875455714
     },
     {
       "ticker": "NTAP",
@@ -13120,7 +13074,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.365396859150998
+      "adx": 25.36539685911126
     },
     {
       "ticker": "NFLX",
@@ -13168,7 +13122,7 @@
       "rsi": 58.0,
       "rsi_str": "58.0",
       "dma50": 111.29579971313477,
-      "dma200": 80.93014770507813,
+      "dma200": 80.93014743804932,
       "dma50_str": "111.3",
       "dma200_str": "80.9",
       "trend_dir": "bullish",
@@ -13190,7 +13144,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.681501367652878
+      "adx": 19.68150130133973
     },
     {
       "ticker": "NWSA",
@@ -13225,7 +13179,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.238250375556465
+      "adx": 29.23825037556236
     },
     {
       "ticker": "NWS",
@@ -13273,7 +13227,7 @@
       "rsi": 65.1,
       "rsi_str": "65.1",
       "dma50": 84.23260040283203,
-      "dma200": 77.29300704956054,
+      "dma200": 77.29300701141358,
       "dma50_str": "84.2",
       "dma200_str": "77.3",
       "trend_dir": "bullish",
@@ -13295,7 +13249,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.903694713354355
+      "adx": 40.90369472528094
     },
     {
       "ticker": "NKE",
@@ -13308,7 +13262,7 @@
       "rsi": 57.0,
       "rsi_str": "57.0",
       "dma50": 63.69340003967285,
-      "dma200": 66.80529802322388,
+      "dma200": 66.80529783248902,
       "dma50_str": "63.7",
       "dma200_str": "66.8",
       "trend_dir": "bullish",
@@ -13330,7 +13284,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.214286670669512
+      "adx": 13.21428669785548
     },
     {
       "ticker": "NI",
@@ -13365,7 +13319,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.08691983506092
+      "adx": 32.08691983493167
     },
     {
       "ticker": "NDSN",
@@ -13378,7 +13332,7 @@
       "rsi": 68.2,
       "rsi_str": "68.2",
       "dma50": 262.6852410888672,
-      "dma200": 230.4053749847412,
+      "dma200": 230.40537521362305,
       "dma50_str": "262.7",
       "dma200_str": "230.4",
       "trend_dir": "bullish",
@@ -13400,7 +13354,7 @@
       "earnings_date": "2026-02-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 55.40446009517768
+      "adx": 55.40446021660669
     },
     {
       "ticker": "NSC",
@@ -13413,7 +13367,7 @@
       "rsi": 67.4,
       "rsi_str": "67.4",
       "dma50": 294.2209942626953,
-      "dma200": 275.7335865783691,
+      "dma200": 275.7335861968994,
       "dma50_str": "294.2",
       "dma200_str": "275.7",
       "trend_dir": "bullish",
@@ -13435,7 +13389,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.211417302526772
+      "adx": 30.21141726268174
     },
     {
       "ticker": "NTRS",
@@ -13448,7 +13402,7 @@
       "rsi": 46.5,
       "rsi_str": "46.5",
       "dma50": 144.2742007446289,
-      "dma200": 127.7949298095703,
+      "dma200": 127.79492984771728,
       "dma50_str": "144.3",
       "dma200_str": "127.8",
       "trend_dir": "bearish",
@@ -13470,7 +13424,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.08009890663767
+      "adx": 22.080098872911172
     },
     {
       "ticker": "NOC",
@@ -13483,7 +13437,7 @@
       "rsi": 70.6,
       "rsi_str": "70.6",
       "dma50": 633.7133984375,
-      "dma200": 569.2550759887695,
+      "dma200": 569.2550791931152,
       "dma50_str": "633.7",
       "dma200_str": "569.3",
       "trend_dir": "bullish",
@@ -13505,7 +13459,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.363674546404457
+      "adx": 24.363674408001653
     },
     {
       "ticker": "NCLH",
@@ -13553,7 +13507,7 @@
       "rsi": 68.0,
       "rsi_str": "68.0",
       "dma50": 156.73092956542968,
-      "dma200": 156.98953052520753,
+      "dma200": 156.98953079223634,
       "dma50_str": "156.7",
       "dma200_str": "157.0",
       "trend_dir": "bullish",
@@ -13575,7 +13529,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.033884236379322
+      "adx": 20.033884591173813
     },
     {
       "ticker": "NUE",
@@ -13588,7 +13542,7 @@
       "rsi": 48.8,
       "rsi_str": "48.8",
       "dma50": 173.1035290527344,
-      "dma200": 145.33883094787598,
+      "dma200": 145.33883110046386,
       "dma50_str": "173.1",
       "dma200_str": "145.3",
       "trend_dir": "bearish",
@@ -13610,7 +13564,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.74047826246406
+      "adx": 20.740478361767874
     },
     {
       "ticker": "NVDA",
@@ -13623,7 +13577,7 @@
       "rsi": 52.8,
       "rsi_str": "52.8",
       "dma50": 184.71460021972655,
-      "dma200": 172.79320655822755,
+      "dma200": 172.79320678710937,
       "dma50_str": "184.7",
       "dma200_str": "172.8",
       "trend_dir": "bearish",
@@ -13645,7 +13599,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.971384265412734
+      "adx": 10.971384263880637
     },
     {
       "ticker": "NVR",
@@ -13693,7 +13647,7 @@
       "rsi": 48.8,
       "rsi_str": "48.8",
       "dma50": 231.56415466308593,
-      "dma200": 218.05838012695312,
+      "dma200": 218.05838005065917,
       "dma50_str": "231.6",
       "dma200_str": "218.1",
       "trend_dir": "bullish",
@@ -13715,7 +13669,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.456045622658106
+      "adx": 21.45604562263797
     },
     {
       "ticker": "ORLY",
@@ -13763,7 +13717,7 @@
       "rsi": 71.9,
       "rsi_str": "71.9",
       "dma50": 43.159421844482424,
-      "dma200": 43.15998832702637,
+      "dma200": 43.15998836517334,
       "dma50_str": "43.2",
       "dma200_str": "43.2",
       "trend_dir": "bullish",
@@ -13785,7 +13739,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.870340512349497
+      "adx": 29.870340511641746
     },
     {
       "ticker": "ODFL",
@@ -13820,7 +13774,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.563105442848745
+      "adx": 35.563105442919905
     },
     {
       "ticker": "OMC",
@@ -13833,7 +13787,7 @@
       "rsi": 62.0,
       "rsi_str": "62.0",
       "dma50": 76.77776290893554,
-      "dma200": 74.4371384048462,
+      "dma200": 74.43713848114014,
       "dma50_str": "76.8",
       "dma200_str": "74.4",
       "trend_dir": "bullish",
@@ -13855,7 +13809,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.94006404722302
+      "adx": 30.94006404668358
     },
     {
       "ticker": "ON",
@@ -13925,7 +13879,7 @@
       "earnings_date": "2026-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.6021998312339
+      "adx": 45.60219983125741
     },
     {
       "ticker": "ORCL",
@@ -13938,7 +13892,7 @@
       "rsi": 41.5,
       "rsi_str": "41.5",
       "dma50": 181.16665557861327,
-      "dma200": 219.92956268310547,
+      "dma200": 219.9295627593994,
       "dma50_str": "181.2",
       "dma200_str": "219.9",
       "trend_dir": "bearish",
@@ -13960,7 +13914,7 @@
       "earnings_date": "2026-03-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.553181579520363
+      "adx": 27.553181205296053
     },
     {
       "ticker": "OTIS",
@@ -13995,7 +13949,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.41700914079959
+      "adx": 16.417009140790757
     },
     {
       "ticker": "PCAR",
@@ -14007,8 +13961,8 @@
       "price_str": "124.90",
       "rsi": 55.0,
       "rsi_str": "55.0",
-      "dma50": 118.25445999145508,
-      "dma200": 101.22055728912353,
+      "dma50": 118.25445983886719,
+      "dma200": 101.22055694580078,
       "dma50_str": "118.3",
       "dma200_str": "101.2",
       "trend_dir": "bullish",
@@ -14030,7 +13984,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.95112588524672
+      "adx": 35.95112085511756
     },
     {
       "ticker": "PKG",
@@ -14043,7 +13997,7 @@
       "rsi": 63.6,
       "rsi_str": "63.6",
       "dma50": 218.27230346679687,
-      "dma200": 203.73516616821288,
+      "dma200": 203.73516593933107,
       "dma50_str": "218.3",
       "dma200_str": "203.7",
       "trend_dir": "bullish",
@@ -14065,7 +14019,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 44.088419571157544
+      "adx": 44.08841957103526
     },
     {
       "ticker": "PLTR",
@@ -14148,7 +14102,7 @@
       "rsi": 42.9,
       "rsi_str": "42.9",
       "dma50": 12.245794734954835,
-      "dma200": 13.834325270652771,
+      "dma200": 13.834325299263,
       "dma50_str": "12.2",
       "dma200_str": "13.8",
       "trend_dir": "bearish",
@@ -14170,7 +14124,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.57168969220576
+      "adx": 34.571693172371845
     },
     {
       "ticker": "PH",
@@ -14183,7 +14137,7 @@
       "rsi": 68.8,
       "rsi_str": "68.8",
       "dma50": 925.5179650878906,
-      "dma200": 781.2149563598633,
+      "dma200": 781.214956665039,
       "dma50_str": "925.5",
       "dma200_str": "781.2",
       "trend_dir": "bullish",
@@ -14205,7 +14159,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.133966067704606
+      "adx": 33.133966067321516
     },
     {
       "ticker": "PAYX",
@@ -14218,7 +14172,7 @@
       "rsi": 28.4,
       "rsi_str": "28.4",
       "dma50": 106.48640075683593,
-      "dma200": 126.42918533325195,
+      "dma200": 126.42918506622314,
       "dma50_str": "106.5",
       "dma200_str": "126.4",
       "trend_dir": "bearish",
@@ -14240,7 +14194,7 @@
       "earnings_date": "2026-03-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 46.99395153256994
+      "adx": 46.99395610291464
     },
     {
       "ticker": "PAYC",
@@ -14253,7 +14207,7 @@
       "rsi": 31.9,
       "rsi_str": "31.9",
       "dma50": 148.21059982299803,
-      "dma200": 200.0398335647583,
+      "dma200": 200.03983386993409,
       "dma50_str": "148.2",
       "dma200_str": "200.0",
       "trend_dir": "bearish",
@@ -14275,7 +14229,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.03294651922057
+      "adx": 44.032946491739565
     },
     {
       "ticker": "PYPL",
@@ -14345,7 +14299,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.06662005162054
+      "adx": 19.066620051618276
     },
     {
       "ticker": "PEP",
@@ -14358,7 +14312,7 @@
       "rsi": 62.5,
       "rsi_str": "62.5",
       "dma50": 150.75619995117188,
-      "dma200": 141.65836685180665,
+      "dma200": 141.6583666229248,
       "dma50_str": "150.8",
       "dma200_str": "141.7",
       "trend_dir": "bullish",
@@ -14380,7 +14334,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.665566693807556
+      "adx": 35.66556667742753
     },
     {
       "ticker": "PFE",
@@ -14393,7 +14347,7 @@
       "rsi": 54.5,
       "rsi_str": "54.5",
       "dma50": 25.663038444519042,
-      "dma200": 24.128264675140382,
+      "dma200": 24.12826481819153,
       "dma50_str": "25.7",
       "dma200_str": "24.1",
       "trend_dir": "bullish",
@@ -14415,7 +14369,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.15326413753288
+      "adx": 33.153357726743536
     },
     {
       "ticker": "PCG",
@@ -14428,7 +14382,7 @@
       "rsi": 74.8,
       "rsi_str": "74.8",
       "dma50": 15.86815465927124,
-      "dma200": 15.459748511314393,
+      "dma200": 15.459748497009278,
       "dma50_str": "15.9",
       "dma200_str": "15.5",
       "trend_dir": "bullish",
@@ -14450,7 +14404,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.885633108746916
+      "adx": 35.88564106885496
     },
     {
       "ticker": "PM",
@@ -14463,7 +14417,7 @@
       "rsi": 61.9,
       "rsi_str": "61.9",
       "dma50": 168.05126373291014,
-      "dma200": 164.54484580993653,
+      "dma200": 164.54484649658204,
       "dma50_str": "168.1",
       "dma200_str": "164.5",
       "trend_dir": "bullish",
@@ -14485,7 +14439,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.095210343563735
+      "adx": 31.095210483433707
     },
     {
       "ticker": "PSX",
@@ -14520,7 +14474,7 @@
       "earnings_date": "2026-04-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.14127181607494
+      "adx": 44.141271816073356
     },
     {
       "ticker": "PNW",
@@ -14533,7 +14487,7 @@
       "rsi": 66.9,
       "rsi_str": "66.9",
       "dma50": 90.71999191284179,
-      "dma200": 88.78400211334228,
+      "dma200": 88.7840022277832,
       "dma50_str": "90.7",
       "dma200_str": "88.8",
       "trend_dir": "bullish",
@@ -14555,7 +14509,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.113878618407888
+      "adx": 30.113878633452494
     },
     {
       "ticker": "PNC",
@@ -14568,7 +14522,7 @@
       "rsi": 54.7,
       "rsi_str": "54.7",
       "dma50": 218.92225036621093,
-      "dma200": 193.8562038421631,
+      "dma200": 193.85620361328125,
       "dma50_str": "218.9",
       "dma200_str": "193.9",
       "trend_dir": "bullish",
@@ -14590,7 +14544,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.18865666688754
+      "adx": 34.188656656225334
     },
     {
       "ticker": "POOL",
@@ -14603,7 +14557,7 @@
       "rsi": 26.4,
       "rsi_str": "26.4",
       "dma50": 249.1988003540039,
-      "dma200": 283.2267481994629,
+      "dma200": 283.2267483520508,
       "dma50_str": "249.2",
       "dma200_str": "283.2",
       "trend_dir": "bearish",
@@ -14625,7 +14579,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.760568987163342
+      "adx": 24.760568992547547
     },
     {
       "ticker": "PPG",
@@ -14638,7 +14592,7 @@
       "rsi": 58.7,
       "rsi_str": "58.7",
       "dma50": 111.71720001220703,
-      "dma200": 107.84169120788575,
+      "dma200": 107.84169116973877,
       "dma50_str": "111.7",
       "dma200_str": "107.8",
       "trend_dir": "bullish",
@@ -14660,7 +14614,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 49.83012958017058
+      "adx": 49.83012955376143
     },
     {
       "ticker": "PPL",
@@ -14673,7 +14627,7 @@
       "rsi": 57.6,
       "rsi_str": "57.6",
       "dma50": 35.43865913391113,
-      "dma200": 35.30848350524902,
+      "dma200": 35.30848352432251,
       "dma50_str": "35.4",
       "dma200_str": "35.3",
       "trend_dir": "bullish",
@@ -14695,7 +14649,7 @@
       "earnings_date": "2026-02-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.75414254423586
+      "adx": 18.754141204693514
     },
     {
       "ticker": "PFG",
@@ -14730,7 +14684,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.852185111006268
+      "adx": 19.852185110996864
     },
     {
       "ticker": "PG",
@@ -14743,7 +14697,7 @@
       "rsi": 62.9,
       "rsi_str": "62.9",
       "dma50": 147.35447998046874,
-      "dma200": 151.72079208374024,
+      "dma200": 151.72079200744628,
       "dma50_str": "147.4",
       "dma200_str": "151.7",
       "trend_dir": "bullish",
@@ -14765,7 +14719,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.702816709448335
+      "adx": 34.702817027597796
     },
     {
       "ticker": "PGR",
@@ -14813,7 +14767,7 @@
       "rsi": 60.8,
       "rsi_str": "60.8",
       "dma50": 130.96874938964845,
-      "dma200": 116.55942234039307,
+      "dma200": 116.55942203521728,
       "dma50_str": "131.0",
       "dma200_str": "116.6",
       "trend_dir": "bullish",
@@ -14835,7 +14789,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.12385950119918
+      "adx": 27.12385972103586
     },
     {
       "ticker": "PRU",
@@ -14848,7 +14802,7 @@
       "rsi": 42.0,
       "rsi_str": "42.0",
       "dma50": 109.90812850952149,
-      "dma200": 103.64297267913818,
+      "dma200": 103.64297264099122,
       "dma50_str": "109.9",
       "dma200_str": "103.6",
       "trend_dir": "bearish",
@@ -14870,7 +14824,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.234391577644214
+      "adx": 26.234391155875244
     },
     {
       "ticker": "PEG",
@@ -14883,7 +14837,7 @@
       "rsi": 63.2,
       "rsi_str": "63.2",
       "dma50": 80.54609268188477,
-      "dma200": 81.10284065246582,
+      "dma200": 81.10284061431885,
       "dma50_str": "80.5",
       "dma200_str": "81.1",
       "trend_dir": "bullish",
@@ -14905,7 +14859,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.44712924733662
+      "adx": 24.447129245641975
     },
     {
       "ticker": "PTC",
@@ -14975,7 +14929,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.805776663601964
+      "adx": 20.805776663619756
     },
     {
       "ticker": "PHM",
@@ -14988,7 +14942,7 @@
       "rsi": 62.0,
       "rsi_str": "62.0",
       "dma50": 127.50431228637696,
-      "dma200": 120.0773098373413,
+      "dma200": 120.07730968475342,
       "dma50_str": "127.5",
       "dma200_str": "120.1",
       "trend_dir": "bullish",
@@ -15010,7 +14964,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.26484160953077
+      "adx": 33.26484164681325
     },
     {
       "ticker": "PWR",
@@ -15023,7 +14977,7 @@
       "rsi": 72.9,
       "rsi_str": "72.9",
       "dma50": 462.4390106201172,
-      "dma200": 411.4191947937012,
+      "dma200": 411.4191943359375,
       "dma50_str": "462.4",
       "dma200_str": "411.4",
       "trend_dir": "bullish",
@@ -15045,7 +14999,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.134668477674786
+      "adx": 33.13466847680777
     },
     {
       "ticker": "QCOM",
@@ -15058,7 +15012,7 @@
       "rsi": 35.5,
       "rsi_str": "35.5",
       "dma50": 162.30479888916017,
-      "dma200": 159.70007949829102,
+      "dma200": 159.70007972717286,
       "dma50_str": "162.3",
       "dma200_str": "159.7",
       "trend_dir": "bearish",
@@ -15080,7 +15034,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.90761526867184
+      "adx": 39.90761532282544
     },
     {
       "ticker": "DGX",
@@ -15115,7 +15069,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.77573480995289
+      "adx": 30.77573476160233
     },
     {
       "ticker": "RL",
@@ -15128,7 +15082,7 @@
       "rsi": 63.2,
       "rsi_str": "63.2",
       "dma50": 361.3420666503906,
-      "dma200": 315.23553451538083,
+      "dma200": 315.23553413391113,
       "dma50_str": "361.3",
       "dma200_str": "315.2",
       "trend_dir": "bullish",
@@ -15150,7 +15104,7 @@
       "earnings_date": "2026-02-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.528742383555855
+      "adx": 14.52874238109238
     },
     {
       "ticker": "RJF",
@@ -15163,7 +15117,7 @@
       "rsi": 40.5,
       "rsi_str": "40.5",
       "dma50": 165.48704162597656,
-      "dma200": 160.3500899505615,
+      "dma200": 160.35008987426758,
       "dma50_str": "165.5",
       "dma200_str": "160.4",
       "trend_dir": "bearish",
@@ -15185,7 +15139,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.56680847048852
+      "adx": 22.566808496772616
     },
     {
       "ticker": "RTX",
@@ -15220,7 +15174,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.26052111917201
+      "adx": 35.260521119170654
     },
     {
       "ticker": "O",
@@ -15233,7 +15187,7 @@
       "rsi": 69.3,
       "rsi_str": "69.3",
       "dma50": 59.6042024230957,
-      "dma200": 57.114121208190916,
+      "dma200": 57.11412153244019,
       "dma50_str": "59.6",
       "dma200_str": "57.1",
       "trend_dir": "bullish",
@@ -15255,7 +15209,7 @@
       "earnings_date": "2026-02-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 56.36582151599861
+      "adx": 56.365821669817116
     },
     {
       "ticker": "REG",
@@ -15268,7 +15222,7 @@
       "rsi": 61.4,
       "rsi_str": "61.4",
       "dma50": 70.97839431762695,
-      "dma200": 70.19016605377197,
+      "dma200": 70.19016574859619,
       "dma50_str": "71.0",
       "dma200_str": "70.2",
       "trend_dir": "bullish",
@@ -15290,7 +15244,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 39.252188377278856
+      "adx": 39.25218839645279
     },
     {
       "ticker": "REGN",
@@ -15303,7 +15257,7 @@
       "rsi": 54.0,
       "rsi_str": "54.0",
       "dma50": 763.9111999511719,
-      "dma200": 630.2966827392578,
+      "dma200": 630.2966839599609,
       "dma50_str": "763.9",
       "dma200_str": "630.3",
       "trend_dir": "bullish",
@@ -15325,7 +15279,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.630692120479106
+      "adx": 13.63069212227808
     },
     {
       "ticker": "RF",
@@ -15360,7 +15314,7 @@
       "earnings_date": "2026-04-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.356551433639158
+      "adx": 26.356551432271925
     },
     {
       "ticker": "RSG",
@@ -15373,7 +15327,7 @@
       "rsi": 55.9,
       "rsi_str": "55.9",
       "dma50": 214.65083404541016,
-      "dma200": 227.25231636047363,
+      "dma200": 227.2523171234131,
       "dma50_str": "214.7",
       "dma200_str": "227.3",
       "trend_dir": "bullish",
@@ -15395,7 +15349,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.538017235833593
+      "adx": 18.538017302901682
     },
     {
       "ticker": "RMD",
@@ -15408,7 +15362,7 @@
       "rsi": 49.7,
       "rsi_str": "49.7",
       "dma50": 252.59728942871095,
-      "dma200": 258.9459983062744,
+      "dma200": 258.9459987640381,
       "dma50_str": "252.6",
       "dma200_str": "258.9",
       "trend_dir": "bullish",
@@ -15430,7 +15384,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.70315879431844
+      "adx": 16.70315756633112
     },
     {
       "ticker": "RVTY",
@@ -15465,7 +15419,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.272858194120115
+      "adx": 22.272858189033254
     },
     {
       "ticker": "ROK",
@@ -15478,7 +15432,7 @@
       "rsi": 43.8,
       "rsi_str": "43.8",
       "dma50": 407.5877984619141,
-      "dma200": 358.2132102203369,
+      "dma200": 358.21320960998537,
       "dma50_str": "407.6",
       "dma200_str": "358.2",
       "trend_dir": "bearish",
@@ -15500,7 +15454,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.73641998730337
+      "adx": 17.736419995723473
     },
     {
       "ticker": "ROL",
@@ -15513,7 +15467,7 @@
       "rsi": 45.6,
       "rsi_str": "45.6",
       "dma50": 61.389399719238284,
-      "dma200": 58.144163074493406,
+      "dma200": 58.14416313171387,
       "dma50_str": "61.4",
       "dma200_str": "58.1",
       "trend_dir": "bearish",
@@ -15535,7 +15489,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.60600631168254
+      "adx": 28.606006320265113
     },
     {
       "ticker": "ROP",
@@ -15548,7 +15502,7 @@
       "rsi": 33.3,
       "rsi_str": "33.3",
       "dma50": 405.07673706054686,
-      "dma200": 491.788671875,
+      "dma200": 491.78867095947265,
       "dma50_str": "405.1",
       "dma200_str": "491.8",
       "trend_dir": "bearish",
@@ -15570,7 +15524,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 61.18137634435938
+      "adx": 61.18137675592344
     },
     {
       "ticker": "ROST",
@@ -15583,7 +15537,7 @@
       "rsi": 72.0,
       "rsi_str": "72.0",
       "dma50": 187.6663003540039,
-      "dma200": 157.41007915496826,
+      "dma200": 157.41007934570314,
       "dma50_str": "187.7",
       "dma200_str": "157.4",
       "trend_dir": "bullish",
@@ -15605,7 +15559,7 @@
       "earnings_date": "2026-03-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.80295323706728
+      "adx": 35.80295325473529
     },
     {
       "ticker": "RCL",
@@ -15640,7 +15594,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.784893034209293
+      "adx": 28.784893034209187
     },
     {
       "ticker": "SPGI",
@@ -15653,7 +15607,7 @@
       "rsi": 30.2,
       "rsi_str": "30.2",
       "dma50": 500.52119689941406,
-      "dma200": 510.27176132202146,
+      "dma200": 510.2717616271973,
       "dma50_str": "500.5",
       "dma200_str": "510.3",
       "trend_dir": "bearish",
@@ -15675,7 +15629,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 47.61948861807355
+      "adx": 47.61948861556457
     },
     {
       "ticker": "CRM",
@@ -15688,7 +15642,7 @@
       "rsi": 28.5,
       "rsi_str": "28.5",
       "dma50": 234.21745849609374,
-      "dma200": 249.2332398223877,
+      "dma200": 249.233239364624,
       "dma50_str": "234.2",
       "dma200_str": "249.2",
       "trend_dir": "bearish",
@@ -15710,7 +15664,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.29957904257601
+      "adx": 44.2995789787016
     },
     {
       "ticker": "SBAC",
@@ -15745,7 +15699,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.216194023612424
+      "adx": 19.2161940236124
     },
     {
       "ticker": "SLB",
@@ -15758,7 +15712,7 @@
       "rsi": 64.7,
       "rsi_str": "64.7",
       "dma50": 44.59048614501953,
-      "dma200": 36.839644804000855,
+      "dma200": 36.83964475631714,
       "dma50_str": "44.6",
       "dma200_str": "36.8",
       "trend_dir": "bullish",
@@ -15780,7 +15734,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.29099679418816
+      "adx": 40.29099687006384
     },
     {
       "ticker": "STX",
@@ -15793,7 +15747,7 @@
       "rsi": 55.2,
       "rsi_str": "55.2",
       "dma50": 342.5217059326172,
-      "dma200": 221.3996784591675,
+      "dma200": 221.39967834472657,
       "dma50_str": "342.5",
       "dma200_str": "221.4",
       "trend_dir": "bullish",
@@ -15815,7 +15769,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.92249328855821
+      "adx": 29.922493281520904
     },
     {
       "ticker": "SRE",
@@ -15828,7 +15782,7 @@
       "rsi": 62.2,
       "rsi_str": "62.2",
       "dma50": 88.6059407043457,
-      "dma200": 83.68839496612549,
+      "dma200": 83.68839462280273,
       "dma50_str": "88.6",
       "dma200_str": "83.7",
       "trend_dir": "bullish",
@@ -15850,7 +15804,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.63208004716534
+      "adx": 27.632080325896386
     },
     {
       "ticker": "NOW",
@@ -15898,7 +15852,7 @@
       "rsi": 50.5,
       "rsi_str": "50.5",
       "dma50": 344.67,
-      "dma200": 346.112470703125,
+      "dma200": 346.11247009277344,
       "dma50_str": "344.7",
       "dma200_str": "346.1",
       "trend_dir": "bullish",
@@ -15920,7 +15874,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.339628684575075
+      "adx": 30.339628696395376
     },
     {
       "ticker": "SPG",
@@ -15933,7 +15887,7 @@
       "rsi": 63.1,
       "rsi_str": "63.1",
       "dma50": 187.7316387939453,
-      "dma200": 173.33228240966798,
+      "dma200": 173.33228286743164,
       "dma50_str": "187.7",
       "dma200_str": "173.3",
       "trend_dir": "bullish",
@@ -15955,7 +15909,7 @@
       "earnings_date": "2026-05-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.793280903964177
+      "adx": 22.793280779974047
     },
     {
       "ticker": "SWKS",
@@ -15990,7 +15944,7 @@
       "earnings_date": "2026-05-12",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.058212646717788
+      "adx": 17.058212646935925
     },
     {
       "ticker": "SJM",
@@ -16003,7 +15957,7 @@
       "rsi": 61.7,
       "rsi_str": "61.7",
       "dma50": 101.6687515258789,
-      "dma200": 103.63251148223877,
+      "dma200": 103.63251174926758,
       "dma50_str": "101.7",
       "dma200_str": "103.6",
       "trend_dir": "bullish",
@@ -16025,7 +15979,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.09144541247687
+      "adx": 24.091445317897744
     },
     {
       "ticker": "SW",
@@ -16095,7 +16049,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.657584012785536
+      "adx": 15.657584012784671
     },
     {
       "ticker": "SOLV",
@@ -16143,7 +16097,7 @@
       "rsi": 67.3,
       "rsi_str": "67.3",
       "dma50": 87.55376739501953,
-      "dma200": 89.75183025360107,
+      "dma200": 89.75183040618896,
       "dma50_str": "87.6",
       "dma200_str": "89.8",
       "trend_dir": "bullish",
@@ -16165,7 +16119,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.85770196072872
+      "adx": 21.857702579364343
     },
     {
       "ticker": "LUV",
@@ -16178,7 +16132,7 @@
       "rsi": 60.1,
       "rsi_str": "60.1",
       "dma50": 44.73600341796875,
-      "dma200": 35.39032639503479,
+      "dma200": 35.39032634735108,
       "dma50_str": "44.7",
       "dma200_str": "35.4",
       "trend_dir": "bullish",
@@ -16200,7 +16154,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.80759397176856
+      "adx": 44.807593972666254
     },
     {
       "ticker": "SWK",
@@ -16213,7 +16167,7 @@
       "rsi": 64.5,
       "rsi_str": "64.5",
       "dma50": 80.60100036621094,
-      "dma200": 71.80523553848266,
+      "dma200": 71.80523555755616,
       "dma50_str": "80.6",
       "dma200_str": "71.8",
       "trend_dir": "bullish",
@@ -16235,7 +16189,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.290946283394234
+      "adx": 37.29094628392466
     },
     {
       "ticker": "SBUX",
@@ -16248,7 +16202,7 @@
       "rsi": 55.3,
       "rsi_str": "55.3",
       "dma50": 90.19524353027344,
-      "dma200": 87.00695499420166,
+      "dma200": 87.00695510864257,
       "dma50_str": "90.2",
       "dma200_str": "87.0",
       "trend_dir": "bullish",
@@ -16270,7 +16224,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.67220515809232
+      "adx": 39.672205140946325
     },
     {
       "ticker": "STT",
@@ -16283,7 +16237,7 @@
       "rsi": 46.6,
       "rsi_str": "46.6",
       "dma50": 129.67463928222656,
-      "dma200": 113.4874132156372,
+      "dma200": 113.48741313934326,
       "dma50_str": "129.7",
       "dma200_str": "113.5",
       "trend_dir": "bearish",
@@ -16305,7 +16259,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.532949339414442
+      "adx": 15.532958453654825
     },
     {
       "ticker": "STLD",
@@ -16318,7 +16272,7 @@
       "rsi": 53.2,
       "rsi_str": "53.2",
       "dma50": 179.03330657958983,
-      "dma200": 147.93632652282716,
+      "dma200": 147.9363261795044,
       "dma50_str": "179.0",
       "dma200_str": "147.9",
       "trend_dir": "bullish",
@@ -16340,7 +16294,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.972516681704242
+      "adx": 27.97251718063139
     },
     {
       "ticker": "STE",
@@ -16353,7 +16307,7 @@
       "rsi": 47.8,
       "rsi_str": "47.8",
       "dma50": 255.54205535888673,
-      "dma200": 245.08726631164552,
+      "dma200": 245.0872659301758,
       "dma50_str": "255.5",
       "dma200_str": "245.1",
       "trend_dir": "bearish",
@@ -16375,7 +16329,7 @@
       "earnings_date": "2026-05-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.30138632972042
+      "adx": 30.30138628014881
     },
     {
       "ticker": "SYK",
@@ -16388,7 +16342,7 @@
       "rsi": 59.8,
       "rsi_str": "59.8",
       "dma50": 358.72696899414063,
-      "dma200": 373.33279434204104,
+      "dma200": 373.33279571533205,
       "dma50_str": "358.7",
       "dma200_str": "373.3",
       "trend_dir": "bullish",
@@ -16410,7 +16364,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.63994823242327
+      "adx": 15.639948266707096
     },
     {
       "ticker": "SMCI",
@@ -16458,7 +16412,7 @@
       "rsi": 40.0,
       "rsi_str": "40.0",
       "dma50": 79.23124114990235,
-      "dma200": 71.49813367843628,
+      "dma200": 71.49813386917114,
       "dma50_str": "79.2",
       "dma200_str": "71.5",
       "trend_dir": "bearish",
@@ -16480,7 +16434,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.28120793840029
+      "adx": 33.28120855577189
     },
     {
       "ticker": "SNPS",
@@ -16528,7 +16482,7 @@
       "rsi": 74.5,
       "rsi_str": "74.5",
       "dma50": 78.60153930664063,
-      "dma200": 76.76309417724609,
+      "dma200": 76.76309478759765,
       "dma50_str": "78.6",
       "dma200_str": "76.8",
       "trend_dir": "bullish",
@@ -16550,7 +16504,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 50.527321617931285
+      "adx": 50.5273217598586
     },
     {
       "ticker": "TMUS",
@@ -16563,7 +16517,7 @@
       "rsi": 65.3,
       "rsi_str": "65.3",
       "dma50": 198.0620004272461,
-      "dma200": 223.07300537109376,
+      "dma200": 223.07300521850587,
       "dma50_str": "198.1",
       "dma200_str": "223.1",
       "trend_dir": "bullish",
@@ -16585,7 +16539,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.123637734081267
+      "adx": 29.1236377569962
     },
     {
       "ticker": "TROW",
@@ -16598,7 +16552,7 @@
       "rsi": 37.7,
       "rsi_str": "37.7",
       "dma50": 102.69908752441407,
-      "dma200": 100.25429443359376,
+      "dma200": 100.25429454803466,
       "dma50_str": "102.7",
       "dma200_str": "100.3",
       "trend_dir": "bearish",
@@ -16620,7 +16574,7 @@
       "earnings_date": "2026-05-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.146015633717628
+      "adx": 29.146015679711216
     },
     {
       "ticker": "TTWO",
@@ -16668,7 +16622,7 @@
       "rsi": 68.0,
       "rsi_str": "68.0",
       "dma50": 132.9740003967285,
-      "dma200": 108.03276821136474,
+      "dma200": 108.0327684020996,
       "dma50_str": "133.0",
       "dma200_str": "108.0",
       "trend_dir": "bullish",
@@ -16690,7 +16644,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.92179326216599
+      "adx": 38.92179329563076
     },
     {
       "ticker": "TRGP",
@@ -16703,7 +16657,7 @@
       "rsi": 74.4,
       "rsi_str": "74.4",
       "dma50": 191.97201477050783,
-      "dma200": 170.3202123260498,
+      "dma200": 170.32021354675294,
       "dma50_str": "192.0",
       "dma200_str": "170.3",
       "trend_dir": "bullish",
@@ -16725,7 +16679,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 49.947603668772224
+      "adx": 49.947601247194406
     },
     {
       "ticker": "TGT",
@@ -16738,7 +16692,7 @@
       "rsi": 63.3,
       "rsi_str": "63.3",
       "dma50": 103.9564599609375,
-      "dma200": 95.66653324127198,
+      "dma200": 95.66653369903564,
       "dma50_str": "104.0",
       "dma200_str": "95.7",
       "trend_dir": "bullish",
@@ -16760,7 +16714,7 @@
       "earnings_date": "2026-03-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.270105606689924
+      "adx": 37.270105270330085
     },
     {
       "ticker": "TEL",
@@ -16795,7 +16749,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.015024656794957
+      "adx": 16.015024656791073
     },
     {
       "ticker": "TDY",
@@ -16843,7 +16797,7 @@
       "rsi": 70.2,
       "rsi_str": "70.2",
       "dma50": 235.78967071533202,
-      "dma200": 148.163991355896,
+      "dma200": 148.1639915084839,
       "dma50_str": "235.8",
       "dma200_str": "148.2",
       "trend_dir": "bullish",
@@ -16865,7 +16819,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 60.83887158362636
+      "adx": 60.83887269377
     },
     {
       "ticker": "TSLA",
@@ -16913,7 +16867,7 @@
       "rsi": 58.3,
       "rsi_str": "58.3",
       "dma50": 195.14270874023438,
-      "dma200": 185.63092224121092,
+      "dma200": 185.63092193603515,
       "dma50_str": "195.1",
       "dma200_str": "185.6",
       "trend_dir": "bullish",
@@ -16935,7 +16889,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 52.804458711218764
+      "adx": 52.80445757987668
     },
     {
       "ticker": "TPL",
@@ -16948,7 +16902,7 @@
       "rsi": 85.6,
       "rsi_str": "85.6",
       "dma50": 332.2677325439453,
-      "dma200": 333.89716552734376,
+      "dma200": 333.89716537475584,
       "dma50_str": "332.3",
       "dma200_str": "333.9",
       "trend_dir": "bullish",
@@ -16970,7 +16924,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 43.588076273713305
+      "adx": 43.5880762935602
     },
     {
       "ticker": "TXT",
@@ -16983,7 +16937,7 @@
       "rsi": 64.9,
       "rsi_str": "64.9",
       "dma50": 91.47763320922851,
-      "dma200": 82.95338104248047,
+      "dma200": 82.95338088989257,
       "dma50_str": "91.5",
       "dma200_str": "83.0",
       "trend_dir": "bullish",
@@ -17005,7 +16959,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.656551167331852
+      "adx": 31.656551165784148
     },
     {
       "ticker": "TMO",
@@ -17018,7 +16972,7 @@
       "rsi": 29.4,
       "rsi_str": "29.4",
       "dma50": 580.4416778564453,
-      "dma200": 504.9747117614746,
+      "dma200": 504.97471145629885,
       "dma50_str": "580.4",
       "dma200_str": "505.0",
       "trend_dir": "bearish",
@@ -17040,7 +16994,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.84615371132679
+      "adx": 41.8461537554409
     },
     {
       "ticker": "TJX",
@@ -17053,7 +17007,7 @@
       "rsi": 57.5,
       "rsi_str": "57.5",
       "dma50": 154.18674865722656,
-      "dma200": 139.29994960784913,
+      "dma200": 139.2999496459961,
       "dma50_str": "154.2",
       "dma200_str": "139.3",
       "trend_dir": "bullish",
@@ -17075,7 +17029,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.778974108614394
+      "adx": 14.778987145776943
     },
     {
       "ticker": "TKO",
@@ -17088,7 +17042,7 @@
       "rsi": 52.4,
       "rsi_str": "52.4",
       "dma50": 206.61355865478515,
-      "dma200": 185.98281356811523,
+      "dma200": 185.9828140258789,
       "dma50_str": "206.6",
       "dma200_str": "186.0",
       "trend_dir": "bullish",
@@ -17110,7 +17064,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.311960321837718
+      "adx": 11.311960322117072
     },
     {
       "ticker": "TTD",
@@ -17158,7 +17112,7 @@
       "rsi": 44.5,
       "rsi_str": "44.5",
       "dma50": 52.45120010375977,
-      "dma200": 54.50222103118897,
+      "dma200": 54.50222106933594,
       "dma50_str": "52.5",
       "dma200_str": "54.5",
       "trend_dir": "bearish",
@@ -17180,7 +17134,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.72301650965613
+      "adx": 15.72301650993434
     },
     {
       "ticker": "TT",
@@ -17215,7 +17169,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.24935376544535
+      "adx": 39.249353765445115
     },
     {
       "ticker": "TDG",
@@ -17285,7 +17239,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.11734372874593
+      "adx": 22.11734373145282
     },
     {
       "ticker": "TRMB",
@@ -17333,7 +17287,7 @@
       "rsi": 50.4,
       "rsi_str": "50.4",
       "dma50": 50.523036575317384,
-      "dma200": 44.58119745254517,
+      "dma200": 44.58119766235352,
       "dma50_str": "50.5",
       "dma200_str": "44.6",
       "trend_dir": "bearish",
@@ -17355,7 +17309,7 @@
       "earnings_date": "2026-04-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.165393590307172
+      "adx": 20.16539236756318
     },
     {
       "ticker": "TYL",
@@ -17403,7 +17357,7 @@
       "rsi": 57.5,
       "rsi_str": "57.5",
       "dma50": 60.84840003967285,
-      "dma200": 55.726121978759764,
+      "dma200": 55.726121768951415,
       "dma50_str": "60.8",
       "dma200_str": "55.7",
       "trend_dir": "bullish",
@@ -17425,7 +17379,7 @@
       "earnings_date": "2026-05-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.296260224344728
+      "adx": 25.296260261728882
     },
     {
       "ticker": "USB",
@@ -17460,7 +17414,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.8441043380386
+      "adx": 28.844104255394118
     },
     {
       "ticker": "UBER",
@@ -17530,7 +17484,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.3323949276429
+      "adx": 18.332394927653812
     },
     {
       "ticker": "ULTA",
@@ -17578,7 +17532,7 @@
       "rsi": 72.5,
       "rsi_str": "72.5",
       "dma50": 238.3359994506836,
-      "dma200": 226.78692794799804,
+      "dma200": 226.78692764282226,
       "dma50_str": "238.3",
       "dma200_str": "226.8",
       "trend_dir": "bullish",
@@ -17600,7 +17554,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.05417803105383
+      "adx": 40.05417807546717
     },
     {
       "ticker": "UAL",
@@ -17648,7 +17602,7 @@
       "rsi": 63.5,
       "rsi_str": "63.5",
       "dma50": 105.46170623779297,
-      "dma200": 93.30265438079834,
+      "dma200": 93.30265419006348,
       "dma50_str": "105.5",
       "dma200_str": "93.3",
       "trend_dir": "bullish",
@@ -17670,7 +17624,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 48.656544701619104
+      "adx": 48.65654610638553
     },
     {
       "ticker": "URI",
@@ -17683,7 +17637,7 @@
       "rsi": 55.1,
       "rsi_str": "55.1",
       "dma50": 858.4295251464844,
-      "dma200": 843.1205966186524,
+      "dma200": 843.1205963134765,
       "dma50_str": "858.4",
       "dma200_str": "843.1",
       "trend_dir": "bullish",
@@ -17705,7 +17659,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.286729577172057
+      "adx": 18.28672988734119
     },
     {
       "ticker": "UNH",
@@ -17718,7 +17672,7 @@
       "rsi": 43.7,
       "rsi_str": "43.7",
       "dma50": 318.490400390625,
-      "dma200": 315.7795957183838,
+      "dma200": 315.77959678649904,
       "dma50_str": "318.5",
       "dma200_str": "315.8",
       "trend_dir": "bearish",
@@ -17740,7 +17694,7 @@
       "earnings_date": "2026-04-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.2480874498906
+      "adx": 37.2480873164482
     },
     {
       "ticker": "UHS",
@@ -17753,7 +17707,7 @@
       "rsi": 63.2,
       "rsi_str": "63.2",
       "dma50": 216.58380096435548,
-      "dma200": 198.9142414855957,
+      "dma200": 198.91424156188964,
       "dma50_str": "216.6",
       "dma200_str": "198.9",
       "trend_dir": "bullish",
@@ -17775,7 +17729,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.517217429399373
+      "adx": 30.517217429739794
     },
     {
       "ticker": "VLO",
@@ -17788,7 +17742,7 @@
       "rsi": 60.4,
       "rsi_str": "60.4",
       "dma50": 180.3344869995117,
-      "dma200": 156.7038836288452,
+      "dma200": 156.7038843154907,
       "dma50_str": "180.3",
       "dma200_str": "156.7",
       "trend_dir": "bullish",
@@ -17810,7 +17764,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.34220949718231
+      "adx": 39.34220966324892
     },
     {
       "ticker": "VTR",
@@ -17823,7 +17777,7 @@
       "rsi": 71.2,
       "rsi_str": "71.2",
       "dma50": 78.86521453857422,
-      "dma200": 70.50059125900269,
+      "dma200": 70.50059129714965,
       "dma50_str": "78.9",
       "dma200_str": "70.5",
       "trend_dir": "bullish",
@@ -17845,7 +17799,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.319855854283905
+      "adx": 30.319855850003837
     },
     {
       "ticker": "VLTO",
@@ -17880,7 +17834,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.546794764459523
+      "adx": 20.546794762042648
     },
     {
       "ticker": "VRSN",
@@ -17890,14 +17844,14 @@
       "why": "Below slow SMA \u2022 RSI 31 \u2022 Bearish MACD",
       "price": 216.62,
       "price_str": "216.62",
-      "rsi": 30.5,
-      "rsi_str": "30.5",
-      "dma50": 241.12800018310546,
-      "dma200": 263.0517636871338,
-      "dma50_str": "241.1",
-      "dma200_str": "263.1",
+      "rsi": 31.1,
+      "rsi_str": "31.1",
+      "dma50": 240.2503842163086,
+      "dma200": 262.0808515167236,
+      "dma50_str": "240.3",
+      "dma200_str": "262.1",
       "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 34.7)",
+      "trend_rationale": "Strong Bearish Trend (ADX: 34.6)",
       "pe": 24.813288,
       "pe_str": "24.8",
       "market_cap": 20080672768.0,
@@ -17915,7 +17869,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.6697864601236
+      "adx": 34.620813590595354
     },
     {
       "ticker": "VRSK",
@@ -17928,7 +17882,7 @@
       "rsi": 37.0,
       "rsi_str": "37.0",
       "dma50": 210.29091705322264,
-      "dma200": 253.80574363708496,
+      "dma200": 253.80574440002442,
       "dma50_str": "210.3",
       "dma200_str": "253.8",
       "trend_dir": "bearish",
@@ -17950,7 +17904,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.40445168970329
+      "adx": 44.404451409777
     },
     {
       "ticker": "VZ",
@@ -17963,7 +17917,7 @@
       "rsi": 73.4,
       "rsi_str": "73.4",
       "dma50": 41.79581436157227,
-      "dma200": 41.18213470458984,
+      "dma200": 41.18213468551636,
       "dma50_str": "41.8",
       "dma200_str": "41.2",
       "trend_dir": "bullish",
@@ -17985,7 +17939,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 43.94366769362683
+      "adx": 43.94366735074733
     },
     {
       "ticker": "VRTX",
@@ -18055,7 +18009,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 57.80867761637993
+      "adx": 57.80867761556245
     },
     {
       "ticker": "VICI",
@@ -18068,7 +18022,7 @@
       "rsi": 67.9,
       "rsi_str": "67.9",
       "dma50": 28.31733070373535,
-      "dma200": 30.31752363204956,
+      "dma200": 30.31752356529236,
       "dma50_str": "28.3",
       "dma200_str": "30.3",
       "trend_dir": "bullish",
@@ -18090,7 +18044,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.232233122106404
+      "adx": 25.23223340446121
     },
     {
       "ticker": "V",
@@ -18103,7 +18057,7 @@
       "rsi": 40.9,
       "rsi_str": "40.9",
       "dma50": 335.8440319824219,
-      "dma200": 342.87552764892575,
+      "dma200": 342.8755271911621,
       "dma50_str": "335.8",
       "dma200_str": "342.9",
       "trend_dir": "bearish",
@@ -18125,7 +18079,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.414001400900815
+      "adx": 23.41400140506809
     },
     {
       "ticker": "VST",
@@ -18138,7 +18092,7 @@
       "rsi": 59.3,
       "rsi_str": "59.3",
       "dma50": 162.89044891357423,
-      "dma200": 180.37275856018067,
+      "dma200": 180.3727586364746,
       "dma50_str": "162.9",
       "dma200_str": "180.4",
       "trend_dir": "bullish",
@@ -18160,7 +18114,7 @@
       "earnings_date": "2026-02-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.078955581843504
+      "adx": 15.078955582518848
     },
     {
       "ticker": "VMC",
@@ -18173,7 +18127,7 @@
       "rsi": 46.1,
       "rsi_str": "46.1",
       "dma50": 301.6466015625,
-      "dma200": 286.56805595397947,
+      "dma200": 286.56805686950685,
       "dma50_str": "301.6",
       "dma200_str": "286.6",
       "trend_dir": "bearish",
@@ -18195,7 +18149,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.107554446288994
+      "adx": 22.107554399992733
     },
     {
       "ticker": "WRB",
@@ -18208,7 +18162,7 @@
       "rsi": 52.9,
       "rsi_str": "52.9",
       "dma50": 69.09715103149414,
-      "dma200": 71.00776832580567,
+      "dma200": 71.00776821136475,
       "dma50_str": "69.1",
       "dma200_str": "71.0",
       "trend_dir": "bullish",
@@ -18230,7 +18184,7 @@
       "earnings_date": "2026-04-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.50695932206758
+      "adx": 18.50695939525868
     },
     {
       "ticker": "GWW",
@@ -18243,7 +18197,7 @@
       "rsi": 54.2,
       "rsi_str": "54.2",
       "dma50": 1063.0679016113281,
-      "dma200": 1015.2422076416016,
+      "dma200": 1015.242209777832,
       "dma50_str": "1063.1",
       "dma200_str": "1015.2",
       "trend_dir": "bullish",
@@ -18265,7 +18219,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.36896826713684
+      "adx": 36.36897027329335
     },
     {
       "ticker": "WAB",
@@ -18278,7 +18232,7 @@
       "rsi": 80.5,
       "rsi_str": "80.5",
       "dma50": 228.49597106933595,
-      "dma200": 206.5955969238281,
+      "dma200": 206.59559783935546,
       "dma50_str": "228.5",
       "dma200_str": "206.6",
       "trend_dir": "bullish",
@@ -18300,7 +18254,7 @@
       "earnings_date": "2026-04-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 45.69143634757457
+      "adx": 45.691438308899045
     },
     {
       "ticker": "WMT",
@@ -18313,7 +18267,7 @@
       "rsi": 52.0,
       "rsi_str": "52.0",
       "dma50": 118.8367935180664,
-      "dma200": 104.95840663909912,
+      "dma200": 104.95840656280518,
       "dma50_str": "118.8",
       "dma200_str": "105.0",
       "trend_dir": "bullish",
@@ -18335,7 +18289,7 @@
       "earnings_date": "2026-02-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.57252712533879
+      "adx": 33.572527125564
     },
     {
       "ticker": "DIS",
@@ -18348,7 +18302,7 @@
       "rsi": 45.4,
       "rsi_str": "45.4",
       "dma50": 110.54093994140625,
-      "dma200": 112.50093105316162,
+      "dma200": 112.50093101501464,
       "dma50_str": "110.5",
       "dma200_str": "112.5",
       "trend_dir": "bearish",
@@ -18370,7 +18324,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.12753931772602
+      "adx": 19.127539321369547
     },
     {
       "ticker": "WBD",
@@ -18418,7 +18372,7 @@
       "rsi": 61.7,
       "rsi_str": "61.7",
       "dma50": 222.77260009765624,
-      "dma200": 221.92822738647462,
+      "dma200": 221.92822784423828,
       "dma50_str": "222.8",
       "dma200_str": "221.9",
       "trend_dir": "bullish",
@@ -18440,7 +18394,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.16690530860464
+      "adx": 22.166905307047127
     },
     {
       "ticker": "WAT",
@@ -18488,7 +18442,7 @@
       "rsi": 65.6,
       "rsi_str": "65.6",
       "dma50": 107.32150360107421,
-      "dma200": 107.06206497192383,
+      "dma200": 107.0620650100708,
       "dma50_str": "107.3",
       "dma200_str": "107.1",
       "trend_dir": "bullish",
@@ -18510,7 +18464,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 47.65836905484502
+      "adx": 47.65836931365171
     },
     {
       "ticker": "WFC",
@@ -18523,7 +18477,7 @@
       "rsi": 43.3,
       "rsi_str": "43.3",
       "dma50": 91.17295013427734,
-      "dma200": 82.5737187576294,
+      "dma200": 82.57371891021728,
       "dma50_str": "91.2",
       "dma200_str": "82.6",
       "trend_dir": "bearish",
@@ -18545,7 +18499,7 @@
       "earnings_date": "2026-04-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.861823139602535
+      "adx": 18.861823139288695
     },
     {
       "ticker": "WELL",
@@ -18558,7 +18512,7 @@
       "rsi": 66.6,
       "rsi_str": "66.6",
       "dma50": 190.85399963378907,
-      "dma200": 172.77702812194823,
+      "dma200": 172.77702850341797,
       "dma50_str": "190.9",
       "dma200_str": "172.8",
       "trend_dir": "bullish",
@@ -18580,7 +18534,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.115187933986714
+      "adx": 28.115187944342072
     },
     {
       "ticker": "WST",
@@ -18615,7 +18569,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.64719473517715
+      "adx": 24.647195558664805
     },
     {
       "ticker": "WDC",
@@ -18628,7 +18582,7 @@
       "rsi": 59.4,
       "rsi_str": "59.4",
       "dma50": 222.75979858398438,
-      "dma200": 125.7118004989624,
+      "dma200": 125.71180057525635,
       "dma50_str": "222.8",
       "dma200_str": "125.7",
       "trend_dir": "bullish",
@@ -18650,7 +18604,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.02342342483546
+      "adx": 37.023423424515045
     },
     {
       "ticker": "WY",
@@ -18663,7 +18617,7 @@
       "rsi": 42.4,
       "rsi_str": "42.4",
       "dma50": 25.163600006103515,
-      "dma200": 24.72910346984863,
+      "dma200": 24.729103355407716,
       "dma50_str": "25.2",
       "dma200_str": "24.7",
       "trend_dir": "bearish",
@@ -18685,7 +18639,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.643117193969946
+      "adx": 22.64311987263368
     },
     {
       "ticker": "WSM",
@@ -18698,7 +18652,7 @@
       "rsi": 52.2,
       "rsi_str": "52.2",
       "dma50": 200.12276763916014,
-      "dma200": 185.96890869140626,
+      "dma200": 185.96890914916992,
       "dma50_str": "200.1",
       "dma200_str": "186.0",
       "trend_dir": "bearish",
@@ -18720,7 +18674,7 @@
       "earnings_date": "2026-03-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.178937211191027
+      "adx": 19.178936782873187
     },
     {
       "ticker": "WMB",
@@ -18733,7 +18687,7 @@
       "rsi": 74.0,
       "rsi_str": "74.0",
       "dma50": 63.353595962524416,
-      "dma200": 59.86096248626709,
+      "dma200": 59.860962295532225,
       "dma50_str": "63.4",
       "dma200_str": "59.9",
       "trend_dir": "bullish",
@@ -18755,7 +18709,7 @@
       "earnings_date": "2026-05-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.443004733743216
+      "adx": 45.443004734436734
     },
     {
       "ticker": "WTW",
@@ -18790,7 +18744,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.21185180621682
+      "adx": 25.211851806152684
     },
     {
       "ticker": "WDAY",
@@ -18860,7 +18814,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.627563138842625
+      "adx": 19.627563138840834
     },
     {
       "ticker": "XEL",
@@ -18873,7 +18827,7 @@
       "rsi": 66.6,
       "rsi_str": "66.6",
       "dma50": 75.43031356811524,
-      "dma200": 73.64491306304932,
+      "dma200": 73.64491291046143,
       "dma50_str": "75.4",
       "dma200_str": "73.6",
       "trend_dir": "bullish",
@@ -18895,7 +18849,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.992562196155852
+      "adx": 20.99256219843997
     },
     {
       "ticker": "XYL",
@@ -18908,7 +18862,7 @@
       "rsi": 38.2,
       "rsi_str": "38.2",
       "dma50": 137.7906008911133,
-      "dma200": 137.25384937286378,
+      "dma200": 137.25384906768798,
       "dma50_str": "137.8",
       "dma200_str": "137.3",
       "trend_dir": "bearish",
@@ -18930,7 +18884,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.80384646966747
+      "adx": 27.80384640254272
     },
     {
       "ticker": "YUM",
@@ -18943,7 +18897,7 @@
       "rsi": 63.3,
       "rsi_str": "63.3",
       "dma50": 154.88220031738283,
-      "dma200": 147.83437294006347,
+      "dma200": 147.83437271118163,
       "dma50_str": "154.9",
       "dma200_str": "147.8",
       "trend_dir": "bullish",
@@ -18965,7 +18919,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.053372615295448
+      "adx": 29.053372597697614
     },
     {
       "ticker": "ZBRA",
@@ -19013,7 +18967,7 @@
       "rsi": 75.6,
       "rsi_str": "75.6",
       "dma50": 90.56570236206055,
-      "dma200": 94.75942344665528,
+      "dma200": 94.75942371368409,
       "dma50_str": "90.6",
       "dma200_str": "94.8",
       "trend_dir": "bullish",
@@ -19035,7 +18989,7 @@
       "earnings_date": "2026-05-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.102802388345648
+      "adx": 25.10280219498386
     },
     {
       "ticker": "ZTS",
@@ -19048,7 +19002,7 @@
       "rsi": 53.7,
       "rsi_str": "53.7",
       "dma50": 124.25977020263672,
-      "dma200": 141.4650965118408,
+      "dma200": 141.46509658813477,
       "dma50_str": "124.3",
       "dma200_str": "141.5",
       "trend_dir": "bearish",
@@ -19070,7 +19024,7 @@
       "earnings_date": "2026-05-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.79948256889173
+      "adx": 17.799481813510237
     },
     {
       "ticker": "IBKR",
@@ -19083,7 +19037,7 @@
       "rsi": 50.9,
       "rsi_str": "50.9",
       "dma50": 70.68819976806641,
-      "dma200": 63.58828174591064,
+      "dma200": 63.58828163146973,
       "dma50_str": "70.7",
       "dma200_str": "63.6",
       "trend_dir": "bullish",
@@ -19105,7 +19059,7 @@
       "earnings_date": "2026-04-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.797462195908576
+      "adx": 24.79746219572625
     },
     {
       "ticker": "ZS",
@@ -19153,7 +19107,7 @@
       "rsi": 23.1,
       "rsi_str": "23.1",
       "dma50": 116.77006484985351,
-      "dma200": 158.35111042022706,
+      "dma200": 158.35111064910888,
       "dma50_str": "116.8",
       "dma200_str": "158.4",
       "trend_dir": "bearish",
@@ -19175,7 +19129,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 49.42407568322998
+      "adx": 49.42407568411225
     },
     {
       "ticker": "HOOD",
@@ -19363,7 +19317,7 @@
       "rsi": 47.3,
       "rsi_str": "47.3",
       "dma50": 83.02681198120118,
-      "dma200": 77.86046840667724,
+      "dma200": 77.86046812057495,
       "dma50_str": "83.0",
       "dma200_str": "77.9",
       "trend_dir": "bearish",
@@ -19385,7 +19339,7 @@
       "earnings_date": "2026-03-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.289633557973296
+      "adx": 16.289633451977792
     },
     {
       "ticker": "CCEP",
@@ -19433,7 +19387,7 @@
       "rsi": 63.1,
       "rsi_str": "63.1",
       "dma50": 1261.5083276367188,
-      "dma200": 954.2094647216796,
+      "dma200": 954.2094665527344,
       "dma50_str": "1261.5",
       "dma200_str": "954.2",
       "trend_dir": "bullish",
@@ -19455,7 +19409,7 @@
       "earnings_date": "2026-04-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.43727070793811
+      "adx": 32.4372707820694
     },
     {
       "ticker": "ARM",
@@ -19532,17 +19486,17 @@
       "company": "AstraZeneca PLC",
       "signal": null,
       "score": 73.5,
-      "why": "Above slow SMA \u2022 RSI 67 \u2022 Bullish MACD \u2022 Extended (+28%)",
+      "why": "Above slow SMA \u2022 RSI 69 \u2022 Bullish MACD \u2022 Extended (+29%)",
       "price": 208.62,
       "price_str": "208.62",
-      "rsi": 67.2,
-      "rsi_str": "67.2",
-      "dma50": 187.3097998046875,
-      "dma200": 162.99446044921876,
-      "dma50_str": "187.3",
-      "dma200_str": "163.0",
+      "rsi": 68.7,
+      "rsi_str": "68.7",
+      "dma50": 185.42023468017578,
+      "dma200": 161.32348815917967,
+      "dma50_str": "185.4",
+      "dma200_str": "161.3",
       "trend_dir": "bullish",
-      "trend_rationale": "Weak/Sideways Bullish Trend (ADX: 17.6)",
+      "trend_rationale": "Weak/Sideways Bullish Trend (ADX: 18.0)",
       "pe": 31.947931,
       "pe_str": "31.9",
       "market_cap": 323420127232.0,
@@ -19560,7 +19514,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.596202453455298
+      "adx": 17.99997711857139
     },
     {
       "ticker": "MELI",
