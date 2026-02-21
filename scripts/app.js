@@ -68,8 +68,7 @@ function renderBuyCard(b) {
     // Note the added style="position: relative; padding-bottom: 24px;" on the <li> tag below.
     // This is required to make the absolute positioning of the BB badge work correctly!
     return `
-    <li class="signal-card buy-card"
-        style="position: relative; padding-bottom: 24px;" 
+    <li class="signal-card buy-card" style="position: relative; padding-bottom: 40px;"
         data-ticker="${b.ticker}"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(b.earnings_date)}"
         data-market-cap-above-100b="${isMarketCapAbove100B(b.market_cap)}"
