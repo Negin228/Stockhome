@@ -144,24 +144,7 @@ function renderNews(summary, items) {
     return `${safeSummary}<ul class="news-list">${list}</ul>`;
 }
 
-/**
- * Stamp purple BB badges on any rendered card with data-rsi-bb="true"
- * Called after innerHTML is set so DOM elements exist
- */
-function stampBbBadges() {
-    document.querySelectorAll('.signal-card[data-rsi-bb="true"]').forEach(card => {
-        if (card.querySelector('.bb-badge')) return; // already stamped
-        const tickerEl = card.querySelector('.ticker-alert');
-        if (!tickerEl) return;
-        const badge = document.createElement('span');
-        badge.className = 'bb-badge';
-        badge.textContent = 'BB';
-        badge.style.cssText = 'display:inline-block;margin-left:8px;padding:2px 7px;' +
-            'background:#7B2FBE;color:#fff;font-size:11px;font-weight:700;' +
-            'border-radius:4px;vertical-align:middle;letter-spacing:0.03em;';
-        tickerEl.insertAdjacentElement('afterend', badge);
-    });
-}
+
 
 function applyFilters() {
     const earningsActive  = document.getElementById('earnings-filter-btn')?.classList.contains('active');
