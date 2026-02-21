@@ -1,13 +1,5 @@
 /**
  * rsi_bb_filter.js
- *
- * Two view modes toggled by #rsi-view-btn / #rsi-bb-view-btn.
- *
- * KEY DESIGN:
- *  - app.js owns #buy-list and the two filter buttons — we NEVER touch any of that.
- *  - We inject a sibling <ul id="bb-list"> and toggle display between the two lists.
- *  - BB cards carry the same data-* attributes app.js uses so its applyFilters()
- *    works correctly in both views automatically.
  */
 
 (function () {
@@ -18,7 +10,6 @@
 
   let btnRsi, btnRsiBb, appList, bbList, sectionTitle, infobar;
 
-  // ── Helpers copied from app.js so BB cards behave identically ──────────────
   function isEarningsWithin6Weeks(dateStr) {
     if (!dateStr) return false;
     try {
@@ -47,7 +38,6 @@
     } catch { return "TBA"; }
   }
 
-  // ── BB card builder — same structure as app.js renderBuyCard ──────────────
   function buildBbCard(b) {
     const put = b.put || {};
     const weeklyAvailable = put.weekly_available !== false;
@@ -86,18 +76,34 @@
       </li>`;
   }
 
-  // ── Switch views ───────────────────────────────────────────────────────────
+  function setInfobar(view) {
+    if (view === "rsi") {
+      infobar.innerHTML = '<strong>RSI criteria:</strong> RSI &lt; 30 &nbsp;·&nbsp; Oversold condition based on 14-day Relative Strength Index';
+      infobar.style.borderLeftColor = "#2196F3";
+      infobar.style.background      = "#e8f4fd";
+      infobar.style.color           = "#1a3a5c";
+      infobar.querySelector("strong").style.color = "#2196F3";
+    } else {
+      infobar.innerHTML = '<strong>RSI &amp; BB criteria:</strong> Price &gt; $100 &nbsp;·&nbsp; Price ≤ Bollinger Lower Band &nbsp;·&nbsp; RSI &lt; 30 &nbsp;·&nbsp; No BB/KC Squeeze';
+      infobar.style.borderLeftColor = "#7B2FBE";
+      infobar.style.background      = "#f3eeff";
+      infobar.style.color           = "#4a3570";
+      infobar.querySelector("strong").style.color = "#7B2FBE";
+    }
+    infobar.classList.add("visible");
+  }
+
   function showRsiView() {
     currentView = "rsi";
     btnRsi.classList.add("active");
     btnRsiBb.classList.remove("active");
-    infobar.classList.remove("visible");
 
-    appList.style.display = "";   // show app.js list
-    bbList.style.display  = "none"; // hide our list
+    appList.style.display = "";
+    bbList.style.display  = "none";
     sectionTitle.textContent = "Put Options to Sell";
 
-    // Re-run app.js's own filter logic so filter buttons stay correct
+    setInfobar("rsi");
+
     if (typeof applyFilters === "function") applyFilters();
   }
 
@@ -105,10 +111,9 @@
     currentView = "rsi_bb";
     btnRsiBb.classList.add("active");
     btnRsi.classList.remove("active");
-    infobar.classList.add("visible");
 
-    appList.style.display = "none"; // hide app.js list
-    bbList.style.display  = "";     // show our list
+    appList.style.display = "none";
+    bbList.style.display  = "";
 
     const candidates = allSignals.filter(r => r.rsi_bb_signal === true);
     sectionTitle.textContent = `RSI & BB Signals (${candidates.length} found)`;
@@ -117,12 +122,11 @@
       ? `<li class="signal-card">No stocks currently meet the RSI &lt; 30 + Price ≤ BB Lower + No Squeeze criteria.</li>`
       : candidates.map(buildBbCard).join("");
 
-    // Let app.js applyFilters() handle visibility of our cards too —
-    // they have the right data-* attributes so it works automatically
+    setInfobar("rsi_bb");
+
     if (typeof applyFilters === "function") applyFilters();
   }
 
-  // ── Load signals & init ────────────────────────────────────────────────────
   function init() {
     btnRsi       = document.getElementById("rsi-view-btn");
     btnRsiBb     = document.getElementById("rsi-bb-view-btn");
@@ -130,24 +134,24 @@
     sectionTitle = document.querySelector("#buy-signals h2");
     infobar      = document.getElementById("rsi-bb-infobar");
 
-    if (!btnRsi || !btnRsiBb || !appList) return;
+    if (!btnRsi || !btnRsiBb || !appList || !infobar) return;
 
-    // Inject our BB list as a sibling of the app.js list — hidden by default
     bbList = document.createElement("ul");
     bbList.id = "bb-list";
-    bbList.className = appList.className; // inherit same CSS classes
+    bbList.className = appList.className;
     bbList.style.display = "none";
     appList.parentNode.insertBefore(bbList, appList.nextSibling);
 
-    // Wire our toggle buttons only — do NOT touch the filter buttons
     btnRsi.addEventListener("click",   showRsiView);
     btnRsiBb.addEventListener("click", showRsiBbView);
 
-    // Fetch signals.json (same file app.js uses)
     fetch("data/signals.json")
       .then(r => r.json())
       .then(data => { allSignals = data.buys || []; })
       .catch(() => {});
+
+    // Show RSI infobar immediately on load
+    setInfobar("rsi");
   }
 
   if (document.readyState === "loading") {
