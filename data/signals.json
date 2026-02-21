@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "02-20-2026 23:43",
+  "generated_at_pt": "02-20-2026 23:46",
   "buys": [
     {
       "bb_lower": 168.24,
@@ -40,7 +40,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 43.55175369976335,
+      "adx": 43.551754006966846,
       "put": {
         "strike": 165.0,
         "expiration": "Apr 02, 2026",
@@ -92,7 +92,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.449246720400918,
+      "adx": 26.44924672041025,
       "put": {
         "strike": null,
         "expiration": null,
@@ -144,17 +144,17 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 43.010890233959636,
+      "adx": 43.01089023395961,
       "put": {
-        "strike": 85.0,
+        "strike": 70.0,
         "expiration": "Mar 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.025,
-        "delta_percent": 28.00271048619346,
-        "premium_percent": 0.8682026088429612,
-        "metric_sum": 28.87091309503642
+        "premium": 0.75,
+        "delta_percent": 40.708114518041675,
+        "premium_percent": 0.6352702015924107,
+        "metric_sum": 41.34338471963409
       }
     }
   ],
@@ -199,7 +199,7 @@
       "earnings_date": "2026-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 43.55175369976335
+      "adx": 43.551754006966846
     },
     {
       "bb_lower": 186.69,
@@ -281,7 +281,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.449246720400918
+      "adx": 26.44924672041025
     },
     {
       "bb_lower": 119.45,
@@ -322,7 +322,7 @@
       "earnings_date": "2026-04-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 43.010890233959636
+      "adx": 43.01089023395961
     }
   ]
 }
