@@ -685,7 +685,6 @@ def job(tickers, prev_tickers=None):
             # RSI & BB squeeze signal: same criteria as backtest
             is_squeeze = (bb_lower_val > kc_lower_val) and (bb_upper_val < kc_upper_val)
             rsi_bb_signal = bool(
-            close_price > 100 and
             close_price <= bb_lower_val and
             rsi_val < 30 and
             not is_squeeze)
