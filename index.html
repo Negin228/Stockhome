@@ -7,24 +7,83 @@
   <link rel="stylesheet" href="/styles/style.css">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <style>
-    /* Filter Button Styles */
+    /* ── Signal-type toggle row ──────────────────────────────────────────── */
+    .signal-type-section {
+      background: #f5f5f5;
+      padding: 16px 20px 10px;
+      margin: 0 auto 0;
+      max-width: 1200px;
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .signal-type-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .signal-type-buttons { display: flex; gap: 10px; }
+
+    .signal-type-btn {
+      padding: 10px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      background: #90A4AE;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      letter-spacing: 0.02em;
+    }
+    .signal-type-btn:hover { filter: brightness(1.1); }
+
+    #rsi-view-btn.active {
+      background: #2196F3;
+      box-shadow: 0 3px 8px rgba(33,150,243,0.4);
+    }
+    #rsi-bb-view-btn.active {
+      background: #7B2FBE;
+      box-shadow: 0 3px 8px rgba(123,47,190,0.4);
+    }
+
+    /* ── RSI & BB criteria info bar ─────────────────────────────────────── */
+    #rsi-bb-infobar {
+      display: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f3eeff;
+      border-left: 4px solid #7B2FBE;
+      padding: 9px 16px;
+      font-size: 13px;
+      color: #4a3570;
+      line-height: 1.5;
+    }
+    #rsi-bb-infobar strong { color: #7B2FBE; }
+    #rsi-bb-infobar.visible { display: block; }
+
+    /* ── Filter buttons (identical to original) ──────────────────────────── */
     .filters-section {
       background: #f5f5f5;
-      padding: 20px;
-      margin: 20px auto;
+      padding: 16px 20px 20px;
+      margin: 0 auto 20px;
       max-width: 1200px;
-      border-radius: 8px;
+      border-radius: 0 0 8px 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       text-align: center;
     }
-    
-    .filter-buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
+
+    .filter-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
     .filter-btn {
       padding: 12px 24px;
       font-size: 16px;
@@ -38,113 +97,96 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       min-width: 200px;
     }
-    
     .filter-btn:hover {
       background: #1976D2;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
       transform: translateY(-1px);
     }
-    
-    .filter-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    }
-    
-    .filter-btn.active {
-      background: #4CAF50;
-    }
-    
-    .filter-btn.active:hover {
-      background: #45a049;
-    }
-    
+    .filter-btn:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+    .filter-btn.active { background: #4CAF50; }
+    .filter-btn.active:hover { background: #45a049; }
+
     @media (max-width: 768px) {
-      .filter-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .filter-btn {
-        width: 100%;
-        max-width: 300px;
-      }
+      .filter-buttons { flex-direction: column; align-items: center; }
+      .filter-btn { width: 100%; max-width: 300px; }
+      .signal-type-section { justify-content: center; }
     }
   </style>
 </head>
 <body>
-  
+
   <!-- HEADER -->
-<div id="header-include"></div>
-<script>
-  // Detect prefix for local vs production pathing
-  const prefix = window.location.pathname.includes('/pages/') ? '../' : '';
-  fetch(prefix + 'pages/header.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('header-include').innerHTML = html;
-      // Load navbar.js dynamically from the root
-      // Use the leading slash to ensure it loads from the domain root
-      const script = document.createElement('script');
-      script.src = '/scripts/navbar.js'; 
-      
-      script.onload = function () {
-        // Force initialization after HTML is definitely in the DOM
-        if (window.initNavbar) {
-          window.initNavbar();
-        }
-      };
-      document.body.appendChild(script);
-    });
-</script>
-  <!--<script src="scripts/overlay.js"></script>-->
-  <!-- HERO SECTION -->
+  <div id="header-include"></div>
+  <script>
+    const prefix = window.location.pathname.includes('/pages/') ? '../' : '';
+    fetch(prefix + 'pages/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-include').innerHTML = html;
+        const script = document.createElement('script');
+        script.src = '/scripts/navbar.js';
+        script.onload = function () { if (window.initNavbar) window.initNavbar(); };
+        document.body.appendChild(script);
+      });
+  </script>
+
+  <!-- HERO -->
   <div id="hero-include"></div>
   <script>
     fetch('pages/hero.html')
       .then(res => res.text())
-      .then(html => {
-        document.getElementById('hero-include').innerHTML = html;
-      });
+      .then(html => { document.getElementById('hero-include').innerHTML = html; });
   </script>
-  
+
   <!-- TIMESTAMP -->
   <div style="text-align: center; margin: 10px 0; color: #666; font-size: 14px;">
     Last updated: <time id="last-updated">—</time> PT
   </div>
-  
-  <!-- FILTERS CONTAINER (hidden by default) -->
-  <div id="filters-container" style="display: none;"></div>
-  
-  <!-- FILTER BUTTONS -->
-  <div class="filters-section">
-    <div class="filter-buttons">
-      <button id="earnings-filter-btn" class="filter-btn">
-        Earnings in 6 Weeks
-      </button>
-      <button id="marketcap-filter-btn" class="filter-btn">
-        Market Cap &gt; $100B
-      </button>
+
+  <!-- ── SIGNAL TYPE TOGGLE ─────────────────────────────────────────────── -->
+  <div class="signal-type-section">
+    <span class="signal-type-label">Signal Type:</span>
+    <div class="signal-type-buttons">
+      <button id="rsi-view-btn"    class="signal-type-btn active">RSI</button>
+      <button id="rsi-bb-view-btn" class="signal-type-btn">RSI &amp; BB</button>
     </div>
   </div>
-  
-  <!-- SIGNALS (these lists will be filled by app.js using signals.json) -->
+
+  <!-- Criteria info bar — shown only in RSI & BB mode -->
+  <div id="rsi-bb-infobar">
+    <strong>RSI &amp; BB criteria:</strong>
+    Price &gt; $100 &nbsp;·&nbsp; Price ≤ Bollinger Lower Band &nbsp;·&nbsp; RSI &lt; 30 &nbsp;·&nbsp; No BB/KC Squeeze
+  </div>
+
+  <!-- ── FILTER BUTTONS ─────────────────────────────────────────────────── -->
+  <div class="filters-section">
+    <div class="filter-buttons">
+      <button id="earnings-filter-btn"  class="filter-btn">Earnings in 6 Weeks</button>
+      <button id="marketcap-filter-btn" class="filter-btn">Market Cap &gt; $100B</button>
+    </div>
+  </div>
+
+  <!-- kept for stock_filter.js compatibility -->
+  <div id="filters-container" style="display: none;"></div>
+
+  <!-- SIGNALS -->
   <main>
     <section id="buy-signals" class="section">
       <h2>Put Options to Sell</h2>
       <ul id="buy-list" class="signals-container"></ul>
     </section>
   </main>
-  <!-- Footer -->
+
+  <!-- FOOTER -->
   <div id="footer-include"></div>
   <script>
     fetch('../pages/footer.html')
       .then(res => res.text())
-      .then(html => {
-        document.getElementById('footer-include').innerHTML = html;
-      });
+      .then(html => { document.getElementById('footer-include').innerHTML = html; });
   </script>
+
   <script src="scripts/app.js" defer></script>
-  <script src="scripts/stock_filter.js"></script>
-  <!--<script src="/scripts/overlay.js"></script>-->
+  <script src="scripts/rsi_bb_filter.js" defer></script>
+
 </body>
 </html>
