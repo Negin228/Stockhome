@@ -41,50 +41,75 @@ function isPriceAbove100(price) {
 function renderBuyCard(b) {
     const put = b.put || {};
     const weeklyAvailable = (put.weekly_available !== false);
-    const monthlyTag = weeklyAvailable ? '' : ' <span class="monthly">(Monthly)</span>';
+    
+    // 1. Monthly tag (placed next to ticker, styled to look like clean text)
+    const monthlyTag = weeklyAvailable 
+        ? '' 
+        : `<span style="font-size: 14px; color: #e65100; font-weight: 600; margin-left: 8px;">(Monthly)</span>`;
+
+    // 2. BB Badge (uses absolute positioning to pin it to the bottom right corner)
+    const bbBadge = b.rsi_bb_signal === true 
+        ? `<span style="position: absolute; bottom: 12px; right: 12px; padding: 3px 8px; background: #7B2FBE; color: #fff; font-size: 11px; font-weight: 700; border-radius: 4px; letter-spacing: 0.05em; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">BB</span>` 
+        : '';
+
     const strengthClass = b.adx > 25 ? 'trend-strong' : 'trend-weak';
     const dirClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
     const earningsDateFormatted = formatEarningsDate(b.earnings_date);
+    
     const hasOptionData = put.strike && !isNaN(put.strike);
+    
     const optionText = hasOptionData 
         ? `<div class="trade-action">
-             <strong>Action:</strong> Sell $${fmt(put.strike, 1)} Put exp. ${put.expiration}${monthlyTag} for $${fmt(put.premium, 2)}
+             <strong>Action:</strong> Sell $${fmt(put.strike, 1)} Put exp. ${put.expiration} for $${fmt(put.premium, 2)}
              <div class="trade-formula">[𝚫 ${fmt(put.delta_percent, 1)}% + 💎 ${fmt(put.premium_percent, 1)}%] = <strong>${fmt(put.metric_sum, 1)}%</strong></div>
            </div>`
         : `<div class="trade-action empty">No option chain data available</div>`;
 
+    // Note the added style="position: relative; padding-bottom: 24px;" on the <li> tag below.
+    // This is required to make the absolute positioning of the BB badge work correctly!
     return `
-
     <li class="signal-card buy-card"
+        style="position: relative; padding-bottom: 24px;" 
         data-ticker="${b.ticker}"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(b.earnings_date)}"
         data-market-cap-above-100b="${isMarketCapAbove100B(b.market_cap)}"
         data-price-above-100="${isPriceAbove100(b.price)}"
         data-rsi-bb="${b.rsi_bb_signal === true}">
+        
       <div class="main-info">
         <div class="ticker-block">
-          <span class="ticker-alert">
-            <a href="pages/filters.html?ticker=${b.ticker}" style="color: inherit; text-decoration: none;">
-              ${b.ticker}
-            </a>
-          </span>
-          <span class="company-name">${b.company || ""}</span>
+          <div style="display: flex; align-items: baseline;">
+              <span class="ticker-alert" style="font-size: 1.25em; font-weight: bold;">
+                <a href="pages/filters.html?ticker=${b.ticker}" style="color: inherit; text-decoration: none;">
+                  ${b.ticker}
+                </a>
+              </span>
+              ${monthlyTag}
+          </div>
+          <span class="company-name" style="display: block; margin-top: 4px;">${b.company || ""}</span>
         </div>
         <div class="price-details">
           <div class="current-price price-up">${fmt(b.price, 2)}</div>
         </div>
       </div>
+      
       <div class="trend-badge ${strengthClass} ${dirClass}">
         ${b.trend_rationale || "Calculating..."}
       </div>
-      <p class="news-summary">
-        RSI=${fmt(b.rsi, 1)}&nbsp;&nbsp;P/E=${fmt(b.pe, 1)}&nbsp;&nbsp;
-        DMA 50=${fmt(b.dma50, 1)}&nbsp;&nbsp;DMA 200=${fmt(b.dma200, 1)}&nbsp;&nbsp;Market Cap=$${b.market_cap_str || "N/A"}
-        <br><strong>Earnings:</strong> ${earningsDateFormatted}
-        <br>Sell a $${fmt(put.strike, 1)} put option expiring ${put.expiration || "N/A"}${monthlyTag} for $${fmt(put.premium, 2)}
-        <br>[𝚫 ${fmt(put.delta_percent, 1)}% + 💎 ${fmt(put.premium_percent, 1)}%] = ${fmt(put.metric_sum, 1)}%
-      </p>
+      
+      <div class="metrics-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-size: 13px; margin: 10px 0;">
+        <div><strong>RSI:</strong> ${fmt(b.rsi, 1)}</div>
+        <div><strong>P/E:</strong> ${fmt(b.pe, 1)}</div>
+        <div><strong>DMA 50:</strong> ${fmt(b.dma50, 1)}</div>
+        <div><strong>DMA 200:</strong> ${fmt(b.dma200, 1)}</div>
+        <div><strong>Cap:</strong> $${b.market_cap_str || "N/A"}</div>
+        <div><strong>Earn:</strong> ${earningsDateFormatted}</div>
+      </div>
+      
+      ${optionText}
       ${renderNews(b.news_summary, b.news)}
+      
+      ${bbBadge}
     </li>`;
 }
 
