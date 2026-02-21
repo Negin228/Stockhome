@@ -3,20 +3,19 @@
  * Handles two view modes:
  *   "rsi"    — the existing Put Options to Sell cards (default, driven by app.js)
  *   "rsi_bb" — cards filtered to rsi_bb_signal === true
- *
- * Also wires the Earnings and Market Cap filter buttons so they work in BOTH views.
  */
 
 (function () {
   "use strict";
 
-  // ── State ──────────────────────────────────────────────────────────────────
-  let currentView = "rsi";          // "rsi" | "rsi_bb"
-  let allSignals  = [];             // full buys array from signals.json
+  let currentView = "rsi";
+  let allSignals  = [];
   let activeEarningsFilter  = false;
   let activeMarketCapFilter = false;
 
-  // ── DOM refs (set after DOMContentLoaded) ──────────────────────────────────
+  // Snapshot of app.js-rendered HTML — saved before we ever touch buyList
+  let rsiSnapshot = null;
+
   let btnRsi, btnRsiBb, btnEarnings, btnMarketCap;
   let buyList, sectionTitle, infobar;
 
@@ -41,7 +40,14 @@
     return out;
   }
 
-  // ── Card builder — mirrors the exact style used by app.js ─────────────────
+  function formatDate(ds) {
+    try {
+      const d = new Date(ds + "T00:00:00");
+      return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    } catch { return ds; }
+  }
+
+  // ── Card builder for RSI & BB view — styled to match app.js cards ──────────
   function buildCard(r) {
     const put = r.put || {};
 
@@ -62,16 +68,24 @@
       metricHtml = `<p>[Δ ${put.delta_percent.toFixed(1)}% + 💎 ${put.premium_percent.toFixed(1)}%] = ${(put.delta_percent + put.premium_percent).toFixed(1)}%</p>`;
     }
 
-    const bbBadge = currentView === "rsi_bb"
-      ? `<span class="bb-badge">BB Signal</span>`
-      : "";
-
     return `
       <li class="signal-card">
         <div class="card-header">
           <div class="card-left">
-            <span class="ticker">${r.ticker}</span>${bbBadge}
-            <span class="company">${r.company || ""}</span>
+            <span class="ticker">${r.ticker}</span>
+            <span class="bb-badge" style="
+              display:inline-block;
+              margin-left:8px;
+              padding:2px 8px;
+              background:#7B2FBE;
+              color:#fff;
+              font-size:11px;
+              font-weight:700;
+              border-radius:4px;
+              vertical-align:middle;
+              letter-spacing:0.03em;
+            ">BB Signal</span>
+            <br><span class="company">${r.company || ""}</span>
           </div>
           <span class="price" style="color:#4CAF50; font-weight:700; font-size:1.3em">${r.price_str || r.price}</span>
         </div>
@@ -85,56 +99,13 @@
       </li>`;
   }
 
-  function formatDate(ds) {
-    try {
-      const d = new Date(ds + "T00:00:00");
-      return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-    } catch { return ds; }
-  }
-
-  // ── Render ─────────────────────────────────────────────────────────────────
-  function render() {
-    if (!buyList) return;
-    if (currentView === "rsi") {
-      renderRsiView();
-    } else {
-      renderRsiBbView();
-    }
-  }
-
-  function renderRsiView() {
-    const allCards = buyList.querySelectorAll("li.signal-card");
-    if (allCards.length === 0 && allSignals.length > 0) return;
-
-    if (allCards.length > 0) {
-      const sixWeeks = Date.now() + 42 * 24 * 60 * 60 * 1000;
-      allCards.forEach(card => {
-        const ticker = card.querySelector(".ticker")?.textContent?.trim();
-        const sig = allSignals.find(s => s.ticker === ticker);
-        if (!sig) { card.style.display = ""; return; }
-
-        let show = true;
-        if (activeEarningsFilter && sig.earnings_date) {
-          const d = new Date(sig.earnings_date).getTime();
-          show = show && (d > Date.now() && d <= sixWeeks);
-        } else if (activeEarningsFilter) {
-          show = false;
-        }
-        if (activeMarketCapFilter) {
-          show = show && (sig.market_cap || 0) >= 100e9;
-        }
-        card.style.display = show ? "" : "none";
-      });
-      sectionTitle.textContent = "Put Options to Sell";
-      return;
-    }
-
-    const filtered = applyFilters(allSignals);
-    buyList.innerHTML = filtered.map(buildCard).join("");
-    sectionTitle.textContent = "Put Options to Sell";
-  }
-
+  // ── Render RSI & BB view ───────────────────────────────────────────────────
   function renderRsiBbView() {
+    // Save app.js snapshot before overwriting for the first time
+    if (rsiSnapshot === null) {
+      rsiSnapshot = buyList.innerHTML;
+    }
+
     const candidates = allSignals.filter(r => r.rsi_bb_signal === true);
     const filtered   = applyFilters(candidates);
 
@@ -148,13 +119,55 @@
     buyList.innerHTML = filtered.map(buildCard).join("");
   }
 
+  // ── Render RSI view (restore app.js cards) ─────────────────────────────────
+  function renderRsiView() {
+    // Restore original app.js HTML if we have it
+    if (rsiSnapshot !== null) {
+      buyList.innerHTML = rsiSnapshot;
+    }
+
+    sectionTitle.textContent = "Put Options to Sell";
+
+    // Apply filters on top of restored cards
+    if (activeEarningsFilter || activeMarketCapFilter) {
+      const sixWeeks = Date.now() + 42 * 24 * 60 * 60 * 1000;
+      buyList.querySelectorAll("li.signal-card").forEach(card => {
+        const ticker = card.querySelector(".ticker")?.textContent?.trim();
+        const sig = allSignals.find(s => s.ticker === ticker);
+        if (!sig) { card.style.display = ""; return; }
+
+        let show = true;
+        if (activeEarningsFilter) {
+          if (!sig.earnings_date) {
+            show = false;
+          } else {
+            const d = new Date(sig.earnings_date).getTime();
+            show = show && (d > Date.now() && d <= sixWeeks);
+          }
+        }
+        if (activeMarketCapFilter) {
+          show = show && (sig.market_cap || 0) >= 100e9;
+        }
+        card.style.display = show ? "" : "none";
+      });
+    }
+  }
+
+  function render() {
+    if (!buyList) return;
+    if (currentView === "rsi") {
+      renderRsiView();
+    } else {
+      renderRsiBbView();
+    }
+  }
+
   // ── Load signals.json ──────────────────────────────────────────────────────
   function loadSignals() {
     fetch("data/signals.json")
       .then(r => r.json())
       .then(data => {
         allSignals = (data.buys || []);
-        if (currentView === "rsi") renderRsiView();
       })
       .catch(() => {});
   }
@@ -162,16 +175,11 @@
   // ── View switcher ──────────────────────────────────────────────────────────
   function switchView(view) {
     currentView = view;
-
-    // Toggle button active states
     setActive(btnRsi,   view === "rsi");
     setActive(btnRsiBb, view === "rsi_bb");
-
-    // Toggle the criteria infobar
     infobar.classList.toggle("visible", view === "rsi_bb");
 
     if (view === "rsi") {
-      buyList.querySelectorAll("li.signal-card").forEach(c => c.style.display = "");
       renderRsiView();
     } else {
       renderRsiBbView();
@@ -180,7 +188,6 @@
 
   // ── Init ───────────────────────────────────────────────────────────────────
   function init() {
-    // FIX: was "rsi-filter-btn" / "rsi-bb-filter-btn" — must match HTML IDs
     btnRsi       = document.getElementById("rsi-view-btn");
     btnRsiBb     = document.getElementById("rsi-bb-view-btn");
     btnEarnings  = document.getElementById("earnings-filter-btn");
@@ -189,7 +196,7 @@
     sectionTitle = document.querySelector("#buy-signals h2");
     infobar      = document.getElementById("rsi-bb-infobar");
 
-    if (!btnRsiBb) return;
+    if (!btnRsiBb || !buyList) return;
 
     setActive(btnRsi, true);
     setActive(btnRsiBb, false);
@@ -212,12 +219,13 @@
 
     loadSignals();
 
+    // Watch for app.js finishing its render — capture snapshot once it populates
     const observer = new MutationObserver(() => {
-      if (currentView === "rsi") renderRsiView();
+      if (currentView === "rsi" && buyList.children.length > 0 && rsiSnapshot === null) {
+        rsiSnapshot = buyList.innerHTML;
+      }
     });
-    if (buyList) {
-      observer.observe(buyList, { childList: true });
-    }
+    observer.observe(buyList, { childList: true });
   }
 
   if (document.readyState === "loading") {
