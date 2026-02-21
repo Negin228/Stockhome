@@ -77,20 +77,21 @@
   }
 
   function setInfobar(view) {
+    // Force display via inline style — overrides the CSS `display:none` default
+    // regardless of whether the .visible class has been processed yet
+    infobar.style.display = "block";
+
     if (view === "rsi") {
-      infobar.innerHTML = '<strong>RSI criteria:</strong> RSI &lt; 30 &nbsp;·&nbsp; Oversold condition based on 14-day Relative Strength Index';
+      infobar.innerHTML = '<strong style="color:#2196F3;">RSI criteria:</strong> RSI &lt; 30 &nbsp;·&nbsp; Oversold condition based on 14-day Relative Strength Index';
       infobar.style.borderLeftColor = "#2196F3";
       infobar.style.background      = "#e8f4fd";
       infobar.style.color           = "#1a3a5c";
-      infobar.querySelector("strong").style.color = "#2196F3";
     } else {
-      infobar.innerHTML = '<strong>RSI &amp; BB criteria:</strong> Price &gt; $100 &nbsp;·&nbsp; Price ≤ Bollinger Lower Band &nbsp;·&nbsp; RSI &lt; 30 &nbsp;·&nbsp; No BB/KC Squeeze';
+      infobar.innerHTML = '<strong style="color:#7B2FBE;">RSI &amp; BB criteria:</strong> Price &gt; $100 &nbsp;·&nbsp; Price ≤ Bollinger Lower Band &nbsp;·&nbsp; RSI &lt; 30 &nbsp;·&nbsp; No BB/KC Squeeze';
       infobar.style.borderLeftColor = "#7B2FBE";
       infobar.style.background      = "#f3eeff";
       infobar.style.color           = "#4a3570";
-      infobar.querySelector("strong").style.color = "#7B2FBE";
     }
-    infobar.classList.add("visible");
   }
 
   function showRsiView() {
