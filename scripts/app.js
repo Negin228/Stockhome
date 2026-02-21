@@ -45,8 +45,16 @@ function renderBuyCard(b) {
     const strengthClass = b.adx > 25 ? 'trend-strong' : 'trend-weak';
     const dirClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
     const earningsDateFormatted = formatEarningsDate(b.earnings_date);
+    const hasOptionData = put.strike && !isNaN(put.strike);
+    const optionText = hasOptionData 
+        ? `<div class="trade-action">
+             <strong>Action:</strong> Sell $${fmt(put.strike, 1)} Put exp. ${put.expiration}${monthlyTag} for $${fmt(put.premium, 2)}
+             <div class="trade-formula">[𝚫 ${fmt(put.delta_percent, 1)}% + 💎 ${fmt(put.premium_percent, 1)}%] = <strong>${fmt(put.metric_sum, 1)}%</strong></div>
+           </div>`
+        : `<div class="trade-action empty">No option chain data available</div>`;
 
     return `
+
     <li class="signal-card buy-card"
         data-ticker="${b.ticker}"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(b.earnings_date)}"
