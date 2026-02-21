@@ -33,8 +33,8 @@ function isMarketCapAbove100B(marketCap) {
     return !!marketCap && marketCap >= 100_000_000_000;
 }
 
-function isPriceAbove100(close_price) {
-    return !!close_price && close_price >= 100;
+function isPriceAbove100(price) {
+    return !!price && price >= 100;
 }
 
 
@@ -51,7 +51,7 @@ function renderBuyCard(b) {
         data-ticker="${b.ticker}"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(b.earnings_date)}"
         data-market-cap-above-100b="${isMarketCapAbove100B(b.market_cap)}"
-        data-price-above-100="${isPriceAbove100(b.close_price)}"
+        data-price-above-100="${isPriceAbove100(b.price)}"
         data-rsi-bb="${b.rsi_bb_signal === true}">
       <div class="main-info">
         <div class="ticker-block">
@@ -87,7 +87,7 @@ function renderSellCard(s) {
         data-ticker="${s.ticker}"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(s.earnings_date)}"
         data-market-cap-above-100b="${isMarketCapAbove100B(s.market_cap)}"
-        data-price-above-100="${isPriceAbove100(s.close_price)}"
+        data-price-above-100="${isPriceAbove100(s.price)}"
 
         data-rsi-bb="false">
       <div class="main-info">
