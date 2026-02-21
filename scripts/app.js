@@ -5,11 +5,6 @@ function fmt(n, d = 1) {
     return (n == null || isNaN(n)) ? "N/A" : Number(n).toFixed(d);
 }
 
-/**
- * Format earnings date to human-readable format
- * @param {string} dateStr - Date string in YYYY-MM-DD format
- * @returns {string} Formatted date or "TBA" if not available
- */
 function formatEarningsDate(dateStr) {
     if (!dateStr) return "TBA";
     try {
@@ -21,11 +16,6 @@ function formatEarningsDate(dateStr) {
     }
 }
 
-/**
- * Calculate days until earnings date
- * @param {string} dateStr - Date string in YYYY-MM-DD format
- * @returns {number|null} Number of days until earnings, or null if not available
- */
 function daysUntilEarnings(dateStr) {
     if (!dateStr) return null;
     try {
@@ -41,56 +31,47 @@ function daysUntilEarnings(dateStr) {
     }
 }
 
-/**
- * Check if earnings is within 6 weeks (42 days)
- * @param {string} dateStr - Date string in YYYY-MM-DD format
- * @returns {boolean} True if earnings within 6 weeks
- */
 function isEarningsWithin6Weeks(dateStr) {
     const days = daysUntilEarnings(dateStr);
     if (days === null) return false;
-    return days >= 0 && days <= 42; // 6 weeks = 42 days
+    return days >= 0 && days <= 42;
 }
 
-/**
- * Check if market cap is above $100B
- * @param {number} marketCap - Market cap value
- * @returns {boolean} True if market cap > 100B
- */
 function isMarketCapAbove100B(marketCap) {
     if (!marketCap || marketCap <= 0) return false;
-    return marketCap >= 100_000_000_000; // 100 billion
+    return marketCap >= 100_000_000_000;
 }
 
 /**
  * Renders a Buy Signal Card
- * Matches classes to CSS: .trend-strong, .trend-weak, .trend-up, .trend-down
+ * NOTE: added data-rsi-bb attribute for the BB filter
  */
 function renderBuyCard(b) {
     const put = b.put || {};
     const weeklyAvailable = (put.weekly_available !== false);
     const monthlyTag = (!weeklyAvailable) ? ' <span class="monthly">(Monthly)</span>' : '';
 
-    // 1. Determine Strength Class
     const strengthClass = b.adx > 25 ? 'trend-strong' : 'trend-weak';
-
-    // 2. Map Trend Direction Class
     const dirClass = b.trend_dir === 'bullish' ? 'trend-up' : 'trend-down';
-
-    // 3. Format earnings date
     const earningsDateFormatted = formatEarningsDate(b.earnings_date);
 
+    // Purple BB badge — shown inline if this is a BB signal
+    const bbBadge = b.rsi_bb_signal
+        ? `<span style="display:inline-block;margin-left:8px;padding:2px 7px;background:#7B2FBE;color:#fff;font-size:11px;font-weight:700;border-radius:4px;vertical-align:middle;letter-spacing:0.03em;">BB</span>`
+        : '';
+
     return `
-    <li class="signal-card buy-card" 
+    <li class="signal-card buy-card"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(b.earnings_date)}"
-        data-market-cap-above-100b="${isMarketCapAbove100B(b.market_cap)}">
+        data-market-cap-above-100b="${isMarketCapAbove100B(b.market_cap)}"
+        data-rsi-bb="${!!b.rsi_bb_signal}">
       <div class="main-info">
         <div class="ticker-block">
           <span class="ticker-alert">
             <a href="pages/filters.html?ticker=${b.ticker}" style="color: inherit; text-decoration: none;">
               ${b.ticker}
             </a>
-          </span>
+          </span>${bbBadge}
           <span class="company-name">${b.company || ""}</span>
         </div>
         <div class="price-details">
@@ -115,16 +96,13 @@ function renderBuyCard(b) {
     </li>`;
 }
 
-/**
- * Renders a Sell Signal Card
- */
 function renderSellCard(s) {
     const earningsDateFormatted = formatEarningsDate(s.earnings_date);
-
     return `
-    <li class="signal-card sell-card" 
+    <li class="signal-card sell-card"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(s.earnings_date)}"
-        data-market-cap-above-100b="${isMarketCapAbove100B(s.market_cap)}">
+        data-market-cap-above-100b="${isMarketCapAbove100B(s.market_cap)}"
+        data-rsi-bb="false">
       <div class="main-info">
         <span class="ticker-alert">${s.ticker}</span>
         <div class="price-details">
@@ -139,85 +117,55 @@ function renderSellCard(s) {
     </li>`;
 }
 
-/**
- * Helper to render News section
- */
 function renderNews(summary, items) {
     const safeSummary = summary ? `<p class="news-summary">${summary}..</p>` : "";
     if (!items || !items.length) return safeSummary;
-
-    const list = items.slice(0, 4).map(n => {
-        return `<li><a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a></li>`;
-    }).join("");
-
+    const list = items.slice(0, 4).map(n =>
+        `<li><a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a></li>`
+    ).join("");
     return `${safeSummary}<ul class="news-list">${list}</ul>`;
 }
 
 /**
- * Apply filters based on current button states
+ * Apply all three filters based on current button states
  */
 function applyFilters() {
-    const earningsBtn = document.getElementById('earnings-filter-btn');
-    const marketCapBtn = document.getElementById('marketcap-filter-btn');
-    
-    const earningsActive = earningsBtn && earningsBtn.classList.contains('active');
-    const marketCapActive = marketCapBtn && marketCapBtn.classList.contains('active');
-    
-    const cards = document.querySelectorAll('.signal-card');
+    const earningsActive  = document.getElementById('earnings-filter-btn')?.classList.contains('active');
+    const marketCapActive = document.getElementById('marketcap-filter-btn')?.classList.contains('active');
+    const bbActive        = document.getElementById('bb-filter-btn')?.classList.contains('active');
 
-    cards.forEach(card => {
-        const hasEarningsWithin6Weeks = card.getAttribute('data-earnings-within-6weeks') === 'true';
-        const hasMarketCapAbove100B = card.getAttribute('data-market-cap-above-100b') === 'true';
-        
-        let shouldShow = true;
-        
-        // If earnings filter is active, card must have earnings within 6 weeks
-        if (earningsActive && !hasEarningsWithin6Weeks) {
-            shouldShow = false;
-        }
-        
-        // If market cap filter is active, card must have market cap above 100B
-        if (marketCapActive && !hasMarketCapAbove100B) {
-            shouldShow = false;
-        }
-        
-        card.style.display = shouldShow ? '' : 'none';
+    document.querySelectorAll('.signal-card').forEach(card => {
+        let show = true;
+
+        if (earningsActive && card.getAttribute('data-earnings-within-6weeks') !== 'true') show = false;
+        if (marketCapActive && card.getAttribute('data-market-cap-above-100b') !== 'true')  show = false;
+        if (bbActive && card.getAttribute('data-rsi-bb') !== 'true')                        show = false;
+
+        card.style.display = show ? '' : 'none';
     });
 }
 
-/**
- * Toggle earnings filter
- */
 function toggleEarningsFilter() {
     const button = document.getElementById('earnings-filter-btn');
     if (!button) return;
-
-    if (button.classList.contains('active')) {
-        button.classList.remove('active');
-        button.textContent = 'Earnings in 6 Weeks';
-    } else {
-        button.classList.add('active');
-        button.textContent = 'Show All Earnings';
-    }
-    
+    const nowActive = button.classList.toggle('active');
+    button.textContent = nowActive ? 'Show All Earnings' : 'Earnings in 6 Weeks';
     applyFilters();
 }
 
-/**
- * Toggle market cap filter
- */
 function toggleMarketCapFilter() {
     const button = document.getElementById('marketcap-filter-btn');
     if (!button) return;
+    const nowActive = button.classList.toggle('active');
+    button.textContent = nowActive ? 'Show All Market Caps' : 'Market Cap > $100B';
+    applyFilters();
+}
 
-    if (button.classList.contains('active')) {
-        button.classList.remove('active');
-        button.textContent = 'Market Cap > $100B';
-    } else {
-        button.classList.add('active');
-        button.textContent = 'Show All Market Caps';
-    }
-    
+function toggleBbFilter() {
+    const button = document.getElementById('bb-filter-btn');
+    if (!button) return;
+    const nowActive = button.classList.toggle('active');
+    button.textContent = nowActive ? 'Show All Signals' : 'Price < Lower BB';
     applyFilters();
 }
 
@@ -228,46 +176,41 @@ function toggleMarketCapFilter() {
     const yearEl = document.getElementById("year");
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    const buyList = document.getElementById("buy-list");
-    const sellList = document.getElementById("sell-list");
+    const buyList    = document.getElementById("buy-list");
+    const sellList   = document.getElementById("sell-list");
     const lastUpdated = document.getElementById("last-updated");
 
     try {
         const res = await fetch("../data/signals.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`signals.json fetch failed (${res.status})`);
-        
+
         const data = await res.json();
-        
-        // Sorting by Market Cap
-        if (data.buys) data.buys.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
+
+        if (data.buys)  data.buys.sort((a, b)  => (b.market_cap || 0) - (a.market_cap || 0));
         if (data.sells) data.sells.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
 
         if (lastUpdated) lastUpdated.textContent = data.generated_at_pt || "—";
 
-        // Populate Buy List
         if (buyList) {
             buyList.innerHTML = (data.buys && data.buys.length)
                 ? data.buys.map(renderBuyCard).join("")
                 : `<li class="signal-card">No signals.</li>`;
         }
 
-        // Populate Sell List
         if (sellList) {
             sellList.innerHTML = (data.sells && data.sells.length)
                 ? data.sells.map(renderSellCard).join("")
                 : `<li class="signal-card">No sell signals.</li>`;
         }
 
-        // Set up button event listeners
-        const earningsButton = document.getElementById('earnings-filter-btn');
-        if (earningsButton) {
-            earningsButton.addEventListener('click', toggleEarningsFilter);
-        }
-        
-        const marketCapButton = document.getElementById('marketcap-filter-btn');
-        if (marketCapButton) {
-            marketCapButton.addEventListener('click', toggleMarketCapFilter);
-        }
+        document.getElementById('earnings-filter-btn')
+            ?.addEventListener('click', toggleEarningsFilter);
+
+        document.getElementById('marketcap-filter-btn')
+            ?.addEventListener('click', toggleMarketCapFilter);
+
+        document.getElementById('bb-filter-btn')
+            ?.addEventListener('click', toggleBbFilter);
 
     } catch (e) {
         console.error("❌ Failed to load or render signals:", e);
