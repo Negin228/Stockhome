@@ -1,7 +1,4 @@
-header {
-  margin-left: 40px;
-  margin-top: 32px;
-}
+
 
 :root {
   --bg: #fff;
@@ -216,12 +213,15 @@ body {
 }
 
 /* On desktop, hide hamburger and show nav as before */
+/* On desktop, hide hamburger and show nav as before */
 @media (min-width: 701px) {
   .nav-toggle {
     display: none;
   }
   .nav {
     display: flex !important;
+    align-items: center; /* This perfectly centers the text with the big green button */
+    gap: 16px; /* This gives a nice even space between all the links */
     position: static;
     width: auto;
     box-shadow: none;
@@ -236,6 +236,9 @@ body {
   text-decoration: none;
   padding: 6px 10px;
   border-radius: 10px;
+  white-space: nowrap; /* This stops "How It Works" from splitting into two lines */
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-link:hover {
