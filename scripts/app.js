@@ -33,6 +33,11 @@ function isMarketCapAbove100B(marketCap) {
     return !!marketCap && marketCap >= 100_000_000_000;
 }
 
+function isPriceAbove100(close_price) {
+    return !!close_price && close_price >= 100;
+}
+
+
 function renderBuyCard(b) {
     const put = b.put || {};
     const weeklyAvailable = (put.weekly_available !== false);
@@ -46,6 +51,7 @@ function renderBuyCard(b) {
         data-ticker="${b.ticker}"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(b.earnings_date)}"
         data-market-cap-above-100b="${isMarketCapAbove100B(b.market_cap)}"
+        data-price-above-100="${isPriceAbove100(b.close_price)}"
         data-rsi-bb="${b.rsi_bb_signal === true}">
       <div class="main-info">
         <div class="ticker-block">
@@ -81,6 +87,8 @@ function renderSellCard(s) {
         data-ticker="${s.ticker}"
         data-earnings-within-6weeks="${isEarningsWithin6Weeks(s.earnings_date)}"
         data-market-cap-above-100b="${isMarketCapAbove100B(s.market_cap)}"
+        data-price-above-100="${isPriceAbove100(s.close_price)}"
+
         data-rsi-bb="false">
       <div class="main-info">
         <span class="ticker-alert">${s.ticker}</span>
@@ -127,11 +135,13 @@ function applyFilters() {
     const earningsActive  = document.getElementById('earnings-filter-btn')?.classList.contains('active');
     const marketCapActive = document.getElementById('marketcap-filter-btn')?.classList.contains('active');
     const bbActive        = document.getElementById('bb-filter-btn')?.classList.contains('active');
+    const priceActive = document.getElementById('price-filter-btn')?.classList.contains('active');
 
     document.querySelectorAll('.signal-card').forEach(card => {
         let show = true;
         if (earningsActive  && card.getAttribute('data-earnings-within-6weeks') !== 'true') show = false;
         if (marketCapActive && card.getAttribute('data-market-cap-above-100b')   !== 'true') show = false;
+        if (priceActive && card.getAttribute('data-price-above-100')   !== 'true') show = false;
         if (bbActive        && card.getAttribute('data-rsi-bb')                  !== 'true') show = false;
         card.style.display = show ? '' : 'none';
     });
@@ -150,6 +160,14 @@ function toggleMarketCapFilter() {
     if (!btn) return;
     btn.classList.toggle('active');
     btn.textContent = btn.classList.contains('active') ? 'Show All Market Caps' : 'Market Cap > $100B';
+    applyFilters();
+}
+
+function togglePriceFilter() {
+    const btn = document.getElementById('price-filter-btn');
+    if (!btn) return;
+    btn.classList.toggle('active');
+    btn.textContent = btn.classList.contains('active') ? 'Show All Prices' : 'Price > $100';
     applyFilters();
 }
 
@@ -208,6 +226,7 @@ function toggleBbFilter() {
         document.getElementById('earnings-filter-btn') ?.addEventListener('click', toggleEarningsFilter);
         document.getElementById('marketcap-filter-btn')?.addEventListener('click', toggleMarketCapFilter);
         document.getElementById('bb-filter-btn')       ?.addEventListener('click', toggleBbFilter);
+        document.getElementById('price-filter-btn')?.addEventListener('click', togglePriceFilter);
 
     } catch (e) {
         console.error("❌ Failed to load or render signals:", e);
