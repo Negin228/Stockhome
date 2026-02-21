@@ -677,6 +677,19 @@ def job(tickers, prev_tickers=None):
 
             # scoring
             rsi_val = scalar(row["rsi"])
+            bb_lower_val = scalar(row["bb_low"])
+            bb_upper_val = scalar(row["bb_high"])
+            kc_lower_val = scalar(row["kc_low"])
+            kc_upper_val = scalar(row["kc_high"])
+    
+            # RSI & BB squeeze signal: same criteria as backtest
+            is_squeeze = (bb_lower_val > kc_lower_val) and (bb_upper_val < kc_upper_val)
+            rsi_bb_signal = bool(
+            close_price > 100 and
+            close_price <= bb_lower_val and
+            rsi_val < 30 and
+            not is_squeeze)
+    
             dma50_val = scalar(row["dma50"])
             dma200_val = scalar(row["dma200"])
             macd_val = scalar(row["macd"])
@@ -706,6 +719,12 @@ def job(tickers, prev_tickers=None):
             debt_pass = bool((debt_to_equity or 999) < 100)
 
             base_obj = {
+                "bb_lower": round(bb_lower_val, 2),
+                "bb_upper": round(bb_upper_val, 2),
+                "kc_lower": round(kc_lower_val, 2),
+                "kc_upper": round(kc_upper_val, 2),
+                "is_squeeze": bool(is_squeeze),
+                "rsi_bb_signal": rsi_bb_signal,
                 "ticker": symbol,
                 "company": company_name,
                 "signal": sig,
