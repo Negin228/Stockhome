@@ -18,7 +18,7 @@
 
   // ── DOM refs (set after DOMContentLoaded) ──────────────────────────────────
   let btnRsi, btnRsiBb, btnEarnings, btnMarketCap;
-  let buyList, sectionTitle;
+  let buyList, sectionTitle, infobar;
 
   // ── Helpers ────────────────────────────────────────────────────────────────
   function setActive(btn, active) {
@@ -45,28 +45,23 @@
   function buildCard(r) {
     const put = r.put || {};
 
-    // Trend badge
     const trendText  = r.trend_rationale || "";
     const trendClass = (r.trend_dir === "bearish") ? "bearish-trend" : "bullish-trend";
 
-    // Earnings line
     const earningsHtml = r.earnings_date
       ? `<p><em>Earnings: ${formatDate(r.earnings_date)}</em></p>`
       : "";
 
-    // Put suggestion line
     let putHtml = "";
     if (put.strike && put.expiration && put.premium) {
       putHtml = `<p>Sell a $${put.strike.toFixed(1)} put option expiring ${put.expiration} for $${put.premium.toFixed(2)}</p>`;
     }
 
-    // Metric line
     let metricHtml = "";
     if (put.delta_percent != null && put.premium_percent != null) {
       metricHtml = `<p>[Δ ${put.delta_percent.toFixed(1)}% + 💎 ${put.premium_percent.toFixed(1)}%] = ${(put.delta_percent + put.premium_percent).toFixed(1)}%</p>`;
     }
 
-    // BB badge for RSI & BB view
     const bbBadge = currentView === "rsi_bb"
       ? `<span class="bb-badge">BB Signal</span>`
       : "";
@@ -100,9 +95,7 @@
   // ── Render ─────────────────────────────────────────────────────────────────
   function render() {
     if (!buyList) return;
-
     if (currentView === "rsi") {
-      // Let app.js own the RSI view — just show/hide its output and re-apply filters
       renderRsiView();
     } else {
       renderRsiBbView();
@@ -110,14 +103,9 @@
   }
 
   function renderRsiView() {
-    // Restore app.js cards and re-apply filters by toggling visibility
     const allCards = buyList.querySelectorAll("li.signal-card");
-    if (allCards.length === 0 && allSignals.length > 0) {
-      // app.js hasn't rendered yet — let it do its thing, we'll hook in later
-      return;
-    }
+    if (allCards.length === 0 && allSignals.length > 0) return;
 
-    // If we have app.js cards, hide/show based on active filters
     if (allCards.length > 0) {
       const sixWeeks = Date.now() + 42 * 24 * 60 * 60 * 1000;
       allCards.forEach(card => {
@@ -141,7 +129,6 @@
       return;
     }
 
-    // Fallback: render from allSignals
     const filtered = applyFilters(allSignals);
     buyList.innerHTML = filtered.map(buildCard).join("");
     sectionTitle.textContent = "Put Options to Sell";
@@ -163,27 +150,28 @@
 
   // ── Load signals.json ──────────────────────────────────────────────────────
   function loadSignals() {
-    // Try to piggyback on whatever app.js already fetched
     fetch("data/signals.json")
       .then(r => r.json())
       .then(data => {
         allSignals = (data.buys || []);
-        // Seed app.js cards into allSignals for filter support
         if (currentView === "rsi") renderRsiView();
       })
       .catch(() => {});
   }
 
-  // ── Button wiring ──────────────────────────────────────────────────────────
+  // ── View switcher ──────────────────────────────────────────────────────────
   function switchView(view) {
     currentView = view;
+
+    // Toggle button active states
     setActive(btnRsi,   view === "rsi");
     setActive(btnRsiBb, view === "rsi_bb");
 
+    // Toggle the criteria infobar
+    infobar.classList.toggle("visible", view === "rsi_bb");
+
     if (view === "rsi") {
-      // Restore all app.js cards first
       buyList.querySelectorAll("li.signal-card").forEach(c => c.style.display = "");
-      // Remove any RSI&BB-injected cards and let app.js cards show
       renderRsiView();
     } else {
       renderRsiBbView();
@@ -192,20 +180,22 @@
 
   // ── Init ───────────────────────────────────────────────────────────────────
   function init() {
-    btnRsi      = document.getElementById("rsi-filter-btn");
-    btnRsiBb    = document.getElementById("rsi-bb-filter-btn");
-    btnEarnings = document.getElementById("earnings-filter-btn");
+    // FIX: was "rsi-filter-btn" / "rsi-bb-filter-btn" — must match HTML IDs
+    btnRsi       = document.getElementById("rsi-view-btn");
+    btnRsiBb     = document.getElementById("rsi-bb-view-btn");
+    btnEarnings  = document.getElementById("earnings-filter-btn");
     btnMarketCap = document.getElementById("marketcap-filter-btn");
     buyList      = document.getElementById("buy-list");
     sectionTitle = document.querySelector("#buy-signals h2");
+    infobar      = document.getElementById("rsi-bb-infobar");
 
-    if (!btnRsiBb) return; // guard if elements missing
+    if (!btnRsiBb) return;
 
-    // Default state: RSI view active
     setActive(btnRsi, true);
     setActive(btnRsiBb, false);
+    infobar.classList.remove("visible");
 
-    btnRsi.addEventListener("click", () => switchView("rsi"));
+    btnRsi.addEventListener("click",   () => switchView("rsi"));
     btnRsiBb.addEventListener("click", () => switchView("rsi_bb"));
 
     btnEarnings.addEventListener("click", () => {
@@ -222,7 +212,6 @@
 
     loadSignals();
 
-    // Watch for app.js finishing its render so filter buttons work on its cards
     const observer = new MutationObserver(() => {
       if (currentView === "rsi") renderRsiView();
     });
