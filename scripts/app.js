@@ -229,7 +229,7 @@ function toggleBbFilter() {
             buyList.innerHTML = (data.buys && data.buys.length)
                 ? data.buys.map(renderBuyCard).join("")
                 : `<li class="signal-card">No signals.</li>`;
-            stampBbBadges(); // stamp badges immediately after render
+            
         }
 
         if (sellList) {
