@@ -1,5 +1,55 @@
 [
   {
+    "ticker": "ASML",
+    "company": "ASML Holding N.V. - New York Re",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 1519.0,
+    "market_cap": 590135885824.0,
+    "market_cap_str": "590.14B",
+    "mcap": 590.135885824,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 13.813,
+    "trailing_pe": 52.050327,
+    "forward_pe": 34.536263,
+    "earnings_growth": 0.054,
+    "debt_to_equity": 13.813,
+    "earnings_date": "2026-04-15",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": true,
+    "added_timestamp": "2026-02-25T14:31:36.559522",
+    "reasoning": "Det: Price > BBU(1520.08) | ADX: 34.4 | RSI 69.4 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "MELI",
+    "company": "MercadoLibre, Inc.",
+    "strategy": "Call Debit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 1718.18,
+    "market_cap": 86372786176.0,
+    "market_cap_str": "86.37B",
+    "mcap": 86.372786176,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": 159.296,
+    "trailing_pe": 41.604393,
+    "forward_pe": 20.831713,
+    "earnings_growth": 0.06,
+    "debt_to_equity": 159.296,
+    "earnings_date": "2026-05-07",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": true,
+    "added_timestamp": "2026-02-25T14:31:42.352156",
+    "reasoning": "Det: Price < BBL(1787.11) | ADX: 23.7 | RSI 27.1 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
     "ticker": "AXP",
     "company": "American Express Company",
     "strategy": "Call Debit (Bullish)",
@@ -21,7 +71,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T13:56:53.285541",
+    "added_timestamp": "2026-02-25T14:20:05.696004",
     "reasoning": "Det: Price < BBL(325.92) | ADX: 25.1 | RSI 29.9 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -46,7 +96,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T13:58:31.303934",
+    "added_timestamp": "2026-02-25T14:22:31.187131",
     "reasoning": "Det: Price < BBL(351.54) | ADX: 29.7 | RSI 28.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -71,7 +121,7 @@
     "weekly_available": false,
     "monthly_available": false,
     "is_new": false,
-    "added_timestamp": "2026-02-25T13:58:38.284518",
+    "added_timestamp": "2026-02-25T14:22:42.671350",
     "reasoning": "Det: Price > BBU(69.70) | ADX: 18.9 | RSI 63.9 (Moderate: Selling Theta.)"
   },
   {
@@ -96,7 +146,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T13:59:15.535209",
+    "added_timestamp": "2026-02-25T14:23:30.708316",
     "reasoning": "Det: Price < BBL(262.51) | ADX: 15.9 | RSI 33.4 (Moderate: Selling Theta.)"
   },
   {
@@ -121,7 +171,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T13:59:35.777977",
+    "added_timestamp": "2026-02-25T14:24:11.379547",
     "reasoning": "Det: Price < BBL(75.53) | ADX: 18.7 | RSI 37.8 (Moderate: Selling Theta.)"
   },
   {
@@ -146,7 +196,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T13:59:39.997867",
+    "added_timestamp": "2026-02-25T14:24:18.849204",
     "reasoning": "Det: Price > BBU(67.14) | ADX: 30.9 | RSI 64.9 (Moderate: Selling Theta.)"
   },
   {
@@ -171,7 +221,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T13:59:40.725618",
+    "added_timestamp": "2026-02-25T14:24:20.190130",
     "reasoning": "Det: Price > BBU(250.86) | ADX: 32.4 | RSI 77.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -196,7 +246,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T14:00:06.792078",
+    "added_timestamp": "2026-02-25T14:24:48.555853",
     "reasoning": "Det: Price > BBU(83.12) | ADX: 18.2 | RSI 64.4 (Moderate: Selling Theta.)"
   },
   {
@@ -221,7 +271,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T14:00:14.889099",
+    "added_timestamp": "2026-02-25T14:24:58.369726",
     "reasoning": "Det: Price > BBU(25.77) | ADX: 20.4 | RSI 64.7 (Moderate: Selling Theta.)"
   },
   {
@@ -246,7 +296,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T14:00:49.891127",
+    "added_timestamp": "2026-02-25T14:25:47.474960",
     "reasoning": "Det: Price > BBU(30.89) | ADX: 22.4 | RSI 73.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -271,82 +321,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-02-25T14:01:21.870670",
+    "added_timestamp": "2026-02-25T14:26:32.518086",
     "reasoning": "Det: Price < BBL(498.48) | ADX: 26.5 | RSI 32.9 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "V",
-    "company": "Visa Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 307.22,
-    "market_cap": 592332324864.0,
-    "market_cap_str": "592.33B",
-    "mcap": 592.332324864,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 54.612,
-    "trailing_pe": 28.819887,
-    "forward_pe": 21.140364,
-    "earnings_growth": 0.143,
-    "debt_to_equity": 54.612,
-    "earnings_date": "2026-04-28",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": false,
-    "added_timestamp": "2026-02-25T14:04:00.021044",
-    "reasoning": "Det: Price < BBL(308.85) | ADX: 27.1 | RSI 33.9 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "WY",
-    "company": "Weyerhaeuser Company",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 24.89,
-    "market_cap": 17942228992.0,
-    "market_cap_str": "17.94B",
-    "mcap": 17.942228992,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": true,
-    "health": 60.694,
-    "trailing_pe": 55.31111,
-    "forward_pe": 35.31899,
-    "earnings_growth": -0.086,
-    "debt_to_equity": 60.694,
-    "earnings_date": "2026-04-23",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": false,
-    "added_timestamp": "2026-02-25T14:04:17.033411",
-    "reasoning": "Det: Price < BBL(24.95) | ADX: 22.8 | RSI 35.5 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "XEL",
-    "company": "Xcel Energy Inc.",
-    "strategy": "Put Debit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 83.91,
-    "market_cap": 49636106240.0,
-    "market_cap_str": "49.64B",
-    "mcap": 49.63610624,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": false,
-    "health": 167.891,
-    "trailing_pe": 24.535088,
-    "forward_pe": 18.539387,
-    "earnings_growth": 0.222,
-    "debt_to_equity": 167.891,
-    "earnings_date": "2026-04-23",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": false,
-    "added_timestamp": "2026-02-25T14:04:22.430475",
-    "reasoning": "Det: Price > BBU(83.79) | ADX: 25.7 | RSI 74.5 (Extreme: Buying Delta for sharp snap-back.)"
   }
 ]
