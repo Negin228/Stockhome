@@ -222,8 +222,10 @@ def get_live_price(symbol, fallback_close, retries=2, wait=1):
             q = finnhub_client.quote(symbol)
             price = q.get("c")
             if price and price > 0:
+                logger.info(f"Got live price for {symbol} from Finnhub: {price}")
                 return float(price)
-        except Exception:
+        except Exception as e:
+            logger.warning(f"Finnhub attempt {attempt+1} failed for {symbol}: {e}")
             if attempt < retries - 1:
                 time.sleep(wait)
 
@@ -231,17 +233,17 @@ def get_live_price(symbol, fallback_close, retries=2, wait=1):
     try:
         price = yf.Ticker(symbol).fast_info.get("lastPrice")
         if price and price > 0:
+            logger.info(f"Got live price for {symbol} from yfinance: {price}")
             return float(price)
-    except Exception:
-        pass
+    except Exception as e:
+        logger.warning(f"yfinance fast_info failed for {symbol}: {e}")
 
     # 3) fallback close
+    logger.warning(f"Using fallback close for {symbol}: {fallback_close} (STALE DATA)")
     try:
         return float(fallback_close)
     except Exception:
         return None
-
-
 # ---------------------------------------------------------
 # COMPANY NAME (CACHED)
 # ---------------------------------------------------------
