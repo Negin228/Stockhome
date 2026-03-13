@@ -1,5 +1,3 @@
-
-
 :root {
   --bg: #fff;
   --text: #1E2A38;
@@ -23,45 +21,46 @@ body {
 }
 
 /* ── Updated Card Layout & Typography ───────────────────────────────── */
-    .metrics-grid {
-      background: #fafafa;
-      padding: 10px 12px;
-      border-radius: 6px;
-      border: 1px solid #eee;
-    }
+.metrics-grid {
+  background: #fafafa;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
     
-    .trade-action {
-      background: #e3f2fd; /* Light, calm blue to indicate an action */
-      border-left: 4px solid #2196F3;
-      padding: 12px 16px;
-      margin: 12px 0;
-      border-radius: 0 6px 6px 0;
-      color: #0d47a1;
-      font-size: 14px;
-      line-height: 1.5;
-    }
+.trade-action {
+  background: #e3f2fd; 
+  border-left: 4px solid #2196F3;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 6px 6px 0;
+  color: #0d47a1;
+  font-size: 14px;
+  line-height: 1.5;
+}
     
-    .trade-action.empty {
-      background: #fff3e0; /* Light orange for 'missing data' */
-      border-left: 4px solid #ff9800;
-      color: #e65100;
-      font-weight: 600;
-      text-align: center;
-    }
+.trade-action.empty {
+  background: #fff3e0; 
+  border-left: 4px solid #ff9800;
+  color: #e65100;
+  font-weight: 600;
+  text-align: center;
+}
 
-    .trade-formula {
-      margin-top: 6px;
-      font-family: monospace;
-      font-size: 13px;
-      color: #1565c0;
-    }
+.trade-formula {
+  margin-top: 6px;
+  font-family: monospace;
+  font-size: 13px;
+  color: #1565c0;
+}
+
 .filter-card {
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s;
     border: 2px solid transparent;
     padding: 10px;
     border-radius: 8px;
-    background: #f9f9f9; /* Match your site's card style */
+    background: #f9f9f9; 
 }
 
 .filter-card:hover {
@@ -70,25 +69,116 @@ body {
 }
 
 .filter-card.active {
-    border-color: #007bff; /* Highlight color when selected */
+    border-color: #007bff; 
     background-color: #eef6ff;
 }
 
+/* --- MODERN FILTER CONTROLS --- */
+.filter-controls {
+  background: #f8fbfa; 
+  padding: 30px 32px 24px 32px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(30, 42, 56, 0.05);
+  margin: 0 auto 40px auto;
+  max-width: 900px;
+}
 
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 20px 40px;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+}
+
+.filter-row label {
+  width: 110px; /* Slightly wider to fit 'Market Cap' */
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.filter-row .val-display {
+  width: 50px; 
+  text-align: right;
+  font-family: monospace;
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #2196F3;
+}
+
+/* Custom Slider Track and Thumb */
+.filter-row input[type=range] {
+  flex-grow: 1; 
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e6ecf2;
+  border-radius: 5px;
+  outline: none;
+  margin: 0 15px;
+}
+
+.filter-row input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #00b4d8 60%, #2196f3 100%);
+  cursor: pointer;
+  box-shadow: 0 0 8px #0077b6;
+  border: 2px solid #fff;
+  transition: transform 0.1s ease-in-out;
+}
+
+.filter-row input[type=range]::-webkit-slider-thumb:hover,
+.filter-row input[type=range]:focus::-webkit-slider-thumb {
+  transform: scale(1.15); 
+  background: #29c7ff;
+}
+
+/* Align the reset button nicely */
+.filter-actions {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filter-button {
+  background-color: #e6ecf2;
+  color: var(--text);
+  border: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #eee;
+  transition: background 0.2s;
+}
+
+.filter-button:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
 
 /* --- UPDATED TREND UTILITIES --- */
 
-/* Base style for all trend indicators */
 .trend-badge {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 20px; /* Rounded pill shape */
+  border-radius: 20px; 
   font-size: 0.85rem;
   margin: 8px 0;
-  border: 1px solid transparent; /* Prevents layout shift */
+  border: 1px solid transparent; 
 }
 
-/* STRONG: Solid backgrounds */
 .trend-strong.trend-up {
   background-color: #28a745;
   color: white;
@@ -101,8 +191,6 @@ body {
   font-weight: bold;
 }
 
-/* WEAK: Ghost/Outline style */
-/* WEAK: Ghost/Outline style */
 .trend-weak.trend-up {
   background-color: transparent;
   color: #28a745;
@@ -117,8 +205,6 @@ body {
   font-weight: 700;
 }
 
-
-/* Container for the SVG to ensure proper sizing */
 .check-circle {
     display: inline-flex;
     align-items: center;
@@ -128,19 +214,17 @@ body {
     height: 20px;
 }
 
-/* Ensure the SVG scales to its container */
 .check-circle svg {
     width: 100%;
     height: 100%;
 }
 
-/* Adjust table cell alignment for the icons */
 .signals-table td {
     text-align: center;
     vertical-align: middle;
 }
 
-
+/* --- HEADER & NAVIGATION --- */
 .site-header {
   position: sticky;
   top: 0;
@@ -167,7 +251,7 @@ body {
     font-weight: bold;
     font-size: 0.9em;
 }
-/* Update these in your style.css */
+
 .badge-bullish {
     background-color: #28a745 !important; 
     color: white !important; 
@@ -184,7 +268,6 @@ body {
     font-weight: bold;
 }
 
-
 /* Hide nav links and show hamburger by default on mobile */
 @media (max-width: 700px) {
   .nav {
@@ -192,7 +275,7 @@ body {
     flex-direction: column;
     background: #fff;
     position: absolute;
-    top: 60px; /* adjust as needed for your header's height */
+    top: 60px; 
     right: 0;
     width: 200px;
     border: 1px solid #e6ecf2;
@@ -212,16 +295,15 @@ body {
   }
 }
 
-/* On desktop, hide hamburger and show nav as before */
-/* On desktop, hide hamburger and show nav as before */
+/* On desktop, hide hamburger and show nav */
 @media (min-width: 701px) {
   .nav-toggle {
     display: none;
   }
   .nav {
     display: flex !important;
-    align-items: center; /* This perfectly centers the text with the big green button */
-    gap: 16px; /* This gives a nice even space between all the links */
+    align-items: center; 
+    gap: 16px; 
     position: static;
     width: auto;
     box-shadow: none;
@@ -230,13 +312,12 @@ body {
   }
 }
 
-
 .nav-link {
   color: var(--muted);
   text-decoration: none;
   padding: 6px 10px;
   border-radius: 10px;
-  white-space: nowrap; /* This stops "How It Works" from splitting into two lines */
+  white-space: nowrap; 
   display: inline-flex;
   align-items: center;
 }
@@ -258,6 +339,7 @@ body {
   border-radius: 12px;
 }
 
+/* --- HERO & SECTIONS --- */
 .hero {
   padding: 56px 20px 28px;
   text-align: center;
@@ -311,7 +393,6 @@ body {
   color: var(--text);
 }
 
-
 .monthly {
   font-weight: 600;
   opacity: 0.7;
@@ -319,7 +400,7 @@ body {
   color: #ff0000;
 }
 
-
+/* --- CARDS & TYPOGRAPHY --- */
 .signals-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -343,8 +424,6 @@ body {
   box-shadow: 0 8px 16px rgba(0,0,0,0.13);
 }
 
-
-
 .main-info {
   display: flex;
   align-items: flex-start;
@@ -358,7 +437,6 @@ body {
   font-size: 1.75rem;
   margin: 0;
 }
-
 
 .ticker-row {
   display: flex;
@@ -390,7 +468,6 @@ body {
   color: var(--muted);
 }
 
-
 .price-details {
   text-align: right;
 }
@@ -402,13 +479,8 @@ body {
   color: var(--text);
 }
 
-.price-up {
-  color: #4CAF50;
-}
-
-.price-down {
-  color: #F44336;
-}
+.price-up { color: #4CAF50; }
+.price-down { color: #F44336; }
 
 .pe-mcap, .news-summary, .meta {
   color: var(--muted);
@@ -448,155 +520,11 @@ body {
   vertical-align: middle;
 }
 
-.filter-section {
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px 28px 20px 28px;
-  margin-bottom: 40px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.07);
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 #filtered-stocks {
-  margin: 48px auto 0 auto; max-width:700px; display:block;
+  margin: 48px auto 0 auto; 
+  max-width:700px; 
+  display:block;
   font-size: 1.1em;
-}
-
-.filter-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 22px;
-  margin: 0 auto;
-  max-width: 900px;
-  padding: 40px 32px 24px 32px;
-  background: #f8fbfa;
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(30, 42, 56, 0.05);
-  flex-direction: row;
-}
-@media (max-width: 640px) {
-  .filter-controls { flex-direction: column; }
-}
-
-
-.slider-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 18px;
-}
-
-.slider-row label {
-  min-width: 135px;
-  margin-right: 8px;
-  font-size: 1.1rem;
-  color: var(--text);
-  font-weight: 600;
-}
-
-.slider-row input[type=range] {
-  flex: 1 1 0px;
-  width: 240px;
-  margin: 0 12px 0 0;
-  height: 22px;
-}
-
-.slider-row span {
-  min-width: 58px;
-  color: var(--muted);
-  font-size: 1.05rem;
-  text-align: right;
-  display: inline-block;
-  white-space: nowrap;
-}
-
-input[type=range] {
-  width: 360px;
-  height: 22px;
-  background: #e6ecf2;
-  border-radius: 6px;
-  outline: none;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  height: 6px;
-  margin-top: 8px;
-  border-radius: 6px;
-  background: #e6ecf2;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #00b4d8 60%, #2196f3 100%);
-  box-shadow: 0 0 8px #0077b6;
-  cursor: pointer;
-  border: 2px solid #fff;
-  margin-top: -8px;
-  transition: background 0.2s, transform 0.2s;
-}
-
-input[type=range]:focus::-webkit-slider-thumb {
-  background: #29c7ff;
-  transform: scale(1.04);
-}
-
-input[type=range]::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #00b4d8 60%, #2196f3 100%);
-  box-shadow: 0 0 8px #0077b6;
-  cursor: pointer;
-  border: 2px solid #fff;
-  margin-top: 0;
-  transition: background 0.2s, transform 0.2s;
-}
-
-input[type=range]:focus::-moz-range-thumb {
-  background: #29c7ff;
-  transform: scale(1.04);
-}
-
-input[type=range]::-ms-thumb {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #00b4d8 60%, #2196f3 100%);
-  box-shadow: 0 0 8px #0077b6;
-  cursor: pointer;
-  border: 2px solid #fff;
-  margin-top: 0;
-  transition: background 0.2s, transform 0.2s;
-}
-
-input[type=range]::-ms-fill-lower,
-input[type=range]::-ms-fill-upper {
-  background: #e6ecf2;
-  border-radius: 6px;
-}
-
-.filter-button {
-  margin-top: 14px;
-  padding: 9px 20px;
-  border-radius: 8px;
-  background: #e6ecf2;
-  color: var(--text);
-  border: none;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px #eee;
-  transition: background 0.2s;
-}
-
-.filter-button:hover {
-  background: var(--accent);
-  color: #fff;
 }
 
 .site-footer {
@@ -616,7 +544,6 @@ input[type=range]::-ms-fill-upper {
   padding-left: 24px;   
 }
 
-
 /* Contact page overrides */
 .contact-card input[type="text"],
 .contact-card input[type="email"],
@@ -624,12 +551,9 @@ input[type=range]::-ms-fill-upper {
   display: block;
   width: 100%;
   box-sizing: border-box;
-
-  /* force visibility even if a reset removed styles */
   border: 1px solid #e2e8f0 !important;
   background: #fff !important;
   color: #0f172a !important;
-
   padding: .8rem 1rem;
   border-radius: 12px;
   font-size: 1rem;
@@ -661,5 +585,3 @@ input[type=range]::-ms-fill-upper {
 .form-message{ grid-area:message; }
 .actions{ grid-area:actions; display:flex; justify-content:flex-end; }
 @media (max-width: 680px){ .contact-form{ grid-template-columns: 1fr; } }
-
-
