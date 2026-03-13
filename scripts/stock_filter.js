@@ -51,29 +51,24 @@ function renderStockList(filtered) {
             let atrPercent = (stock.atr / stock.price) * 100; 
             let isHighVolatility = (atrPercent >= 2.5); // 2.5% daily average move
 
-            let stateIcon = "⚖️";
             let stateText = "Stable";
             let stateColor = "#4caf50";
 
             if (isHighVolume && isHighVolatility) {
-                stateIcon = "🚀";
                 stateText = "Momentum";
                 stateColor = "#2196F3"; // Blue
             } else if (!isHighVolume && isHighVolatility) {
-                stateIcon = "⚠️";
                 stateText = "Danger";
                 stateColor = "#f44336"; // Red
             } else if (!isHighVolume && !isHighVolatility) {
-                stateIcon = "🐢"; 
                 stateText = "Chop";
                 stateColor = "#9e9e9e"; // Grey
             } else if (isHighVolume && !isHighVolatility) {
-                stateIcon = "📈";
                 stateText = "Grind"; // High volume but tight price action (accumulation)
                 stateColor = "#ff9800"; // Orange
             }
             
-            let stateBadge = `<span style="background-color: ${stateColor}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; vertical-align: middle;">${stateIcon} ${stateText}</span>`;
+            let stateBadge = `<span style="background-color: ${stateColor}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; vertical-align: middle;">${stateText}</span>`;
             // ----------------------------------------
 
             return `
