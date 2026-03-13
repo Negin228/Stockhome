@@ -708,9 +708,21 @@ def job(tickers, prev_tickers=None):
             sig_val = scalar(row["signal_line"])
             sma_slope = slope(df["dma200"], lookback=10)
 
-            atr_val = scalar(row["atr"]) if "atr" in df.columns and pd.notna(row["atr"]) else 0.0
-            vol_val = scalar(row["Volume"]) if "Volume" in df.columns else 0.0
-            vol_sma20 = scalar(row["vol_sma20"]) if "vol_sma20" in df.columns else 0.0
+            try:
+                atr_val = scalar(row["atr"]) if "atr" in df.columns else 0.0
+            except Exception:
+                atr_val = 0.0
+
+            try:
+                vol_val = float(scalar(row["Volume"]))
+            except Exception:
+                vol_val = 0.0
+
+            try:
+                vol_sma20 = float(scalar(row["vol_sma20"]))
+            except Exception:
+                vol_sma20 = 0.0
+
             rvol_val = (vol_val / vol_sma20) if vol_sma20 > 0 else 0.0
             
 
