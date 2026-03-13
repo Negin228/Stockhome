@@ -48,7 +48,7 @@ function renderStockList(filtered) {
             // --- NEW: Market State Classification ---
             // You can easily tweak these thresholds right here!
             let isHighVolume = (stock.rvol >= 1.2); 
-            let atrPercent = (stock.atr / stock.price) * 100; 
+            let atrPercent = (stock.price > 0) ? (stock.atr / stock.price) * 100 : 0; 
             let isHighVolatility = (atrPercent >= 2.5); // 2.5% daily average move
 
             let stateText = "Stable";
@@ -69,8 +69,15 @@ function renderStockList(filtered) {
             }
             
             let stateBadge = `<span style="background-color: ${stateColor}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; vertical-align: middle;">${stateText}</span>`;
-            // ----------------------------------------
+            let volText = isHighVolume 
+                ? `<span style="color: #2196F3; font-weight: bold; font-size: 0.85em;">(High Vol)</span>` 
+                : `<span style="color: #9e9e9e; font-size: 0.85em;">(Low Vol)</span>`;
+                
+            let volatText = isHighVolatility 
+                ? `<span style="color: #f44336; font-weight: bold; font-size: 0.85em;">(High Move)</span>` 
+                : `<span style="color: #9e9e9e; font-size: 0.85em;">(Low Move)</span>`;
 
+            
             return `
             <li style="margin-bottom: 15px; padding: 20px; border: 1px solid #eee; border-radius: 8px; list-style: none; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                 <div style="display: flex; align-items: center; margin-bottom: 8px;">
@@ -86,8 +93,8 @@ function renderStockList(filtered) {
                     <span><strong>Drop:</strong> ${dropText}</span>
                     <span><strong>DMA50:</strong> $${stock.dma50_str}</span>
                     <span><strong>DMA200:</strong> $${stock.dma200_str}</span>
-                    <span><strong>RVOL:</strong> ${stock.rvol || 0}x</span>
-                    <span><strong>ATR:</strong> $${stock.atr || 0}</span>
+                    <span><strong>RVOL:</strong> ${stock.rvol || 0}x ${volText}</span>
+                    <span><strong>ATR:</strong> $${stock.atr || 0} ${volatText}</span>
                 </div>
                 <div style="color: #666; font-style: italic; font-size: 0.95em;"><strong>Trend Analysis:</strong> ${stock.why}</div>
             </li>`;
