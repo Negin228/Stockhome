@@ -396,14 +396,17 @@ def calculate_indicators(df):
         close = df["Close"].iloc[:, 0]
         high = df["High"].iloc[:, 0]
         low  = df["Low"].iloc[:, 0]
+        volume = df["Volume"].iloc[:, 0]
     else:
         close = df["Close"]
         high  = df["High"]
         low   = df["Low"]
+        volume = df["Volume"]
 
     close = close.astype(float)
     high  = high.astype(float)
     low   = low.astype(float)
+    volume = volume.astype(float)
 
     # RSI
     df["rsi"] = ta.momentum.RSIIndicator(close=close, window=14).rsi()
@@ -436,9 +439,9 @@ def calculate_indicators(df):
     # Volatility (ATR)
     atr_ind = ta.volatility.AverageTrueRange(high=high, low=low, close=close, window=14)
     df["atr"] = atr_ind.average_true_range()
+    
 
     # Relative Volume (RVOL)
-    volume = df["Volume"].astype(float)
     df["vol_sma20"] = volume.rolling(20).mean()
 
     return df
