@@ -79,10 +79,12 @@ function filterStocks() {
     var peLimit = (peInput >= 100) ? Infinity : peInput; 
     var cap = parseFloat(document.getElementById('cap-slider').value) * 1e9;
     var drop = parseFloat(document.getElementById('drop-slider').value);
+    var rvolMin = parseFloat(document.getElementById('rvol-slider').value);
+    var atrMin = parseFloat(document.getElementById('atr-slider').value);
 
     var filtered = allStocks.filter(function(stock) {
         var dropOk = (drop === 0) ? true : (typeof stock.pct_drop === "number" ? stock.pct_drop >= drop : false);
-        return stock.rsi <= rsi && stock.pe <= peLimit && stock.market_cap >= cap && dropOk;
+        return stock.rsi <= rsi && stock.pe <= peLimit && stock.market_cap >= cap && dropOk && (stock.rvol || 0) >= rvolMin && (stock.atr || 0) >= atrMin;
     });
     
     // Simply call the render function here
@@ -118,6 +120,18 @@ function setupSliderHandlers() {
     document.getElementById('cap-value').innerText = this.value;
     filterStocks();
   };
+
+  var rvolSlider = document.getElementById('rvol-slider');
+  if (rvolSlider) rvolSlider.oninput = function() {
+    document.getElementById('rvol-value').innerText = this.value + "x";
+    filterStocks();
+  };
+
+  var atrSlider = document.getElementById('atr-slider');
+  if (atrSlider) atrSlider.oninput = function() {
+    document.getElementById('atr-value').innerText = "$" + this.value;
+    filterStocks();
+  };
 }
 
 function resetFilters() {
@@ -132,6 +146,11 @@ function resetFilters() {
     document.getElementById('pe-value').innerText = ">100"; // Reset text to >100
     document.getElementById('cap-value').innerText = 0;
     document.getElementById('drop-value').innerText = "0%";
+
+    document.getElementById('rvol-slider').value = 0;
+    document.getElementById('atr-slider').value = 0;
+    document.getElementById('rvol-value').innerText = "0x";
+    document.getElementById('atr-value').innerText = "$0";
     
     filterStocks();
 }
