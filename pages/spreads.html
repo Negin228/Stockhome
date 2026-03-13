@@ -79,19 +79,19 @@
       <div class="card-grid" id="strategy-cards"> 
         <div class="filter-card" data-strategy="bull call" style="border-left: 4px solid #28a745;">
           <button style="background-color: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;">Call Debit Spread (Bullish)</button>
-          <p style="margin: 0;">Buy call at lower strike, sell call at higher strike. Profit if price > lower strike. Max risk: Net debit.</p>
+          <p style="margin: 0;">Buy a call at a lower strike and sell a call at a higher strike with the same expiration. Profit condition: Price rises above the lower strike. Maximum profit: Strike width − debit paid. Maximum risk: Net debit paid. Break-even: Lower strike + debit.</p>
         </div>
         <div class="filter-card" data-strategy="bear call" style="border-left: 4px solid #dc3545;">
           <button style="background-color: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;">Call Credit Spread (Bearish)</button>
-          <p style="margin: 0;">Sell call at lower strike, buy call at higher strike. Profit if price &lt; short strike. Max risk: Strike width minus credit.</p>
+          <p style="margin: 0;">Sell a call at a lower strike and buy a call at a higher strike with the same expiration. Profit condition: Price stays below the short strike. Maximum profit: Net credit received. Maximum risk: Strike width − credit received. Break-even: Short strike + credit.</p>
         </div>
         <div class="filter-card" data-strategy="bear put" style="border-left: 4px solid #dc3545;">
           <button style="background-color: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;">Put Debit Spread (Bearish)</button>
-          <p style="margin: 0;">Buy put at higher strike, sell put at lower strike. Profit if price &lt; higher strike. Max risk: Net debit.</p>
+          <p style="margin: 0;">Buy a put at a higher strike and sell a put at a lower strike with the same expiration. Profit condition: Price falls below the higher strike. Maximum profit: Strike width − debit paid. Maximum risk: Net debit paid. Break-even: Higher strike − debit.</p>
         </div>
         <div class="filter-card" data-strategy="bull put" style="border-left: 4px solid #28a745;">
           <button style="background-color: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;">Put Credit Spread (Bullish)</button>
-          <p style="margin: 0;">Sell put at higher strike, buy put at lower strike. Profit if price > short strike. Max risk: Strike width minus credit.</p>
+          <p style="margin: 0;">Sell a put at a higher strike and buy a put at a lower strike with the same expiration. Profit condition: Price stays above the short strike. Maximum profit: Net credit received. Maximum risk: Strike width − credit received. Break-even: Short strike − credit.</p>
         </div>
       </div>
     </section>
