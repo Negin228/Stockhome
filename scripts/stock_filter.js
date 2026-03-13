@@ -60,6 +60,10 @@ function renderStockList(filtered) {
                     <span><strong>Drop:</strong> ${dropText}</span>
                     <span><strong>DMA50:</strong> $${stock.dma50_str}</span>
                     <span><strong>DMA200:</strong> $${stock.dma200_str}</span>
+                    <span><strong>Cap:</strong> ${stock.market_cap_str}</span>
+                    <span><strong>RSI:</strong> ${stock.rsi_str}</span>
+                    <span><strong>RVOL:</strong> ${stock.rvol}x</span>
+                    <span><strong>ATR:</strong> $${stock.atr}</span>
                 </div>
                 <div style="color: #666; font-style: italic; font-size: 0.95em;"><strong>Trend Analysis:</strong> ${stock.why}</div>
             </li>`;
