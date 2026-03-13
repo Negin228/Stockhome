@@ -22,19 +22,47 @@
       
       <section class="section">
             <div class="filter-controls">
-              <label>RSI <input id="rsi-slider" type="range" min="0" max="100" value="100"></label>
-              <span id="rsi-value">100</span>
-              <label>P/E <input id="pe-slider" type="range" min="0" max="100" value="100"></label>
-              <span id="pe-value">>100</span>
-              <label>Market Cap ($B) <input id="cap-slider" type="range" min="0" max="3000" value="0"></label>
-              <span id="cap-value">0</span>
-              <label>Drop <input id="drop-slider" type="range" min="0" max="20" value="0"></label>
-              <span id="drop-value">0%</span>
-              <label>RVOL <input id="rvol-slider" type="range" min="0" max="5" step="0.1" value="0"></label>
-              <span id="rvol-value">0x</span>
-              <label>ATR <input id="atr-slider" type="range" min="0" max="20" step="0.5" value="0"></label>
-              <span id="atr-value">$0</span>
-              <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
+              <div class="filters-grid">
+                <div class="filter-row">
+                  <label>RSI</label>
+                  <input id="rsi-slider" type="range" min="0" max="100" value="100">
+                  <span id="rsi-value" class="val-display">100</span>
+                </div>
+    
+                <div class="filter-row">
+                  <label>P/E</label>
+                  <input id="pe-slider" type="range" min="0" max="100" value="100">
+                  <span id="pe-value" class="val-display">>100</span>
+                </div>
+    
+                <div class="filter-row">
+                  <label>Market Cap</label>
+                  <input id="cap-slider" type="range" min="0" max="3000" value="0">
+                  <span id="cap-value" class="val-display">0</span>
+                </div>
+    
+                <div class="filter-row">
+                  <label>Drop</label>
+                  <input id="drop-slider" type="range" min="0" max="20" value="0">
+                  <span id="drop-value" class="val-display">0%</span>
+                </div>
+    
+                <div class="filter-row">
+                  <label>RVOL</label>
+                  <input id="rvol-slider" type="range" min="0" max="5" step="0.1" value="0">
+                  <span id="rvol-value" class="val-display">0x</span>
+                </div>
+    
+                <div class="filter-row">
+                  <label>ATR</label>
+                  <input id="atr-slider" type="range" min="0" max="20" step="0.5" value="0">
+                  <span id="atr-value" class="val-display">$0</span>
+                </div>
+              </div>
+
+              <div class="filter-actions">
+                <button class="filter-button" onclick="resetFilters()">Reset Filters</button>
+              </div>
             </div>
             <div id="filtered-stocks"></div>
       </section>
