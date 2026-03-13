@@ -108,15 +108,30 @@ function filterStocks() {
     var peLimit = (peInput >= 100) ? Infinity : peInput; 
     var cap = parseFloat(document.getElementById('cap-slider').value) * 1e9;
     var drop = parseFloat(document.getElementById('drop-slider').value);
+    
     var rvolMin = parseFloat(document.getElementById('rvol-slider').value);
     var atrMin = parseFloat(document.getElementById('atr-slider').value);
 
     var filtered = allStocks.filter(function(stock) {
-        var dropOk = (drop === 0) ? true : (typeof stock.pct_drop === "number" ? stock.pct_drop >= drop : false);
-        return stock.rsi <= rsi && stock.pe <= peLimit && stock.market_cap >= cap && dropOk && (stock.rvol || 0) >= rvolMin && (stock.atr || 0) >= atrMin;
+        // 1. Drop Check
+        var passDrop = (drop === 0) ? true : (typeof stock.pct_drop === "number" ? stock.pct_drop >= drop : false);
+        
+        // 2. RSI Check (allow if missing, otherwise check)
+        var passRSI = (stock.rsi == null) ? true : (stock.rsi <= rsi);
+        
+        // 3. P/E Check (If slider is maxed out, allow all. Otherwise, must have PE and be under limit)
+        var passPE = (peLimit === Infinity) ? true : (stock.pe != null && stock.pe <= peLimit);
+        
+        // 4. Market Cap Check
+        var passCap = (stock.market_cap == null) ? true : (stock.market_cap >= cap);
+        
+        // 5. RVOL & ATR Checks
+        var passRVOL = (stock.rvol || 0) >= rvolMin;
+        var passATR = (stock.atr || 0) >= atrMin;
+
+        return passRSI && passPE && passCap && passDrop && passRVOL && passATR;
     });
     
-    // Simply call the render function here
     renderStockList(filtered);
 }
 
