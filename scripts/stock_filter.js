@@ -45,6 +45,37 @@ function renderStockList(filtered) {
             let color = stock.score >= 70 ? "#4caf50" : (stock.score >= 40 ? "#ff9800" : "#f44336");
             let dropText = (typeof stock.pct_drop === "number") ? stock.pct_drop.toFixed(1) + "%" : "0%";
 
+            // --- NEW: Market State Classification ---
+            // You can easily tweak these thresholds right here!
+            let isHighVolume = (stock.rvol >= 1.2); 
+            let atrPercent = (stock.atr / stock.price) * 100; 
+            let isHighVolatility = (atrPercent >= 2.5); // 2.5% daily average move
+
+            let stateIcon = "⚖️";
+            let stateText = "Stable";
+            let stateColor = "#4caf50";
+
+            if (isHighVolume && isHighVolatility) {
+                stateIcon = "🚀";
+                stateText = "Momentum";
+                stateColor = "#2196F3"; // Blue
+            } else if (!isHighVolume && isHighVolatility) {
+                stateIcon = "⚠️";
+                stateText = "Danger";
+                stateColor = "#f44336"; // Red
+            } else if (!isHighVolume && !isHighVolatility) {
+                stateIcon = "🐢"; 
+                stateText = "Chop";
+                stateColor = "#9e9e9e"; // Grey
+            } else if (isHighVolume && !isHighVolatility) {
+                stateIcon = "📈";
+                stateText = "Grind"; // High volume but tight price action (accumulation)
+                stateColor = "#ff9800"; // Orange
+            }
+            
+            let stateBadge = `<span style="background-color: ${stateColor}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; vertical-align: middle;">${stateIcon} ${stateText}</span>`;
+            // ----------------------------------------
+
             return `
             <li style="margin-bottom: 15px; padding: 20px; border: 1px solid #eee; border-radius: 8px; list-style: none; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                 <div style="display: flex; align-items: center; margin-bottom: 8px;">
@@ -52,7 +83,7 @@ function renderStockList(filtered) {
                     <strong style="font-size: 1.4em; margin-right: 10px; color: #000;">${stock.ticker}</strong>
                     <strong style="font-size: 1.4em; margin-right: 15px; color: #333;">$${stock.price_str}</strong>
                     <span style="color: #666; font-size: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${stock.company}</span>
-                </div>
+                    ${stateBadge} </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.9em; color: #444; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0;">
                     <span><strong>Cap:</strong> ${stock.market_cap_str}</span>
                     <span><strong>RSI:</strong> ${stock.rsi_str}</span>
@@ -60,8 +91,8 @@ function renderStockList(filtered) {
                     <span><strong>Drop:</strong> ${dropText}</span>
                     <span><strong>DMA50:</strong> $${stock.dma50_str}</span>
                     <span><strong>DMA200:</strong> $${stock.dma200_str}</span>
-                    <span><strong>RVOL:</strong> ${stock.rvol}x</span>
-                    <span><strong>ATR:</strong> $${stock.atr}</span>
+                    <span><strong>RVOL:</strong> ${stock.rvol || 0}x</span>
+                    <span><strong>ATR:</strong> $${stock.atr || 0}</span>
                 </div>
                 <div style="color: #666; font-style: italic; font-size: 0.95em;"><strong>Trend Analysis:</strong> ${stock.why}</div>
             </li>`;
