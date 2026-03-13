@@ -1,6 +1,29 @@
 // stock_filter.js
 
 let allStocks = [];
+let activeStateFilter = null; // <-- NEW: Tracks if a badge is clicked
+
+// --- NEW: Helper Functions ---
+function getMarketState(stock) {
+    let isHighVolume = (stock.rvol >= 1.2);
+    let atrPercent = (stock.price > 0) ? (stock.atr / stock.price) * 100 : 0;
+    let isHighVolatility = (atrPercent >= 2.5);
+
+    if (isHighVolume && isHighVolatility) return "Momentum";
+    if (!isHighVolume && isHighVolatility) return "Danger";
+    if (!isHighVolume && !isHighVolatility) return "Chop";
+    return "Stable"; // High volume, low volatility
+}
+
+function toggleStateFilter(state) {
+    if (activeStateFilter === state) {
+        activeStateFilter = null; // If already clicked, click again to turn off
+    } else {
+        activeStateFilter = state; // Turn on filter
+    }
+    filterStocks(); // Re-calculate the list
+}
+// -----------------------------
 
 // 1. Data Loading
 if (window.STOCK_DATA) {
@@ -47,28 +70,24 @@ function renderStockList(filtered) {
 
             // --- NEW: Market State Classification ---
             // You can easily tweak these thresholds right here!
+            // --- UPDATED: Market State Classification ---
+            let stateText = getMarketState(stock);
             let isHighVolume = (stock.rvol >= 1.2); 
             let atrPercent = (stock.price > 0) ? (stock.atr / stock.price) * 100 : 0; 
-            let isHighVolatility = (atrPercent >= 2.5); // 2.5% daily average move
+            let isHighVolatility = (atrPercent >= 2.5);
 
-            let stateText = "Stable";
-            let stateColor = "#4caf50";
-
-            if (isHighVolume && isHighVolatility) {
-                stateText = "Momentum";
-                stateColor = "#2196F3"; // Blue
-            } else if (!isHighVolume && isHighVolatility) {
-                stateText = "Danger";
-                stateColor = "#f44336"; // Red
-            } else if (!isHighVolume && !isHighVolatility) {
-                stateText = "Chop";
-                stateColor = "#9e9e9e"; // Grey
-            } else if (isHighVolume && !isHighVolatility) {
-                stateText = "Grind"; // High volume but tight price action (accumulation)
-                stateColor = "#ff9800"; // Orange
-            }
+            let stateColor = "#4caf50"; // Default
+            if (stateText === "Momentum") stateColor = "#2196F3"; 
+            if (stateText === "Danger") stateColor = "#f44336"; 
+            if (stateText === "Chop") stateColor = "#9e9e9e"; 
+            if (stateText === "Stable") stateColor = "#ff9800"; 
             
-            let stateBadge = `<span style="background-color: ${stateColor}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; vertical-align: middle;">${stateText}</span>`;
+            // Adds a dark border if this badge's filter is currently active
+            let borderStyle = (activeStateFilter === stateText) ? "border: 2px solid #334155;" : "border: 2px solid transparent;";
+
+            // Make it clickable by adding onclick="toggleStateFilter(...)" and cursor: pointer
+            let stateBadge = `<span onclick="toggleStateFilter('${stateText}')" style="background-color: ${stateColor}; color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.8em; margin-left: 10px; vertical-align: middle; cursor: pointer; ${borderStyle} transition: 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);" title="Click to filter by ${stateText}">${stateText}</span>`;
+
             let volText = isHighVolume 
                 ? `<span style="color: #2196F3; font-weight: bold; font-size: 0.85em;">(High Vol)</span>` 
                 : `<span style="color: #9e9e9e; font-size: 0.85em;">(Low Vol)</span>`;
@@ -76,7 +95,6 @@ function renderStockList(filtered) {
             let volatText = isHighVolatility 
                 ? `<span style="color: #f44336; font-weight: bold; font-size: 0.85em;">(High Move)</span>` 
                 : `<span style="color: #9e9e9e; font-size: 0.85em;">(Low Move)</span>`;
-
             
             return `
             <li style="margin-bottom: 15px; padding: 20px; border: 1px solid #eee; border-radius: 8px; list-style: none; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -128,11 +146,11 @@ function filterStocks() {
         var passCap = (stock.market_cap == null) ? true : (stock.market_cap >= cap);
         
         // 5. RVOL & ATR Checks
-        var passRVOL = (stock.rvol || 0) >= rvolMin;
-        var passATR = (stock.atr || 0) >= atrMin;
+        var passRVOL = (stock.rvol == null) ? true : (stock.rvol >= rvolMin);
+        var passATR = (stock.atr == null) ? true : (stock.atr >= atrMin);
+        var passState = (activeStateFilter === null) ? true : (getMarketState(stock) === activeStateFilter);
 
-        return passRSI && passPE && passCap && passDrop && passRVOL && passATR;
-    });
+        return passRSI && passPE && passCap && passDrop && passRVOL && passATR && passState;    });
     
     renderStockList(filtered);
 }
@@ -197,7 +215,8 @@ function resetFilters() {
     document.getElementById('atr-slider').value = 0;
     document.getElementById('rvol-value').innerText = "0x";
     document.getElementById('atr-value').innerText = "$0";
-    
+
+    activeStateFilter = null; 
     filterStocks();
 }
 
