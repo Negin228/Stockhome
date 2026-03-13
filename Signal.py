@@ -433,6 +433,14 @@ def calculate_indicators(df):
     df["kc_low"] = kc.keltner_channel_lband()
     df["kc_high"] = kc.keltner_channel_hband()
 
+    # Volatility (ATR)
+    atr_ind = ta.volatility.AverageTrueRange(high=high, low=low, close=close, window=14)
+    df["atr"] = atr_ind.average_true_range()
+
+    # Relative Volume (RVOL)
+    volume = df["Volume"].astype(float)
+    df["vol_sma20"] = volume.rolling(20).mean()
+
     return df
 
 # ---------------------------------------------------------
@@ -697,6 +705,12 @@ def job(tickers, prev_tickers=None):
             sig_val = scalar(row["signal_line"])
             sma_slope = slope(df["dma200"], lookback=10)
 
+            atr_val = scalar(row["atr"]) if "atr" in df.columns and pd.notna(row["atr"]) else 0.0
+            vol_val = scalar(row["Volume"]) if "Volume" in df.columns else 0.0
+            vol_sma20 = scalar(row["vol_sma20"]) if "vol_sma20" in df.columns else 0.0
+            rvol_val = (vol_val / vol_sma20) if vol_sma20 > 0 else 0.0
+            
+
             s_trend, r_trend = score_trend(close_price, dma50_val, dma200_val, sma_slope)
             s_rsi, r_rsi = score_rsi(rsi_val)
             s_macd, r_macd = score_macd(macd_val, sig_val, df["hist"])
@@ -760,6 +774,8 @@ def job(tickers, prev_tickers=None):
                 "weekly_available": weekly_avail,
                 "monthly_available": monthly_avail,
                 "adx": float(adx_val),
+                "rvol": round(float(rvol_val), 2),
+                "atr": round(float(atr_val), 2),
             }
 
             all_rows.append(base_obj)
