@@ -1,5 +1,30 @@
 [
   {
+    "ticker": "DAY",
+    "company": "Dayforce, Inc.",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 69.86,
+    "market_cap": 11180042240.0,
+    "market_cap_str": "11.18B",
+    "mcap": 11.18004224,
+    "pe_check": false,
+    "growth_check": false,
+    "debt_check": true,
+    "health": 45.53,
+    "trailing_pe": null,
+    "forward_pe": 25.551184,
+    "earnings_growth": null,
+    "debt_to_equity": 45.53,
+    "earnings_date": "2026-02-11",
+    "weekly_available": false,
+    "monthly_available": false,
+    "is_new": true,
+    "added_timestamp": "2026-04-08T09:29:18.072046",
+    "reasoning": "Det: Price > BBU(69.70) | ADX: 18.9 | RSI 63.9 (Moderate: Selling Theta.)"
+  },
+  {
     "ticker": "APTV",
     "company": "Aptiv PLC",
     "strategy": "Call Debit (Bullish)",
@@ -21,7 +46,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:27:50.859974",
+    "added_timestamp": "2026-04-08T09:27:00.850278",
     "reasoning": "Det: Price < BBL(59.83) | ADX: 34.6 | RSI 25.3 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -46,7 +71,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:28:09.531195",
+    "added_timestamp": "2026-04-08T09:27:19.644911",
     "reasoning": "Det: Price < BBL(377.57) | ADX: 31.0 | RSI 25.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -71,7 +96,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:28:26.784581",
+    "added_timestamp": "2026-04-08T09:27:37.175834",
     "reasoning": "Det: Price > BBU(123.41) | ADX: 17.7 | RSI 67.5 (Moderate: Selling Theta.)"
   },
   {
@@ -96,7 +121,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:29:56.288396",
+    "added_timestamp": "2026-04-08T09:29:10.956048",
     "reasoning": "Det: Price > BBU(77.93) | ADX: 22.9 | RSI 62.6 (Moderate: Selling Theta.)"
   },
   {
@@ -121,7 +146,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:30:34.636159",
+    "added_timestamp": "2026-04-08T09:29:58.764023",
     "reasoning": "Det: Price < BBL(32.59) | ADX: 18.8 | RSI 32.2 (Moderate: Selling Theta.)"
   },
   {
@@ -146,7 +171,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:31:02.187503",
+    "added_timestamp": "2026-04-08T09:30:27.780240",
     "reasoning": "Det: Price > BBU(306.92) | ADX: 20.6 | RSI 64.5 (Moderate: Selling Theta.)"
   },
   {
@@ -171,7 +196,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:31:30.927924",
+    "added_timestamp": "2026-04-08T09:30:54.552482",
     "reasoning": "Det: Price < BBL(149.43) | ADX: 24.7 | RSI 38.1 (Moderate: Selling Theta.)"
   },
   {
@@ -196,7 +221,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:31:46.120739",
+    "added_timestamp": "2026-04-08T09:31:09.929355",
     "reasoning": "Det: Price < BBL(62.70) | ADX: 19.5 | RSI 33.1 (Moderate: Selling Theta.)"
   },
   {
@@ -221,7 +246,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:32:02.506893",
+    "added_timestamp": "2026-04-08T09:31:32.943654",
     "reasoning": "Det: Price < BBL(21.66) | ADX: 27.4 | RSI 31.1 (Moderate: Selling Theta.)"
   },
   {
@@ -246,7 +271,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:32:08.102957",
+    "added_timestamp": "2026-04-08T09:31:39.713076",
     "reasoning": "Det: Price > BBU(186.91) | ADX: 34.0 | RSI 66.8 (Moderate: Selling Theta.)"
   },
   {
@@ -271,7 +296,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:32:18.686010",
+    "added_timestamp": "2026-04-08T09:31:53.629587",
     "reasoning": "Det: Price > BBU(51.61) | ADX: 14.4 | RSI 64.7 (Moderate: Selling Theta.)"
   },
   {
@@ -296,7 +321,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:32:19.638410",
+    "added_timestamp": "2026-04-08T09:31:55.035893",
     "reasoning": "Det: Price > BBU(165.35) | ADX: 21.6 | RSI 62.3 (Moderate: Selling Theta.)"
   },
   {
@@ -321,7 +346,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:32:37.565732",
+    "added_timestamp": "2026-04-08T09:32:18.800401",
     "reasoning": "Det: Price < BBL(16.95) | ADX: 24.5 | RSI 32.4 (Moderate: Selling Theta.)"
   },
   {
@@ -346,7 +371,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:32:40.670954",
+    "added_timestamp": "2026-04-08T09:32:22.882251",
     "reasoning": "Det: Price > BBU(300.58) | ADX: 18.8 | RSI 61.0 (Moderate: Selling Theta.)"
   },
   {
@@ -371,7 +396,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:32:41.721894",
+    "added_timestamp": "2026-04-08T09:32:24.254440",
     "reasoning": "Det: Price < BBL(94.61) | ADX: 26.0 | RSI 30.5 (Moderate: Selling Theta.)"
   },
   {
@@ -396,7 +421,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:33:51.590796",
+    "added_timestamp": "2026-04-08T09:33:35.468267",
     "reasoning": "Det: Price > BBU(1172.54) | ADX: 21.1 | RSI 61.8 (Moderate: Selling Theta.)"
   },
   {
@@ -421,7 +446,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:34:10.983664",
+    "added_timestamp": "2026-04-08T09:34:00.674270",
     "reasoning": "Det: Price > BBU(144.36) | ADX: 18.9 | RSI 61.3 (Moderate: Selling Theta.)"
   },
   {
@@ -446,7 +471,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:34:30.953986",
+    "added_timestamp": "2026-04-08T09:34:28.294464",
     "reasoning": "Det: Price > BBU(10.44) | ADX: 23.2 | RSI 62.3 (Moderate: Selling Theta.)"
   },
   {
@@ -471,7 +496,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:34:58.249989",
+    "added_timestamp": "2026-04-08T09:35:05.941766",
     "reasoning": "Det: Price < BBL(124.15) | ADX: 34.3 | RSI 29.9 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -496,7 +521,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:35:19.751232",
+    "added_timestamp": "2026-04-08T09:35:35.102590",
     "reasoning": "Det: Price > BBU(459.98) | ADX: 13.4 | RSI 64.0 (Moderate: Selling Theta.)"
   },
   {
@@ -521,7 +546,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:35:33.300898",
+    "added_timestamp": "2026-04-08T09:35:54.629071",
     "reasoning": "Det: Price > BBU(130.88) | ADX: 15.8 | RSI 63.2 (Moderate: Selling Theta.)"
   },
   {
@@ -546,7 +571,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:36:14.646452",
+    "added_timestamp": "2026-04-08T09:36:50.664780",
     "reasoning": "Det: Price > BBU(298.27) | ADX: 28.1 | RSI 67.5 (Moderate: Selling Theta.)"
   },
   {
@@ -571,7 +596,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:36:19.505842",
+    "added_timestamp": "2026-04-08T09:36:57.274659",
     "reasoning": "Det: Price > BBU(269.16) | ADX: 33.3 | RSI 79.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -596,7 +621,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-04-08T08:36:40.270849",
+    "added_timestamp": "2026-04-08T09:37:25.125611",
     "reasoning": "Det: Price > BBU(259.28) | ADX: 16.0 | RSI 64.3 (Moderate: Selling Theta.)"
   }
 ]
