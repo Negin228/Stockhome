@@ -148,7 +148,10 @@ def option_expiration_type(expiration_str: str) -> str:
         # Monthly: 3rd Friday (15-21)
         if d.weekday() == 4 and 15 <= d.day <= 21:
             return "MONTHLY"
-        return "WEEKLY"
+        # Weekly: any other Friday
+        if d.weekday() == 4:
+            return "WEEKLY"
+        return "UNKNOWN"  # Non-Friday expirations
     except Exception:
         return "UNKNOWN"
 
