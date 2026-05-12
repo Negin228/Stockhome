@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-12-2026 11:46",
+  "generated_at_pt": "05-12-2026 13:20",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -12,49 +12,49 @@
     {
       "ticker": "MCD",
       "company": "McDonald's Corporation",
-      "price": 276.39,
-      "rsi": 28.1,
-      "market_cap_b": 196.5,
-      "market_cap_str": "196.52B",
+      "price": 274.84,
+      "rsi": 25.0,
+      "market_cap_b": 195.3,
+      "market_cap_str": "195.28B",
       "weekly_available": true,
       "filters_pass": true,
       "filter_fail": [],
       "ladder_result": {
         "qualifies": false,
-        "fail_reason": "No week satisfies both conditions. Best score=19.3 at week 1 (need 10.0); best premium%=0.385% (need 0.75%)",
+        "fail_reason": "No week satisfies both conditions. Best score=28.0 at week 1 (need 10.0); best premium%=0.388% (need 0.75%)",
         "week_reps": [
           {
-            "expiration": "2026-05-15",
-            "exp_type": "MONTHLY",
-            "dte": 2,
+            "expiration": "2026-05-22",
+            "exp_type": "WEEKLY",
+            "dte": 9,
             "weeks_out": 1,
-            "strike": 225.0,
+            "strike": 200.0,
             "premium": 1.06,
-            "delta_pct": 18.59,
-            "premium_pct": 0.3853,
-            "score": 19.34
+            "delta_pct": 27.23,
+            "premium_pct": 0.3875,
+            "score": 27.98
           },
           {
             "expiration": "2026-05-29",
             "exp_type": "WEEKLY",
             "dte": 16,
             "weeks_out": 2,
-            "strike": 240.0,
-            "premium": 1.08,
-            "delta_pct": 13.17,
-            "premium_pct": 0.3926,
-            "score": 14.67
+            "strike": 260.0,
+            "premium": 0.61,
+            "delta_pct": 5.4,
+            "premium_pct": 0.2238,
+            "score": 6.9
           },
           {
             "expiration": "2026-06-05",
             "exp_type": "WEEKLY",
             "dte": 23,
             "weeks_out": 3,
-            "strike": 235.0,
-            "premium": 1.11,
-            "delta_pct": 14.98,
-            "premium_pct": 0.4016,
-            "score": 17.23
+            "strike": 260.0,
+            "premium": 1.23,
+            "delta_pct": 5.4,
+            "premium_pct": 0.4494,
+            "score": 7.65
           },
           {
             "expiration": "2026-06-12",
@@ -62,10 +62,10 @@
             "dte": 30,
             "weeks_out": 4,
             "strike": 260.0,
-            "premium": 1.41,
-            "delta_pct": 5.93,
-            "premium_pct": 0.5083,
-            "score": 8.93
+            "premium": 1.6,
+            "delta_pct": 5.4,
+            "premium_pct": 0.5822,
+            "score": 8.4
           },
           {
             "expiration": "2026-06-18",
@@ -73,10 +73,10 @@
             "dte": 36,
             "weeks_out": 5,
             "strike": 260.0,
-            "premium": 1.77,
-            "delta_pct": 5.93,
-            "premium_pct": 0.6422,
-            "score": 9.68
+            "premium": 2.03,
+            "delta_pct": 5.4,
+            "premium_pct": 0.7386,
+            "score": 9.15
           },
           {
             "expiration": "2026-06-26",
@@ -84,10 +84,10 @@
             "dte": 44,
             "weeks_out": 6,
             "strike": 255.0,
-            "premium": 1.52,
-            "delta_pct": 7.74,
-            "premium_pct": 0.5518,
-            "score": 12.24
+            "premium": 1.56,
+            "delta_pct": 7.22,
+            "premium_pct": 0.5658,
+            "score": 11.72
           }
         ]
       },
@@ -96,14 +96,14 @@
     {
       "ticker": "TJX",
       "company": "TJX Companies, Inc. (The)",
-      "price": 150.56,
-      "rsi": 35.2,
-      "market_cap_b": 166.5,
-      "market_cap_str": "166.45B",
+      "price": 150.26,
+      "rsi": 34.4,
+      "market_cap_b": 166.2,
+      "market_cap_str": "166.16B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 35.2 \u2265 30 (not oversold)"
+        "RSI 34.4 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -111,14 +111,14 @@
     {
       "ticker": "ISRG",
       "company": "Intuitive Surgical, Inc.",
-      "price": 431.47,
-      "rsi": 37.3,
-      "market_cap_b": 152.9,
-      "market_cap_str": "152.88B",
+      "price": 431.87,
+      "rsi": 37.4,
+      "market_cap_b": 153.0,
+      "market_cap_str": "152.95B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 37.3 \u2265 30 (not oversold)"
+        "RSI 37.4 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
