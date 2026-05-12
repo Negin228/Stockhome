@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-12-2026 13:20",
+  "generated_at_pt": "05-12-2026 14:04",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -21,18 +21,18 @@
       "filter_fail": [],
       "ladder_result": {
         "qualifies": false,
-        "fail_reason": "No week satisfies both conditions. Best score=28.0 at week 1 (need 10.0); best premium%=0.388% (need 0.75%)",
+        "fail_reason": "No week satisfies both conditions. Best score=24.3 at week 1 (need 10.0); best premium%=0.388% (need 0.75%)",
         "week_reps": [
           {
-            "expiration": "2026-05-22",
-            "exp_type": "WEEKLY",
-            "dte": 9,
+            "expiration": "2026-05-15",
+            "exp_type": "MONTHLY",
+            "dte": 2,
             "weeks_out": 1,
-            "strike": 200.0,
+            "strike": 210.0,
             "premium": 1.06,
-            "delta_pct": 27.23,
+            "delta_pct": 23.59,
             "premium_pct": 0.3875,
-            "score": 27.98
+            "score": 24.34
           },
           {
             "expiration": "2026-05-29",
@@ -40,9 +40,9 @@
             "dte": 16,
             "weeks_out": 2,
             "strike": 260.0,
-            "premium": 0.61,
+            "premium": 0.65,
             "delta_pct": 5.4,
-            "premium_pct": 0.2238,
+            "premium_pct": 0.2365,
             "score": 6.9
           },
           {
@@ -51,9 +51,9 @@
             "dte": 23,
             "weeks_out": 3,
             "strike": 260.0,
-            "premium": 1.23,
+            "premium": 1.28,
             "delta_pct": 5.4,
-            "premium_pct": 0.4494,
+            "premium_pct": 0.4675,
             "score": 7.65
           },
           {
@@ -62,9 +62,9 @@
             "dte": 30,
             "weeks_out": 4,
             "strike": 260.0,
-            "premium": 1.6,
+            "premium": 1.57,
             "delta_pct": 5.4,
-            "premium_pct": 0.5822,
+            "premium_pct": 0.5712,
             "score": 8.4
           },
           {
@@ -73,9 +73,9 @@
             "dte": 36,
             "weeks_out": 5,
             "strike": 260.0,
-            "premium": 2.03,
+            "premium": 2.12,
             "delta_pct": 5.4,
-            "premium_pct": 0.7386,
+            "premium_pct": 0.7732,
             "score": 9.15
           },
           {
@@ -84,9 +84,9 @@
             "dte": 44,
             "weeks_out": 6,
             "strike": 255.0,
-            "premium": 1.56,
+            "premium": 1.59,
             "delta_pct": 7.22,
-            "premium_pct": 0.5658,
+            "premium_pct": 0.5785,
             "score": 11.72
           }
         ]
