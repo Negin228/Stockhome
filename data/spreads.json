@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "ticker": "TJX",
+    "company": "TJX Companies, Inc. (The)",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 150.26,
+    "market_cap": 166159646720.0,
+    "market_cap_str": "166.16B",
+    "mcap": 166.15964672,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": 132.375,
+    "trailing_pe": 30.85421,
+    "forward_pe": 26.493406,
+    "earnings_growth": 0.268,
+    "debt_to_equity": 132.375,
+    "earnings_date": "2026-05-20",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": true,
+    "added_timestamp": "2026-05-12T20:18:22.912634",
+    "reasoning": "Det: Price < BBL(150.44) | ADX: 22.5 | RSI 34.4 (Moderate: Selling Theta.)"
+  }
+]
