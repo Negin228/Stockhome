@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-13-2026 05:38",
+  "generated_at_pt": "05-13-2026 06:41",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -12,16 +12,16 @@
     {
       "ticker": "MCD",
       "company": "McDonald's Corporation",
-      "price": 274.84,
-      "rsi": 25.0,
-      "market_cap_b": 195.3,
-      "market_cap_str": "195.28B",
+      "price": 275.46,
+      "rsi": 26.0,
+      "market_cap_b": 195.6,
+      "market_cap_str": "195.63B",
       "weekly_available": true,
       "filters_pass": true,
       "filter_fail": [],
       "ladder_result": {
         "qualifies": false,
-        "fail_reason": "No week satisfies both conditions. Best score=11.7 at week 6 (need 10.0); best premium%=0.553% (need 0.75%)",
+        "fail_reason": "No week satisfies both conditions. Best score=11.9 at week 6 (need 10.0); best premium%=0.552% (need 0.75%)",
         "week_reps": [
           {
             "expiration": "2026-05-22",
@@ -30,9 +30,9 @@
             "weeks_out": 1,
             "strike": 260.0,
             "premium": 0.35,
-            "delta_pct": 5.4,
-            "premium_pct": 0.1273,
-            "score": 6.15
+            "delta_pct": 5.61,
+            "premium_pct": 0.1271,
+            "score": 6.36
           },
           {
             "expiration": "2026-05-29",
@@ -41,9 +41,9 @@
             "weeks_out": 2,
             "strike": 260.0,
             "premium": 0.61,
-            "delta_pct": 5.4,
-            "premium_pct": 0.2219,
-            "score": 6.9
+            "delta_pct": 5.61,
+            "premium_pct": 0.2214,
+            "score": 7.11
           },
           {
             "expiration": "2026-06-05",
@@ -52,9 +52,9 @@
             "weeks_out": 3,
             "strike": 260.0,
             "premium": 1.0,
-            "delta_pct": 5.4,
-            "premium_pct": 0.3638,
-            "score": 7.65
+            "delta_pct": 5.61,
+            "premium_pct": 0.363,
+            "score": 7.86
           },
           {
             "expiration": "2026-06-12",
@@ -63,9 +63,9 @@
             "weeks_out": 4,
             "strike": 260.0,
             "premium": 1.73,
-            "delta_pct": 5.4,
-            "premium_pct": 0.6295,
-            "score": 8.4
+            "delta_pct": 5.61,
+            "premium_pct": 0.628,
+            "score": 8.61
           },
           {
             "expiration": "2026-06-18",
@@ -74,9 +74,9 @@
             "weeks_out": 5,
             "strike": 260.0,
             "premium": 2.1,
-            "delta_pct": 5.4,
-            "premium_pct": 0.7641,
-            "score": 9.15
+            "delta_pct": 5.61,
+            "premium_pct": 0.7624,
+            "score": 9.36
           },
           {
             "expiration": "2026-06-26",
@@ -85,9 +85,9 @@
             "weeks_out": 6,
             "strike": 255.0,
             "premium": 1.52,
-            "delta_pct": 7.22,
-            "premium_pct": 0.553,
-            "score": 11.72
+            "delta_pct": 7.43,
+            "premium_pct": 0.5518,
+            "score": 11.93
           }
         ]
       },
@@ -96,14 +96,14 @@
     {
       "ticker": "TJX",
       "company": "TJX Companies, Inc. (The)",
-      "price": 150.26,
-      "rsi": 34.4,
-      "market_cap_b": 166.2,
-      "market_cap_str": "166.16B",
+      "price": 148.9,
+      "rsi": 31.6,
+      "market_cap_b": 164.4,
+      "market_cap_str": "164.36B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 34.4 \u2265 30 (not oversold)"
+        "RSI 31.6 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -111,14 +111,14 @@
     {
       "ticker": "ISRG",
       "company": "Intuitive Surgical, Inc.",
-      "price": 431.87,
-      "rsi": 37.4,
-      "market_cap_b": 153.0,
-      "market_cap_str": "152.95B",
+      "price": 427.26,
+      "rsi": 35.9,
+      "market_cap_b": 151.4,
+      "market_cap_str": "151.43B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 37.4 \u2265 30 (not oversold)"
+        "RSI 35.9 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
