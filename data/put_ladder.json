@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-13-2026 13:22",
+  "generated_at_pt": "05-13-2026 14:06",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -47,8 +47,8 @@
             "expiration": "2026-06-12",
             "weeks_out": 4,
             "strike": 120.0,
-            "premium": 0.98,
-            "premium_pct": 0.663,
+            "premium": 0.95,
+            "premium_pct": 0.646,
             "delta_pct": 18.38,
             "score": 21.38,
             "qualifies": false,
@@ -59,11 +59,11 @@
             "expiration": "2026-06-18",
             "weeks_out": 5,
             "strike": 115.0,
-            "premium": 1.12,
-            "premium_pct": 0.765,
+            "premium": 1.05,
+            "premium_pct": 0.714,
             "delta_pct": 21.78,
             "score": 25.53,
-            "qualifies": true,
+            "qualifies": false,
             "is_anchor": false
           },
           {
@@ -126,9 +126,9 @@
             "dte": 22,
             "weeks_out": 3,
             "strike": 260.0,
-            "premium": 1.14,
+            "premium": 1.26,
             "delta_pct": 5.69,
-            "premium_pct": 0.4135,
+            "premium_pct": 0.457,
             "score": 7.94
           },
           {
@@ -137,9 +137,9 @@
             "dte": 29,
             "weeks_out": 4,
             "strike": 260.0,
-            "premium": 1.73,
+            "premium": 1.69,
             "delta_pct": 5.69,
-            "premium_pct": 0.6257,
+            "premium_pct": 0.6148,
             "score": 8.69
           },
           {
@@ -148,9 +148,9 @@
             "dte": 35,
             "weeks_out": 5,
             "strike": 260.0,
-            "premium": 2.0,
+            "premium": 1.95,
             "delta_pct": 5.69,
-            "premium_pct": 0.7254,
+            "premium_pct": 0.7073,
             "score": 9.44
           },
           {
@@ -207,8 +207,8 @@
             "expiration": "2026-06-12",
             "weeks_out": 4,
             "strike": 120.0,
-            "premium": 0.98,
-            "premium_pct": 0.663,
+            "premium": 0.95,
+            "premium_pct": 0.646,
             "delta_pct": 18.38,
             "score": 21.38,
             "qualifies": false,
@@ -219,11 +219,11 @@
             "expiration": "2026-06-18",
             "weeks_out": 5,
             "strike": 115.0,
-            "premium": 1.12,
-            "premium_pct": 0.765,
+            "premium": 1.05,
+            "premium_pct": 0.714,
             "delta_pct": 21.78,
             "score": 25.53,
-            "qualifies": true,
+            "qualifies": false,
             "is_anchor": false
           },
           {
