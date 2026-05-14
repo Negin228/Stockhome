@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "ticker": "TJX",
+    "company": "TJX Companies, Inc. (The)",
+    "strategy": "Call Debit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 146.73,
+    "market_cap": 162200829952.0,
+    "market_cap_str": "162.20B",
+    "mcap": 162.200829952,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": 132.375,
+    "trailing_pe": 30.119095,
+    "forward_pe": 25.860956,
+    "earnings_growth": 0.268,
+    "debt_to_equity": 132.375,
+    "earnings_date": "2026-05-20",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": true,
+    "added_timestamp": "2026-05-14T14:50:00.298849",
+    "reasoning": "Det: Price < BBL(147.26) | ADX: 26.2 | RSI 28.8 (Extreme: Buying Delta for sharp snap-back.)"
+  }
+]
