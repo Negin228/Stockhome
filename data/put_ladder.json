@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-13-2026 20:02",
+  "generated_at_pt": "05-13-2026 22:14",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -7,82 +7,7 @@
     "rsi_threshold": 30,
     "mcap_min_b": 100.0
   },
-  "qualifying": [
-    {
-      "ticker": "TJX",
-      "company": "TJX Companies, Inc. (The)",
-      "price": 147.03,
-      "rsi": 29.3,
-      "market_cap_b": 162.6,
-      "market_cap_str": "162.59B",
-      "weekly_available": true,
-      "filters_pass": true,
-      "filter_fail": [],
-      "ladder_result": {
-        "qualifies": true,
-        "anchor": {
-          "expiration": "2026-06-05",
-          "weeks_out": 3,
-          "strike": 125.0,
-          "premium": 1.12,
-          "delta_pct": 14.98,
-          "premium_pct": 0.7651,
-          "score": 17.23
-        },
-        "ladder": [
-          {
-            "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-06-05",
-            "weeks_out": 3,
-            "strike": 125.0,
-            "premium": 1.12,
-            "premium_pct": 0.765,
-            "delta_pct": 14.98,
-            "score": 17.23,
-            "qualifies": true,
-            "is_anchor": true
-          },
-          {
-            "week_label": "+1w",
-            "expiration": "2026-06-12",
-            "weeks_out": 4,
-            "strike": 120.0,
-            "premium": 0.95,
-            "premium_pct": 0.646,
-            "delta_pct": 18.38,
-            "score": 21.38,
-            "qualifies": false,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+2w",
-            "expiration": "2026-06-18",
-            "weeks_out": 5,
-            "strike": 115.0,
-            "premium": 1.05,
-            "premium_pct": 0.714,
-            "delta_pct": 21.78,
-            "score": 25.53,
-            "qualifies": false,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+3w",
-            "expiration": "2026-06-26",
-            "weeks_out": 6,
-            "strike": 110.0,
-            "premium": 0.7,
-            "premium_pct": 0.476,
-            "delta_pct": 25.19,
-            "score": 29.69,
-            "qualifies": false,
-            "is_anchor": false
-          }
-        ]
-      },
-      "qualifying": true
-    }
-  ],
+  "qualifying": [],
   "all": [
     {
       "ticker": "MCD",
@@ -96,18 +21,18 @@
       "filter_fail": [],
       "ladder_result": {
         "qualifies": false,
-        "fail_reason": "No week satisfies both conditions. Best score=28.2 at week 1 (need 10.0); best premium%=0.386% (need 0.75%)",
+        "fail_reason": "No week satisfies both conditions. Best score=12.0 at week 6 (need 10.0); best premium%=0.580% (need 0.75%)",
         "week_reps": [
           {
             "expiration": "2026-05-22",
             "exp_type": "WEEKLY",
             "dte": 8,
             "weeks_out": 1,
-            "strike": 200.0,
-            "premium": 1.06,
-            "delta_pct": 27.46,
-            "premium_pct": 0.3863,
-            "score": 28.21
+            "strike": 260.0,
+            "premium": 0.23,
+            "delta_pct": 5.69,
+            "premium_pct": 0.0834,
+            "score": 6.44
           },
           {
             "expiration": "2026-05-29",
@@ -117,7 +42,7 @@
             "strike": 260.0,
             "premium": 0.67,
             "delta_pct": 5.69,
-            "premium_pct": 0.2412,
+            "premium_pct": 0.243,
             "score": 7.19
           },
           {
@@ -126,9 +51,9 @@
             "dte": 22,
             "weeks_out": 3,
             "strike": 260.0,
-            "premium": 1.26,
+            "premium": 1.16,
             "delta_pct": 5.69,
-            "premium_pct": 0.457,
+            "premium_pct": 0.4207,
             "score": 7.94
           },
           {
@@ -137,9 +62,9 @@
             "dte": 29,
             "weeks_out": 4,
             "strike": 260.0,
-            "premium": 1.69,
+            "premium": 1.73,
             "delta_pct": 5.69,
-            "premium_pct": 0.6148,
+            "premium_pct": 0.6275,
             "score": 8.69
           },
           {
@@ -148,9 +73,9 @@
             "dte": 35,
             "weeks_out": 5,
             "strike": 260.0,
-            "premium": 1.95,
+            "premium": 2.0,
             "delta_pct": 5.69,
-            "premium_pct": 0.7073,
+            "premium_pct": 0.7254,
             "score": 9.44
           },
           {
@@ -179,68 +104,78 @@
       "filters_pass": true,
       "filter_fail": [],
       "ladder_result": {
-        "qualifies": true,
-        "anchor": {
-          "expiration": "2026-06-05",
-          "weeks_out": 3,
-          "strike": 125.0,
-          "premium": 1.12,
-          "delta_pct": 14.98,
-          "premium_pct": 0.7651,
-          "score": 17.23
-        },
-        "ladder": [
+        "qualifies": false,
+        "fail_reason": "No week satisfies both conditions. Best score=16.1 at week 6 (need 10.0); best premium%=0.694% (need 0.75%)",
+        "week_reps": [
           {
-            "week_label": "\u2605 ANCHOR",
+            "expiration": "2026-05-22",
+            "exp_type": "WEEKLY",
+            "dte": 8,
+            "weeks_out": 1,
+            "strike": 135.0,
+            "premium": 0.38,
+            "delta_pct": 8.18,
+            "premium_pct": 0.2585,
+            "score": 8.93
+          },
+          {
+            "expiration": "2026-05-29",
+            "exp_type": "WEEKLY",
+            "dte": 15,
+            "weeks_out": 2,
+            "strike": 135.0,
+            "premium": 0.52,
+            "delta_pct": 8.18,
+            "premium_pct": 0.3537,
+            "score": 9.68
+          },
+          {
             "expiration": "2026-06-05",
+            "exp_type": "WEEKLY",
+            "dte": 22,
             "weeks_out": 3,
-            "strike": 125.0,
-            "premium": 1.12,
-            "premium_pct": 0.765,
-            "delta_pct": 14.98,
-            "score": 17.23,
-            "qualifies": true,
-            "is_anchor": true
+            "strike": 135.0,
+            "premium": 0.78,
+            "delta_pct": 8.18,
+            "premium_pct": 0.5305,
+            "score": 10.43
           },
           {
-            "week_label": "+1w",
             "expiration": "2026-06-12",
+            "exp_type": "WEEKLY",
+            "dte": 29,
             "weeks_out": 4,
-            "strike": 120.0,
-            "premium": 0.95,
-            "premium_pct": 0.646,
-            "delta_pct": 18.38,
-            "score": 21.38,
-            "qualifies": false,
-            "is_anchor": false
+            "strike": 135.0,
+            "premium": 1.0,
+            "delta_pct": 8.18,
+            "premium_pct": 0.6801,
+            "score": 11.18
           },
           {
-            "week_label": "+2w",
             "expiration": "2026-06-18",
+            "exp_type": "UNKNOWN",
+            "dte": 35,
             "weeks_out": 5,
-            "strike": 115.0,
-            "premium": 1.05,
-            "premium_pct": 0.714,
-            "delta_pct": 21.78,
-            "score": 25.53,
-            "qualifies": false,
-            "is_anchor": false
+            "strike": 135.0,
+            "premium": 1.1,
+            "delta_pct": 8.18,
+            "premium_pct": 0.7481,
+            "score": 11.93
           },
           {
-            "week_label": "+3w",
             "expiration": "2026-06-26",
+            "exp_type": "WEEKLY",
+            "dte": 43,
             "weeks_out": 6,
-            "strike": 110.0,
-            "premium": 0.7,
-            "premium_pct": 0.476,
-            "delta_pct": 25.19,
-            "score": 29.69,
-            "qualifies": false,
-            "is_anchor": false
+            "strike": 130.0,
+            "premium": 1.02,
+            "delta_pct": 11.58,
+            "premium_pct": 0.6937,
+            "score": 16.08
           }
         ]
       },
-      "qualifying": true
+      "qualifying": false
     },
     {
       "ticker": "ISRG",
