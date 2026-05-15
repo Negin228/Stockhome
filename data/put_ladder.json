@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-14-2026 16:28",
+  "generated_at_pt": "05-14-2026 17:33",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -2261,11 +2261,12 @@
       "rsi": 43.6,
       "market_cap_b": 24.7,
       "market_cap_str": "24.72B",
-      "weekly_available": true,
+      "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
         "RSI 43.6 \u2265 30 (not oversold)",
-        "Market cap $25B < $100B"
+        "Market cap $25B < $100B",
+        "No weekly options"
       ],
       "ladder_result": null,
       "qualifying": false
