@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-15-2026 13:51",
+  "generated_at_pt": "05-15-2026 14:28",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -59,50 +59,12 @@
             "expiration": "2026-06-26",
             "weeks_out": 6,
             "strike": 140.0,
-            "premium": 0.1,
-            "premium_pct": 0.062,
+            "premium": 2.67,
+            "premium_pct": 1.652,
             "delta_pct": 13.53,
             "score": 18.03,
-            "qualifies": false,
-            "is_anchor": false
-          }
-        ]
-      },
-      "qualifying": true
-    },
-    {
-      "ticker": "MCD",
-      "company": "McDonald's Corporation",
-      "price": 276.39,
-      "rsi": 29.1,
-      "market_cap_b": 196.4,
-      "market_cap_str": "196.38B",
-      "weekly_available": true,
-      "filters_pass": true,
-      "filter_fail": [],
-      "ladder_result": {
-        "qualifies": true,
-        "anchor": {
-          "expiration": "2026-06-26",
-          "weeks_out": 6,
-          "strike": 260.0,
-          "premium": 2.45,
-          "delta_pct": 5.93,
-          "premium_pct": 0.8864,
-          "score": 10.43
-        },
-        "ladder": [
-          {
-            "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-06-26",
-            "weeks_out": 6,
-            "strike": 260.0,
-            "premium": 2.45,
-            "premium_pct": 0.886,
-            "delta_pct": 5.93,
-            "score": 10.43,
             "qualifies": true,
-            "is_anchor": true
+            "is_anchor": false
           }
         ]
       },
@@ -2531,11 +2493,11 @@
             "expiration": "2026-06-26",
             "weeks_out": 6,
             "strike": 140.0,
-            "premium": 0.1,
-            "premium_pct": 0.062,
+            "premium": 2.67,
+            "premium_pct": 1.652,
             "delta_pct": 13.53,
             "score": 18.03,
-            "qualifies": false,
+            "qualifies": true,
             "is_anchor": false
           }
         ]
@@ -5337,32 +5299,78 @@
       "filters_pass": true,
       "filter_fail": [],
       "ladder_result": {
-        "qualifies": true,
-        "anchor": {
-          "expiration": "2026-06-26",
-          "weeks_out": 6,
-          "strike": 260.0,
-          "premium": 2.45,
-          "delta_pct": 5.93,
-          "premium_pct": 0.8864,
-          "score": 10.43
-        },
-        "ladder": [
+        "qualifies": false,
+        "fail_reason": "No week satisfies both conditions. Best score=26.3 at week 3 (need 10.0); best premium%=0.389% (need 0.75%)",
+        "week_reps": [
           {
-            "week_label": "\u2605 ANCHOR",
+            "expiration": "2026-05-22",
+            "exp_type": "WEEKLY",
+            "dte": 6,
+            "weeks_out": 1,
+            "strike": 255.0,
+            "premium": 1.1,
+            "delta_pct": 7.74,
+            "premium_pct": 0.398,
+            "score": 8.49
+          },
+          {
+            "expiration": "2026-05-29",
+            "exp_type": "WEEKLY",
+            "dte": 13,
+            "weeks_out": 2,
+            "strike": 262.5,
+            "premium": 0.55,
+            "delta_pct": 5.03,
+            "premium_pct": 0.2008,
+            "score": 6.53
+          },
+          {
+            "expiration": "2026-06-05",
+            "exp_type": "WEEKLY",
+            "dte": 20,
+            "weeks_out": 3,
+            "strike": 210.0,
+            "premium": 1.07,
+            "delta_pct": 24.02,
+            "premium_pct": 0.3889,
+            "score": 26.27
+          },
+          {
+            "expiration": "2026-06-12",
+            "exp_type": "WEEKLY",
+            "dte": 27,
+            "weeks_out": 4,
+            "strike": 260.0,
+            "premium": 1.27,
+            "delta_pct": 5.93,
+            "premium_pct": 0.4613,
+            "score": 8.93
+          },
+          {
+            "expiration": "2026-06-18",
+            "exp_type": "UNKNOWN",
+            "dte": 33,
+            "weeks_out": 5,
+            "strike": 260.0,
+            "premium": 1.76,
+            "delta_pct": 5.93,
+            "premium_pct": 0.6368,
+            "score": 9.68
+          },
+          {
             "expiration": "2026-06-26",
+            "exp_type": "WEEKLY",
+            "dte": 41,
             "weeks_out": 6,
             "strike": 260.0,
-            "premium": 2.45,
-            "premium_pct": 0.886,
+            "premium": 2.0,
             "delta_pct": 5.93,
-            "score": 10.43,
-            "qualifies": true,
-            "is_anchor": true
+            "premium_pct": 0.7254,
+            "score": 10.43
           }
         ]
       },
-      "qualifying": true
+      "qualifying": false
     },
     {
       "ticker": "MCK",
