@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-15-2026 14:28",
+  "generated_at_pt": "05-15-2026 14:52",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -958,22 +958,22 @@
             "exp_type": "WEEKLY",
             "dte": 6,
             "weeks_out": 1,
-            "strike": 22.0,
-            "premium": 0.01,
-            "delta_pct": 8.45,
-            "premium_pct": 0.0624,
-            "score": 9.2
+            "strike": 22.5,
+            "premium": 0.12,
+            "delta_pct": 6.37,
+            "premium_pct": 0.4786,
+            "score": 7.12
           },
           {
             "expiration": "2026-05-29",
             "exp_type": "WEEKLY",
             "dte": 13,
             "weeks_out": 2,
-            "strike": 22.0,
-            "premium": 0.04,
-            "delta_pct": 8.45,
-            "premium_pct": 0.1873,
-            "score": 9.95
+            "strike": 22.5,
+            "premium": 0.21,
+            "delta_pct": 6.37,
+            "premium_pct": 0.8739,
+            "score": 7.87
           },
           {
             "expiration": "2026-06-05",
@@ -991,11 +991,11 @@
             "exp_type": "WEEKLY",
             "dte": 27,
             "weeks_out": 4,
-            "strike": 24.0,
-            "premium": 0.57,
-            "delta_pct": 0.12,
-            "premium_pct": 2.372,
-            "score": 3.12
+            "strike": 22.0,
+            "premium": 0.08,
+            "delta_pct": 8.45,
+            "premium_pct": 0.3537,
+            "score": 11.45
           },
           {
             "expiration": "2026-06-18",
