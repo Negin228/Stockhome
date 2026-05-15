@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-14-2026 20:11",
+  "generated_at_pt": "05-15-2026 00:10",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -24,9 +24,9 @@
           "expiration": "2026-06-26",
           "weeks_out": 6,
           "strike": 155.0,
-          "premium": 2.88,
+          "premium": 2.5,
           "delta_pct": 5.8,
-          "premium_pct": 1.7473,
+          "premium_pct": 1.5194,
           "score": 10.3
         },
         "ladder": [
@@ -35,8 +35,8 @@
             "expiration": "2026-06-26",
             "weeks_out": 6,
             "strike": 155.0,
-            "premium": 2.88,
-            "premium_pct": 1.747,
+            "premium": 2.5,
+            "premium_pct": 1.519,
             "delta_pct": 5.8,
             "score": 10.3,
             "qualifies": true,
@@ -2367,9 +2367,9 @@
           "expiration": "2026-06-26",
           "weeks_out": 6,
           "strike": 155.0,
-          "premium": 2.88,
+          "premium": 2.5,
           "delta_pct": 5.8,
-          "premium_pct": 1.7473,
+          "premium_pct": 1.5194,
           "score": 10.3
         },
         "ladder": [
@@ -2378,8 +2378,8 @@
             "expiration": "2026-06-26",
             "weeks_out": 6,
             "strike": 155.0,
-            "premium": 2.88,
-            "premium_pct": 1.747,
+            "premium": 2.5,
+            "premium_pct": 1.519,
             "delta_pct": 5.8,
             "score": 10.3,
             "qualifies": true,
@@ -2504,13 +2504,13 @@
       "ticker": "DAL",
       "company": "Delta Air Lines, Inc.",
       "price": 71.55,
-      "rsi": 56.8,
+      "rsi": 57.3,
       "market_cap_b": 47.0,
       "market_cap_str": "47.01B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 56.8 \u2265 30 (not oversold)",
+        "RSI 57.3 \u2265 30 (not oversold)",
         "Market cap $47B < $100B"
       ],
       "ladder_result": null,
@@ -2552,13 +2552,13 @@
       "ticker": "FANG",
       "company": "Diamondback Energy, Inc.",
       "price": 200.26,
-      "rsi": 54.9,
+      "rsi": 56.0,
       "market_cap_b": 56.3,
       "market_cap_str": "56.34B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 54.9 \u2265 30 (not oversold)",
+        "RSI 56.0 \u2265 30 (not oversold)",
         "Market cap $56B < $100B",
         "No weekly options"
       ],
@@ -3162,13 +3162,13 @@
       "ticker": "EXE",
       "company": "Expand Energy Corporation",
       "price": 96.7,
-      "rsi": 43.5,
+      "rsi": 45.4,
       "market_cap_b": 23.1,
       "market_cap_str": "23.13B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 43.5 \u2265 30 (not oversold)",
+        "RSI 45.4 \u2265 30 (not oversold)",
         "Market cap $23B < $100B",
         "No weekly options"
       ],
@@ -5186,72 +5186,72 @@
       "filter_fail": [],
       "ladder_result": {
         "qualifies": false,
-        "fail_reason": "No week satisfies both conditions. Best score=28.0 at week 1 (need 10.0); best premium%=0.387% (need 0.75%)",
+        "fail_reason": "No week satisfies both conditions. Best score=11.8 at week 6 (need 10.0); best premium%=0.582% (need 0.75%)",
         "week_reps": [
           {
             "expiration": "2026-05-22",
             "exp_type": "WEEKLY",
-            "dte": 7,
+            "dte": 6,
             "weeks_out": 1,
-            "strike": 200.0,
-            "premium": 1.06,
-            "delta_pct": 27.26,
-            "premium_pct": 0.3873,
-            "score": 28.01
+            "strike": 260.0,
+            "premium": 0.29,
+            "delta_pct": 5.44,
+            "premium_pct": 0.1055,
+            "score": 6.19
           },
           {
             "expiration": "2026-05-29",
             "exp_type": "WEEKLY",
-            "dte": 14,
+            "dte": 13,
             "weeks_out": 2,
             "strike": 260.0,
-            "premium": 0.52,
+            "premium": 0.58,
             "delta_pct": 5.44,
-            "premium_pct": 0.1873,
+            "premium_pct": 0.2109,
             "score": 6.94
           },
           {
             "expiration": "2026-06-05",
             "exp_type": "WEEKLY",
-            "dte": 21,
+            "dte": 20,
             "weeks_out": 3,
             "strike": 260.0,
-            "premium": 1.13,
+            "premium": 1.15,
             "delta_pct": 5.44,
-            "premium_pct": 0.411,
+            "premium_pct": 0.4182,
             "score": 7.69
           },
           {
             "expiration": "2026-06-12",
             "exp_type": "WEEKLY",
-            "dte": 28,
+            "dte": 27,
             "weeks_out": 4,
             "strike": 260.0,
-            "premium": 1.62,
+            "premium": 1.63,
             "delta_pct": 5.44,
-            "premium_pct": 0.591,
+            "premium_pct": 0.5928,
             "score": 8.44
           },
           {
             "expiration": "2026-06-18",
             "exp_type": "UNKNOWN",
-            "dte": 34,
+            "dte": 33,
             "weeks_out": 5,
             "strike": 260.0,
-            "premium": 1.94,
+            "premium": 1.98,
             "delta_pct": 5.44,
-            "premium_pct": 0.7037,
+            "premium_pct": 0.7201,
             "score": 9.19
           },
           {
             "expiration": "2026-06-26",
             "exp_type": "WEEKLY",
-            "dte": 42,
+            "dte": 41,
             "weeks_out": 6,
             "strike": 255.0,
-            "premium": 1.64,
+            "premium": 1.6,
             "delta_pct": 7.26,
-            "premium_pct": 0.5946,
+            "premium_pct": 0.5819,
             "score": 11.76
           }
         ]
@@ -6349,7 +6349,7 @@
       "ticker": "POOL",
       "company": "Pool Corporation",
       "price": 175.24,
-      "rsi": 25.0,
+      "rsi": 26.6,
       "market_cap_b": 6.4,
       "market_cap_str": "6.39B",
       "weekly_available": false,
@@ -6726,13 +6726,13 @@
       "ticker": "RMD",
       "company": "ResMed Inc.",
       "price": 202.46,
-      "rsi": 34.1,
+      "rsi": 35.1,
       "market_cap_b": 29.4,
       "market_cap_str": "29.37B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 34.1 \u2265 30 (not oversold)",
+        "RSI 35.1 \u2265 30 (not oversold)",
         "Market cap $29B < $100B",
         "No weekly options"
       ],
@@ -7494,13 +7494,13 @@
       "ticker": "TJX",
       "company": "TJX Companies, Inc. (The)",
       "price": 147.35,
-      "rsi": 30.4,
+      "rsi": 32.0,
       "market_cap_b": 162.9,
       "market_cap_str": "162.94B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 30.4 \u2265 30 (not oversold)"
+        "RSI 32.0 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -8160,13 +8160,13 @@
       "ticker": "WEC",
       "company": "WEC Energy Group, Inc.",
       "price": 111.64,
-      "rsi": 39.3,
+      "rsi": 42.7,
       "market_cap_b": 36.4,
       "market_cap_str": "36.36B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 39.3 \u2265 30 (not oversold)",
+        "RSI 42.7 \u2265 30 (not oversold)",
         "Market cap $36B < $100B",
         "No weekly options"
       ],
