@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-17-2026 20:16",
+  "generated_at_pt": "05-18-2026 00:26",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -24,9 +24,9 @@
           "expiration": "2026-06-18",
           "weeks_out": 4,
           "strike": 150.0,
-          "premium": 1.85,
+          "premium": 1.9,
           "delta_pct": 7.36,
-          "premium_pct": 1.1426,
+          "premium_pct": 1.1735,
           "score": 10.36
         },
         "ladder": [
@@ -35,8 +35,8 @@
             "expiration": "2026-06-18",
             "weeks_out": 4,
             "strike": 150.0,
-            "premium": 1.85,
-            "premium_pct": 1.143,
+            "premium": 1.9,
+            "premium_pct": 1.173,
             "delta_pct": 7.36,
             "score": 10.36,
             "qualifies": true,
@@ -45,12 +45,12 @@
           {
             "week_label": "+1w",
             "expiration": "2026-06-26",
-            "weeks_out": 6,
+            "weeks_out": 5,
             "strike": 145.0,
-            "premium": 2.67,
-            "premium_pct": 1.652,
+            "premium": 2.4,
+            "premium_pct": 1.482,
             "delta_pct": 10.44,
-            "score": 14.94,
+            "score": 14.19,
             "qualifies": true,
             "is_anchor": false
           }
@@ -939,62 +939,62 @@
       "filter_fail": [],
       "ladder_result": {
         "qualifies": false,
-        "fail_reason": "No week satisfies both conditions. Best score=12.9 at week 6 (need 10.0); best premium%=0.624% (need 0.75%)",
+        "fail_reason": "No week satisfies both conditions. Best score=12.2 at week 5 (need 10.0); best premium%=0.666% (need 0.75%)",
         "week_reps": [
-          {
-            "expiration": "2026-05-22",
-            "exp_type": "WEEKLY",
-            "dte": 4,
-            "weeks_out": 1,
-            "strike": 22.5,
-            "premium": 0.12,
-            "delta_pct": 6.37,
-            "premium_pct": 0.4786,
-            "score": 7.12
-          },
           {
             "expiration": "2026-05-29",
             "exp_type": "WEEKLY",
-            "dte": 11,
-            "weeks_out": 2,
+            "dte": 10,
+            "weeks_out": 1,
             "strike": 22.5,
-            "premium": 0.21,
+            "premium": 0.07,
             "delta_pct": 6.37,
-            "premium_pct": 0.8739,
-            "score": 7.87
+            "premium_pct": 0.2913,
+            "score": 7.12
           },
           {
             "expiration": "2026-06-05",
             "exp_type": "WEEKLY",
-            "dte": 18,
+            "dte": 17,
+            "weeks_out": 2,
+            "strike": 22.0,
+            "premium": 0.05,
+            "delta_pct": 8.45,
+            "premium_pct": 0.2081,
+            "score": 9.95
+          },
+          {
+            "expiration": "2026-06-12",
+            "exp_type": "WEEKLY",
+            "dte": 24,
             "weeks_out": 3,
             "strike": 22.0,
-            "premium": 0.06,
+            "premium": 0.1,
             "delta_pct": 8.45,
-            "premium_pct": 0.2289,
+            "premium_pct": 0.4161,
             "score": 10.7
           },
           {
             "expiration": "2026-06-18",
             "exp_type": "UNKNOWN",
-            "dte": 31,
+            "dte": 30,
             "weeks_out": 4,
             "strike": 22.0,
-            "premium": 0.15,
+            "premium": 0.11,
             "delta_pct": 8.45,
-            "premium_pct": 0.6242,
+            "premium_pct": 0.4578,
             "score": 11.45
           },
           {
             "expiration": "2026-06-26",
             "exp_type": "WEEKLY",
-            "dte": 39,
-            "weeks_out": 6,
+            "dte": 38,
+            "weeks_out": 5,
             "strike": 22.0,
-            "premium": 0.15,
+            "premium": 0.16,
             "delta_pct": 8.45,
-            "premium_pct": 0.6242,
-            "score": 12.95
+            "premium_pct": 0.6658,
+            "score": 12.2
           }
         ]
       },
@@ -2435,9 +2435,9 @@
           "expiration": "2026-06-18",
           "weeks_out": 4,
           "strike": 150.0,
-          "premium": 1.85,
+          "premium": 1.9,
           "delta_pct": 7.36,
-          "premium_pct": 1.1426,
+          "premium_pct": 1.1735,
           "score": 10.36
         },
         "ladder": [
@@ -2446,8 +2446,8 @@
             "expiration": "2026-06-18",
             "weeks_out": 4,
             "strike": 150.0,
-            "premium": 1.85,
-            "premium_pct": 1.143,
+            "premium": 1.9,
+            "premium_pct": 1.173,
             "delta_pct": 7.36,
             "score": 10.36,
             "qualifies": true,
@@ -2456,12 +2456,12 @@
           {
             "week_label": "+1w",
             "expiration": "2026-06-26",
-            "weeks_out": 6,
+            "weeks_out": 5,
             "strike": 145.0,
-            "premium": 2.67,
-            "premium_pct": 1.652,
+            "premium": 2.4,
+            "premium_pct": 1.482,
             "delta_pct": 10.44,
-            "score": 14.94,
+            "score": 14.19,
             "qualifies": true,
             "is_anchor": false
           }
@@ -5265,62 +5265,62 @@
       "filter_fail": [],
       "ladder_result": {
         "qualifies": false,
-        "fail_reason": "No week satisfies both conditions. Best score=26.3 at week 3 (need 10.0); best premium%=0.389% (need 0.75%)",
+        "fail_reason": "No week satisfies both conditions. Best score=9.7 at week 5 (need 10.0); best premium%=0.800% (need 0.75%)",
         "week_reps": [
-          {
-            "expiration": "2026-05-22",
-            "exp_type": "WEEKLY",
-            "dte": 4,
-            "weeks_out": 1,
-            "strike": 255.0,
-            "premium": 1.1,
-            "delta_pct": 7.74,
-            "premium_pct": 0.398,
-            "score": 8.49
-          },
           {
             "expiration": "2026-05-29",
             "exp_type": "WEEKLY",
-            "dte": 11,
-            "weeks_out": 2,
+            "dte": 10,
+            "weeks_out": 1,
             "strike": 262.5,
-            "premium": 0.55,
+            "premium": 0.65,
             "delta_pct": 5.03,
-            "premium_pct": 0.2008,
-            "score": 6.53
+            "premium_pct": 0.2352,
+            "score": 5.78
           },
           {
             "expiration": "2026-06-05",
             "exp_type": "WEEKLY",
-            "dte": 18,
+            "dte": 17,
+            "weeks_out": 2,
+            "strike": 260.0,
+            "premium": 0.91,
+            "delta_pct": 5.93,
+            "premium_pct": 0.3292,
+            "score": 7.43
+          },
+          {
+            "expiration": "2026-06-12",
+            "exp_type": "WEEKLY",
+            "dte": 24,
             "weeks_out": 3,
-            "strike": 210.0,
-            "premium": 1.07,
-            "delta_pct": 24.02,
-            "premium_pct": 0.3889,
-            "score": 26.27
+            "strike": 260.0,
+            "premium": 1.44,
+            "delta_pct": 5.93,
+            "premium_pct": 0.521,
+            "score": 8.18
           },
           {
             "expiration": "2026-06-18",
             "exp_type": "UNKNOWN",
-            "dte": 31,
+            "dte": 30,
             "weeks_out": 4,
             "strike": 260.0,
-            "premium": 1.76,
+            "premium": 1.67,
             "delta_pct": 5.93,
-            "premium_pct": 0.6368,
+            "premium_pct": 0.6042,
             "score": 8.93
           },
           {
             "expiration": "2026-06-26",
             "exp_type": "WEEKLY",
-            "dte": 39,
-            "weeks_out": 6,
+            "dte": 38,
+            "weeks_out": 5,
             "strike": 260.0,
-            "premium": 2.0,
+            "premium": 2.21,
             "delta_pct": 5.93,
-            "premium_pct": 0.7254,
-            "score": 10.43
+            "premium_pct": 0.7996,
+            "score": 9.68
           }
         ]
       },
