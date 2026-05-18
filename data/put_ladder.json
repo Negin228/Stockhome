@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-15-2026 15:21",
+  "generated_at_pt": "05-17-2026 17:32",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -21,22 +21,22 @@
       "ladder_result": {
         "qualifies": true,
         "anchor": {
-          "expiration": "2026-06-12",
+          "expiration": "2026-06-18",
           "weeks_out": 4,
           "strike": 150.0,
-          "premium": 1.5,
+          "premium": 1.85,
           "delta_pct": 7.36,
-          "premium_pct": 0.9264,
+          "premium_pct": 1.1426,
           "score": 10.36
         },
         "ladder": [
           {
             "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-06-12",
+            "expiration": "2026-06-18",
             "weeks_out": 4,
             "strike": 150.0,
-            "premium": 1.5,
-            "premium_pct": 0.926,
+            "premium": 1.85,
+            "premium_pct": 1.143,
             "delta_pct": 7.36,
             "score": 10.36,
             "qualifies": true,
@@ -44,25 +44,13 @@
           },
           {
             "week_label": "+1w",
-            "expiration": "2026-06-18",
-            "weeks_out": 5,
-            "strike": 145.0,
-            "premium": 1.85,
-            "premium_pct": 1.143,
-            "delta_pct": 10.44,
-            "score": 14.19,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+2w",
             "expiration": "2026-06-26",
             "weeks_out": 6,
-            "strike": 140.0,
+            "strike": 145.0,
             "premium": 2.67,
             "premium_pct": 1.652,
-            "delta_pct": 13.53,
-            "score": 18.03,
+            "delta_pct": 10.44,
+            "score": 14.94,
             "qualifies": true,
             "is_anchor": false
           }
@@ -718,13 +706,13 @@
       "ticker": "AMGN",
       "company": "Amgen Inc.",
       "price": 326.31,
-      "rsi": 38.2,
+      "rsi": 39.9,
       "market_cap_b": 176.2,
       "market_cap_str": "176.21B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 38.2 \u2265 30 (not oversold)"
+        "RSI 39.9 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -956,7 +944,7 @@
           {
             "expiration": "2026-05-22",
             "exp_type": "WEEKLY",
-            "dte": 6,
+            "dte": 4,
             "weeks_out": 1,
             "strike": 22.5,
             "premium": 0.12,
@@ -967,7 +955,7 @@
           {
             "expiration": "2026-05-29",
             "exp_type": "WEEKLY",
-            "dte": 13,
+            "dte": 11,
             "weeks_out": 2,
             "strike": 22.5,
             "premium": 0.21,
@@ -978,7 +966,7 @@
           {
             "expiration": "2026-06-05",
             "exp_type": "WEEKLY",
-            "dte": 20,
+            "dte": 18,
             "weeks_out": 3,
             "strike": 22.0,
             "premium": 0.06,
@@ -987,31 +975,20 @@
             "score": 10.7
           },
           {
-            "expiration": "2026-06-12",
-            "exp_type": "WEEKLY",
-            "dte": 27,
-            "weeks_out": 4,
-            "strike": 22.0,
-            "premium": 0.08,
-            "delta_pct": 8.45,
-            "premium_pct": 0.3537,
-            "score": 11.45
-          },
-          {
             "expiration": "2026-06-18",
             "exp_type": "UNKNOWN",
-            "dte": 33,
-            "weeks_out": 5,
+            "dte": 31,
+            "weeks_out": 4,
             "strike": 22.0,
             "premium": 0.15,
             "delta_pct": 8.45,
             "premium_pct": 0.6242,
-            "score": 12.2
+            "score": 11.45
           },
           {
             "expiration": "2026-06-26",
             "exp_type": "WEEKLY",
-            "dte": 41,
+            "dte": 39,
             "weeks_out": 6,
             "strike": 22.0,
             "premium": 0.15,
@@ -1755,7 +1732,7 @@
       "ticker": "COR",
       "company": "Cencora, Inc.",
       "price": 257.71,
-      "rsi": 27.3,
+      "rsi": 27.5,
       "market_cap_b": 50.1,
       "market_cap_str": "50.14B",
       "weekly_available": false,
@@ -1804,13 +1781,13 @@
       "ticker": "CF",
       "company": "CF Industries Holdings, Inc.",
       "price": 125.24,
-      "rsi": 52.2,
+      "rsi": 52.6,
       "market_cap_b": 19.2,
       "market_cap_str": "19.24B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 52.2 \u2265 30 (not oversold)",
+        "RSI 52.6 \u2265 30 (not oversold)",
         "Market cap $19B < $100B"
       ],
       "ladder_result": null,
@@ -1914,13 +1891,13 @@
       "ticker": "CHD",
       "company": "Church & Dwight Company, Inc.",
       "price": 94.05,
-      "rsi": 48.2,
+      "rsi": 49.1,
       "market_cap_b": 22.3,
       "market_cap_str": "22.28B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 48.2 \u2265 30 (not oversold)",
+        "RSI 49.1 \u2265 30 (not oversold)",
         "Market cap $22B < $100B",
         "No weekly options"
       ],
@@ -1964,13 +1941,13 @@
       "ticker": "CTAS",
       "company": "Cintas Corporation",
       "price": 168.31,
-      "rsi": 43.3,
+      "rsi": 44.2,
       "market_cap_b": 67.3,
       "market_cap_str": "67.35B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 43.3 \u2265 30 (not oversold)",
+        "RSI 44.2 \u2265 30 (not oversold)",
         "Market cap $67B < $100B"
       ],
       "ladder_result": null,
@@ -2219,13 +2196,13 @@
       "ticker": "CEG",
       "company": "Constellation Energy Corporatio",
       "price": 267.2,
-      "rsi": 35.2,
+      "rsi": 35.3,
       "market_cap_b": 96.5,
       "market_cap_str": "96.51B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 35.2 \u2265 30 (not oversold)",
+        "RSI 35.3 \u2265 30 (not oversold)",
         "Market cap $97B < $100B"
       ],
       "ladder_result": null,
@@ -2455,22 +2432,22 @@
       "ladder_result": {
         "qualifies": true,
         "anchor": {
-          "expiration": "2026-06-12",
+          "expiration": "2026-06-18",
           "weeks_out": 4,
           "strike": 150.0,
-          "premium": 1.5,
+          "premium": 1.85,
           "delta_pct": 7.36,
-          "premium_pct": 0.9264,
+          "premium_pct": 1.1426,
           "score": 10.36
         },
         "ladder": [
           {
             "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-06-12",
+            "expiration": "2026-06-18",
             "weeks_out": 4,
             "strike": 150.0,
-            "premium": 1.5,
-            "premium_pct": 0.926,
+            "premium": 1.85,
+            "premium_pct": 1.143,
             "delta_pct": 7.36,
             "score": 10.36,
             "qualifies": true,
@@ -2478,25 +2455,13 @@
           },
           {
             "week_label": "+1w",
-            "expiration": "2026-06-18",
-            "weeks_out": 5,
-            "strike": 145.0,
-            "premium": 1.85,
-            "premium_pct": 1.143,
-            "delta_pct": 10.44,
-            "score": 14.19,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+2w",
             "expiration": "2026-06-26",
             "weeks_out": 6,
-            "strike": 140.0,
+            "strike": 145.0,
             "premium": 2.67,
             "premium_pct": 1.652,
-            "delta_pct": 13.53,
-            "score": 18.03,
+            "delta_pct": 10.44,
+            "score": 14.94,
             "qualifies": true,
             "is_anchor": false
           }
@@ -2846,13 +2811,13 @@
       "ticker": "DUK",
       "company": "Duke Energy Corporation (Holdin",
       "price": 120.95,
-      "rsi": 31.1,
+      "rsi": 33.3,
       "market_cap_b": 94.3,
       "market_cap_str": "94.29B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 31.1 \u2265 30 (not oversold)",
+        "RSI 33.3 \u2265 30 (not oversold)",
         "Market cap $94B < $100B",
         "No weekly options"
       ],
@@ -2863,13 +2828,13 @@
       "ticker": "DD",
       "company": "DuPont de Nemours, Inc.",
       "price": 49.31,
-      "rsi": 55.6,
+      "rsi": 56.5,
       "market_cap_b": 20.2,
       "market_cap_str": "20.21B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 55.6 \u2265 30 (not oversold)",
+        "RSI 56.5 \u2265 30 (not oversold)",
         "Market cap $20B < $100B",
         "No weekly options"
       ],
@@ -3012,13 +2977,13 @@
       "ticker": "EMR",
       "company": "Emerson Electric Company",
       "price": 133.05,
-      "rsi": 40.9,
+      "rsi": 41.6,
       "market_cap_b": 74.5,
       "market_cap_str": "74.52B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 40.9 \u2265 30 (not oversold)",
+        "RSI 41.6 \u2265 30 (not oversold)",
         "Market cap $75B < $100B"
       ],
       "ladder_result": null,
@@ -3344,13 +3309,13 @@
       "ticker": "XOM",
       "company": "Exxon Mobil Corporation",
       "price": 157.92,
-      "rsi": 59.4,
+      "rsi": 60.7,
       "market_cap_b": 654.6,
       "market_cap_str": "654.57B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 59.4 \u2265 30 (not oversold)"
+        "RSI 60.7 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -4031,13 +3996,13 @@
       "ticker": "HSY",
       "company": "The Hershey Company",
       "price": 186.98,
-      "rsi": 42.1,
+      "rsi": 43.8,
       "market_cap_b": 37.9,
       "market_cap_str": "37.93B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 42.1 \u2265 30 (not oversold)",
+        "RSI 43.8 \u2265 30 (not oversold)",
         "Market cap $38B < $100B"
       ],
       "ladder_result": null,
@@ -4111,13 +4076,13 @@
       "ticker": "HON",
       "company": "Honeywell International Inc.",
       "price": 213.24,
-      "rsi": 41.8,
+      "rsi": 43.1,
       "market_cap_b": 135.1,
       "market_cap_str": "135.12B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 41.8 \u2265 30 (not oversold)"
+        "RSI 43.1 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -4482,13 +4447,13 @@
       "ticker": "IVZ",
       "company": "Invesco Ltd",
       "price": 27.12,
-      "rsi": 57.6,
+      "rsi": 59.7,
       "market_cap_b": 12.0,
       "market_cap_str": "12.02B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 57.6 \u2265 30 (not oversold)",
+        "RSI 59.7 \u2265 30 (not oversold)",
         "Market cap $12B < $100B",
         "No weekly options"
       ],
@@ -4794,13 +4759,13 @@
       "ticker": "KKR",
       "company": "KKR & Co. Inc.",
       "price": 96.97,
-      "rsi": 44.4,
+      "rsi": 44.8,
       "market_cap_b": 90.4,
       "market_cap_str": "90.42B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 44.4 \u2265 30 (not oversold)",
+        "RSI 44.8 \u2265 30 (not oversold)",
         "Market cap $90B < $100B"
       ],
       "ladder_result": null,
@@ -4842,13 +4807,13 @@
       "ticker": "KR",
       "company": "Kroger Company (The)",
       "price": 66.02,
-      "rsi": 43.7,
+      "rsi": 45.0,
       "market_cap_b": 40.7,
       "market_cap_str": "40.71B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 43.7 \u2265 30 (not oversold)",
+        "RSI 45.0 \u2265 30 (not oversold)",
         "Market cap $41B < $100B"
       ],
       "ladder_result": null,
@@ -4987,13 +4952,13 @@
       "ticker": "LLY",
       "company": "Eli Lilly and Company",
       "price": 1004.92,
-      "rsi": 60.8,
+      "rsi": 61.3,
       "market_cap_b": 896.1,
       "market_cap_str": "896.13B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 60.8 \u2265 30 (not oversold)"
+        "RSI 61.3 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -5305,7 +5270,7 @@
           {
             "expiration": "2026-05-22",
             "exp_type": "WEEKLY",
-            "dte": 6,
+            "dte": 4,
             "weeks_out": 1,
             "strike": 255.0,
             "premium": 1.1,
@@ -5316,7 +5281,7 @@
           {
             "expiration": "2026-05-29",
             "exp_type": "WEEKLY",
-            "dte": 13,
+            "dte": 11,
             "weeks_out": 2,
             "strike": 262.5,
             "premium": 0.55,
@@ -5327,7 +5292,7 @@
           {
             "expiration": "2026-06-05",
             "exp_type": "WEEKLY",
-            "dte": 20,
+            "dte": 18,
             "weeks_out": 3,
             "strike": 210.0,
             "premium": 1.07,
@@ -5336,31 +5301,20 @@
             "score": 26.27
           },
           {
-            "expiration": "2026-06-12",
-            "exp_type": "WEEKLY",
-            "dte": 27,
-            "weeks_out": 4,
-            "strike": 260.0,
-            "premium": 1.27,
-            "delta_pct": 5.93,
-            "premium_pct": 0.4613,
-            "score": 8.93
-          },
-          {
             "expiration": "2026-06-18",
             "exp_type": "UNKNOWN",
-            "dte": 33,
-            "weeks_out": 5,
+            "dte": 31,
+            "weeks_out": 4,
             "strike": 260.0,
             "premium": 1.76,
             "delta_pct": 5.93,
             "premium_pct": 0.6368,
-            "score": 9.68
+            "score": 8.93
           },
           {
             "expiration": "2026-06-26",
             "exp_type": "WEEKLY",
-            "dte": 41,
+            "dte": 39,
             "weeks_out": 6,
             "strike": 260.0,
             "premium": 2.0,
@@ -5668,13 +5622,13 @@
       "ticker": "MCO",
       "company": "Moody's Corporation",
       "price": 428.9,
-      "rsi": 37.3,
+      "rsi": 37.8,
       "market_cap_b": 74.9,
       "market_cap_str": "74.92B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 37.3 \u2265 30 (not oversold)",
+        "RSI 37.8 \u2265 30 (not oversold)",
         "Market cap $75B < $100B",
         "No weekly options"
       ],
@@ -5733,13 +5687,13 @@
       "ticker": "MSCI",
       "company": "MSCI Inc.",
       "price": 561.72,
-      "rsi": 40.9,
+      "rsi": 42.0,
       "market_cap_b": 40.9,
       "market_cap_str": "40.85B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 40.9 \u2265 30 (not oversold)",
+        "RSI 42.0 \u2265 30 (not oversold)",
         "Market cap $41B < $100B",
         "No weekly options"
       ],
@@ -6174,7 +6128,7 @@
       "ticker": "OTIS",
       "company": "Otis Worldwide Corporation",
       "price": 71.01,
-      "rsi": 27.7,
+      "rsi": 28.6,
       "market_cap_b": 27.2,
       "market_cap_str": "27.25B",
       "weekly_available": false,
@@ -7116,13 +7070,13 @@
       "ticker": "SJM",
       "company": "The J.M. Smucker Company",
       "price": 100.54,
-      "rsi": 61.0,
+      "rsi": 64.4,
       "market_cap_b": 10.7,
       "market_cap_str": "10.72B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 61.0 \u2265 30 (not oversold)",
+        "RSI 64.4 \u2265 30 (not oversold)",
         "Market cap $11B < $100B",
         "No weekly options"
       ],
@@ -7133,13 +7087,13 @@
       "ticker": "SW",
       "company": "Smurfit WestRock plc",
       "price": 37.48,
-      "rsi": 37.7,
+      "rsi": 39.0,
       "market_cap_b": 19.7,
       "market_cap_str": "19.66B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 37.7 \u2265 30 (not oversold)",
+        "RSI 39.0 \u2265 30 (not oversold)",
         "Market cap $20B < $100B",
         "No weekly options"
       ],
@@ -7232,13 +7186,13 @@
       "ticker": "SBUX",
       "company": "Starbucks Corporation",
       "price": 106.81,
-      "rsi": 65.6,
+      "rsi": 66.9,
       "market_cap_b": 121.7,
       "market_cap_str": "121.74B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 65.6 \u2265 30 (not oversold)"
+        "RSI 66.9 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -7753,8 +7707,8 @@
       "company": "Tyler Technologies, Inc.",
       "price": 311.89,
       "rsi": 41.9,
-      "market_cap_b": 13.2,
-      "market_cap_str": "13.15B",
+      "market_cap_b": 12.8,
+      "market_cap_str": "12.83B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
@@ -8031,7 +7985,7 @@
       "price": 46.37,
       "rsi": 42.5,
       "market_cap_b": 193.6,
-      "market_cap_str": "193.64B",
+      "market_cap_str": "193.62B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -8338,8 +8292,8 @@
       "company": "Western Digital Corporation",
       "price": 482.02,
       "rsi": 66.5,
-      "market_cap_b": 166.1,
-      "market_cap_str": "166.14B",
+      "market_cap_b": 166.2,
+      "market_cap_str": "166.15B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -8692,13 +8646,13 @@
       "ticker": "CCEP",
       "company": "Coca-Cola Europacific Partners ",
       "price": 89.36,
-      "rsi": 34.4,
+      "rsi": 36.5,
       "market_cap_b": 39.6,
       "market_cap_str": "39.57B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 34.4 \u2265 30 (not oversold)",
+        "RSI 36.5 \u2265 30 (not oversold)",
         "Market cap $40B < $100B",
         "No weekly options"
       ],
