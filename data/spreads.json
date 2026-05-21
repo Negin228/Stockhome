@@ -1,80 +1,5 @@
 [
   {
-    "ticker": "SDOW",
-    "company": "UltraPro Short Dow30",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 27.5,
-    "market_cap": 0.0,
-    "market_cap_str": "0",
-    "mcap": 0.0,
-    "pe_check": false,
-    "growth_check": false,
-    "debt_check": false,
-    "health": null,
-    "trailing_pe": null,
-    "forward_pe": null,
-    "earnings_growth": null,
-    "debt_to_equity": null,
-    "earnings_date": null,
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-05-21T20:21:24.108806",
-    "reasoning": "Det: Price < BBL(27.51) | ADX: 14.5 | RSI 37.8 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "CAG",
-    "company": "ConAgra Brands, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 13.38,
-    "market_cap": 6401488896.0,
-    "market_cap_str": "6.40B",
-    "mcap": 6.401488896,
-    "pe_check": false,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 89.813,
-    "trailing_pe": null,
-    "forward_pe": 7.9524517,
-    "earnings_growth": 0.377,
-    "debt_to_equity": 89.813,
-    "earnings_date": "2026-04-01",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-05-21T20:23:30.794326",
-    "reasoning": "Det: Price < BBL(13.42) | ADX: 28.0 | RSI 37.4 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "DOW",
-    "company": "Dow Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 35.91,
-    "market_cap": 25881825280.0,
-    "market_cap_str": "25.88B",
-    "mcap": 25.88182528,
-    "pe_check": false,
-    "growth_check": false,
-    "debt_check": false,
-    "health": 117.133,
-    "trailing_pe": null,
-    "forward_pe": 16.787905,
-    "earnings_growth": null,
-    "debt_to_equity": 117.133,
-    "earnings_date": "2026-07-23",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-05-21T20:24:13.319835",
-    "reasoning": "Det: Price < BBL(35.94) | ADX: 12.1 | RSI 38.7 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "UDOW",
     "company": "ProShares UltraPro Dow30",
     "strategy": "Call Credit (Bearish)",
@@ -96,8 +21,33 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:21:22.947912",
+    "added_timestamp": "2026-05-21T21:03:28.688299",
     "reasoning": "Det: Price > BBU(63.02) | ADX: 14.0 | RSI 61.6 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "SDOW",
+    "company": "UltraPro Short Dow30",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 27.5,
+    "market_cap": 0.0,
+    "market_cap_str": "0",
+    "mcap": 0.0,
+    "pe_check": false,
+    "growth_check": false,
+    "debt_check": false,
+    "health": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "earnings_growth": null,
+    "debt_to_equity": null,
+    "earnings_date": null,
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-05-21T21:03:30.568386",
+    "reasoning": "Det: Price < BBL(27.51) | ADX: 14.5 | RSI 37.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "AES",
@@ -121,7 +71,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:21:35.002394",
+    "added_timestamp": "2026-05-21T21:03:46.346136",
     "reasoning": "Det: Price > BBU(14.67) | ADX: 31.5 | RSI 72.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -146,8 +96,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:22:27.648887",
+    "added_timestamp": "2026-05-21T21:04:56.655742",
     "reasoning": "Det: Price > BBU(18.97) | ADX: 15.2 | RSI 61.1 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "CAG",
+    "company": "ConAgra Brands, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 13.38,
+    "market_cap": 6401488896.0,
+    "market_cap_str": "6.40B",
+    "mcap": 6.401488896,
+    "pe_check": false,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 89.813,
+    "trailing_pe": null,
+    "forward_pe": 7.9524517,
+    "earnings_growth": 0.377,
+    "debt_to_equity": 89.813,
+    "earnings_date": "2026-04-01",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-05-21T21:06:24.042876",
+    "reasoning": "Det: Price < BBL(13.42) | ADX: 28.0 | RSI 37.4 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "DE",
@@ -171,7 +146,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:23:59.511103",
+    "added_timestamp": "2026-05-21T21:06:59.111223",
     "reasoning": "Det: Price < BBL(543.39) | ADX: 14.8 | RSI 33.6 (Moderate: Selling Theta.)"
   },
   {
@@ -196,7 +171,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:24:01.374361",
+    "added_timestamp": "2026-05-21T21:07:01.955166",
     "reasoning": "Det: Price > BBU(75.31) | ADX: 16.5 | RSI 63.9 (Moderate: Selling Theta.)"
   },
   {
@@ -221,7 +196,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:24:03.339083",
+    "added_timestamp": "2026-05-21T21:07:04.926939",
     "reasoning": "Det: Price > BBU(69.64) | ADX: 26.5 | RSI 69.7 (Moderate: Selling Theta.)"
   },
   {
@@ -246,8 +221,33 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:24:09.178335",
+    "added_timestamp": "2026-05-21T21:07:11.991863",
     "reasoning": "Det: Price > BBU(68.15) | ADX: 18.1 | RSI 69.5 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "DOW",
+    "company": "Dow Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 35.91,
+    "market_cap": 25881825280.0,
+    "market_cap_str": "25.88B",
+    "mcap": 25.88182528,
+    "pe_check": false,
+    "growth_check": false,
+    "debt_check": false,
+    "health": 117.133,
+    "trailing_pe": null,
+    "forward_pe": 16.787905,
+    "earnings_growth": null,
+    "debt_to_equity": 117.133,
+    "earnings_date": "2026-07-23",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-05-21T21:07:17.557501",
+    "reasoning": "Det: Price < BBL(35.94) | ADX: 12.1 | RSI 38.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "ENPH",
@@ -271,7 +271,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:24:30.564593",
+    "added_timestamp": "2026-05-21T21:07:38.819369",
     "reasoning": "Det: Price > BBU(57.29) | ADX: 30.0 | RSI 77.3 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -296,7 +296,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:24:55.694451",
+    "added_timestamp": "2026-05-21T21:08:24.669831",
     "reasoning": "Det: Price > BBU(1226.02) | ADX: 18.2 | RSI 68.1 (Moderate: Selling Theta.)"
   },
   {
@@ -321,7 +321,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:24:57.757303",
+    "added_timestamp": "2026-05-21T21:08:27.576931",
     "reasoning": "Det: Price > BBU(118.48) | ADX: 27.6 | RSI 69.9 (Moderate: Selling Theta.)"
   },
   {
@@ -346,7 +346,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:25:31.220814",
+    "added_timestamp": "2026-05-21T21:09:22.924961",
     "reasoning": "Det: Price > BBU(982.40) | ADX: 16.0 | RSI 64.9 (Moderate: Selling Theta.)"
   },
   {
@@ -371,7 +371,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:25:55.719097",
+    "added_timestamp": "2026-05-21T21:09:53.117864",
     "reasoning": "Det: Price > BBU(241.64) | ADX: 26.3 | RSI 66.4 (Moderate: Selling Theta.)"
   },
   {
@@ -396,7 +396,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:26:15.639065",
+    "added_timestamp": "2026-05-21T21:10:12.455241",
     "reasoning": "Det: Price < BBL(151.87) | ADX: 16.7 | RSI 38.4 (Moderate: Selling Theta.)"
   },
   {
@@ -421,7 +421,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:26:22.494448",
+    "added_timestamp": "2026-05-21T21:10:23.411068",
     "reasoning": "Det: Price < BBL(347.71) | ADX: 12.6 | RSI 28.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -446,7 +446,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:27:26.774464",
+    "added_timestamp": "2026-05-21T21:11:41.013593",
     "reasoning": "Det: Price > BBU(369.60) | ADX: 14.2 | RSI 63.3 (Moderate: Selling Theta.)"
   },
   {
@@ -471,7 +471,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:27:39.483077",
+    "added_timestamp": "2026-05-21T21:11:58.281743",
     "reasoning": "Det: Price > BBU(82.90) | ADX: 28.3 | RSI 74.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -496,7 +496,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:27:58.867018",
+    "added_timestamp": "2026-05-21T21:12:32.263123",
     "reasoning": "Det: Price > BBU(198.29) | ADX: 27.3 | RSI 67.3 (Moderate: Selling Theta.)"
   },
   {
@@ -521,7 +521,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:29:21.898313",
+    "added_timestamp": "2026-05-21T21:13:58.624614",
     "reasoning": "Det: Price > BBU(103.06) | ADX: 24.4 | RSI 68.4 (Moderate: Selling Theta.)"
   },
   {
@@ -546,7 +546,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:30:38.198651",
+    "added_timestamp": "2026-05-21T21:15:41.047602",
     "reasoning": "Det: Price > BBU(76.57) | ADX: 21.8 | RSI 61.4 (Moderate: Selling Theta.)"
   },
   {
@@ -571,7 +571,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-05-21T20:31:53.823873",
+    "added_timestamp": "2026-05-21T21:17:15.855945",
     "reasoning": "Det: Price < BBL(124.57) | ADX: 11.6 | RSI 35.5 (Moderate: Selling Theta.)"
   }
 ]
