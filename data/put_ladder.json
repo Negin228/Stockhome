@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-26-2026 17:34",
+  "generated_at_pt": "05-26-2026 18:49",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -897,13 +897,13 @@
       "ticker": "ATO",
       "company": "Atmos Energy Corporation",
       "price": 177.72,
-      "rsi": 39.9,
+      "rsi": 42.6,
       "market_cap_b": 29.7,
       "market_cap_str": "29.66B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 39.9 \u2265 30 (not oversold)",
+        "RSI 42.6 \u2265 30 (not oversold)",
         "Market cap $30B < $100B",
         "No weekly options"
       ],
@@ -1203,7 +1203,7 @@
     {
       "ticker": "BK",
       "company": "The Bank of New York Mellon Cor",
-      "price": 141.05,
+      "price": 139.15,
       "rsi": 72.2,
       "market_cap_b": 94.1,
       "market_cap_str": "94.14B",
@@ -6074,13 +6074,13 @@
       "ticker": "PAYC",
       "company": "Paycom Software, Inc.",
       "price": 132.82,
-      "rsi": 50.0,
+      "rsi": 50.5,
       "market_cap_b": 6.2,
       "market_cap_str": "6.19B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 50.0 \u2265 30 (not oversold)",
+        "RSI 50.5 \u2265 30 (not oversold)",
         "Market cap $6B < $100B",
         "No weekly options"
       ],
