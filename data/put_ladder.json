@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-26-2026 15:13",
+  "generated_at_pt": "05-26-2026 17:34",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -1203,14 +1203,14 @@
     {
       "ticker": "BK",
       "company": "The Bank of New York Mellon Cor",
-      "price": 139.15,
-      "rsi": 68.8,
+      "price": 141.05,
+      "rsi": 72.2,
       "market_cap_b": 94.1,
       "market_cap_str": "94.14B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 68.8 \u2265 30 (not oversold)",
+        "RSI 72.2 \u2265 30 (not oversold)",
         "Market cap $94B < $100B",
         "No weekly options"
       ],
@@ -4448,13 +4448,13 @@
       "ticker": "JNJ",
       "company": "Johnson & Johnson",
       "price": 230.18,
-      "rsi": 50.7,
+      "rsi": 52.9,
       "market_cap_b": 554.1,
       "market_cap_str": "554.09B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 50.7 \u2265 30 (not oversold)"
+        "RSI 52.9 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -6347,13 +6347,13 @@
       "ticker": "PRU",
       "company": "Prudential Financial, Inc.",
       "price": 102.62,
-      "rsi": 56.6,
+      "rsi": 62.2,
       "market_cap_b": 35.6,
       "market_cap_str": "35.64B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 56.6 \u2265 30 (not oversold)",
+        "RSI 62.2 \u2265 30 (not oversold)",
         "Market cap $36B < $100B",
         "No weekly options"
       ],
@@ -6873,13 +6873,13 @@
       "ticker": "SWKS",
       "company": "Skyworks Solutions, Inc.",
       "price": 83.42,
-      "rsi": 75.3,
+      "rsi": 75.8,
       "market_cap_b": 12.5,
       "market_cap_str": "12.55B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 75.3 \u2265 30 (not oversold)",
+        "RSI 75.8 \u2265 30 (not oversold)",
         "Market cap $13B < $100B",
         "No weekly options"
       ],
