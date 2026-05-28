@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-27-2026 16:36",
+  "generated_at_pt": "05-27-2026 17:32",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -947,8 +947,8 @@
       "company": "AutoZone, Inc.",
       "price": 3027.48,
       "rsi": 27.1,
-      "market_cap_b": 50.2,
-      "market_cap_str": "50.16B",
+      "market_cap_b": 49.6,
+      "market_cap_str": "49.56B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
@@ -2692,13 +2692,13 @@
       "company": "DuPont de Nemours, Inc.",
       "price": 47.66,
       "rsi": 49.2,
-      "market_cap_b": 19.5,
-      "market_cap_str": "19.54B",
+      "market_cap_b": 19.3,
+      "market_cap_str": "19.31B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
         "RSI 49.2 \u2265 30 (not oversold)",
-        "Market cap $20B < $100B",
+        "Market cap $19B < $100B",
         "No weekly options"
       ],
       "ladder_result": null,
@@ -2807,13 +2807,13 @@
       "ticker": "EA",
       "company": "Electronic Arts Inc.",
       "price": 200.68,
-      "rsi": 41.9,
+      "rsi": 43.6,
       "market_cap_b": 50.3,
       "market_cap_str": "50.32B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 41.9 \u2265 30 (not oversold)",
+        "RSI 43.6 \u2265 30 (not oversold)",
         "Market cap $50B < $100B"
       ],
       "ladder_result": null,
@@ -3927,8 +3927,8 @@
       "company": "Home Depot, Inc. (The)",
       "price": 317.85,
       "rsi": 50.1,
-      "market_cap_b": 316.6,
-      "market_cap_str": "316.59B",
+      "market_cap_b": 316.9,
+      "market_cap_str": "316.93B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -4899,13 +4899,13 @@
       "ticker": "L",
       "company": "Loews Corporation",
       "price": 106.98,
-      "rsi": 46.8,
+      "rsi": 47.0,
       "market_cap_b": 22.0,
       "market_cap_str": "22.01B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 46.8 \u2265 30 (not oversold)",
+        "RSI 47.0 \u2265 30 (not oversold)",
         "Market cap $22B < $100B",
         "No weekly options"
       ],
@@ -5565,13 +5565,13 @@
       "ticker": "NEM",
       "company": "Newmont Corporation",
       "price": 107.23,
-      "rsi": 44.3,
+      "rsi": 44.6,
       "market_cap_b": 114.5,
       "market_cap_str": "114.47B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 44.3 \u2265 30 (not oversold)"
+        "RSI 44.6 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -5582,7 +5582,7 @@
       "price": 26.61,
       "rsi": 56.5,
       "market_cap_b": 14.5,
-      "market_cap_str": "14.53B",
+      "market_cap_str": "14.52B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
@@ -7424,13 +7424,13 @@
       "ticker": "TSCO",
       "company": "Tractor Supply Company",
       "price": 30.67,
-      "rsi": 32.6,
+      "rsi": 34.2,
       "market_cap_b": 16.1,
       "market_cap_str": "16.08B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 32.6 \u2265 30 (not oversold)",
+        "RSI 34.2 \u2265 30 (not oversold)",
         "Market cap $16B < $100B"
       ],
       "ladder_result": null,
@@ -8255,13 +8255,13 @@
       "ticker": "YUM",
       "company": "Yum! Brands, Inc.",
       "price": 152.02,
-      "rsi": 43.7,
+      "rsi": 45.2,
       "market_cap_b": 41.9,
       "market_cap_str": "41.90B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 43.7 \u2265 30 (not oversold)",
+        "RSI 45.2 \u2265 30 (not oversold)",
         "Market cap $42B < $100B",
         "No weekly options"
       ],
@@ -8338,8 +8338,8 @@
       "company": "Zscaler, Inc.",
       "price": 126.41,
       "rsi": 37.3,
-      "market_cap_b": 20.3,
-      "market_cap_str": "20.33B",
+      "market_cap_b": 20.4,
+      "market_cap_str": "20.44B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -8496,7 +8496,7 @@
       "price": 302.71,
       "rsi": 70.8,
       "market_cap_b": 322.1,
-      "market_cap_str": "322.08B",
+      "market_cap_str": "322.10B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
