@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-28-2026 17:40",
+  "generated_at_pt": "05-28-2026 20:10",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -546,13 +546,13 @@
       "ticker": "AMCR",
       "company": "Amcor plc",
       "price": 39.25,
-      "rsi": 51.4,
+      "rsi": 54.8,
       "market_cap_b": 18.1,
       "market_cap_str": "18.15B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 51.4 \u2265 30 (not oversold)",
+        "RSI 54.8 \u2265 30 (not oversold)",
         "Market cap $18B < $100B",
         "No weekly options"
       ],
@@ -3160,13 +3160,13 @@
       "ticker": "EXPE",
       "company": "Expedia Group, Inc.",
       "price": 227.55,
-      "rsi": 47.9,
+      "rsi": 48.4,
       "market_cap_b": 27.3,
       "market_cap_str": "27.31B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 47.9 \u2265 30 (not oversold)",
+        "RSI 48.4 \u2265 30 (not oversold)",
         "Market cap $27B < $100B"
       ],
       "ladder_result": null,
@@ -8276,13 +8276,13 @@
       "ticker": "XYL",
       "company": "Xylem Inc.",
       "price": 109.25,
-      "rsi": 38.9,
+      "rsi": 39.7,
       "market_cap_b": 26.0,
       "market_cap_str": "25.97B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 38.9 \u2265 30 (not oversold)",
+        "RSI 39.7 \u2265 30 (not oversold)",
         "Market cap $26B < $100B",
         "No weekly options"
       ],
