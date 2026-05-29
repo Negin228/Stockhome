@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-28-2026 20:10",
+  "generated_at_pt": "05-29-2026 00:21",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -21,26 +21,38 @@
       "ladder_result": {
         "qualifies": true,
         "anchor": {
-          "expiration": "2026-07-17",
-          "weeks_out": 7,
+          "expiration": "2026-06-26",
+          "weeks_out": 4,
           "strike": 75.0,
-          "premium": 1.35,
+          "premium": 0.83,
           "delta_pct": 9.67,
-          "premium_pct": 1.6319,
-          "score": 14.92
+          "premium_pct": 0.9996,
+          "score": 12.67
         },
         "ladder": [
           {
             "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-07-17",
-            "weeks_out": 7,
+            "expiration": "2026-06-26",
+            "weeks_out": 4,
             "strike": 75.0,
-            "premium": 1.35,
-            "premium_pct": 1.632,
+            "premium": 0.83,
+            "premium_pct": 1.0,
             "delta_pct": 9.67,
-            "score": 14.92,
+            "score": 12.67,
             "qualifies": true,
             "is_anchor": true
+          },
+          {
+            "week_label": "+1w",
+            "expiration": "2026-07-17",
+            "weeks_out": 7,
+            "strike": 70.0,
+            "premium": 1.4,
+            "premium_pct": 1.686,
+            "delta_pct": 15.69,
+            "score": 20.94,
+            "qualifies": true,
+            "is_anchor": false
           }
         ]
       },
@@ -1242,7 +1254,7 @@
     {
       "ticker": "BK",
       "company": "The Bank of New York Mellon Cor",
-      "price": 139.74,
+      "price": 140.56,
       "rsi": 68.4,
       "market_cap_b": 94.1,
       "market_cap_str": "94.14B",
@@ -8433,26 +8445,38 @@
       "ladder_result": {
         "qualifies": true,
         "anchor": {
-          "expiration": "2026-07-17",
-          "weeks_out": 7,
+          "expiration": "2026-06-26",
+          "weeks_out": 4,
           "strike": 75.0,
-          "premium": 1.35,
+          "premium": 0.83,
           "delta_pct": 9.67,
-          "premium_pct": 1.6319,
-          "score": 14.92
+          "premium_pct": 0.9996,
+          "score": 12.67
         },
         "ladder": [
           {
             "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-07-17",
-            "weeks_out": 7,
+            "expiration": "2026-06-26",
+            "weeks_out": 4,
             "strike": 75.0,
-            "premium": 1.35,
-            "premium_pct": 1.632,
+            "premium": 0.83,
+            "premium_pct": 1.0,
             "delta_pct": 9.67,
-            "score": 14.92,
+            "score": 12.67,
             "qualifies": true,
             "is_anchor": true
+          },
+          {
+            "week_label": "+1w",
+            "expiration": "2026-07-17",
+            "weeks_out": 7,
+            "strike": 70.0,
+            "premium": 1.4,
+            "premium_pct": 1.686,
+            "delta_pct": 15.69,
+            "score": 20.94,
+            "qualifies": true,
+            "is_anchor": false
           }
         ]
       },
