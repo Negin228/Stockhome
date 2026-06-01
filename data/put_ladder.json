@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "05-31-2026 20:56",
+  "generated_at_pt": "06-01-2026 00:45",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -7,82 +7,7 @@
     "rsi_threshold": 30,
     "mcap_min_b": 100.0
   },
-  "qualifying": [
-    {
-      "ticker": "WMT",
-      "company": "Walmart Inc.",
-      "price": 115.75,
-      "rsi": 29.0,
-      "market_cap_b": 922.6,
-      "market_cap_str": "922.64B",
-      "weekly_available": true,
-      "filters_pass": true,
-      "filter_fail": [],
-      "ladder_result": {
-        "qualifies": true,
-        "anchor": {
-          "expiration": "2026-06-18",
-          "weeks_out": 2,
-          "strike": 82.5,
-          "premium": 1.07,
-          "delta_pct": 28.73,
-          "premium_pct": 0.9244,
-          "score": 30.23
-        },
-        "ladder": [
-          {
-            "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-06-18",
-            "weeks_out": 2,
-            "strike": 82.5,
-            "premium": 1.07,
-            "premium_pct": 0.924,
-            "delta_pct": 28.73,
-            "score": 30.23,
-            "qualifies": true,
-            "is_anchor": true
-          },
-          {
-            "week_label": "+1w",
-            "expiration": "2026-06-26",
-            "weeks_out": 4,
-            "strike": 77.5,
-            "premium": 1.07,
-            "premium_pct": 0.929,
-            "delta_pct": 33.05,
-            "score": 36.05,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+2w",
-            "expiration": "2026-07-10",
-            "weeks_out": 6,
-            "strike": 72.5,
-            "premium": 1.27,
-            "premium_pct": 1.101,
-            "delta_pct": 37.37,
-            "score": 41.87,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+3w",
-            "expiration": "2026-07-17",
-            "weeks_out": 7,
-            "strike": 67.5,
-            "premium": 0.8,
-            "premium_pct": 0.691,
-            "delta_pct": 41.68,
-            "score": 46.93,
-            "qualifies": false,
-            "is_anchor": false
-          }
-        ]
-      },
-      "qualifying": true
-    }
-  ],
+  "qualifying": [],
   "all": [
     {
       "ticker": "TQQQ",
@@ -8042,68 +7967,78 @@
       "filters_pass": true,
       "filter_fail": [],
       "ladder_result": {
-        "qualifies": true,
-        "anchor": {
-          "expiration": "2026-06-18",
-          "weeks_out": 2,
-          "strike": 82.5,
-          "premium": 1.07,
-          "delta_pct": 28.73,
-          "premium_pct": 0.9244,
-          "score": 30.23
-        },
-        "ladder": [
+        "qualifies": false,
+        "fail_reason": "No week satisfies both conditions. Best score=13.8 at week 6 (need 10.0); best premium%=0.631% (need 0.75%)",
+        "week_reps": [
           {
-            "week_label": "\u2605 ANCHOR",
+            "expiration": "2026-06-12",
+            "exp_type": "WEEKLY",
+            "dte": 10,
+            "weeks_out": 1,
+            "strike": 109.0,
+            "premium": 0.36,
+            "delta_pct": 5.83,
+            "premium_pct": 0.311,
+            "score": 6.58
+          },
+          {
             "expiration": "2026-06-18",
+            "exp_type": "UNKNOWN",
+            "dte": 16,
             "weeks_out": 2,
-            "strike": 82.5,
-            "premium": 1.07,
-            "premium_pct": 0.924,
-            "delta_pct": 28.73,
-            "score": 30.23,
-            "qualifies": true,
-            "is_anchor": true
+            "strike": 109.0,
+            "premium": 0.59,
+            "delta_pct": 5.83,
+            "premium_pct": 0.5097,
+            "score": 7.33
           },
           {
-            "week_label": "+1w",
             "expiration": "2026-06-26",
+            "exp_type": "WEEKLY",
+            "dte": 24,
+            "weeks_out": 3,
+            "strike": 109.0,
+            "premium": 0.95,
+            "delta_pct": 5.83,
+            "premium_pct": 0.8207,
+            "score": 8.08
+          },
+          {
+            "expiration": "2026-07-02",
+            "exp_type": "UNKNOWN",
+            "dte": 30,
             "weeks_out": 4,
-            "strike": 77.5,
-            "premium": 1.07,
-            "premium_pct": 0.929,
-            "delta_pct": 33.05,
-            "score": 36.05,
-            "qualifies": true,
-            "is_anchor": false
+            "strike": 109.0,
+            "premium": 1.1,
+            "delta_pct": 5.83,
+            "premium_pct": 0.9503,
+            "score": 8.83
           },
           {
-            "week_label": "+2w",
             "expiration": "2026-07-10",
-            "weeks_out": 6,
-            "strike": 72.5,
-            "premium": 1.27,
-            "premium_pct": 1.101,
-            "delta_pct": 37.37,
-            "score": 41.87,
-            "qualifies": true,
-            "is_anchor": false
+            "exp_type": "WEEKLY",
+            "dte": 38,
+            "weeks_out": 5,
+            "strike": 109.0,
+            "premium": 1.39,
+            "delta_pct": 5.83,
+            "premium_pct": 1.2009,
+            "score": 9.58
           },
           {
-            "week_label": "+3w",
             "expiration": "2026-07-17",
-            "weeks_out": 7,
-            "strike": 67.5,
-            "premium": 0.8,
-            "premium_pct": 0.691,
-            "delta_pct": 41.68,
-            "score": 46.93,
-            "qualifies": false,
-            "is_anchor": false
+            "exp_type": "MONTHLY",
+            "dte": 45,
+            "weeks_out": 6,
+            "strike": 105.0,
+            "premium": 0.73,
+            "delta_pct": 9.29,
+            "premium_pct": 0.6307,
+            "score": 13.79
           }
         ]
       },
-      "qualifying": true
+      "qualifying": false
     },
     {
       "ticker": "DIS",
