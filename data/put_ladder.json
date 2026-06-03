@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-02-2026 16:44",
+  "generated_at_pt": "06-02-2026 17:44",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -1301,14 +1301,14 @@
     {
       "ticker": "BK",
       "company": "The Bank of New York Mellon Cor",
-      "price": 137.16,
-      "rsi": 69.9,
+      "price": 141.28,
+      "rsi": 65.0,
       "market_cap_b": 94.1,
       "market_cap_str": "94.14B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 69.9 \u2265 30 (not oversold)",
+        "RSI 65.0 \u2265 30 (not oversold)",
         "Market cap $94B < $100B",
         "No weekly options"
       ],
@@ -2221,13 +2221,13 @@
       "company": "Copart, Inc.",
       "price": 30.86,
       "rsi": 33.0,
-      "market_cap_b": 28.6,
-      "market_cap_str": "28.57B",
+      "market_cap_b": 29.7,
+      "market_cap_str": "29.73B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
         "RSI 33.0 \u2265 30 (not oversold)",
-        "Market cap $29B < $100B",
+        "Market cap $30B < $100B",
         "No weekly options"
       ],
       "ladder_result": null,
@@ -2304,8 +2304,8 @@
       "company": "Costco Wholesale Corporation",
       "price": 954.27,
       "rsi": 35.3,
-      "market_cap_b": 423.2,
-      "market_cap_str": "423.23B",
+      "market_cap_b": 423.4,
+      "market_cap_str": "423.36B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -2512,8 +2512,8 @@
       "company": "Deere & Company",
       "price": 579.25,
       "rsi": 57.6,
-      "market_cap_b": 156.4,
-      "market_cap_str": "156.36B",
+      "market_cap_b": 156.5,
+      "market_cap_str": "156.46B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -5009,7 +5009,7 @@
       "price": 206.64,
       "rsi": 31.5,
       "market_cap_b": 115.9,
-      "market_cap_str": "115.86B",
+      "market_cap_str": "115.93B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -6881,8 +6881,8 @@
       "company": "Seagate Technology Holdings PLC",
       "price": 926.61,
       "rsi": 78.2,
-      "market_cap_b": 209.6,
-      "market_cap_str": "209.65B",
+      "market_cap_b": 207.8,
+      "market_cap_str": "207.77B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -8623,8 +8623,8 @@
       "company": "Marvell Technology, Inc.",
       "price": 290.79,
       "rsi": 85.9,
-      "market_cap_b": 254.4,
-      "market_cap_str": "254.38B",
+      "market_cap_b": 254.6,
+      "market_cap_str": "254.60B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
