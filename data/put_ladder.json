@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-02-2026 17:44",
+  "generated_at_pt": "06-02-2026 19:01",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -381,7 +381,7 @@
       "price": 135.05,
       "rsi": 74.6,
       "market_cap_b": 38.1,
-      "market_cap_str": "38.11B",
+      "market_cap_str": "38.14B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
@@ -786,13 +786,13 @@
       "ticker": "ADI",
       "company": "Analog Devices, Inc.",
       "price": 423.2,
-      "rsi": 58.7,
+      "rsi": 59.0,
       "market_cap_b": 206.1,
       "market_cap_str": "206.14B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 58.7 \u2265 30 (not oversold)"
+        "RSI 59.0 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -1301,7 +1301,7 @@
     {
       "ticker": "BK",
       "company": "The Bank of New York Mellon Cor",
-      "price": 141.28,
+      "price": 142.59,
       "rsi": 65.0,
       "market_cap_b": 94.1,
       "market_cap_str": "94.14B",
@@ -2188,8 +2188,8 @@
       "company": "Constellation Energy Corporatio",
       "price": 272.65,
       "rsi": 43.0,
-      "market_cap_b": 98.5,
-      "market_cap_str": "98.48B",
+      "market_cap_b": 97.9,
+      "market_cap_str": "97.91B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -2221,13 +2221,13 @@
       "company": "Copart, Inc.",
       "price": 30.86,
       "rsi": 33.0,
-      "market_cap_b": 29.7,
-      "market_cap_str": "29.73B",
+      "market_cap_b": 28.6,
+      "market_cap_str": "28.57B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
         "RSI 33.0 \u2265 30 (not oversold)",
-        "Market cap $30B < $100B",
+        "Market cap $29B < $100B",
         "No weekly options"
       ],
       "ladder_result": null,
@@ -2304,8 +2304,8 @@
       "company": "Costco Wholesale Corporation",
       "price": 954.27,
       "rsi": 35.3,
-      "market_cap_b": 423.4,
-      "market_cap_str": "423.36B",
+      "market_cap_b": 423.2,
+      "market_cap_str": "423.23B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -2512,8 +2512,8 @@
       "company": "Deere & Company",
       "price": 579.25,
       "rsi": 57.6,
-      "market_cap_b": 156.5,
-      "market_cap_str": "156.46B",
+      "market_cap_b": 156.4,
+      "market_cap_str": "156.36B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -2624,7 +2624,7 @@
       "price": 106.27,
       "rsi": 42.9,
       "market_cap_b": 23.4,
-      "market_cap_str": "23.40B",
+      "market_cap_str": "23.44B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -3971,13 +3971,13 @@
       "company": "Hewlett Packard Enterprise Comp",
       "price": 56.15,
       "rsi": 91.1,
-      "market_cap_b": 74.5,
-      "market_cap_str": "74.50B",
+      "market_cap_b": 74.4,
+      "market_cap_str": "74.35B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
         "RSI 91.1 \u2265 30 (not oversold)",
-        "Market cap $75B < $100B"
+        "Market cap $74B < $100B"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -4634,13 +4634,13 @@
       "ticker": "KEY",
       "company": "KeyCorp",
       "price": 21.18,
-      "rsi": 47.2,
+      "rsi": 50.5,
       "market_cap_b": 23.0,
       "market_cap_str": "22.96B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 47.2 \u2265 30 (not oversold)",
+        "RSI 50.5 \u2265 30 (not oversold)",
         "Market cap $23B < $100B",
         "No weekly options"
       ],
@@ -5009,7 +5009,7 @@
       "price": 206.64,
       "rsi": 31.5,
       "market_cap_b": 115.9,
-      "market_cap_str": "115.93B",
+      "market_cap_str": "115.86B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -5219,13 +5219,13 @@
       "ticker": "MCD",
       "company": "McDonald's Corporation",
       "price": 276.36,
-      "rsi": 37.3,
+      "rsi": 40.7,
       "market_cap_b": 196.4,
       "market_cap_str": "196.36B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 37.3 \u2265 30 (not oversold)"
+        "RSI 40.7 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -5674,7 +5674,7 @@
       "price": 26.41,
       "rsi": 52.7,
       "market_cap_b": 14.4,
-      "market_cap_str": "14.41B",
+      "market_cap_str": "14.40B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
@@ -6881,8 +6881,8 @@
       "company": "Seagate Technology Holdings PLC",
       "price": 926.61,
       "rsi": 78.2,
-      "market_cap_b": 207.8,
-      "market_cap_str": "207.77B",
+      "market_cap_b": 209.6,
+      "market_cap_str": "209.65B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -7651,8 +7651,8 @@
       "company": "U.S. Bancorp",
       "price": 54.6,
       "rsi": 50.1,
-      "market_cap_b": 84.8,
-      "market_cap_str": "84.76B",
+      "market_cap_b": 84.7,
+      "market_cap_str": "84.69B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -8623,8 +8623,8 @@
       "company": "Marvell Technology, Inc.",
       "price": 290.79,
       "rsi": 85.9,
-      "market_cap_b": 254.6,
-      "market_cap_str": "254.60B",
+      "market_cap_b": 254.4,
+      "market_cap_str": "254.38B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
