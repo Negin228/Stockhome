@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-04-2026 16:32",
+  "generated_at_pt": "06-04-2026 17:37",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -1449,14 +1449,14 @@
     {
       "ticker": "BK",
       "company": "The Bank of New York Mellon Cor",
-      "price": 137.16,
-      "rsi": 62.5,
+      "price": 144.02,
+      "rsi": 68.8,
       "market_cap_b": 94.1,
       "market_cap_str": "94.14B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 62.5 \u2265 30 (not oversold)",
+        "RSI 68.8 \u2265 30 (not oversold)",
         "Market cap $94B < $100B",
         "No weekly options"
       ],
@@ -6222,7 +6222,7 @@
     {
       "ticker": "PCAR",
       "company": "PACCAR Inc.",
-      "price": 118.06,
+      "price": 118.07,
       "rsi": 59.0,
       "market_cap_b": 62.1,
       "market_cap_str": "62.14B",
