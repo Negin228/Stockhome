@@ -4,15 +4,10 @@ on:
   schedule:
     # Start ~2h before US market open, Mon-Fri.
     # 11:30 UTC = 7:30am ET in summer (EDT) / 6:30am ET in winter (EST).
-    # NOTE: GitHub cron is fixed UTC and does NOT follow daylight saving, so
-    # this lands 2h-before-open in summer and 3h-before-open in winter.
-    # Starting a little early is the safe direction (never late). See notes.
     - cron: '30 11 * * 1-5'
   workflow_dispatch:
 
 # Serialize: a new scheduled run WAITS for the current ~23h run to finish
-# instead of running in parallel. Guarantees no two runs push at once and
-# gives a seamless daily handoff.
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
@@ -22,21 +17,12 @@ permissions:
   pages: write
   id-token: write
 
-# Secrets shared by every block (workflow-level env keeps it DRY).
 env:
   API_KEY: ${{ secrets.API_KEY }}
   ALPACA_NISHANTMEAN_KEY: ${{ secrets.ALPACA_NISHANTMEAN_KEY }}
   ALPACA_NISHANTMEAN_SECRET: ${{ secrets.ALPACA_NISHANTMEAN_SECRET }}
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
-# ---------------------------------------------------------------------------
-# Each block loops run_cycle.sh every 30 min for ~4h40m (BLOCK_SECONDS=16800),
-# then chains to the next via `needs`. 5 blocks x ~4.67h = ~23h of coverage.
-# timeout-minutes: 300 (5h) is just a safety cap - the loop exits on its own
-# well before that, so the job ends "success" and the chain continues.
-# To cover more/less time: add/remove blocks or change BLOCK_SECONDS.
-# ---------------------------------------------------------------------------
 
 jobs:
   # ---- Trading + website-update loop -------------------------------------
@@ -46,6 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -58,6 +45,7 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "github-actions[bot]"
+          git config --global pull.rebase true
       - name: Run cycles (~4h40m, every 30 min)
         run: |
           chmod +x run_cycle.sh
@@ -77,6 +65,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -89,6 +78,7 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "github-actions[bot]"
+          git config --global pull.rebase true
       - name: Run cycles (~4h40m, every 30 min)
         run: |
           chmod +x run_cycle.sh
@@ -108,6 +98,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -120,6 +111,7 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "github-actions[bot]"
+          git config --global pull.rebase true
       - name: Run cycles (~4h40m, every 30 min)
         run: |
           chmod +x run_cycle.sh
@@ -139,6 +131,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -151,6 +144,7 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "github-actions[bot]"
+          git config --global pull.rebase true
       - name: Run cycles (~4h40m, every 30 min)
         run: |
           chmod +x run_cycle.sh
@@ -170,6 +164,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -182,6 +177,7 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "github-actions[bot]"
+          git config --global pull.rebase true
       - name: Run cycles (~4h40m, every 30 min)
         run: |
           chmod +x run_cycle.sh
@@ -194,14 +190,12 @@ jobs:
           done
 
   # ---- GitHub Pages build + deploy (runs once, at the start) -------------
-  # Independent of the trading loop, so the site deploys immediately instead
-  # of waiting ~23h. Your data/*.json are committed to main every cycle and
-  # read client-side, so the site stays fresh without redeploying each cycle.
   pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - name: Prepare GitHub Pages Artifacts
         run: |
