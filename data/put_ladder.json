@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-04-2026 20:10",
+  "generated_at_pt": "06-05-2026 02:13",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -21,72 +21,36 @@
       "ladder_result": {
         "qualifies": true,
         "anchor": {
-          "expiration": "2026-06-18",
-          "weeks_out": 2,
-          "strike": 18.0,
-          "premium": 0.28,
-          "delta_pct": 20.95,
-          "premium_pct": 1.2077,
-          "score": 22.45
+          "expiration": "2026-07-10",
+          "weeks_out": 5,
+          "strike": 21.0,
+          "premium": 0.32,
+          "delta_pct": 7.77,
+          "premium_pct": 1.4054,
+          "score": 11.52
         },
         "ladder": [
           {
             "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-06-18",
-            "weeks_out": 2,
-            "strike": 18.0,
-            "premium": 0.28,
-            "premium_pct": 1.208,
-            "delta_pct": 20.95,
-            "score": 22.45,
+            "expiration": "2026-07-10",
+            "weeks_out": 5,
+            "strike": 21.0,
+            "premium": 0.32,
+            "premium_pct": 1.405,
+            "delta_pct": 7.77,
+            "score": 11.52,
             "qualifies": true,
             "is_anchor": true
           },
           {
             "week_label": "+1w",
-            "expiration": "2026-06-26",
-            "weeks_out": 3,
-            "strike": 13.0,
-            "premium": 0.08,
-            "premium_pct": 0.351,
-            "delta_pct": 42.91,
-            "score": 45.16,
-            "qualifies": false,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+2w",
-            "expiration": "2026-07-02",
-            "weeks_out": 4,
-            "strike": 8.0,
-            "premium": 0.36,
-            "premium_pct": 1.581,
-            "delta_pct": 64.87,
-            "score": 67.87,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+3w",
-            "expiration": "2026-07-10",
-            "weeks_out": 5,
-            "strike": 3.0,
-            "premium": 0.17,
-            "premium_pct": 0.769,
-            "delta_pct": 86.82,
-            "score": 90.57,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+4w",
             "expiration": "2026-07-17",
             "weeks_out": 6,
-            "strike": -2.0,
-            "premium": 0.32,
-            "premium_pct": 1.383,
-            "delta_pct": 108.78,
-            "score": 113.28,
+            "strike": 16.0,
+            "premium": 0.33,
+            "premium_pct": 1.449,
+            "delta_pct": 29.73,
+            "score": 34.23,
             "qualifies": true,
             "is_anchor": false
           }
@@ -112,7 +76,7 @@
           "strike": 75.0,
           "premium": 1.81,
           "delta_pct": 8.04,
-          "premium_pct": 2.2254,
+          "premium_pct": 2.2192,
           "score": 12.54
         },
         "ladder": [
@@ -122,7 +86,7 @@
             "weeks_out": 6,
             "strike": 75.0,
             "premium": 1.81,
-            "premium_pct": 2.225,
+            "premium_pct": 2.219,
             "delta_pct": 8.04,
             "score": 12.54,
             "qualifies": true,
@@ -148,9 +112,9 @@
           "expiration": "2026-07-10",
           "weeks_out": 5,
           "strike": 88.0,
-          "premium": 1.26,
+          "premium": 1.0,
           "delta_pct": 6.52,
-          "premium_pct": 1.3384,
+          "premium_pct": 1.0622,
           "score": 10.27
         },
         "ladder": [
@@ -159,8 +123,8 @@
             "expiration": "2026-07-10",
             "weeks_out": 5,
             "strike": 88.0,
-            "premium": 1.26,
-            "premium_pct": 1.338,
+            "premium": 1.0,
+            "premium_pct": 1.062,
             "delta_pct": 6.52,
             "score": 10.27,
             "qualifies": true,
@@ -171,8 +135,8 @@
             "expiration": "2026-07-17",
             "weeks_out": 6,
             "strike": 83.0,
-            "premium": 0.8,
-            "premium_pct": 0.85,
+            "premium": 0.84,
+            "premium_pct": 0.892,
             "delta_pct": 11.83,
             "score": 16.33,
             "qualifies": true,
@@ -364,13 +328,13 @@
       "ticker": "ABBV",
       "company": "AbbVie Inc.",
       "price": 224.94,
-      "rsi": 67.2,
+      "rsi": 58.9,
       "market_cap_b": 397.4,
       "market_cap_str": "397.42B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 67.2 \u2265 30 (not oversold)"
+        "RSI 58.9 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -490,13 +454,13 @@
       "ticker": "ABNB",
       "company": "Airbnb, Inc.",
       "price": 133.72,
-      "rsi": 47.4,
+      "rsi": 47.1,
       "market_cap_b": 79.4,
       "market_cap_str": "79.36B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 47.4 \u2265 30 (not oversold)",
+        "RSI 47.1 \u2265 30 (not oversold)",
         "Market cap $79B < $100B"
       ],
       "ladder_result": null,
@@ -571,13 +535,13 @@
       "ticker": "ALLE",
       "company": "Allegion plc",
       "price": 130.35,
-      "rsi": 42.5,
+      "rsi": 41.8,
       "market_cap_b": 11.2,
       "market_cap_str": "11.20B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 42.5 \u2265 30 (not oversold)",
+        "RSI 41.8 \u2265 30 (not oversold)",
         "Market cap $11B < $100B",
         "No weekly options"
       ],
@@ -637,13 +601,13 @@
       "ticker": "GOOG",
       "company": "Alphabet Inc.",
       "price": 369.27,
-      "rsi": 48.8,
+      "rsi": 38.4,
       "market_cap_b": 4492.7,
       "market_cap_str": "4.49T",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 48.8 \u2265 30 (not oversold)"
+        "RSI 38.4 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -682,13 +646,13 @@
       "ticker": "AMCR",
       "company": "Amcor plc",
       "price": 37.64,
-      "rsi": 46.1,
+      "rsi": 47.3,
       "market_cap_b": 17.4,
       "market_cap_str": "17.40B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 46.1 \u2265 30 (not oversold)",
+        "RSI 47.3 \u2265 30 (not oversold)",
         "Market cap $17B < $100B",
         "No weekly options"
       ],
@@ -1008,13 +972,13 @@
       "ticker": "ANET",
       "company": "Arista Networks, Inc.",
       "price": 166.01,
-      "rsi": 57.8,
+      "rsi": 66.4,
       "market_cap_b": 209.0,
       "market_cap_str": "209.03B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 57.8 \u2265 30 (not oversold)"
+        "RSI 66.4 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -1066,72 +1030,36 @@
       "ladder_result": {
         "qualifies": true,
         "anchor": {
-          "expiration": "2026-06-18",
-          "weeks_out": 2,
-          "strike": 18.0,
-          "premium": 0.28,
-          "delta_pct": 20.95,
-          "premium_pct": 1.2077,
-          "score": 22.45
+          "expiration": "2026-07-10",
+          "weeks_out": 5,
+          "strike": 21.0,
+          "premium": 0.32,
+          "delta_pct": 7.77,
+          "premium_pct": 1.4054,
+          "score": 11.52
         },
         "ladder": [
           {
             "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-06-18",
-            "weeks_out": 2,
-            "strike": 18.0,
-            "premium": 0.28,
-            "premium_pct": 1.208,
-            "delta_pct": 20.95,
-            "score": 22.45,
+            "expiration": "2026-07-10",
+            "weeks_out": 5,
+            "strike": 21.0,
+            "premium": 0.32,
+            "premium_pct": 1.405,
+            "delta_pct": 7.77,
+            "score": 11.52,
             "qualifies": true,
             "is_anchor": true
           },
           {
             "week_label": "+1w",
-            "expiration": "2026-06-26",
-            "weeks_out": 3,
-            "strike": 13.0,
-            "premium": 0.08,
-            "premium_pct": 0.351,
-            "delta_pct": 42.91,
-            "score": 45.16,
-            "qualifies": false,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+2w",
-            "expiration": "2026-07-02",
-            "weeks_out": 4,
-            "strike": 8.0,
-            "premium": 0.36,
-            "premium_pct": 1.581,
-            "delta_pct": 64.87,
-            "score": 67.87,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+3w",
-            "expiration": "2026-07-10",
-            "weeks_out": 5,
-            "strike": 3.0,
-            "premium": 0.17,
-            "premium_pct": 0.769,
-            "delta_pct": 86.82,
-            "score": 90.57,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+4w",
             "expiration": "2026-07-17",
             "weeks_out": 6,
-            "strike": -2.0,
-            "premium": 0.32,
-            "premium_pct": 1.383,
-            "delta_pct": 108.78,
-            "score": 113.28,
+            "strike": 16.0,
+            "premium": 0.33,
+            "premium_pct": 1.449,
+            "delta_pct": 29.73,
+            "score": 34.23,
             "qualifies": true,
             "is_anchor": false
           }
@@ -1405,8 +1333,8 @@
       "company": "BlackRock, Inc.",
       "price": 1022.56,
       "rsi": 43.8,
-      "market_cap_b": 158.7,
-      "market_cap_str": "158.74B",
+      "market_cap_b": 166.5,
+      "market_cap_str": "166.52B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -1434,13 +1362,13 @@
       "ticker": "XYZ",
       "company": "Block, Inc.",
       "price": 70.89,
-      "rsi": 50.0,
+      "rsi": 47.6,
       "market_cap_b": 42.2,
       "market_cap_str": "42.19B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 50.0 \u2265 30 (not oversold)",
+        "RSI 47.6 \u2265 30 (not oversold)",
         "Market cap $42B < $100B"
       ],
       "ladder_result": null,
@@ -1677,13 +1605,13 @@
       "ticker": "CZR",
       "company": "Caesars Entertainment, Inc.",
       "price": 29.26,
-      "rsi": 63.2,
+      "rsi": 62.5,
       "market_cap_b": 6.0,
       "market_cap_str": "5.96B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 63.2 \u2265 30 (not oversold)",
+        "RSI 62.5 \u2265 30 (not oversold)",
         "Market cap $6B < $100B"
       ],
       "ladder_result": null,
@@ -1790,13 +1718,13 @@
       "ticker": "CARR",
       "company": "Carrier Global Corporation",
       "price": 68.54,
-      "rsi": 63.3,
+      "rsi": 61.0,
       "market_cap_b": 56.9,
       "market_cap_str": "56.93B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 63.3 \u2265 30 (not oversold)",
+        "RSI 61.0 \u2265 30 (not oversold)",
         "Market cap $57B < $100B"
       ],
       "ladder_result": null,
@@ -1854,13 +1782,13 @@
       "ticker": "CDW",
       "company": "CDW Corporation",
       "price": 139.45,
-      "rsi": 68.9,
+      "rsi": 67.5,
       "market_cap_b": 17.8,
       "market_cap_str": "17.82B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 68.9 \u2265 30 (not oversold)",
+        "RSI 67.5 \u2265 30 (not oversold)",
         "Market cap $18B < $100B",
         "No weekly options"
       ],
@@ -2047,13 +1975,13 @@
       "ticker": "CI",
       "company": "The Cigna Group",
       "price": 280.68,
-      "rsi": 49.4,
+      "rsi": 50.7,
       "market_cap_b": 74.2,
       "market_cap_str": "74.25B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 49.4 \u2265 30 (not oversold)",
+        "RSI 50.7 \u2265 30 (not oversold)",
         "Market cap $74B < $100B"
       ],
       "ladder_result": null,
@@ -2126,13 +2054,13 @@
       "ticker": "CFG",
       "company": "Citizens Financial Group, Inc.",
       "price": 63.9,
-      "rsi": 56.0,
+      "rsi": 45.4,
       "market_cap_b": 27.0,
       "market_cap_str": "27.02B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 56.0 \u2265 30 (not oversold)",
+        "RSI 45.4 \u2265 30 (not oversold)",
         "Market cap $27B < $100B",
         "No weekly options"
       ],
@@ -2224,13 +2152,13 @@
       "ticker": "COIN",
       "company": "Coinbase Global, Inc.",
       "price": 164.13,
-      "rsi": 37.5,
+      "rsi": 36.9,
       "market_cap_b": 43.2,
       "market_cap_str": "43.24B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 37.5 \u2265 30 (not oversold)",
+        "RSI 36.9 \u2265 30 (not oversold)",
         "Market cap $43B < $100B"
       ],
       "ladder_result": null,
@@ -2335,13 +2263,13 @@
       "ticker": "CEG",
       "company": "Constellation Energy Corporatio",
       "price": 264.59,
-      "rsi": 39.9,
+      "rsi": 40.9,
       "market_cap_b": 94.5,
       "market_cap_str": "94.49B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 39.9 \u2265 30 (not oversold)",
+        "RSI 40.9 \u2265 30 (not oversold)",
         "Market cap $94B < $100B"
       ],
       "ladder_result": null,
@@ -2369,13 +2297,13 @@
       "company": "Copart, Inc.",
       "price": 30.77,
       "rsi": 34.8,
-      "market_cap_b": 28.5,
-      "market_cap_str": "28.49B",
+      "market_cap_b": 29.6,
+      "market_cap_str": "29.64B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
         "RSI 34.8 \u2265 30 (not oversold)",
-        "Market cap $28B < $100B",
+        "Market cap $30B < $100B",
         "No weekly options"
       ],
       "ladder_result": null,
@@ -2417,13 +2345,13 @@
       "ticker": "CTVA",
       "company": "Corteva, Inc.",
       "price": 77.46,
-      "rsi": 39.6,
+      "rsi": 40.8,
       "market_cap_b": 51.8,
       "market_cap_str": "51.81B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 39.6 \u2265 30 (not oversold)",
+        "RSI 40.8 \u2265 30 (not oversold)",
         "Market cap $52B < $100B",
         "No weekly options"
       ],
@@ -2483,13 +2411,13 @@
       "ticker": "CRWD",
       "company": "CrowdStrike Holdings, Inc.",
       "price": 719.09,
-      "rsi": 68.8,
+      "rsi": 76.3,
       "market_cap_b": 183.1,
       "market_cap_str": "183.06B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 68.8 \u2265 30 (not oversold)"
+        "RSI 76.3 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -2595,13 +2523,13 @@
       "ticker": "DDOG",
       "company": "Datadog, Inc.",
       "price": 243.6,
-      "rsi": 66.5,
+      "rsi": 70.6,
       "market_cap_b": 86.7,
       "market_cap_str": "86.71B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 66.5 \u2265 30 (not oversold)",
+        "RSI 70.6 \u2265 30 (not oversold)",
         "Market cap $87B < $100B"
       ],
       "ladder_result": null,
@@ -2660,8 +2588,8 @@
       "company": "Deere & Company",
       "price": 591.75,
       "rsi": 61.6,
-      "market_cap_b": 159.7,
-      "market_cap_str": "159.74B",
+      "market_cap_b": 159.8,
+      "market_cap_str": "159.84B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -2674,13 +2602,13 @@
       "ticker": "DELL",
       "company": "Dell Technologies Inc.",
       "price": 422.05,
-      "rsi": 76.4,
+      "rsi": 76.3,
       "market_cap_b": 274.2,
       "market_cap_str": "274.15B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 76.4 \u2265 30 (not oversold)"
+        "RSI 76.3 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -2737,13 +2665,13 @@
       "ticker": "FANG",
       "company": "Diamondback Energy, Inc.",
       "price": 202.94,
-      "rsi": 54.2,
+      "rsi": 62.8,
       "market_cap_b": 57.1,
       "market_cap_str": "57.09B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 54.2 \u2265 30 (not oversold)",
+        "RSI 62.8 \u2265 30 (not oversold)",
         "Market cap $57B < $100B",
         "No weekly options"
       ],
@@ -2836,13 +2764,13 @@
       "ticker": "DASH",
       "company": "DoorDash, Inc.",
       "price": 160.07,
-      "rsi": 49.1,
+      "rsi": 43.9,
       "market_cap_b": 69.7,
       "market_cap_str": "69.75B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 49.1 \u2265 30 (not oversold)",
+        "RSI 43.9 \u2265 30 (not oversold)",
         "Market cap $70B < $100B"
       ],
       "ladder_result": null,
@@ -2869,13 +2797,13 @@
       "ticker": "DOW",
       "company": "Dow Inc.",
       "price": 34.79,
-      "rsi": 41.1,
+      "rsi": 44.0,
       "market_cap_b": 25.1,
       "market_cap_str": "25.07B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 41.1 \u2265 30 (not oversold)",
+        "RSI 44.0 \u2265 30 (not oversold)",
         "Market cap $25B < $100B"
       ],
       "ladder_result": null,
@@ -3100,13 +3028,13 @@
       "ticker": "ENPH",
       "company": "Enphase Energy, Inc.",
       "price": 68.39,
-      "rsi": 67.6,
+      "rsi": 68.7,
       "market_cap_b": 9.0,
       "market_cap_str": "9.01B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 67.6 \u2265 30 (not oversold)",
+        "RSI 68.7 \u2265 30 (not oversold)",
         "Market cap $9B < $100B"
       ],
       "ladder_result": null,
@@ -3149,13 +3077,13 @@
       "ticker": "EPAM",
       "company": "EPAM Systems, Inc.",
       "price": 97.59,
-      "rsi": 39.1,
+      "rsi": 38.6,
       "market_cap_b": 5.1,
       "market_cap_str": "5.10B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 39.1 \u2265 30 (not oversold)",
+        "RSI 38.6 \u2265 30 (not oversold)",
         "Market cap $5B < $100B",
         "No weekly options"
       ],
@@ -3332,13 +3260,13 @@
       "ticker": "EXC",
       "company": "Exelon Corporation",
       "price": 44.63,
-      "rsi": 42.8,
+      "rsi": 45.8,
       "market_cap_b": 45.7,
       "market_cap_str": "45.67B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 42.8 \u2265 30 (not oversold)",
+        "RSI 45.8 \u2265 30 (not oversold)",
         "Market cap $46B < $100B",
         "No weekly options"
       ],
@@ -3349,13 +3277,13 @@
       "ticker": "EXE",
       "company": "Expand Energy Corporation",
       "price": 93.4,
-      "rsi": 43.0,
+      "rsi": 34.6,
       "market_cap_b": 22.3,
       "market_cap_str": "22.34B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 43.0 \u2265 30 (not oversold)",
+        "RSI 34.6 \u2265 30 (not oversold)",
         "Market cap $22B < $100B",
         "No weekly options"
       ],
@@ -3660,13 +3588,13 @@
       "ticker": "FTV",
       "company": "Fortive Corporation",
       "price": 61.47,
-      "rsi": 61.3,
+      "rsi": 57.1,
       "market_cap_b": 18.7,
       "market_cap_str": "18.74B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 61.3 \u2265 30 (not oversold)",
+        "RSI 57.1 \u2265 30 (not oversold)",
         "Market cap $19B < $100B",
         "No weekly options"
       ],
@@ -3677,13 +3605,13 @@
       "ticker": "FOXA",
       "company": "Fox Corporation",
       "price": 65.54,
-      "rsi": 53.9,
+      "rsi": 49.5,
       "market_cap_b": 27.5,
       "market_cap_str": "27.54B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 53.9 \u2265 30 (not oversold)",
+        "RSI 49.5 \u2265 30 (not oversold)",
         "Market cap $28B < $100B",
         "No weekly options"
       ],
@@ -3694,13 +3622,13 @@
       "ticker": "FOX",
       "company": "Fox Corporation",
       "price": 58.73,
-      "rsi": 53.5,
+      "rsi": 48.7,
       "market_cap_b": 24.7,
       "market_cap_str": "24.68B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 53.5 \u2265 30 (not oversold)",
+        "RSI 48.7 \u2265 30 (not oversold)",
         "Market cap $25B < $100B",
         "No weekly options"
       ],
@@ -3792,13 +3720,13 @@
       "ticker": "GEHC",
       "company": "GE HealthCare Technologies Inc.",
       "price": 63.81,
-      "rsi": 49.1,
+      "rsi": 40.7,
       "market_cap_b": 29.0,
       "market_cap_str": "29.03B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 49.1 \u2265 30 (not oversold)",
+        "RSI 40.7 \u2265 30 (not oversold)",
         "Market cap $29B < $100B"
       ],
       "ladder_result": null,
@@ -3808,13 +3736,13 @@
       "ticker": "GEV",
       "company": "GE Vernova Inc.",
       "price": 963.33,
-      "rsi": 41.2,
+      "rsi": 40.4,
       "market_cap_b": 258.9,
       "market_cap_str": "258.87B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 41.2 \u2265 30 (not oversold)"
+        "RSI 40.4 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -3971,13 +3899,13 @@
       "ticker": "GDDY",
       "company": "GoDaddy Inc.",
       "price": 84.84,
-      "rsi": 45.3,
+      "rsi": 43.7,
       "market_cap_b": 11.2,
       "market_cap_str": "11.23B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 45.3 \u2265 30 (not oversold)",
+        "RSI 43.7 \u2265 30 (not oversold)",
         "Market cap $11B < $100B"
       ],
       "ladder_result": null,
@@ -4118,13 +4046,13 @@
       "ticker": "HPE",
       "company": "Hewlett Packard Enterprise Comp",
       "price": 53.69,
-      "rsi": 82.7,
+      "rsi": 87.6,
       "market_cap_b": 71.1,
       "market_cap_str": "71.10B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 82.7 \u2265 30 (not oversold)",
+        "RSI 87.6 \u2265 30 (not oversold)",
         "Market cap $71B < $100B"
       ],
       "ladder_result": null,
@@ -4134,13 +4062,13 @@
       "ticker": "HLT",
       "company": "Hilton Worldwide Holdings Inc.",
       "price": 338.15,
-      "rsi": 61.9,
+      "rsi": 56.9,
       "market_cap_b": 77.0,
       "market_cap_str": "76.98B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 61.9 \u2265 30 (not oversold)",
+        "RSI 56.9 \u2265 30 (not oversold)",
         "Market cap $77B < $100B"
       ],
       "ladder_result": null,
@@ -4167,13 +4095,13 @@
       "ticker": "HD",
       "company": "Home Depot, Inc. (The)",
       "price": 309.95,
-      "rsi": 44.0,
+      "rsi": 45.9,
       "market_cap_b": 309.1,
       "market_cap_str": "309.06B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 44.0 \u2265 30 (not oversold)"
+        "RSI 45.9 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -4411,13 +4339,13 @@
       "ticker": "IR",
       "company": "Ingersoll Rand Inc.",
       "price": 72.01,
-      "rsi": 44.6,
+      "rsi": 37.6,
       "market_cap_b": 28.2,
       "market_cap_str": "28.18B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 44.6 \u2265 30 (not oversold)",
+        "RSI 37.6 \u2265 30 (not oversold)",
         "Market cap $28B < $100B",
         "No weekly options"
       ],
@@ -4572,13 +4500,13 @@
       "ticker": "INVH",
       "company": "Invitation Homes Inc.",
       "price": 29.48,
-      "rsi": 64.0,
+      "rsi": 57.8,
       "market_cap_b": 17.5,
       "market_cap_str": "17.51B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 64.0 \u2265 30 (not oversold)",
+        "RSI 57.8 \u2265 30 (not oversold)",
         "Market cap $18B < $100B",
         "No weekly options"
       ],
@@ -4589,13 +4517,13 @@
       "ticker": "IQV",
       "company": "IQVIA Holdings, Inc.",
       "price": 186.88,
-      "rsi": 62.5,
+      "rsi": 58.8,
       "market_cap_b": 31.2,
       "market_cap_str": "31.19B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 62.5 \u2265 30 (not oversold)",
+        "RSI 58.8 \u2265 30 (not oversold)",
         "Market cap $31B < $100B",
         "No weekly options"
       ],
@@ -4751,13 +4679,13 @@
       "ticker": "KVUE",
       "company": "Kenvue Inc.",
       "price": 16.88,
-      "rsi": 40.2,
+      "rsi": 38.8,
       "market_cap_b": 32.4,
       "market_cap_str": "32.41B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 40.2 \u2265 30 (not oversold)",
+        "RSI 38.8 \u2265 30 (not oversold)",
         "Market cap $32B < $100B"
       ],
       "ladder_result": null,
@@ -4801,13 +4729,13 @@
       "ticker": "KEYS",
       "company": "Keysight Technologies Inc.",
       "price": 343.11,
-      "rsi": 50.2,
+      "rsi": 54.5,
       "market_cap_b": 58.6,
       "market_cap_str": "58.58B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 50.2 \u2265 30 (not oversold)",
+        "RSI 54.5 \u2265 30 (not oversold)",
         "Market cap $59B < $100B",
         "No weekly options"
       ],
@@ -4899,13 +4827,13 @@
       "ticker": "KHC",
       "company": "The Kraft Heinz Company",
       "price": 22.47,
-      "rsi": 39.8,
+      "rsi": 42.8,
       "market_cap_b": 26.6,
       "market_cap_str": "26.64B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 39.8 \u2265 30 (not oversold)",
+        "RSI 42.8 \u2265 30 (not oversold)",
         "Market cap $27B < $100B"
       ],
       "ladder_result": null,
@@ -4979,13 +4907,13 @@
       "ticker": "LW",
       "company": "Lamb Weston Holdings, Inc.",
       "price": 42.37,
-      "rsi": 49.0,
+      "rsi": 46.8,
       "market_cap_b": 5.9,
       "market_cap_str": "5.85B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 49.0 \u2265 30 (not oversold)",
+        "RSI 46.8 \u2265 30 (not oversold)",
         "Market cap $6B < $100B"
       ],
       "ladder_result": null,
@@ -5076,13 +5004,13 @@
       "ticker": "LIN",
       "company": "Linde plc",
       "price": 507.45,
-      "rsi": 52.8,
+      "rsi": 54.0,
       "market_cap_b": 234.6,
       "market_cap_str": "234.62B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 52.8 \u2265 30 (not oversold)",
+        "RSI 54.0 \u2265 30 (not oversold)",
         "No weekly options"
       ],
       "ladder_result": null,
@@ -5159,7 +5087,7 @@
       "price": 207.53,
       "rsi": 32.9,
       "market_cap_b": 116.4,
-      "market_cap_str": "116.36B",
+      "market_cap_str": "116.42B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -5430,13 +5358,13 @@
       "ticker": "META",
       "company": "Meta Platforms, Inc.",
       "price": 627.57,
-      "rsi": 53.1,
+      "rsi": 51.5,
       "market_cap_b": 1593.0,
       "market_cap_str": "1.59T",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 53.1 \u2265 30 (not oversold)"
+        "RSI 51.5 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -5558,13 +5486,13 @@
       "ticker": "MRNA",
       "company": "Moderna, Inc.",
       "price": 51.59,
-      "rsi": 58.3,
+      "rsi": 51.8,
       "market_cap_b": 20.5,
       "market_cap_str": "20.47B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 58.3 \u2265 30 (not oversold)",
+        "RSI 51.8 \u2265 30 (not oversold)",
         "Market cap $20B < $100B"
       ],
       "ladder_result": null,
@@ -5804,7 +5732,7 @@
           "strike": 75.0,
           "premium": 1.81,
           "delta_pct": 8.04,
-          "premium_pct": 2.2254,
+          "premium_pct": 2.2192,
           "score": 12.54
         },
         "ladder": [
@@ -5814,7 +5742,7 @@
             "weeks_out": 6,
             "strike": 75.0,
             "premium": 1.81,
-            "premium_pct": 2.225,
+            "premium_pct": 2.219,
             "delta_pct": 8.04,
             "score": 12.54,
             "qualifies": true,
@@ -5843,13 +5771,13 @@
       "ticker": "NWSA",
       "company": "News Corporation",
       "price": 26.84,
-      "rsi": 56.5,
+      "rsi": 48.7,
       "market_cap_b": 14.6,
       "market_cap_str": "14.63B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 56.5 \u2265 30 (not oversold)",
+        "RSI 48.7 \u2265 30 (not oversold)",
         "Market cap $15B < $100B",
         "No weekly options"
       ],
@@ -5860,13 +5788,13 @@
       "ticker": "NWS",
       "company": "News Corporation",
       "price": 30.78,
-      "rsi": 56.1,
+      "rsi": 48.2,
       "market_cap_b": 16.8,
       "market_cap_str": "16.78B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 56.1 \u2265 30 (not oversold)",
+        "RSI 48.2 \u2265 30 (not oversold)",
         "Market cap $17B < $100B",
         "No weekly options"
       ],
@@ -5993,13 +5921,13 @@
       "ticker": "NCLH",
       "company": "Norwegian Cruise Line Holdings ",
       "price": 19.13,
-      "rsi": 62.2,
+      "rsi": 55.4,
       "market_cap_b": 8.8,
       "market_cap_str": "8.78B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 62.2 \u2265 30 (not oversold)",
+        "RSI 55.4 \u2265 30 (not oversold)",
         "Market cap $9B < $100B"
       ],
       "ladder_result": null,
@@ -6042,13 +5970,13 @@
       "ticker": "NVDA",
       "company": "NVIDIA Corporation",
       "price": 218.66,
-      "rsi": 54.2,
+      "rsi": 54.4,
       "market_cap_b": 5296.2,
       "market_cap_str": "5.30T",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 54.2 \u2265 30 (not oversold)"
+        "RSI 54.4 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -6206,13 +6134,13 @@
       "ticker": "OTIS",
       "company": "Otis Worldwide Corporation",
       "price": 69.85,
-      "rsi": 33.3,
+      "rsi": 33.5,
       "market_cap_b": 26.8,
       "market_cap_str": "26.80B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 33.3 \u2265 30 (not oversold)",
+        "RSI 33.5 \u2265 30 (not oversold)",
         "Market cap $27B < $100B",
         "No weekly options"
       ],
@@ -6222,7 +6150,7 @@
     {
       "ticker": "PCAR",
       "company": "PACCAR Inc.",
-      "price": 118.07,
+      "price": 118.06,
       "rsi": 59.0,
       "market_cap_b": 62.1,
       "market_cap_str": "62.14B",
@@ -6257,13 +6185,13 @@
       "ticker": "PLTR",
       "company": "Palantir Technologies Inc.",
       "price": 141.7,
-      "rsi": 49.8,
+      "rsi": 50.2,
       "market_cap_b": 339.7,
       "market_cap_str": "339.70B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 49.8 \u2265 30 (not oversold)"
+        "RSI 50.2 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -6272,13 +6200,13 @@
       "ticker": "PANW",
       "company": "Palo Alto Networks, Inc.",
       "price": 279.25,
-      "rsi": 68.8,
+      "rsi": 69.6,
       "market_cap_b": 227.6,
       "market_cap_str": "227.59B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 68.8 \u2265 30 (not oversold)"
+        "RSI 69.6 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -6336,13 +6264,13 @@
       "ticker": "PAYC",
       "company": "Paycom Software, Inc.",
       "price": 137.08,
-      "rsi": 51.9,
+      "rsi": 52.7,
       "market_cap_b": 6.4,
       "market_cap_str": "6.39B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 51.9 \u2265 30 (not oversold)",
+        "RSI 52.7 \u2265 30 (not oversold)",
         "Market cap $6B < $100B",
         "No weekly options"
       ],
@@ -6353,13 +6281,13 @@
       "ticker": "PYPL",
       "company": "PayPal Holdings, Inc.",
       "price": 42.75,
-      "rsi": 33.7,
+      "rsi": 32.6,
       "market_cap_b": 37.7,
       "market_cap_str": "37.71B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 33.7 \u2265 30 (not oversold)",
+        "RSI 32.6 \u2265 30 (not oversold)",
         "Market cap $38B < $100B"
       ],
       "ladder_result": null,
@@ -6447,13 +6375,13 @@
       "ticker": "PSX",
       "company": "Phillips 66",
       "price": 184.14,
-      "rsi": 61.8,
+      "rsi": 62.7,
       "market_cap_b": 73.8,
       "market_cap_str": "73.83B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 61.8 \u2265 30 (not oversold)",
+        "RSI 62.7 \u2265 30 (not oversold)",
         "Market cap $74B < $100B"
       ],
       "ladder_result": null,
@@ -6709,13 +6637,13 @@
       "ticker": "QCOM",
       "company": "QUALCOMM Incorporated",
       "price": 242.57,
-      "rsi": 61.6,
+      "rsi": 62.0,
       "market_cap_b": 255.7,
       "market_cap_str": "255.67B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 61.6 \u2265 30 (not oversold)"
+        "RSI 62.0 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -7054,8 +6982,8 @@
       "company": "Seagate Technology Holdings PLC",
       "price": 925.99,
       "rsi": 75.2,
-      "market_cap_b": 209.5,
-      "market_cap_str": "209.51B",
+      "market_cap_b": 207.6,
+      "market_cap_str": "207.63B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -7085,13 +7013,13 @@
       "ticker": "NOW",
       "company": "ServiceNow, Inc.",
       "price": 119.36,
-      "rsi": 60.4,
+      "rsi": 59.6,
       "market_cap_b": 123.1,
       "market_cap_str": "123.10B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 60.4 \u2265 30 (not oversold)"
+        "RSI 59.6 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -7168,13 +7096,13 @@
       "ticker": "SW",
       "company": "Smurfit WestRock plc",
       "price": 42.28,
-      "rsi": 62.0,
+      "rsi": 61.4,
       "market_cap_b": 22.2,
       "market_cap_str": "22.17B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 62.0 \u2265 30 (not oversold)",
+        "RSI 61.4 \u2265 30 (not oversold)",
         "Market cap $22B < $100B",
         "No weekly options"
       ],
@@ -7202,13 +7130,13 @@
       "ticker": "SOLV",
       "company": "Solventum Corporation",
       "price": 82.42,
-      "rsi": 77.3,
+      "rsi": 69.3,
       "market_cap_b": 14.3,
       "market_cap_str": "14.27B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 77.3 \u2265 30 (not oversold)",
+        "RSI 69.3 \u2265 30 (not oversold)",
         "Market cap $14B < $100B",
         "No weekly options"
       ],
@@ -7279,9 +7207,9 @@
           "expiration": "2026-07-10",
           "weeks_out": 5,
           "strike": 88.0,
-          "premium": 1.26,
+          "premium": 1.0,
           "delta_pct": 6.52,
-          "premium_pct": 1.3384,
+          "premium_pct": 1.0622,
           "score": 10.27
         },
         "ladder": [
@@ -7290,8 +7218,8 @@
             "expiration": "2026-07-10",
             "weeks_out": 5,
             "strike": 88.0,
-            "premium": 1.26,
-            "premium_pct": 1.338,
+            "premium": 1.0,
+            "premium_pct": 1.062,
             "delta_pct": 6.52,
             "score": 10.27,
             "qualifies": true,
@@ -7302,8 +7230,8 @@
             "expiration": "2026-07-17",
             "weeks_out": 6,
             "strike": 83.0,
-            "premium": 0.8,
-            "premium_pct": 0.85,
+            "premium": 0.84,
+            "premium_pct": 0.892,
             "delta_pct": 11.83,
             "score": 16.33,
             "qualifies": true,
@@ -7400,13 +7328,13 @@
       "ticker": "SYF",
       "company": "Synchrony Financial",
       "price": 70.78,
-      "rsi": 46.2,
+      "rsi": 36.1,
       "market_cap_b": 23.8,
       "market_cap_str": "23.81B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 46.2 \u2265 30 (not oversold)",
+        "RSI 36.1 \u2265 30 (not oversold)",
         "Market cap $24B < $100B",
         "No weekly options"
       ],
@@ -7708,13 +7636,13 @@
       "ticker": "TTD",
       "company": "The Trade Desk, Inc.",
       "price": 21.03,
-      "rsi": 45.1,
+      "rsi": 42.6,
       "market_cap_b": 9.9,
       "market_cap_str": "9.89B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 45.1 \u2265 30 (not oversold)",
+        "RSI 42.6 \u2265 30 (not oversold)",
         "Market cap $10B < $100B"
       ],
       "ladder_result": null,
@@ -7873,13 +7801,13 @@
       "ticker": "UBER",
       "company": "Uber Technologies, Inc.",
       "price": 72.21,
-      "rsi": 46.4,
+      "rsi": 44.6,
       "market_cap_b": 147.0,
       "market_cap_str": "146.99B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 46.4 \u2265 30 (not oversold)"
+        "RSI 44.6 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -8047,13 +7975,13 @@
       "ticker": "VLTO",
       "company": "Veralto Corp",
       "price": 84.74,
-      "rsi": 45.6,
+      "rsi": 45.4,
       "market_cap_b": 20.8,
       "market_cap_str": "20.81B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 45.6 \u2265 30 (not oversold)",
+        "RSI 45.4 \u2265 30 (not oversold)",
         "Market cap $21B < $100B",
         "No weekly options"
       ],
@@ -8145,13 +8073,13 @@
       "ticker": "VICI",
       "company": "VICI Properties Inc.",
       "price": 27.21,
-      "rsi": 32.8,
+      "rsi": 33.6,
       "market_cap_b": 29.3,
       "market_cap_str": "29.30B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 32.8 \u2265 30 (not oversold)",
+        "RSI 33.6 \u2265 30 (not oversold)",
         "Market cap $29B < $100B",
         "No weekly options"
       ],
@@ -8177,13 +8105,13 @@
       "ticker": "VST",
       "company": "Vistra Corp.",
       "price": 153.7,
-      "rsi": 49.8,
+      "rsi": 49.9,
       "market_cap_b": 51.8,
       "market_cap_str": "51.82B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 49.8 \u2265 30 (not oversold)",
+        "RSI 49.9 \u2265 30 (not oversold)",
         "Market cap $52B < $100B"
       ],
       "ladder_result": null,
@@ -8488,13 +8416,13 @@
       "ticker": "WDAY",
       "company": "Workday, Inc.",
       "price": 147.91,
-      "rsi": 62.3,
+      "rsi": 61.7,
       "market_cap_b": 36.5,
       "market_cap_str": "36.53B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 62.3 \u2265 30 (not oversold)",
+        "RSI 61.7 \u2265 30 (not oversold)",
         "Market cap $37B < $100B"
       ],
       "ladder_result": null,
@@ -8605,13 +8533,12 @@
       "ticker": "ZTS",
       "company": "Zoetis Inc.",
       "price": 79.52,
-      "rsi": 33.6,
+      "rsi": 28.0,
       "market_cap_b": 33.3,
       "market_cap_str": "33.34B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 33.6 \u2265 30 (not oversold)",
         "Market cap $33B < $100B",
         "No weekly options"
       ],
@@ -8637,13 +8564,13 @@
       "ticker": "ZS",
       "company": "Zscaler, Inc.",
       "price": 135.26,
-      "rsi": 43.7,
+      "rsi": 43.3,
       "market_cap_b": 21.9,
       "market_cap_str": "21.87B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 43.7 \u2265 30 (not oversold)",
+        "RSI 43.3 \u2265 30 (not oversold)",
         "Market cap $22B < $100B"
       ],
       "ladder_result": null,
@@ -8670,13 +8597,13 @@
       "ticker": "HOOD",
       "company": "Robinhood Markets, Inc.",
       "price": 88.33,
-      "rsi": 58.2,
+      "rsi": 52.8,
       "market_cap_b": 79.5,
       "market_cap_str": "79.54B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 58.2 \u2265 30 (not oversold)",
+        "RSI 52.8 \u2265 30 (not oversold)",
         "Market cap $80B < $100B"
       ],
       "ladder_result": null,
@@ -8686,13 +8613,13 @@
       "ticker": "PDD",
       "company": "PDD Holdings Inc.",
       "price": 85.88,
-      "rsi": 37.3,
+      "rsi": 36.3,
       "market_cap_b": 122.2,
       "market_cap_str": "122.24B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 37.3 \u2265 30 (not oversold)"
+        "RSI 36.3 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -8701,13 +8628,13 @@
       "ticker": "TEAM",
       "company": "Atlassian Corporation",
       "price": 101.5,
-      "rsi": 59.8,
+      "rsi": 59.9,
       "market_cap_b": 25.8,
       "market_cap_str": "25.76B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 59.8 \u2265 30 (not oversold)",
+        "RSI 59.9 \u2265 30 (not oversold)",
         "Market cap $26B < $100B"
       ],
       "ladder_result": null,
@@ -8717,13 +8644,13 @@
       "ticker": "APP",
       "company": "Applovin Corporation",
       "price": 558.87,
-      "rsi": 58.5,
+      "rsi": 61.5,
       "market_cap_b": 187.7,
       "market_cap_str": "187.75B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 58.5 \u2265 30 (not oversold)"
+        "RSI 61.5 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -8732,13 +8659,13 @@
       "ticker": "SHOP",
       "company": "Shopify Inc.",
       "price": 116.04,
-      "rsi": 53.7,
+      "rsi": 50.8,
       "market_cap_b": 150.6,
       "market_cap_str": "150.58B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 53.7 \u2265 30 (not oversold)"
+        "RSI 50.8 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -8748,8 +8675,8 @@
       "company": "Marvell Technology, Inc.",
       "price": 316.43,
       "rsi": 88.1,
-      "market_cap_b": 276.8,
-      "market_cap_str": "276.81B",
+      "market_cap_b": 277.1,
+      "market_cap_str": "277.05B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -8794,13 +8721,13 @@
       "ticker": "ARM",
       "company": "Arm Holdings plc",
       "price": 393.44,
-      "rsi": 74.7,
+      "rsi": 81.1,
       "market_cap_b": 420.2,
       "market_cap_str": "420.22B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 74.7 \u2265 30 (not oversold)"
+        "RSI 81.1 \u2265 30 (not oversold)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -8809,13 +8736,13 @@
       "ticker": "GFS",
       "company": "GlobalFoundries Inc.",
       "price": 84.7,
-      "rsi": 64.3,
+      "rsi": 66.6,
       "market_cap_b": 46.5,
       "market_cap_str": "46.45B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 64.3 \u2265 30 (not oversold)",
+        "RSI 66.6 \u2265 30 (not oversold)",
         "Market cap $46B < $100B",
         "No weekly options"
       ],
