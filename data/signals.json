@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-04-2026 22:42",
+  "generated_at_pt": "06-04-2026 23:22",
   "buys": [
     {
       "bb_lower": NaN,
@@ -1390,7 +1390,7 @@
       "pe_str": "24.5",
       "market_cap": 0.0,
       "market_cap_str": "0",
-      "strategy": "Call Credit (Bearish)",
+      "strategy": null,
       "pe_check": false,
       "growth_check": false,
       "debt_check": false,
@@ -1433,7 +1433,7 @@
       "pe_str": "N/A",
       "market_cap": 0.0,
       "market_cap_str": "0",
-      "strategy": "Put Credit (Bullish)",
+      "strategy": null,
       "pe_check": false,
       "growth_check": false,
       "debt_check": false,
@@ -3520,7 +3520,7 @@
       "kc_lower": 24.32,
       "kc_upper": 25.36,
       "is_squeeze": false,
-      "rsi_bb_signal": true,
+      "rsi_bb_signal": false,
       "ticker": "T",
       "company": "AT&T Inc.",
       "signal": null,
@@ -4413,7 +4413,7 @@
       "earnings_date": "2026-07-15",
       "weekly_available": false,
       "monthly_available": false,
-      "adx": 38.603057448392555,
+      "adx": 38.60305744839253,
       "rvol": 0.92,
       "atr": 3.18
     },
@@ -7122,7 +7122,7 @@
       "earnings_date": "2026-08-03",
       "weekly_available": false,
       "monthly_available": false,
-      "adx": 18.61802289513781,
+      "adx": 18.618022895137845,
       "rvol": 0.0,
       "atr": 1.16
     },
@@ -11465,7 +11465,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": false,
-      "adx": 20.560111543914434,
+      "adx": 20.56011154391356,
       "rvol": 0.0,
       "atr": 0.21
     },
@@ -11766,7 +11766,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.340488947747392,
+      "adx": 26.340488947747417,
       "rvol": 0.61,
       "atr": 14.24
     },
@@ -19473,7 +19473,7 @@
       "kc_lower": 100.63,
       "kc_upper": 105.64,
       "is_squeeze": false,
-      "rsi_bb_signal": true,
+      "rsi_bb_signal": false,
       "ticker": "SBUX",
       "company": "Starbucks Corporation",
       "signal": null,
