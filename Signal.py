@@ -284,9 +284,9 @@ def fetch_fundamentals_cached(symbol):
             try:
                 with open(path, "r") as f:
                     data = json.load(f)
-                    # VALIDATION: Only return cache if it actually has data.
-                    # If market_cap is missing/0, consider cache 'stale' and re-fetch.
-                    if data.get("market_cap"): 
+                    # If market_cap is missing/0 but it's an ETF, we still want the cache!
+                    # Let's check if the cache file itself exists and is valid json.
+                    if data: 
                         return data
             except Exception:
                 pass
@@ -299,31 +299,37 @@ def fetch_fundamentals_cached(symbol):
     market_cap = None
     earnings_date = None
 
-    # 1) yfinance (Try fast_info first for Market Cap - it is more reliable than .info)
+    # Initialize ticker
     try:
         ticker = yf.Ticker(symbol)
         
-        # Try fast_info for market cap (doesn't require full scrape)
-        if hasattr(ticker, 'fast_info'):
-            market_cap = ticker.fast_info.get('market_cap')
+        # 1. Try fast_info for Market Cap (Most reliable, works for many ETFs too)
+        try:
+            if hasattr(ticker, 'fast_info'):
+                market_cap = ticker.fast_info.get('market_cap')
+        except Exception as e:
+            logger.debug(f"Could not fetch fast_info for {symbol}: {e}")
         
-        # Try .info for the rest
-        info = ticker.info or {}
-        if not market_cap:
-             market_cap = info.get("marketCap")
-             
-        trailing_pe = info.get("trailingPE")
-        forward_pe = info.get("forwardPE")
-        earnings_growth = info.get("earningsQuarterlyGrowth")
-        debt_to_equity = info.get("debtToEquity")
-        
-        # Fetch earnings date from calendar
+        # 2. Try .info for stock-specific metrics (Will 404 on many ETFs)
+        try:
+            info = ticker.info or {}
+            if not market_cap:
+                market_cap = info.get("marketCap")
+                
+            trailing_pe = info.get("trailingPE")
+            forward_pe = info.get("forwardPE")
+            earnings_growth = info.get("earningsQuarterlyGrowth")
+            debt_to_equity = info.get("debtToEquity")
+        except Exception as e:
+            logger.warning(f"Yahoo Finance info unavailable for {symbol} (Expected for ETFs): {e}")
+            info = {}
+
+        # 3. Fetch earnings date from calendar (Will 404 on ETFs)
         try:
             calendar = ticker.calendar
             if calendar is not None and 'Earnings Date' in calendar:
                 earnings_dates = calendar['Earnings Date']
                 if isinstance(earnings_dates, pd.Series) and not earnings_dates.empty:
-                    # Get the first (earliest) date
                     earnings_date = earnings_dates.iloc[0]
                     if pd.notna(earnings_date):
                         earnings_date = earnings_date.strftime('%Y-%m-%d')
@@ -331,11 +337,11 @@ def fetch_fundamentals_cached(symbol):
                     earnings_date = pd.Timestamp(earnings_dates[0]).strftime('%Y-%m-%d')
         except Exception as e:
             logger.debug(f"Could not fetch earnings date for {symbol}: {e}")
-        
+            
     except Exception as e:
-        logger.warning(f"Fundamentals error for {symbol}: {e}")
+        logger.warning(f"General fundamentals exception for {symbol}: {e}")
 
-    # 2) Finnhub fallback
+    # 2) Finnhub fallback for market cap if yfinance failed
     if (market_cap is None or market_cap == 0) and FINNHUB_KEY:
         try:
             prof = finnhub_client.company_profile2(symbol=symbol) or {}
@@ -354,13 +360,13 @@ def fetch_fundamentals_cached(symbol):
         "earnings_date": earnings_date,
     }
 
-    # Only save to cache if we actually got a market cap
-    if market_cap and market_cap > 0:
-        try:
-            with open(path, "w") as f:
-                json.dump(data, f)
-        except Exception:
-            pass
+    # Save to cache if we got ANY data or if it's an intentional blank (like an ETF)
+    # This prevents hitting the broken API endpoints repeatedly on every single run
+    try:
+        with open(path, "w") as f:
+            json.dump(data, f)
+    except Exception:
+        pass
 
     return data
 
