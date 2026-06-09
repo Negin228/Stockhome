@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-08-2026 18:42",
+  "generated_at_pt": "06-08-2026 22:27",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -21,60 +21,36 @@
       "ladder_result": {
         "qualifies": true,
         "anchor": {
-          "expiration": "2026-07-02",
-          "weeks_out": 3,
-          "strike": 18.0,
-          "premium": 0.38,
-          "delta_pct": 20.0,
-          "premium_pct": 1.6667,
-          "score": 22.25
+          "expiration": "2026-07-17",
+          "weeks_out": 5,
+          "strike": 21.0,
+          "premium": 0.33,
+          "delta_pct": 6.67,
+          "premium_pct": 1.4667,
+          "score": 10.42
         },
         "ladder": [
           {
             "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-07-02",
-            "weeks_out": 3,
-            "strike": 18.0,
-            "premium": 0.38,
-            "premium_pct": 1.667,
-            "delta_pct": 20.0,
-            "score": 22.25,
+            "expiration": "2026-07-17",
+            "weeks_out": 5,
+            "strike": 21.0,
+            "premium": 0.33,
+            "premium_pct": 1.467,
+            "delta_pct": 6.67,
+            "score": 10.42,
             "qualifies": true,
             "is_anchor": true
           },
           {
             "week_label": "+1w",
-            "expiration": "2026-07-10",
-            "weeks_out": 4,
-            "strike": 13.0,
-            "premium": 0.47,
-            "premium_pct": 2.111,
-            "delta_pct": 42.22,
-            "score": 45.22,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+2w",
-            "expiration": "2026-07-17",
-            "weeks_out": 5,
-            "strike": 8.0,
-            "premium": 0.32,
-            "premium_pct": 1.422,
-            "delta_pct": 64.44,
-            "score": 68.19,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+3w",
             "expiration": "2026-07-24",
             "weeks_out": 6,
-            "strike": 3.0,
-            "premium": 0.36,
-            "premium_pct": 1.622,
-            "delta_pct": 86.67,
-            "score": 91.17,
+            "strike": 16.0,
+            "premium": 0.43,
+            "premium_pct": 1.911,
+            "delta_pct": 28.89,
+            "score": 33.39,
             "qualifies": true,
             "is_anchor": false
           }
@@ -968,60 +944,36 @@
       "ladder_result": {
         "qualifies": true,
         "anchor": {
-          "expiration": "2026-07-02",
-          "weeks_out": 3,
-          "strike": 18.0,
-          "premium": 0.38,
-          "delta_pct": 20.0,
-          "premium_pct": 1.6667,
-          "score": 22.25
+          "expiration": "2026-07-17",
+          "weeks_out": 5,
+          "strike": 21.0,
+          "premium": 0.33,
+          "delta_pct": 6.67,
+          "premium_pct": 1.4667,
+          "score": 10.42
         },
         "ladder": [
           {
             "week_label": "\u2605 ANCHOR",
-            "expiration": "2026-07-02",
-            "weeks_out": 3,
-            "strike": 18.0,
-            "premium": 0.38,
-            "premium_pct": 1.667,
-            "delta_pct": 20.0,
-            "score": 22.25,
+            "expiration": "2026-07-17",
+            "weeks_out": 5,
+            "strike": 21.0,
+            "premium": 0.33,
+            "premium_pct": 1.467,
+            "delta_pct": 6.67,
+            "score": 10.42,
             "qualifies": true,
             "is_anchor": true
           },
           {
             "week_label": "+1w",
-            "expiration": "2026-07-10",
-            "weeks_out": 4,
-            "strike": 13.0,
-            "premium": 0.47,
-            "premium_pct": 2.111,
-            "delta_pct": 42.22,
-            "score": 45.22,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+2w",
-            "expiration": "2026-07-17",
-            "weeks_out": 5,
-            "strike": 8.0,
-            "premium": 0.32,
-            "premium_pct": 1.422,
-            "delta_pct": 64.44,
-            "score": 68.19,
-            "qualifies": true,
-            "is_anchor": false
-          },
-          {
-            "week_label": "+3w",
             "expiration": "2026-07-24",
             "weeks_out": 6,
-            "strike": 3.0,
-            "premium": 0.36,
-            "premium_pct": 1.622,
-            "delta_pct": 86.67,
-            "score": 91.17,
+            "strike": 16.0,
+            "premium": 0.43,
+            "premium_pct": 1.911,
+            "delta_pct": 28.89,
+            "score": 33.39,
             "qualifies": true,
             "is_anchor": false
           }
@@ -1065,7 +1017,7 @@
     {
       "ticker": "ADP",
       "company": "Automatic Data Processing, Inc.",
-      "price": 229.07,
+      "price": 229.08,
       "rsi": 60.2,
       "market_cap_b": 91.6,
       "market_cap_str": "91.57B",
@@ -1339,7 +1291,7 @@
     {
       "ticker": "BK",
       "company": "The Bank of New York Mellon Cor",
-      "price": 142.39,
+      "price": 141.78,
       "rsi": 61.4,
       "market_cap_b": 94.1,
       "market_cap_str": "94.14B",
@@ -2262,13 +2214,13 @@
       "company": "Copart, Inc.",
       "price": 30.86,
       "rsi": 36.1,
-      "market_cap_b": 29.7,
-      "market_cap_str": "29.73B",
+      "market_cap_b": 28.6,
+      "market_cap_str": "28.57B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
         "RSI 36.1 \u2265 30 (not oversold)",
-        "Market cap $30B < $100B",
+        "Market cap $29B < $100B",
         "No weekly options"
       ],
       "ladder_result": null,
@@ -2554,7 +2506,7 @@
       "price": 573.66,
       "rsi": 53.0,
       "market_cap_b": 154.9,
-      "market_cap_str": "154.95B",
+      "market_cap_str": "154.85B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -2629,7 +2581,7 @@
     {
       "ticker": "FANG",
       "company": "Diamondback Energy, Inc.",
-      "price": 198.19,
+      "price": 198.2,
       "rsi": 50.0,
       "market_cap_b": 55.8,
       "market_cap_str": "55.75B",
@@ -4043,17 +3995,15 @@
     },
     {
       "ticker": "HOLX",
-      "company": "Hologic, Inc.",
-      "price": 76.01,
-      "rsi": 68.7,
-      "market_cap_b": 17.0,
-      "market_cap_str": "16.97B",
+      "company": "",
+      "price": null,
+      "rsi": null,
+      "market_cap_b": null,
+      "market_cap_str": "",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 68.7 \u2265 30 (not oversold)",
-        "Market cap $17B < $100B",
-        "No weekly options"
+        "Insufficient history (0 rows)"
       ],
       "ladder_result": null,
       "qualifying": false
@@ -4678,8 +4628,8 @@
       "company": "KeyCorp",
       "price": 21.79,
       "rsi": 58.3,
-      "market_cap_b": 23.6,
-      "market_cap_str": "23.63B",
+      "market_cap_b": 23.5,
+      "market_cap_str": "23.52B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
@@ -5051,8 +5001,8 @@
       "company": "Lowe's Companies, Inc.",
       "price": 207.97,
       "rsi": 35.6,
-      "market_cap_b": 116.7,
-      "market_cap_str": "116.67B",
+      "market_cap_b": 116.6,
+      "market_cap_str": "116.61B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -5667,13 +5617,13 @@
       "company": "NetApp, Inc.",
       "price": 170.31,
       "rsi": 71.8,
-      "market_cap_b": 33.7,
-      "market_cap_str": "33.73B",
+      "market_cap_b": 33.4,
+      "market_cap_str": "33.37B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
         "RSI 71.8 \u2265 30 (not oversold)",
-        "Market cap $34B < $100B",
+        "Market cap $33B < $100B",
         "No weekly options"
       ],
       "ladder_result": null,
@@ -6924,8 +6874,8 @@
       "company": "Seagate Technology Holdings PLC",
       "price": 876.77,
       "rsi": 61.4,
-      "market_cap_b": 196.6,
-      "market_cap_str": "196.60B",
+      "market_cap_b": 198.4,
+      "market_cap_str": "198.37B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -7694,8 +7644,8 @@
       "company": "U.S. Bancorp",
       "price": 55.35,
       "rsi": 53.6,
-      "market_cap_b": 85.9,
-      "market_cap_str": "85.86B",
+      "market_cap_b": 86.2,
+      "market_cap_str": "86.22B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -8585,8 +8535,8 @@
       "company": "Marvell Technology, Inc.",
       "price": 288.85,
       "rsi": 69.2,
-      "market_cap_b": 252.9,
-      "market_cap_str": "252.90B",
+      "market_cap_b": 252.7,
+      "market_cap_str": "252.69B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
@@ -8696,8 +8646,8 @@
       "company": "Strategy Inc",
       "price": 127.2,
       "rsi": 34.8,
-      "market_cap_b": 44.8,
-      "market_cap_str": "44.76B",
+      "market_cap_b": 44.9,
+      "market_cap_str": "44.94B",
       "weekly_available": true,
       "filters_pass": false,
       "filter_fail": [
