@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-08-2026 16:34",
+  "generated_at_pt": "06-08-2026 17:32",
   "params": {
     "p_min": 0.75,
     "score_min": 10.0,
@@ -1340,13 +1340,13 @@
       "ticker": "BK",
       "company": "The Bank of New York Mellon Cor",
       "price": 142.39,
-      "rsi": 63.4,
+      "rsi": 61.4,
       "market_cap_b": 94.1,
       "market_cap_str": "94.14B",
       "weekly_available": false,
       "filters_pass": false,
       "filter_fail": [
-        "RSI 63.4 \u2265 30 (not oversold)",
+        "RSI 61.4 \u2265 30 (not oversold)",
         "Market cap $94B < $100B",
         "No weekly options"
       ],
@@ -2629,7 +2629,7 @@
     {
       "ticker": "FANG",
       "company": "Diamondback Energy, Inc.",
-      "price": 198.2,
+      "price": 198.19,
       "rsi": 50.0,
       "market_cap_b": 55.8,
       "market_cap_str": "55.75B",
