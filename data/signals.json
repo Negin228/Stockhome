@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-15-2026 23:47",
+  "generated_at_pt": "06-16-2026 00:39",
   "buys": [
     {
       "bb_lower": NaN,
@@ -202,7 +202,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.605184899773764,
+      "adx": 26.605184899773807,
       "rvol": 8.02,
       "atr": 2.76,
       "put": {
@@ -256,7 +256,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.316219809792386,
+      "adx": 23.316219809792447,
       "rvol": 5.2,
       "atr": 2.4,
       "put": {
@@ -573,7 +573,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "SPXU",
-      "company": "",
+      "company": "ProShares UltraPro Short S&P500",
       "signal": null,
       "score": 26.25,
       "why": "Below slow SMA \u2022 RSI 46 \u2022 Bullish MACD",
@@ -948,7 +948,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.731689930690777,
+      "adx": 19.7316899306908,
       "rvol": 1.0,
       "atr": 5.45
     },
@@ -1292,7 +1292,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.411669236292152,
+      "adx": 10.411669236292145,
       "rvol": 1.22,
       "atr": 4.59
     },
@@ -1378,7 +1378,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.081336129019768,
+      "adx": 23.081336129019757,
       "rvol": 1.29,
       "atr": 9.15
     },
@@ -1421,7 +1421,7 @@
       "earnings_date": "2026-08-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.28330228075237,
+      "adx": 32.28330228075239,
       "rvol": 0.64,
       "atr": 2.08
     },
@@ -1476,7 +1476,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "ALLE",
-      "company": "",
+      "company": "Allegion plc",
       "signal": null,
       "score": 38.25,
       "why": "Below slow SMA \u2022 RSI 55 \u2022 Bullish MACD",
@@ -1507,9 +1507,52 @@
       "earnings_date": "2026-07-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.225008351255276,
+      "adx": 24.225008351255195,
       "rvol": 0.74,
       "atr": 3.36
+    },
+    {
+      "bb_lower": NaN,
+      "bb_upper": NaN,
+      "kc_lower": 71.1,
+      "kc_upper": 73.65,
+      "is_squeeze": false,
+      "rsi_bb_signal": false,
+      "ticker": "LNT",
+      "company": "Alliant Energy Corporation",
+      "signal": null,
+      "score": 43.0,
+      "why": "Below slow SMA \u2022 RSI 55 \u2022 Bullish MACD",
+      "price": 73.55,
+      "price_str": "73.55",
+      "rsi": 54.6,
+      "rsi_str": "54.6",
+      "dma50": NaN,
+      "dma200": NaN,
+      "dma50_str": "nan",
+      "dma200_str": "nan",
+      "trend_dir": "bearish",
+      "trend_rationale": "Weak/Sideways Bearish Trend (ADX: nan)",
+      "pe": 23.128931,
+      "pe_str": "23.1",
+      "market_cap": 18996277248.0,
+      "market_cap_str": "19.00B",
+      "strategy": null,
+      "pe_check": true,
+      "growth_check": true,
+      "debt_check": false,
+      "trailing_pe": 23.128931,
+      "forward_pe": 19.956966,
+      "earnings_growth": 0.052,
+      "earnings_growth_str": "5.2%",
+      "debt_to_equity": 159.526,
+      "debt_to_equity_str": "159.526",
+      "earnings_date": "2026-08-06",
+      "weekly_available": false,
+      "monthly_available": true,
+      "adx": NaN,
+      "rvol": 0.63,
+      "atr": NaN
     },
     {
       "bb_lower": 203.01,
@@ -1550,7 +1593,7 @@
       "earnings_date": "2026-04-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.709920539076847,
+      "adx": 18.70992053907688,
       "rvol": 0.77,
       "atr": 5.44
     },
@@ -1636,7 +1679,7 @@
       "earnings_date": "2026-07-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.26519734945985,
+      "adx": 21.265197349459864,
       "rvol": 0.73,
       "atr": 10.8
     },
@@ -1648,7 +1691,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "MO",
-      "company": "",
+      "company": "Altria Group, Inc.",
       "signal": null,
       "score": 40.5,
       "why": "Below slow SMA \u2022 RSI 54 \u2022 Bearish MACD",
@@ -1765,7 +1808,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.4471171218447,
+      "adx": 15.447117121844697,
       "rvol": 0.92,
       "atr": 1.16
     },
@@ -1808,7 +1851,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.133038577927156,
+      "adx": 11.133038577927167,
       "rvol": 0.84,
       "atr": 2.08
     },
@@ -1980,7 +2023,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.141918287167812,
+      "adx": 13.141918287167835,
       "rvol": 1.23,
       "atr": 4.73
     },
@@ -2539,7 +2582,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.050082725338005,
+      "adx": 21.05008272533798,
       "rvol": 0.83,
       "atr": 1.84
     },
@@ -2625,7 +2668,7 @@
       "earnings_date": "2026-08-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.266660672097103,
+      "adx": 16.26666067209711,
       "rvol": 0.82,
       "atr": 8.26
     },
@@ -2766,7 +2809,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "ATO",
-      "company": "",
+      "company": "Atmos Energy Corporation",
       "signal": null,
       "score": 36.75,
       "why": "Below slow SMA \u2022 RSI 41 \u2022 Bullish MACD",
@@ -2895,7 +2938,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "AZO",
-      "company": "",
+      "company": "AutoZone, Inc.",
       "signal": null,
       "score": 28.75,
       "why": "Below slow SMA \u2022 RSI 43 \u2022 Bullish MACD",
@@ -2946,7 +2989,7 @@
       "price_str": "184.48",
       "rsi": 50.4,
       "rsi_str": "50.4",
-      "dma50": 180.60719970703124,
+      "dma50": 180.6071997070313,
       "dma200": 178.02571990966797,
       "dma50_str": "180.6",
       "dma200_str": "178.0",
@@ -2969,7 +3012,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.499433092380059,
+      "adx": 14.499433092380158,
       "rvol": 0.98,
       "atr": 3.33
     },
@@ -3313,7 +3356,7 @@
       "earnings_date": "2026-08-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.36899402404736,
+      "adx": 17.368994024047343,
       "rvol": 1.18,
       "atr": 6.97
     },
@@ -3571,7 +3614,7 @@
       "earnings_date": "2026-05-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.789436647439157,
+      "adx": 16.78943664743917,
       "rvol": 1.58,
       "atr": 3.1
     },
@@ -3614,7 +3657,7 @@
       "earnings_date": "2026-07-15",
       "weekly_available": false,
       "monthly_available": false,
-      "adx": 36.650807018253964,
+      "adx": 36.65080701825395,
       "rvol": 0.66,
       "atr": 3.19
     },
@@ -4013,7 +4056,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "BG",
-      "company": "",
+      "company": "Bunge Limited",
       "signal": null,
       "score": 40.5,
       "why": "Below slow SMA \u2022 RSI 54 \u2022 Bullish MACD",
@@ -4056,7 +4099,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "BXP",
-      "company": "",
+      "company": "BXP, Inc.",
       "signal": null,
       "score": 68.0,
       "why": "Above slow SMA \u2022 RSI 70 \u2022 Bullish MACD \u2022 Near Support",
@@ -4087,7 +4130,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.117395103561186,
+      "adx": 36.11739510356116,
       "rvol": 0.8,
       "atr": 1.6
     },
@@ -4185,7 +4228,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "CZR",
-      "company": "",
+      "company": "Caesars Entertainment, Inc.",
       "signal": null,
       "score": 73.5,
       "why": "Above slow SMA \u2022 RSI 65 \u2022 Bullish MACD \u2022 Extended (+19%)",
@@ -4216,7 +4259,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.498403948330612,
+      "adx": 17.49840394833049,
       "rvol": 0.33,
       "atr": 0.46
     },
@@ -4259,7 +4302,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.317933220906735,
+      "adx": 28.3179332209067,
       "rvol": 1.01,
       "atr": 2.18
     },
@@ -4431,7 +4474,7 @@
       "earnings_date": "2026-06-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 34.656278543328185,
+      "adx": 34.65627854332818,
       "rvol": 1.55,
       "atr": 2.04
     },
@@ -4517,7 +4560,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.00663786291645,
+      "adx": 20.00663786291643,
       "rvol": 0.76,
       "atr": 2.51
     },
@@ -4689,7 +4732,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.650456249045163,
+      "adx": 26.65045624904517,
       "rvol": 1.36,
       "atr": 5.49
     },
@@ -5119,7 +5162,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.954822734273945,
+      "adx": 15.954822734273975,
       "rvol": 0.81,
       "atr": 6.45
     },
@@ -5420,7 +5463,7 @@
       "earnings_date": "2026-07-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.951975745373307,
+      "adx": 21.951975745373325,
       "rvol": 1.02,
       "atr": 1.57
     },
@@ -5678,7 +5721,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.092925736100163,
+      "adx": 17.092925736100167,
       "rvol": 1.04,
       "atr": 11.84
     },
@@ -5979,7 +6022,7 @@
       "earnings_date": "2026-08-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.749305423189174,
+      "adx": 23.749305423189153,
       "rvol": 0.92,
       "atr": 11.32
     },
@@ -6194,7 +6237,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.3752141017069,
+      "adx": 21.375214101706877,
       "rvol": 1.15,
       "atr": 1.72
     },
@@ -6323,7 +6366,7 @@
       "earnings_date": "2026-08-03",
       "weekly_available": false,
       "monthly_available": false,
-      "adx": 18.618022895142214,
+      "adx": 18.618022895142307,
       "rvol": 0.0,
       "atr": 1.16
     },
@@ -6624,7 +6667,7 @@
       "earnings_date": "2026-03-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.440676008878524,
+      "adx": 14.440676008878508,
       "rvol": 1.17,
       "atr": 5.49
     },
@@ -6667,7 +6710,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 47.256227671696095,
+      "adx": 47.25622767169603,
       "rvol": 0.94,
       "atr": 12.8
     },
@@ -6710,7 +6753,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.62556575490885,
+      "adx": 32.625565754908884,
       "rvol": 1.04,
       "atr": 5.87
     },
@@ -7011,7 +7054,7 @@
       "earnings_date": "2026-08-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 10.718388132368016,
+      "adx": 10.71838813236799,
       "rvol": 1.36,
       "atr": 7.34
     },
@@ -7269,7 +7312,7 @@
       "earnings_date": "2026-05-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 9.225553474878621,
+      "adx": 9.225648991279877,
       "rvol": 1.41,
       "atr": 8.57
     },
@@ -7355,7 +7398,7 @@
       "earnings_date": "2026-07-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.042945374061883,
+      "adx": 16.042945374061855,
       "rvol": 1.26,
       "atr": 1.47
     },
@@ -7570,7 +7613,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.65199021210349,
+      "adx": 12.651990212103497,
       "rvol": 1.38,
       "atr": 2.2
     },
@@ -7957,7 +8000,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.907922348371347,
+      "adx": 28.907922348371365,
       "rvol": 0.74,
       "atr": 5.4
     },
@@ -8086,7 +8129,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.593335862157023,
+      "adx": 21.593335862157,
       "rvol": 0.63,
       "atr": 5.01
     },
@@ -8301,7 +8344,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.13092652642166,
+      "adx": 16.130926526421636,
       "rvol": 0.81,
       "atr": 7.3
     },
@@ -8344,7 +8387,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.047591629704048,
+      "adx": 27.04759162970399,
       "rvol": 0.86,
       "atr": 5.11
     },
@@ -8430,7 +8473,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.506582150796472,
+      "adx": 20.506582150796373,
       "rvol": 0.8,
       "atr": 7.51
     },
@@ -8602,7 +8645,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.036023606574105,
+      "adx": 24.036023606574144,
       "rvol": 1.2,
       "atr": 2.25
     },
@@ -8860,7 +8903,7 @@
       "earnings_date": "2026-07-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.397914023001448,
+      "adx": 20.397914023001487,
       "rvol": 0.63,
       "atr": 11.95
     },
@@ -9204,7 +9247,7 @@
       "earnings_date": "2026-04-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.241740237857694,
+      "adx": 18.241740237857684,
       "rvol": 0.92,
       "atr": 0.87
     },
@@ -9376,7 +9419,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.295888429053635,
+      "adx": 13.306183641167511,
       "rvol": 0.93,
       "atr": 1.5
     },
@@ -9419,7 +9462,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.605184899773764,
+      "adx": 26.605184899773807,
       "rvol": 8.02,
       "atr": 2.76
     },
@@ -9462,7 +9505,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.316219809792386,
+      "adx": 23.316219809792447,
       "rvol": 5.2,
       "atr": 2.4
     },
@@ -9548,7 +9591,7 @@
       "earnings_date": "2026-07-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.32963790514269,
+      "adx": 16.32963790514268,
       "rvol": 1.29,
       "atr": 3.26
     },
@@ -9720,7 +9763,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.343277320543413,
+      "adx": 12.343277320543422,
       "rvol": 0.73,
       "atr": 1.82
     },
@@ -10193,7 +10236,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.435147293300236,
+      "adx": 18.435147293300272,
       "rvol": 0.98,
       "atr": 4.24
     },
@@ -10322,7 +10365,7 @@
       "earnings_date": "2026-04-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.436906523528535,
+      "adx": 20.43690652352853,
       "rvol": 0.77,
       "atr": 2.69
     },
@@ -10580,7 +10623,7 @@
       "earnings_date": "2026-06-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 52.111351724320926,
+      "adx": 52.111351724320905,
       "rvol": 0.77,
       "atr": 3.12
     },
@@ -10623,7 +10666,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.049473041827504,
+      "adx": 18.049473041827525,
       "rvol": 0.77,
       "atr": 7.92
     },
@@ -10924,7 +10967,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.52487560415588,
+      "adx": 18.524875604155888,
       "rvol": 0.95,
       "atr": 14.85
     },
@@ -11655,7 +11698,7 @@
       "earnings_date": "2026-07-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.248687912210332,
+      "adx": 23.24868791221021,
       "rvol": 0.68,
       "atr": 0.91
     },
@@ -11698,7 +11741,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.426062448952194,
+      "adx": 30.426062448952305,
       "rvol": 1.56,
       "atr": 0.55
     },
@@ -11741,7 +11784,7 @@
       "earnings_date": "2026-07-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.10567116891962,
+      "adx": 16.105671168919624,
       "rvol": 1.05,
       "atr": 6.68
     },
@@ -12128,7 +12171,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.334148300820305,
+      "adx": 14.334148300820326,
       "rvol": 0.58,
       "atr": 0.36
     },
@@ -12257,7 +12300,7 @@
       "earnings_date": "2026-08-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.051698205125865,
+      "adx": 14.051698205125858,
       "rvol": 0.5,
       "atr": 13.65
     },
@@ -12472,7 +12515,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.920990816850626,
+      "adx": 28.92099081685064,
       "rvol": 1.58,
       "atr": 13.88
     },
@@ -12730,7 +12773,7 @@
       "earnings_date": "2026-04-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.66167223658384,
+      "adx": 15.661672236583781,
       "rvol": 0.73,
       "atr": 1.27
     },
@@ -13461,7 +13504,7 @@
       "earnings_date": "2026-08-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.591581925168093,
+      "adx": 30.59158192516811,
       "rvol": 1.05,
       "atr": 9.12
     },
@@ -13504,7 +13547,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.46727061683259,
+      "adx": 21.46727061683261,
       "rvol": 1.0,
       "atr": 17.6
     },
@@ -13891,7 +13934,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.48109308326728,
+      "adx": 16.48109308326729,
       "rvol": 0.98,
       "atr": 19.71
     },
@@ -14075,7 +14118,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "MU",
-      "company": "",
+      "company": "Micron Technology, Inc.",
       "signal": null,
       "score": 40.5,
       "why": "Below slow SMA \u2022 RSI 61 \u2022 Bearish MACD",
@@ -14192,7 +14235,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.474831983780213,
+      "adx": 26.474831983780238,
       "rvol": 1.0,
       "atr": 2.54
     },
@@ -14235,7 +14278,7 @@
       "earnings_date": "2026-07-31",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.30951704449514,
+      "adx": 11.30951704449522,
       "rvol": 1.2,
       "atr": 2.97
     },
@@ -14493,7 +14536,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 46.120181544602765,
+      "adx": 46.12018154460278,
       "rvol": 0.88,
       "atr": 1.89
     },
@@ -14794,7 +14837,7 @@
       "earnings_date": "2026-05-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 51.439830103000695,
+      "adx": 51.43983010300064,
       "rvol": 0.7,
       "atr": 7.87
     },
@@ -14923,7 +14966,7 @@
       "earnings_date": "2026-08-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.72860877956875,
+      "adx": 23.728608779568635,
       "rvol": 1.72,
       "atr": 0.72
     },
@@ -14966,7 +15009,7 @@
       "earnings_date": "2026-08-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.547275495839816,
+      "adx": 22.547275495839784,
       "rvol": 1.67,
       "atr": 0.78
     },
@@ -15310,7 +15353,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.75353572576797,
+      "adx": 17.75353572576802,
       "rvol": 1.07,
       "atr": 0.98
     },
@@ -15795,7 +15838,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "ORCL",
-      "company": "",
+      "company": "Oracle Corporation",
       "signal": null,
       "score": 22.5,
       "why": "Below slow SMA \u2022 RSI 42 \u2022 Bearish MACD",
@@ -15869,7 +15912,7 @@
       "earnings_date": "2026-07-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.971215922320628,
+      "adx": 29.97121592232062,
       "rvol": 1.23,
       "atr": 1.51
     },
@@ -15998,7 +16041,7 @@
       "earnings_date": "2026-08-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.765070016530808,
+      "adx": 15.765070016530817,
       "rvol": 1.07,
       "atr": 6.58
     },
@@ -16041,7 +16084,7 @@
       "earnings_date": "2026-08-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.416809695447625,
+      "adx": 40.41680969544764,
       "rvol": 0.78,
       "atr": 12.99
     },
@@ -16213,7 +16256,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.313164741968404,
+      "adx": 16.313164741968414,
       "rvol": 1.43,
       "atr": 6.04
     },
@@ -16256,7 +16299,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.159773344732944,
+      "adx": 29.15977334473294,
       "rvol": 1.5,
       "atr": 1.24
     },
@@ -16514,7 +16557,7 @@
       "earnings_date": "2026-07-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.144647314326324,
+      "adx": 17.144647314326246,
       "rvol": 1.4,
       "atr": 5.98
     },
@@ -16643,7 +16686,7 @@
       "earnings_date": "2026-07-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.61485558807175,
+      "adx": 19.614855588071702,
       "rvol": 1.11,
       "atr": 7.01
     },
@@ -16901,7 +16944,7 @@
       "earnings_date": "2026-07-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.115511791479843,
+      "adx": 16.115511791479822,
       "rvol": 1.15,
       "atr": 2.86
     },
@@ -17159,7 +17202,7 @@
       "earnings_date": "2026-07-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.09946314441139,
+      "adx": 20.099463144411402,
       "rvol": 0.96,
       "atr": 29.43
     },
@@ -17245,7 +17288,7 @@
       "earnings_date": "2026-07-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.04358556456984,
+      "adx": 21.043585564569675,
       "rvol": 1.24,
       "atr": 4.45
     },
@@ -17288,7 +17331,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.551232914788393,
+      "adx": 25.551232914788475,
       "rvol": 1.37,
       "atr": 13.56
     },
@@ -17417,7 +17460,7 @@
       "earnings_date": "2026-08-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.03564670791466,
+      "adx": 21.035646707914584,
       "rvol": 0.87,
       "atr": 1.03
     },
@@ -17460,7 +17503,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.10801849089469,
+      "adx": 20.10801849089471,
       "rvol": 1.5,
       "atr": 1.24
     },
@@ -17589,7 +17632,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 9.682327687837335,
+      "adx": 9.682327687837304,
       "rvol": 0.79,
       "atr": 4.24
     },
@@ -17632,7 +17675,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.281031360661604,
+      "adx": 25.281031360661675,
       "rvol": 1.01,
       "atr": 5.6
     },
@@ -17890,7 +17933,7 @@
       "earnings_date": "2026-07-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.194741940935288,
+      "adx": 13.194741940935273,
       "rvol": 0.99,
       "atr": 13.97
     },
@@ -18148,7 +18191,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.42091147610439,
+      "adx": 18.420911476104248,
       "rvol": 1.39,
       "atr": 1.84
     },
@@ -18191,7 +18234,7 @@
       "earnings_date": "2026-07-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.332406192802324,
+      "adx": 20.332406192802292,
       "rvol": 0.65,
       "atr": 7.07
     },
@@ -18277,7 +18320,7 @@
       "earnings_date": "2026-08-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.506035838879306,
+      "adx": 23.506035838879402,
       "rvol": 1.25,
       "atr": 4.1
     },
@@ -19739,7 +19782,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 8.451522687929895,
+      "adx": 8.451522687929868,
       "rvol": 1.11,
       "atr": 1.28
     },
@@ -20169,7 +20212,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.234534606519137,
+      "adx": 10.234534606519148,
       "rvol": 1.17,
       "atr": 2.41
     },
@@ -20427,7 +20470,7 @@
       "earnings_date": "2026-07-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 50.04131478981337,
+      "adx": 50.04131478981346,
       "rvol": 1.3,
       "atr": 31.29
     },
@@ -20599,7 +20642,7 @@
       "earnings_date": "2026-04-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.977270348882907,
+      "adx": 19.97727034888291,
       "rvol": 1.09,
       "atr": 2.2
     },
@@ -20869,7 +20912,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "VICI",
-      "company": "",
+      "company": "VICI Properties Inc.",
       "signal": null,
       "score": 32.25,
       "why": "Below slow SMA \u2022 RSI 48 \u2022 Bullish MACD \u2022 Near Support",
@@ -20900,7 +20943,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.864487198041422,
+      "adx": 12.864487198041456,
       "rvol": 1.22,
       "atr": 0.54
     },
@@ -20986,7 +21029,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.38149867540928,
+      "adx": 13.381498675409285,
       "rvol": 0.89,
       "atr": 6.7
     },
@@ -21158,7 +21201,7 @@
       "earnings_date": "2026-07-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 8.384105998603724,
+      "adx": 8.384105998603774,
       "rvol": 0.82,
       "atr": 6.8
     },
@@ -21373,7 +21416,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.8486287644747,
+      "adx": 18.84862876447465,
       "rvol": 0.7,
       "atr": 12.36
     },
@@ -21471,7 +21514,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "WELL",
-      "company": "",
+      "company": "Welltower Inc.",
       "signal": null,
       "score": 43.0,
       "why": "Below slow SMA \u2022 RSI 56 \u2022 Bullish MACD",
@@ -21600,7 +21643,7 @@
       "is_squeeze": false,
       "rsi_bb_signal": false,
       "ticker": "WY",
-      "company": "",
+      "company": "Weyerhaeuser Company",
       "signal": null,
       "score": 35.0,
       "why": "Below slow SMA \u2022 RSI 60 \u2022 Bullish MACD",
@@ -21803,7 +21846,7 @@
       "earnings_date": "2026-08-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.09469364298938,
+      "adx": 18.094693642989387,
       "rvol": 0.61,
       "atr": 7.47
     },
@@ -22104,7 +22147,7 @@
       "earnings_date": "2026-08-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 40.71463255205481,
+      "adx": 40.714632552054866,
       "rvol": 0.82,
       "atr": 3.07
     },
@@ -22190,7 +22233,7 @@
       "earnings_date": "2026-05-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.84380109345706,
+      "adx": 17.84380109345708,
       "rvol": 0.47,
       "atr": 10.08
     },
@@ -22276,7 +22319,7 @@
       "earnings_date": "2026-07-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.90517133063267,
+      "adx": 22.905171330632676,
       "rvol": 1.2,
       "atr": 6.02
     },
@@ -22319,7 +22362,7 @@
       "earnings_date": "2026-08-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.088052791055897,
+      "adx": 21.088052791055883,
       "rvol": 0.62,
       "atr": 3.13
     },
@@ -22362,7 +22405,7 @@
       "earnings_date": "2026-04-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.207666406277013,
+      "adx": 22.20766640627704,
       "rvol": 0.57,
       "atr": 6.72
     },
@@ -22405,7 +22448,7 @@
       "earnings_date": "2026-08-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.506778968845463,
+      "adx": 22.50677896884545,
       "rvol": 1.55,
       "atr": 33.97
     },
@@ -22448,7 +22491,7 @@
       "earnings_date": "2026-08-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.134672552134845,
+      "adx": 14.134672552134843,
       "rvol": 0.76,
       "atr": 6.01
     },
@@ -22663,7 +22706,7 @@
       "earnings_date": "2026-08-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.962306746850885,
+      "adx": 27.962306746850874,
       "rvol": 0.32,
       "atr": 5.3
     },
@@ -22706,7 +22749,7 @@
       "earnings_date": "2026-07-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.44871353461351,
+      "adx": 16.448713534613525,
       "rvol": 0.68,
       "atr": 3.98
     },
