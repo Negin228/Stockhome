@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-16-2026 01:49",
+  "generated_at_pt": "06-16-2026 02:24",
   "buys": [
     {
       "bb_lower": NaN,
@@ -206,15 +206,15 @@
       "rvol": 8.02,
       "atr": 2.76,
       "put": {
-        "strike": 45.0,
-        "expiration": "Jul 17, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.3,
-        "delta_percent": 17.82322863403944,
-        "premium_percent": 0.547845142439737,
-        "metric_sum": 18.37107377647918
+        "exp_type": null
       }
     },
     {
@@ -3630,8 +3630,8 @@
       "signal": null,
       "score": 69.75,
       "why": "Above slow SMA \u2022 RSI 62 \u2022 Bearish MACD \u2022 Extended (+22%)",
-      "price": 137.16,
-      "price_str": "137.16",
+      "price": 142.5,
+      "price_str": "142.50",
       "rsi": 62.1,
       "rsi_str": "62.1",
       "dma50": 135.12936492919923,
