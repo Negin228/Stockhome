@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "06-16-2026 13:21",
+  "generated_at_pt": "06-16-2026 13:56",
   "buys": [
     {
       "bb_lower": 42.39,
@@ -98,15 +98,15 @@
       "rvol": 2.71,
       "atr": 2.8,
       "put": {
-        "strike": 45.0,
+        "strike": 35.0,
         "expiration": "Jul 17, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.325,
-        "delta_percent": 14.02369124952236,
-        "premium_percent": 0.6209400076423386,
-        "metric_sum": 14.644631257164699
+        "premium": 0.375,
+        "delta_percent": 33.12953763851739,
+        "premium_percent": 0.7164692395873137,
+        "metric_sum": 33.8460068781047
       }
     },
     {
@@ -265,10 +265,10 @@
         "exp_type": "WEEKLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.25,
+        "premium": 1.24,
         "delta_percent": 11.077235772357723,
-        "premium_percent": 1.5879065040650409,
-        "metric_sum": 12.665142276422763
+        "premium_percent": 1.5752032520325203,
+        "metric_sum": 12.652439024390244
       }
     },
     {
@@ -373,10 +373,10 @@
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.625,
+        "premium": 0.525,
         "delta_percent": 11.382434029145335,
-        "premium_percent": 1.2307995273729815,
-        "metric_sum": 12.613233556518317
+        "premium_percent": 1.0338716029933046,
+        "metric_sum": 12.41630563213864
       }
     }
   ],
