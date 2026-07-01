@@ -203,11 +203,11 @@ jobs:
           cp -r index.html scripts styles assets artifacts/
           cp pages/*.html artifacts/pages/ || echo "some pages missing"
           find artifacts/ -type l -exec rm -v {} +
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
           path: artifacts/
 
+          
   deploy:
     needs: pages
     runs-on: ubuntu-latest
