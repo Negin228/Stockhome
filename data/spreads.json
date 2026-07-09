@@ -1,55 +1,5 @@
 [
   {
-    "ticker": "EQT",
-    "company": "EQT Corporation",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 50.15,
-    "market_cap": 31367723008.0,
-    "market_cap_str": "31.37B",
-    "mcap": 31.367723008,
-    "pe_check": false,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 20.816,
-    "trailing_pe": 9.5161295,
-    "forward_pe": 11.959556,
-    "earnings_growth": 5.142,
-    "debt_to_equity": 20.816,
-    "earnings_date": "2026-07-21",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-07-09T22:35:01.833044",
-    "reasoning": "Det: Price < BBL(50.23) | ADX: 20.6 | RSI 35.1 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "NWSA",
-    "company": "News Corporation",
-    "strategy": "Call Credit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 27.49,
-    "market_cap": 14948044800.0,
-    "market_cap_str": "14.95B",
-    "mcap": 14.9480448,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": true,
-    "health": 31.559,
-    "trailing_pe": 34.797466,
-    "forward_pe": 21.290602,
-    "earnings_growth": -0.136,
-    "debt_to_equity": 31.559,
-    "earnings_date": "2026-08-04",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-07-09T22:37:33.620466",
-    "reasoning": "Det: Price > BBU(27.46) | ADX: 18.0 | RSI 63.3 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "AES",
     "company": "The AES Corporation",
     "strategy": "Call Credit (Bearish)",
@@ -71,7 +21,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:32:30.565221",
+    "added_timestamp": "2026-07-09T23:10:24.912050",
     "reasoning": "Det: Price > BBU(14.72) | ADX: 23.5 | RSI 61.1 (Moderate: Selling Theta.)"
   },
   {
@@ -96,7 +46,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:33:01.614105",
+    "added_timestamp": "2026-07-09T23:10:27.708777",
     "reasoning": "Det: Price > BBU(181.94) | ADX: 17.1 | RSI 61.9 (Moderate: Selling Theta.)"
   },
   {
@@ -121,7 +71,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:34:22.639977",
+    "added_timestamp": "2026-07-09T23:11:26.008675",
     "reasoning": "Det: Price < BBL(917.76) | ADX: 14.4 | RSI 34.8 (Moderate: Selling Theta.)"
   },
   {
@@ -146,7 +96,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:34:36.603647",
+    "added_timestamp": "2026-07-09T23:11:27.852883",
     "reasoning": "Det: Price > BBU(448.69) | ADX: 30.5 | RSI 64.2 (Moderate: Selling Theta.)"
   },
   {
@@ -171,8 +121,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:34:52.198503",
+    "added_timestamp": "2026-07-09T23:11:37.652306",
     "reasoning": "Det: Price > BBU(116.76) | ADX: 18.4 | RSI 66.1 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "EQT",
+    "company": "EQT Corporation",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 50.15,
+    "market_cap": 31367723008.0,
+    "market_cap_str": "31.37B",
+    "mcap": 31.367723008,
+    "pe_check": false,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 20.816,
+    "trailing_pe": 9.5161295,
+    "forward_pe": 11.959556,
+    "earnings_growth": 5.142,
+    "debt_to_equity": 20.816,
+    "earnings_date": "2026-07-21",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-07-09T23:11:51.724495",
+    "reasoning": "Det: Price < BBL(50.23) | ADX: 20.6 | RSI 35.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "EXPD",
@@ -196,7 +171,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:35:12.685126",
+    "added_timestamp": "2026-07-09T23:12:08.744352",
     "reasoning": "Det: Price > BBU(169.41) | ADX: 17.4 | RSI 65.7 (Moderate: Selling Theta.)"
   },
   {
@@ -221,7 +196,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:36:57.699180",
+    "added_timestamp": "2026-07-09T23:13:16.400147",
     "reasoning": "Det: Price > BBU(280.57) | ADX: 20.9 | RSI 69.4 (Moderate: Selling Theta.)"
   },
   {
@@ -246,8 +221,33 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:37:31.559490",
+    "added_timestamp": "2026-07-09T23:13:26.639551",
     "reasoning": "Det: Price > BBU(168.79) | ADX: 31.8 | RSI 68.0 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "NWSA",
+    "company": "News Corporation",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 27.49,
+    "market_cap": 14948044800.0,
+    "market_cap_str": "14.95B",
+    "mcap": 14.9480448,
+    "pe_check": true,
+    "growth_check": false,
+    "debt_check": true,
+    "health": 31.559,
+    "trailing_pe": 34.797466,
+    "forward_pe": 21.290602,
+    "earnings_growth": -0.136,
+    "debt_to_equity": 31.559,
+    "earnings_date": "2026-08-04",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-07-09T23:13:26.799525",
+    "reasoning": "Det: Price > BBU(27.46) | ADX: 18.0 | RSI 63.3 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "PSX",
@@ -271,7 +271,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:38:03.093365",
+    "added_timestamp": "2026-07-09T23:13:37.258830",
     "reasoning": "Det: Price > BBU(187.44) | ADX: 15.2 | RSI 67.6 (Moderate: Selling Theta.)"
   },
   {
@@ -296,7 +296,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:38:53.640257",
+    "added_timestamp": "2026-07-09T23:14:26.624676",
     "reasoning": "Det: Price > BBU(106.12) | ADX: 13.5 | RSI 62.1 (Moderate: Selling Theta.)"
   },
   {
@@ -321,7 +321,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:38:54.284381",
+    "added_timestamp": "2026-07-09T23:14:26.674057",
     "reasoning": "Det: Price > BBU(180.07) | ADX: 24.5 | RSI 70.9 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -346,7 +346,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-07-09T22:39:56.734779",
+    "added_timestamp": "2026-07-09T23:14:57.341416",
     "reasoning": "Det: Price < BBL(22.52) | ADX: 17.4 | RSI 34.4 (Moderate: Selling Theta.)"
   }
 ]
