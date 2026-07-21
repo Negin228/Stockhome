@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "07-21-2026 00:08",
+  "generated_at_pt": "07-21-2026 00:43",
   "buys": [
     {
       "bb_lower": 30.75,
@@ -44,15 +44,15 @@
       "rvol": 0.77,
       "atr": 26.11,
       "put": {
-        "strike": 45.0,
-        "expiration": "Aug 21, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 40.12,
-        "delta_percent": 16.65123170957585,
-        "premium_percent": 74.31005741804036,
-        "metric_sum": 90.96128912761621
+        "exp_type": null
       }
     },
     {
@@ -98,15 +98,15 @@
       "rvol": 0.96,
       "atr": 6.57,
       "put": {
-        "strike": 105.0,
-        "expiration": "Aug 21, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 3.5,
-        "delta_percent": 11.167512690355332,
-        "premium_percent": 2.961082910321489,
-        "metric_sum": 14.128595600676821
+        "exp_type": null
       }
     },
     {
