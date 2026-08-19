@@ -20,8 +20,8 @@
     "earnings_date": "2026-10-26",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:48:20.799191",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:25:16.166247",
     "reasoning": "Det: Price < BBL(317.63) | ADX: 17.2 | RSI 32.9 (Moderate: Selling Theta.)"
   },
   {
@@ -45,8 +45,8 @@
     "earnings_date": "2026-10-30",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:48:33.402607",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:25:34.998001",
     "reasoning": "Det: Price > BBU(204.06) | ADX: 24.4 | RSI 69.8 (Moderate: Selling Theta.)"
   },
   {
@@ -70,8 +70,8 @@
     "earnings_date": "2026-11-05",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:48:49.127900",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:25:36.966711",
     "reasoning": "Det: Price > BBU(129.43) | ADX: 21.4 | RSI 69.4 (Moderate: Selling Theta.)"
   },
   {
@@ -95,9 +95,34 @@
     "earnings_date": "2026-11-04",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:49:17.870137",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:25:40.021635",
     "reasoning": "Det: Price > BBU(47.49) | ADX: 12.6 | RSI 64.7 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "EQR",
+    "company": "Equity Residential",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 63.66,
+    "market_cap": 24609972224.0,
+    "market_cap_str": "24.61B",
+    "mcap": 24.609972224,
+    "pe_check": false,
+    "growth_check": false,
+    "debt_check": true,
+    "health": 78.679,
+    "trailing_pe": 28.675674,
+    "forward_pe": 41.09191,
+    "earnings_growth": -0.407,
+    "debt_to_equity": 78.679,
+    "earnings_date": "2026-10-21",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:26:07.853883",
+    "reasoning": "Det: Price < BBL(63.98) | ADX: 21.6 | RSI 37.2 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "XOM",
@@ -120,8 +145,8 @@
     "earnings_date": "2026-10-30",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:49:44.158082",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:26:23.587365",
     "reasoning": "Det: Price > BBU(163.07) | ADX: 23.5 | RSI 72.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -145,8 +170,8 @@
     "earnings_date": "2026-10-29",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:50:17.240064",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:26:37.586427",
     "reasoning": "Det: Price > BBU(141.01) | ADX: 24.3 | RSI 69.6 (Moderate: Selling Theta.)"
   },
   {
@@ -170,8 +195,8 @@
     "earnings_date": "2026-10-13",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:50:49.309191",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:26:50.982076",
     "reasoning": "Det: Price > BBU(269.21) | ADX: 18.8 | RSI 66.7 (Moderate: Selling Theta.)"
   },
   {
@@ -195,8 +220,8 @@
     "earnings_date": "2026-10-06",
     "weekly_available": false,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:51:27.108382",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:27:36.147682",
     "reasoning": "Det: Price > BBU(55.23) | ADX: 19.4 | RSI 65.8 (Moderate: Selling Theta.)"
   },
   {
@@ -220,8 +245,8 @@
     "earnings_date": "2026-10-28",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:51:31.031219",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:27:37.073005",
     "reasoning": "Det: Price < BBL(546.01) | ADX: 13.1 | RSI 36.2 (Moderate: Selling Theta.)"
   },
   {
@@ -245,8 +270,8 @@
     "earnings_date": "2026-10-27",
     "weekly_available": false,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:52:14.274907",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:27:41.797278",
     "reasoning": "Det: Price > BBU(96.30) | ADX: 14.8 | RSI 69.1 (Moderate: Selling Theta.)"
   },
   {
@@ -270,8 +295,8 @@
     "earnings_date": "2026-10-29",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:52:26.119285",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:27:58.033383",
     "reasoning": "Det: Price > BBU(238.96) | ADX: 33.7 | RSI 81.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -295,8 +320,8 @@
     "earnings_date": "2026-11-05",
     "weekly_available": false,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:53:21.798871",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:28:39.495684",
     "reasoning": "Det: Price > BBU(289.80) | ADX: 20.9 | RSI 68.0 (Moderate: Selling Theta.)"
   },
   {
@@ -320,8 +345,8 @@
     "earnings_date": "2026-10-22",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:53:43.934671",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:28:51.207944",
     "reasoning": "Det: Price > BBU(349.44) | ADX: 29.0 | RSI 75.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -345,8 +370,8 @@
     "earnings_date": "2026-11-05",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:53:56.236628",
+    "is_new": false,
+    "added_timestamp": "2026-08-19T12:29:13.294916",
     "reasoning": "Det: Price > BBU(28.43) | ADX: 23.4 | RSI 71.9 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -370,33 +395,8 @@
     "earnings_date": "2026-07-28",
     "weekly_available": false,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-08-19T11:54:18.548596",
-    "reasoning": "Det: Price < BBL(114.47) | ADX: 20.5 | RSI 38.6 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "EQR",
-    "company": "Equity Residential",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 64.03,
-    "market_cap": 24609972224.0,
-    "market_cap_str": "24.61B",
-    "mcap": 24.609972224,
-    "pe_check": false,
-    "growth_check": false,
-    "debt_check": true,
-    "health": 78.679,
-    "trailing_pe": 28.675674,
-    "forward_pe": 41.09191,
-    "earnings_growth": -0.407,
-    "debt_to_equity": 78.679,
-    "earnings_date": "2026-10-21",
-    "weekly_available": false,
-    "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-08-19T11:49:37.055938",
-    "reasoning": "Det: Price < BBL(63.98) | ADX: 21.6 | RSI 37.2 (Moderate: Selling Theta.)"
+    "added_timestamp": "2026-08-19T12:29:32.721897",
+    "reasoning": "Det: Price < BBL(114.47) | ADX: 20.5 | RSI 38.6 (Moderate: Selling Theta.)"
   }
 ]
