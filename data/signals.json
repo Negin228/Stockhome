@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "09-14-2026 21:26",
+  "generated_at_pt": "09-14-2026 22:01",
   "buys": [
     {
       "bb_lower": 160.1,
@@ -44,15 +44,15 @@
       "rvol": 1.1,
       "atr": 3.44,
       "put": {
-        "strike": 145.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 100.0,
+        "expiration": "Oct 16, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.2,
-        "delta_percent": 10.504875941241828,
-        "premium_percent": 0.7406493025552401,
-        "metric_sum": 11.245525243797069
+        "premium": 1.11,
+        "delta_percent": 38.279224787063335,
+        "premium_percent": 0.6851006048635971,
+        "metric_sum": 38.964325391926934
       }
     },
     {
@@ -157,10 +157,10 @@
         "exp_type": "WEEKLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 6.0,
+        "premium": 5.3,
         "delta_percent": 10.413530356493347,
-        "premium_percent": 2.1500752714441598,
-        "metric_sum": 12.563605627937505
+        "premium_percent": 1.8992331564423408,
+        "metric_sum": 12.312763512935687
       }
     },
     {
@@ -746,15 +746,15 @@
       "rvol": 0.95,
       "atr": 0.87,
       "put": {
-        "strike": 27.0,
+        "strike": 23.0,
         "expiration": "Sep 18, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.975,
-        "delta_percent": 32.21190057745418,
-        "premium_percent": 2.447903590258599,
-        "metric_sum": 34.65980416771278
+        "premium": 1.08,
+        "delta_percent": 42.25458197338689,
+        "premium_percent": 2.711523976901833,
+        "metric_sum": 44.96610595028872
       }
     },
     {
@@ -805,10 +805,10 @@
         "exp_type": "WEEKLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.405,
+        "premium": 0.32,
         "delta_percent": 11.684782608695656,
-        "premium_percent": 2.751358695652174,
-        "metric_sum": 14.43614130434783
+        "premium_percent": 2.1739130434782608,
+        "metric_sum": 13.858695652173918
       }
     },
     {
@@ -1016,15 +1016,15 @@
       "rvol": 1.7,
       "atr": 0.87,
       "put": {
-        "strike": 45.0,
+        "strike": 52.5,
         "expiration": "Sep 18, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
         "premium": 0.1,
-        "delta_percent": 24.07626176404807,
+        "delta_percent": 11.422305391389417,
         "premium_percent": 0.16871941830211543,
-        "metric_sum": 24.244981182350184
+        "metric_sum": 11.591024809691532
       }
     },
     {
@@ -13126,8 +13126,8 @@
       "signal": null,
       "score": 51.0,
       "why": "Above slow SMA \u2022 RSI 46 \u2022 Bearish MACD \u2022 Extended (+6%)",
-      "price": 24.27,
-      "price_str": "24.27",
+      "price": 24.6,
+      "price_str": "24.60",
       "rsi": 46.2,
       "rsi_str": "46.2",
       "dma50": 25.1074426651001,
