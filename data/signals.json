@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "09-28-2026 15:53",
+  "generated_at_pt": "09-28-2026 16:33",
   "buys": [
     {
       "bb_lower": 62.77,
@@ -44,15 +44,15 @@
       "rvol": 1.68,
       "atr": 1.04,
       "put": {
-        "strike": 42.5,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.775,
-        "delta_percent": 32.76380319569688,
-        "premium_percent": 1.2260718240784685,
-        "metric_sum": 33.98987501977535
+        "exp_type": null
       }
     },
     {
@@ -94,19 +94,19 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.189232145045203,
+      "adx": 24.1892321450452,
       "rvol": 0.82,
       "atr": 5.93,
       "put": {
-        "strike": 170.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.92,
-        "delta_percent": 25.291144803339925,
-        "premium_percent": 0.8437705998681608,
-        "metric_sum": 26.134915403208087
+        "exp_type": null
       }
     },
     {
@@ -148,7 +148,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.296322676775905,
+      "adx": 29.296322676776025,
       "rvol": 1.41,
       "atr": 1.54,
       "put": {
@@ -202,19 +202,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.233088265527847,
+      "adx": 22.233088265527858,
       "rvol": 0.92,
       "atr": 2.55,
       "put": {
-        "strike": 80.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.325,
-        "delta_percent": 37.95082602962848,
-        "premium_percent": 0.2520747692546343,
-        "metric_sum": 38.202900798883114
+        "exp_type": null
       }
     },
     {
@@ -260,15 +260,15 @@
       "rvol": 0.8,
       "atr": 8.22,
       "put": {
-        "strike": 210.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 2.7,
-        "delta_percent": 22.822491730981266,
-        "premium_percent": 0.9922822491730982,
-        "metric_sum": 23.814773980154364
+        "exp_type": null
       }
     },
     {
@@ -314,15 +314,15 @@
       "rvol": 0.93,
       "atr": 2.23,
       "put": {
-        "strike": 130.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.475,
-        "delta_percent": 17.22381407195161,
-        "premium_percent": 0.9391913403374721,
-        "metric_sum": 18.163005412289085
+        "exp_type": null
       }
     },
     {
@@ -364,19 +364,19 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.90707905407871,
+      "adx": 20.907079054078746,
       "rvol": 0.98,
       "atr": 1.29,
       "put": {
-        "strike": 45.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.85,
-        "delta_percent": 21.232277262384038,
-        "premium_percent": 1.4878347628216346,
-        "metric_sum": 22.720112025205673
+        "exp_type": null
       }
     },
     {
@@ -395,12 +395,12 @@
       "price_str": "55.47",
       "rsi": 27.1,
       "rsi_str": "27.1",
-      "dma50": 61.20765632629394,
+      "dma50": 61.20765632629396,
       "dma200": 54.80770526885986,
       "dma50_str": "61.2",
       "dma200_str": "54.8",
       "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 35.1)",
+      "trend_rationale": "Strong Bearish Trend (ADX: 34.8)",
       "pe": 12.810624,
       "pe_str": "12.8",
       "market_cap": 387887759360.0,
@@ -418,19 +418,19 @@
       "earnings_date": "2026-10-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.120546679084505,
+      "adx": 34.817958760039936,
       "rvol": 0.78,
       "atr": 1.22,
       "put": {
-        "strike": 37.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.885,
-        "delta_percent": 33.29727780782405,
-        "premium_percent": 1.59545700378583,
-        "metric_sum": 34.892734811609884
+        "exp_type": null
       }
     },
     {
@@ -472,19 +472,19 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.179938681017614,
+      "adx": 30.179938681017575,
       "rvol": 2.01,
       "atr": 3.99,
       "put": {
-        "strike": 100.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.2650000000000001,
-        "delta_percent": 12.709497206703912,
-        "premium_percent": 1.1042248603351956,
-        "metric_sum": 13.813722067039107
+        "exp_type": null
       }
     },
     {
@@ -526,19 +526,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.51345074525224,
+      "adx": 29.513450745252158,
       "rvol": 2.49,
       "atr": 6.09,
       "put": {
-        "strike": 115.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 2.15,
-        "delta_percent": 37.632192635175436,
-        "premium_percent": 1.166006833342372,
-        "metric_sum": 38.79819946851781
+        "exp_type": null
       }
     },
     {
@@ -580,7 +580,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.818362423938602,
+      "adx": 31.818362423938595,
       "rvol": 0.82,
       "atr": 1.83,
       "put": {
@@ -634,7 +634,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 44.23326976447516,
+      "adx": 44.23326976447532,
       "rvol": 1.26,
       "atr": 1.76,
       "put": {
@@ -688,19 +688,19 @@
       "earnings_date": "2026-10-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.586165761073953,
+      "adx": 30.586165761074003,
       "rvol": 0.79,
       "atr": 9.35,
       "put": {
-        "strike": 225.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 2.525,
-        "delta_percent": 11.158493248045485,
-        "premium_percent": 0.9969991313274895,
-        "metric_sum": 12.155492379372975
+        "exp_type": null
       }
     },
     {
@@ -742,7 +742,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.748816438866868,
+      "adx": 23.74881643886684,
       "rvol": 0.91,
       "atr": 0.64,
       "put": {
@@ -773,7 +773,7 @@
       "price_str": "98.30",
       "rsi": 29.8,
       "rsi_str": "29.8",
-      "dma50": 106.46740280151367,
+      "dma50": 106.46740280151366,
       "dma200": 97.81209735870361,
       "dma50_str": "106.5",
       "dma200_str": "97.8",
@@ -796,19 +796,19 @@
       "earnings_date": "2026-10-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.535660183235045,
+      "adx": 23.535660183234942,
       "rvol": 0.73,
       "atr": 2.36,
       "put": {
-        "strike": 88.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.05,
-        "delta_percent": 10.478128179043741,
-        "premium_percent": 1.0681586978636826,
-        "metric_sum": 11.546286876907423
+        "exp_type": null
       }
     },
     {
@@ -850,19 +850,19 @@
       "earnings_date": "2026-10-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.470663744815226,
+      "adx": 26.470663744815234,
       "rvol": 0.93,
       "atr": 6.61,
       "put": {
-        "strike": 100.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 4.6,
-        "delta_percent": 10.233393177737886,
-        "premium_percent": 4.129263913824057,
-        "metric_sum": 14.362657091561942
+        "exp_type": null
       }
     },
     {
@@ -904,19 +904,19 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.68415982204136,
+      "adx": 35.68415982204137,
       "rvol": 1.21,
       "atr": 1.03,
       "put": {
-        "strike": 55.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.375,
-        "delta_percent": 12.140572938293188,
-        "premium_percent": 0.599041548148001,
-        "metric_sum": 12.739614486441189
+        "exp_type": null
       }
     },
     {
@@ -958,19 +958,19 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.598750560193764,
+      "adx": 40.59875056019387,
       "rvol": 0.89,
       "atr": 0.72,
       "put": {
-        "strike": 15.0,
-        "expiration": "Oct 09, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.31,
-        "delta_percent": 31.161083065626432,
-        "premium_percent": 1.4226709499770538,
-        "metric_sum": 32.58375401560349
+        "exp_type": null
       }
     },
     {
@@ -1012,19 +1012,19 @@
       "earnings_date": "2026-10-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.269729190316177,
+      "adx": 24.26972919031628,
       "rvol": 0.58,
       "atr": 2.96,
       "put": {
-        "strike": 90.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.075,
-        "delta_percent": 20.29755579171095,
-        "premium_percent": 0.9520014169323415,
-        "metric_sum": 21.24955720864329
+        "exp_type": null
       }
     },
     {
@@ -1066,19 +1066,19 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.88713373604936,
+      "adx": 29.8871337360494,
       "rvol": 0.89,
       "atr": 1.92,
       "put": {
-        "strike": 45.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.425,
-        "delta_percent": 32.93591654247391,
-        "premium_percent": 0.6333830104321908,
-        "metric_sum": 33.5692995529061
+        "exp_type": null
       }
     },
     {
@@ -1124,15 +1124,15 @@
       "rvol": 0.77,
       "atr": 15.06,
       "put": {
-        "strike": 460.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.4749999999999999,
-        "delta_percent": 11.169473196354092,
-        "premium_percent": 0.28483701529429933,
-        "metric_sum": 11.45431021164839
+        "exp_type": null
       }
     },
     {
@@ -1178,15 +1178,15 @@
       "rvol": 0.65,
       "atr": 1.07,
       "put": {
-        "strike": 52.5,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.075,
-        "delta_percent": 12.90643662906437,
-        "premium_percent": 0.12441937624419375,
-        "metric_sum": 13.030856005308564
+        "exp_type": null
       }
     },
     {
@@ -1228,19 +1228,19 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.11251543709151,
+      "adx": 26.11251497890126,
       "rvol": 1.67,
       "atr": 7.99,
       "put": {
-        "strike": 160.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 5.175000000000001,
-        "delta_percent": 10.308873815796844,
-        "premium_percent": 2.9009473625203213,
-        "metric_sum": 13.209821178317165
+        "exp_type": null
       }
     },
     {
@@ -1282,19 +1282,19 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 41.851454448836485,
+      "adx": 41.85145444883651,
       "rvol": 1.3,
       "atr": 2.16,
       "put": {
-        "strike": 105.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.475,
-        "delta_percent": 13.101051063477613,
-        "premium_percent": 0.39311429280807747,
-        "metric_sum": 13.49416535628569
+        "exp_type": null
       }
     },
     {
@@ -1336,19 +1336,19 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.83890679699105,
+      "adx": 33.83890679699122,
       "rvol": 1.03,
       "atr": 1.61,
       "put": {
-        "strike": 85.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.075,
-        "delta_percent": 25.050700996384794,
-        "premium_percent": 0.9478881932810157,
-        "metric_sum": 25.99858918966581
+        "exp_type": null
       }
     },
     {
@@ -1394,15 +1394,15 @@
       "rvol": 0.74,
       "atr": 2.22,
       "put": {
-        "strike": 42.5,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.375,
-        "delta_percent": 17.427627744317075,
-        "premium_percent": 0.7285797551972023,
-        "metric_sum": 18.156207499514277
+        "exp_type": null
       }
     },
     {
@@ -1444,19 +1444,19 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.790933984178306,
+      "adx": 24.790933984178302,
       "rvol": 1.14,
       "atr": 1.79,
       "put": {
-        "strike": 27.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.865,
-        "delta_percent": 12.649627952119054,
-        "premium_percent": 2.7984471044969266,
-        "metric_sum": 15.44807505661598
+        "exp_type": null
       }
     },
     {
@@ -1498,7 +1498,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.885975746533752,
+      "adx": 28.8859757465338,
       "rvol": 0.78,
       "atr": 1.92,
       "put": {
@@ -1552,19 +1552,19 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.81961070066986,
+      "adx": 24.81961070066989,
       "rvol": 1.46,
       "atr": 5.93,
       "put": {
-        "strike": 115.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 2.2,
-        "delta_percent": 21.114007408423653,
-        "premium_percent": 1.509123336534504,
-        "metric_sum": 22.623130744958157
+        "exp_type": null
       }
     },
     {
@@ -1606,19 +1606,19 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.078611611915587,
+      "adx": 31.078611611915584,
       "rvol": 1.27,
       "atr": 1.21,
       "put": {
-        "strike": 45.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.325,
-        "delta_percent": 28.88748419721871,
-        "premium_percent": 0.5135903919089759,
-        "metric_sum": 29.40107458912769
+        "exp_type": null
       }
     },
     {
@@ -1660,19 +1660,19 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.41453501049524,
+      "adx": 33.41453501049522,
       "rvol": 0.96,
       "atr": 0.71,
       "put": {
-        "strike": 30.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.05,
-        "delta_percent": 25.595238095238095,
-        "premium_percent": 0.12400793650793653,
-        "metric_sum": 25.71924603174603
+        "exp_type": null
       }
     },
     {
@@ -1714,19 +1714,19 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.65623477182091,
+      "adx": 33.656234771820934,
       "rvol": 1.36,
       "atr": 2.35,
       "put": {
-        "strike": 65.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.375,
-        "delta_percent": 23.807291056148166,
-        "premium_percent": 0.4395733208299144,
-        "metric_sum": 24.24686437697808
+        "exp_type": null
       }
     },
     {
@@ -1768,19 +1768,19 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.54773898765803,
+      "adx": 24.547738987658047,
       "rvol": 0.8,
       "atr": 43.98,
       "put": {
-        "strike": 750.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 10.75,
-        "delta_percent": 10.808785929194066,
-        "premium_percent": 1.2784074016815516,
-        "metric_sum": 12.087193330875618
+        "exp_type": null
       }
     },
     {
@@ -1822,7 +1822,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.201370676672234,
+      "adx": 36.20137067667205,
       "rvol": 1.41,
       "atr": 1.67,
       "put": {
@@ -1876,19 +1876,19 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.110122590144154,
+      "adx": 18.110122590144158,
       "rvol": 1.39,
       "atr": 1.17,
       "put": {
-        "strike": 29.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.125,
-        "delta_percent": 15.47653745263772,
-        "premium_percent": 3.278927426406295,
-        "metric_sum": 18.755464879044016
+        "exp_type": null
       }
     },
     {
@@ -1930,19 +1930,19 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.77472274395283,
+      "adx": 33.774722743952786,
       "rvol": 0.83,
       "atr": 0.71,
       "put": {
-        "strike": 35.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.05,
-        "delta_percent": 18.64249186424919,
-        "premium_percent": 0.11622501162250116,
-        "metric_sum": 18.75871687587169
+        "exp_type": null
       }
     },
     {
@@ -1984,19 +1984,19 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.047535609116128,
+      "adx": 27.04753560911612,
       "rvol": 1.76,
       "atr": 1.25,
       "put": {
-        "strike": 16.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.125,
-        "delta_percent": 23.261390887290172,
-        "premium_percent": 5.39568345323741,
-        "metric_sum": 28.657074340527583
+        "exp_type": null
       }
     },
     {
@@ -2038,19 +2038,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 50.82122345288725,
+      "adx": 50.82122345288717,
       "rvol": 1.43,
       "atr": 6.69,
       "put": {
-        "strike": 200.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 2.5,
-        "delta_percent": 40.14843188891549,
-        "premium_percent": 0.7481446013885563,
-        "metric_sum": 40.89657649030404
+        "exp_type": null
       }
     },
     {
@@ -2096,15 +2096,15 @@
       "rvol": 1.05,
       "atr": 1.1,
       "put": {
-        "strike": 30.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.1,
-        "delta_percent": 10.714285714285717,
-        "premium_percent": 0.2976190476190476,
-        "metric_sum": 11.011904761904765
+        "exp_type": null
       }
     },
     {
@@ -2146,19 +2146,19 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.814752780749302,
+      "adx": 28.814752780749252,
       "rvol": 0.96,
       "atr": 3.34,
       "put": {
-        "strike": 125.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.2,
-        "delta_percent": 23.97056140137461,
-        "premium_percent": 0.7298826105468037,
-        "metric_sum": 24.700444011921412
+        "exp_type": null
       }
     },
     {
@@ -2200,19 +2200,19 @@
       "earnings_date": "2026-11-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.14016005189909,
+      "adx": 27.14016005189916,
       "rvol": 1.16,
       "atr": 6.8,
       "put": {
-        "strike": 260.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.675,
-        "delta_percent": 10.3108075476905,
-        "premium_percent": 0.5778053744523786,
-        "metric_sum": 10.888612922142878
+        "exp_type": null
       }
     },
     {
@@ -2254,19 +2254,19 @@
       "earnings_date": "2026-08-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.377441455217635,
+      "adx": 44.37744145521763,
       "rvol": 1.14,
       "atr": 0.49,
       "put": {
-        "strike": 11.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.5,
-        "delta_percent": 44.917376064096146,
-        "premium_percent": 2.5037556334501754,
-        "metric_sum": 47.42113169754632
+        "exp_type": null
       }
     },
     {
@@ -2308,19 +2308,19 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 37.86180218393385,
+      "adx": 37.861802183933875,
       "rvol": 1.3,
       "atr": 7.25,
       "put": {
-        "strike": 230.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.325,
-        "delta_percent": 10.523244504960129,
-        "premium_percent": 0.1264345458082085,
-        "metric_sum": 10.649679050768338
+        "exp_type": null
       }
     },
     {
@@ -2362,19 +2362,19 @@
       "earnings_date": "2026-11-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.846872898350732,
+      "adx": 20.846872898350743,
       "rvol": 1.04,
       "atr": 13.45,
       "put": {
-        "strike": 240.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 5.4,
-        "delta_percent": 10.913140311804002,
-        "premium_percent": 2.0044543429844097,
-        "metric_sum": 12.917594654788411
+        "exp_type": null
       }
     },
     {
@@ -2416,19 +2416,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 45.35622577648123,
+      "adx": 45.356225776481246,
       "rvol": 1.04,
       "atr": 0.43,
       "put": {
-        "strike": 20.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.375,
-        "delta_percent": 24.64204973624717,
-        "premium_percent": 1.4129615674453655,
-        "metric_sum": 26.055011303692535
+        "exp_type": null
       }
     },
     {
@@ -2470,19 +2470,19 @@
       "earnings_date": "2026-10-15",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.95333409669444,
+      "adx": 32.95333409669445,
       "rvol": 0.77,
       "atr": 8.11,
       "put": {
-        "strike": 170.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.125,
-        "delta_percent": 24.80205246162693,
-        "premium_percent": 0.4976334763568806,
-        "metric_sum": 25.29968593798381
+        "exp_type": null
       }
     },
     {
@@ -2501,7 +2501,7 @@
       "price_str": "237.70",
       "rsi": 23.8,
       "rsi_str": "23.8",
-      "dma50": 268.13274627685547,
+      "dma50": 268.1327462768554,
       "dma200": 309.0860814666748,
       "dma50_str": "268.1",
       "dma200_str": "309.1",
@@ -2524,19 +2524,19 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 46.09873484014595,
+      "adx": 46.09873484014583,
       "rvol": 1.18,
       "atr": 5.67,
       "put": {
-        "strike": 205.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.85,
-        "delta_percent": 13.756836348338236,
-        "premium_percent": 0.357593605384939,
-        "metric_sum": 14.114429953723175
+        "exp_type": null
       }
     },
     {
@@ -2578,19 +2578,19 @@
       "earnings_date": "2026-10-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.12898415437156,
+      "adx": 31.128984154371413,
       "rvol": 1.47,
       "atr": 1.44,
       "put": {
-        "strike": 37.5,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.35,
-        "delta_percent": 13.154238073182029,
-        "premium_percent": 0.8105604446503011,
-        "metric_sum": 13.96479851783233
+        "exp_type": null
       }
     },
     {
@@ -2632,19 +2632,19 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 46.09790344764189,
+      "adx": 46.09790344764183,
       "rvol": 0.65,
       "atr": 1.04,
       "put": {
-        "strike": 34.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.0,
-        "delta_percent": 12.325941206807634,
-        "premium_percent": 2.5786487880350695,
-        "metric_sum": 14.904589994842704
+        "exp_type": null
       }
     },
     {
@@ -2686,19 +2686,19 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.55477670266029,
+      "adx": 23.554776702660426,
       "rvol": 0.76,
       "atr": 1.61,
       "put": {
-        "strike": 90.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.25,
-        "delta_percent": 14.244878513577897,
-        "premium_percent": 0.23820867079561697,
-        "metric_sum": 14.483087184373513
+        "exp_type": null
       }
     },
     {
@@ -2740,19 +2740,19 @@
       "earnings_date": "2026-10-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.559239008910335,
+      "adx": 30.55923900891034,
       "rvol": 0.73,
       "atr": 4.22,
       "put": {
-        "strike": 155.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.45,
-        "delta_percent": 29.686082380693158,
-        "premium_percent": 0.6577753583741608,
-        "metric_sum": 30.343857739067317
+        "exp_type": null
       }
     },
     {
@@ -2794,19 +2794,19 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.14172103352399,
+      "adx": 39.141721033524,
       "rvol": 0.9,
       "atr": 4.9,
       "put": {
-        "strike": 210.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.625,
-        "delta_percent": 10.102739726027394,
-        "premium_percent": 0.2675513698630137,
-        "metric_sum": 10.370291095890408
+        "exp_type": null
       }
     },
     {
@@ -2848,19 +2848,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 44.32367485933408,
+      "adx": 44.323674859333885,
       "rvol": 2.19,
       "atr": 1.25,
       "put": {
-        "strike": 26.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.075,
-        "delta_percent": 18.392969240426865,
-        "premium_percent": 3.37413684871312,
-        "metric_sum": 21.767106089139986
+        "exp_type": null
       }
     },
     {
@@ -2902,19 +2902,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.25677616764117,
+      "adx": 38.25677616764115,
       "rvol": 1.22,
       "atr": 2.13,
       "put": {
-        "strike": 95.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.375,
-        "delta_percent": 19.722832516477947,
-        "premium_percent": 0.3168835558560081,
-        "metric_sum": 20.039716072333956
+        "exp_type": null
       }
     },
     {
@@ -2956,19 +2956,19 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.258116614331726,
+      "adx": 20.258116614331772,
       "rvol": 0.71,
       "atr": 1.06,
       "put": {
-        "strike": 27.5,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.2,
-        "delta_percent": 24.179762889440315,
-        "premium_percent": 0.5514199062586159,
-        "metric_sum": 24.73118279569893
+        "exp_type": null
       }
     },
     {
@@ -3010,19 +3010,19 @@
       "earnings_date": "2026-10-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.328082307187547,
+      "adx": 30.328082307187373,
       "rvol": 0.88,
       "atr": 4.91,
       "put": {
-        "strike": 170.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.5,
-        "delta_percent": 12.208221441850851,
-        "premium_percent": 0.7746333402189631,
-        "metric_sum": 12.982854782069815
+        "exp_type": null
       }
     },
     {
@@ -3064,19 +3064,19 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.26030655520045,
+      "adx": 41.26030655520048,
       "rvol": 1.14,
       "atr": 1.29,
       "put": {
-        "strike": 50.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.065,
-        "delta_percent": 33.76606173003046,
-        "premium_percent": 1.4107828851503512,
-        "metric_sum": 35.17684461518081
+        "exp_type": null
       }
     },
     {
@@ -3118,19 +3118,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.9256630292998,
+      "adx": 32.92566302929965,
       "rvol": 1.04,
       "atr": 0.65,
       "put": {
-        "strike": 30.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.375,
-        "delta_percent": 23.27365728900256,
-        "premium_percent": 0.9590792838874681,
-        "metric_sum": 24.23273657289003
+        "exp_type": null
       }
     },
     {
@@ -3176,15 +3176,15 @@
       "rvol": 0.83,
       "atr": 2.79,
       "put": {
-        "strike": 100.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.2,
-        "delta_percent": 10.434393193013888,
-        "premium_percent": 1.0747872816838333,
-        "metric_sum": 11.509180474697722
+        "exp_type": null
       }
     },
     {
@@ -3226,19 +3226,19 @@
       "earnings_date": "2026-12-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.4773907570648,
+      "adx": 28.477390757064786,
       "rvol": 1.0,
       "atr": 3.28,
       "put": {
-        "strike": 85.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.07500000000000001,
-        "delta_percent": 14.400805639476333,
-        "premium_percent": 0.07552870090634442,
-        "metric_sum": 14.476334340382678
+        "exp_type": null
       }
     },
     {
@@ -3280,19 +3280,19 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.819672883384875,
+      "adx": 35.81967288338493,
       "rvol": 0.6,
       "atr": 1.59,
       "put": {
-        "strike": 47.5,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.225,
-        "delta_percent": 10.428059588911937,
-        "premium_percent": 0.42428813878936444,
-        "metric_sum": 10.852347727701302
+        "exp_type": null
       }
     },
     {
@@ -3334,19 +3334,19 @@
       "earnings_date": "2026-10-08",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.86600879806294,
+      "adx": 22.866008798063007,
       "rvol": 0.82,
       "atr": 2.24,
       "put": {
-        "strike": 85.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.065,
-        "delta_percent": 33.85214007782101,
-        "premium_percent": 0.8287937743190661,
-        "metric_sum": 34.68093385214008
+        "exp_type": null
       }
     },
     {
@@ -3388,19 +3388,19 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.57250274318378,
+      "adx": 33.57250274318379,
       "rvol": 0.58,
       "atr": 0.6,
       "put": {
-        "strike": 4.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.065,
-        "delta_percent": 66.52719665271967,
-        "premium_percent": 8.912133891213388,
-        "metric_sum": 75.43933054393305
+        "exp_type": null
       }
     },
     {
@@ -3442,19 +3442,19 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.33376468879166,
+      "adx": 27.333764688791607,
       "rvol": 0.91,
       "atr": 1.54,
       "put": {
-        "strike": 70.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.575,
-        "delta_percent": 23.346473937801132,
-        "premium_percent": 0.6296539640823478,
-        "metric_sum": 23.97612790188348
+        "exp_type": null
       }
     },
     {
@@ -3496,19 +3496,19 @@
       "earnings_date": "2026-10-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.485717312612916,
+      "adx": 25.485717312612827,
       "rvol": 0.79,
       "atr": 4.56,
       "put": {
-        "strike": 200.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.35,
-        "delta_percent": 10.58255465641346,
-        "premium_percent": 0.6035677560692091,
-        "metric_sum": 11.18612241248267
+        "exp_type": null
       }
     },
     {
@@ -3550,19 +3550,19 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.276017436497458,
+      "adx": 25.27601743649748,
       "rvol": 1.09,
       "atr": 0.53,
       "put": {
-        "strike": 27.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.175,
-        "delta_percent": 15.914045468701337,
-        "premium_percent": 0.5450015571473061,
-        "metric_sum": 16.459047025848644
+        "exp_type": null
       }
     },
     {
@@ -3604,19 +3604,19 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 40.713022268301486,
+      "adx": 40.713022268301515,
       "rvol": 0.95,
       "atr": 1.11,
       "put": {
-        "strike": 60.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.2,
-        "delta_percent": 10.08541885209052,
-        "premium_percent": 0.29971527049303165,
-        "metric_sum": 10.385134122583551
+        "exp_type": null
       }
     },
     {
@@ -3658,19 +3658,19 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.43594605873265,
+      "adx": 39.43594605873272,
       "rvol": 0.77,
       "atr": 3.98,
       "put": {
-        "strike": 160.0,
-        "expiration": "Oct 09, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.085,
-        "delta_percent": 14.739424023412312,
-        "premium_percent": 0.5781732808412352,
-        "metric_sum": 15.317597304253546
+        "exp_type": null
       }
     },
     {
@@ -3712,19 +3712,19 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 37.465046317524674,
+      "adx": 37.465046317524575,
       "rvol": 1.25,
       "atr": 0.87,
       "put": {
-        "strike": 47.5,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.05,
-        "delta_percent": 14.182475158084918,
-        "premium_percent": 0.09033423667570009,
-        "metric_sum": 14.272809394760618
+        "exp_type": null
       }
     },
     {
@@ -3766,19 +3766,19 @@
       "earnings_date": "2026-10-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.547770670976515,
+      "adx": 30.547770670976572,
       "rvol": 1.45,
       "atr": 0.57,
       "put": {
-        "strike": 23.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.175,
-        "delta_percent": 15.627292736610423,
-        "premium_percent": 0.6419662509170946,
-        "metric_sum": 16.269258987527518
+        "exp_type": null
       }
     },
     {
@@ -3820,19 +3820,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.932025759322144,
+      "adx": 38.9320257593222,
       "rvol": 1.55,
       "atr": 0.95,
       "put": {
-        "strike": 25.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.1,
-        "delta_percent": 18.273945733899964,
-        "premium_percent": 0.32690421706440015,
-        "metric_sum": 18.600849950964363
+        "exp_type": null
       }
     },
     {
@@ -3874,19 +3874,19 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.494093161902782,
+      "adx": 27.494093161902804,
       "rvol": 1.02,
       "atr": 9.98,
       "put": {
-        "strike": 310.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.5,
-        "delta_percent": 12.429378531073446,
-        "premium_percent": 0.14124293785310735,
-        "metric_sum": 12.570621468926554
+        "exp_type": null
       }
     },
     {
@@ -3928,19 +3928,19 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.298344380970978,
+      "adx": 24.298344380971038,
       "rvol": 0.9,
       "atr": 5.01,
       "put": {
-        "strike": 145.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.275,
-        "delta_percent": 11.276999326928964,
-        "premium_percent": 0.7801505231597625,
-        "metric_sum": 12.057149850088727
+        "exp_type": null
       }
     },
     {
@@ -3986,15 +3986,15 @@
       "rvol": 1.09,
       "atr": 1.6,
       "put": {
-        "strike": 65.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.1,
-        "delta_percent": 15.463649369228769,
-        "premium_percent": 1.430615164520744,
-        "metric_sum": 16.894264533749514
+        "exp_type": null
       }
     },
     {
@@ -4018,7 +4018,7 @@
       "dma50_str": "90.0",
       "dma200_str": "91.0",
       "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 41.7)",
+      "trend_rationale": "Strong Bearish Trend (ADX: 41.8)",
       "pe": 19.843372,
       "pe_str": "19.8",
       "market_cap": 94732394496.0,
@@ -4036,19 +4036,19 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.74838168652125,
+      "adx": 41.83987619848142,
       "rvol": 0.83,
       "atr": 1.28,
       "put": {
-        "strike": 55.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.075,
-        "delta_percent": 33.21190042501517,
-        "premium_percent": 1.305403764420158,
-        "metric_sum": 34.51730418943533
+        "exp_type": null
       }
     },
     {
@@ -4090,19 +4090,19 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 43.25043240114768,
+      "adx": 43.25043240114765,
       "rvol": 0.97,
       "atr": 0.57,
       "put": {
-        "strike": 25.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.075,
-        "delta_percent": 26.101093703813177,
-        "premium_percent": 3.1776529707360335,
-        "metric_sum": 29.27874667454921
+        "exp_type": null
       }
     },
     {
@@ -4144,19 +4144,19 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.63043298340219,
+      "adx": 29.63043298340233,
       "rvol": 0.97,
       "atr": 0.39,
       "put": {
-        "strike": 20.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.025,
-        "delta_percent": 13.755929279862015,
-        "premium_percent": 0.10780508840017247,
-        "metric_sum": 13.863734368262188
+        "exp_type": null
       }
     },
     {
@@ -4198,19 +4198,19 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.606154687777952,
+      "adx": 16.60615468777777,
       "rvol": 0.72,
       "atr": 3.3,
       "put": {
-        "strike": 160.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.975,
-        "delta_percent": 22.495640379771363,
-        "premium_percent": 0.4722921914357682,
-        "metric_sum": 22.967932571207132
+        "exp_type": null
       }
     },
     {
@@ -4252,19 +4252,19 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 47.57018094782723,
+      "adx": 47.57018094782719,
       "rvol": 1.16,
       "atr": 0.53,
       "put": {
-        "strike": 17.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.225,
-        "delta_percent": 13.793103448275856,
-        "premium_percent": 1.1409736308316432,
-        "metric_sum": 14.9340770791075
+        "exp_type": null
       }
     },
     {
@@ -4306,19 +4306,19 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.27453595188203,
+      "adx": 33.27453595188201,
       "rvol": 1.19,
       "atr": 7.48,
       "put": {
-        "strike": 170.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.8,
-        "delta_percent": 41.8027455410633,
-        "premium_percent": 0.6162062236828592,
-        "metric_sum": 42.41895176474616
+        "exp_type": null
       }
     },
     {
@@ -4333,8 +4333,8 @@
       "signal": "BUY",
       "score": 29.5,
       "why": "Below slow SMA \u2022 Oversold \u2022 Bearish MACD",
-      "price": 80.52,
-      "price_str": "80.52",
+      "price": 80.51,
+      "price_str": "80.51",
       "rsi": 25.2,
       "rsi_str": "25.2",
       "dma50": 94.07099441528321,
@@ -4360,19 +4360,19 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.980506752557105,
+      "adx": 40.980506752556984,
       "rvol": 1.19,
       "atr": 2.54,
       "put": {
-        "strike": 72.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.94,
-        "delta_percent": 10.57566912997578,
-        "premium_percent": 1.1674843196919829,
-        "metric_sum": 11.743153449667764
+        "exp_type": null
       }
     },
     {
@@ -4418,15 +4418,15 @@
       "rvol": 0.99,
       "atr": 1.29,
       "put": {
-        "strike": 55.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.375,
-        "delta_percent": 20.737858481049145,
-        "premium_percent": 0.5404236921746649,
-        "metric_sum": 21.27828217322381
+        "exp_type": null
       }
     },
     {
@@ -4468,19 +4468,19 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.091612114776915,
+      "adx": 26.091612114776805,
       "rvol": 0.74,
       "atr": 2.66,
       "put": {
-        "strike": 75.0,
-        "expiration": "Oct 16, 2026",
-        "exp_type": "MONTHLY",
+        "strike": null,
+        "expiration": null,
+        "premium": null,
+        "delta_percent": null,
+        "premium_percent": null,
+        "metric_sum": null,
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.675,
-        "delta_percent": 25.676345258150825,
-        "premium_percent": 0.6689128926766427,
-        "metric_sum": 26.34525815082747
+        "exp_type": null
       }
     }
   ],
@@ -4525,7 +4525,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.045741173198826,
+      "adx": 14.045741173198834,
       "rvol": 1.17,
       "atr": 2.98
     },
@@ -4568,7 +4568,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.056190012679105,
+      "adx": 13.056190012679124,
       "rvol": 1.17,
       "atr": 1.53
     },
@@ -4611,7 +4611,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.496694291433258,
+      "adx": 11.496694291433268,
       "rvol": 1.31,
       "atr": 3.87
     },
@@ -4654,7 +4654,7 @@
       "earnings_date": null,
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 10.87552359871462,
+      "adx": 10.875523598714624,
       "rvol": 1.39,
       "atr": 0.91
     },
@@ -4697,7 +4697,7 @@
       "earnings_date": null,
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.509938225480358,
+      "adx": 21.509938225480344,
       "rvol": 0.93,
       "atr": 1.93
     },
@@ -4740,7 +4740,7 @@
       "earnings_date": null,
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.007745482368176,
+      "adx": 21.007745482368197,
       "rvol": 1.47,
       "atr": 0.68
     },
@@ -4783,7 +4783,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.16725015135092,
+      "adx": 17.167250151350927,
       "rvol": 1.18,
       "atr": 12.56
     },
@@ -4826,7 +4826,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.328985713931846,
+      "adx": 21.328985713934543,
       "rvol": 1.25,
       "atr": 4.64
     },
@@ -4955,7 +4955,7 @@
       "earnings_date": "2026-10-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.53506749325137,
+      "adx": 26.535067493251553,
       "rvol": 0.77,
       "atr": 2.28
     },
@@ -4998,7 +4998,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.053572910879872,
+      "adx": 19.053572910879797,
       "rvol": 1.06,
       "atr": 5.16
     },
@@ -5041,7 +5041,7 @@
       "earnings_date": "2026-10-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.144918403380835,
+      "adx": 16.144918403380814,
       "rvol": 1.13,
       "atr": 6.98
     },
@@ -5084,7 +5084,7 @@
       "earnings_date": "2026-12-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.420562199137958,
+      "adx": 24.420562199137994,
       "rvol": 0.91,
       "atr": 9.62
     },
@@ -5170,7 +5170,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 42.148986368952016,
+      "adx": 42.14898636895159,
       "rvol": 0.86,
       "atr": 0.04
     },
@@ -5213,7 +5213,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.847862111697548,
+      "adx": 26.847862111697793,
       "rvol": 0.64,
       "atr": 1.79
     },
@@ -5256,7 +5256,7 @@
       "earnings_date": "2026-11-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.006786504897605,
+      "adx": 38.00678650489762,
       "rvol": 0.85,
       "atr": 5.0
     },
@@ -5299,7 +5299,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.539235793749167,
+      "adx": 23.539235793749217,
       "rvol": 0.98,
       "atr": 5.55
     },
@@ -5342,7 +5342,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.71339325790837,
+      "adx": 25.713393257908344,
       "rvol": 0.76,
       "atr": 5.55
     },
@@ -5385,7 +5385,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.068655603592045,
+      "adx": 24.068655603592028,
       "rvol": 1.53,
       "atr": 6.57
     },
@@ -5428,7 +5428,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.74811298489338,
+      "adx": 30.748112984893343,
       "rvol": 0.99,
       "atr": 5.16
     },
@@ -5471,7 +5471,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.80739197592497,
+      "adx": 17.80739197592501,
       "rvol": 1.01,
       "atr": 1.89
     },
@@ -5514,7 +5514,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.583247441634857,
+      "adx": 25.583247441634875,
       "rvol": 0.96,
       "atr": 4.95
     },
@@ -5557,7 +5557,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.36348946770792,
+      "adx": 12.363489467707902,
       "rvol": 0.72,
       "atr": 3.31
     },
@@ -5643,7 +5643,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.189232145045203,
+      "adx": 24.1892321450452,
       "rvol": 0.82,
       "atr": 5.93
     },
@@ -5686,7 +5686,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.357403983192965,
+      "adx": 13.357403983192969,
       "rvol": 0.72,
       "atr": 8.47
     },
@@ -5729,7 +5729,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.504652765249665,
+      "adx": 13.504652765249656,
       "rvol": 0.79,
       "atr": 8.2
     },
@@ -5772,7 +5772,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.86777452657889,
+      "adx": 13.86777452657888,
       "rvol": 0.71,
       "atr": 1.31
     },
@@ -5815,7 +5815,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.428489320292234,
+      "adx": 10.428489320292261,
       "rvol": 0.92,
       "atr": 5.75
     },
@@ -5858,7 +5858,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.641480939046406,
+      "adx": 20.641480939046335,
       "rvol": 0.79,
       "atr": 0.96
     },
@@ -5901,7 +5901,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.296322676775905,
+      "adx": 29.296322676776025,
       "rvol": 1.41,
       "atr": 1.54
     },
@@ -5944,7 +5944,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.683553363247825,
+      "adx": 26.683553363247842,
       "rvol": 0.77,
       "atr": 1.93
     },
@@ -5987,7 +5987,7 @@
       "earnings_date": "2026-10-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.756838979253896,
+      "adx": 26.756838979253967,
       "rvol": 1.07,
       "atr": 6.17
     },
@@ -6030,7 +6030,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.825709750104215,
+      "adx": 14.825709750104192,
       "rvol": 0.91,
       "atr": 1.36
     },
@@ -6073,7 +6073,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.497016123018,
+      "adx": 11.497016123018026,
       "rvol": 1.21,
       "atr": 3.89
     },
@@ -6116,7 +6116,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.233088265527847,
+      "adx": 22.233088265527858,
       "rvol": 0.92,
       "atr": 2.55
     },
@@ -6159,7 +6159,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 34.05416123483169,
+      "adx": 34.0541612348317,
       "rvol": 1.09,
       "atr": 14.92
     },
@@ -6202,7 +6202,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.91861121944982,
+      "adx": 15.91861121944984,
       "rvol": 0.96,
       "atr": 5.09
     },
@@ -6245,7 +6245,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.255106614741575,
+      "adx": 30.25510661474154,
       "rvol": 0.85,
       "atr": 10.41
     },
@@ -6288,7 +6288,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 8.65477334815529,
+      "adx": 8.654773348155306,
       "rvol": 1.13,
       "atr": 2.83
     },
@@ -6331,7 +6331,7 @@
       "earnings_date": "2026-11-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.0689649871085,
+      "adx": 19.068964987108565,
       "rvol": 0.91,
       "atr": 11.14
     },
@@ -6417,7 +6417,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.562231958865997,
+      "adx": 22.562231958866015,
       "rvol": 1.34,
       "atr": 1.52
     },
@@ -6460,7 +6460,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.35523572044789,
+      "adx": 26.355235720447915,
       "rvol": 1.14,
       "atr": 3.85
     },
@@ -6503,7 +6503,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.03677161118816,
+      "adx": 21.036771611188136,
       "rvol": 0.76,
       "atr": 6.83
     },
@@ -6546,7 +6546,7 @@
       "earnings_date": "2026-11-12",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.4208355857589,
+      "adx": 15.420835585758892,
       "rvol": 0.94,
       "atr": 19.78
     },
@@ -6589,7 +6589,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.602878119181927,
+      "adx": 27.602878119181817,
       "rvol": 0.55,
       "atr": 1.51
     },
@@ -6632,7 +6632,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.897575472089374,
+      "adx": 15.897575472089487,
       "rvol": 0.82,
       "atr": 1.82
     },
@@ -6675,7 +6675,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.152264666514732,
+      "adx": 22.152264666514707,
       "rvol": 0.73,
       "atr": 2.38
     },
@@ -6718,7 +6718,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.94095436155785,
+      "adx": 17.940954361557804,
       "rvol": 0.72,
       "atr": 7.47
     },
@@ -6761,7 +6761,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.469080000829027,
+      "adx": 24.46908000082896,
       "rvol": 1.06,
       "atr": 6.72
     },
@@ -6781,7 +6781,7 @@
       "price_str": "263.53",
       "rsi": 31.7,
       "rsi_str": "31.7",
-      "dma50": 280.4769110107422,
+      "dma50": 280.4769110107421,
       "dma200": 248.3217985534668,
       "dma50_str": "280.5",
       "dma200_str": "248.3",
@@ -6804,7 +6804,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.59956157781198,
+      "adx": 22.599561577811947,
       "rvol": 0.87,
       "atr": 5.82
     },
@@ -6847,7 +6847,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.243514669279012,
+      "adx": 19.24351466927908,
       "rvol": 0.75,
       "atr": 0.57
     },
@@ -6933,7 +6933,7 @@
       "earnings_date": "2026-11-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.427655752486885,
+      "adx": 21.427655752486867,
       "rvol": 0.74,
       "atr": 8.3
     },
@@ -6976,7 +6976,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.080276519605587,
+      "adx": 19.080276519605626,
       "rvol": 0.75,
       "atr": 5.58
     },
@@ -7019,7 +7019,7 @@
       "earnings_date": "2026-12-08",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.283467914499317,
+      "adx": 11.283467914499322,
       "rvol": 1.07,
       "atr": 82.2
     },
@@ -7062,7 +7062,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.83532655045892,
+      "adx": 12.835326550458891,
       "rvol": 0.49,
       "atr": 4.13
     },
@@ -7148,7 +7148,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.257853172493263,
+      "adx": 17.25785317249328,
       "rvol": 0.82,
       "atr": 1.64
     },
@@ -7191,7 +7191,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.90707905407871,
+      "adx": 20.907079054078746,
       "rvol": 0.98,
       "atr": 1.29
     },
@@ -7211,12 +7211,12 @@
       "price_str": "55.47",
       "rsi": 27.1,
       "rsi_str": "27.1",
-      "dma50": 61.20765632629394,
+      "dma50": 61.20765632629396,
       "dma200": 54.80770526885986,
       "dma50_str": "61.2",
       "dma200_str": "54.8",
       "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 35.1)",
+      "trend_rationale": "Strong Bearish Trend (ADX: 34.8)",
       "pe": 12.810624,
       "pe_str": "12.8",
       "market_cap": 387887759360.0,
@@ -7234,7 +7234,7 @@
       "earnings_date": "2026-10-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.120546679084505,
+      "adx": 34.817958760039936,
       "rvol": 0.78,
       "atr": 1.22
     },
@@ -7277,7 +7277,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.918856064814292,
+      "adx": 19.9188560648143,
       "rvol": 0.95,
       "atr": 0.75
     },
@@ -7320,7 +7320,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.612517905163774,
+      "adx": 28.61251790516372,
       "rvol": 1.01,
       "atr": 4.02
     },
@@ -7363,7 +7363,7 @@
       "earnings_date": "2026-11-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.91589840634324,
+      "adx": 11.91589840634335,
       "rvol": 0.84,
       "atr": 6.15
     },
@@ -7449,7 +7449,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 40.9897041657455,
+      "adx": 40.98970416574547,
       "rvol": 1.2,
       "atr": 0.21
     },
@@ -7492,7 +7492,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.82314198573459,
+      "adx": 24.823141985734715,
       "rvol": 1.35,
       "atr": 5.72
     },
@@ -7535,7 +7535,7 @@
       "earnings_date": "2026-10-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.489378723095474,
+      "adx": 24.489378723095445,
       "rvol": 0.93,
       "atr": 24.03
     },
@@ -7578,7 +7578,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.179938681017614,
+      "adx": 30.179938681017575,
       "rvol": 2.01,
       "atr": 3.99
     },
@@ -7621,7 +7621,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.357889028726918,
+      "adx": 13.357889028726927,
       "rvol": 1.36,
       "atr": 2.51
     },
@@ -7664,7 +7664,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.51345074525224,
+      "adx": 29.513450745252158,
       "rvol": 2.49,
       "atr": 6.09
     },
@@ -7707,7 +7707,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.53606823843216,
+      "adx": 34.536068238432115,
       "rvol": 0.94,
       "atr": 6.55
     },
@@ -7750,7 +7750,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.93162867883664,
+      "adx": 16.93162867883662,
       "rvol": 0.94,
       "atr": 1.48
     },
@@ -7793,7 +7793,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.56707535514905,
+      "adx": 19.567075355149047,
       "rvol": 1.22,
       "atr": 1.35
     },
@@ -7836,7 +7836,7 @@
       "earnings_date": "2026-12-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.52856261441878,
+      "adx": 22.528562614418803,
       "rvol": 0.77,
       "atr": 10.76
     },
@@ -7879,7 +7879,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.31951615902968,
+      "adx": 16.319516159029686,
       "rvol": 0.78,
       "atr": 4.31
     },
@@ -7922,7 +7922,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.818362423938602,
+      "adx": 31.818362423938595,
       "rvol": 0.82,
       "atr": 1.83
     },
@@ -7965,7 +7965,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.007266734049029,
+      "adx": 11.007266734049212,
       "rvol": 0.76,
       "atr": 0.73
     },
@@ -8008,7 +8008,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.175389170444507,
+      "adx": 25.175389170444554,
       "rvol": 0.5,
       "atr": 2.67
     },
@@ -8051,7 +8051,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.98188753713074,
+      "adx": 20.98188753713069,
       "rvol": 0.86,
       "atr": 3.98
     },
@@ -8094,7 +8094,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.960489544532752,
+      "adx": 20.96048954453278,
       "rvol": 0.95,
       "atr": 1.49
     },
@@ -8137,7 +8137,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.605681283384058,
+      "adx": 19.605681283384076,
       "rvol": 0.7,
       "atr": 4.2
     },
@@ -8180,7 +8180,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.512735772769748,
+      "adx": 23.512735772769723,
       "rvol": 0.74,
       "atr": 10.87
     },
@@ -8223,7 +8223,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 8.921690834786874,
+      "adx": 8.921690834786391,
       "rvol": 0.71,
       "atr": 0.11
     },
@@ -8266,7 +8266,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 44.23326976447516,
+      "adx": 44.23326976447532,
       "rvol": 1.26,
       "atr": 1.76
     },
@@ -8309,7 +8309,7 @@
       "earnings_date": "2026-09-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.53175635584653,
+      "adx": 32.53175635584652,
       "rvol": 0.8,
       "atr": 0.72
     },
@@ -8352,7 +8352,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.35913469705986,
+      "adx": 26.359134697059933,
       "rvol": 0.69,
       "atr": 4.86
     },
@@ -8395,7 +8395,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.640887926295168,
+      "adx": 24.640887926295107,
       "rvol": 1.16,
       "atr": 4.94
     },
@@ -8438,7 +8438,7 @@
       "earnings_date": "2026-09-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.036962760628235,
+      "adx": 25.036962760628253,
       "rvol": 2.67,
       "atr": 2.22
     },
@@ -8481,7 +8481,7 @@
       "earnings_date": "2026-09-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.266096096191816,
+      "adx": 32.266096096191795,
       "rvol": 1.32,
       "atr": 0.77
     },
@@ -8524,7 +8524,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.98916055583626,
+      "adx": 29.989160555836275,
       "rvol": 0.79,
       "atr": 1.68
     },
@@ -8567,7 +8567,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 9.743543386242743,
+      "adx": 9.743543386242735,
       "rvol": 0.89,
       "atr": 22.53
     },
@@ -8610,7 +8610,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.586165761073953,
+      "adx": 30.586165761074003,
       "rvol": 0.79,
       "atr": 9.35
     },
@@ -8653,7 +8653,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.73286897326667,
+      "adx": 17.732868973266687,
       "rvol": 1.31,
       "atr": 4.35
     },
@@ -8696,7 +8696,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.169131665886514,
+      "adx": 17.16913166588653,
       "rvol": 1.0,
       "atr": 6.12
     },
@@ -8739,7 +8739,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.28636861302266,
+      "adx": 18.28636861302265,
       "rvol": 1.08,
       "atr": 7.31
     },
@@ -8782,7 +8782,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.646136318294776,
+      "adx": 12.646136318294714,
       "rvol": 1.03,
       "atr": 2.23
     },
@@ -8825,7 +8825,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.748816438866868,
+      "adx": 23.74881643886684,
       "rvol": 0.91,
       "atr": 0.64
     },
@@ -8868,7 +8868,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.68955937433379,
+      "adx": 23.689559374333804,
       "rvol": 1.01,
       "atr": 4.9
     },
@@ -8931,7 +8931,7 @@
       "price_str": "98.30",
       "rsi": 29.8,
       "rsi_str": "29.8",
-      "dma50": 106.46740280151367,
+      "dma50": 106.46740280151366,
       "dma200": 97.81209735870361,
       "dma50_str": "106.5",
       "dma200_str": "97.8",
@@ -8954,7 +8954,7 @@
       "earnings_date": "2026-10-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.535660183235045,
+      "adx": 23.535660183234942,
       "rvol": 0.73,
       "atr": 2.36
     },
@@ -8997,7 +8997,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.470663744815226,
+      "adx": 26.470663744815234,
       "rvol": 0.93,
       "atr": 6.61
     },
@@ -9040,7 +9040,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.77140601072424,
+      "adx": 22.771406010724256,
       "rvol": 0.92,
       "atr": 4.32
     },
@@ -9083,7 +9083,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.440016383445993,
+      "adx": 22.440016383446018,
       "rvol": 2.31,
       "atr": 1.25
     },
@@ -9126,7 +9126,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.500631366054572,
+      "adx": 11.500631366054582,
       "rvol": 1.57,
       "atr": 4.94
     },
@@ -9169,7 +9169,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.210041562537516,
+      "adx": 22.210041562537548,
       "rvol": 0.81,
       "atr": 1.73
     },
@@ -9212,7 +9212,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.035747218747874,
+      "adx": 12.03574721874784,
       "rvol": 1.13,
       "atr": 6.26
     },
@@ -9298,7 +9298,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.86267254162164,
+      "adx": 14.862672541621668,
       "rvol": 0.84,
       "atr": 4.02
     },
@@ -9341,7 +9341,7 @@
       "earnings_date": "2026-11-12",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.258361961958993,
+      "adx": 29.25836196195908,
       "rvol": 1.02,
       "atr": 2.75
     },
@@ -9384,7 +9384,7 @@
       "earnings_date": "2026-10-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.808385951131973,
+      "adx": 10.808385951131962,
       "rvol": 0.92,
       "atr": 3.39
     },
@@ -9427,7 +9427,7 @@
       "earnings_date": "2026-10-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.33661517076101,
+      "adx": 31.336615170761043,
       "rvol": 0.88,
       "atr": 1.47
     },
@@ -9470,7 +9470,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 45.61480448164104,
+      "adx": 45.61480448164103,
       "rvol": 0.86,
       "atr": 2.73
     },
@@ -9513,7 +9513,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.55370554734498,
+      "adx": 18.553705547344936,
       "rvol": 0.71,
       "atr": 6.11
     },
@@ -9556,7 +9556,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.68415982204136,
+      "adx": 35.68415982204137,
       "rvol": 1.21,
       "atr": 1.03
     },
@@ -9599,7 +9599,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.949763421852158,
+      "adx": 14.949763421852166,
       "rvol": 0.91,
       "atr": 1.25
     },
@@ -9642,7 +9642,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.953556786948422,
+      "adx": 21.953556786948468,
       "rvol": 0.8,
       "atr": 2.13
     },
@@ -9685,7 +9685,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.673178717937628,
+      "adx": 26.673178717937617,
       "rvol": 0.67,
       "atr": 11.15
     },
@@ -9728,7 +9728,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.2633015493851,
+      "adx": 16.263301549385314,
       "rvol": 0.81,
       "atr": 1.57
     },
@@ -9771,7 +9771,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.598750560193764,
+      "adx": 40.59875056019387,
       "rvol": 0.89,
       "atr": 0.72
     },
@@ -9814,7 +9814,7 @@
       "earnings_date": "2026-09-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.383514357512748,
+      "adx": 27.383514357512663,
       "rvol": 1.27,
       "atr": 0.4
     },
@@ -9857,7 +9857,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.261462144689062,
+      "adx": 20.26146214468914,
       "rvol": 0.89,
       "atr": 3.41
     },
@@ -9900,7 +9900,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.750125268933317,
+      "adx": 17.750125268933292,
       "rvol": 0.92,
       "atr": 1.58
     },
@@ -9943,7 +9943,7 @@
       "earnings_date": "2026-10-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.269729190316177,
+      "adx": 24.26972919031628,
       "rvol": 0.58,
       "atr": 2.96
     },
@@ -10072,7 +10072,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.621286405278035,
+      "adx": 30.62128640527812,
       "rvol": 0.77,
       "atr": 0.95
     },
@@ -10201,7 +10201,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.49226497471379,
+      "adx": 17.492264974713787,
       "rvol": 0.65,
       "atr": 2.34
     },
@@ -10244,7 +10244,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.626652359276395,
+      "adx": 21.6266523592764,
       "rvol": 0.68,
       "atr": 1.22
     },
@@ -10287,7 +10287,7 @@
       "earnings_date": "2026-12-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.972476531048931,
+      "adx": 15.972476531048938,
       "rvol": 1.01,
       "atr": 15.89
     },
@@ -10373,7 +10373,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.88713373604936,
+      "adx": 29.8871337360494,
       "rvol": 0.89,
       "atr": 1.92
     },
@@ -10416,7 +10416,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.724647715517555,
+      "adx": 23.72464771551741,
       "rvol": 0.84,
       "atr": 0.92
     },
@@ -10502,7 +10502,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.28030873407913,
+      "adx": 38.28030873407882,
       "rvol": 1.01,
       "atr": 2.31
     },
@@ -10545,7 +10545,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.646607933479174,
+      "adx": 27.646607933479114,
       "rvol": 1.2,
       "atr": 5.79
     },
@@ -10588,7 +10588,7 @@
       "earnings_date": "2026-12-24",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.516456840050747,
+      "adx": 16.51645684005076,
       "rvol": 1.14,
       "atr": 5.68
     },
@@ -10631,7 +10631,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.42828745547746,
+      "adx": 19.42828745547747,
       "rvol": 0.92,
       "atr": 12.9
     },
@@ -10674,7 +10674,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.12527233580656,
+      "adx": 21.12527233580659,
       "rvol": 0.61,
       "atr": 5.61
     },
@@ -10717,7 +10717,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.138034664092366,
+      "adx": 41.13803466409244,
       "rvol": 0.98,
       "atr": 2.42
     },
@@ -10760,7 +10760,7 @@
       "earnings_date": "2026-11-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.592228810555536,
+      "adx": 22.592228810555543,
       "rvol": 0.58,
       "atr": 16.83
     },
@@ -10846,7 +10846,7 @@
       "earnings_date": "2026-10-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.147744318845348,
+      "adx": 19.14774431884535,
       "rvol": 1.06,
       "atr": 2.45
     },
@@ -10889,7 +10889,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.833376255082442,
+      "adx": 12.833376255082431,
       "rvol": 0.71,
       "atr": 1.45
     },
@@ -10932,7 +10932,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.1072465592968,
+      "adx": 18.107246559296826,
       "rvol": 0.83,
       "atr": 2.27
     },
@@ -10975,7 +10975,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.365254833159188,
+      "adx": 16.365254833159206,
       "rvol": 0.64,
       "atr": 6.06
     },
@@ -11018,7 +11018,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.237639187723795,
+      "adx": 14.237639187723833,
       "rvol": 0.64,
       "atr": 4.82
     },
@@ -11061,7 +11061,7 @@
       "earnings_date": "2026-08-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 8.942234952902945,
+      "adx": 8.942234952902952,
       "rvol": 0.89,
       "atr": 3.76
     },
@@ -11104,7 +11104,7 @@
       "earnings_date": "2026-08-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.96847876042065,
+      "adx": 31.968478760420766,
       "rvol": 0.72,
       "atr": 4.15
     },
@@ -11233,7 +11233,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.11251543709151,
+      "adx": 26.11251497890126,
       "rvol": 1.67,
       "atr": 7.99
     },
@@ -11276,7 +11276,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.550219178569364,
+      "adx": 30.550219178569403,
       "rvol": 0.9,
       "atr": 4.12
     },
@@ -11319,7 +11319,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.647425857053966,
+      "adx": 14.647425857053959,
       "rvol": 0.89,
       "atr": 0.93
     },
@@ -11362,7 +11362,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.013741635464745,
+      "adx": 12.013741635464726,
       "rvol": 0.95,
       "atr": 3.72
     },
@@ -11405,7 +11405,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 41.851454448836485,
+      "adx": 41.85145444883651,
       "rvol": 1.3,
       "atr": 2.16
     },
@@ -11448,7 +11448,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.83890679699105,
+      "adx": 33.83890679699122,
       "rvol": 1.03,
       "atr": 1.61
     },
@@ -11491,7 +11491,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.13408962450083,
+      "adx": 20.13408962450088,
       "rvol": 0.69,
       "atr": 2.81
     },
@@ -11534,7 +11534,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.925178472663443,
+      "adx": 20.925178472663436,
       "rvol": 0.9,
       "atr": 1.63
     },
@@ -11577,7 +11577,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.538170476455315,
+      "adx": 13.538170476455306,
       "rvol": 1.12,
       "atr": 14.49
     },
@@ -11620,7 +11620,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.125382228213882,
+      "adx": 10.12538222821387,
       "rvol": 0.69,
       "atr": 3.36
     },
@@ -11663,7 +11663,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.963931526662577,
+      "adx": 11.963931526662547,
       "rvol": 0.78,
       "atr": 5.26
     },
@@ -11749,7 +11749,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.259551079099184,
+      "adx": 15.259551079099197,
       "rvol": 0.91,
       "atr": 2.04
     },
@@ -11792,7 +11792,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.341073978199395,
+      "adx": 12.34107397819922,
       "rvol": 1.04,
       "atr": 9.79
     },
@@ -11878,7 +11878,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.790933984178306,
+      "adx": 24.790933984178302,
       "rvol": 1.14,
       "atr": 1.79
     },
@@ -11921,7 +11921,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.885975746533752,
+      "adx": 28.8859757465338,
       "rvol": 0.78,
       "atr": 1.92
     },
@@ -11964,7 +11964,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.755734591696216,
+      "adx": 12.755734591696234,
       "rvol": 0.81,
       "atr": 3.58
     },
@@ -12007,7 +12007,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.028932847915087,
+      "adx": 19.02893284791509,
       "rvol": 0.89,
       "atr": 4.87
     },
@@ -12050,7 +12050,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.556688593428955,
+      "adx": 21.556688593428994,
       "rvol": 0.7,
       "atr": 1.4
     },
@@ -12093,7 +12093,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.81961070066986,
+      "adx": 24.81961070066989,
       "rvol": 1.46,
       "atr": 5.93
     },
@@ -12136,7 +12136,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.92886943461673,
+      "adx": 13.928869434616745,
       "rvol": 0.88,
       "atr": 27.7
     },
@@ -12179,7 +12179,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.651247969980528,
+      "adx": 25.6512479699806,
       "rvol": 0.37,
       "atr": 7.98
     },
@@ -12222,7 +12222,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.91377280571643,
+      "adx": 29.913772805716356,
       "rvol": 0.8,
       "atr": 4.4
     },
@@ -12265,7 +12265,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.17118232000947,
+      "adx": 23.17118232000946,
       "rvol": 1.16,
       "atr": 3.26
     },
@@ -12308,7 +12308,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 10.388069177290896,
+      "adx": 10.388069177290948,
       "rvol": 0.63,
       "atr": 7.18
     },
@@ -12351,7 +12351,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.783978639340326,
+      "adx": 27.78397863934034,
       "rvol": 1.16,
       "atr": 1.16
     },
@@ -12394,7 +12394,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.078611611915587,
+      "adx": 31.078611611915584,
       "rvol": 1.27,
       "atr": 1.21
     },
@@ -12437,7 +12437,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.41453501049524,
+      "adx": 33.41453501049522,
       "rvol": 0.96,
       "atr": 0.71
     },
@@ -12480,7 +12480,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.65623477182091,
+      "adx": 33.656234771820934,
       "rvol": 1.36,
       "atr": 2.35
     },
@@ -12523,7 +12523,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.542508672719958,
+      "adx": 31.542508672720032,
       "rvol": 0.75,
       "atr": 12.48
     },
@@ -12566,7 +12566,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.053545761660445,
+      "adx": 19.05354576166049,
       "rvol": 0.73,
       "atr": 3.95
     },
@@ -12609,7 +12609,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.65624553475363,
+      "adx": 26.656245534753662,
       "rvol": 0.78,
       "atr": 2.61
     },
@@ -12652,7 +12652,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.409085648425316,
+      "adx": 15.40908564842529,
       "rvol": 0.88,
       "atr": 3.66
     },
@@ -12695,7 +12695,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.08381064217678,
+      "adx": 27.08381064217679,
       "rvol": 0.85,
       "atr": 13.72
     },
@@ -12738,7 +12738,7 @@
       "earnings_date": "2026-09-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.531286376486397,
+      "adx": 14.531286376486422,
       "rvol": 0.89,
       "atr": 11.35
     },
@@ -12781,7 +12781,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.54773898765803,
+      "adx": 24.547738987658047,
       "rvol": 0.8,
       "atr": 43.98
     },
@@ -12824,7 +12824,7 @@
       "earnings_date": "2026-10-14",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.455007638733363,
+      "adx": 14.455007638733386,
       "rvol": 0.97,
       "atr": 0.99
     },
@@ -12867,7 +12867,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.201370676672234,
+      "adx": 36.20137067667205,
       "rvol": 1.41,
       "atr": 1.67
     },
@@ -12910,7 +12910,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.39474031415498,
+      "adx": 39.39474031415501,
       "rvol": 1.1,
       "atr": 7.42
     },
@@ -12953,7 +12953,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.110122590144154,
+      "adx": 18.110122590144158,
       "rvol": 1.39,
       "atr": 1.17
     },
@@ -12996,7 +12996,7 @@
       "earnings_date": "2026-10-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.965943253283367,
+      "adx": 26.96594325328329,
       "rvol": 0.93,
       "atr": 1.07
     },
@@ -13039,7 +13039,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.471937645834128,
+      "adx": 21.471937645834167,
       "rvol": 0.91,
       "atr": 9.98
     },
@@ -13082,7 +13082,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.77472274395283,
+      "adx": 33.774722743952786,
       "rvol": 0.83,
       "atr": 0.71
     },
@@ -13125,7 +13125,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.78097695246571,
+      "adx": 17.780976952465775,
       "rvol": 1.17,
       "atr": 1.71
     },
@@ -13168,7 +13168,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.324846292244274,
+      "adx": 25.32484629224428,
       "rvol": 0.92,
       "atr": 0.41
     },
@@ -13211,7 +13211,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.648356037974164,
+      "adx": 26.648356037974143,
       "rvol": 0.64,
       "atr": 6.82
     },
@@ -13254,7 +13254,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.105531016636853,
+      "adx": 30.105531016636792,
       "rvol": 0.78,
       "atr": 1.11
     },
@@ -13297,7 +13297,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.0579200984908,
+      "adx": 18.057920098490822,
       "rvol": 0.58,
       "atr": 1.66
     },
@@ -13340,7 +13340,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.609958521039527,
+      "adx": 17.60995852103957,
       "rvol": 0.44,
       "atr": 1.47
     },
@@ -13383,7 +13383,7 @@
       "earnings_date": "2026-11-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.532531957752507,
+      "adx": 20.532531957752532,
       "rvol": 0.97,
       "atr": 0.79
     },
@@ -13469,7 +13469,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.728788062488718,
+      "adx": 19.728788062488764,
       "rvol": 0.82,
       "atr": 6.86
     },
@@ -13512,7 +13512,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.419384889463327,
+      "adx": 18.41938488946335,
       "rvol": 0.83,
       "atr": 8.23
     },
@@ -13555,7 +13555,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.146195354570484,
+      "adx": 26.14619535457052,
       "rvol": 0.97,
       "atr": 8.88
     },
@@ -13598,7 +13598,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.330527238792452,
+      "adx": 22.330527238792428,
       "rvol": 1.13,
       "atr": 1.54
     },
@@ -13641,7 +13641,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 8.767389399766062,
+      "adx": 8.767389399766072,
       "rvol": 0.74,
       "atr": 35.95
     },
@@ -13684,7 +13684,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.047535609116128,
+      "adx": 27.04753560911612,
       "rvol": 1.76,
       "atr": 1.25
     },
@@ -13727,7 +13727,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.17308601946683,
+      "adx": 28.173086019466883,
       "rvol": 0.67,
       "atr": 10.44
     },
@@ -13770,7 +13770,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 50.82122345288725,
+      "adx": 50.82122345288717,
       "rvol": 1.43,
       "atr": 6.69
     },
@@ -13856,7 +13856,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.289202641822843,
+      "adx": 18.289202641822847,
       "rvol": 1.09,
       "atr": 2.6
     },
@@ -13899,7 +13899,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.60682198683184,
+      "adx": 17.606821986831882,
       "rvol": 0.76,
       "atr": 3.13
     },
@@ -13942,7 +13942,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.44481341191348,
+      "adx": 32.444813411913536,
       "rvol": 0.85,
       "atr": 3.56
     },
@@ -13985,7 +13985,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.6759613007211,
+      "adx": 20.675961300721106,
       "rvol": 0.77,
       "atr": 2.52
     },
@@ -14028,7 +14028,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.310143705996145,
+      "adx": 15.31014370599613,
       "rvol": 1.09,
       "atr": 3.37
     },
@@ -14071,7 +14071,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.622271068600188,
+      "adx": 16.622271068600178,
       "rvol": 0.84,
       "atr": 5.34
     },
@@ -14114,7 +14114,7 @@
       "earnings_date": "2026-10-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.88949664997418,
+      "adx": 26.889496649974173,
       "rvol": 0.85,
       "atr": 26.18
     },
@@ -14157,7 +14157,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.490407662946605,
+      "adx": 24.490407662946616,
       "rvol": 0.97,
       "atr": 0.94
     },
@@ -14200,7 +14200,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.477716102845765,
+      "adx": 28.47771610284578,
       "rvol": 1.22,
       "atr": 2.36
     },
@@ -14243,7 +14243,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.204344767860597,
+      "adx": 17.204344767860633,
       "rvol": 1.13,
       "atr": 2.22
     },
@@ -14263,7 +14263,7 @@
       "price_str": "432.60",
       "rsi": 57.1,
       "rsi_str": "57.1",
-      "dma50": 411.5987487792969,
+      "dma50": 411.59874877929695,
       "dma200": 445.3393667602539,
       "dma50_str": "411.6",
       "dma200_str": "445.3",
@@ -14286,7 +14286,7 @@
       "earnings_date": "2026-10-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.626330018539555,
+      "adx": 20.626330018539484,
       "rvol": 0.67,
       "atr": 13.36
     },
@@ -14329,7 +14329,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.626462659222373,
+      "adx": 15.626462659222307,
       "rvol": 1.04,
       "atr": 0.38
     },
@@ -14372,7 +14372,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.3265048993513,
+      "adx": 18.326504899351324,
       "rvol": 0.86,
       "atr": 1.8
     },
@@ -14415,7 +14415,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.814752780749302,
+      "adx": 28.814752780749252,
       "rvol": 0.96,
       "atr": 3.34
     },
@@ -14458,7 +14458,7 @@
       "earnings_date": "2026-09-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.861513494005038,
+      "adx": 18.86151349400502,
       "rvol": 0.53,
       "atr": 3.43
     },
@@ -14478,7 +14478,7 @@
       "price_str": "320.28",
       "rsi": 58.2,
       "rsi_str": "58.2",
-      "dma50": 317.84815979003906,
+      "dma50": 317.848159790039,
       "dma200": 315.0498506164551,
       "dma50_str": "317.8",
       "dma200_str": "315.0",
@@ -14501,7 +14501,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.677001116899977,
+      "adx": 22.67700111689996,
       "rvol": 1.08,
       "atr": 6.46
     },
@@ -14544,7 +14544,7 @@
       "earnings_date": "2026-11-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.14016005189909,
+      "adx": 27.14016005189916,
       "rvol": 1.16,
       "atr": 6.8
     },
@@ -14587,7 +14587,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.99680143427603,
+      "adx": 25.996801434276055,
       "rvol": 0.68,
       "atr": 4.5
     },
@@ -14630,7 +14630,7 @@
       "earnings_date": "2026-08-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.377441455217635,
+      "adx": 44.37744145521763,
       "rvol": 1.14,
       "atr": 0.49
     },
@@ -14673,7 +14673,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.7257503299191,
+      "adx": 19.725750329919144,
       "rvol": 1.1,
       "atr": 0.44
     },
@@ -14716,7 +14716,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 36.02620193967739,
+      "adx": 36.02620193967736,
       "rvol": 0.44,
       "atr": 7.62
     },
@@ -14759,7 +14759,7 @@
       "earnings_date": "2026-11-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.628038944823,
+      "adx": 23.628038944822965,
       "rvol": 0.8,
       "atr": 1.53
     },
@@ -14802,7 +14802,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.065560408563679,
+      "adx": 15.065560408563623,
       "rvol": 0.87,
       "atr": 12.28
     },
@@ -14845,7 +14845,7 @@
       "earnings_date": "2026-11-06",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.53742254413557,
+      "adx": 20.53742254413559,
       "rvol": 1.37,
       "atr": 14.04
     },
@@ -14888,7 +14888,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.32395572511409,
+      "adx": 35.32395572511408,
       "rvol": 0.97,
       "atr": 0.37
     },
@@ -14931,7 +14931,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 37.86180218393385,
+      "adx": 37.861802183933875,
       "rvol": 1.3,
       "atr": 7.25
     },
@@ -14974,7 +14974,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.139493958751164,
+      "adx": 13.13949395875119,
       "rvol": 0.94,
       "atr": 6.96
     },
@@ -15017,7 +15017,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.92383845690183,
+      "adx": 23.923838456901887,
       "rvol": 1.14,
       "atr": 4.56
     },
@@ -15060,7 +15060,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.64796832824488,
+      "adx": 20.647968328244897,
       "rvol": 0.77,
       "atr": 13.56
     },
@@ -15103,7 +15103,7 @@
       "earnings_date": "2026-10-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.158649639253444,
+      "adx": 18.15864963925345,
       "rvol": 0.64,
       "atr": 4.66
     },
@@ -15146,7 +15146,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.048683634214669,
+      "adx": 15.04868363421468,
       "rvol": 0.94,
       "atr": 3.33
     },
@@ -15189,7 +15189,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.69850615435673,
+      "adx": 23.69850615435676,
       "rvol": 1.2,
       "atr": 2.03
     },
@@ -15232,7 +15232,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.54655978109919,
+      "adx": 17.546559781099155,
       "rvol": 0.97,
       "atr": 5.03
     },
@@ -15275,7 +15275,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.603029741251014,
+      "adx": 24.603029741251,
       "rvol": 1.03,
       "atr": 6.41
     },
@@ -15318,7 +15318,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.759048100861552,
+      "adx": 18.75904810086157,
       "rvol": 0.74,
       "atr": 3.52
     },
@@ -15361,7 +15361,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.481239852731278,
+      "adx": 14.481239852731294,
       "rvol": 1.08,
       "atr": 1.75
     },
@@ -15404,7 +15404,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.747839460606748,
+      "adx": 23.74783946060669,
       "rvol": 1.04,
       "atr": 1.21
     },
@@ -15447,7 +15447,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.846872898350732,
+      "adx": 20.846872898350743,
       "rvol": 1.04,
       "atr": 13.45
     },
@@ -15490,7 +15490,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.987935741963497,
+      "adx": 14.987935741963337,
       "rvol": 1.05,
       "atr": 11.54
     },
@@ -15533,7 +15533,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.041933186663556,
+      "adx": 23.041933186663577,
       "rvol": 1.16,
       "atr": 0.93
     },
@@ -15576,7 +15576,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 45.35622577648123,
+      "adx": 45.356225776481246,
       "rvol": 1.04,
       "atr": 0.43
     },
@@ -15619,7 +15619,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.4261371301075,
+      "adx": 33.426137130107456,
       "rvol": 0.98,
       "atr": 7.1
     },
@@ -15662,7 +15662,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.883169219250384,
+      "adx": 17.883169219250465,
       "rvol": 0.73,
       "atr": 3.31
     },
@@ -15705,7 +15705,7 @@
       "earnings_date": "2026-10-15",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.95333409669444,
+      "adx": 32.95333409669445,
       "rvol": 0.77,
       "atr": 8.11
     },
@@ -15791,7 +15791,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.065749548415777,
+      "adx": 23.065749548415827,
       "rvol": 0.87,
       "atr": 4.55
     },
@@ -15877,7 +15877,7 @@
       "earnings_date": "2026-10-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.021188188543306,
+      "adx": 17.021188188543277,
       "rvol": 1.09,
       "atr": 5.11
     },
@@ -15920,7 +15920,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.81785096318338,
+      "adx": 11.817850963183387,
       "rvol": 0.91,
       "atr": 3.64
     },
@@ -15963,7 +15963,7 @@
       "earnings_date": "2026-10-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.85668444008462,
+      "adx": 18.856684440084653,
       "rvol": 1.22,
       "atr": 6.66
     },
@@ -16006,7 +16006,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.391822144842394,
+      "adx": 20.391822144842358,
       "rvol": 0.6,
       "atr": 0.32
     },
@@ -16049,7 +16049,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.905793173664296,
+      "adx": 14.905793173664225,
       "rvol": 0.97,
       "atr": 0.8
     },
@@ -16092,7 +16092,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.280026706804787,
+      "adx": 25.280026706804694,
       "rvol": 1.23,
       "atr": 0.42
     },
@@ -16135,7 +16135,7 @@
       "earnings_date": "2026-11-24",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.014836934280527,
+      "adx": 18.014836934280506,
       "rvol": 0.84,
       "atr": 11.05
     },
@@ -16178,7 +16178,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.520462906595956,
+      "adx": 25.52046290659594,
       "rvol": 0.7,
       "atr": 2.1
     },
@@ -16221,7 +16221,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.958723200729672,
+      "adx": 31.958723200729576,
       "rvol": 0.89,
       "atr": 0.34
     },
@@ -16264,7 +16264,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.703908314497914,
+      "adx": 10.703908314497943,
       "rvol": 0.8,
       "atr": 0.68
     },
@@ -16307,7 +16307,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.034033526410422,
+      "adx": 26.03403352641039,
       "rvol": 1.54,
       "atr": 3.24
     },
@@ -16350,7 +16350,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.005266322278173,
+      "adx": 14.005266322278215,
       "rvol": 0.91,
       "atr": 7.9
     },
@@ -16393,7 +16393,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.9338855083405,
+      "adx": 21.933885508340477,
       "rvol": 0.43,
       "atr": 0.6
     },
@@ -16436,7 +16436,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.099570774016584,
+      "adx": 13.099570774016582,
       "rvol": 1.48,
       "atr": 1.56
     },
@@ -16456,7 +16456,7 @@
       "price_str": "237.70",
       "rsi": 23.8,
       "rsi_str": "23.8",
-      "dma50": 268.13274627685547,
+      "dma50": 268.1327462768554,
       "dma200": 309.0860814666748,
       "dma50_str": "268.1",
       "dma200_str": "309.1",
@@ -16479,7 +16479,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 46.09873484014595,
+      "adx": 46.09873484014583,
       "rvol": 1.18,
       "atr": 5.67
     },
@@ -16522,7 +16522,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.43373489361386,
+      "adx": 20.433734893613877,
       "rvol": 0.9,
       "atr": 7.88
     },
@@ -16565,7 +16565,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.19794910807607,
+      "adx": 11.197949108076074,
       "rvol": 0.95,
       "atr": 14.45
     },
@@ -16608,7 +16608,7 @@
       "earnings_date": "2026-10-06",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.12898415437156,
+      "adx": 31.128984154371413,
       "rvol": 1.47,
       "atr": 1.44
     },
@@ -16651,7 +16651,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 46.09790344764189,
+      "adx": 46.09790344764183,
       "rvol": 0.65,
       "atr": 1.04
     },
@@ -16694,7 +16694,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.455328366941327,
+      "adx": 22.455328366941337,
       "rvol": 0.73,
       "atr": 3.69
     },
@@ -16737,7 +16737,7 @@
       "earnings_date": "2026-12-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.581804927979913,
+      "adx": 16.581804927979935,
       "rvol": 1.38,
       "atr": 2.65
     },
@@ -16780,7 +16780,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.87042371726863,
+      "adx": 31.87042371726864,
       "rvol": 0.93,
       "atr": 11.11
     },
@@ -16823,7 +16823,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.793100034901766,
+      "adx": 14.793100034901752,
       "rvol": 0.85,
       "atr": 31.7
     },
@@ -16866,7 +16866,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.239672955815497,
+      "adx": 24.239672955815458,
       "rvol": 0.93,
       "atr": 7.62
     },
@@ -16909,7 +16909,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.069906919480227,
+      "adx": 11.06990691948018,
       "rvol": 1.1,
       "atr": 3.96
     },
@@ -16952,7 +16952,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.859406995610676,
+      "adx": 20.859406995610716,
       "rvol": 0.98,
       "atr": 0.72
     },
@@ -16995,7 +16995,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.72290803320829,
+      "adx": 29.722908033208324,
       "rvol": 0.9,
       "atr": 12.55
     },
@@ -17038,7 +17038,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.55477670266029,
+      "adx": 23.554776702660426,
       "rvol": 0.76,
       "atr": 1.61
     },
@@ -17081,7 +17081,7 @@
       "earnings_date": "2026-11-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.349043206711453,
+      "adx": 22.349043206711553,
       "rvol": 1.14,
       "atr": 4.48
     },
@@ -17124,7 +17124,7 @@
       "earnings_date": "2026-09-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.43479240708001,
+      "adx": 26.434792407080074,
       "rvol": 0.54,
       "atr": 4.4
     },
@@ -17167,7 +17167,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.89073017779227,
+      "adx": 19.890730177792285,
       "rvol": 0.87,
       "atr": 2.03
     },
@@ -17210,7 +17210,7 @@
       "earnings_date": "2026-10-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.559239008910335,
+      "adx": 30.55923900891034,
       "rvol": 0.73,
       "atr": 4.22
     },
@@ -17253,7 +17253,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.01489563166936,
+      "adx": 35.014895631669404,
       "rvol": 0.84,
       "atr": 14.45
     },
@@ -17339,7 +17339,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.804915379209266,
+      "adx": 19.80491537920928,
       "rvol": 1.03,
       "atr": 7.36
     },
@@ -17382,7 +17382,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.410346804327187,
+      "adx": 21.410346804327247,
       "rvol": 0.89,
       "atr": 13.55
     },
@@ -17425,7 +17425,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.093190528359695,
+      "adx": 14.09319052835971,
       "rvol": 1.0,
       "atr": 1.84
     },
@@ -17468,7 +17468,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.494667394257227,
+      "adx": 16.49466739425724,
       "rvol": 1.19,
       "atr": 9.06
     },
@@ -17511,7 +17511,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.453029972844664,
+      "adx": 20.453029972844682,
       "rvol": 0.79,
       "atr": 1.32
     },
@@ -17554,7 +17554,7 @@
       "earnings_date": "2026-10-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.499763796425245,
+      "adx": 21.49976379642532,
       "rvol": 0.99,
       "atr": 1.24
     },
@@ -17597,7 +17597,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.14172103352399,
+      "adx": 39.141721033524,
       "rvol": 0.9,
       "atr": 4.9
     },
@@ -17640,7 +17640,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.523294635616873,
+      "adx": 12.523294635616844,
       "rvol": 0.6,
       "atr": 21.22
     },
@@ -17726,7 +17726,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.523292666918568,
+      "adx": 29.523292666918547,
       "rvol": 0.76,
       "atr": 3.51
     },
@@ -17769,7 +17769,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.65137784282475,
+      "adx": 39.65137784282477,
       "rvol": 1.18,
       "atr": 28.01
     },
@@ -17812,7 +17812,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.265512459293026,
+      "adx": 11.265512459293092,
       "rvol": 1.05,
       "atr": 1.89
     },
@@ -17855,7 +17855,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.162091824080427,
+      "adx": 29.162091824080413,
       "rvol": 0.85,
       "atr": 42.34
     },
@@ -17898,7 +17898,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 44.32367485933408,
+      "adx": 44.323674859333885,
       "rvol": 2.19,
       "atr": 1.25
     },
@@ -17941,7 +17941,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.62334202748551,
+      "adx": 15.623342027485519,
       "rvol": 1.11,
       "atr": 2.8
     },
@@ -17984,7 +17984,7 @@
       "earnings_date": "2026-09-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.337020877409994,
+      "adx": 16.337020877410016,
       "rvol": 0.88,
       "atr": 48.33
     },
@@ -18070,7 +18070,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.25677616764117,
+      "adx": 38.25677616764115,
       "rvol": 1.22,
       "atr": 2.13
     },
@@ -18113,7 +18113,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 60.79945283162822,
+      "adx": 60.79945283162818,
       "rvol": 0.84,
       "atr": 12.69
     },
@@ -18156,7 +18156,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.40637870533156,
+      "adx": 19.406378705331527,
       "rvol": 1.06,
       "atr": 4.42
     },
@@ -18199,7 +18199,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.53085014569219,
+      "adx": 12.530850145692108,
       "rvol": 0.92,
       "atr": 6.93
     },
@@ -18242,7 +18242,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.258116614331726,
+      "adx": 20.258116614331772,
       "rvol": 0.71,
       "atr": 1.06
     },
@@ -18285,7 +18285,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 8.524882737509197,
+      "adx": 8.524882737509214,
       "rvol": 0.91,
       "atr": 1.18
     },
@@ -18371,7 +18371,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.15142091684146,
+      "adx": 25.151420916841573,
       "rvol": 1.45,
       "atr": 1.06
     },
@@ -18414,7 +18414,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.209182221453258,
+      "adx": 17.20918222145323,
       "rvol": 1.02,
       "atr": 10.89
     },
@@ -18457,7 +18457,7 @@
       "earnings_date": "2026-10-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.328082307187547,
+      "adx": 30.328082307187373,
       "rvol": 0.88,
       "atr": 4.91
     },
@@ -18500,7 +18500,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.22087700942965,
+      "adx": 23.220877009429625,
       "rvol": 0.83,
       "atr": 1.07
     },
@@ -18543,7 +18543,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.743204640050795,
+      "adx": 16.743204640050802,
       "rvol": 0.66,
       "atr": 9.18
     },
@@ -18586,7 +18586,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 10.534179029793822,
+      "adx": 10.534179029793838,
       "rvol": 1.08,
       "atr": 12.26
     },
@@ -18672,7 +18672,7 @@
       "earnings_date": "2026-12-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.190881540098726,
+      "adx": 15.190881540098719,
       "rvol": 1.12,
       "atr": 7.68
     },
@@ -18715,7 +18715,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.474924796801158,
+      "adx": 20.474924796801076,
       "rvol": 1.3,
       "atr": 2.15
     },
@@ -18758,7 +18758,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.334228600457426,
+      "adx": 18.334228600457376,
       "rvol": 0.91,
       "atr": 4.39
     },
@@ -18801,7 +18801,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.180414413297722,
+      "adx": 24.18041441329772,
       "rvol": 1.12,
       "atr": 0.72
     },
@@ -18844,7 +18844,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.100770935196742,
+      "adx": 21.100770935196756,
       "rvol": 0.6,
       "atr": 0.78
     },
@@ -18887,7 +18887,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.26030655520045,
+      "adx": 41.26030655520048,
       "rvol": 1.14,
       "atr": 1.29
     },
@@ -18930,7 +18930,7 @@
       "earnings_date": "2026-10-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.923672684395772,
+      "adx": 25.92367268439578,
       "rvol": 1.03,
       "atr": 0.99
     },
@@ -18973,7 +18973,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.9256630292998,
+      "adx": 32.92566302929965,
       "rvol": 1.04,
       "atr": 0.65
     },
@@ -19016,7 +19016,7 @@
       "earnings_date": "2026-08-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.4739786892106,
+      "adx": 19.473978689210632,
       "rvol": 0.97,
       "atr": 6.3
     },
@@ -19059,7 +19059,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.69415037547933,
+      "adx": 36.694150375479374,
       "rvol": 0.64,
       "atr": 5.34
     },
@@ -19102,7 +19102,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.923069442997647,
+      "adx": 26.923069442997452,
       "rvol": 0.82,
       "atr": 3.85
     },
@@ -19145,7 +19145,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.96049329252753,
+      "adx": 17.96049329252754,
       "rvol": 0.66,
       "atr": 11.72
     },
@@ -19188,7 +19188,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.22613432366121,
+      "adx": 33.226134323661235,
       "rvol": 1.28,
       "atr": 0.6
     },
@@ -19231,7 +19231,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.426511252253988,
+      "adx": 25.42651125225413,
       "rvol": 1.0,
       "atr": 4.12
     },
@@ -19274,7 +19274,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.78980895148676,
+      "adx": 15.789808951486751,
       "rvol": 0.93,
       "atr": 7.72
     },
@@ -19317,7 +19317,7 @@
       "earnings_date": "2026-11-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.790386627521732,
+      "adx": 13.790386627521716,
       "rvol": 1.25,
       "atr": 6.02
     },
@@ -19360,7 +19360,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": false,
-      "adx": 7.31467398753729,
+      "adx": 7.314673987537295,
       "rvol": 0.87,
       "atr": 139.02
     },
@@ -19403,7 +19403,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.394295749132628,
+      "adx": 17.3942957491327,
       "rvol": 0.98,
       "atr": 7.63
     },
@@ -19446,7 +19446,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.328874989915967,
+      "adx": 21.328874989916013,
       "rvol": 0.65,
       "atr": 1.89
     },
@@ -19489,7 +19489,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.457416008417418,
+      "adx": 16.45741600841743,
       "rvol": 1.33,
       "atr": 1.55
     },
@@ -19532,7 +19532,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 51.00753511789073,
+      "adx": 51.00753511789069,
       "rvol": 0.99,
       "atr": 5.41
     },
@@ -19618,7 +19618,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.11803837930017,
+      "adx": 20.118038379300177,
       "rvol": 0.92,
       "atr": 3.53
     },
@@ -19661,7 +19661,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.002731244306045,
+      "adx": 17.002731244305988,
       "rvol": 0.85,
       "atr": 2.42
     },
@@ -19833,7 +19833,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.648599198041556,
+      "adx": 16.64859919804154,
       "rvol": 1.09,
       "atr": 5.31
     },
@@ -19876,7 +19876,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.829920115854378,
+      "adx": 25.82992011585438,
       "rvol": 0.67,
       "atr": 6.72
     },
@@ -19919,7 +19919,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.10052577689374,
+      "adx": 16.10052577689373,
       "rvol": 0.84,
       "atr": 18.45
     },
@@ -19962,7 +19962,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.68352745621834,
+      "adx": 25.68352745621832,
       "rvol": 1.07,
       "atr": 0.52
     },
@@ -20005,7 +20005,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.67229067235067,
+      "adx": 18.672290672350755,
       "rvol": 1.07,
       "atr": 21.58
     },
@@ -20048,7 +20048,7 @@
       "earnings_date": "2026-12-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.4773907570648,
+      "adx": 28.477390757064786,
       "rvol": 1.0,
       "atr": 3.28
     },
@@ -20091,7 +20091,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.423678389421404,
+      "adx": 32.42367838942137,
       "rvol": 0.63,
       "atr": 7.44
     },
@@ -20134,7 +20134,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.89785705476321,
+      "adx": 22.897857054763243,
       "rvol": 0.75,
       "atr": 1.72
     },
@@ -20177,7 +20177,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.819672883384875,
+      "adx": 35.81967288338493,
       "rvol": 0.6,
       "atr": 1.59
     },
@@ -20220,7 +20220,7 @@
       "earnings_date": "2026-10-08",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.86600879806294,
+      "adx": 22.866008798063007,
       "rvol": 0.82,
       "atr": 2.24
     },
@@ -20263,7 +20263,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.28968715680387,
+      "adx": 32.28968715680381,
       "rvol": 0.74,
       "atr": 0.5
     },
@@ -20306,7 +20306,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.57250274318378,
+      "adx": 33.57250274318379,
       "rvol": 0.58,
       "atr": 0.6
     },
@@ -20349,7 +20349,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.164378029076122,
+      "adx": 12.16437802907621,
       "rvol": 0.88,
       "atr": 4.45
     },
@@ -20392,7 +20392,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.28889171291625,
+      "adx": 32.288891712916175,
       "rvol": 1.03,
       "atr": 8.54
     },
@@ -20435,7 +20435,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.33376468879166,
+      "adx": 27.333764688791607,
       "rvol": 0.91,
       "atr": 1.54
     },
@@ -20478,7 +20478,7 @@
       "earnings_date": "2026-10-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.485717312612916,
+      "adx": 25.485717312612827,
       "rvol": 0.79,
       "atr": 4.56
     },
@@ -20521,7 +20521,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.60592250637353,
+      "adx": 36.605922506373574,
       "rvol": 0.84,
       "atr": 5.23
     },
@@ -20564,7 +20564,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.793081180674182,
+      "adx": 15.79308118067422,
       "rvol": 0.87,
       "atr": 2.45
     },
@@ -20607,7 +20607,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.276017436497458,
+      "adx": 25.27601743649748,
       "rvol": 1.09,
       "atr": 0.53
     },
@@ -20650,7 +20650,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.428029051623582,
+      "adx": 16.42802905162363,
       "rvol": 0.87,
       "atr": 2.6
     },
@@ -20693,7 +20693,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 7.64712020078674,
+      "adx": 7.647120200786738,
       "rvol": 1.07,
       "atr": 2.38
     },
@@ -20736,7 +20736,7 @@
       "earnings_date": "2026-10-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.636261609751216,
+      "adx": 16.6362616097512,
       "rvol": 1.29,
       "atr": 4.63
     },
@@ -20779,7 +20779,7 @@
       "earnings_date": "2026-10-15",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.829418902316352,
+      "adx": 27.829418902316338,
       "rvol": 0.9,
       "atr": 2.1
     },
@@ -20822,7 +20822,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.390648492277737,
+      "adx": 22.390648492277766,
       "rvol": 0.95,
       "atr": 2.45
     },
@@ -20865,7 +20865,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 40.713022268301486,
+      "adx": 40.713022268301515,
       "rvol": 0.95,
       "atr": 1.11
     },
@@ -20908,7 +20908,7 @@
       "earnings_date": "2026-11-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.784326515780794,
+      "adx": 18.784326515780805,
       "rvol": 0.54,
       "atr": 4.86
     },
@@ -20951,7 +20951,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.14094951880666,
+      "adx": 25.14094951880679,
       "rvol": 1.04,
       "atr": 5.97
     },
@@ -20994,7 +20994,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.18385705310941,
+      "adx": 17.183857053109385,
       "rvol": 0.96,
       "atr": 3.09
     },
@@ -21037,7 +21037,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.157104152921386,
+      "adx": 11.157104152921391,
       "rvol": 0.99,
       "atr": 22.0
     },
@@ -21080,7 +21080,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.646975886750504,
+      "adx": 21.6469758867505,
       "rvol": 1.11,
       "atr": 9.12
     },
@@ -21123,7 +21123,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.072972654444833,
+      "adx": 24.072972654444765,
       "rvol": 0.92,
       "atr": 5.62
     },
@@ -21166,7 +21166,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.90830807349985,
+      "adx": 20.908308073499914,
       "rvol": 0.76,
       "atr": 10.25
     },
@@ -21209,7 +21209,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.52233908237892,
+      "adx": 36.52233908237884,
       "rvol": 0.89,
       "atr": 3.88
     },
@@ -21252,7 +21252,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.43594605873265,
+      "adx": 39.43594605873272,
       "rvol": 0.77,
       "atr": 3.98
     },
@@ -21295,7 +21295,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 37.465046317524674,
+      "adx": 37.465046317524575,
       "rvol": 1.25,
       "atr": 0.87
     },
@@ -21381,7 +21381,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.585034345446708,
+      "adx": 21.585034345446697,
       "rvol": 1.47,
       "atr": 20.72
     },
@@ -21424,7 +21424,7 @@
       "earnings_date": "2026-10-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.547770670976515,
+      "adx": 30.547770670976572,
       "rvol": 1.45,
       "atr": 0.57
     },
@@ -21467,7 +21467,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.66628720252055,
+      "adx": 20.66628720252053,
       "rvol": 0.59,
       "atr": 3.45
     },
@@ -21510,7 +21510,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.383293892472368,
+      "adx": 12.383293892472407,
       "rvol": 0.64,
       "atr": 5.62
     },
@@ -21553,7 +21553,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.719186010588814,
+      "adx": 36.719186010588714,
       "rvol": 0.67,
       "atr": 4.76
     },
@@ -21596,7 +21596,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.376786215880124,
+      "adx": 19.3767862158801,
       "rvol": 0.81,
       "atr": 10.23
     },
@@ -21639,7 +21639,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.932025759322144,
+      "adx": 38.9320257593222,
       "rvol": 1.55,
       "atr": 0.95
     },
@@ -21682,7 +21682,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.494093161902782,
+      "adx": 27.494093161902804,
       "rvol": 1.02,
       "atr": 9.98
     },
@@ -21725,7 +21725,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.946930648630337,
+      "adx": 15.946930648630314,
       "rvol": 0.97,
       "atr": 5.17
     },
@@ -21768,7 +21768,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.094227653606616,
+      "adx": 39.09422765360659,
       "rvol": 1.11,
       "atr": 9.8
     },
@@ -21811,7 +21811,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.265496062269282,
+      "adx": 16.26549606226922,
       "rvol": 0.93,
       "atr": 9.84
     },
@@ -21854,7 +21854,7 @@
       "earnings_date": "2026-12-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.510237079854875,
+      "adx": 23.51023707985488,
       "rvol": 0.76,
       "atr": 9.18
     },
@@ -21897,7 +21897,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.298344380970978,
+      "adx": 24.298344380971038,
       "rvol": 0.9,
       "atr": 5.01
     },
@@ -21940,7 +21940,7 @@
       "earnings_date": "2026-10-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.020938779433397,
+      "adx": 18.02093877943338,
       "rvol": 0.97,
       "atr": 1.72
     },
@@ -21983,7 +21983,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.6239100716465,
+      "adx": 12.623910071646506,
       "rvol": 0.89,
       "atr": 50.3
     },
@@ -22069,7 +22069,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.570737799878653,
+      "adx": 22.570737799878636,
       "rvol": 0.86,
       "atr": 6.08
     },
@@ -22112,7 +22112,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.186758238375383,
+      "adx": 20.18675823837544,
       "rvol": 0.85,
       "atr": 7.87
     },
@@ -22155,7 +22155,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 39.75581146758789,
+      "adx": 39.75581146758806,
       "rvol": 0.72,
       "atr": 2.89
     },
@@ -22198,7 +22198,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.07633398508192,
+      "adx": 35.07633398508191,
       "rvol": 0.41,
       "atr": 4.52
     },
@@ -22218,7 +22218,7 @@
       "price_str": "120.63",
       "rsi": 44.1,
       "rsi_str": "44.1",
-      "dma50": 121.87958053588868,
+      "dma50": 121.87958053588869,
       "dma200": 106.65094047546387,
       "dma50_str": "121.9",
       "dma200_str": "106.7",
@@ -22241,7 +22241,7 @@
       "earnings_date": "2026-11-24",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.895660068544055,
+      "adx": 12.895660068544036,
       "rvol": 0.74,
       "atr": 2.82
     },
@@ -22284,7 +22284,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.291392926147347,
+      "adx": 14.291392926147342,
       "rvol": 1.09,
       "atr": 1.44
     },
@@ -22327,7 +22327,7 @@
       "earnings_date": "2026-10-15",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.168589709194237,
+      "adx": 24.168589709194094,
       "rvol": 1.05,
       "atr": 6.14
     },
@@ -22370,7 +22370,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.056036621617352,
+      "adx": 13.056036621617372,
       "rvol": 0.73,
       "atr": 2.01
     },
@@ -22395,7 +22395,7 @@
       "dma50_str": "90.0",
       "dma200_str": "91.0",
       "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 41.7)",
+      "trend_rationale": "Strong Bearish Trend (ADX: 41.8)",
       "pe": 19.843372,
       "pe_str": "19.8",
       "market_cap": 94732394496.0,
@@ -22413,7 +22413,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.74838168652125,
+      "adx": 41.83987619848142,
       "rvol": 0.83,
       "atr": 1.28
     },
@@ -22456,7 +22456,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.9128845916737,
+      "adx": 21.912884591673667,
       "rvol": 0.98,
       "atr": 1.31
     },
@@ -22499,7 +22499,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.61247221508696,
+      "adx": 22.61247221508702,
       "rvol": 1.03,
       "atr": 2.6
     },
@@ -22542,7 +22542,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.58456231598172,
+      "adx": 35.58456231598164,
       "rvol": 1.06,
       "atr": 2.24
     },
@@ -22585,7 +22585,7 @@
       "earnings_date": "2026-10-14",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.737806366488922,
+      "adx": 23.7378063664889,
       "rvol": 0.89,
       "atr": 4.05
     },
@@ -22628,7 +22628,7 @@
       "earnings_date": "2026-10-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 9.97430505455074,
+      "adx": 9.974305054550754,
       "rvol": 1.02,
       "atr": 7.65
     },
@@ -22671,7 +22671,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.27514183662802,
+      "adx": 28.275141836628045,
       "rvol": 0.73,
       "atr": 4.55
     },
@@ -22714,7 +22714,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.329072347710586,
+      "adx": 30.329072347710547,
       "rvol": 0.8,
       "atr": 8.37
     },
@@ -22757,7 +22757,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.974359534230718,
+      "adx": 26.97304058763941,
       "rvol": 0.77,
       "atr": 2.33
     },
@@ -22800,7 +22800,7 @@
       "earnings_date": "2026-10-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.404280608372513,
+      "adx": 25.404280608372495,
       "rvol": 0.86,
       "atr": 2.05
     },
@@ -22843,7 +22843,7 @@
       "earnings_date": "2026-08-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.846813523541375,
+      "adx": 16.8468135235414,
       "rvol": 0.82,
       "atr": 14.82
     },
@@ -22886,7 +22886,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.410651279531908,
+      "adx": 15.410651279531928,
       "rvol": 0.88,
       "atr": 1.62
     },
@@ -22929,7 +22929,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.78004552323293,
+      "adx": 20.780045523232904,
       "rvol": 0.91,
       "atr": 4.88
     },
@@ -22972,7 +22972,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.11706178855433,
+      "adx": 36.117061788554096,
       "rvol": 0.9,
       "atr": 2.16
     },
@@ -23015,7 +23015,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.04970753736557,
+      "adx": 28.048601422534613,
       "rvol": 0.72,
       "atr": 6.94
     },
@@ -23058,7 +23058,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.51944881913762,
+      "adx": 40.519448819137644,
       "rvol": 0.77,
       "atr": 3.56
     },
@@ -23101,7 +23101,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.758982226928199,
+      "adx": 14.758982226928197,
       "rvol": 0.9,
       "atr": 7.49
     },
@@ -23144,7 +23144,7 @@
       "earnings_date": "2026-11-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.312852846324002,
+      "adx": 16.312852846323985,
       "rvol": 1.04,
       "atr": 3.97
     },
@@ -23187,7 +23187,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.41704771168386,
+      "adx": 16.417047711683917,
       "rvol": 1.14,
       "atr": 5.94
     },
@@ -23273,7 +23273,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.175911479534165,
+      "adx": 13.175911479534182,
       "rvol": 0.81,
       "atr": 20.27
     },
@@ -23316,7 +23316,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.036869443128488,
+      "adx": 21.03686944312849,
       "rvol": 0.96,
       "atr": 12.92
     },
@@ -23402,7 +23402,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.956600789523876,
+      "adx": 11.956600789523899,
       "rvol": 0.63,
       "atr": 14.53
     },
@@ -23445,7 +23445,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.356475302349036,
+      "adx": 28.356475302348972,
       "rvol": 1.03,
       "atr": 1.79
     },
@@ -23488,7 +23488,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.76902293441345,
+      "adx": 41.76902293441343,
       "rvol": 0.86,
       "atr": 15.98
     },
@@ -23531,7 +23531,7 @@
       "earnings_date": "2026-11-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.16345791495593,
+      "adx": 39.16345791495599,
       "rvol": 0.63,
       "atr": 2.91
     },
@@ -23574,7 +23574,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.29032495487764,
+      "adx": 18.290324954877605,
       "rvol": 0.8,
       "atr": 5.39
     },
@@ -23617,7 +23617,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.283255247275104,
+      "adx": 17.283255247275154,
       "rvol": 0.86,
       "atr": 0.62
     },
@@ -23660,7 +23660,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.417525166146017,
+      "adx": 24.41752516614604,
       "rvol": 1.12,
       "atr": 1.03
     },
@@ -23703,7 +23703,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.33969562911668,
+      "adx": 24.339695629116573,
       "rvol": 1.24,
       "atr": 10.95
     },
@@ -23746,7 +23746,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.870604687637357,
+      "adx": 26.870604687637364,
       "rvol": 0.84,
       "atr": 26.43
     },
@@ -23789,7 +23789,7 @@
       "earnings_date": "2026-10-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.200683506384962,
+      "adx": 15.200683506385081,
       "rvol": 0.57,
       "atr": 6.69
     },
@@ -23832,7 +23832,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.16955625859131,
+      "adx": 13.169556258591275,
       "rvol": 0.7,
       "atr": 1.61
     },
@@ -23875,7 +23875,7 @@
       "earnings_date": "2026-10-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.2950430534927,
+      "adx": 20.295043053492602,
       "rvol": 0.81,
       "atr": 1.01
     },
@@ -23918,7 +23918,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.899389032100636,
+      "adx": 17.899389032100625,
       "rvol": 0.63,
       "atr": 12.35
     },
@@ -23961,7 +23961,7 @@
       "earnings_date": "2026-11-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.773073096030544,
+      "adx": 17.773073096030537,
       "rvol": 0.65,
       "atr": 1.19
     },
@@ -24004,7 +24004,7 @@
       "earnings_date": "2026-10-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.478443347916222,
+      "adx": 23.47844334791623,
       "rvol": 0.74,
       "atr": 1.15
     },
@@ -24047,7 +24047,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.7053269692131,
+      "adx": 20.705326969213132,
       "rvol": 0.88,
       "atr": 1.96
     },
@@ -24090,7 +24090,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 43.25043240114768,
+      "adx": 43.25043240114765,
       "rvol": 0.97,
       "atr": 0.57
     },
@@ -24133,7 +24133,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.778990844259058,
+      "adx": 14.778990844259127,
       "rvol": 0.72,
       "atr": 16.41
     },
@@ -24176,7 +24176,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.12236727557262,
+      "adx": 33.12236727557265,
       "rvol": 0.9,
       "atr": 5.18
     },
@@ -24219,7 +24219,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.079224160320585,
+      "adx": 18.07922416032067,
       "rvol": 1.02,
       "atr": 4.21
     },
@@ -24262,7 +24262,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.100590752657055,
+      "adx": 33.10059075265714,
       "rvol": 1.0,
       "atr": 2.25
     },
@@ -24305,7 +24305,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.494932808256728,
+      "adx": 16.49493280825672,
       "rvol": 1.05,
       "atr": 28.6
     },
@@ -24348,7 +24348,7 @@
       "earnings_date": "2026-10-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.3191728259758,
+      "adx": 32.31917282597591,
       "rvol": 0.86,
       "atr": 8.75
     },
@@ -24391,7 +24391,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.389901517491207,
+      "adx": 13.38990151749122,
       "rvol": 0.96,
       "atr": 5.79
     },
@@ -24434,7 +24434,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.239029490074692,
+      "adx": 30.239029490074675,
       "rvol": 0.88,
       "atr": 15.33
     },
@@ -24477,7 +24477,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.218648512048855,
+      "adx": 18.218648512048926,
       "rvol": 0.54,
       "atr": 1.68
     },
@@ -24520,7 +24520,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.776431368893366,
+      "adx": 14.776431368893492,
       "rvol": 0.65,
       "atr": 1.72
     },
@@ -24606,7 +24606,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.387550044428194,
+      "adx": 14.387550044428238,
       "rvol": 0.93,
       "atr": 5.7
     },
@@ -24649,7 +24649,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.683292368492967,
+      "adx": 24.68329236849299,
       "rvol": 0.78,
       "atr": 1.01
     },
@@ -24692,7 +24692,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.89888993965976,
+      "adx": 16.898889939659735,
       "rvol": 0.79,
       "atr": 12.23
     },
@@ -24735,7 +24735,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.75210241502818,
+      "adx": 21.752102415028162,
       "rvol": 1.43,
       "atr": 0.46
     },
@@ -24778,7 +24778,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.63043298340219,
+      "adx": 29.63043298340233,
       "rvol": 0.97,
       "atr": 0.39
     },
@@ -24821,7 +24821,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.262582535258376,
+      "adx": 14.26258253525838,
       "rvol": 1.04,
       "atr": 5.95
     },
@@ -24864,7 +24864,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.744052933009389,
+      "adx": 11.744052933009408,
       "rvol": 0.94,
       "atr": 4.4
     },
@@ -24907,7 +24907,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.054608697014437,
+      "adx": 25.05460869701443,
       "rvol": 1.01,
       "atr": 6.65
     },
@@ -24950,7 +24950,7 @@
       "earnings_date": "2026-10-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.77728525591865,
+      "adx": 16.777285255918652,
       "rvol": 0.64,
       "atr": 1.31
     },
@@ -24993,7 +24993,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.717340332031357,
+      "adx": 14.717340332031393,
       "rvol": 1.32,
       "atr": 26.07
     },
@@ -25036,7 +25036,7 @@
       "earnings_date": "2026-10-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.525384855975627,
+      "adx": 19.52538485597562,
       "rvol": 0.98,
       "atr": 6.11
     },
@@ -25079,7 +25079,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.32508619357095,
+      "adx": 11.32508619357087,
       "rvol": 0.74,
       "atr": 2.14
     },
@@ -25122,7 +25122,7 @@
       "earnings_date": "2026-11-12",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.958903052790294,
+      "adx": 14.95890305279024,
       "rvol": 1.41,
       "atr": 2.17
     },
@@ -25165,7 +25165,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.04608568952504,
+      "adx": 37.046085689525235,
       "rvol": 1.03,
       "atr": 0.42
     },
@@ -25208,7 +25208,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.606154687777952,
+      "adx": 16.60615468777777,
       "rvol": 0.72,
       "atr": 3.3
     },
@@ -25251,7 +25251,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.508316299892673,
+      "adx": 30.508316299892538,
       "rvol": 1.43,
       "atr": 12.15
     },
@@ -25294,7 +25294,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.174368992844034,
+      "adx": 31.174368992843963,
       "rvol": 1.17,
       "atr": 1.55
     },
@@ -25337,7 +25337,7 @@
       "earnings_date": "2026-10-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.488817956332102,
+      "adx": 18.488817956332145,
       "rvol": 0.9,
       "atr": 2.04
     },
@@ -25380,7 +25380,7 @@
       "earnings_date": "2026-10-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 8.756695878660759,
+      "adx": 8.75669587866077,
       "rvol": 0.84,
       "atr": 4.98
     },
@@ -25423,7 +25423,7 @@
       "earnings_date": "2026-10-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.173414806350088,
+      "adx": 30.173414806350138,
       "rvol": 0.92,
       "atr": 8.54
     },
@@ -25466,7 +25466,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.318139700169338,
+      "adx": 11.318139700169331,
       "rvol": 1.09,
       "atr": 27.62
     },
@@ -25509,7 +25509,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 47.57018094782723,
+      "adx": 47.57018094782719,
       "rvol": 1.16,
       "atr": 0.53
     },
@@ -25552,7 +25552,7 @@
       "earnings_date": "2026-11-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.193368007201094,
+      "adx": 17.193368007201034,
       "rvol": 0.62,
       "atr": 6.89
     },
@@ -25595,7 +25595,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.587165191569657,
+      "adx": 14.587165191569667,
       "rvol": 0.69,
       "atr": 1.77
     },
@@ -25638,7 +25638,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.27453595188203,
+      "adx": 33.27453595188201,
       "rvol": 1.19,
       "atr": 7.48
     },
@@ -25681,7 +25681,7 @@
       "earnings_date": "2026-08-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.586263995061902,
+      "adx": 25.58626399506199,
       "rvol": 0.77,
       "atr": 8.09
     },
@@ -25697,8 +25697,8 @@
       "signal": "BUY",
       "score": 29.5,
       "why": "Below slow SMA \u2022 Oversold \u2022 Bearish MACD",
-      "price": 80.52,
-      "price_str": "80.52",
+      "price": 80.51,
+      "price_str": "80.51",
       "rsi": 25.2,
       "rsi_str": "25.2",
       "dma50": 94.07099441528321,
@@ -25724,7 +25724,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.980506752557105,
+      "adx": 40.980506752556984,
       "rvol": 1.19,
       "atr": 2.54
     },
@@ -25810,7 +25810,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.091612114776915,
+      "adx": 26.091612114776805,
       "rvol": 0.74,
       "atr": 2.66
     },
@@ -25853,7 +25853,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.76304559640087,
+      "adx": 24.763045596400882,
       "rvol": 0.8,
       "atr": 3.73
     },
@@ -25896,7 +25896,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.967067359843067,
+      "adx": 19.967067359843096,
       "rvol": 1.11,
       "atr": 10.97
     },
@@ -25939,7 +25939,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.29239912627408,
+      "adx": 18.29239912627406,
       "rvol": 0.72,
       "atr": 2.8
     },
@@ -25982,7 +25982,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.677527372819977,
+      "adx": 16.677527372820002,
       "rvol": 0.81,
       "atr": 1.99
     },
@@ -26025,7 +26025,7 @@
       "earnings_date": "2026-10-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 9.794738744569273,
+      "adx": 9.794738744569292,
       "rvol": 0.99,
       "atr": 2.88
     },
@@ -26068,7 +26068,7 @@
       "earnings_date": "2026-11-24",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.66797882839242,
+      "adx": 24.667978828392442,
       "rvol": 0.95,
       "atr": 10.58
     },
@@ -26111,7 +26111,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.5888473661893,
+      "adx": 15.588847366189302,
       "rvol": 0.73,
       "atr": 3.85
     },
@@ -26154,7 +26154,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.709895707433976,
+      "adx": 17.709895707433972,
       "rvol": 0.56,
       "atr": 6.07
     },
@@ -26197,7 +26197,7 @@
       "earnings_date": "2026-11-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.043618595754005,
+      "adx": 16.043618595754,
       "rvol": 0.54,
       "atr": 1.85
     },
@@ -26240,7 +26240,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.6243729035434,
+      "adx": 35.624372903543396,
       "rvol": 1.1,
       "atr": 9.15
     },
@@ -26283,7 +26283,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.96803512384569,
+      "adx": 14.968035123845695,
       "rvol": 0.86,
       "atr": 16.27
     },
@@ -26326,7 +26326,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.54818337958191,
+      "adx": 15.548183379581925,
       "rvol": 0.76,
       "atr": 6.95
     },
@@ -26369,7 +26369,7 @@
       "earnings_date": "2026-12-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.875954581400872,
+      "adx": 20.875954581400833,
       "rvol": 0.88,
       "atr": 13.53
     },
@@ -26412,7 +26412,7 @@
       "earnings_date": "2026-08-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.422487802900736,
+      "adx": 23.422487802900623,
       "rvol": 0.86,
       "atr": 2.17
     },
@@ -26455,7 +26455,7 @@
       "earnings_date": "2026-10-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.74075095761175,
+      "adx": 12.740750957611795,
       "rvol": 1.04,
       "atr": 52.08
     },
@@ -26498,7 +26498,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.435914902030277,
+      "adx": 22.435914902030298,
       "rvol": 1.63,
       "atr": 19.83
     },
@@ -26541,7 +26541,7 @@
       "earnings_date": "2026-11-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.479313741287452,
+      "adx": 18.47931374128746,
       "rvol": 0.78,
       "atr": 2.15
     },
@@ -26584,7 +26584,7 @@
       "earnings_date": "2026-10-30",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 10.286997459345782,
+      "adx": 10.286997459345793,
       "rvol": 0.57,
       "atr": 3.35
     },
