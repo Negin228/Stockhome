@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "09-30-2026 23:50",
+  "generated_at_pt": "10-01-2026 00:24",
   "buys": [
     {
       "bb_lower": 97.79,
@@ -44,15 +44,15 @@
       "rvol": 0.88,
       "atr": 2.23,
       "put": {
-        "strike": 85.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 87.5,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.32,
-        "delta_percent": 13.99372660123444,
-        "premium_percent": 0.323788323383588,
-        "metric_sum": 14.31751492461803
+        "premium": 0.95,
+        "delta_percent": 11.464130324800161,
+        "premium_percent": 0.9612465850450268,
+        "metric_sum": 12.425376909845188
       }
     },
     {
@@ -98,15 +98,15 @@
       "rvol": 1.66,
       "atr": 5.61,
       "put": {
-        "strike": 170.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 180.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.92,
-        "delta_percent": 23.375101415306958,
-        "premium_percent": 0.8654106193094744,
-        "metric_sum": 24.240512034616433
+        "premium": 2.6,
+        "delta_percent": 18.867754439736775,
+        "premium_percent": 1.1719102136482467,
+        "metric_sum": 20.03966465338502
       }
     },
     {
@@ -206,15 +206,15 @@
       "rvol": 1.14,
       "atr": 14.0,
       "put": {
-        "strike": 440.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 340.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.2,
-        "delta_percent": 10.632680004062154,
-        "premium_percent": 0.24372905453437593,
-        "metric_sum": 10.87640905859653
+        "premium": 8.0,
+        "delta_percent": 30.943434548593483,
+        "premium_percent": 1.6248603635625063,
+        "metric_sum": 32.56829491215599
       }
     },
     {
@@ -260,15 +260,15 @@
       "rvol": 1.01,
       "atr": 7.93,
       "put": {
-        "strike": 210.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 240.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 2.7,
-        "delta_percent": 24.124724500487766,
-        "premium_percent": 0.9755392564223001,
-        "metric_sum": 25.100263756910067
+        "premium": 3.0,
+        "delta_percent": 13.285399429128875,
+        "premium_percent": 1.0839325071358892,
+        "metric_sum": 14.369331936264764
       }
     },
     {
@@ -314,15 +314,15 @@
       "rvol": 1.5,
       "atr": 3.85,
       "put": {
-        "strike": 85.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 100.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.63,
-        "delta_percent": 26.762019645011204,
-        "premium_percent": 0.5428226779252111,
-        "metric_sum": 27.304842322936416
+        "premium": 1.58,
+        "delta_percent": 13.837670170601415,
+        "premium_percent": 1.3613648113044976,
+        "metric_sum": 15.199034981905912
       }
     },
     {
@@ -422,15 +422,15 @@
       "rvol": 0.96,
       "atr": 1.24,
       "put": {
-        "strike": 45.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 47.5,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.85,
-        "delta_percent": 19.68588081314124,
-        "premium_percent": 1.5170444735295543,
-        "metric_sum": 21.202925286670794
+        "premium": 1.4,
+        "delta_percent": 15.223985302760198,
+        "premium_percent": 2.4986614858133835,
+        "metric_sum": 17.72264678857358
       }
     },
     {
@@ -531,14 +531,14 @@
       "atr": 3.74,
       "put": {
         "strike": 100.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.22,
+        "premium": 2.3,
         "delta_percent": 10.785972640632295,
-        "premium_percent": 1.088411133784286,
-        "metric_sum": 11.87438377441658
+        "premium_percent": 2.051922629265457,
+        "metric_sum": 12.837895269897752
       }
     },
     {
@@ -584,15 +584,15 @@
       "rvol": 1.08,
       "atr": 1.68,
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
+        "strike": 85.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "exp_type": null
+        "premium": 0.51,
+        "delta_percent": 12.126540835163517,
+        "premium_percent": 0.5272407549890189,
+        "metric_sum": 12.653781590152537
       }
     },
     {
@@ -693,14 +693,14 @@
       "atr": 6.16,
       "put": {
         "strike": 95.0,
-        "expiration": "Nov 06, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 3.3,
+        "premium": 3.9,
         "delta_percent": 14.337241936077508,
-        "premium_percent": 2.975653701167834,
-        "metric_sum": 17.31289563724534
+        "premium_percent": 3.516681646834713,
+        "metric_sum": 17.85392358291222
       }
     },
     {
@@ -746,15 +746,15 @@
       "rvol": 0.85,
       "atr": 5.06,
       "put": {
-        "strike": 250.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 280.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.96,
-        "delta_percent": 23.136049192928517,
-        "premium_percent": 0.29515757109915447,
-        "metric_sum": 23.43120676402767
+        "premium": 3.9499999999999997,
+        "delta_percent": 13.912375096079938,
+        "premium_percent": 1.2144504227517294,
+        "metric_sum": 15.126825518831668
       }
     },
     {
@@ -800,15 +800,15 @@
       "rvol": 1.31,
       "atr": 2.74,
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
+        "strike": 120.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "exp_type": null
+        "premium": 2.4,
+        "delta_percent": 24.70352011043484,
+        "premium_percent": 1.5059295977913032,
+        "metric_sum": 26.209449708226146
       }
     },
     {
@@ -963,14 +963,14 @@
       "atr": 0.67,
       "put": {
         "strike": 19.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.22,
+        "premium": 0.27,
         "delta_percent": 12.68382352941177,
-        "premium_percent": 1.0110294117647058,
-        "metric_sum": 13.694852941176476
+        "premium_percent": 1.2408088235294117,
+        "metric_sum": 13.924632352941181
       }
     },
     {
@@ -1016,15 +1016,15 @@
       "rvol": 2.94,
       "atr": 0.44,
       "put": {
-        "strike": 9.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 12.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.13,
-        "delta_percent": 33.035714285714285,
-        "premium_percent": 0.9672619047619048,
-        "metric_sum": 34.00297619047619
+        "premium": 0.18,
+        "delta_percent": 10.714285714285712,
+        "premium_percent": 1.3392857142857142,
+        "metric_sum": 12.053571428571425
       }
     },
     {
@@ -1070,15 +1070,15 @@
       "rvol": 0.71,
       "atr": 2.81,
       "put": {
-        "strike": 95.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 100.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.44,
-        "delta_percent": 15.97381921103839,
-        "premium_percent": 1.2736600035379444,
-        "metric_sum": 17.247479214576334
+        "premium": 1.35,
+        "delta_percent": 11.551388643198303,
+        "premium_percent": 1.194056253316823,
+        "metric_sum": 12.745444896515126
       }
     },
     {
@@ -1124,15 +1124,15 @@
       "rvol": 1.08,
       "atr": 1.88,
       "put": {
-        "strike": 45.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 55.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.05,
-        "delta_percent": 32.48312078019506,
-        "premium_percent": 0.07501875468867217,
-        "metric_sum": 32.55813953488373
+        "premium": 0.2,
+        "delta_percent": 17.47936984246062,
+        "premium_percent": 0.30007501875468867,
+        "metric_sum": 17.77944486121531
       }
     },
     {
@@ -1179,14 +1179,14 @@
       "atr": 1.06,
       "put": {
         "strike": 50.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.08,
+        "premium": 0.13,
         "delta_percent": 17.382683410442834,
-        "premium_percent": 0.13218770654329146,
-        "metric_sum": 17.514871116986125
+        "premium_percent": 0.21480502313284866,
+        "metric_sum": 17.597488433575684
       }
     },
     {
@@ -1286,15 +1286,15 @@
       "rvol": 0.92,
       "atr": 1.36,
       "put": {
-        "strike": 43.0,
-        "expiration": "Oct 23, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 42.5,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.16,
-        "delta_percent": 11.449755387258142,
-        "premium_percent": 0.3294892822799697,
-        "metric_sum": 11.77924466953811
+        "premium": 0.22,
+        "delta_percent": 12.479409394383048,
+        "premium_percent": 0.45304776313495837,
+        "metric_sum": 12.932457157518005
       }
     },
     {
@@ -1394,15 +1394,15 @@
       "rvol": 2.12,
       "atr": 0.7,
       "put": {
-        "strike": 30.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 35.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.05,
-        "delta_percent": 25.742577062075135,
-        "premium_percent": 0.12376237156320812,
-        "metric_sum": 25.866339433638345
+        "premium": 0.15,
+        "delta_percent": 13.366339905754321,
+        "premium_percent": 0.37128711468962433,
+        "metric_sum": 13.737627020443945
       }
     },
     {
@@ -1448,15 +1448,15 @@
       "rvol": 0.84,
       "atr": 2.29,
       "put": {
-        "strike": 65.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 75.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.375,
-        "delta_percent": 22.70186368088679,
-        "premium_percent": 0.4459507864564224,
-        "metric_sum": 23.147814467343213
+        "premium": 0.75,
+        "delta_percent": 10.809842708715529,
+        "premium_percent": 0.8919015729128448,
+        "metric_sum": 11.701744281628374
       }
     },
     {
@@ -1503,14 +1503,14 @@
       "atr": 56.49,
       "put": {
         "strike": 530.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 6.1,
+        "premium": 25.42,
         "delta_percent": 10.543989365231047,
-        "premium_percent": 1.0295880469284728,
-        "metric_sum": 11.57357741215952
+        "premium_percent": 4.2905128119543905,
+        "metric_sum": 14.834502177185438
       }
     },
     {
@@ -1556,15 +1556,15 @@
       "rvol": 1.37,
       "atr": 1.65,
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
+        "strike": 65.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "exp_type": null
+        "premium": 1.2,
+        "delta_percent": 39.97599090362565,
+        "premium_percent": 1.1081355525484495,
+        "metric_sum": 41.0841264561741
       }
     },
     {
@@ -1610,15 +1610,15 @@
       "rvol": 0.91,
       "atr": 1.14,
       "put": {
-        "strike": 26.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 25.0,
+        "expiration": "Oct 16, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.43,
-        "delta_percent": 20.972648042132807,
-        "premium_percent": 4.346504357682695,
-        "metric_sum": 25.3191523998155
+        "premium": 0.675,
+        "delta_percent": 24.012161578973853,
+        "premium_percent": 2.0516716373677064,
+        "metric_sum": 26.06383321634156
       }
     },
     {
@@ -1772,15 +1772,15 @@
       "rvol": 0.79,
       "atr": 6.48,
       "put": {
-        "strike": 290.0,
-        "expiration": "Oct 23, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 280.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.57,
-        "delta_percent": 12.605852394298282,
-        "premium_percent": 0.47313383358948863,
-        "metric_sum": 13.07898622788777
+        "premium": 3.875,
+        "delta_percent": 15.619443691046616,
+        "premium_percent": 1.1677666274899798,
+        "metric_sum": 16.787210318536594
       }
     },
     {
@@ -1826,15 +1826,15 @@
       "rvol": 1.25,
       "atr": 1.14,
       "put": {
-        "strike": 25.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 27.5,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.05,
-        "delta_percent": 22.263681592039795,
-        "premium_percent": 0.15547263681592044,
-        "metric_sum": 22.419154228855714
+        "premium": 0.27,
+        "delta_percent": 14.490049751243772,
+        "premium_percent": 0.8395522388059703,
+        "metric_sum": 15.329601990049742
       }
     },
     {
@@ -1880,15 +1880,15 @@
       "rvol": 1.59,
       "atr": 2.39,
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
+        "strike": 105.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "exp_type": null
+        "premium": 0.6,
+        "delta_percent": 14.187643020594965,
+        "premium_percent": 0.49035632559660014,
+        "metric_sum": 14.677999346191566
       }
     },
     {
@@ -1934,15 +1934,15 @@
       "rvol": 1.38,
       "atr": 3.54,
       "put": {
-        "strike": 125.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 115.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.3,
-        "delta_percent": 20.690311528456323,
-        "premium_percent": 0.19034325233170482,
-        "metric_sum": 20.880654780788028
+        "premium": 1.425,
+        "delta_percent": 27.035086606179814,
+        "premium_percent": 0.9041304485755979,
+        "metric_sum": 27.93921705475541
       }
     },
     {
@@ -1988,15 +1988,15 @@
       "rvol": 1.19,
       "atr": 6.63,
       "put": {
-        "strike": 190.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 255.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.07,
-        "delta_percent": 33.213821223944606,
-        "premium_percent": 0.3761116383704172,
-        "metric_sum": 33.589932862315024
+        "premium": 3.05,
+        "delta_percent": 10.36591795845197,
+        "premium_percent": 1.0720939224577313,
+        "metric_sum": 11.438011880909702
       }
     },
     {
@@ -2151,14 +2151,14 @@
       "atr": 7.86,
       "put": {
         "strike": 200.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.0,
+        "premium": 3.2,
         "delta_percent": 10.734211113590721,
-        "premium_percent": 0.44632894443204635,
-        "metric_sum": 11.180540058022768
+        "premium_percent": 1.4282526221825484,
+        "metric_sum": 12.162463735773269
       }
     },
     {
@@ -2258,15 +2258,15 @@
       "rvol": 0.56,
       "atr": 0.61,
       "put": {
-        "strike": 17.0,
-        "expiration": "Oct 02, 2026",
+        "strike": 15.0,
+        "expiration": "Oct 23, 2026",
         "exp_type": "WEEKLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.21,
-        "delta_percent": 25.176054076693383,
-        "premium_percent": 0.9242958025820228,
-        "metric_sum": 26.100349879275406
+        "premium": 0.2,
+        "delta_percent": 33.97887124414122,
+        "premium_percent": 0.8802817167447838,
+        "metric_sum": 34.859152960886
       }
     },
     {
@@ -2312,15 +2312,15 @@
       "rvol": 0.87,
       "atr": 5.51,
       "put": {
-        "strike": 205.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 210.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.5,
-        "delta_percent": 13.42174125480889,
-        "premium_percent": 0.21116648474436855,
-        "metric_sum": 13.632907739553257
+        "premium": 1.57,
+        "delta_percent": 11.310076407365205,
+        "premium_percent": 0.6630627620973173,
+        "metric_sum": 11.973139169462522
       }
     },
     {
@@ -2367,14 +2367,14 @@
       "atr": 1.46,
       "put": {
         "strike": 37.5,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.4,
+        "premium": 0.97,
         "delta_percent": 10.050368828807379,
-        "premium_percent": 0.9594627324927213,
-        "metric_sum": 11.0098315613001
+        "premium_percent": 2.326697126294849,
+        "metric_sum": 12.377065955102228
       }
     },
     {
@@ -2420,15 +2420,15 @@
       "rvol": 1.1,
       "atr": 1.01,
       "put": {
-        "strike": 32.0,
-        "expiration": "Oct 02, 2026",
+        "strike": 34.0,
+        "expiration": "Nov 06, 2026",
         "exp_type": "WEEKLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.61,
-        "delta_percent": 15.366308284228737,
-        "premium_percent": 1.6133297483318896,
-        "metric_sum": 16.979638032560626
+        "premium": 0.51,
+        "delta_percent": 10.07670255199303,
+        "premium_percent": 1.3488494617201046,
+        "metric_sum": 11.425552013713135
       }
     },
     {
@@ -2529,14 +2529,14 @@
       "atr": 4.38,
       "put": {
         "strike": 165.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.8,
+        "premium": 2.35,
         "delta_percent": 10.467195175476908,
-        "premium_percent": 0.43409844763405137,
-        "metric_sum": 10.90129362311096
+        "premium_percent": 1.275164189925026,
+        "metric_sum": 11.742359365401933
       }
     },
     {
@@ -2583,14 +2583,14 @@
       "atr": 4.16,
       "put": {
         "strike": 195.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.6,
+        "premium": 1.76,
         "delta_percent": 10.386031925368815,
-        "premium_percent": 0.735294097022615,
-        "metric_sum": 11.12132602239143
+        "premium_percent": 0.8088235067248764,
+        "metric_sum": 11.194855432093691
       }
     },
     {
@@ -2637,14 +2637,14 @@
       "atr": 1.33,
       "put": {
         "strike": 40.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.1,
+        "premium": 0.38,
         "delta_percent": 13.793106283217258,
-        "premium_percent": 0.21551723429195685,
-        "metric_sum": 14.008623517509214
+        "premium_percent": 0.8189654903094361,
+        "metric_sum": 14.612071773526694
       }
     },
     {
@@ -2690,15 +2690,15 @@
       "rvol": 0.93,
       "atr": 4.78,
       "put": {
-        "strike": 180.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 205.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.36,
-        "delta_percent": 22.057678142759467,
-        "premium_percent": 0.5888975429213729,
-        "metric_sum": 22.64657568568084
+        "premium": 0.64,
+        "delta_percent": 11.232355662587173,
+        "premium_percent": 0.27712825549241077,
+        "metric_sum": 11.509483918079583
       }
     },
     {
@@ -2798,15 +2798,15 @@
       "rvol": 1.11,
       "atr": 2.07,
       "put": {
-        "strike": 100.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 105.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.15,
-        "delta_percent": 15.067095452384418,
-        "premium_percent": 0.12739935682142337,
-        "metric_sum": 15.19449480920584
+        "premium": 0.68,
+        "delta_percent": 10.820451843043992,
+        "premium_percent": 0.5775437404450485,
+        "metric_sum": 11.39799558348904
       }
     },
     {
@@ -2852,15 +2852,15 @@
       "rvol": 1.34,
       "atr": 4.78,
       "put": {
-        "strike": 125.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 165.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.87,
-        "delta_percent": 33.53891960867716,
-        "premium_percent": 0.46256911952360696,
-        "metric_sum": 34.00148872820077
+        "premium": 1.72,
+        "delta_percent": 12.271373883453855,
+        "premium_percent": 0.9145044661846022,
+        "metric_sum": 13.185878349638458
       }
     },
     {
@@ -2907,14 +2907,14 @@
       "atr": 1.27,
       "put": {
         "strike": 65.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.2,
+        "premium": 0.24,
         "delta_percent": 14.180089780829148,
-        "premium_percent": 0.26406126221283344,
-        "metric_sum": 14.44415104304198
+        "premium_percent": 0.31687351465540003,
+        "metric_sum": 14.496963295484548
       }
     },
     {
@@ -2961,14 +2961,14 @@
       "atr": 12.31,
       "put": {
         "strike": 435.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.56,
+        "premium": 4.47,
         "delta_percent": 10.027302060064535,
-        "premium_percent": 0.11582692148589394,
-        "metric_sum": 10.14312898155043
+        "premium_percent": 0.9245470340034747,
+        "metric_sum": 10.95184909406801
       }
     },
     {
@@ -3014,15 +3014,15 @@
       "rvol": 1.0,
       "atr": 2.44,
       "put": {
-        "strike": 55.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 75.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.25,
-        "delta_percent": 35.49900316641257,
-        "premium_percent": 0.2931863492435792,
-        "metric_sum": 35.79218951565615
+        "premium": 0.76,
+        "delta_percent": 12.04409522692623,
+        "premium_percent": 0.8912865017004808,
+        "metric_sum": 12.93538172862671
       }
     },
     {
@@ -3068,15 +3068,15 @@
       "rvol": 0.92,
       "atr": 2.69,
       "put": {
-        "strike": null,
-        "expiration": null,
-        "premium": null,
-        "delta_percent": null,
-        "premium_percent": null,
-        "metric_sum": null,
+        "strike": 85.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "exp_type": null
+        "premium": 1.75,
+        "delta_percent": 22.593570713049814,
+        "premium_percent": 1.5936617794372097,
+        "metric_sum": 24.187232492487023
       }
     },
     {
@@ -3122,15 +3122,15 @@
       "rvol": 0.95,
       "atr": 3.11,
       "put": {
-        "strike": 80.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 85.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.1,
-        "delta_percent": 18.781725888324875,
-        "premium_percent": 0.10152284263959391,
-        "metric_sum": 18.883248730964468
+        "premium": 0.68,
+        "delta_percent": 13.705583756345177,
+        "premium_percent": 0.6903553299492386,
+        "metric_sum": 14.395939086294415
       }
     },
     {
@@ -3176,15 +3176,15 @@
       "rvol": 0.9,
       "atr": 1.5,
       "put": {
-        "strike": 42.5,
-        "expiration": "Oct 16, 2026",
+        "strike": 47.5,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.31,
-        "delta_percent": 19.796187959992455,
-        "premium_percent": 0.585016040762408,
-        "metric_sum": 20.381204000754863
+        "premium": 0.94,
+        "delta_percent": 10.36044536705039,
+        "premium_percent": 1.773919607473108,
+        "metric_sum": 12.134364974523498
       }
     },
     {
@@ -3230,15 +3230,15 @@
       "rvol": 1.05,
       "atr": 2.34,
       "put": {
-        "strike": 100.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 110.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.61,
-        "delta_percent": 21.085858585858585,
-        "premium_percent": 0.4813762626262626,
-        "metric_sum": 21.567234848484848
+        "premium": 0.31,
+        "delta_percent": 13.194444444444445,
+        "premium_percent": 0.2446338383838384,
+        "metric_sum": 13.439078282828284
       }
     },
     {
@@ -3285,14 +3285,14 @@
       "atr": 4.45,
       "put": {
         "strike": 200.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 1.4,
+        "premium": 2.4,
         "delta_percent": 10.01529739944209,
-        "premium_percent": 0.6298929182039054,
-        "metric_sum": 10.645190317645996
+        "premium_percent": 1.079816431206695,
+        "metric_sum": 11.095113830648785
       }
     },
     {
@@ -3338,15 +3338,15 @@
       "rvol": 0.81,
       "atr": 4.91,
       "put": {
-        "strike": 115.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 145.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 2.4,
-        "delta_percent": 28.95533452770742,
-        "premium_percent": 1.482671279421758,
-        "metric_sum": 30.43800580712918
+        "premium": 3.2,
+        "delta_percent": 10.421943534935444,
+        "premium_percent": 1.976895039229011,
+        "metric_sum": 12.398838574164454
       }
     },
     {
@@ -3392,15 +3392,15 @@
       "rvol": 1.75,
       "atr": 2.22,
       "put": {
-        "strike": 110.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 90.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.525,
-        "delta_percent": 15.28034265054951,
-        "premium_percent": 0.4043438191678319,
-        "metric_sum": 15.684686469717342
+        "premium": 1.35,
+        "delta_percent": 30.683916714085964,
+        "premium_percent": 1.0397412492887106,
+        "metric_sum": 31.723657963374674
       }
     },
     {
@@ -3447,14 +3447,14 @@
       "atr": 1.14,
       "put": {
         "strike": 60.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.05,
+        "premium": 0.5,
         "delta_percent": 10.899906054435858,
-        "premium_percent": 0.07425007828797013,
-        "metric_sum": 10.974156132723829
+        "premium_percent": 0.7425007828797012,
+        "metric_sum": 11.642406837315558
       }
     },
     {
@@ -3501,14 +3501,14 @@
       "atr": 3.84,
       "put": {
         "strike": 165.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.87,
+        "premium": 1.54,
         "delta_percent": 11.123078144564065,
-        "premium_percent": 0.46862376978320763,
-        "metric_sum": 11.591701914347272
+        "premium_percent": 0.8295179373174021,
+        "metric_sum": 11.952596081881467
       }
     },
     {
@@ -3554,15 +3554,15 @@
       "rvol": 1.04,
       "atr": 0.84,
       "put": {
-        "strike": 40.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 47.5,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.07,
-        "delta_percent": 26.335173918935507,
-        "premium_percent": 0.12891344564186288,
-        "metric_sum": 26.46408736457737
+        "premium": 0.1,
+        "delta_percent": 12.52301902873591,
+        "premium_percent": 0.18416206520266126,
+        "metric_sum": 12.707181093938571
       }
     },
     {
@@ -3609,14 +3609,14 @@
       "atr": 0.56,
       "put": {
         "strike": 24.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.1,
+        "premium": 0.26,
         "delta_percent": 10.714282926653432,
-        "premium_percent": 0.37202382113894406,
-        "metric_sum": 11.086306747792376
+        "premium_percent": 0.9672619349612546,
+        "metric_sum": 11.681544861614686
       }
     },
     {
@@ -3663,14 +3663,14 @@
       "atr": 0.95,
       "put": {
         "strike": 25.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.03,
+        "premium": 0.25,
         "delta_percent": 16.998674291417153,
-        "premium_percent": 0.0996015908502994,
-        "metric_sum": 17.09827588226745
+        "premium_percent": 0.8300132570858284,
+        "metric_sum": 17.82868754850298
       }
     },
     {
@@ -3717,14 +3717,14 @@
       "atr": 9.49,
       "put": {
         "strike": 310.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.6,
+        "premium": 3.72,
         "delta_percent": 11.27901412353955,
-        "premium_percent": 0.17171803718024603,
-        "metric_sum": 11.450732160719797
+        "premium_percent": 1.0646518305175254,
+        "metric_sum": 12.343665954057077
       }
     },
     {
@@ -3771,14 +3771,14 @@
       "atr": 4.89,
       "put": {
         "strike": 140.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.25,
+        "premium": 1.45,
         "delta_percent": 12.56557315184916,
-        "premium_percent": 0.15613290508598365,
-        "metric_sum": 12.721706056935144
+        "premium_percent": 0.905570849498705,
+        "metric_sum": 13.471144001347865
       }
     },
     {
@@ -3878,15 +3878,15 @@
       "rvol": 1.34,
       "atr": 1.31,
       "put": {
-        "strike": 60.0,
-        "expiration": "Oct 02, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 70.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.1,
-        "delta_percent": 27.61491079526659,
-        "premium_percent": 0.12064181534122236,
-        "metric_sum": 27.73555261060781
+        "premium": 0.13,
+        "delta_percent": 15.550729261144355,
+        "premium_percent": 0.15683435994358905,
+        "metric_sum": 15.707563621087944
       }
     },
     {
@@ -3987,14 +3987,14 @@
       "atr": 0.39,
       "put": {
         "strike": 20.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.04,
+        "premium": 0.05,
         "delta_percent": 12.929908576404001,
-        "premium_percent": 0.17414018284719202,
-        "metric_sum": 13.104048759251192
+        "premium_percent": 0.21767522855899,
+        "metric_sum": 13.147583804962991
       }
     },
     {
@@ -4046,9 +4046,9 @@
         "weekly_available": false,
         "monthly_available": true,
         "premium": 0.85,
-        "delta_percent": 26.44174185955276,
-        "premium_percent": 0.41683012946253434,
-        "metric_sum": 26.858571989015296
+        "delta_percent": 26.441741199052597,
+        "premium_percent": 0.4168301332053686,
+        "metric_sum": 26.858571332257966
       }
     },
     {
@@ -4148,15 +4148,15 @@
       "rvol": 1.22,
       "atr": 7.06,
       "put": {
-        "strike": 170.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 250.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 1.8,
-        "delta_percent": 41.01932709288077,
-        "premium_percent": 0.6245012425459683,
-        "metric_sum": 41.64382833542674
+        "premium": 2.01,
+        "delta_percent": 13.263716313059962,
+        "premium_percent": 0.6973597208429978,
+        "metric_sum": 13.96107603390296
       }
     },
     {
@@ -4202,15 +4202,15 @@
       "rvol": 1.45,
       "atr": 2.63,
       "put": {
-        "strike": 71.0,
-        "expiration": "Oct 30, 2026",
-        "exp_type": "WEEKLY",
+        "strike": 70.0,
+        "expiration": "Nov 20, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.79,
-        "delta_percent": 10.613118812523119,
-        "premium_percent": 0.9945864244803766,
-        "metric_sum": 11.607705237003495
+        "premium": 1.25,
+        "delta_percent": 11.872088970093216,
+        "premium_percent": 1.5737126969626214,
+        "metric_sum": 13.445801667055838
       }
     },
     {
@@ -4256,15 +4256,15 @@
       "rvol": 0.96,
       "atr": 2.5,
       "put": {
-        "strike": 75.0,
-        "expiration": "Oct 16, 2026",
+        "strike": 90.0,
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.675,
-        "delta_percent": 25.9405524971596,
-        "premium_percent": 0.6665350275255636,
-        "metric_sum": 26.607087524685163
+        "premium": 1.26,
+        "delta_percent": 11.12866299659152,
+        "premium_percent": 1.2441987180477188,
+        "metric_sum": 12.372861714639239
       }
     }
   ],
