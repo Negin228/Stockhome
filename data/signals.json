@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "10-07-2026 13:19",
+  "generated_at_pt": "10-07-2026 13:54",
   "buys": [
     {
       "bb_lower": 209.02,
@@ -1233,14 +1233,14 @@
       "atr": 5.1,
       "put": {
         "strike": 210.0,
-        "expiration": "Oct 16, 2026",
+        "expiration": "Nov 20, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 0.225,
+        "premium": 1.6,
         "delta_percent": 10.114285147006344,
-        "premium_percent": 0.09630612305677892,
-        "metric_sum": 10.210591270063123
+        "premium_percent": 0.6848435417370946,
+        "metric_sum": 10.799128688743439
       }
     },
     {
@@ -1454,9 +1454,9 @@
         "weekly_available": true,
         "monthly_available": true,
         "premium": 0.655,
-        "delta_percent": 11.209288087094587,
-        "premium_percent": 0.2836971526973319,
-        "metric_sum": 11.492985239791919
+        "delta_percent": 11.209286209286208,
+        "premium_percent": 0.2836971586971587,
+        "metric_sum": 11.492983367983367
       }
     },
     {
@@ -1886,9 +1886,9 @@
         "weekly_available": true,
         "monthly_available": true,
         "premium": 1.065,
-        "delta_percent": 31.302028610684555,
-        "premium_percent": 0.860745170936717,
-        "metric_sum": 32.162773781621276
+        "delta_percent": 31.302030474537474,
+        "premium_percent": 0.8607451475837363,
+        "metric_sum": 32.16277562212121
       }
     },
     {
@@ -5608,8 +5608,8 @@
       "signal": null,
       "score": 66.0,
       "why": "Above slow SMA \u2022 RSI 51 \u2022 Bearish MACD \u2022 Near Support",
-      "price": 506.11,
-      "price_str": "506.11",
+      "price": 506.25,
+      "price_str": "506.25",
       "rsi": 51.0,
       "rsi_str": "51.0",
       "dma50": 507.60429931640624,
