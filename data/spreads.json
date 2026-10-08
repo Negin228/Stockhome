@@ -20,59 +20,9 @@
     "earnings_date": "2026-10-30",
     "weekly_available": true,
     "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-10-08T22:14:13.260208",
+    "is_new": false,
+    "added_timestamp": "2026-10-08T22:52:24.255220",
     "reasoning": "Det: Price > BBU(271.01) | ADX: 20.7 | RSI 67.1 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "BLDR",
-    "company": "Builders FirstSource, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 53.81,
-    "market_cap": 5789765632.0,
-    "market_cap_str": "5.79B",
-    "mcap": 5.789765632,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": false,
-    "health": 130.786,
-    "trailing_pe": 58.489132,
-    "forward_pe": 12.974457,
-    "earnings_growth": null,
-    "debt_to_equity": 130.786,
-    "earnings_date": "2026-10-29",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-10-08T22:15:21.376949",
-    "reasoning": "Det: Price < BBL(53.88) | ADX: 27.7 | RSI 30.8 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "TEAM",
-    "company": "Atlassian Corporation",
-    "strategy": "Call Credit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 203.57,
-    "market_cap": 51531468800.0,
-    "market_cap_str": "51.53B",
-    "mcap": 51.5314688,
-    "pe_check": false,
-    "growth_check": false,
-    "debt_check": false,
-    "health": 116.483,
-    "trailing_pe": null,
-    "forward_pe": 30.256777,
-    "earnings_growth": null,
-    "debt_to_equity": 116.483,
-    "earnings_date": "2026-11-05",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-10-08T22:22:08.375853",
-    "reasoning": "Det: Price > BBU(203.50) | ADX: 25.4 | RSI 64.6 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "MO",
@@ -96,8 +46,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:14:28.594270",
+    "added_timestamp": "2026-10-08T22:52:24.941749",
     "reasoning": "Det: Price > BBU(70.92) | ADX: 12.4 | RSI 66.3 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "BLDR",
+    "company": "Builders FirstSource, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 53.81,
+    "market_cap": 5789765632.0,
+    "market_cap_str": "5.79B",
+    "mcap": 5.789765632,
+    "pe_check": true,
+    "growth_check": false,
+    "debt_check": false,
+    "health": 130.786,
+    "trailing_pe": 58.489132,
+    "forward_pe": 12.974457,
+    "earnings_growth": null,
+    "debt_to_equity": 130.786,
+    "earnings_date": "2026-10-29",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-10-08T22:52:53.432295",
+    "reasoning": "Det: Price < BBL(53.88) | ADX: 27.7 | RSI 30.8 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CBOE",
@@ -121,7 +96,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:15:33.102812",
+    "added_timestamp": "2026-10-08T22:53:09.494031",
     "reasoning": "Det: Price > BBU(290.67) | ADX: 19.6 | RSI 60.6 (Moderate: Selling Theta.)"
   },
   {
@@ -146,7 +121,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:16:07.919175",
+    "added_timestamp": "2026-10-08T22:53:25.391451",
     "reasoning": "Det: Price > BBU(945.61) | ADX: 14.3 | RSI 63.1 (Moderate: Selling Theta.)"
   },
   {
@@ -171,7 +146,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:17:22.883352",
+    "added_timestamp": "2026-10-08T22:54:16.558105",
     "reasoning": "Det: Price < BBL(268.79) | ADX: 15.6 | RSI 36.0 (Moderate: Selling Theta.)"
   },
   {
@@ -196,7 +171,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:17:42.046559",
+    "added_timestamp": "2026-10-08T22:54:26.380775",
     "reasoning": "Det: Price > BBU(442.49) | ADX: 19.0 | RSI 63.0 (Moderate: Selling Theta.)"
   },
   {
@@ -221,7 +196,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:17:43.023424",
+    "added_timestamp": "2026-10-08T22:54:26.715175",
     "reasoning": "Det: Price < BBL(18.60) | ADX: 30.0 | RSI 24.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -246,7 +221,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:18:50.125965",
+    "added_timestamp": "2026-10-08T22:54:57.837532",
     "reasoning": "Det: Price > BBU(452.13) | ADX: 31.2 | RSI 79.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -271,7 +246,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:19:58.618409",
+    "added_timestamp": "2026-10-08T22:55:30.914756",
     "reasoning": "Det: Price > BBU(196.42) | ADX: 10.8 | RSI 68.0 (Moderate: Selling Theta.)"
   },
   {
@@ -296,7 +271,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:19:59.408183",
+    "added_timestamp": "2026-10-08T22:55:30.950540",
     "reasoning": "Det: Price > BBU(278.93) | ADX: 26.6 | RSI 74.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -321,7 +296,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:20:06.088179",
+    "added_timestamp": "2026-10-08T22:55:31.272696",
     "reasoning": "Det: Price > BBU(149.94) | ADX: 10.7 | RSI 60.8 (Moderate: Selling Theta.)"
   },
   {
@@ -346,7 +321,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:20:43.241881",
+    "added_timestamp": "2026-10-08T22:56:12.285728",
     "reasoning": "Det: Price < BBL(360.05) | ADX: 27.0 | RSI 28.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -371,7 +346,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:21:31.540935",
+    "added_timestamp": "2026-10-08T22:56:27.128679",
     "reasoning": "Det: Price > BBU(435.06) | ADX: 27.4 | RSI 77.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -396,7 +371,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:21:42.732927",
+    "added_timestamp": "2026-10-08T22:56:27.648887",
     "reasoning": "Det: Price > BBU(71.83) | ADX: 17.9 | RSI 65.9 (Moderate: Selling Theta.)"
   },
   {
@@ -421,7 +396,32 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-10-08T22:21:52.703754",
+    "added_timestamp": "2026-10-08T22:56:29.256707",
     "reasoning": "Det: Price < BBL(393.38) | ADX: 15.8 | RSI 37.2 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "TEAM",
+    "company": "Atlassian Corporation",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 203.57,
+    "market_cap": 51531468800.0,
+    "market_cap_str": "51.53B",
+    "mcap": 51.5314688,
+    "pe_check": false,
+    "growth_check": false,
+    "debt_check": false,
+    "health": 116.483,
+    "trailing_pe": null,
+    "forward_pe": 30.256777,
+    "earnings_growth": null,
+    "debt_to_equity": 116.483,
+    "earnings_date": "2026-11-05",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-10-08T22:56:51.046165",
+    "reasoning": "Det: Price > BBU(203.50) | ADX: 25.4 | RSI 64.6 (Moderate: Selling Theta.)"
   }
 ]
