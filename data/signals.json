@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "10-08-2026 16:27",
+  "generated_at_pt": "10-08-2026 17:01",
   "buys": [
     {
       "bb_lower": 51.47,
@@ -50,9 +50,9 @@
         "weekly_available": true,
         "monthly_available": true,
         "premium": 1.065,
-        "delta_percent": 34.71367356552157,
-        "premium_percent": 1.9865696472205578,
-        "metric_sum": 36.70024321274212
+        "delta_percent": 34.713672822234656,
+        "premium_percent": 1.9865696698377167,
+        "metric_sum": 36.70024249207237
       }
     },
     {
@@ -104,9 +104,9 @@
         "weekly_available": false,
         "monthly_available": true,
         "premium": 1.35,
-        "delta_percent": 19.400719952675473,
-        "premium_percent": 1.280106212516331,
-        "metric_sum": 20.680826165191803
+        "delta_percent": 19.400720652380045,
+        "premium_percent": 1.280106201403376,
+        "metric_sum": 20.680826853783422
       }
     },
     {
@@ -482,9 +482,9 @@
         "weekly_available": true,
         "monthly_available": true,
         "premium": 0.375,
-        "delta_percent": 16.89750341262198,
-        "premium_percent": 1.0387812073422253,
-        "metric_sum": 17.936284619964205
+        "delta_percent": 16.897506925207757,
+        "premium_percent": 1.0387811634349031,
+        "metric_sum": 17.936288088642662
       }
     },
     {
@@ -536,9 +536,9 @@
         "weekly_available": false,
         "monthly_available": true,
         "premium": 0.47500000000000003,
-        "delta_percent": 10.02999068952019,
-        "premium_percent": 1.5828057193510339,
-        "metric_sum": 11.612796408871224
+        "delta_percent": 10.029990003332227,
+        "premium_percent": 1.582805731422859,
+        "metric_sum": 11.612795734755085
       }
     },
     {
@@ -752,9 +752,9 @@
         "weekly_available": false,
         "monthly_available": true,
         "premium": 2.4,
-        "delta_percent": 10.833706072732653,
-        "premium_percent": 0.6687472044545051,
-        "metric_sum": 11.502453277187158
+        "delta_percent": 10.833704859563085,
+        "premium_percent": 0.6687472135532768,
+        "metric_sum": 11.50245207311636
       }
     },
     {
@@ -860,9 +860,9 @@
         "weekly_available": true,
         "monthly_available": true,
         "premium": 1.0,
-        "delta_percent": 13.667154722274944,
-        "premium_percent": 1.3281976196573084,
-        "metric_sum": 14.995352341932252
+        "delta_percent": 13.667153672466469,
+        "premium_percent": 1.3281976358082082,
+        "metric_sum": 14.995351308274678
       }
     }
   ],
@@ -16306,6 +16306,49 @@
       "atr": 17.06
     },
     {
+      "bb_lower": 9.03,
+      "bb_upper": 11.21,
+      "kc_lower": 9.57,
+      "kc_upper": 10.75,
+      "is_squeeze": false,
+      "rsi_bb_signal": false,
+      "ticker": "PSKY",
+      "company": "Paramount Skydance Corporation",
+      "signal": null,
+      "score": 22.0,
+      "why": "Below slow SMA \u2022 RSI 36 \u2022 Bearish MACD",
+      "price": 8.89,
+      "price_str": "8.89",
+      "rsi": 36.4,
+      "rsi_str": "36.4",
+      "dma50": 9.94820873260498,
+      "dma200": 10.407167422771455,
+      "dma50_str": "9.9",
+      "dma200_str": "10.4",
+      "trend_dir": "bearish",
+      "trend_rationale": "Weak/Sideways Bearish Trend (ADX: 22.3)",
+      "pe": null,
+      "pe_str": "N/A",
+      "market_cap": 10992190464.0,
+      "market_cap_str": "10.99B",
+      "strategy": "Put Credit (Bullish)",
+      "pe_check": false,
+      "growth_check": false,
+      "debt_check": false,
+      "trailing_pe": null,
+      "forward_pe": 11.745832,
+      "earnings_growth": -0.281,
+      "earnings_growth_str": "-28.1%",
+      "debt_to_equity": 126.479,
+      "debt_to_equity_str": "126.479",
+      "earnings_date": "2026-11-09",
+      "weekly_available": true,
+      "monthly_available": true,
+      "adx": 22.291811749282488,
+      "rvol": 1.43,
+      "atr": 0.6
+    },
+    {
       "bb_lower": 918.04,
       "bb_upper": 995.29,
       "kc_lower": 936.79,
@@ -21464,6 +21507,49 @@
       "adx": 13.004397226249875,
       "rvol": 1.45,
       "atr": 2.18
+    },
+    {
+      "bb_lower": 26.97,
+      "bb_upper": 32.53,
+      "kc_lower": 29.5,
+      "kc_upper": 29.98,
+      "is_squeeze": false,
+      "rsi_bb_signal": false,
+      "ticker": "WBD",
+      "company": "Warner Bros. Discovery, Inc. - ",
+      "signal": "SELL",
+      "score": 69.75,
+      "why": "Above slow SMA \u2022 Overbought \u2022 Bullish MACD \u2022 Extended (+12%)",
+      "price": 30.95,
+      "price_str": "30.95",
+      "rsi": 75.2,
+      "rsi_str": "75.2",
+      "dma50": 28.44100009918213,
+      "dma200": 27.702100048065187,
+      "dma50_str": "28.4",
+      "dma200_str": "27.7",
+      "trend_dir": "bullish",
+      "trend_rationale": "Strong Bullish Trend (ADX: 44.6)",
+      "pe": null,
+      "pe_str": "N/A",
+      "market_cap": 77595885568.0,
+      "market_cap_str": "77.60B",
+      "strategy": null,
+      "pe_check": false,
+      "growth_check": false,
+      "debt_check": true,
+      "trailing_pe": null,
+      "forward_pe": 497.4285,
+      "earnings_growth": -0.906,
+      "earnings_growth_str": "-90.6%",
+      "debt_to_equity": 94.199,
+      "debt_to_equity_str": "94.199",
+      "earnings_date": "2026-11-05",
+      "weekly_available": true,
+      "monthly_available": true,
+      "adx": 44.59133951558082,
+      "rvol": 0.0,
+      "atr": 0.29
     },
     {
       "bb_lower": 200.78,
