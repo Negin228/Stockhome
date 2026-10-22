@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "10-21-2026 21:33",
+  "generated_at_pt": "10-21-2026 22:08",
   "buys": [
     {
       "bb_lower": NaN,
@@ -206,15 +206,15 @@
       "rvol": 0.81,
       "atr": NaN,
       "put": {
-        "strike": 665.0,
+        "strike": 650.0,
         "expiration": "Nov 27, 2026",
         "exp_type": "WEEKLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 11.525,
-        "delta_percent": 10.160632758284182,
-        "premium_percent": 1.5569905375349997,
-        "metric_sum": 11.717623295819182
+        "premium": 14.26,
+        "delta_percent": 12.187084650954464,
+        "premium_percent": 1.9264802659652143,
+        "metric_sum": 14.113564916919678
       }
     },
     {
@@ -22185,8 +22185,8 @@
       "signal": null,
       "score": 43.0,
       "why": "Below slow SMA \u2022 RSI 68 \u2022 Bullish MACD",
-      "price": 225.51,
-      "price_str": "225.51",
+      "price": 225.5,
+      "price_str": "225.50",
       "rsi": 67.6,
       "rsi_str": "67.6",
       "dma50": NaN,
