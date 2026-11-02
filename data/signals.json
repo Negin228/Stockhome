@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "11-02-2026 05:21",
+  "generated_at_pt": "11-02-2026 05:56",
   "buys": [
     {
       "bb_lower": 292.02,
@@ -44,15 +44,15 @@
       "rvol": 1.99,
       "atr": 10.41,
       "put": {
-        "strike": 230.0,
-        "expiration": "Nov 04, 2026",
-        "exp_type": "UNKNOWN",
+        "strike": 250.0,
+        "expiration": "Dec 18, 2026",
+        "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 5.0,
-        "delta_percent": 17.810177244139503,
-        "premium_percent": 1.7867352773013152,
-        "metric_sum": 19.596912521440817
+        "premium": 2.6,
+        "delta_percent": 10.66323613493424,
+        "premium_percent": 0.9291023441966839,
+        "metric_sum": 11.592338479130923
       }
     },
     {
@@ -152,15 +152,15 @@
       "rvol": 1.05,
       "atr": 1.16,
       "put": {
-        "strike": 45.0,
-        "expiration": "Dec 11, 2026",
+        "strike": 44.0,
+        "expiration": "Nov 27, 2026",
         "exp_type": "WEEKLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 2.525,
-        "delta_percent": 10.017993380687654,
-        "premium_percent": 5.048990371416971,
-        "metric_sum": 15.066983752104626
+        "premium": 2.46,
+        "delta_percent": 12.017593527783484,
+        "premium_percent": 4.919016361855742,
+        "metric_sum": 16.936609889639225
       }
     },
     {
@@ -530,15 +530,15 @@
       "rvol": 3.91,
       "atr": 6.97,
       "put": {
-        "strike": 57.5,
+        "strike": 55.0,
         "expiration": "Dec 18, 2026",
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 2.245,
-        "delta_percent": 12.560827250608279,
-        "premium_percent": 3.413929440389294,
-        "metric_sum": 15.974756690997573
+        "premium": 2.25,
+        "delta_percent": 16.36253041362531,
+        "premium_percent": 3.4215328467153285,
+        "metric_sum": 19.78406326034064
       }
     },
     {
