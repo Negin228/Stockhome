@@ -1,80 +1,5 @@
 [
   {
-    "ticker": "IFF",
-    "company": "International Flavors & Fragran",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 83.17,
-    "market_cap": 20825042944.0,
-    "market_cap_str": "20.83B",
-    "mcap": 20.825042944,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": true,
-    "health": 51.377,
-    "trailing_pe": 237.62857,
-    "forward_pe": 21.513914,
-    "earnings_growth": null,
-    "debt_to_equity": 51.377,
-    "earnings_date": "2026-11-03",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-10T23:33:29.561238",
-    "reasoning": "Det: Price < BBL(83.19) | ADX: 27.1 | RSI 37.3 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "TKO",
-    "company": "TKO Group Holdings, Inc.",
-    "strategy": "Call Credit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 199.22,
-    "market_cap": 37572661248.0,
-    "market_cap_str": "37.57B",
-    "mcap": 37.572661248,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 59.727,
-    "trailing_pe": 53.410187,
-    "forward_pe": 46.902775,
-    "earnings_growth": 1.407,
-    "debt_to_equity": 59.727,
-    "earnings_date": "2026-11-04",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-10T23:36:19.129990",
-    "reasoning": "Det: Price > BBU(198.97) | ADX: 27.5 | RSI 69.2 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "UAL",
-    "company": "United Airlines Holdings, Inc.",
-    "strategy": "Call Credit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 120.56,
-    "market_cap": 39169265664.0,
-    "market_cap_str": "39.17B",
-    "mcap": 39.169265664,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": false,
-    "health": 193.162,
-    "trailing_pe": 11.040293,
-    "forward_pe": 10.25682,
-    "earnings_growth": 0.084,
-    "debt_to_equity": 193.162,
-    "earnings_date": "2027-01-26",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-10T23:36:31.399581",
-    "reasoning": "Det: Price > BBU(119.91) | ADX: 20.6 | RSI 64.9 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "ALGN",
     "company": "Align Technology, Inc.",
     "strategy": "Put Debit (Bearish)",
@@ -96,7 +21,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:30:00.729428",
+    "added_timestamp": "2026-11-11T00:07:23.167135",
     "reasoning": "Det: Price > BBU(171.57) | ADX: 31.0 | RSI 70.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -121,7 +46,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:30:41.054916",
+    "added_timestamp": "2026-11-11T00:07:26.388771",
     "reasoning": "Det: Price < BBL(314.93) | ADX: 33.0 | RSI 22.7 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -146,7 +71,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:31:04.358597",
+    "added_timestamp": "2026-11-11T00:08:00.442311",
     "reasoning": "Det: Price > BBU(274.62) | ADX: 31.6 | RSI 76.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -171,7 +96,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:31:15.266399",
+    "added_timestamp": "2026-11-11T00:08:16.092159",
     "reasoning": "Det: Price > BBU(128.02) | ADX: 23.3 | RSI 66.0 (Moderate: Selling Theta.)"
   },
   {
@@ -196,7 +121,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:31:46.534805",
+    "added_timestamp": "2026-11-11T00:08:23.334523",
     "reasoning": "Det: Price > BBU(456.96) | ADX: 23.5 | RSI 77.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -221,7 +146,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:31:58.922082",
+    "added_timestamp": "2026-11-11T00:08:25.262247",
     "reasoning": "Det: Price > BBU(91.81) | ADX: 24.0 | RSI 67.0 (Moderate: Selling Theta.)"
   },
   {
@@ -246,7 +171,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:32:43.548222",
+    "added_timestamp": "2026-11-11T00:08:53.660431",
     "reasoning": "Det: Price > BBU(54.48) | ADX: 15.0 | RSI 68.8 (Moderate: Selling Theta.)"
   },
   {
@@ -271,7 +196,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:32:53.415782",
+    "added_timestamp": "2026-11-11T00:09:09.866513",
     "reasoning": "Det: Price > BBU(35.28) | ADX: 18.9 | RSI 69.4 (Moderate: Selling Theta.)"
   },
   {
@@ -296,8 +221,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:33:19.747873",
+    "added_timestamp": "2026-11-11T00:09:24.580819",
     "reasoning": "Det: Price > BBU(435.53) | ADX: 16.4 | RSI 61.2 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "IFF",
+    "company": "International Flavors & Fragran",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 83.17,
+    "market_cap": 20825042944.0,
+    "market_cap_str": "20.83B",
+    "mcap": 20.825042944,
+    "pe_check": true,
+    "growth_check": false,
+    "debt_check": true,
+    "health": 51.377,
+    "trailing_pe": 237.62857,
+    "forward_pe": 21.513914,
+    "earnings_growth": null,
+    "debt_to_equity": 51.377,
+    "earnings_date": "2026-11-03",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-11T00:09:25.702383",
+    "reasoning": "Det: Price < BBL(83.19) | ADX: 27.1 | RSI 37.3 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "NVDA",
@@ -321,7 +271,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:34:56.376000",
+    "added_timestamp": "2026-11-11T00:10:24.735117",
     "reasoning": "Det: Price < BBL(176.14) | ADX: 34.7 | RSI 23.9 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -346,8 +296,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:36:09.883703",
+    "added_timestamp": "2026-11-11T00:11:14.343850",
     "reasoning": "Det: Price > BBU(220.63) | ADX: 18.4 | RSI 64.5 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "TKO",
+    "company": "TKO Group Holdings, Inc.",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 199.22,
+    "market_cap": 37572661248.0,
+    "market_cap_str": "37.57B",
+    "mcap": 37.572661248,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 59.727,
+    "trailing_pe": 53.410187,
+    "forward_pe": 46.902775,
+    "earnings_growth": 1.407,
+    "debt_to_equity": 59.727,
+    "earnings_date": "2026-11-04",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-11T00:11:24.781614",
+    "reasoning": "Det: Price > BBU(198.97) | ADX: 27.5 | RSI 69.2 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "TTD",
@@ -371,8 +346,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:36:19.830492",
+    "added_timestamp": "2026-11-11T00:11:24.806990",
     "reasoning": "Det: Price > BBU(14.57) | ADX: 17.7 | RSI 70.7 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "UAL",
+    "company": "United Airlines Holdings, Inc.",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 120.56,
+    "market_cap": 39169265664.0,
+    "market_cap_str": "39.17B",
+    "mcap": 39.169265664,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": 193.162,
+    "trailing_pe": 11.040293,
+    "forward_pe": 10.25682,
+    "earnings_growth": 0.084,
+    "debt_to_equity": 193.162,
+    "earnings_date": "2027-01-26",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-11T00:11:25.167062",
+    "reasoning": "Det: Price > BBU(119.91) | ADX: 20.6 | RSI 64.9 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "VTRS",
@@ -396,7 +396,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:36:48.451760",
+    "added_timestamp": "2026-11-11T00:11:25.467367",
     "reasoning": "Det: Price > BBU(20.43) | ADX: 30.2 | RSI 74.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -421,7 +421,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:36:53.389298",
+    "added_timestamp": "2026-11-11T00:11:25.647998",
     "reasoning": "Det: Price > BBU(300.34) | ADX: 14.1 | RSI 61.8 (Moderate: Selling Theta.)"
   },
   {
@@ -446,7 +446,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:37:04.328632",
+    "added_timestamp": "2026-11-11T00:11:26.105474",
     "reasoning": "Det: Price > BBU(85.97) | ADX: 30.1 | RSI 66.4 (Moderate: Selling Theta.)"
   },
   {
@@ -471,7 +471,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:37:13.274734",
+    "added_timestamp": "2026-11-11T00:11:33.998447",
     "reasoning": "Det: Price < BBL(151.77) | ADX: 33.8 | RSI 25.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -496,7 +496,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-10T23:37:20.115986",
+    "added_timestamp": "2026-11-11T00:11:45.118467",
     "reasoning": "Det: Price < BBL(121.62) | ADX: 16.7 | RSI 37.0 (Moderate: Selling Theta.)"
   }
 ]
