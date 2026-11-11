@@ -1,55 +1,5 @@
 [
   {
-    "ticker": "CME",
-    "company": "CME Group Inc.",
-    "strategy": "Put Debit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 315.87,
-    "market_cap": 113058783232.0,
-    "market_cap_str": "113.06B",
-    "mcap": 113.058783232,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 14.507,
-    "trailing_pe": 25.890574,
-    "forward_pe": 23.847866,
-    "earnings_growth": 0.142,
-    "debt_to_equity": 14.507,
-    "earnings_date": "2026-10-21",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-11T23:04:26.593672",
-    "reasoning": "Det: Price > BBU(315.69) | ADX: 31.2 | RSI 70.6 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "TMUS",
-    "company": "T-Mobile US, Inc.",
-    "strategy": "Call Credit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 172.16,
-    "market_cap": 182364372992.0,
-    "market_cap_str": "182.36B",
-    "mcap": 182.364372992,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": false,
-    "health": 211.32,
-    "trailing_pe": 16.601736,
-    "forward_pe": 12.076582,
-    "earnings_growth": 0.273,
-    "debt_to_equity": 211.32,
-    "earnings_date": "2026-10-28",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-11T23:10:27.410222",
-    "reasoning": "Det: Price > BBU(171.74) | ADX: 16.6 | RSI 62.9 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "AAPL",
     "company": "Apple Inc.",
     "strategy": "Call Credit (Bearish)",
@@ -71,7 +21,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:03:04.149604",
+    "added_timestamp": "2026-11-11T23:42:05.007727",
     "reasoning": "Det: Price > BBU(354.75) | ADX: 17.5 | RSI 60.4 (Moderate: Selling Theta.)"
   },
   {
@@ -96,8 +46,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:04:09.925681",
+    "added_timestamp": "2026-11-11T23:43:02.941807",
     "reasoning": "Det: Price > BBU(132.29) | ADX: 24.4 | RSI 67.4 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "CME",
+    "company": "CME Group Inc.",
+    "strategy": "Put Debit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 315.87,
+    "market_cap": 113058783232.0,
+    "market_cap_str": "113.06B",
+    "mcap": 113.058783232,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 14.507,
+    "trailing_pe": 25.890574,
+    "forward_pe": 23.847866,
+    "earnings_growth": 0.142,
+    "debt_to_equity": 14.507,
+    "earnings_date": "2026-10-21",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-11T23:43:03.653350",
+    "reasoning": "Det: Price > BBU(315.69) | ADX: 31.2 | RSI 70.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "FAST",
@@ -121,7 +96,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:06:01.962371",
+    "added_timestamp": "2026-11-11T23:43:45.828367",
     "reasoning": "Det: Price > BBU(55.07) | ADX: 16.7 | RSI 71.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -146,7 +121,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:06:16.125979",
+    "added_timestamp": "2026-11-11T23:44:01.952294",
     "reasoning": "Det: Price > BBU(35.95) | ADX: 20.2 | RSI 69.4 (Moderate: Selling Theta.)"
   },
   {
@@ -171,7 +146,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:06:50.958217",
+    "added_timestamp": "2026-11-11T23:44:06.291520",
     "reasoning": "Det: Price > BBU(440.16) | ADX: 17.8 | RSI 64.1 (Moderate: Selling Theta.)"
   },
   {
@@ -196,8 +171,33 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:08:27.058873",
+    "added_timestamp": "2026-11-11T23:45:03.596310",
     "reasoning": "Det: Price > BBU(1415.22) | ADX: 19.6 | RSI 62.8 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "TMUS",
+    "company": "T-Mobile US, Inc.",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 172.16,
+    "market_cap": 182364372992.0,
+    "market_cap_str": "182.36B",
+    "mcap": 182.364372992,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": 211.32,
+    "trailing_pe": 16.601736,
+    "forward_pe": 12.076582,
+    "earnings_growth": 0.273,
+    "debt_to_equity": 211.32,
+    "earnings_date": "2026-10-28",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-11T23:46:03.616460",
+    "reasoning": "Det: Price > BBU(171.74) | ADX: 16.6 | RSI 62.9 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "TTWO",
@@ -221,7 +221,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:10:29.882138",
+    "added_timestamp": "2026-11-11T23:46:03.713152",
     "reasoning": "Det: Price > BBU(225.85) | ADX: 19.8 | RSI 67.9 (Moderate: Selling Theta.)"
   },
   {
@@ -246,7 +246,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:10:47.962242",
+    "added_timestamp": "2026-11-11T23:46:04.384150",
     "reasoning": "Det: Price > BBU(15.19) | ADX: 20.2 | RSI 73.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -271,7 +271,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:11:15.340958",
+    "added_timestamp": "2026-11-11T23:46:05.631250",
     "reasoning": "Det: Price > BBU(20.74) | ADX: 32.3 | RSI 75.4 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -296,7 +296,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-11T23:11:22.401841",
+    "added_timestamp": "2026-11-11T23:46:05.997062",
     "reasoning": "Det: Price > BBU(303.31) | ADX: 15.6 | RSI 62.2 (Moderate: Selling Theta.)"
   }
 ]
