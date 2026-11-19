@@ -1,130 +1,5 @@
 [
   {
-    "ticker": "ALB",
-    "company": "Albemarle Corporation",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 85.82,
-    "market_cap": 10127604736.0,
-    "market_cap_str": "10.13B",
-    "mcap": 10.127604736,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": true,
-    "health": 18.467,
-    "trailing_pe": 20.679518,
-    "forward_pe": 11.19962,
-    "earnings_growth": null,
-    "debt_to_equity": 18.467,
-    "earnings_date": "2026-11-04",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-19T00:13:29.873825",
-    "reasoning": "Det: Price < BBL(86.04) | ADX: 21.7 | RSI 31.1 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "DRI",
-    "company": "Darden Restaurants, Inc.",
-    "strategy": "Put Debit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 239.22,
-    "market_cap": 27066122240.0,
-    "market_cap_str": "27.07B",
-    "mcap": 27.06612224,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": false,
-    "health": 415.302,
-    "trailing_pe": 23.225243,
-    "forward_pe": 19.298254,
-    "earnings_growth": -0.095,
-    "debt_to_equity": 415.302,
-    "earnings_date": "2026-12-18",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-19T00:15:26.637838",
-    "reasoning": "Det: Price > BBU(238.72) | ADX: 30.4 | RSI 73.1 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "ELV",
-    "company": "Elevance Health, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 400.84,
-    "market_cap": 86603841536.0,
-    "market_cap_str": "86.60B",
-    "mcap": 86.603841536,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 68.663,
-    "trailing_pe": 17.020807,
-    "forward_pe": 13.234922,
-    "earnings_growth": 0.148,
-    "debt_to_equity": 68.663,
-    "earnings_date": "2027-01-28",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-19T00:15:51.364686",
-    "reasoning": "Det: Price < BBL(404.58) | ADX: 18.2 | RSI 39.8 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "FSLR",
-    "company": "First Solar, Inc.",
-    "strategy": "Call Debit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 150.98,
-    "market_cap": 16227504128.0,
-    "market_cap_str": "16.23B",
-    "mcap": 16.227504128,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 2.987,
-    "trailing_pe": 8.732214,
-    "forward_pe": 6.509439,
-    "earnings_growth": 0.252,
-    "debt_to_equity": 2.987,
-    "earnings_date": "2026-10-29",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-19T00:16:21.854062",
-    "reasoning": "Det: Price < BBL(151.29) | ADX: 19.7 | RSI 29.8 (Extreme: Buying Delta for sharp snap-back.)"
-  },
-  {
-    "ticker": "LDOS",
-    "company": "Leidos Holdings, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 125.71,
-    "market_cap": 15335953408.0,
-    "market_cap_str": "15.34B",
-    "mcap": 15.335953408,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": false,
-    "health": 125.627,
-    "trailing_pe": 11.234138,
-    "forward_pe": 10.634869,
-    "earnings_growth": 0.117,
-    "debt_to_equity": 125.627,
-    "earnings_date": "2026-11-03",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-19T00:17:39.535944",
-    "reasoning": "Det: Price < BBL(125.96) | ADX: 19.6 | RSI 39.0 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "UDOW",
     "company": "ProShares UltraPro Dow30",
     "strategy": "Put Credit (Bullish)",
@@ -146,7 +21,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:13:15.634204",
+    "added_timestamp": "2026-11-19T00:51:24.412475",
     "reasoning": "Det: Price < BBL(60.48) | ADX: 13.4 | RSI 35.4 (Moderate: Selling Theta.)"
   },
   {
@@ -171,8 +46,33 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:13:16.520115",
+    "added_timestamp": "2026-11-19T00:51:24.501873",
     "reasoning": "Det: Price > BBU(26.40) | ADX: 13.8 | RSI 63.7 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "ALB",
+    "company": "Albemarle Corporation",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 85.82,
+    "market_cap": 10127604736.0,
+    "market_cap_str": "10.13B",
+    "mcap": 10.127604736,
+    "pe_check": true,
+    "growth_check": false,
+    "debt_check": true,
+    "health": 18.467,
+    "trailing_pe": 20.679518,
+    "forward_pe": 11.19962,
+    "earnings_growth": null,
+    "debt_to_equity": 18.467,
+    "earnings_date": "2026-11-04",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-19T00:51:25.935066",
+    "reasoning": "Det: Price < BBL(86.04) | ADX: 21.7 | RSI 31.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "BAC",
@@ -196,8 +96,8 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:14:10.736838",
-    "reasoning": "Det: Price < BBL(48.97) | ADX: 24.7 | RSI 35.1 (Moderate: Selling Theta.)"
+    "added_timestamp": "2026-11-19T00:51:35.774368",
+    "reasoning": "Det: Price < BBL(48.97) | ADX: 24.6 | RSI 35.1 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "COF",
@@ -221,7 +121,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:14:33.662170",
+    "added_timestamp": "2026-11-19T00:52:09.446622",
     "reasoning": "Det: Price < BBL(186.12) | ADX: 25.6 | RSI 30.5 (Moderate: Selling Theta.)"
   },
   {
@@ -246,7 +146,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:14:54.725395",
+    "added_timestamp": "2026-11-19T00:52:25.334380",
     "reasoning": "Det: Price < BBL(117.69) | ADX: 16.8 | RSI 37.2 (Moderate: Selling Theta.)"
   },
   {
@@ -271,7 +171,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:14:55.675887",
+    "added_timestamp": "2026-11-19T00:52:25.428970",
     "reasoning": "Det: Price < BBL(62.73) | ADX: 15.2 | RSI 38.8 (Moderate: Selling Theta.)"
   },
   {
@@ -296,7 +196,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:15:00.897016",
+    "added_timestamp": "2026-11-19T00:52:25.902579",
     "reasoning": "Det: Price < BBL(58.13) | ADX: 17.6 | RSI 35.9 (Moderate: Selling Theta.)"
   },
   {
@@ -321,8 +221,33 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:15:17.782326",
+    "added_timestamp": "2026-11-19T00:52:28.206036",
     "reasoning": "Det: Price < BBL(8.51) | ADX: 26.1 | RSI 22.5 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "DRI",
+    "company": "Darden Restaurants, Inc.",
+    "strategy": "Put Debit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 239.22,
+    "market_cap": 27066122240.0,
+    "market_cap_str": "27.07B",
+    "mcap": 27.06612224,
+    "pe_check": true,
+    "growth_check": false,
+    "debt_check": false,
+    "health": 415.302,
+    "trailing_pe": 23.225243,
+    "forward_pe": 19.298254,
+    "earnings_growth": -0.095,
+    "debt_to_equity": 415.302,
+    "earnings_date": "2026-12-18",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-19T00:52:29.553423",
+    "reasoning": "Det: Price > BBU(238.72) | ADX: 30.4 | RSI 73.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "DVA",
@@ -346,7 +271,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:15:28.788877",
+    "added_timestamp": "2026-11-19T00:52:30.443230",
     "reasoning": "Det: Price < BBL(166.85) | ADX: 15.3 | RSI 33.2 (Moderate: Selling Theta.)"
   },
   {
@@ -371,7 +296,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:15:46.361244",
+    "added_timestamp": "2026-11-19T00:52:36.635916",
     "reasoning": "Det: Price < BBL(62.57) | ADX: 17.9 | RSI 39.0 (Moderate: Selling Theta.)"
   },
   {
@@ -396,8 +321,58 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:15:49.376438",
+    "added_timestamp": "2026-11-19T00:52:41.781400",
     "reasoning": "Det: Price > BBU(62.84) | ADX: 27.1 | RSI 71.1 (Extreme: Buying Delta for sharp snap-back.)"
+  },
+  {
+    "ticker": "ELV",
+    "company": "Elevance Health, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 400.84,
+    "market_cap": 86603841536.0,
+    "market_cap_str": "86.60B",
+    "mcap": 86.603841536,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 68.663,
+    "trailing_pe": 17.020807,
+    "forward_pe": 13.234922,
+    "earnings_growth": 0.148,
+    "debt_to_equity": 68.663,
+    "earnings_date": "2027-01-28",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-19T00:52:44.336061",
+    "reasoning": "Det: Price < BBL(404.58) | ADX: 18.2 | RSI 39.8 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "FSLR",
+    "company": "First Solar, Inc.",
+    "strategy": "Call Debit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 150.98,
+    "market_cap": 16227504128.0,
+    "market_cap_str": "16.23B",
+    "mcap": 16.227504128,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 2.987,
+    "trailing_pe": 8.732214,
+    "forward_pe": 6.509439,
+    "earnings_growth": 0.252,
+    "debt_to_equity": 2.987,
+    "earnings_date": "2026-10-29",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-19T00:53:21.587507",
+    "reasoning": "Det: Price < BBL(151.29) | ADX: 19.7 | RSI 29.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
     "ticker": "FE",
@@ -421,7 +396,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:16:22.804390",
+    "added_timestamp": "2026-11-19T00:53:22.842477",
     "reasoning": "Det: Price > BBU(47.64) | ADX: 23.3 | RSI 66.7 (Moderate: Selling Theta.)"
   },
   {
@@ -446,7 +421,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:16:30.803781",
+    "added_timestamp": "2026-11-19T00:53:25.606966",
     "reasoning": "Det: Price < BBL(53.44) | ADX: 28.4 | RSI 26.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -471,7 +446,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:17:00.711024",
+    "added_timestamp": "2026-11-19T00:53:29.353257",
     "reasoning": "Det: Price < BBL(390.27) | ADX: 20.5 | RSI 38.0 (Moderate: Selling Theta.)"
   },
   {
@@ -496,7 +471,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:17:01.418307",
+    "added_timestamp": "2026-11-19T00:53:29.448180",
     "reasoning": "Det: Price < BBL(15.19) | ADX: 17.3 | RSI 35.6 (Moderate: Selling Theta.)"
   },
   {
@@ -521,7 +496,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:17:03.430649",
+    "added_timestamp": "2026-11-19T00:53:29.643165",
     "reasoning": "Det: Price < BBL(233.13) | ADX: 18.1 | RSI 36.6 (Moderate: Selling Theta.)"
   },
   {
@@ -546,8 +521,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:17:26.398451",
+    "added_timestamp": "2026-11-19T00:53:39.682775",
     "reasoning": "Det: Price < BBL(326.44) | ADX: 16.5 | RSI 38.2 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "LDOS",
+    "company": "Leidos Holdings, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 125.71,
+    "market_cap": 15335953408.0,
+    "market_cap_str": "15.34B",
+    "mcap": 15.335953408,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": 125.627,
+    "trailing_pe": 11.234138,
+    "forward_pe": 10.634869,
+    "earnings_growth": 0.117,
+    "debt_to_equity": 125.627,
+    "earnings_date": "2026-11-03",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-19T00:54:00.089991",
+    "reasoning": "Det: Price < BBL(125.96) | ADX: 19.6 | RSI 39.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "MTB",
@@ -571,7 +571,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:17:51.424289",
+    "added_timestamp": "2026-11-19T00:54:15.416020",
     "reasoning": "Det: Price < BBL(215.64) | ADX: 16.0 | RSI 39.0 (Moderate: Selling Theta.)"
   },
   {
@@ -596,7 +596,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:18:02.019232",
+    "added_timestamp": "2026-11-19T00:54:24.982322",
     "reasoning": "Det: Price < BBL(139.23) | ADX: 17.2 | RSI 37.2 (Moderate: Selling Theta.)"
   },
   {
@@ -621,7 +621,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:18:55.340968",
+    "added_timestamp": "2026-11-19T00:54:35.791382",
     "reasoning": "Det: Price < BBL(28.25) | ADX: 23.4 | RSI 39.3 (Moderate: Selling Theta.)"
   },
   {
@@ -646,7 +646,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:19:34.803787",
+    "added_timestamp": "2026-11-19T00:55:23.879270",
     "reasoning": "Det: Price < BBL(192.33) | ADX: 23.4 | RSI 24.1 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -671,7 +671,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:19:35.510555",
+    "added_timestamp": "2026-11-19T00:55:25.046083",
     "reasoning": "Det: Price < BBL(174.66) | ADX: 23.3 | RSI 38.9 (Moderate: Selling Theta.)"
   },
   {
@@ -696,7 +696,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:20:27.928762",
+    "added_timestamp": "2026-11-19T00:55:31.949819",
     "reasoning": "Det: Price < BBL(374.05) | ADX: 25.4 | RSI 28.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -721,7 +721,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:20:54.304544",
+    "added_timestamp": "2026-11-19T00:56:07.277819",
     "reasoning": "Det: Price < BBL(179.81) | ADX: 17.5 | RSI 34.2 (Moderate: Selling Theta.)"
   },
   {
@@ -746,7 +746,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-19T00:21:20.782651",
+    "added_timestamp": "2026-11-19T00:56:27.302422",
     "reasoning": "Det: Price < BBL(94.61) | ADX: 25.7 | RSI 24.0 (Extreme: Buying Delta for sharp snap-back.)"
   }
 ]
