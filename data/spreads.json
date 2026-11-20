@@ -1,230 +1,5 @@
 [
   {
-    "ticker": "CFG",
-    "company": "Citizens Financial Group, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 60.51,
-    "market_cap": 25365491712.0,
-    "market_cap_str": "25.37B",
-    "mcap": 25.365491712,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": false,
-    "health": null,
-    "trailing_pe": 12.224242,
-    "forward_pe": 9.311565,
-    "earnings_growth": 0.287,
-    "debt_to_equity": null,
-    "earnings_date": "2027-01-15",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:44:57.789901",
-    "reasoning": "Det: Price < BBL(61.81) | ADX: 16.2 | RSI 33.9 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "DASH",
-    "company": "DoorDash, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 157.13,
-    "market_cap": 68504961024.0,
-    "market_cap_str": "68.50B",
-    "mcap": 68.504961024,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 30.745,
-    "trailing_pe": 65.19917,
-    "forward_pe": 20.603134,
-    "earnings_growth": 0.91,
-    "debt_to_equity": 30.745,
-    "earnings_date": "2026-10-29",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:45:40.936427",
-    "reasoning": "Det: Price < BBL(157.89) | ADX: 26.2 | RSI 33.5 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "INVH",
-    "company": "Invitation Homes Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 26.09,
-    "market_cap": 15089180672.0,
-    "market_cap_str": "15.09B",
-    "mcap": 15.089180672,
-    "pe_check": false,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 99.406,
-    "trailing_pe": 22.885965,
-    "forward_pe": 37.069664,
-    "earnings_growth": 0.159,
-    "debt_to_equity": 99.406,
-    "earnings_date": "2026-10-28",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:47:12.723264",
-    "reasoning": "Det: Price < BBL(26.15) | ADX: 16.5 | RSI 38.6 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "IQV",
-    "company": "IQVIA Holdings, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 250.55,
-    "market_cap": 41290641408.0,
-    "market_cap_str": "41.29B",
-    "mcap": 41.290641408,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": false,
-    "health": 240.23,
-    "trailing_pe": 30.480536,
-    "forward_pe": 17.639385,
-    "earnings_growth": 0.057,
-    "debt_to_equity": 240.23,
-    "earnings_date": "2026-10-27",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:47:14.559985",
-    "reasoning": "Det: Price < BBL(252.25) | ADX: 18.2 | RSI 35.4 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "META",
-    "company": "Meta Platforms, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 596.22,
-    "market_cap": 1524082016256.0,
-    "market_cap_str": "1.52T",
-    "mcap": 1524.082016256,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 42.161,
-    "trailing_pe": 20.341862,
-    "forward_pe": 16.71247,
-    "earnings_growth": 2.64,
-    "debt_to_equity": 42.161,
-    "earnings_date": "2027-01-27",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:47:57.043132",
-    "reasoning": "Det: Price < BBL(597.05) | ADX: 23.5 | RSI 36.7 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "SW",
-    "company": "Smurfit WestRock plc",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 38.63,
-    "market_cap": 20262477824.0,
-    "market_cap_str": "20.26B",
-    "mcap": 20.262477824,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": true,
-    "health": 77.989,
-    "trailing_pe": 42.922226,
-    "forward_pe": 11.992351,
-    "earnings_growth": -0.098,
-    "debt_to_equity": 77.989,
-    "earnings_date": "2026-10-28",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:50:10.308141",
-    "reasoning": "Det: Price < BBL(39.21) | ADX: 20.4 | RSI 31.4 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "SYF",
-    "company": "Synchrony Financial",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 68.94,
-    "market_cap": 21468252160.0,
-    "market_cap_str": "21.47B",
-    "mcap": 21.46825216,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": false,
-    "health": null,
-    "trailing_pe": 7.1962423,
-    "forward_pe": 6.580744,
-    "earnings_growth": -0.172,
-    "debt_to_equity": null,
-    "earnings_date": "2027-01-26",
-    "weekly_available": false,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:50:19.792549",
-    "reasoning": "Det: Price < BBL(69.20) | ADX: 28.6 | RSI 32.5 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "WDAY",
-    "company": "Workday, Inc.",
-    "strategy": "Put Credit (Bullish)",
-    "type": "bullish",
-    "is_squeeze": false,
-    "price": 173.36,
-    "market_cap": 41779761152.0,
-    "market_cap_str": "41.78B",
-    "mcap": 41.779761152,
-    "pe_check": true,
-    "growth_check": true,
-    "debt_check": true,
-    "health": 58.39,
-    "trailing_pe": 35.307537,
-    "forward_pe": 13.096544,
-    "earnings_growth": 1.772,
-    "debt_to_equity": 58.39,
-    "earnings_date": "2026-11-24",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:51:18.187649",
-    "reasoning": "Det: Price < BBL(176.28) | ADX: 18.4 | RSI 31.6 (Moderate: Selling Theta.)"
-  },
-  {
-    "ticker": "PDD",
-    "company": "PDD Holdings Inc.",
-    "strategy": "Call Credit (Bearish)",
-    "type": "bearish",
-    "is_squeeze": false,
-    "price": 86.0,
-    "market_cap": 122412097536.0,
-    "market_cap_str": "122.41B",
-    "mcap": 122.412097536,
-    "pe_check": true,
-    "growth_check": false,
-    "debt_check": true,
-    "health": 1.082,
-    "trailing_pe": 9.481809,
-    "forward_pe": 6.88398,
-    "earnings_growth": -0.116,
-    "debt_to_equity": 1.082,
-    "earnings_date": "2026-11-19",
-    "weekly_available": true,
-    "monthly_available": true,
-    "is_new": true,
-    "added_timestamp": "2026-11-20T08:51:30.189214",
-    "reasoning": "Det: Price > BBU(84.48) | ADX: 15.1 | RSI 64.0 (Moderate: Selling Theta.)"
-  },
-  {
     "ticker": "UPRO",
     "company": "ProShares UltraPro S&P 500",
     "strategy": "Put Credit (Bullish)",
@@ -246,7 +21,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:43:19.950257",
+    "added_timestamp": "2026-11-20T09:21:43.355604",
     "reasoning": "Det: Price < BBL(120.11) | ADX: 22.5 | RSI 30.8 (Moderate: Selling Theta.)"
   },
   {
@@ -271,7 +46,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:43:20.872064",
+    "added_timestamp": "2026-11-20T09:21:43.408504",
     "reasoning": "Det: Price > BBU(40.67) | ADX: 21.2 | RSI 68.9 (Moderate: Selling Theta.)"
   },
   {
@@ -296,7 +71,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:43:21.804419",
+    "added_timestamp": "2026-11-20T09:21:43.461151",
     "reasoning": "Det: Price < BBL(58.19) | ADX: 15.0 | RSI 30.4 (Moderate: Selling Theta.)"
   },
   {
@@ -321,7 +96,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:43:22.707203",
+    "added_timestamp": "2026-11-20T09:21:43.514024",
     "reasoning": "Det: Price > BBU(27.38) | ADX: 15.4 | RSI 69.8 (Moderate: Selling Theta.)"
   },
   {
@@ -346,7 +121,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:43:28.443221",
+    "added_timestamp": "2026-11-20T09:21:43.895041",
     "reasoning": "Det: Price < BBL(225.89) | ADX: 30.3 | RSI 37.3 (Moderate: Selling Theta.)"
   },
   {
@@ -371,7 +146,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:43:29.273456",
+    "added_timestamp": "2026-11-20T09:21:43.947616",
     "reasoning": "Det: Price < BBL(224.28) | ADX: 11.9 | RSI 32.9 (Moderate: Selling Theta.)"
   },
   {
@@ -396,7 +171,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:43:35.977386",
+    "added_timestamp": "2026-11-20T09:21:45.247828",
     "reasoning": "Det: Price < BBL(84.24) | ADX: 22.3 | RSI 28.0 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -421,8 +196,8 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:44:14.706735",
-    "reasoning": "Det: Price < BBL(48.69) | ADX: 24.9 | RSI 33.6 (Moderate: Selling Theta.)"
+    "added_timestamp": "2026-11-20T09:21:53.095959",
+    "reasoning": "Det: Price < BBL(48.69) | ADX: 24.8 | RSI 33.6 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "BMY",
@@ -446,7 +221,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:44:26.894833",
+    "added_timestamp": "2026-11-20T09:22:09.608129",
     "reasoning": "Det: Price < BBL(59.32) | ADX: 15.0 | RSI 37.5 (Moderate: Selling Theta.)"
   },
   {
@@ -471,7 +246,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:44:35.716542",
+    "added_timestamp": "2026-11-20T09:22:22.591167",
     "reasoning": "Det: Price < BBL(96.32) | ADX: 14.7 | RSI 37.8 (Moderate: Selling Theta.)"
   },
   {
@@ -496,7 +271,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:44:37.762543",
+    "added_timestamp": "2026-11-20T09:22:25.534268",
     "reasoning": "Det: Price < BBL(183.10) | ADX: 27.6 | RSI 28.5 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -521,7 +296,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:44:53.583868",
+    "added_timestamp": "2026-11-20T09:22:43.862157",
     "reasoning": "Det: Price < BBL(282.29) | ADX: 22.5 | RSI 34.6 (Moderate: Selling Theta.)"
   },
   {
@@ -546,8 +321,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:44:57.072467",
+    "added_timestamp": "2026-11-20T09:22:44.043698",
     "reasoning": "Det: Price < BBL(116.47) | ADX: 17.8 | RSI 34.0 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "CFG",
+    "company": "Citizens Financial Group, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 60.51,
+    "market_cap": 25365491712.0,
+    "market_cap_str": "25.37B",
+    "mcap": 25.365491712,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": null,
+    "trailing_pe": 12.224242,
+    "forward_pe": 9.311565,
+    "earnings_growth": 0.287,
+    "debt_to_equity": null,
+    "earnings_date": "2027-01-15",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:22:44.089041",
+    "reasoning": "Det: Price < BBL(61.81) | ADX: 16.2 | RSI 33.9 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "CTSH",
@@ -571,7 +371,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:45:02.076482",
+    "added_timestamp": "2026-11-20T09:22:44.316214",
     "reasoning": "Det: Price < BBL(57.56) | ADX: 18.1 | RSI 33.0 (Moderate: Selling Theta.)"
   },
   {
@@ -596,7 +396,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:45:29.364401",
+    "added_timestamp": "2026-11-20T09:22:47.502268",
     "reasoning": "Det: Price < BBL(161.75) | ADX: 17.6 | RSI 30.2 (Moderate: Selling Theta.)"
   },
   {
@@ -621,8 +421,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:45:32.506515",
+    "added_timestamp": "2026-11-20T09:22:48.279604",
     "reasoning": "Det: Price < BBL(625.07) | ADX: 18.8 | RSI 36.0 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "DASH",
+    "company": "DoorDash, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 157.13,
+    "market_cap": 68504961024.0,
+    "market_cap_str": "68.50B",
+    "mcap": 68.504961024,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 30.745,
+    "trailing_pe": 65.19917,
+    "forward_pe": 20.603134,
+    "earnings_growth": 0.91,
+    "debt_to_equity": 30.745,
+    "earnings_date": "2026-10-29",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:22:48.929193",
+    "reasoning": "Det: Price < BBL(157.89) | ADX: 26.2 | RSI 33.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "EMN",
@@ -646,7 +471,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:45:46.575010",
+    "added_timestamp": "2026-11-20T09:22:49.316959",
     "reasoning": "Det: Price < BBL(61.96) | ADX: 18.2 | RSI 37.0 (Moderate: Selling Theta.)"
   },
   {
@@ -671,7 +496,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:45:51.614338",
+    "added_timestamp": "2026-11-20T09:22:56.590399",
     "reasoning": "Det: Price < BBL(398.35) | ADX: 19.1 | RSI 36.3 (Moderate: Selling Theta.)"
   },
   {
@@ -696,7 +521,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:46:20.556087",
+    "added_timestamp": "2026-11-20T09:23:30.857507",
     "reasoning": "Det: Price < BBL(51.61) | ADX: 19.9 | RSI 37.8 (Moderate: Selling Theta.)"
   },
   {
@@ -721,7 +546,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:46:28.893158",
+    "added_timestamp": "2026-11-20T09:23:43.521120",
     "reasoning": "Det: Price < BBL(51.20) | ADX: 30.3 | RSI 23.8 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -746,7 +571,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:46:40.055922",
+    "added_timestamp": "2026-11-20T09:23:45.353708",
     "reasoning": "Det: Price < BBL(153.82) | ADX: 17.8 | RSI 35.1 (Moderate: Selling Theta.)"
   },
   {
@@ -771,7 +596,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:46:41.671513",
+    "added_timestamp": "2026-11-20T09:23:45.445137",
     "reasoning": "Det: Price < BBL(851.88) | ADX: 14.7 | RSI 37.5 (Moderate: Selling Theta.)"
   },
   {
@@ -796,7 +621,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:46:55.550556",
+    "added_timestamp": "2026-11-20T09:23:47.301149",
     "reasoning": "Det: Price < BBL(383.13) | ADX: 21.3 | RSI 36.7 (Moderate: Selling Theta.)"
   },
   {
@@ -821,7 +646,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:46:56.311636",
+    "added_timestamp": "2026-11-20T09:23:47.349280",
     "reasoning": "Det: Price < BBL(14.99) | ADX: 18.5 | RSI 32.5 (Moderate: Selling Theta.)"
   },
   {
@@ -846,7 +671,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:46:57.852284",
+    "added_timestamp": "2026-11-20T09:23:47.444745",
     "reasoning": "Det: Price < BBL(228.66) | ADX: 19.3 | RSI 33.4 (Moderate: Selling Theta.)"
   },
   {
@@ -871,7 +696,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:47:02.549459",
+    "added_timestamp": "2026-11-20T09:23:47.730467",
     "reasoning": "Det: Price < BBL(138.36) | ADX: 26.3 | RSI 39.5 (Moderate: Selling Theta.)"
   },
   {
@@ -896,7 +721,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:47:06.133975",
+    "added_timestamp": "2026-11-20T09:23:47.922479",
     "reasoning": "Det: Price < BBL(31.37) | ADX: 15.8 | RSI 35.8 (Moderate: Selling Theta.)"
   },
   {
@@ -921,7 +746,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:47:07.045950",
+    "added_timestamp": "2026-11-20T09:23:48.213567",
     "reasoning": "Det: Price < BBL(313.42) | ADX: 24.4 | RSI 38.7 (Moderate: Selling Theta.)"
   },
   {
@@ -946,8 +771,58 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:47:08.914253",
+    "added_timestamp": "2026-11-20T09:23:48.261318",
     "reasoning": "Det: Price < BBL(413.37) | ADX: 14.2 | RSI 37.8 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "INVH",
+    "company": "Invitation Homes Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 26.09,
+    "market_cap": 15089180672.0,
+    "market_cap_str": "15.09B",
+    "mcap": 15.089180672,
+    "pe_check": false,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 99.406,
+    "trailing_pe": 22.885965,
+    "forward_pe": 37.069664,
+    "earnings_growth": 0.159,
+    "debt_to_equity": 99.406,
+    "earnings_date": "2026-10-28",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:23:48.360437",
+    "reasoning": "Det: Price < BBL(26.15) | ADX: 16.5 | RSI 38.6 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "IQV",
+    "company": "IQVIA Holdings, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 250.55,
+    "market_cap": 41290641408.0,
+    "market_cap_str": "41.29B",
+    "mcap": 41.290641408,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": false,
+    "health": 240.23,
+    "trailing_pe": 30.480536,
+    "forward_pe": 17.639385,
+    "earnings_growth": 0.057,
+    "debt_to_equity": 240.23,
+    "earnings_date": "2026-10-27",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:23:48.408198",
+    "reasoning": "Det: Price < BBL(252.25) | ADX: 18.2 | RSI 35.4 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "JPM",
@@ -971,7 +846,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:47:23.633736",
+    "added_timestamp": "2026-11-20T09:23:48.792104",
     "reasoning": "Det: Price < BBL(323.24) | ADX: 17.2 | RSI 35.9 (Moderate: Selling Theta.)"
   },
   {
@@ -996,7 +871,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:47:25.525258",
+    "added_timestamp": "2026-11-20T09:23:50.465319",
     "reasoning": "Det: Price < BBL(20.40) | ADX: 20.1 | RSI 36.4 (Moderate: Selling Theta.)"
   },
   {
@@ -1021,7 +896,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:47:46.427474",
+    "added_timestamp": "2026-11-20T09:24:22.168261",
     "reasoning": "Det: Price < BBL(213.53) | ADX: 16.6 | RSI 34.9 (Moderate: Selling Theta.)"
   },
   {
@@ -1046,8 +921,33 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:47:56.107319",
+    "added_timestamp": "2026-11-20T09:24:37.822853",
     "reasoning": "Det: Price < BBL(136.47) | ADX: 17.8 | RSI 31.9 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "META",
+    "company": "Meta Platforms, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 596.22,
+    "market_cap": 1524082016256.0,
+    "market_cap_str": "1.52T",
+    "mcap": 1524.082016256,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 42.161,
+    "trailing_pe": 20.341862,
+    "forward_pe": 16.71247,
+    "earnings_growth": 2.64,
+    "debt_to_equity": 42.161,
+    "earnings_date": "2027-01-27",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:24:39.099216",
+    "reasoning": "Det: Price < BBL(597.05) | ADX: 23.5 | RSI 36.7 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "MAA",
@@ -1071,7 +971,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:48:02.742923",
+    "added_timestamp": "2026-11-20T09:24:45.209856",
     "reasoning": "Det: Price < BBL(114.23) | ADX: 15.8 | RSI 36.9 (Moderate: Selling Theta.)"
   },
   {
@@ -1096,7 +996,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:48:15.682911",
+    "added_timestamp": "2026-11-20T09:24:45.691629",
     "reasoning": "Det: Price < BBL(176.61) | ADX: 18.5 | RSI 36.7 (Moderate: Selling Theta.)"
   },
   {
@@ -1121,7 +1021,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:48:24.407055",
+    "added_timestamp": "2026-11-20T09:24:46.012286",
     "reasoning": "Det: Price < BBL(58.73) | ADX: 25.6 | RSI 30.7 (Moderate: Selling Theta.)"
   },
   {
@@ -1146,7 +1046,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:48:25.638904",
+    "added_timestamp": "2026-11-20T09:24:46.065835",
     "reasoning": "Det: Price < BBL(100.74) | ADX: 18.0 | RSI 33.6 (Moderate: Selling Theta.)"
   },
   {
@@ -1171,7 +1071,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:48:30.676792",
+    "added_timestamp": "2026-11-20T09:24:46.281050",
     "reasoning": "Det: Price < BBL(35.29) | ADX: 22.7 | RSI 35.7 (Moderate: Selling Theta.)"
   },
   {
@@ -1196,7 +1096,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:48:58.453440",
+    "added_timestamp": "2026-11-20T09:24:48.843907",
     "reasoning": "Det: Price < BBL(240.62) | ADX: 19.7 | RSI 38.1 (Moderate: Selling Theta.)"
   },
   {
@@ -1221,7 +1121,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:49:10.155217",
+    "added_timestamp": "2026-11-20T09:24:49.442972",
     "reasoning": "Det: Price < BBL(27.91) | ADX: 22.6 | RSI 34.9 (Moderate: Selling Theta.)"
   },
   {
@@ -1246,7 +1146,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:49:11.495700",
+    "added_timestamp": "2026-11-20T09:24:49.629154",
     "reasoning": "Det: Price > BBU(13.84) | ADX: 16.9 | RSI 63.3 (Moderate: Selling Theta.)"
   },
   {
@@ -1271,7 +1171,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:49:12.838599",
+    "added_timestamp": "2026-11-20T09:24:49.674458",
     "reasoning": "Det: Price < BBL(187.15) | ADX: 14.5 | RSI 34.8 (Moderate: Selling Theta.)"
   },
   {
@@ -1296,7 +1196,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:49:16.857339",
+    "added_timestamp": "2026-11-20T09:24:49.810523",
     "reasoning": "Det: Price < BBL(220.25) | ADX: 19.3 | RSI 37.3 (Moderate: Selling Theta.)"
   },
   {
@@ -1321,7 +1221,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:49:22.528524",
+    "added_timestamp": "2026-11-20T09:24:52.323043",
     "reasoning": "Det: Price < BBL(107.69) | ADX: 16.4 | RSI 39.0 (Moderate: Selling Theta.)"
   },
   {
@@ -1346,7 +1246,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:49:26.344443",
+    "added_timestamp": "2026-11-20T09:24:55.875779",
     "reasoning": "Det: Price < BBL(123.73) | ADX: 16.6 | RSI 35.8 (Moderate: Selling Theta.)"
   },
   {
@@ -1371,7 +1271,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:49:45.690061",
+    "added_timestamp": "2026-11-20T09:25:13.630983",
     "reasoning": "Det: Price < BBL(27.75) | ADX: 19.0 | RSI 37.9 (Moderate: Selling Theta.)"
   },
   {
@@ -1396,7 +1296,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:49:59.042652",
+    "added_timestamp": "2026-11-20T09:25:26.245314",
     "reasoning": "Det: Price < BBL(186.68) | ADX: 25.4 | RSI 21.6 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -1421,7 +1321,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:50:00.325409",
+    "added_timestamp": "2026-11-20T09:25:27.467989",
     "reasoning": "Det: Price < BBL(172.74) | ADX: 22.7 | RSI 35.7 (Moderate: Selling Theta.)"
   },
   {
@@ -1446,8 +1346,33 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:50:08.786016",
+    "added_timestamp": "2026-11-20T09:25:36.423923",
     "reasoning": "Det: Price < BBL(79.00) | ADX: 17.2 | RSI 39.6 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "SW",
+    "company": "Smurfit WestRock plc",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 38.63,
+    "market_cap": 20262477824.0,
+    "market_cap_str": "20.26B",
+    "mcap": 20.262477824,
+    "pe_check": true,
+    "growth_check": false,
+    "debt_check": true,
+    "health": 77.989,
+    "trailing_pe": 42.922226,
+    "forward_pe": 11.992351,
+    "earnings_growth": -0.098,
+    "debt_to_equity": 77.989,
+    "earnings_date": "2026-10-28",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:25:38.774955",
+    "reasoning": "Det: Price < BBL(39.21) | ADX: 20.4 | RSI 31.4 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "STT",
@@ -1471,8 +1396,33 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:50:15.803802",
+    "added_timestamp": "2026-11-20T09:25:45.821993",
     "reasoning": "Det: Price < BBL(162.89) | ADX: 21.1 | RSI 33.9 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "SYF",
+    "company": "Synchrony Financial",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 68.94,
+    "market_cap": 21468252160.0,
+    "market_cap_str": "21.47B",
+    "mcap": 21.46825216,
+    "pe_check": true,
+    "growth_check": false,
+    "debt_check": false,
+    "health": null,
+    "trailing_pe": 7.1962423,
+    "forward_pe": 6.580744,
+    "earnings_growth": -0.172,
+    "debt_to_equity": null,
+    "earnings_date": "2027-01-26",
+    "weekly_available": false,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:25:46.208411",
+    "reasoning": "Det: Price < BBL(69.20) | ADX: 28.6 | RSI 32.5 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "TFC",
@@ -1496,7 +1446,7 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:50:39.645272",
+    "added_timestamp": "2026-11-20T09:25:47.641933",
     "reasoning": "Det: Price < BBL(47.05) | ADX: 25.5 | RSI 39.5 (Moderate: Selling Theta.)"
   },
   {
@@ -1521,7 +1471,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:50:41.998338",
+    "added_timestamp": "2026-11-20T09:25:47.809079",
     "reasoning": "Det: Price < BBL(58.06) | ADX: 19.1 | RSI 37.7 (Moderate: Selling Theta.)"
   },
   {
@@ -1546,7 +1496,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:50:48.696637",
+    "added_timestamp": "2026-11-20T09:25:48.957438",
     "reasoning": "Det: Price < BBL(356.97) | ADX: 27.2 | RSI 24.2 (Extreme: Buying Delta for sharp snap-back.)"
   },
   {
@@ -1571,8 +1521,58 @@
     "weekly_available": false,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:51:12.215352",
+    "added_timestamp": "2026-11-20T09:26:01.900078",
     "reasoning": "Det: Price < BBL(235.47) | ADX: 20.3 | RSI 35.1 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "WDAY",
+    "company": "Workday, Inc.",
+    "strategy": "Put Credit (Bullish)",
+    "type": "bullish",
+    "is_squeeze": false,
+    "price": 173.36,
+    "market_cap": 41779761152.0,
+    "market_cap_str": "41.78B",
+    "mcap": 41.779761152,
+    "pe_check": true,
+    "growth_check": true,
+    "debt_check": true,
+    "health": 58.39,
+    "trailing_pe": 35.307537,
+    "forward_pe": 13.096544,
+    "earnings_growth": 1.772,
+    "debt_to_equity": 58.39,
+    "earnings_date": "2026-11-24",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:26:05.473918",
+    "reasoning": "Det: Price < BBL(176.28) | ADX: 18.4 | RSI 31.6 (Moderate: Selling Theta.)"
+  },
+  {
+    "ticker": "PDD",
+    "company": "PDD Holdings Inc.",
+    "strategy": "Call Credit (Bearish)",
+    "type": "bearish",
+    "is_squeeze": false,
+    "price": 86.0,
+    "market_cap": 122412097536.0,
+    "market_cap_str": "122.41B",
+    "mcap": 122.412097536,
+    "pe_check": true,
+    "growth_check": false,
+    "debt_check": true,
+    "health": 1.082,
+    "trailing_pe": 9.481809,
+    "forward_pe": 6.88398,
+    "earnings_growth": -0.116,
+    "debt_to_equity": 1.082,
+    "earnings_date": "2026-11-19",
+    "weekly_available": true,
+    "monthly_available": true,
+    "is_new": false,
+    "added_timestamp": "2026-11-20T09:26:20.314018",
+    "reasoning": "Det: Price > BBU(84.48) | ADX: 15.1 | RSI 64.0 (Moderate: Selling Theta.)"
   },
   {
     "ticker": "MSTR",
@@ -1596,7 +1596,7 @@
     "weekly_available": true,
     "monthly_available": true,
     "is_new": false,
-    "added_timestamp": "2026-11-20T08:51:40.430132",
+    "added_timestamp": "2026-11-20T09:26:34.881718",
     "reasoning": "Det: Price < BBL(88.25) | ADX: 27.9 | RSI 22.7 (Extreme: Buying Delta for sharp snap-back.)"
   }
 ]
