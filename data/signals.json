@@ -1,5 +1,5 @@
 {
-  "generated_at_pt": "11-26-2026 21:15",
+  "generated_at_pt": "11-26-2026 21:52",
   "buys": [
     {
       "bb_lower": 93.37,
@@ -40,7 +40,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.782025259644925,
+      "adx": 45.78202525964497,
       "rvol": 1.03,
       "atr": 8.95,
       "put": {
@@ -49,10 +49,10 @@
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 6.075,
+        "premium": 5.95,
         "delta_percent": 13.227921326648667,
-        "premium_percent": 5.857115310451215,
-        "metric_sum": 19.085036637099883
+        "premium_percent": 5.736598534516005,
+        "metric_sum": 18.96451986116467
       }
     },
     {
@@ -94,7 +94,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.642283627829684,
+      "adx": 33.64228362782969,
       "rvol": 0.86,
       "atr": 0.55,
       "put": {
@@ -103,10 +103,10 @@
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 0.025,
-        "delta_percent": 39.24665518703837,
-        "premium_percent": 0.30376672406480815,
-        "metric_sum": 39.55042191110318
+        "premium": 0.1,
+        "delta_percent": 39.24665856622114,
+        "premium_percent": 1.2150668286755772,
+        "metric_sum": 40.46172539489672
       }
     },
     {
@@ -148,19 +148,19 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.660931144075114,
+      "adx": 38.66093114407514,
       "rvol": 1.1,
       "atr": 13.43,
       "put": {
         "strike": 140.0,
-        "expiration": "Jan 15, 2027",
-        "exp_type": "MONTHLY",
+        "expiration": "Dec 31, 2026",
+        "exp_type": "UNKNOWN",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 7.525,
+        "premium": 8.35,
         "delta_percent": 11.532385466034755,
-        "premium_percent": 4.755134281200632,
-        "metric_sum": 16.287519747235386
+        "premium_percent": 5.276461295418641,
+        "metric_sum": 16.808846761453395
       }
     },
     {
@@ -202,7 +202,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.02242015074406,
+      "adx": 31.022420150744015,
       "rvol": 0.9,
       "atr": 17.59,
       "put": {
@@ -211,10 +211,10 @@
         "exp_type": "MONTHLY",
         "weekly_available": false,
         "monthly_available": true,
-        "premium": 9.649999999999999,
-        "delta_percent": 10.474485228290058,
-        "premium_percent": 2.7868426372483897,
-        "metric_sum": 13.261327865538448
+        "premium": 9.85,
+        "delta_percent": 10.474482387857128,
+        "premium_percent": 2.8446011241277653,
+        "metric_sum": 13.319083511984893
       }
     },
     {
@@ -256,7 +256,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.976380112633265,
+      "adx": 35.97638011263324,
       "rvol": 1.42,
       "atr": 9.02,
       "put": {
@@ -265,10 +265,10 @@
         "exp_type": "MONTHLY",
         "weekly_available": true,
         "monthly_available": true,
-        "premium": 7.199999999999999,
-        "delta_percent": 12.456228114057023,
-        "premium_percent": 9.004502251125562,
-        "metric_sum": 21.460730365182584
+        "premium": 7.1,
+        "delta_percent": 12.456227111696876,
+        "premium_percent": 8.879439821527887,
+        "metric_sum": 21.335666933224765
       }
     }
   ],
@@ -313,7 +313,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.516987450350314,
+      "adx": 35.51698745035033,
       "rvol": 1.62,
       "atr": 5.19
     },
@@ -356,7 +356,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.720332480902254,
+      "adx": 28.7203324809023,
       "rvol": 1.32,
       "atr": 4.48
     },
@@ -399,7 +399,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.75970573072832,
+      "adx": 29.759705730728317,
       "rvol": 1.14,
       "atr": 8.01
     },
@@ -442,7 +442,7 @@
       "earnings_date": null,
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.792293372574015,
+      "adx": 26.792293372574044,
       "rvol": 1.26,
       "atr": 2.47
     },
@@ -485,7 +485,7 @@
       "earnings_date": null,
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.42504255089202,
+      "adx": 21.42504255089201,
       "rvol": 1.38,
       "atr": 3.33
     },
@@ -528,7 +528,7 @@
       "earnings_date": null,
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.662959920695943,
+      "adx": 21.662959920695922,
       "rvol": 1.21,
       "atr": 1.43
     },
@@ -571,7 +571,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.013433833907435,
+      "adx": 37.013433833907456,
       "rvol": 1.91,
       "atr": 11.9
     },
@@ -614,7 +614,7 @@
       "earnings_date": null,
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.364717224693702,
+      "adx": 24.364717224693784,
       "rvol": 1.36,
       "atr": 12.24
     },
@@ -657,7 +657,7 @@
       "earnings_date": "2027-01-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.68499111263384,
+      "adx": 29.68499111263385,
       "rvol": 1.19,
       "atr": 4.86
     },
@@ -700,7 +700,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.76750983110144,
+      "adx": 32.7675098311014,
       "rvol": 0.61,
       "atr": 1.9
     },
@@ -743,7 +743,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.892392479156838,
+      "adx": 15.892392479156848,
       "rvol": 0.98,
       "atr": 3.03
     },
@@ -786,7 +786,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.97820608571074,
+      "adx": 24.97820608571078,
       "rvol": 1.08,
       "atr": 7.28
     },
@@ -829,7 +829,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.683085693262676,
+      "adx": 26.683085693262704,
       "rvol": 0.83,
       "atr": 10.0
     },
@@ -872,7 +872,7 @@
       "earnings_date": "2026-12-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.01788579352276,
+      "adx": 13.01788579352279,
       "rvol": 0.95,
       "atr": 8.98
     },
@@ -958,7 +958,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 43.93579401581577,
+      "adx": 43.93579401581524,
       "rvol": 0.49,
       "atr": 0.04
     },
@@ -1001,7 +1001,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 42.04401647605007,
+      "adx": 42.04401647605008,
       "rvol": 0.9,
       "atr": 2.2
     },
@@ -1044,7 +1044,7 @@
       "earnings_date": "2026-11-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.488658765933582,
+      "adx": 21.488658765933643,
       "rvol": 1.13,
       "atr": 5.98
     },
@@ -1087,7 +1087,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.596328510512944,
+      "adx": 21.59632851051296,
       "rvol": 0.76,
       "atr": 6.66
     },
@@ -1130,7 +1130,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.63169180290556,
+      "adx": 16.631691802905554,
       "rvol": 0.75,
       "atr": 6.71
     },
@@ -1173,7 +1173,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.74898922503758,
+      "adx": 18.74898922503756,
       "rvol": 0.51,
       "atr": 5.16
     },
@@ -1216,7 +1216,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.484086704725076,
+      "adx": 27.484086704725094,
       "rvol": 1.1,
       "atr": 4.0
     },
@@ -1302,7 +1302,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.785362288320698,
+      "adx": 23.78536228832071,
       "rvol": 0.63,
       "atr": 6.11
     },
@@ -1345,7 +1345,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.94974220868006,
+      "adx": 38.949742208679915,
       "rvol": 0.81,
       "atr": 4.65
     },
@@ -1388,7 +1388,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.647345573171094,
+      "adx": 38.64734557317107,
       "rvol": 0.69,
       "atr": 1.3
     },
@@ -1431,7 +1431,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.90720915422075,
+      "adx": 33.907209154220816,
       "rvol": 0.91,
       "atr": 6.28
     },
@@ -1474,7 +1474,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.47845613220543,
+      "adx": 22.478456132205427,
       "rvol": 0.91,
       "atr": 11.85
     },
@@ -1517,7 +1517,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.935018769994535,
+      "adx": 24.935018769994514,
       "rvol": 0.93,
       "atr": 11.48
     },
@@ -1603,7 +1603,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.211208756844654,
+      "adx": 10.211208756844657,
       "rvol": 1.13,
       "atr": 10.45
     },
@@ -1646,7 +1646,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.091581916868837,
+      "adx": 19.09158191686883,
       "rvol": 1.0,
       "atr": 1.3
     },
@@ -1689,7 +1689,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 43.640280891921044,
+      "adx": 43.64028089192108,
       "rvol": 1.66,
       "atr": 1.89
     },
@@ -1732,7 +1732,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.10908574487356,
+      "adx": 17.109085744873664,
       "rvol": 0.71,
       "atr": 2.42
     },
@@ -1775,7 +1775,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.51375723299253,
+      "adx": 17.51375723299255,
       "rvol": 0.77,
       "atr": 7.64
     },
@@ -1818,7 +1818,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.514333307917424,
+      "adx": 14.514333307917429,
       "rvol": 0.84,
       "atr": 1.67
     },
@@ -1861,7 +1861,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.735855660424317,
+      "adx": 17.73585566042437,
       "rvol": 0.75,
       "atr": 5.1
     },
@@ -1904,7 +1904,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.61353072530203,
+      "adx": 36.61353072530206,
       "rvol": 1.15,
       "atr": 3.49
     },
@@ -1990,7 +1990,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.900174188243245,
+      "adx": 18.90017418824336,
       "rvol": 1.1,
       "atr": 7.65
     },
@@ -2033,7 +2033,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.462117174515395,
+      "adx": 28.46211717451531,
       "rvol": 1.16,
       "atr": 12.76
     },
@@ -2076,7 +2076,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.375294474694718,
+      "adx": 14.375294474694723,
       "rvol": 1.0,
       "atr": 4.53
     },
@@ -2119,7 +2119,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.37365769519687,
+      "adx": 19.37365769519685,
       "rvol": 1.48,
       "atr": 25.51
     },
@@ -2162,7 +2162,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.03716784850485,
+      "adx": 36.037167848504865,
       "rvol": 1.04,
       "atr": 8.22
     },
@@ -2205,7 +2205,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.91637142599356,
+      "adx": 21.916371425993468,
       "rvol": 0.67,
       "atr": 1.76
     },
@@ -2248,7 +2248,7 @@
       "earnings_date": "2027-02-08",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.90440537016572,
+      "adx": 17.904405370165748,
       "rvol": 1.11,
       "atr": 4.83
     },
@@ -2291,7 +2291,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.898249086621133,
+      "adx": 13.898249086621183,
       "rvol": 1.05,
       "atr": 8.56
     },
@@ -2377,7 +2377,7 @@
       "earnings_date": "2027-02-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.75851799739745,
+      "adx": 35.75851799739752,
       "rvol": 1.25,
       "atr": 1.61
     },
@@ -2420,7 +2420,7 @@
       "earnings_date": "2027-02-08",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.67907754926308,
+      "adx": 28.679077549262985,
       "rvol": 0.94,
       "atr": 2.27
     },
@@ -2506,7 +2506,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.563240401633056,
+      "adx": 17.56324040163306,
       "rvol": 0.86,
       "atr": 13.27
     },
@@ -2549,7 +2549,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.5421094049797,
+      "adx": 31.54210940497972,
       "rvol": 1.3,
       "atr": 7.92
     },
@@ -2635,7 +2635,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.180037908240248,
+      "adx": 17.180037908240315,
       "rvol": 0.91,
       "atr": 0.56
     },
@@ -2678,7 +2678,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.85145376259508,
+      "adx": 28.85145376259507,
       "rvol": 1.49,
       "atr": 3.25
     },
@@ -2721,7 +2721,7 @@
       "earnings_date": "2027-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.4248656713439,
+      "adx": 24.424865671343962,
       "rvol": 1.53,
       "atr": 10.09
     },
@@ -2764,7 +2764,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.295809690502782,
+      "adx": 23.29580969050278,
       "rvol": 0.97,
       "atr": 6.87
     },
@@ -2807,7 +2807,7 @@
       "earnings_date": "2026-12-08",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 34.84814062510268,
+      "adx": 34.84814062510269,
       "rvol": 1.28,
       "atr": 80.04
     },
@@ -2850,7 +2850,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.573545788141516,
+      "adx": 33.5735457881415,
       "rvol": 0.69,
       "atr": 4.74
     },
@@ -2893,7 +2893,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.80641151059176,
+      "adx": 35.806411510591836,
       "rvol": 1.08,
       "atr": 23.85
     },
@@ -2936,7 +2936,7 @@
       "earnings_date": "2027-01-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.964680368461906,
+      "adx": 35.96468036846189,
       "rvol": 0.72,
       "atr": 1.93
     },
@@ -2979,7 +2979,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.0643712322084,
+      "adx": 16.064371232208416,
       "rvol": 0.87,
       "atr": 1.79
     },
@@ -3004,7 +3004,7 @@
       "dma50_str": "52.1",
       "dma200_str": "54.3",
       "trend_dir": "bearish",
-      "trend_rationale": "Strong Bearish Trend (ADX: 28.0)",
+      "trend_rationale": "Strong Bearish Trend (ADX: 27.9)",
       "pe": 11.584725,
       "pe_str": "11.6",
       "market_cap": 334936145920.0,
@@ -3022,7 +3022,7 @@
       "earnings_date": "2027-01-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.960338690174662,
+      "adx": 27.875666999559257,
       "rvol": 1.04,
       "atr": 1.26
     },
@@ -3065,7 +3065,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.029372455834963,
+      "adx": 14.029372455834999,
       "rvol": 1.45,
       "atr": 0.99
     },
@@ -3108,7 +3108,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 47.395375067285556,
+      "adx": 47.39537506728566,
       "rvol": 0.59,
       "atr": 4.75
     },
@@ -3194,7 +3194,7 @@
       "earnings_date": "2027-03-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.681377405461994,
+      "adx": 18.68137740546185,
       "rvol": 0.94,
       "atr": 3.95
     },
@@ -3237,7 +3237,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.614299925604758,
+      "adx": 31.614299925604858,
       "rvol": 2.04,
       "atr": 0.14
     },
@@ -3280,7 +3280,7 @@
       "earnings_date": "2027-02-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.382325731580895,
+      "adx": 24.38232573158078,
       "rvol": 1.12,
       "atr": 8.14
     },
@@ -3323,7 +3323,7 @@
       "earnings_date": "2027-01-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.753838626537654,
+      "adx": 21.753838626537632,
       "rvol": 0.96,
       "atr": 34.78
     },
@@ -3366,7 +3366,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.051435423677134,
+      "adx": 20.051435423677084,
       "rvol": 1.01,
       "atr": 4.4
     },
@@ -3409,7 +3409,7 @@
       "earnings_date": "2026-11-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.992581137805182,
+      "adx": 20.9925811378052,
       "rvol": 0.65,
       "atr": 3.79
     },
@@ -3452,7 +3452,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.08281608769302,
+      "adx": 37.082816087693,
       "rvol": 0.76,
       "atr": 5.6
     },
@@ -3538,7 +3538,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.766366723624694,
+      "adx": 12.766366723624717,
       "rvol": 0.8,
       "atr": 1.66
     },
@@ -3581,7 +3581,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.43447813162398,
+      "adx": 13.434478131623985,
       "rvol": 0.78,
       "atr": 1.78
     },
@@ -3624,7 +3624,7 @@
       "earnings_date": "2026-12-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.269548906472096,
+      "adx": 19.26954890647207,
       "rvol": 1.06,
       "atr": 19.97
     },
@@ -3667,7 +3667,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.88366071540318,
+      "adx": 24.883660715403085,
       "rvol": 0.68,
       "atr": 4.75
     },
@@ -3710,7 +3710,7 @@
       "earnings_date": "2027-01-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.712879338854894,
+      "adx": 27.712879338854886,
       "rvol": 1.38,
       "atr": 2.29
     },
@@ -3753,7 +3753,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.24913035342646,
+      "adx": 24.24913035342652,
       "rvol": 0.95,
       "atr": 0.94
     },
@@ -3796,7 +3796,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.371217565629383,
+      "adx": 15.371217565629399,
       "rvol": 0.84,
       "atr": 3.33
     },
@@ -3839,7 +3839,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.41619592156965,
+      "adx": 35.41619592156966,
       "rvol": 1.16,
       "atr": 3.57
     },
@@ -3882,7 +3882,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.737050966844222,
+      "adx": 13.737050966844208,
       "rvol": 0.98,
       "atr": 1.77
     },
@@ -3968,7 +3968,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.807479336926665,
+      "adx": 18.807479336926683,
       "rvol": 1.02,
       "atr": 15.59
     },
@@ -4011,7 +4011,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.738148651013011,
+      "adx": 15.738148651013008,
       "rvol": 0.91,
       "atr": 0.21
     },
@@ -4054,7 +4054,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.726970504826737,
+      "adx": 13.726970504826665,
       "rvol": 1.08,
       "atr": 2.16
     },
@@ -4097,7 +4097,7 @@
       "earnings_date": "2026-12-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.40973850516368,
+      "adx": 32.40973850516365,
       "rvol": 1.22,
       "atr": 0.9
     },
@@ -4117,7 +4117,7 @@
       "price_str": "182.52",
       "rsi": 33.9,
       "rsi_str": "33.9",
-      "dma50": 196.8131216430664,
+      "dma50": 196.81312164306638,
       "dma200": 196.91063491821288,
       "dma50_str": "196.8",
       "dma200_str": "196.9",
@@ -4140,7 +4140,7 @@
       "earnings_date": "2027-01-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.00453173546501,
+      "adx": 35.00453173546498,
       "rvol": 0.87,
       "atr": 5.85
     },
@@ -4183,7 +4183,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 36.445085376346256,
+      "adx": 36.44508537634637,
       "rvol": 0.77,
       "atr": 6.48
     },
@@ -4226,7 +4226,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.763375782616011,
+      "adx": 12.763375782616004,
       "rvol": 0.75,
       "atr": 2.35
     },
@@ -4269,7 +4269,7 @@
       "earnings_date": "2026-12-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.274816050218305,
+      "adx": 24.27481605021831,
       "rvol": 0.82,
       "atr": 1.19
     },
@@ -4312,7 +4312,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.34811005648302,
+      "adx": 17.34811005648304,
       "rvol": 0.82,
       "atr": 1.94
     },
@@ -4355,7 +4355,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 41.292728991787506,
+      "adx": 41.29272899178751,
       "rvol": 0.88,
       "atr": 29.81
     },
@@ -4398,7 +4398,7 @@
       "earnings_date": "2027-02-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.44150701282654,
+      "adx": 35.44150701282648,
       "rvol": 0.99,
       "atr": 12.07
     },
@@ -4441,7 +4441,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.84578424967074,
+      "adx": 12.845784249670738,
       "rvol": 1.51,
       "atr": 4.53
     },
@@ -4484,7 +4484,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.098447343220098,
+      "adx": 21.098447343220073,
       "rvol": 0.94,
       "atr": 8.42
     },
@@ -4527,7 +4527,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.563783759502883,
+      "adx": 29.563783759502886,
       "rvol": 1.02,
       "atr": 9.09
     },
@@ -4570,7 +4570,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.187262675309125,
+      "adx": 16.18726267530912,
       "rvol": 0.7,
       "atr": 3.39
     },
@@ -4656,7 +4656,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.536862627265451,
+      "adx": 13.536862627265487,
       "rvol": 0.75,
       "atr": 4.32
     },
@@ -4699,7 +4699,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.41469921779464,
+      "adx": 18.414699217794645,
       "rvol": 0.59,
       "atr": 15.82
     },
@@ -4742,7 +4742,7 @@
       "earnings_date": "2027-01-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.914161106757554,
+      "adx": 22.91416110675764,
       "rvol": 1.12,
       "atr": 2.22
     },
@@ -4785,7 +4785,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.714622641415968,
+      "adx": 28.71462264141599,
       "rvol": 1.2,
       "atr": 7.23
     },
@@ -4828,7 +4828,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.11861065797685,
+      "adx": 24.118610657976838,
       "rvol": 0.85,
       "atr": 4.75
     },
@@ -4871,7 +4871,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.922571256887444,
+      "adx": 34.922571256887466,
       "rvol": 0.77,
       "atr": 1.2
     },
@@ -4914,7 +4914,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.621019176165014,
+      "adx": 33.62101917616502,
       "rvol": 1.23,
       "atr": 6.8
     },
@@ -4957,7 +4957,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 38.240568692259686,
+      "adx": 38.24056869225983,
       "rvol": 1.03,
       "atr": 2.4
     },
@@ -5000,7 +5000,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.496386403458036,
+      "adx": 22.496386403458015,
       "rvol": 2.12,
       "atr": 8.5
     },
@@ -5043,7 +5043,7 @@
       "earnings_date": "2027-02-08",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 51.527075024180284,
+      "adx": 51.52707502418027,
       "rvol": 0.68,
       "atr": 3.52
     },
@@ -5086,7 +5086,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.309227261106503,
+      "adx": 25.309227261106482,
       "rvol": 1.0,
       "atr": 5.0
     },
@@ -5129,7 +5129,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.93783128294417,
+      "adx": 24.937831282944284,
       "rvol": 0.79,
       "atr": 4.05
     },
@@ -5172,7 +5172,7 @@
       "earnings_date": "2027-01-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.52819647028952,
+      "adx": 24.528196470289547,
       "rvol": 1.12,
       "atr": 3.62
     },
@@ -5215,7 +5215,7 @@
       "earnings_date": "2027-01-15",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.21853886141343,
+      "adx": 21.21853886141344,
       "rvol": 0.85,
       "atr": 1.72
     },
@@ -5258,7 +5258,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 39.28261601848391,
+      "adx": 39.28261601848381,
       "rvol": 0.61,
       "atr": 3.53
     },
@@ -5278,7 +5278,7 @@
       "price_str": "311.74",
       "rsi": 59.0,
       "rsi_str": "59.0",
-      "dma50": 291.3803991699219,
+      "dma50": 291.3803991699218,
       "dma200": 279.85622665405276,
       "dma50_str": "291.4",
       "dma200_str": "279.9",
@@ -5301,7 +5301,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.704524925173512,
+      "adx": 26.704524925173505,
       "rvol": 0.7,
       "atr": 6.66
     },
@@ -5344,7 +5344,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.10257704139815,
+      "adx": 31.102577041398145,
       "rvol": 0.74,
       "atr": 1.26
     },
@@ -5430,7 +5430,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.505238350246,
+      "adx": 16.505238350245975,
       "rvol": 0.93,
       "atr": 2.61
     },
@@ -5473,7 +5473,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.782025259644925,
+      "adx": 45.78202525964497,
       "rvol": 1.03,
       "atr": 8.95
     },
@@ -5516,7 +5516,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.66140248275212,
+      "adx": 30.6614024827521,
       "rvol": 0.88,
       "atr": 2.2
     },
@@ -5559,7 +5559,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.33157404975895,
+      "adx": 32.331574049758906,
       "rvol": 0.83,
       "atr": 0.7
     },
@@ -5602,7 +5602,7 @@
       "earnings_date": "2026-12-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.889068817113285,
+      "adx": 15.88906881711325,
       "rvol": 1.23,
       "atr": 0.54
     },
@@ -5645,7 +5645,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.9752989250134,
+      "adx": 20.975298925013362,
       "rvol": 0.77,
       "atr": 3.84
     },
@@ -5688,7 +5688,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 40.26004560601416,
+      "adx": 40.260045606014046,
       "rvol": 0.86,
       "atr": 2.3
     },
@@ -5731,7 +5731,7 @@
       "earnings_date": "2027-01-07",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.266452031705704,
+      "adx": 29.26645203170571,
       "rvol": 0.85,
       "atr": 3.96
     },
@@ -5774,7 +5774,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.270070463570514,
+      "adx": 15.270070463570493,
       "rvol": 1.15,
       "atr": 13.51
     },
@@ -5817,7 +5817,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.889427494941355,
+      "adx": 19.889427494941412,
       "rvol": 0.91,
       "atr": 1.78
     },
@@ -5860,7 +5860,7 @@
       "earnings_date": "2026-12-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.74617862706072,
+      "adx": 33.74617862706076,
       "rvol": 1.04,
       "atr": 1.01
     },
@@ -5903,7 +5903,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.864909749912872,
+      "adx": 31.86490974991286,
       "rvol": 0.87,
       "atr": 9.04
     },
@@ -5946,7 +5946,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.2677432824887,
+      "adx": 21.26774328248871,
       "rvol": 0.89,
       "atr": 13.45
     },
@@ -5989,7 +5989,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.642283627829684,
+      "adx": 33.64228362782969,
       "rvol": 0.86,
       "atr": 0.55
     },
@@ -6032,7 +6032,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.442364313281589,
+      "adx": 15.44236431328159,
       "rvol": 1.35,
       "atr": 1.51
     },
@@ -6118,7 +6118,7 @@
       "earnings_date": "2026-11-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.75023127298988,
+      "adx": 19.750231272989858,
       "rvol": 1.24,
       "atr": 15.19
     },
@@ -6161,7 +6161,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.968233351929346,
+      "adx": 22.968233351929364,
       "rvol": 0.65,
       "atr": 2.8
     },
@@ -6204,7 +6204,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.861538097751673,
+      "adx": 19.86153809775166,
       "rvol": 1.04,
       "atr": 1.24
     },
@@ -6247,7 +6247,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 51.13819033523658,
+      "adx": 51.13819033523653,
       "rvol": 1.03,
       "atr": 17.14
     },
@@ -6376,7 +6376,7 @@
       "earnings_date": "2026-12-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.4765657633832,
+      "adx": 32.47656576338305,
       "rvol": 1.18,
       "atr": 6.54
     },
@@ -6419,7 +6419,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 38.660931144075114,
+      "adx": 38.66093114407514,
       "rvol": 1.1,
       "atr": 13.43
     },
@@ -6462,7 +6462,7 @@
       "earnings_date": "2027-02-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.593164014512052,
+      "adx": 22.593164014512087,
       "rvol": 0.67,
       "atr": 7.11
     },
@@ -6505,7 +6505,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.462467930476247,
+      "adx": 18.462467930476254,
       "rvol": 0.89,
       "atr": 3.48
     },
@@ -6548,7 +6548,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.18631315816985,
+      "adx": 21.186313158169856,
       "rvol": 1.69,
       "atr": 24.02
     },
@@ -6591,7 +6591,7 @@
       "earnings_date": "2027-02-25",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.57739094820602,
+      "adx": 32.57739094820603,
       "rvol": 2.58,
       "atr": 38.04
     },
@@ -6634,7 +6634,7 @@
       "earnings_date": "2027-01-13",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.779317453643728,
+      "adx": 19.779317453643745,
       "rvol": 0.86,
       "atr": 3.23
     },
@@ -6677,7 +6677,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.618832333708884,
+      "adx": 29.618832333708877,
       "rvol": 0.79,
       "atr": 1.62
     },
@@ -6720,7 +6720,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.822779546895053,
+      "adx": 11.822779546895038,
       "rvol": 0.71,
       "atr": 2.99
     },
@@ -6763,7 +6763,7 @@
       "earnings_date": "2027-02-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.537310712622027,
+      "adx": 30.53731071262197,
       "rvol": 0.87,
       "atr": 5.73
     },
@@ -6806,7 +6806,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.54653322065197,
+      "adx": 16.546533220652012,
       "rvol": 0.88,
       "atr": 6.42
     },
@@ -6849,7 +6849,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.976558329133393,
+      "adx": 29.97655832913338,
       "rvol": 1.63,
       "atr": 4.5
     },
@@ -6892,7 +6892,7 @@
       "earnings_date": "2027-03-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.10341049380026,
+      "adx": 40.10341049380029,
       "rvol": 1.32,
       "atr": 5.96
     },
@@ -6935,7 +6935,7 @@
       "earnings_date": "2027-02-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.366364213667087,
+      "adx": 27.3663642136671,
       "rvol": 0.74,
       "atr": 1.24
     },
@@ -6978,7 +6978,7 @@
       "earnings_date": "2027-02-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.152337400912796,
+      "adx": 28.152337400912785,
       "rvol": 0.9,
       "atr": 9.52
     },
@@ -7021,7 +7021,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.992504074519605,
+      "adx": 28.992504073388357,
       "rvol": 0.96,
       "atr": 9.03
     },
@@ -7064,7 +7064,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.596958575980953,
+      "adx": 19.596958575980974,
       "rvol": 0.65,
       "atr": 5.69
     },
@@ -7107,7 +7107,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.17296173279716,
+      "adx": 24.17296173279717,
       "rvol": 0.96,
       "atr": 1.09
     },
@@ -7150,7 +7150,7 @@
       "earnings_date": "2027-01-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.729778158492987,
+      "adx": 15.729778158492966,
       "rvol": 0.95,
       "atr": 5.27
     },
@@ -7193,7 +7193,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.95643513182905,
+      "adx": 21.956435131829103,
       "rvol": 0.82,
       "atr": 2.42
     },
@@ -7236,7 +7236,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 43.4184282299753,
+      "adx": 43.418428229975405,
       "rvol": 0.78,
       "atr": 2.21
     },
@@ -7279,7 +7279,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.36230025350934,
+      "adx": 26.36230025350933,
       "rvol": 0.97,
       "atr": 4.4
     },
@@ -7322,7 +7322,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.12244636152863,
+      "adx": 22.122446361528613,
       "rvol": 0.89,
       "atr": 1.84
     },
@@ -7365,7 +7365,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.247302701384324,
+      "adx": 29.247302701384303,
       "rvol": 1.01,
       "atr": 18.77
     },
@@ -7408,7 +7408,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.51997188960419,
+      "adx": 26.519971889604147,
       "rvol": 1.03,
       "atr": 3.95
     },
@@ -7451,7 +7451,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 34.10022240766637,
+      "adx": 34.100222407666394,
       "rvol": 1.05,
       "atr": 7.18
     },
@@ -7494,7 +7494,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.55755365299375,
+      "adx": 32.55755365299379,
       "rvol": 0.98,
       "atr": 1.49
     },
@@ -7537,7 +7537,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 34.29083315303088,
+      "adx": 34.290833153030796,
       "rvol": 0.61,
       "atr": 2.87
     },
@@ -7557,7 +7557,7 @@
       "price_str": "389.70",
       "rsi": 39.5,
       "rsi_str": "39.5",
-      "dma50": 414.0018011474609,
+      "dma50": 414.00180114746104,
       "dma200": 376.2955590820313,
       "dma50_str": "414.0",
       "dma200_str": "376.3",
@@ -7580,7 +7580,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.208913611554813,
+      "adx": 23.208913611554802,
       "rvol": 0.84,
       "atr": 15.61
     },
@@ -7623,7 +7623,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.513703408370885,
+      "adx": 13.513703408370876,
       "rvol": 1.0,
       "atr": 5.8
     },
@@ -7666,7 +7666,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.78659073881347,
+      "adx": 33.786590738813494,
       "rvol": 0.79,
       "atr": 2.01
     },
@@ -7709,7 +7709,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.424653648309743,
+      "adx": 22.424653648309775,
       "rvol": 1.15,
       "atr": 2.22
     },
@@ -7752,7 +7752,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.054769939744236,
+      "adx": 20.05476993974421,
       "rvol": 1.21,
       "atr": 4.22
     },
@@ -7795,7 +7795,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 40.87654641098627,
+      "adx": 40.876546410986236,
       "rvol": 0.63,
       "atr": 7.0
     },
@@ -7838,7 +7838,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.183096193960957,
+      "adx": 20.183096193960946,
       "rvol": 1.19,
       "atr": 1.68
     },
@@ -7881,7 +7881,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.088167872486746,
+      "adx": 28.08816787248664,
       "rvol": 1.04,
       "atr": 6.0
     },
@@ -7924,7 +7924,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.51912164726276,
+      "adx": 16.51912164726277,
       "rvol": 0.69,
       "atr": 36.29
     },
@@ -7967,7 +7967,7 @@
       "earnings_date": "2027-02-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.677645454680984,
+      "adx": 36.677645454681,
       "rvol": 0.62,
       "atr": 8.31
     },
@@ -8010,7 +8010,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.180287294346128,
+      "adx": 12.180287294346098,
       "rvol": 0.66,
       "atr": 5.61
     },
@@ -8053,7 +8053,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.00931851008689,
+      "adx": 25.00931851008696,
       "rvol": 0.95,
       "atr": 4.41
     },
@@ -8182,7 +8182,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.472395491864486,
+      "adx": 24.472395491864482,
       "rvol": 0.77,
       "atr": 1.35
     },
@@ -8225,7 +8225,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 25.657514429199612,
+      "adx": 25.657514429199768,
       "rvol": 0.9,
       "atr": 0.81
     },
@@ -8268,7 +8268,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.853471543679397,
+      "adx": 28.853471543679454,
       "rvol": 1.5,
       "atr": 2.6
     },
@@ -8311,7 +8311,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.059139318310258,
+      "adx": 21.059139318310233,
       "rvol": 0.55,
       "atr": 12.99
     },
@@ -8336,7 +8336,7 @@
       "dma50_str": "193.4",
       "dma200_str": "169.5",
       "trend_dir": "bearish",
-      "trend_rationale": "Weak/Sideways Bearish Trend (ADX: 13.4)",
+      "trend_rationale": "Weak/Sideways Bearish Trend (ADX: 13.3)",
       "pe": 25.182974,
       "pe_str": "25.2",
       "market_cap": 25588445184.0,
@@ -8354,7 +8354,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.423407882195217,
+      "adx": 13.340689963791437,
       "rvol": 0.6,
       "atr": 5.64
     },
@@ -8440,7 +8440,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.579445333706992,
+      "adx": 30.579445333706925,
       "rvol": 1.39,
       "atr": 3.93
     },
@@ -8483,7 +8483,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 41.87258705150957,
+      "adx": 41.87258705150958,
       "rvol": 0.45,
       "atr": 15.21
     },
@@ -8526,7 +8526,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.132984039348337,
+      "adx": 20.132984039348376,
       "rvol": 0.57,
       "atr": 11.07
     },
@@ -8569,7 +8569,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.410318812468716,
+      "adx": 17.410318812468734,
       "rvol": 0.84,
       "atr": 37.37
     },
@@ -8612,7 +8612,7 @@
       "earnings_date": "2027-01-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.500886835445808,
+      "adx": 18.500886835445794,
       "rvol": 0.98,
       "atr": 1.39
     },
@@ -8655,7 +8655,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.28580684902546,
+      "adx": 31.285806849025445,
       "rvol": 1.14,
       "atr": 1.88
     },
@@ -8698,7 +8698,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.203293229439577,
+      "adx": 28.20329322943954,
       "rvol": 0.55,
       "atr": 8.41
     },
@@ -8741,7 +8741,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.428042985591624,
+      "adx": 26.428042985591617,
       "rvol": 0.68,
       "atr": 1.44
     },
@@ -8784,7 +8784,7 @@
       "earnings_date": "2027-01-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.07435058284771,
+      "adx": 23.074350582847718,
       "rvol": 1.07,
       "atr": 1.34
     },
@@ -8827,7 +8827,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.004058667913,
+      "adx": 26.004058667913007,
       "rvol": 0.78,
       "atr": 10.18
     },
@@ -8870,7 +8870,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.37835868028853,
+      "adx": 27.378358680288553,
       "rvol": 0.85,
       "atr": 0.76
     },
@@ -8913,7 +8913,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.22957620321989,
+      "adx": 29.229576203219914,
       "rvol": 0.5,
       "atr": 2.21
     },
@@ -8956,7 +8956,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.320835738567244,
+      "adx": 20.32083573856719,
       "rvol": 1.06,
       "atr": 0.37
     },
@@ -8999,7 +8999,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.474374623437136,
+      "adx": 35.47437462343712,
       "rvol": 0.67,
       "atr": 7.52
     },
@@ -9042,7 +9042,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.9342250103799,
+      "adx": 33.93422501037996,
       "rvol": 0.73,
       "atr": 1.68
     },
@@ -9128,7 +9128,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.408114677260428,
+      "adx": 14.408114677260446,
       "rvol": 0.76,
       "atr": 2.06
     },
@@ -9171,7 +9171,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.90521392294435,
+      "adx": 18.90521392294432,
       "rvol": 0.57,
       "atr": 1.19
     },
@@ -9214,7 +9214,7 @@
       "earnings_date": "2027-01-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.04478242757487,
+      "adx": 35.04478242757486,
       "rvol": 1.03,
       "atr": 3.28
     },
@@ -9257,7 +9257,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.751070000593968,
+      "adx": 11.751070000593938,
       "rvol": 0.82,
       "atr": 9.4
     },
@@ -9300,7 +9300,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.25204455527267,
+      "adx": 30.252044555272725,
       "rvol": 0.84,
       "atr": 8.72
     },
@@ -9343,7 +9343,7 @@
       "earnings_date": "2027-01-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.585975850651966,
+      "adx": 18.58597585065195,
       "rvol": 0.94,
       "atr": 10.77
     },
@@ -9429,7 +9429,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.39202981565497,
+      "adx": 29.392029815654972,
       "rvol": 1.22,
       "atr": 55.07
     },
@@ -9472,7 +9472,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 35.532295211297516,
+      "adx": 35.532295211297495,
       "rvol": 1.04,
       "atr": 1.09
     },
@@ -9515,7 +9515,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.017663482895703,
+      "adx": 15.017663482895701,
       "rvol": 0.85,
       "atr": 12.98
     },
@@ -9558,7 +9558,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.740441668449296,
+      "adx": 22.74044166844927,
       "rvol": 0.95,
       "atr": 8.17
     },
@@ -9601,7 +9601,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.0105289332796,
+      "adx": 22.010528933279637,
       "rvol": 0.89,
       "atr": 1.19
     },
@@ -9644,7 +9644,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.069957611348364,
+      "adx": 19.06995761134836,
       "rvol": 0.8,
       "atr": 2.93
     },
@@ -9687,7 +9687,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.222230253726742,
+      "adx": 16.22223025372687,
       "rvol": 1.01,
       "atr": 3.74
     },
@@ -9730,7 +9730,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.580627123014395,
+      "adx": 32.58062712301443,
       "rvol": 0.92,
       "atr": 4.75
     },
@@ -9773,7 +9773,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.96597995648079,
+      "adx": 21.965979956480815,
       "rvol": 0.44,
       "atr": 4.62
     },
@@ -9816,7 +9816,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.33870212037765,
+      "adx": 17.33870212037766,
       "rvol": 0.78,
       "atr": 3.68
     },
@@ -9859,7 +9859,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.304211320708994,
+      "adx": 19.304211320708987,
       "rvol": 0.78,
       "atr": 4.48
     },
@@ -9902,7 +9902,7 @@
       "earnings_date": "2027-01-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.986131325538782,
+      "adx": 21.98613132553877,
       "rvol": 1.36,
       "atr": 31.7
     },
@@ -9945,7 +9945,7 @@
       "earnings_date": "2027-01-20",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.534525238596334,
+      "adx": 26.534525238596338,
       "rvol": 1.06,
       "atr": 1.1
     },
@@ -10031,7 +10031,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 42.145929365107484,
+      "adx": 42.14592936510745,
       "rvol": 1.5,
       "atr": 3.15
     },
@@ -10051,7 +10051,7 @@
       "price_str": "491.01",
       "rsi": 54.6,
       "rsi_str": "54.6",
-      "dma50": 463.1968017578125,
+      "dma50": 463.1968017578126,
       "dma200": 443.6570701599121,
       "dma50_str": "463.2",
       "dma200_str": "443.7",
@@ -10074,7 +10074,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.920394902534817,
+      "adx": 19.920394902534834,
       "rvol": 0.66,
       "atr": 16.02
     },
@@ -10117,7 +10117,7 @@
       "earnings_date": "2027-02-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.322222368313444,
+      "adx": 17.344447949888966,
       "rvol": 0.98,
       "atr": 0.51
     },
@@ -10160,7 +10160,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.941757384074577,
+      "adx": 20.94175738407457,
       "rvol": 1.01,
       "atr": 2.67
     },
@@ -10203,7 +10203,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.300613093088327,
+      "adx": 24.300613093088362,
       "rvol": 1.21,
       "atr": 5.28
     },
@@ -10246,7 +10246,7 @@
       "earnings_date": "2027-03-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.90614606303911,
+      "adx": 29.906146063039124,
       "rvol": 1.45,
       "atr": 4.29
     },
@@ -10289,7 +10289,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.973274769403126,
+      "adx": 30.973274769403154,
       "rvol": 1.01,
       "atr": 8.71
     },
@@ -10309,7 +10309,7 @@
       "price_str": "361.26",
       "rsi": 68.5,
       "rsi_str": "68.5",
-      "dma50": 317.8030029296875,
+      "dma50": 317.80300292968747,
       "dma200": 328.24390563964846,
       "dma50_str": "317.8",
       "dma200_str": "328.2",
@@ -10332,7 +10332,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.88851911119085,
+      "adx": 35.888519111190824,
       "rvol": 1.35,
       "atr": 9.52
     },
@@ -10375,7 +10375,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 10.409581067792777,
+      "adx": 10.40958106779277,
       "rvol": 0.89,
       "atr": 6.87
     },
@@ -10418,7 +10418,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.99404261833701,
+      "adx": 34.99404261833708,
       "rvol": 1.3,
       "atr": 0.61
     },
@@ -10461,7 +10461,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.005844016852624,
+      "adx": 24.005844016852645,
       "rvol": 0.83,
       "atr": 0.62
     },
@@ -10504,7 +10504,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.980084675330993,
+      "adx": 17.98008467533098,
       "rvol": 0.57,
       "atr": 9.39
     },
@@ -10547,7 +10547,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.481037957145372,
+      "adx": 14.481037957145404,
       "rvol": 2.47,
       "atr": 1.44
     },
@@ -10590,7 +10590,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.17480702364114,
+      "adx": 27.17480702364113,
       "rvol": 0.82,
       "atr": 16.83
     },
@@ -10633,7 +10633,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.940008649121,
+      "adx": 20.94000864912091,
       "rvol": 0.87,
       "atr": 21.3
     },
@@ -10676,7 +10676,7 @@
       "earnings_date": "2027-01-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.629580018123523,
+      "adx": 23.629580018123512,
       "rvol": 0.8,
       "atr": 0.41
     },
@@ -10719,7 +10719,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.95224588478938,
+      "adx": 16.95224588478941,
       "rvol": 0.51,
       "atr": 10.73
     },
@@ -10762,7 +10762,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.571019862305253,
+      "adx": 19.57101986230523,
       "rvol": 1.21,
       "atr": 7.6
     },
@@ -10805,7 +10805,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.431346675876856,
+      "adx": 19.431346675876892,
       "rvol": 0.95,
       "atr": 6.67
     },
@@ -10891,7 +10891,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.84428795099159,
+      "adx": 12.844287950991585,
       "rvol": 0.81,
       "atr": 6.78
     },
@@ -10934,7 +10934,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 11.594001274646814,
+      "adx": 11.594001274646848,
       "rvol": 0.82,
       "atr": 3.76
     },
@@ -10977,7 +10977,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.49330545832887,
+      "adx": 20.493305458328855,
       "rvol": 1.24,
       "atr": 3.08
     },
@@ -11020,7 +11020,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.617564506103296,
+      "adx": 22.61756450610334,
       "rvol": 0.95,
       "atr": 6.63
     },
@@ -11106,7 +11106,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.152596880264827,
+      "adx": 24.152596880264817,
       "rvol": 0.9,
       "atr": 4.0
     },
@@ -11149,7 +11149,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.53041923817135,
+      "adx": 26.53041923817138,
       "rvol": 1.05,
       "atr": 2.46
     },
@@ -11192,7 +11192,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.054354370096096,
+      "adx": 22.054354370096085,
       "rvol": 1.03,
       "atr": 1.47
     },
@@ -11235,7 +11235,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.82311417108813,
+      "adx": 26.823114171088122,
       "rvol": 1.11,
       "atr": 14.9
     },
@@ -11278,7 +11278,7 @@
       "earnings_date": "2027-01-21",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.64820139459351,
+      "adx": 15.6482013945935,
       "rvol": 1.12,
       "atr": 15.59
     },
@@ -11321,7 +11321,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.182894470174524,
+      "adx": 21.182894470174507,
       "rvol": 0.77,
       "atr": 1.19
     },
@@ -11364,7 +11364,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.442959361901117,
+      "adx": 15.442959361901133,
       "rvol": 1.17,
       "atr": 0.59
     },
@@ -11450,7 +11450,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.121117969051983,
+      "adx": 19.121117969052012,
       "rvol": 1.35,
       "atr": 4.5
     },
@@ -11493,7 +11493,7 @@
       "earnings_date": "2027-01-15",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.715531892912,
+      "adx": 17.715531892912036,
       "rvol": 0.69,
       "atr": 7.09
     },
@@ -11536,7 +11536,7 @@
       "earnings_date": "2026-12-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.89661626547842,
+      "adx": 32.89661626547843,
       "rvol": 1.06,
       "atr": 15.06
     },
@@ -11579,7 +11579,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.417543622679382,
+      "adx": 28.417543622679403,
       "rvol": 0.87,
       "atr": 5.11
     },
@@ -11622,7 +11622,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.11376982731905,
+      "adx": 22.113769827319036,
       "rvol": 1.98,
       "atr": 5.24
     },
@@ -11665,7 +11665,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.121237682318593,
+      "adx": 19.1212376823186,
       "rvol": 1.09,
       "atr": 6.69
     },
@@ -11708,7 +11708,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.698461510537676,
+      "adx": 24.698461510537673,
       "rvol": 0.8,
       "atr": 5.67
     },
@@ -11751,7 +11751,7 @@
       "earnings_date": "2027-01-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.507520628958805,
+      "adx": 22.507520628958794,
       "rvol": 1.03,
       "atr": 8.02
     },
@@ -11794,7 +11794,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.183045051504422,
+      "adx": 23.183045051504397,
       "rvol": 0.52,
       "atr": 1.11
     },
@@ -11837,7 +11837,7 @@
       "earnings_date": "2027-01-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.843523852711208,
+      "adx": 23.843523852711147,
       "rvol": 1.35,
       "atr": 0.52
     },
@@ -11880,7 +11880,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 33.503839220649084,
+      "adx": 33.50383922064906,
       "rvol": 0.86,
       "atr": 17.57
     },
@@ -11923,7 +11923,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.797465015499114,
+      "adx": 24.80259012373231,
       "rvol": 0.58,
       "atr": 2.83
     },
@@ -11966,7 +11966,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 41.06519350572533,
+      "adx": 41.065193505725276,
       "rvol": 0.81,
       "atr": 0.45
     },
@@ -11986,7 +11986,7 @@
       "price_str": "31.69",
       "rsi": 50.5,
       "rsi_str": "50.5",
-      "dma50": 31.84581298828125,
+      "dma50": 31.845812988281246,
       "dma200": 31.707046585083006,
       "dma50_str": "31.8",
       "dma200_str": "31.7",
@@ -12009,7 +12009,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.850386918660057,
+      "adx": 19.85038691866004,
       "rvol": 0.98,
       "atr": 0.86
     },
@@ -12052,7 +12052,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.684973401054805,
+      "adx": 19.68497340105481,
       "rvol": 0.9,
       "atr": 3.61
     },
@@ -12095,7 +12095,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.80884674385788,
+      "adx": 24.808846743857902,
       "rvol": 0.9,
       "atr": 11.23
     },
@@ -12138,7 +12138,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 31.094138205399194,
+      "adx": 31.094138205399254,
       "rvol": 1.12,
       "atr": 0.74
     },
@@ -12181,7 +12181,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 39.27299051077843,
+      "adx": 39.27299051077846,
       "rvol": 0.93,
       "atr": 1.92
     },
@@ -12224,7 +12224,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.718898279260692,
+      "adx": 21.718898279260664,
       "rvol": 0.41,
       "atr": 7.55
     },
@@ -12267,7 +12267,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.7219854749872,
+      "adx": 36.72198547498725,
       "rvol": 1.21,
       "atr": 8.43
     },
@@ -12310,7 +12310,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.91191550251124,
+      "adx": 33.91191550251127,
       "rvol": 1.46,
       "atr": 18.15
     },
@@ -12353,7 +12353,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.2698827510067,
+      "adx": 30.26988275100669,
       "rvol": 0.73,
       "atr": 1.97
     },
@@ -12396,7 +12396,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.642019242692566,
+      "adx": 20.642019242692616,
       "rvol": 1.23,
       "atr": 1.0
     },
@@ -12482,7 +12482,7 @@
       "earnings_date": "2026-12-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.617904176743927,
+      "adx": 20.617904176743895,
       "rvol": 1.19,
       "atr": 3.51
     },
@@ -12525,7 +12525,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.407059889582424,
+      "adx": 13.407059889582467,
       "rvol": 1.0,
       "atr": 13.73
     },
@@ -12568,7 +12568,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.98250010272546,
+      "adx": 29.982500102725385,
       "rvol": 0.88,
       "atr": 42.62
     },
@@ -12611,7 +12611,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.148655417289895,
+      "adx": 23.14865541728983,
       "rvol": 0.86,
       "atr": 9.92
     },
@@ -12654,7 +12654,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 8.833431707518786,
+      "adx": 8.83343170751878,
       "rvol": 0.64,
       "atr": 5.01
     },
@@ -12697,7 +12697,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.34452448093217,
+      "adx": 17.34452448093221,
       "rvol": 0.59,
       "atr": 0.81
     },
@@ -12740,7 +12740,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 20.0904777251937,
+      "adx": 20.090477725193715,
       "rvol": 1.13,
       "atr": 17.59
     },
@@ -12783,7 +12783,7 @@
       "earnings_date": "2027-02-08",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.269883598860902,
+      "adx": 14.26988359886087,
       "rvol": 1.18,
       "atr": 1.81
     },
@@ -12826,7 +12826,7 @@
       "earnings_date": "2026-11-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.3236506559441,
+      "adx": 40.32365065594407,
       "rvol": 0.83,
       "atr": 6.91
     },
@@ -12869,7 +12869,7 @@
       "earnings_date": "2026-12-08",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.241386754735043,
+      "adx": 23.241386754735064,
       "rvol": 0.78,
       "atr": 4.63
     },
@@ -12912,7 +12912,7 @@
       "earnings_date": "2027-01-29",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.41669661558226,
+      "adx": 24.416696615582286,
       "rvol": 0.75,
       "atr": 2.26
     },
@@ -12955,7 +12955,7 @@
       "earnings_date": "2027-01-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.635176083535733,
+      "adx": 17.635176083535708,
       "rvol": 1.03,
       "atr": 4.91
     },
@@ -12998,7 +12998,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.02242015074406,
+      "adx": 31.022420150744015,
       "rvol": 0.9,
       "atr": 17.59
     },
@@ -13041,7 +13041,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 53.03316560116283,
+      "adx": 53.033165601162956,
       "rvol": 1.3,
       "atr": 0.35
     },
@@ -13084,7 +13084,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.46039167233912,
+      "adx": 33.460391672339185,
       "rvol": 1.0,
       "atr": 9.72
     },
@@ -13127,7 +13127,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.454405168215636,
+      "adx": 17.454405168215647,
       "rvol": 0.74,
       "atr": 17.38
     },
@@ -13170,7 +13170,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 45.780541737851294,
+      "adx": 45.78054173785126,
       "rvol": 1.02,
       "atr": 2.61
     },
@@ -13213,7 +13213,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.99961977906667,
+      "adx": 28.999619779066684,
       "rvol": 1.08,
       "atr": 14.89
     },
@@ -13256,7 +13256,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.908550824303347,
+      "adx": 20.90855082430333,
       "rvol": 0.64,
       "atr": 1.36
     },
@@ -13299,7 +13299,7 @@
       "earnings_date": "2027-01-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.95201023067322,
+      "adx": 16.95201023067326,
       "rvol": 1.71,
       "atr": 1.72
     },
@@ -13342,7 +13342,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 36.54373600528666,
+      "adx": 36.54373600528674,
       "rvol": 1.03,
       "atr": 6.22
     },
@@ -13385,7 +13385,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.43304407708735,
+      "adx": 28.433044077087395,
       "rvol": 0.76,
       "atr": 25.49
     },
@@ -13428,7 +13428,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.553615341850396,
+      "adx": 26.553615341850342,
       "rvol": 1.48,
       "atr": 2.7
     },
@@ -13471,7 +13471,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.731218587640765,
+      "adx": 16.73121858764075,
       "rvol": 1.28,
       "atr": 4.58
     },
@@ -13514,7 +13514,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.0508243030777,
+      "adx": 27.050824303077707,
       "rvol": 1.02,
       "atr": 25.36
     },
@@ -13557,7 +13557,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.875015915691225,
+      "adx": 17.875015915691254,
       "rvol": 1.01,
       "atr": 2.64
     },
@@ -13643,7 +13643,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.22583451238037,
+      "adx": 24.225834512380374,
       "rvol": 0.74,
       "atr": 1.1
     },
@@ -13686,7 +13686,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.04908592607411,
+      "adx": 34.04908592607412,
       "rvol": 0.78,
       "atr": 4.23
     },
@@ -13729,7 +13729,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.884092621483575,
+      "adx": 35.884092621483596,
       "rvol": 1.43,
       "atr": 68.78
     },
@@ -13772,7 +13772,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.834379408376158,
+      "adx": 18.834379408376172,
       "rvol": 0.87,
       "atr": 16.86
     },
@@ -13815,7 +13815,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.642947547305246,
+      "adx": 14.642947547305223,
       "rvol": 1.56,
       "atr": 2.54
     },
@@ -13858,7 +13858,7 @@
       "earnings_date": "2027-02-12",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.430108236863322,
+      "adx": 23.430108236863354,
       "rvol": 0.71,
       "atr": 18.18
     },
@@ -13901,7 +13901,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.766688038181265,
+      "adx": 29.766688038181258,
       "rvol": 0.7,
       "atr": 5.69
     },
@@ -13944,7 +13944,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.373500238248763,
+      "adx": 17.373500238248756,
       "rvol": 0.69,
       "atr": 11.69
     },
@@ -13987,7 +13987,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.987356645551642,
+      "adx": 14.98735664555166,
       "rvol": 0.7,
       "atr": 1.33
     },
@@ -14030,7 +14030,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.989652876684634,
+      "adx": 27.98965287668466,
       "rvol": 1.1,
       "atr": 1.43
     },
@@ -14073,7 +14073,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.156849713313512,
+      "adx": 16.156849713313527,
       "rvol": 0.75,
       "atr": 104.33
     },
@@ -14116,7 +14116,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.468309907850077,
+      "adx": 17.46830990785009,
       "rvol": 0.95,
       "atr": 1.22
     },
@@ -14159,7 +14159,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.110626653441244,
+      "adx": 19.110626653441212,
       "rvol": 0.8,
       "atr": 13.05
     },
@@ -14202,7 +14202,7 @@
       "earnings_date": "2027-01-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.874919024091373,
+      "adx": 24.8749190240914,
       "rvol": 1.43,
       "atr": 6.24
     },
@@ -14245,7 +14245,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.40817355305006,
+      "adx": 25.408173553050013,
       "rvol": 0.59,
       "atr": 1.06
     },
@@ -14288,7 +14288,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 48.62719086634739,
+      "adx": 48.62719086634735,
       "rvol": 0.98,
       "atr": 11.81
     },
@@ -14331,7 +14331,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.4322655563879,
+      "adx": 30.432265556387932,
       "rvol": 0.73,
       "atr": 16.42
     },
@@ -14374,7 +14374,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.102447944359685,
+      "adx": 30.10244794435967,
       "rvol": 0.76,
       "atr": 2.56
     },
@@ -14417,7 +14417,7 @@
       "earnings_date": "2026-12-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.794096262151733,
+      "adx": 31.794096262151744,
       "rvol": 0.95,
       "atr": 10.93
     },
@@ -14460,7 +14460,7 @@
       "earnings_date": "2027-01-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.11861792952055,
+      "adx": 29.118617929520582,
       "rvol": 1.13,
       "atr": 2.02
     },
@@ -14503,7 +14503,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.261625240574755,
+      "adx": 23.261625240574737,
       "rvol": 1.01,
       "atr": 5.15
     },
@@ -14546,7 +14546,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.213435690295235,
+      "adx": 36.21343569029521,
       "rvol": 0.77,
       "atr": 0.78
     },
@@ -14589,7 +14589,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.919706149908354,
+      "adx": 30.919706149908357,
       "rvol": 0.81,
       "atr": 0.89
     },
@@ -14675,7 +14675,7 @@
       "earnings_date": "2026-12-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.516055736581944,
+      "adx": 21.516055736581908,
       "rvol": 1.07,
       "atr": 1.59
     },
@@ -14718,7 +14718,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 40.27562394565564,
+      "adx": 40.27562394565571,
       "rvol": 1.09,
       "atr": 0.83
     },
@@ -14761,7 +14761,7 @@
       "earnings_date": "2026-12-15",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.143266199004488,
+      "adx": 14.14326619900453,
       "rvol": 0.69,
       "atr": 8.85
     },
@@ -14804,7 +14804,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.223257694965167,
+      "adx": 24.223257694965177,
       "rvol": 0.96,
       "atr": 7.98
     },
@@ -14847,7 +14847,7 @@
       "earnings_date": "2027-01-21",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.522299927234855,
+      "adx": 21.522299927234847,
       "rvol": 0.88,
       "atr": 4.74
     },
@@ -14890,7 +14890,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.427563480443137,
+      "adx": 21.427563480443165,
       "rvol": 0.66,
       "atr": 14.89
     },
@@ -14933,7 +14933,7 @@
       "earnings_date": "2026-10-29",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.982306006948026,
+      "adx": 23.98230600694806,
       "rvol": 0.56,
       "atr": 0.82
     },
@@ -14976,7 +14976,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.44719388811451,
+      "adx": 17.44719388811454,
       "rvol": 0.78,
       "atr": 5.29
     },
@@ -15019,7 +15019,7 @@
       "earnings_date": "2027-01-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.871396963631648,
+      "adx": 14.871396963631595,
       "rvol": 0.96,
       "atr": 9.59
     },
@@ -15062,7 +15062,7 @@
       "earnings_date": "2026-11-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 47.86216948318037,
+      "adx": 47.862169483180324,
       "rvol": 1.04,
       "atr": 13.38
     },
@@ -15105,7 +15105,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": false,
       "monthly_available": false,
-      "adx": 16.368796649067807,
+      "adx": 16.368796649067814,
       "rvol": 1.08,
       "atr": 220.46
     },
@@ -15148,7 +15148,7 @@
       "earnings_date": "2027-02-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.147101322468483,
+      "adx": 18.14710132246848,
       "rvol": 0.94,
       "atr": 14.06
     },
@@ -15191,7 +15191,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 37.75067005330802,
+      "adx": 37.750670053308006,
       "rvol": 0.99,
       "atr": 2.13
     },
@@ -15234,7 +15234,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.560585314996494,
+      "adx": 37.56058531499644,
       "rvol": 0.75,
       "atr": 1.68
     },
@@ -15277,7 +15277,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.659938527342685,
+      "adx": 20.659938527342717,
       "rvol": 0.8,
       "atr": 6.29
     },
@@ -15320,7 +15320,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.384344771462505,
+      "adx": 30.384344771462487,
       "rvol": 0.66,
       "atr": 2.55
     },
@@ -15363,7 +15363,7 @@
       "earnings_date": "2027-02-08",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.613446312877567,
+      "adx": 16.613446312877535,
       "rvol": 0.98,
       "atr": 4.64
     },
@@ -15406,7 +15406,7 @@
       "earnings_date": "2027-02-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.849189585522645,
+      "adx": 24.849189585522588,
       "rvol": 0.96,
       "atr": 2.36
     },
@@ -15449,7 +15449,7 @@
       "earnings_date": "2026-12-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.479095735000616,
+      "adx": 17.479095735000612,
       "rvol": 0.95,
       "atr": 8.52
     },
@@ -15492,7 +15492,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.289878535899863,
+      "adx": 28.289878535899845,
       "rvol": 0.61,
       "atr": 1.71
     },
@@ -15535,7 +15535,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.730249493166017,
+      "adx": 26.730249493165896,
       "rvol": 1.04,
       "atr": 3.14
     },
@@ -15578,7 +15578,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.368377834214616,
+      "adx": 19.36837783421462,
       "rvol": 1.03,
       "atr": 6.57
     },
@@ -15621,7 +15621,7 @@
       "earnings_date": "2027-02-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.789106407004805,
+      "adx": 27.789106407004834,
       "rvol": 0.83,
       "atr": 9.7
     },
@@ -15664,7 +15664,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.82608486082649,
+      "adx": 16.82608486082648,
       "rvol": 0.82,
       "atr": 20.32
     },
@@ -15707,7 +15707,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.546996717562614,
+      "adx": 19.546996717562624,
       "rvol": 0.72,
       "atr": 31.28
     },
@@ -15750,7 +15750,7 @@
       "earnings_date": "2026-12-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.85699129765587,
+      "adx": 18.85699129765593,
       "rvol": 0.89,
       "atr": 3.17
     },
@@ -15793,7 +15793,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.69582222705628,
+      "adx": 18.695822227056254,
       "rvol": 0.88,
       "atr": 9.0
     },
@@ -15836,7 +15836,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.310756149672926,
+      "adx": 18.31075614967295,
       "rvol": 0.93,
       "atr": 1.72
     },
@@ -15879,7 +15879,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 44.95328565414148,
+      "adx": 44.95328565414151,
       "rvol": 0.83,
       "atr": 2.09
     },
@@ -15922,7 +15922,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.635918717562486,
+      "adx": 27.635918717562507,
       "rvol": 0.62,
       "atr": 3.35
     },
@@ -15965,7 +15965,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.70624521817725,
+      "adx": 19.706245218177223,
       "rvol": 0.71,
       "atr": 0.67
     },
@@ -16008,7 +16008,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.531969053252123,
+      "adx": 22.531969053252304,
       "rvol": 0.79,
       "atr": 0.37
     },
@@ -16051,7 +16051,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.458332604770664,
+      "adx": 18.45833260477062,
       "rvol": 1.13,
       "atr": 5.1
     },
@@ -16094,7 +16094,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.664188311331113,
+      "adx": 21.664188311331024,
       "rvol": 0.85,
       "atr": 9.22
     },
@@ -16180,7 +16180,7 @@
       "earnings_date": "2027-01-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.63315423031184,
+      "adx": 22.633154230311764,
       "rvol": 0.73,
       "atr": 5.45
     },
@@ -16200,7 +16200,7 @@
       "price_str": "217.52",
       "rsi": 62.9,
       "rsi_str": "62.9",
-      "dma50": 185.92309295654297,
+      "dma50": 185.92309295654294,
       "dma200": 195.44958618164063,
       "dma50_str": "185.9",
       "dma200_str": "195.4",
@@ -16223,7 +16223,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 46.08561640323872,
+      "adx": 46.08561640323869,
       "rvol": 0.8,
       "atr": 7.4
     },
@@ -16266,7 +16266,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.7436180699703,
+      "adx": 33.74361806997025,
       "rvol": 0.84,
       "atr": 3.56
     },
@@ -16309,7 +16309,7 @@
       "earnings_date": "2027-02-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.791948154969589,
+      "adx": 14.791948154969608,
       "rvol": 0.71,
       "atr": 0.57
     },
@@ -16352,7 +16352,7 @@
       "earnings_date": "2027-02-08",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.874308171330114,
+      "adx": 18.874308171330103,
       "rvol": 0.89,
       "atr": 3.05
     },
@@ -16395,7 +16395,7 @@
       "earnings_date": "2027-01-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.771817015012644,
+      "adx": 37.77181701501264,
       "rvol": 0.99,
       "atr": 3.15
     },
@@ -16438,7 +16438,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 16.522763395196648,
+      "adx": 16.52276339519675,
       "rvol": 0.81,
       "atr": 5.28
     },
@@ -16481,7 +16481,7 @@
       "earnings_date": "2027-01-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.552312252661418,
+      "adx": 14.552312252661407,
       "rvol": 0.77,
       "atr": 2.64
     },
@@ -16524,7 +16524,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.967449755584564,
+      "adx": 21.967449755584596,
       "rvol": 0.73,
       "atr": 2.91
     },
@@ -16610,7 +16610,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 52.982679751762454,
+      "adx": 52.98267975176227,
       "rvol": 1.23,
       "atr": 1.49
     },
@@ -16696,7 +16696,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.101233693927018,
+      "adx": 25.101233693927007,
       "rvol": 1.08,
       "atr": 4.42
     },
@@ -16782,7 +16782,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 12.844438342787841,
+      "adx": 12.844438342787809,
       "rvol": 0.9,
       "atr": 9.86
     },
@@ -16825,7 +16825,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.161491508117955,
+      "adx": 16.161491508118125,
       "rvol": 0.85,
       "atr": 5.71
     },
@@ -16868,7 +16868,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.04801500927146,
+      "adx": 18.048015009271463,
       "rvol": 1.03,
       "atr": 13.67
     },
@@ -16954,7 +16954,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.12942491013005,
+      "adx": 14.129424910130092,
       "rvol": 0.87,
       "atr": 5.16
     },
@@ -16997,7 +16997,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.41753910374934,
+      "adx": 21.417539103749444,
       "rvol": 1.36,
       "atr": 0.99
     },
@@ -17083,7 +17083,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.20744789993339,
+      "adx": 40.20744789993336,
       "rvol": 0.77,
       "atr": 30.93
     },
@@ -17103,7 +17103,7 @@
       "price_str": "27.78",
       "rsi": 47.1,
       "rsi_str": "47.1",
-      "dma50": 27.8553999710083,
+      "dma50": 27.855399971008307,
       "dma200": 28.298516635894774,
       "dma50_str": "27.9",
       "dma200_str": "28.3",
@@ -17126,7 +17126,7 @@
       "earnings_date": "2027-01-22",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.239251468498416,
+      "adx": 20.239251468498413,
       "rvol": 1.1,
       "atr": 0.67
     },
@@ -17146,7 +17146,7 @@
       "price_str": "254.16",
       "rsi": 65.7,
       "rsi_str": "65.7",
-      "dma50": 231.9902200317383,
+      "dma50": 231.99022003173823,
       "dma200": 218.74065032958984,
       "dma50_str": "232.0",
       "dma200_str": "218.7",
@@ -17169,7 +17169,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 39.92608815911781,
+      "adx": 39.92608815911773,
       "rvol": 0.78,
       "atr": 4.87
     },
@@ -17212,7 +17212,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.682476026116255,
+      "adx": 22.682476026116245,
       "rvol": 0.81,
       "atr": 7.46
     },
@@ -17255,7 +17255,7 @@
       "earnings_date": "2027-02-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.013583644914128,
+      "adx": 18.01358364491411,
       "rvol": 0.5,
       "atr": 7.25
     },
@@ -17298,7 +17298,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.7182718911281,
+      "adx": 26.718271891128094,
       "rvol": 0.75,
       "atr": 16.15
     },
@@ -17341,7 +17341,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.568530311068546,
+      "adx": 26.56853031106862,
       "rvol": 0.8,
       "atr": 1.04
     },
@@ -17384,7 +17384,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 40.85830298592738,
+      "adx": 40.858302985927345,
       "rvol": 1.02,
       "atr": 12.28
     },
@@ -17427,7 +17427,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 14.076267786700233,
+      "adx": 14.07626778670023,
       "rvol": 0.8,
       "atr": 7.95
     },
@@ -17470,7 +17470,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.830105217642906,
+      "adx": 29.83010521764289,
       "rvol": 0.7,
       "atr": 12.85
     },
@@ -17513,7 +17513,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.869285462446484,
+      "adx": 32.86928546244647,
       "rvol": 1.06,
       "atr": 11.22
     },
@@ -17599,7 +17599,7 @@
       "earnings_date": "2026-11-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.796179869785117,
+      "adx": 19.796179869785124,
       "rvol": 0.81,
       "atr": 5.82
     },
@@ -17642,7 +17642,7 @@
       "earnings_date": "2027-01-22",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.952285971429326,
+      "adx": 24.952285971429337,
       "rvol": 0.86,
       "atr": 1.77
     },
@@ -17685,7 +17685,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 37.26080367080015,
+      "adx": 37.26080367080018,
       "rvol": 0.68,
       "atr": 52.34
     },
@@ -17771,7 +17771,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 45.719364175951505,
+      "adx": 45.719364175951526,
       "rvol": 0.74,
       "atr": 5.78
     },
@@ -17814,7 +17814,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.48916911883527,
+      "adx": 27.489169118835232,
       "rvol": 0.98,
       "atr": 10.28
     },
@@ -17857,7 +17857,7 @@
       "earnings_date": "2027-02-01",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 39.88045095758874,
+      "adx": 39.88045095758871,
       "rvol": 0.93,
       "atr": 4.37
     },
@@ -17900,7 +17900,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.401665795904822,
+      "adx": 17.40166579590485,
       "rvol": 0.68,
       "atr": 4.7
     },
@@ -17943,7 +17943,7 @@
       "earnings_date": "2027-02-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.769256633480893,
+      "adx": 24.769256633480857,
       "rvol": 1.37,
       "atr": 3.99
     },
@@ -17986,7 +17986,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.00621310473965,
+      "adx": 24.006213104739604,
       "rvol": 0.79,
       "atr": 1.7
     },
@@ -18029,7 +18029,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.085292426320017,
+      "adx": 19.08529242631994,
       "rvol": 0.64,
       "atr": 8.32
     },
@@ -18072,7 +18072,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.356819146986897,
+      "adx": 15.356819146986885,
       "rvol": 0.73,
       "atr": 2.76
     },
@@ -18097,7 +18097,7 @@
       "dma50_str": "89.1",
       "dma200_str": "91.4",
       "trend_dir": "bullish",
-      "trend_rationale": "Weak/Sideways Bullish Trend (ADX: 24.2)",
+      "trend_rationale": "Weak/Sideways Bullish Trend (ADX: 23.0)",
       "pe": 21.689497,
       "pe_str": "21.7",
       "market_cap": 110604795904.0,
@@ -18115,7 +18115,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 24.160104139567686,
+      "adx": 22.979600602582504,
       "rvol": 0.75,
       "atr": 1.76
     },
@@ -18158,7 +18158,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.247049611309613,
+      "adx": 27.247049611309585,
       "rvol": 0.72,
       "atr": 1.71
     },
@@ -18201,7 +18201,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 42.33160811548736,
+      "adx": 42.33160811548737,
       "rvol": 0.61,
       "atr": 4.17
     },
@@ -18244,7 +18244,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 28.536363724854546,
+      "adx": 28.536363724854407,
       "rvol": 1.06,
       "atr": 3.09
     },
@@ -18287,7 +18287,7 @@
       "earnings_date": "2027-01-15",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.24070972573511,
+      "adx": 26.24070972573506,
       "rvol": 1.1,
       "atr": 4.92
     },
@@ -18330,7 +18330,7 @@
       "earnings_date": "2027-01-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.332988873432335,
+      "adx": 28.33298887343232,
       "rvol": 1.04,
       "atr": 9.74
     },
@@ -18373,7 +18373,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 47.67419111291717,
+      "adx": 47.674191112917086,
       "rvol": 0.75,
       "atr": 6.15
     },
@@ -18416,7 +18416,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.337002411073097,
+      "adx": 16.337002411073083,
       "rvol": 0.67,
       "atr": 10.83
     },
@@ -18459,7 +18459,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.86524630843848,
+      "adx": 30.86519204844611,
       "rvol": 0.88,
       "atr": 2.55
     },
@@ -18502,7 +18502,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 36.43353409047362,
+      "adx": 36.433534090473636,
       "rvol": 0.53,
       "atr": 2.15
     },
@@ -18545,7 +18545,7 @@
       "earnings_date": "2026-12-08",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 19.80007228372821,
+      "adx": 19.800072283728248,
       "rvol": 1.03,
       "atr": 20.8
     },
@@ -18588,7 +18588,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.02261895129086,
+      "adx": 19.022618951290845,
       "rvol": 0.78,
       "atr": 1.94
     },
@@ -18631,7 +18631,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 13.912501388679127,
+      "adx": 13.912501388679177,
       "rvol": 0.77,
       "atr": 5.1
     },
@@ -18674,7 +18674,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 23.370136875908155,
+      "adx": 23.37013687590824,
       "rvol": 1.17,
       "atr": 3.24
     },
@@ -18717,7 +18717,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.554116804306052,
+      "adx": 15.55402696851496,
       "rvol": 0.88,
       "atr": 12.66
     },
@@ -18760,7 +18760,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.886598138189672,
+      "adx": 23.886598138189658,
       "rvol": 0.72,
       "atr": 4.68
     },
@@ -18803,7 +18803,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.38575165763937,
+      "adx": 18.385751657639343,
       "rvol": 0.89,
       "atr": 9.59
     },
@@ -18846,7 +18846,7 @@
       "earnings_date": "2026-11-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.717591733433665,
+      "adx": 30.717591733433608,
       "rvol": 1.05,
       "atr": 5.69
     },
@@ -18889,7 +18889,7 @@
       "earnings_date": "2027-01-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.961475104011956,
+      "adx": 13.96147510401198,
       "rvol": 1.33,
       "atr": 8.57
     },
@@ -18932,7 +18932,7 @@
       "earnings_date": "2027-01-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 14.540156961258571,
+      "adx": 14.540156961258576,
       "rvol": 0.53,
       "atr": 20.89
     },
@@ -18975,7 +18975,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 36.90402238549109,
+      "adx": 36.90402238549111,
       "rvol": 0.81,
       "atr": 23.25
     },
@@ -19018,7 +19018,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.333814718355942,
+      "adx": 11.333814718355894,
       "rvol": 0.98,
       "atr": 19.58
     },
@@ -19061,7 +19061,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.824009078594976,
+      "adx": 17.824009078594983,
       "rvol": 1.09,
       "atr": 17.38
     },
@@ -19104,7 +19104,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 43.17974363490746,
+      "adx": 43.17974363490747,
       "rvol": 1.78,
       "atr": 15.61
     },
@@ -19190,7 +19190,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.91373146964295,
+      "adx": 15.913731469642963,
       "rvol": 0.85,
       "atr": 20.41
     },
@@ -19233,7 +19233,7 @@
       "earnings_date": "2026-11-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.771398285639005,
+      "adx": 18.771398285639,
       "rvol": 1.13,
       "atr": 4.22
     },
@@ -19276,7 +19276,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.37680614303554,
+      "adx": 20.376806143035537,
       "rvol": 0.92,
       "atr": 6.54
     },
@@ -19319,7 +19319,7 @@
       "earnings_date": "2026-11-09",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 23.36579756491823,
+      "adx": 23.36579756491818,
       "rvol": 0.58,
       "atr": 0.9
     },
@@ -19362,7 +19362,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 22.66006552058417,
+      "adx": 22.660065520584197,
       "rvol": 1.2,
       "atr": 1.44
     },
@@ -19405,7 +19405,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.553016543826182,
+      "adx": 30.553016543826146,
       "rvol": 0.79,
       "atr": 15.17
     },
@@ -19491,7 +19491,7 @@
       "earnings_date": "2027-01-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.60228572282215,
+      "adx": 16.60228572282214,
       "rvol": 0.8,
       "atr": 8.45
     },
@@ -19577,7 +19577,7 @@
       "earnings_date": "2027-01-20",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.500904629366165,
+      "adx": 22.500904629366122,
       "rvol": 0.76,
       "atr": 1.16
     },
@@ -19620,7 +19620,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.4675672174308,
+      "adx": 26.467567217430798,
       "rvol": 0.65,
       "atr": 13.45
     },
@@ -19663,7 +19663,7 @@
       "earnings_date": "2027-02-08",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 39.138013669344744,
+      "adx": 39.13801366934474,
       "rvol": 0.66,
       "atr": 1.83
     },
@@ -19706,7 +19706,7 @@
       "earnings_date": "2027-01-15",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.135264844786764,
+      "adx": 21.135264844786754,
       "rvol": 1.05,
       "atr": 1.41
     },
@@ -19749,7 +19749,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.64269497381328,
+      "adx": 25.642694973813285,
       "rvol": 1.01,
       "atr": 2.48
     },
@@ -19792,7 +19792,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.63652976467456,
+      "adx": 24.636529764674503,
       "rvol": 0.79,
       "atr": 0.71
     },
@@ -19835,7 +19835,7 @@
       "earnings_date": "2026-12-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.18118843188336,
+      "adx": 33.18118843188339,
       "rvol": 1.07,
       "atr": 19.27
     },
@@ -19878,7 +19878,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 26.382222190666855,
+      "adx": 26.382222190666845,
       "rvol": 0.99,
       "atr": 7.04
     },
@@ -19921,7 +19921,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 15.763573054521483,
+      "adx": 15.763573054521538,
       "rvol": 0.96,
       "atr": 5.25
     },
@@ -19964,7 +19964,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.9987003762643,
+      "adx": 40.99870037626425,
       "rvol": 0.94,
       "atr": 2.68
     },
@@ -20007,7 +20007,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.01308716790671,
+      "adx": 17.013087167906704,
       "rvol": 1.2,
       "atr": 50.26
     },
@@ -20027,7 +20027,7 @@
       "price_str": "346.19",
       "rsi": 34.7,
       "rsi_str": "34.7",
-      "dma50": 386.48720092773436,
+      "dma50": 386.4872009277344,
       "dma200": 366.9208901977539,
       "dma50_str": "386.5",
       "dma200_str": "366.9",
@@ -20050,7 +20050,7 @@
       "earnings_date": "2027-01-12",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.73854606308498,
+      "adx": 32.7385460630849,
       "rvol": 0.87,
       "atr": 15.65
     },
@@ -20093,7 +20093,7 @@
       "earnings_date": "2026-10-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 17.026771471094698,
+      "adx": 17.02677147109468,
       "rvol": 0.86,
       "atr": 7.13
     },
@@ -20136,7 +20136,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 29.35262309328374,
+      "adx": 29.352623093283626,
       "rvol": 0.75,
       "atr": 15.5
     },
@@ -20179,7 +20179,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 9.993381296193263,
+      "adx": 9.993381296193236,
       "rvol": 1.18,
       "atr": 1.91
     },
@@ -20222,7 +20222,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 44.85988442429489,
+      "adx": 44.85988442429493,
       "rvol": 1.0,
       "atr": 2.53
     },
@@ -20265,7 +20265,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.861751310526875,
+      "adx": 13.861751310526861,
       "rvol": 1.02,
       "atr": 8.43
     },
@@ -20308,7 +20308,7 @@
       "earnings_date": "2027-02-17",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 32.02839391904853,
+      "adx": 32.02839391904849,
       "rvol": 0.8,
       "atr": 6.97
     },
@@ -20351,7 +20351,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 11.783823813972235,
+      "adx": 11.783823813972232,
       "rvol": 0.89,
       "atr": 1.05
     },
@@ -20437,7 +20437,7 @@
       "earnings_date": "2026-11-05",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 27.71980121728569,
+      "adx": 27.719801217285756,
       "rvol": 0.7,
       "atr": 0.53
     },
@@ -20480,7 +20480,7 @@
       "earnings_date": "2026-10-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.823896497302563,
+      "adx": 24.82389649730251,
       "rvol": 0.82,
       "atr": 0.51
     },
@@ -20523,7 +20523,7 @@
       "earnings_date": "2027-01-26",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.63725693117591,
+      "adx": 27.637256931175948,
       "rvol": 0.9,
       "atr": 9.31
     },
@@ -20609,7 +20609,7 @@
       "earnings_date": "2027-02-16",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.608629872591074,
+      "adx": 28.6086298725909,
       "rvol": 1.05,
       "atr": 8.76
     },
@@ -20652,7 +20652,7 @@
       "earnings_date": "2027-01-25",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.22458932404471,
+      "adx": 31.2245893240447,
       "rvol": 0.96,
       "atr": 1.55
     },
@@ -20695,7 +20695,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.634360603189805,
+      "adx": 29.63436060318983,
       "rvol": 0.7,
       "atr": 36.72
     },
@@ -20738,7 +20738,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 15.839732027906777,
+      "adx": 15.83973202790678,
       "rvol": 1.13,
       "atr": 9.8
     },
@@ -20781,7 +20781,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.18793464744344,
+      "adx": 40.187934647443285,
       "rvol": 0.94,
       "atr": 2.9
     },
@@ -20824,7 +20824,7 @@
       "earnings_date": "2027-02-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 40.22763746914455,
+      "adx": 40.22763746914435,
       "rvol": 1.52,
       "atr": 3.21
     },
@@ -20867,7 +20867,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 28.529881313843163,
+      "adx": 28.52988131384297,
       "rvol": 0.91,
       "atr": 4.98
     },
@@ -20910,7 +20910,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 18.77393513603236,
+      "adx": 18.773935136032346,
       "rvol": 1.23,
       "atr": 15.79
     },
@@ -20953,7 +20953,7 @@
       "earnings_date": "2027-02-02",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 48.98142972788736,
+      "adx": 48.98142972788723,
       "rvol": 0.57,
       "atr": 1.98
     },
@@ -20996,7 +20996,7 @@
       "earnings_date": "2027-01-14",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 18.7944138216329,
+      "adx": 18.79441382163291,
       "rvol": 0.86,
       "atr": 2.13
     },
@@ -21039,7 +21039,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 12.123990266809512,
+      "adx": 12.123990266809532,
       "rvol": 1.02,
       "atr": 5.39
     },
@@ -21082,7 +21082,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.646348991897298,
+      "adx": 30.64634899189738,
       "rvol": 1.43,
       "atr": 11.91
     },
@@ -21125,7 +21125,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.16314326592906,
+      "adx": 33.16314326592908,
       "rvol": 0.83,
       "atr": 27.95
     },
@@ -21168,7 +21168,7 @@
       "earnings_date": "2027-01-28",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.04973308652708,
+      "adx": 21.049733086527088,
       "rvol": 1.21,
       "atr": 0.6
     },
@@ -21211,7 +21211,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 26.489786668630813,
+      "adx": 26.48978666863079,
       "rvol": 1.05,
       "atr": 11.08
     },
@@ -21297,7 +21297,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 20.363960521763268,
+      "adx": 20.363960521763257,
       "rvol": 2.03,
       "atr": 8.96
     },
@@ -21340,7 +21340,7 @@
       "earnings_date": "2027-02-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 17.818602911078564,
+      "adx": 17.818602911078596,
       "rvol": 1.74,
       "atr": 7.9
     },
@@ -21383,7 +21383,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 25.69814090633014,
+      "adx": 25.698140906330156,
       "rvol": 0.84,
       "atr": 3.14
     },
@@ -21426,7 +21426,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 29.357157068583327,
+      "adx": 29.35715706858334,
       "rvol": 0.64,
       "atr": 1.36
     },
@@ -21469,7 +21469,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 13.171865313089137,
+      "adx": 13.171865313089143,
       "rvol": 0.86,
       "atr": 2.86
     },
@@ -21512,7 +21512,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 31.42503326450288,
+      "adx": 31.42503326450287,
       "rvol": 0.83,
       "atr": 3.67
     },
@@ -21555,7 +21555,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 46.29031481458202,
+      "adx": 46.29031481458207,
       "rvol": 0.62,
       "atr": 14.25
     },
@@ -21598,7 +21598,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 21.368067008759336,
+      "adx": 21.368067008759265,
       "rvol": 0.64,
       "atr": 3.5
     },
@@ -21641,7 +21641,7 @@
       "earnings_date": "2027-02-11",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 30.825365151986478,
+      "adx": 30.825365151986528,
       "rvol": 0.88,
       "atr": 2.69
     },
@@ -21727,7 +21727,7 @@
       "earnings_date": "2026-11-23",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.8068522790832,
+      "adx": 21.806852279083216,
       "rvol": 1.33,
       "atr": 15.36
     },
@@ -21770,7 +21770,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 16.742297927126792,
+      "adx": 16.74229792712683,
       "rvol": 0.86,
       "atr": 4.23
     },
@@ -21813,7 +21813,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.11162054516741,
+      "adx": 35.11162054516745,
       "rvol": 1.02,
       "atr": 5.28
     },
@@ -21856,7 +21856,7 @@
       "earnings_date": "2026-11-19",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 21.399748996597516,
+      "adx": 21.39974899659753,
       "rvol": 1.27,
       "atr": 2.99
     },
@@ -21899,7 +21899,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 44.57712047766247,
+      "adx": 44.57712047766248,
       "rvol": 0.58,
       "atr": 9.87
     },
@@ -21942,7 +21942,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 32.86459543675105,
+      "adx": 32.86459543675107,
       "rvol": 0.7,
       "atr": 23.39
     },
@@ -22028,7 +22028,7 @@
       "earnings_date": "2026-12-01",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 34.23690141033766,
+      "adx": 34.236901410337644,
       "rvol": 0.81,
       "atr": 16.65
     },
@@ -22071,7 +22071,7 @@
       "earnings_date": "2027-02-18",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 22.52431842086455,
+      "adx": 22.524318420864436,
       "rvol": 0.72,
       "atr": 2.39
     },
@@ -22114,7 +22114,7 @@
       "earnings_date": "2027-01-27",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 30.849320438697138,
+      "adx": 30.849320438697152,
       "rvol": 1.06,
       "atr": 76.11
     },
@@ -22157,7 +22157,7 @@
       "earnings_date": "2027-02-03",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 27.57072868238467,
+      "adx": 27.570728682384612,
       "rvol": 1.22,
       "atr": 17.62
     },
@@ -22200,7 +22200,7 @@
       "earnings_date": "2027-02-10",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 24.524041649707403,
+      "adx": 24.524041649707435,
       "rvol": 0.62,
       "atr": 2.69
     },
@@ -22243,7 +22243,7 @@
       "earnings_date": "2027-02-09",
       "weekly_available": false,
       "monthly_available": true,
-      "adx": 19.677446249389426,
+      "adx": 19.677446249389487,
       "rvol": 0.82,
       "atr": 4.14
     },
@@ -22286,7 +22286,7 @@
       "earnings_date": "2026-11-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 33.116693624075864,
+      "adx": 33.1166936240759,
       "rvol": 1.11,
       "atr": 63.66
     },
@@ -22329,7 +22329,7 @@
       "earnings_date": "2027-02-04",
       "weekly_available": true,
       "monthly_available": true,
-      "adx": 35.976380112633265,
+      "adx": 35.97638011263324,
       "rvol": 1.42,
       "atr": 9.02
     }
